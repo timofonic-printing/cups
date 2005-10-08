@@ -1,0 +1,28 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 25_loopavoid.dpatch by Kenshi Muto <kmuto@debian.org>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: No description.
+
+@DPATCH@
+diff -urNad cupsys-1.1.23/cups/util.c /tmp/dpep.ZozsyX/cupsys-1.1.23/cups/util.c
+--- cupsys-1.1.23/cups/util.c	2005-01-03 19:29:45.000000000 +0000
++++ /tmp/dpep.ZozsyX/cupsys-1.1.23/cups/util.c	2005-04-17 03:48:42.105627675 +0000
+@@ -170,7 +170,7 @@
+   struct stat	fileinfo;		/* File information */
+   int		bytes;			/* Number of bytes read/written */
+   char		buffer[32768];		/* Output buffer */
+-
++  int		tries;
+ 
+   DEBUG_printf(("cupsDoFileRequest(%p, %p, \'%s\', \'%s\')\n",
+                 http, request, resource ? resource : "(null)",
+@@ -238,7 +238,7 @@
+   response = NULL;
+   status   = HTTP_ERROR;
+ 
+-  while (response == NULL)
++  for (tries = 1; (response == NULL) && (tries < 10); tries++)
+   {
+     DEBUG_puts("cupsDoFileRequest: setup...");
+ 

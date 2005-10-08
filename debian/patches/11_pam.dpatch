@@ -1,0 +1,19 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 11_pam.dpatch by Kenshi Muto <kmuto@debian.org>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: No description.
+
+@DPATCH@
+diff -urNad cupsys-1.1.99.b1.r4748~/scheduler/auth.c cupsys-1.1.99.b1.r4748/scheduler/auth.c
+--- cupsys-1.1.99.b1.r4748~/scheduler/auth.c	2005-09-28 21:12:44.000000000 +0000
++++ cupsys-1.1.99.b1.r4748/scheduler/auth.c	2005-10-05 12:12:04.140557385 +0000
+@@ -1303,7 +1303,7 @@
+ 
+ 	  DEBUG_printf(("cupsdIsAuthorized: Setting appdata_ptr = %p\n", con));
+ 
+-	  pamerr = pam_start("cups", con->username, &pamdata, &pamh);
++	  pamerr = pam_start("cupsys", con->username, &pamdata, &pamh);
+ 	  if (pamerr != PAM_SUCCESS)
+ 	  {
+ 	    cupsdLogMessage(CUPSD_LOG_ERROR,

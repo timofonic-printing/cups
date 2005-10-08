@@ -1,0 +1,19 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 06_replacepdftops.dpatch by Kenshi Muto <kmuto@debian.org>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: No description.
+
+@DPATCH@
+diff -urNad cupsys-1.1.99.b1.r4748~/Makefile cupsys-1.1.99.b1.r4748/Makefile
+--- cupsys-1.1.99.b1.r4748~/Makefile	2005-02-18 02:09:53.000000000 +0000
++++ cupsys-1.1.99.b1.r4748/Makefile	2005-10-05 12:08:47.526638623 +0000
+@@ -28,7 +28,7 @@
+ # Directories to make...
+ #
+ 
+-DIRS	=	cups backend berkeley cgi-bin filter man pdftops \
++DIRS	=	cups backend berkeley cgi-bin filter man \
+ 		scheduler systemv
+ 
+ #

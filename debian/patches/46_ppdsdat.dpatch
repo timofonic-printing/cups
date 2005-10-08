@@ -1,0 +1,19 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 46_ppdsdat.dpatch by Kenshi Muto <kmuto@debian.org>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: No description.
+
+@DPATCH@
+diff -urNad --exclude=CVS --exclude=.svn ./scheduler/ppds.c /tmp/dpep-work.Vnwffe/cupsys-1.1.23/scheduler/ppds.c
+--- ./scheduler/ppds.c	2005-01-03 19:29:59.000000000 +0000
++++ /tmp/dpep-work.Vnwffe/cupsys-1.1.23/scheduler/ppds.c	2005-07-17 20:09:28.727276629 +0000
+@@ -104,7 +104,7 @@
+   ppds        = (ppd_info_t *)0;
+   changed_ppd = 0;
+ 
+-  snprintf(filename, sizeof(filename), "%s/ppds.dat", ServerRoot);
++  snprintf(filename, sizeof(filename), "%s/ppds.dat", "/var/lib/cups");
+   if (!stat(filename, &fileinfo) &&
+       (num_ppds = fileinfo.st_size / sizeof(ppd_rec_t)) > 0)
+   {

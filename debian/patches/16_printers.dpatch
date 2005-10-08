@@ -1,0 +1,21 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 16_printers.dpatch by Kenshi Muto <kmuto@debian.org>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: No description.
+
+@DPATCH@
+diff -urNad cupsys-1.1.99.b1.r4748~/cgi-bin/ipp-var.c cupsys-1.1.99.b1.r4748/cgi-bin/ipp-var.c
+--- cupsys-1.1.99.b1.r4748~/cgi-bin/ipp-var.c	2005-10-01 01:45:18.000000000 +0000
++++ cupsys-1.1.99.b1.r4748/cgi-bin/ipp-var.c	2005-10-05 12:14:10.055125006 +0000
+@@ -231,7 +231,9 @@
+     */
+ 
+     server = getenv("SERVER_NAME");
+-
++    if (server == NULL) {
++      server = "";
++    }
+     httpGetHostname(servername, sizeof(servername));
+ 
+    /*

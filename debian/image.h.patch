@@ -1,0 +1,12 @@
+This patch is to be applied only to image.h in the package libcupsimage2-dev.
+
+--- usr/include/cups/image.h.orig	2003-09-04 14:20:18.000000000 +0200
++++ usr/include/cups/image.h	2003-09-04 14:20:33.000000000 +0200
+@@ -35,7 +35,6 @@
+ #  include <stdlib.h>
+ #  include <string.h>
+ #  include <errno.h>
+-#  include <config.h>
+ #  include "raster.h"
+ 
+ 

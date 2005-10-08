@@ -1,0 +1,25 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 10_cupsd.conf2.dpatch by Kenshi Muto <kmuto@debian.org>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: No description.
+
+@DPATCH@
+diff -urNad cupsys-1.1.99.b1.r4748~/conf/cupsd.conf.in cupsys-1.1.99.b1.r4748/conf/cupsd.conf.in
+--- cupsys-1.1.99.b1.r4748~/conf/cupsd.conf.in	2005-09-26 20:59:15.000000000 +0000
++++ cupsys-1.1.99.b1.r4748/conf/cupsd.conf.in	2005-10-07 00:06:54.087344994 +0000
+@@ -14,11 +14,11 @@
+ SystemGroup @CUPS_GROUP@
+ 
+ # Only listen for connections from the local machine.
+-Listen 127.0.0.1:@DEFAULT_IPP_PORT@
+-@CUPS_LISTEN_DOMAINSOCKET@
++# Listen 127.0.0.1:@DEFAULT_IPP_PORT@
++# @CUPS_LISTEN_DOMAINSOCKET@
+ 
+ # Show shared printers on the local network.
+-Browsing On
++# Browsing On
+ BrowseOrder allow,deny
+ BrowseAllow @LOCAL
+ 

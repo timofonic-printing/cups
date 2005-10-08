@@ -1,0 +1,22 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 03_cupsimage.dpatch by Kenshi Muto <kmuto@debian.org>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: No description.
+
+@DPATCH@
+diff -urNad cupsys-1.1.23/filter/Makefile /tmp/dpep.2eKyx7/cupsys-1.1.23/filter/Makefile
+--- cupsys-1.1.23/filter/Makefile	2005-01-03 19:29:57.000000000 +0000
++++ /tmp/dpep.2eKyx7/cupsys-1.1.23/filter/Makefile	2005-04-17 03:43:22.798745789 +0000
+@@ -128,9 +128,9 @@
+ # libcupsimage.so.2, libcupsimage.sl.2
+ #
+ 
+-libcupsimage.so.2 libcupsimage.sl.2:	$(IMAGEOBJS) ../Makedefs
++libcupsimage.so.2 libcupsimage.sl.2:	$(IMAGEOBJS) ../Makedefs ../cups/$(LIBCUPS)
+ 	echo Linking $@...
+-	$(DSO) $(DSOFLAGS) -o $@ $(IMAGEOBJS) $(DSOLIBS) -lm
++	$(DSO) $(DSOFLAGS) -o $@ $(IMAGEOBJS) $(DSOLIBS) -lm ../cups/$(LIBCUPS)
+ 	$(RM) `basename $@ .2`
+ 	$(LN) $@ `basename $@ .2`
+ 

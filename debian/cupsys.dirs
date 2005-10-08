@@ -1,0 +1,6 @@
+var/run/cups
+usr/share/doc/cupsys
+etc/default
+etc/cups/cups.d
+usr/lib/cups/backend-available
+var/cache/cups/ppd

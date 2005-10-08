@@ -1,0 +1,27 @@
+#!/bin/sh -e
+
+# Author: Martin Pitt <martin.pitt@ubuntu.com>
+# (C) 2005  Canonical Ltd.
+#
+# Get the status of IPP network browsing through exit code:
+#
+# 0: browsing is disabled (default configuration)
+# 1: browsing is enabled for LAN
+# 2: the configuration was adapted manually; in this case enable_browsing cannot
+#    be used
+
+MAINCONF=/etc/cups/cupsd.conf
+BROWSECONF=/etc/cups/cupsd-browsing.conf
+
+[ -f $MAINCONF -a -f $BROWSECONF ] || exit 2
+
+# if BROWSECONF is not included -> custom
+egrep -qi "^[[:space:]]*Include[[:space:]]+($BROWSECONF|$(basename $BROWSECONF))[[:space:]]*(#.*)?\$" $MAINCONF || exit 2
+
+if egrep -qi '^[[:space:]]*Browsing[[:space:]]+(No|Off)[[:space:]]*(#.*)?$' $BROWSECONF; then
+    exit 0
+fi
+if egrep -qi '^[[:space:]]*Browsing[[:space:]]+(Yes|On)[[:space:]]*(#.*)?$' $BROWSECONF; then
+    exit 1
+fi
+exit 2

@@ -1,0 +1,255 @@
+#
+#    Translators, if you are not familiar with the PO format, gettext
+#    documentation is worth reading, especially sections dedicated to
+#    this format, e.g. by running:
+#         info -n '(gettext)PO Files'
+#         info -n '(gettext)Header Entry'
+#
+#    Some information specific to po-debconf are available at
+#            /usr/share/doc/po-debconf/README-trans
+#         or http://www.debian.org/intl/l10n/po-debconf/README-trans
+#
+#    Developers do not need to manually edit POT or PO files.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: cupsys 1.2.0\n"
+"Report-Msgid-Bugs-To: pkg-cups-devel@lists.alioth.debian.org\n"
+"POT-Creation-Date: 2005-10-07 00:07+0000\n"
+"PO-Revision-Date: 2005-10-07 09:08+0900\n"
+"Last-Translator: Kenshi Muto <kmuto@debian.org>\n"
+"Language-Team: Japanese <debian-japanese@lists.debian.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=EUC-JP\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. Type: boolean
+#. Description
+#: ../cupsys-bsd.templates:4
+msgid "Do you want to set up the BSD lpd compatibility server?"
+msgstr "BSD lpd 互換サーバをセットアップしますか?"
+
+#. Type: boolean
+#. Description
+#: ../cupsys-bsd.templates:4
+msgid ""
+"This package contains a server that can accept BSD-style print jobs and "
+"submit them to CUPS. It should only be set up if you have other computers "
+"that submit jobs over the network via \"BSD\" or \"LPR\" services, and these "
+"computers cannot be converted to use the IPP protocol that CUPS uses."
+msgstr ""
+"このパッケージは BSD スタイルの印刷ジョブを受け付け、CUPS にそれを送るサーバ"
+"を含んでいます。\"BSD\" または \"LPR\" サービス経由でネットワーク越しにジョブ"
+"を送るほかのコンピュータがあり、かつそれらのコンピュータは CUPS の使っている "
+"IPP プロトコルを使うよう変更できない、という場合にのみセットアップすべきで"
+"す。"
+
+#. Type: boolean
+#. Description
+#: ../cupsys.templates:4
+msgid "Do you want CUPS to print unknown jobs as raw jobs?"
+msgstr "未知のジョブを生データ (raw) ジョブとして CUPS に印刷させますか?"
+
+#. Type: boolean
+#. Description
+#: ../cupsys.templates:4
+msgid ""
+"All print jobs in IPP get a MIME type. Since not all sources of print jobs "
+"can attach an appropriate type, many jobs get submitted as the MIME type "
+"application/octet-stream. Because of this, when CUPS receives a job with "
+"that MIME type, it attempts to guess what the format is. By default, if it "
+"cannot guess the proper type, it rejects the job."
+msgstr ""
+"IPP でのすべての印刷ジョブは MIME 形式を持ちます。印刷ジョブのすべてのソース"
+"に適切な形式が付いているとは限らず、多くのジョブは MIME 形式 application/"
+"octet-stream として送られます。このため、CUPS はこのような MIME 形式付きの"
+"ジョブを受け取ると、そのフォーマットは何かを推測しようとします。デフォルトで"
+"は、もし適当な形式を推測できない場合、そのジョブを拒否します。"
+
+#. Type: boolean
+#. Description
+#: ../cupsys.templates:4
+msgid ""
+"It is possible to cause CUPS to treat all unrecognized jobs with this MIME "
+"type as \"raw\" jobs, which causes them to be sent directly to the printer "
+"without processing."
+msgstr ""
+"この MIME 形式のすべての未知のジョブを、加工することなくプリンタに直接送るよ"
+"う生データ（\"raw\"）ジョブとして扱うように CUPS を設定できます。"
+
+#. Type: boolean
+#. Description
+#: ../cupsys.templates:4
+msgid ""
+"If you will be accepting print jobs from Windows computers, you probably "
+"want this option set, as Windows gives all IPP print jobs processed by a "
+"local driver the MIME type application/octet-stream. Samba also submits its "
+"print jobs this way."
+msgstr ""
+"もし Windows コンピュータからの印刷ジョブを受け付ける場合、おそらくこのオプ"
+"ションを設定すべきです。というのも、Windows はすべての IPP 印刷ジョブをローカ"
+"ルドライバによって MIME 形式 application/octet-stream に加工するからです。"
+"Samba も同様にその印刷ジョブをこのやり方で送ります。"
+
+#. Type: multiselect
+#. Choices
+#: ../cupsys.templates:22
+msgid "ipp, lpd, parallel, scsi, serial, socket, usb"
+msgstr "IPP, LPD, パラレル, SCSI, シリアル, ソケット, USB"
+
+#. Type: multiselect
+#. Description
+#: ../cupsys.templates:24
+msgid "Select the backends you want."
+msgstr "利用したいバックエンドを選択してください。"
+
+#. Type: multiselect
+#. Description
+#: ../cupsys.templates:24
+msgid ""
+"CUPS uses backend programs for communication with printer device or port."
+msgstr ""
+"CUPS はプリンタデバイスまたはポートと会話するのにバックエンドプログラムを使い"
+"ます。"
+
+#. Type: multiselect
+#. Description
+#: ../cupsys.templates:24
+msgid ""
+"Unfortunately, some backend programs cause some trouble. (For example, some "
+"PPC kernel crashes with the parallel backend)"
+msgstr ""
+"困ったことに、いくつかのバックエンドプログラムは問題を引き起こします。(たとえ"
+"ば、ある種の PPC カーネルは parallel バックエンドでクラッシュします)"
+
+#. Type: multiselect
+#. Description
+#: ../cupsys.templates:24
+msgid ""
+"Please choose the backend program to be used by CUPS. The default choice "
+"should fit the most common environments."
+msgstr ""
+"CUPS で利用したいバックエンドプログラムを選択してください。デフォルトの選択は"
+"たいていの一般的な環境に合っています。"
+
+#. Type: string
+#. Description
+#: ../cupsys.templates:36
+msgid "Specify the port or/and host name that wants to be listened."
+msgstr "監視したいポートあるいはホスト名を指定してください。"
+
+#. Type: string
+#. Description
+#: ../cupsys.templates:36
+msgid ""
+"Please specify the port or the host name CUPS daemon listens. You can use "
+"following formats."
+msgstr ""
+"CUPS デーモンに監視させたいポートまたはホスト名を指定してください。次のような"
+"書式を利用できます。"
+
+#. Type: string
+#. Description
+#: ../cupsys.templates:36
+msgid "- Port number (631)"
+msgstr "- ポート番号 (631)"
+
+#. Type: string
+#. Description
+#: ../cupsys.templates:36
+msgid "- Host name   (debian.example.com)"
+msgstr "- ホスト名  (debian.example.com)"
+
+#. Type: string
+#. Description
+#: ../cupsys.templates:36
+msgid "- Host:Port   (debian.example.com:631)"
+msgstr "- ホスト:ポート  (debian.example.com:631)"
+
+#. Type: string
+#. Description
+#: ../cupsys.templates:36
+msgid "- File domain socket (/var/run/cups/cups.sock)"
+msgstr "ファイルドメインソケット (/var/run/cups/cups.sock)"
+
+#. Type: string
+#. Description
+#: ../cupsys.templates:36
+msgid "It is possible to combine by delimiting two or more values in space."
+msgstr "スペースで区切って複数の値を組み合わせることも可能です。"
+
+#. Type: string
+#. Description
+#: ../cupsys.templates:36
+msgid ""
+"The default port 631 is reserved for the Internet Printing Protocol (IPP). "
+"\"localhost:631\" is recommended to the standalone environment by security "
+"reason."
+msgstr ""
+"デフォルトポート 631 は Internet Printing Protocol (IPP) に予約されています。"
+"\"localhost:631\" はセキュリティ上の理由から単独マシンの環境で推奨されます。"
+
+#. Type: boolean
+#. Description
+#: ../cupsys.templates:57
+msgid ""
+"Do you want to broadcast and/or listen for CUPS printer information on the "
+"network?"
+msgstr ""
+"ネットワーク上の CUPS プリンタ情報のブロードキャストおよび監視を行いますか?"
+
+#. Type: boolean
+#. Description
+#: ../cupsys.templates:57
+msgid ""
+"CUPS daemon can broadcast printer information for clients on the network, "
+"and detect printers on the network automatically."
+msgstr ""
+"CUPS デーモンはネットワーク上のクライアントにプリンタ情報をブロードキャストし"
+"たり、ネットワーク上のプリンタを自動的に検出したりできます。"
+
+#. Type: boolean
+#. Description
+#: ../cupsys.templates:57
+msgid ""
+"When this option is accepted, CUPS daemon will broadcast and detect by using "
+"UDP periodically."
+msgstr ""
+"この選択肢で「はい」とすると、CUPS デーモンは UDP を使って定期的にブロード"
+"キャストおよび検出を行います。"
+
+#. Type: note
+#. Description
+#: ../cupsys.templates:66
+msgid "The wrong value is found in the input."
+msgstr "入力に誤った値が見つかりました。"
+
+#. Type: note
+#. Description
+#: ../cupsys.templates:66
+msgid "The error occurred while parsing the port number or the host name."
+msgstr "ポート番号またはホスト名の解釈中にエラーが発生しました。"
+
+#. Type: note
+#. Description
+#: ../cupsys.templates:66
+msgid "Please correct it."
+msgstr "修正してください。"
+
+#. Type: password
+#. Description
+#: ../cupsys.templates:73
+msgid "Admin password:"
+msgstr "管理者パスワード:"
+
+#. Type: password
+#. Description
+#: ../cupsys.templates:73
+msgid "Please enter the password for the admin (username 'root') of CUPS."
+msgstr "CUPS 管理者 (ユーザ名 'root') 用のパスワードを入力してください。"
+
+#. Type: password
+#. Description
+#: ../cupsys.templates:73
+msgid "You can add/replace/delete CUPS password information by using lpadmin."
+msgstr "lpadmin を使って CUPS パスワード情報を追加/変更/削除できます。"

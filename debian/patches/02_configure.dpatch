@@ -1,0 +1,23 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 02_configure.dpatch by Kenshi Muto <kmuto@debian.org>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: No description.
+
+@DPATCH@
+diff -urNad cupsys-1.1.99.b1.r4748~/configure cupsys-1.1.99.b1.r4748/configure
+--- cupsys-1.1.99.b1.r4748~/configure	2005-10-05 12:02:18.000000000 +0000
++++ cupsys-1.1.99.b1.r4748/configure	2005-10-05 12:05:30.874716161 +0000
+@@ -7363,9 +7363,9 @@
+                         ;;
+                 Linux | GNU)
+                         # Linux and HURD
+-                	DSOFLAGS="-Wl,-rpath,$libdir $DSOFLAGS"
+-                        LDFLAGS="$LDFLAGS -Wl,-rpath,$libdir"
+-                        EXPORT_LDFLAGS="-Wl,-rpath,$libdir"
++                	#DSOFLAGS="-Wl,-rpath,$libdir $DSOFLAGS"
++                        #LDFLAGS="$LDFLAGS -Wl,-rpath,$libdir"
++                        #EXPORT_LDFLAGS="-Wl,-rpath,$libdir"
+                         ;;
+ 	esac
+ else

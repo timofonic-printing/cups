@@ -1,0 +1,1362 @@
+cupsys (1.1.99.b1.r4748-1) experimental; urgency=low
+
+  * EXPERIMENTAL
+  * CUPS 1.2 snapshot (r4748) from SVN.
+
+ -- Kenshi Muto <kmuto@debian.org>  Wed,  5 Oct 2005 12:54:27 +0000
+
+cupsys (1.1.23-13) UNRELEASED; urgency=low
+
+  * 38_pdftopscan.dpatch: Apply CAN-2005-0064, CAN-2004-0888,
+    and CAN-2005-2097 patches. (closes: #324459, #324460, #324464)
+    Because Debian cupsys uses xpdf wrapper instead of forked pdftops,
+    users aren't affected these security problems.
+    This patch is just for users who want to create own pdftops from
+    source.
+  * Move Port/Listen and Browsing configurations from /etc/cups/
+    cupsd.conf to /etc/cups/cups.d/.
+
+    /etc/cups/cups.d/ports.conf: Port/Listen configuration.
+    /etc/cups/cups.d/browse.conf: Browsing configuration
+
+    Migration will be done automatically.
+    You can configure these values by using "dpkg-reconfigure cupsys".
+    (closes: #235906, #297695, #178838, #288838)
+
+ -- Kenshi Muto <kmuto@debian.org>  Mon, 22 Aug 2005 18:50:26 +0900
+
+cupsys (1.1.23-12) unstable; urgency=medium
+
+  * foomatic-rip may be treated as recommended tool.
+    Modified control file. (closes: #320196)
+  * Add debconf-2.0 as debconf alternative.
+  * Migrated to libgnutls12. (closes: #322087)
+    libcupsys2 backed as real library. libcupsys2-gnutls10 became
+    transitional package. (closes: #322018)
+  * Add procps to Depends: of cupsys. ps command is used by
+    cupsys.postinst.
+  * 47_pid.dpatch: Added a patch to make forked PID file.
+    Now init script use this file instead of one created by
+    start-stop-daemon.
+    I hope this solves Samba starting bug. (closes: #315017)
+  * Back gs-esp to Depends:. (closes: #312244)
+    PostScript printer owners may claim this, but currently
+    we Debian CUPS Maintainers team have massive complains about
+    missing gs-esp dependency. It's current best workaround to
+    avoid such printing problems.
+
+ -- Kenshi Muto <kmuto@debian.org>  Thu, 28 Jul 2005 11:35:27 +0900
+
+cupsys (1.1.23-11) unstable; urgency=low
+
+  * "At Debconf 5" release.
+  * Now CUPS is maintained by Debian CUPS Maintainers Team.
+    <pkg-cups-devel@lists.alioth.deban.org>
+  * Do "sleep 2" to wait daemon's wake up. (this is just workaround...
+    needs better solution, for #309794 and #315017)
+  * Added Vietnamese translation. (closes: #310152)
+  * Check whether daemon is running or not before restart in logrotate.
+    (closes: #310535)
+  * Add description about foomatic-rip (in foomatic-filters package)
+    to README.Debian. (closes: #309399)
+  * Remove unnecessary comment from debian/po/de.po (closes: #314135)
+  * Apply status option for init script (closes: #312683). Thanks Stephen.
+  * Suggests cupsys-driver-gutenprint, this package is new name of
+    cupsys-driver-gimpprint.
+  * 46_ppdsdat: Move /etc/cups/ppds.dat to /var/lib/cups/ppds.dat and
+    make symlink. (closes: #317905)
+  * Unapply NOAUTH handling from 33_jobauthorize. A user warns me
+    it's dangerous to use.
+
+ -- Kenshi Muto <kmuto@debian.org>  Fri, 20 May 2005 11:07:42 +0900
+
+cupsys (1.1.23-10) unstable; urgency=high
+
+  * Recovered http backend. -8 and -9 missed it. (closes: #305169)
+  * Use absolete path for doc-root instead of relative path.
+    (closes: #305339)
+
+ -- Kenshi Muto <kmuto@debian.org>  Tue, 19 Apr 2005 20:47:49 +0900
+
+cupsys (1.1.23-9) unstable; urgency=medium
+
+  * Remove unnecessary and toxic space in doc-base file.
+    (closes: #305084)
+
+ -- Kenshi Muto <kmuto@debian.org>  Mon, 18 Apr 2005 08:08:03 +0900
+
+cupsys (1.1.23-8) unstable; urgency=medium
+
+  * "Brush up for Sarge" release.
+  * Introduced dpatch for source management.
+  * Included Spanish man pages.
+  * 43_filtercost: Applied a patch for wrong computation of cost
+    (closes: #304205)
+  * Applied many part of ubuntu patch, http://people.ubuntu.com/~scott/patches/cupsys/cupsys_1.1.23-7ubuntu1.patch.
+    (User 'cupsys' feature and Browsing feature aren't applied at this time.
+     They are post-Sarge things)
+  * Applied improved dvifilter patch. (Although you need to modify
+    /etc/cups/mime.convs and some other files to use it) (closes: #198100)
+  * Provides /var/run/cups/cupsd.pid. (closes: #301804)
+  * Added cupsys documentation to doc-base structure. (closes: #171396, #304333)
+  * Included filter for PostScript from Windows PostScript driver, created by
+    Matt Swift <swift@alum.mit.edu>.
+    If you want to use, put /usr/share/doc/cupsys/examples/filters/samba-postscript.* to /etc/cups,
+    and put /usr/share/doc/cupsys/examples/filters/samba-ps-to-ps to /usr/lib/cups/filter. (closes: #246577)
+
+ -- Kenshi Muto <kmuto@debian.org>  Wed, 16 Mar 2005 10:01:57 +0900
+
+cupsys (1.1.23-7) unstable; urgency=low
+
+  * Drop /etc/cups/printers.conf and /etc/cups/classes.conf from
+    configuration files. (closes: #298103)
+    Migration will be done automatically.
+  * Add /etc/default/cupsys. You can change force stop behavior by
+    changing FORCE_RESTART in this file. (closes: #298040)
+  * Add hplip to Suggests:. (closes: #297776)
+
+ -- Kenshi Muto <kmuto@debian.org>  Sat,  5 Mar 2005 12:27:32 +0900
+
+cupsys (1.1.23-6) unstable; urgency=medium
+
+  * Fix missing adduser dependency in cupsys-client. (closes: #296849)
+  * Apply parallel backend improvement patch.
+    - don't receive signal during writing (closes: #296222)
+    - fix 64bit problem (closes: #296223)
+
+ -- Kenshi Muto <kmuto@debian.org>  Sat, 26 Feb 2005 08:07:39 +0000
+
+cupsys (1.1.23-5) unstable; urgency=low
+
+  * Improve postinst message (closes: #295642). Thanks Adam.
+
+ -- Kenshi Muto <kmuto@debian.org>  Fri, 18 Feb 2005 21:23:10 +0900
+
+cupsys (1.1.23-4) unstable; urgency=low
+
+  * 20defaultport.patch is merged in upstream source.
+  * ARGH, libcupsys2-dev should conflict/replace against <<1.1.22-3.
+    Fix control file. (closes: #292879)
+  * Remove obsolete README_fr.txt. (closes: #293274)
+
+ -- Kenshi Muto <kmuto@debian.org>  Sun, 30 Jan 2005 08:35:17 +0900
+
+cupsys (1.1.23-3) unstable; urgency=low
+
+  * Remove $Id$ from config file: 07cvsremovetag.patch (closes: #291629)
+  * Fix 'lppasswd does not work with nonexisting passwd file' by mpitt's patch:
+    41lppasswdnoexistingconf.patch (closes: 290011)
+
+ -- Kenshi Muto <kmuto@debian.org>  Sat, 22 Jan 2005 12:23:46 +0900
+
+cupsys (1.1.23-2) unstable; urgency=medium
+
+  * Move defvalue declaration to begin block for compile on
+    backports environment. Thanks Massimiliano.
+  * Fix Cyclades serial port name: 40cycladeserial.patch (closes: #270375)
+  * Upgrade shlibs of libcupsys2-gnutls10. cupsys-client needs newest
+    libcupsys2-gnutls10 (closes: #289930, #289939).
+
+ -- Kenshi Muto <kmuto@debian.org>  Mon, 10 Jan 2005 13:48:32 +0900
+
+cupsys (1.1.23-1) unstable; urgency=low
+
+  * New upstream release
+  * lprng disabled ipp feature since 3.8.26-1. Remove conflicts: lprng
+    of cupsys. (closes: #288531)
+
+ -- Kenshi Muto <kmuto@debian.org>  Tue,  4 Jan 2005 19:32:16 +0900
+
+cupsys (1.1.22-8) unstable; urgency=high
+
+  * Fix another security vulnerability since 1.1.21. Sigh...
+    (closes: #287835)
+
+ -- Kenshi Muto <kmuto@debian.org>  Fri, 31 Dec 2004 13:16:54 +0900
+
+cupsys (1.1.22-7) unstable; urgency=medium
+
+  * Use Depends: xpdf-utils instead of Recommends:.
+    This is RC fix (closes: #287921)
+
+ -- Kenshi Muto <kmuto@debian.org>  Fri, 31 Dec 2004 08:37:54 +0900
+
+cupsys (1.1.22-6) unstable; urgency=high
+
+  * Replaced upstream pdftops (derived from Xpdf) with pdftops.pl wrapper.
+    pdftops.pl is made by Helge Blischke, GNU GPL licensed.
+
+    CUPS 1.1.22 should enter to Sarge ASAP by some security reasons,
+    but upstream pdftops prevents to enter because it has libgcc_s.so
+    dependency and current gcc 3.4 faces difficult 'unwind' problem.
+    Now I believe cupsys 1.1.22-6 can enter soon without waiting
+    gcc problem.
+
+    If you want to print PDF files directly, you need to install
+    xpdf-utils. pdftops.pl calls pdftops in xpdf-utils package.
+  * Fix typo in control file.
+
+ -- Kenshi Muto <kmuto@debian.org>  Wed, 29 Dec 2004 14:59:28 +0000
+
+cupsys (1.1.22-5) unstable; urgency=high
+
+  * Apply upstream CVS patch (00cvs20041229.patch)
+    This includes fix of buffer overflow possibility in scheduler.
+
+ -- Kenshi Muto <kmuto@debian.org>  Wed, 29 Dec 2004 21:35:51 +0900
+
+cupsys (1.1.22-4) unstable; urgency=high
+
+  * Add Replaces migration for libcupsys2-dev.
+    It solves 'libcupsys2-dev overwrite a file in cupsys' problem.
+    (closes: #287609)
+
+ -- Kenshi Muto <kmuto@debian.org>  Wed, 29 Dec 2004 02:43:09 +0000
+
+cupsys (1.1.22-3) unstable; urgency=medium
+
+  * Remove unwanted ldflag: Back 02configure.patch (closes: #286450)
+  * Move fr/cups-config.1 to libcupsys2-dev (closes: #286449)
+    Thanks for your above two bug reports, Henrique.
+  * Note: [CAN-2004-1125] "xpdf buffer overflows" is already fixed in
+    previous Debian revision (1.1.22-2) with upstream patch.
+
+ -- Kenshi Muto <kmuto@debian.org>  Sat, 25 Dec 2004 23:40:15 +0900
+
+cupsys (1.1.22-2) unstable; urgency=medium
+
+  * Apply security fix patches from 1.1.23rc1.
+  * Revert logrotate to use 'reload'. (closes: #271872)
+
+ -- Kenshi Muto <kmuto@debian.org>  Sun, 19 Dec 2004 17:43:10 +0900
+
+cupsys (1.1.22-1) unstable; urgency=low
+
+  * New upstream release for unstable. Time is over, sarge isn't shipped.
+    I checked 1.1.21 to 1.1.22 migration doesn't break ABI quickly,
+    but I'm still scared...
+  * Apply gcc-4.0 patch for amd64: 37gfxfont.patch (closes: #285601)
+  * Do 'restart' instead of 'reload' when log is rotated.
+    'reload' sometime causes just shutdown daemon. (Unknown problem)
+  * Fix equation in cupsys.postscript. (closes: #285205)
+  * Apply Russell's patch: 38httpwait.patch (closes: #284829)
+    (This is trial. If there is any grave problem by this, I'll off this
+     patch)
+    - Made http_wait() handle EINTR.  This bug was causing cups
+      to print multiple copies of reports on remote printers.
+    - Lengthed the wait in ipp_http_read to handle connections
+      running over the internet.  The short wait was causing
+      unwated multiple copies of reports to be printed.
+    - While both these bugs need to be fixed, neither completely
+      solves the original multiple copies problem.  To solve
+      that no data should be printed if there was a read error.
+  * Add dependency version of smbclient. (closes: #284733)
+  * Fix SIGSEGV when remote destination goes timeout: 39remotetimeout.patch
+    (closes: #283500)
+
+ -- Kenshi Muto <kmuto@debian.org>  Wed, 15 Dec 2004 18:58:55 +0900
+
+cupsys (1.1.22-0.experimental4) experimental; urgency=low
+
+  * "I'm tired waiting Sarge forever" release.
+    I'm considering to upload 1.1.22 to unstable.
+  * I forgot to copy files from unstable version... FTBFS is solved.
+    (closes: #284574)
+  * Downgrade gs-esp dependency to Recommends.
+    I'm bore with attacks from stingy people.
+
+ -- Kenshi Muto <kmuto@debian.org>  Tue,  7 Dec 2004 21:39:55 +0900
+
+cupsys (1.1.22-0.experimental3) experimental; urgency=low
+
+  * Rebuild with -sa.
+
+ -- Kenshi Muto <kmuto@debian.org>  Tue,  7 Dec 2004 00:52:15 +0900
+
+cupsys (1.1.22-0.experimental2) experimental; urgency=low
+
+  * New upstream release
+
+ -- Kenshi Muto <kmuto@debian.org>  Mon,  6 Dec 2004 23:10:18 +0900
+
+cupsys (1.1.21-0.experimental2) experimental; urgency=low
+
+  * Fix typo in templates and unfuzzied po files. (closes: Bug#274851)
+  * Update German translation (closes: Bug#274828)
+  * Make pam.d/cupsys standard @include style (closes: Bug#265299)
+  * Set up group lpadmin in postinst instead of rules.
+    Because lpadmin isn't there on initial build environemnt
+    (closes: Bug#274985)
+
+ -- Kenshi Muto <kmuto@debian.org>  Mon,  4 Oct 2004 23:09:51 +0900
+
+cupsys (1.1.21-0.experimental1) experimental; urgency=low
+
+  * Experimental.
+  * new upstream version.
+
+ -- Kenshi Muto <kmuto@debian.org>  Sun,  3 Oct 2004 18:15:23 +0900
+
+cupsys (1.1.20final+rc1-8) unstable; urgency=medium
+
+  * Apply GNU Hurd configure patch for fix FTBFS. (closes: Bug#274599)
+  * Improve patch test routine. (closes: Bug#272952, Bug#274564)
+
+ -- Kenshi Muto <kmuto@debian.org>  Sun,  3 Oct 2004 13:07:43 +0900
+
+cupsys (1.1.20final+rc1-7) unstable; urgency=medium
+
+  * Fix french debconf translation (closes: Bug#272520).
+    This update is important because previous version shows
+    illegal debconf choice in French.
+
+ -- Kenshi Muto <kmuto@debian.org>  Tue, 21 Sep 2004 22:31:54 +0900
+
+cupsys (1.1.20final+rc1-6) unstable; urgency=high
+
+  * Applied patch from Alvaro Martinez Echevarria <ame@acm.org> to fix
+    daniel of service [scheduler/dirsvc.c, CAN-2004-0558]
+  * Apply GNU/Hurd patch (closes: Bug#263526)
+  * Update pt_PR debconf translation (closes: Bug#264096)
+  * Remove directory before making symlink (closes: Bug#270741)
+
+ -- Kenshi Muto <kmuto@debian.org>  Tue, 24 Aug 2004 10:31:32 +0900
+
+cupsys (1.1.20final+rc1-5) unstable; urgency=low
+
+  * Apply anonymous patch for /jobs. This patch avoids many
+    client-error-forbidden. (closes: Bug#184361)
+    cupsd.conf will be automatically modified to use basic user
+    authentication (Add <Location /jobs>AuthType Basic
+    AuthType User</Location>).
+
+ -- Kenshi Muto <kmuto@debian.org>  Wed,  4 Aug 2004 09:13:02 +0900
+
+cupsys (1.1.20final+rc1-4) unstable; urgency=medium
+
+  * Wait 10 seconds after reload for samba restart problem.
+    (closes: Bug#260969)
+  * Update Czech debconf translation (closes: Bug#260862)
+  * Built against libtiff4.
+  * Build against libgnutls11. (Though package name is still
+    libcupsys2-gnutls10)
+
+ -- Kenshi Muto <kmuto@debian.org>  Mon, 26 Jul 2004 22:12:18 +0900
+
+cupsys (1.1.20final+rc1-3) unstable; urgency=high
+
+  * Change guess order of USB device name for FHS compliant.
+    (closes: Bug#259965)
+
+ -- Kenshi Muto <kmuto@debian.org>  Sun, 18 Jul 2004 04:54:58 +0900
+
+cupsys (1.1.20final+rc1-2) unstable; urgency=medium
+
+  * Replace set-as-default icon of Japanese. Thanks Tomo-p.
+  * Provides libcupsys2 dummy package for smooth transition. (closes: #259378)
+
+ -- Kenshi Muto <kmuto@debian.org>  Wed, 14 Jul 2004 19:10:43 +0900
+
+cupsys (1.1.20final+rc1-1) unstable; urgency=low
+
+  * Apply a patch for fixing typo in DE templates. (Closes: Bug#250883)
+  * New upstream source, 2004-07-03 CVS.
+  * Add netbase dependency for cupsys-bsd.
+  * Move certs files to /var/lib/cups/certs. (Closes: Bug#254153)
+
+ -- Kenshi Muto <kmuto@debian.org>  Wed, 26 May 2004 08:46:35 +0900
+
+cupsys (1.1.20final+cvs20040330-4) unstable; urgency=medium
+
+  * Now libgnutls10 migration starts at 'unstable'/'testing'.
+    Packages depending libcupsys2 should be rebuit with newer
+    libcupsys2-dev.
+  * Fix log rotation problem by adding 'sharedscripts' to
+    /etc/logrotate.d/cupsys. (Closes: Bug#249023)
+
+ -- Kenshi Muto <kmuto@debian.org>  Tue, 25 May 2004 08:14:44 +0900
+
+cupsys (1.1.20final+cvs20040330-3experimental2) experimental; urgency=medium
+
+  * Rename libcupsys2 to libcupsys2-gnutls10.
+    This package doesn't 'Provides: libcupsys2' to migrate libgnutls10.
+    Sebastien Bacher plans cups/libgnutls10 migration.
+  * Add notes about backend configuration to README.Debian.
+  * Fix (I hope) log rotation problem by adding sharedscripts to
+    /etc/logrotate.d/cupsys. (Closes: Bug#249024)
+
+ -- Kenshi Muto <kmuto@debian.org>  Sat, 15 May 2004 11:17:16 +0900
+
+cupsys (1.1.20final+cvs20040330-3) unstable; urgency=low
+
+  * Remove EXPORT_SSLLIBS variable from cups-config (Closes: Bug#246102).
+    -lgnutls isn't necessary by software using libcups.
+  * Apply PJL detection patch from upstream.
+  * Translations
+    - Updated Turkish debconf messages (Closes: Bug#246075). Thanks
+      Recai and Gurkan.
+
+ -- Kenshi Muto <kmuto@debian.org>  Wed, 28 Apr 2004 00:23:59 +0900
+
+cupsys (1.1.20final+cvs20040330-2) unstable; urgency=low
+
+  * Fix typo in HOWTO_BUGREPORT.txt.
+  * Translations
+    - Update Dutch debconf messages (Closes: Bug#242260). Thanks Tim.
+
+ -- Kenshi Muto <kmuto@debian.org>  Tue,  6 Apr 2004 19:16:48 +0900
+
+cupsys (1.1.20final+cvs20040330-1) unstable; urgency=low
+
+  * New upstream CVS
+  * Revert pstops to old 1.1.20. (Closes: Bug#240792)
+  * Translations
+    - Updated Danish debconf messages.
+
+ -- Kenshi Muto <kmuto@debian.org>  Fri, 26 Mar 2004 19:00:01 +0900
+
+cupsys (1.1.20final+cvs20040317-4) unstable; urgency=low
+
+  * Chagnge backend question priority to low. (Closes: Bug#238847)
+    When you use PPC, parallel backend will be removed from default choice
+    automatically.
+    If you want to use parallel (and you know what you will do),
+    please run 'dpkg-reconfigure cupsys'.
+  * Translations
+    - Updated Danish debconf messages (Closes: Bug#239256). Thanks Claus.
+    - Updated French debconf messages (Closes: Bug#239756). Thanks Christian.
+
+ -- Kenshi Muto <kmuto@debian.org>  Wed, 24 Mar 2004 22:30:28 +0900
+
+cupsys (1.1.20final+cvs20040317-3) unstable; urgency=low
+
+  * Remove sysvinit. This package is essential. Thanks Thomas.
+  * Now choice menu is translatable (Closes: Bug#238821).
+  * Updated French debconf messages. Thanks Christian.
+  * Add socket to default choice. I think this backend doesn't
+    cause hang up anywhere.
+
+ -- Kenshi Muto <kmuto@debian.org>  Fri, 19 Mar 2004 17:16:48 +0900
+
+cupsys (1.1.20final+cvs20040317-2) unstable; urgency=medium
+
+  * Add sysvinit in dependency. (Closes: Bug#238763)
+  * Updated Brazilian Portuguese debconf messages. Thanks Andre.
+  * Fix printers.cgi crash (Closes: Bug#238800)
+  * Updated Japanese templates & images.
+
+ -- Kenshi Muto <kmuto@debian.org>  Fri, 19 Mar 2004 09:00:04 +0900
+
+cupsys (1.1.20final+cvs20040317-1) unstable; urgency=low
+
+  * New CVS release.
+  * Add asking about backend program. This is not best way to solve
+    PPC crash / i386 serial hang-up, but at least user can choose what
+    he/she want to use. serial backend becomes 'not use' by default.
+    Add notice about 'parallel of PPC may cause a problem'.
+    (closes: Bug#237613, Bug#233529, Bug#211677, Bug#224760)
+  * Updated Spanish debconf messages (closes: Bug#236470). Thanks Carlos.
+  * Updated Danish debconf messages. Thanks Claus.
+  * Updated French debconf messages. Thanks Christian.
+  * Updated Czech debconf messages. Thanks Miroslav.
+
+ -- Kenshi Muto <kmuto@debian.org>  Sat,  6 Mar 2004 21:36:35 +0900
+
+cupsys (1.1.20final-16) unstable; urgency=low
+
+  * Improved init.d/cupsys message  (closes: Bug#235693). Thanks Lee.
+  * Add Czech debconf messages (closes: Bug#236276). Thanks Miroslav.
+
+ -- Kenshi Muto <kmuto@debian.org>  Tue,  2 Mar 2004 09:13:07 +0900
+
+cupsys (1.1.20final-15) unstable; urgency=low
+
+  * Add conflicts lprng for avoid conflicting ipp support.
+  * Add Danish debconf messages (closes: Bug#233067). Thanks Claus.
+  * Apply current CVS patch.
+
+ -- Kenshi Muto <kmuto@debian.org>  Sat, 14 Feb 2004 18:10:54 +0900
+
+cupsys (1.1.20final-14) unstable; urgency=medium
+
+  * Apply loop avoid patch. (closes: Bug#231676) Thanks Ray.
+
+ -- Kenshi Muto <kmuto@debian.org>  Wed, 11 Feb 2004 14:59:46 +0900
+
+cupsys (1.1.20final-13) unstable; urgency=medium
+
+  * Use pidof instead of start-stop-daemon for stopping cupsys.
+    I hope this will fix Bug#228967.
+
+ -- Kenshi Muto <kmuto@debian.org>  Thu, 22 Jan 2004 09:12:25 +0900
+
+cupsys (1.1.20final-12) unstable; urgency=low
+
+  * Fix incorrect root detection routine (closes: Bug#227733). THanks David.
+  * Continue to install whether deluser is failed (for NIS/LDAP).
+  * 22ipprewrite.patch has critical bug. Fixed by better patch.
+    (closes: Bug#162613)
+
+ -- Kenshi Muto <kmuto@debian.org>  Sat, 17 Jan 2004 12:57:47 +0900
+
+cupsys (1.1.20final-11) unstable; urgency=low
+
+  * Improved cupsys stop check.
+  * Apply username patch for Solaris lpd printing (closes: Bug#228078). Thanks
+    Lionel.
+
+ -- Kenshi Muto <kmuto@debian.org>  Sat, 17 Jan 2004 12:28:15 +0900
+
+cupsys (1.1.20final-10) unstable; urgency=low
+
+  * Apply Brazilian Portuguese debconf message (closes: Bug#227445). Thanks
+    Andre.
+  * Show verbose message when cups won't stop.
+
+ -- Kenshi Muto <kmuto@debian.org>  Wed, 14 Jan 2004 08:38:55 +0900
+
+cupsys (1.1.20final-9) unstable; urgency=low
+
+  * Apply patch for avoid infinite loop (closes: Bug#225625).
+  * Apply patch for http password authenticaion cache (closes: Bug#227143).
+
+ -- Kenshi Muto <kmuto@debian.org>  Mon, 12 Jan 2004 12:00:17 +0900
+
+cupsys (1.1.20final-8) unstable; urgency=low
+
+  * Fix typo in lpadmin.8.gz (one of Bug#226149). Thanks Dan.
+  * Unfortunately, I heard cupsys won't stop when upgrading.
+    I implemented Force-stop routine into postinst (closes: Bug#222464,
+    Bug#226140).
+
+ -- Kenshi Muto <kmuto@debian.org>  Mon,  5 Jan 2004 21:11:30 +0900
+
+cupsys (1.1.20final-7) unstable; urgency=low
+
+  * Argh, I forgot to apply default port patch.
+
+ -- Kenshi Muto <kmuto@debian.org>  Tue, 30 Dec 2003 23:01:29 +0900
+
+cupsys (1.1.20final-6) unstable; urgency=low
+
+  * Apply Dutch debconf translation (closes: Bug#225410). Thanks Tim.
+  * Set default port when any Port/Listen isn't defined (closes: Bug#225208).
+
+ -- Kenshi Muto <kmuto@debian.org>  Tue, 30 Dec 2003 08:57:10 +0900
+
+cupsys (1.1.20final-5) unstable; urgency=low
+
+  * Add pdftops.conf into /etc/cups/. This file is symlink to
+    /etc/xpdf/xpdfrc, and configuration for pdftops tool.
+
+ -- Kenshi Muto <kmuto@debian.org>  Sun, 21 Dec 2003 11:45:38 +0900
+
+cupsys (1.1.20final-4) unstable; urgency=low
+
+  * Fix cups* commands don't work (closes: Bug#224585). Thanks Rainer.
+
+ -- Kenshi Muto <kmuto@debian.org>  Sat, 20 Dec 2003 20:52:24 +0900
+
+cupsys (1.1.20final-3) unstable; urgency=low
+
+  * Apply patch into lpd.c for true compatible with RFC1179
+    (closes: Bug#223432). Thanks Lionel.
+  * Hmm, PJL patch causes a problem. Since I don't have any PJL
+    printers, I simply unapply PJL patch and reopen Bug#220611 (closes:
+    Bug#223748)
+
+ -- Kenshi Muto <kmuto@debian.org>  Fri, 12 Dec 2003 18:32:58 +0900
+
+cupsys (1.1.20final-2) unstable; urgency=low
+
+  * Apply PJL patch (closes: Bug#220611). Thanks Zed.
+
+ -- Kenshi Muto <kmuto@debian.org>  Sat,  6 Dec 2003 10:42:37 +0900
+
+cupsys (1.1.20final-1) unstable; urgency=low
+
+  * New upstream release
+  * cupsys set UTF-8 as defaultCharset, but it causes some browsing
+    problem, and looks don't need indeed. I changed defaultCharset to
+    invalid value. It will fix French screen (closes: Bug#221904).
+  * Fix dependency with libgnutls7 by dirty trick.
+    I hope libgnutls7 maintainer will fix Bug#221309.
+
+ -- Kenshi Muto <kmuto@debian.org>  Tue, 25 Nov 2003 19:17:57 +0900
+
+cupsys (1.1.20candidate6-6) unstable; urgency=low
+
+  * Set fixed version into Depends for cupsys, cupsys-client.
+
+ -- Kenshi Muto <kmuto@debian.org>  Mon, 17 Nov 2003 21:35:55 +0900
+
+cupsys (1.1.20candidate6-5) unstable; urgency=high
+
+  * I'm sorry but openssl license conflicts. I use libgnutls (closes: Bug#220902).
+  * Add euc-jp text.
+
+ -- Kenshi Muto <kmuto@debian.org>  Sat, 15 Nov 2003 23:55:06 +0900
+
+cupsys (1.1.20candidate6-4) unstable; urgency=low
+
+  * Add French translation (closes: Bug#220805). Thanks, Christian.
+  * openssl, popular SSL implementation, becomes Debian main, so I think
+    it is no reason for using libgnutls. I changed depends openssl instead of
+    libgnutls.
+
+ -- Kenshi Muto <kmuto@debian.org>  Sat, 15 Nov 2003 10:24:38 +0900
+
+cupsys (1.1.20candidate6-3) unstable; urgency=low
+
+  * Remove -Wl from configure (closes: Bug#194353)
+  * Remove /etc/sups/raw.* when purged (closes: Bug#198126)
+  * Remove always Content-Type charset header. This is test (and ad-hoc)
+    case. I'll unapply if this patch causes a problem.
+  * Add Japanese resource.
+
+ -- Kenshi Muto <kmuto@debian.org>  Thu, 13 Nov 2003 23:02:40 +0900
+
+cupsys (1.1.20candidate6-2) unstable; urgency=medium
+
+  * Fix FTBFS build error (closes: Bug#220534)
+
+ -- Kenshi Muto <kmuto@debian.org>  Thu, 13 Nov 2003 15:52:00 +0900
+
+cupsys (1.1.20candidate6-1) unstable; urgency=low
+
+  * New upstream.
+  * Rename filter, backend man page (closes: Bug#220500).
+
+ -- Kenshi Muto <kmuto@debian.org>  Wed, 12 Nov 2003 23:41:02 +0900
+
+cupsys (1.1.19final-4) unstable; urgency=low
+
+  * "Welcome patch" release.
+  *  Transited packaging system to CDBS.
+     This release wll be final version for 1.1.19. I'll upload
+     1.1.20candidate version at next time.
+  * libcupsimage2.so.2 links libcupsys.so.2. (closes: Bug#193618)
+
+ -- Kenshi Muto <kmuto@debian.org>  Mon, 10 Nov 2003 10:01:58 +0900
+
+cupsys (1.1.19final-3) unstable; urgency=low
+
+  * Fix check routine of Printcap. (closes: Bug#200278)
+  * Removed "suggests qtcups". (closes: Bug#197267)
+
+ -- Kenshi Muto <kmuto@debian.org>  Fri,  7 Nov 2003 21:43:39 +0900
+
+cupsys (1.1.19final-2) unstable; urgency=low
+
+  * lpadmin group included root user, but I didn't understand why it needs.
+    This may cause security problem, so I remove this process and 
+    remove root from lpadmin group. (closes: Bug#214746)
+  * Support large file. (closes: Bug#215568)
+  * Support log rotation. (closes: Bug#200704)
+  * Force enable PAM (closes: Bug#183211, Bug#181512)
+
+ -- Kenshi Muto <kmuto@debian.org>  Thu,  6 Nov 2003 18:31:02 +0900
+
+cupsys (1.1.19final-1.5) unstable; urgency=low
+
+  * New maintainer (acknowledged from Jeff Licquia).
+    Thanks Jeff!
+  * Changed templates.* to po-debconf style (closes: Bug#199236).
+  * Added Japanese debconf translation (closes: Bug#202273).
+
+ -- Kenshi Muto <kmuto@debian.org>  Thu,  6 Nov 2003 09:50:29 +0900
+
+cupsys (1.1.19final-1.4) unstable; urgency=low
+
+  * Non-maintainer upload
+  * Removed '#include <config.h>' line from image.h from the version
+    in libcupsimage2-dev with debian/image.h.patch (Closes: #200427)
+
+ -- Roland Stigge <stigge@antcom.de>  Thu,  4 Sep 2003 14:04:15 +0200
+
+cupsys (1.1.19final-1.3) unstable; urgency=low
+
+  * Non-maintainer upload
+  * cupsys Replaces: and Conflicts: cupsys-pstoraster (Closes: #206547)
+    NOTE: the Conflicts: was made versioned (<< 2) not to Conflict
+    with gs-esp which provides cupsys-pstoraster.
+  * Build-Depends: libpam0g-dev (new) instead of libpam-dev (removed from
+    archive)
+
+ -- Roland Stigge <stigge@antcom.de>  Wed,  3 Sep 2003 19:33:09 +0200
+
+cupsys (1.1.19final-1.2) unstable; urgency=low
+
+  * NMU.
+  * Completely remove dependency on libgnutls5-dev.
+
+ -- Robin Verduijn <robin@debian.org>  Wed, 27 Aug 2003 18:08:50 -0100
+
+cupsys (1.1.19final-1.1) unstable; urgency=low
+
+  * NMU.
+  * Built against libgnutls7-dev instead of (obsolete) libgnutls5-dev.
+    Closes: #203059.
+
+ -- Robin Verduijn <robin@debian.org>  Tue, 26 Aug 2003 19:28:21 -0100
+
+cupsys (1.1.19final-1) unstable; urgency=high
+
+  * New upstream final release.  DoS attack fixed; thus the urgency.
+  * Rebuilt with the latest libpng-dev, and fixed the explicit deps
+    in the control file.
+  * Removed rpath statment from output of cups-config --ldflags.
+    Closes: #194262.
+
+ -- Jeff Licquia <licquia@debian.org>  Thu, 29 May 2003 20:44:48 -0500
+
+cupsys (1.1.19candidate4-1) unstable; urgency=low
+
+  * New upstream release candidate.
+  * Includes upstream fix to the problem with 100% CPU consumption.
+    Closes: #189795.
+  * Added a dh_makeshlibs call for libcupsimage2.
+  * Made libcupsys2 conflict with cupsys-driver-gimpprint versions
+    built before the libcupsimage split.  Closes: #189175.
+  * Move /etc/printcap.cups to /var/run/cups/printcap, since it's
+    generated and non-editable.  Also, take care of the /etc/printcap
+    symlink.  Closes: #187954.
+  * Per suggestion from the KDE project, suggest the kdeprint package
+    instead of the kdelibs3-cups package.
+
+ -- Jeff Licquia <licquia@debian.org>  Sat, 10 May 2003 13:05:33 -0500
+
+cupsys (1.1.19candidate1-3) unstable; urgency=low
+
+  * Make libcupsys2 conflict with gs-esp versions built before the
+    libcupsimage split.  This is part of the fix for bug 189175.
+  * Add a dep on libgnutls-dev for libcupsys2-dev.  Closes: #190877.
+
+ -- Jeff Licquia <licquia@debian.org>  Mon, 28 Apr 2003 10:57:03 -0500
+
+cupsys (1.1.19candidate1-2) unstable; urgency=low
+
+  * Set Replaces: on cupsys-client to cover the move of the
+    French man page for cupstestppd.  Closes: #189737, #190042.
+  * Add cupsys-pt and xpp to Suggests for cupsys-client.
+    Closes: #168399, #170929.
+  * Added some more example filters: mailto and pstopdf.
+    Closes: #152001.
+  * Pass --system to addgroup when adding the lpadmin group.
+    Closes: #189835.
+  * Set section for the -dev packages to "libdevel".
+  * Fix shlibs files for libcupsys2 and libcupsimage2 to reference
+    the right package versions.  Closes: #174391.
+
+ -- Jeff Licquia <licquia@debian.org>  Tue, 22 Apr 2003 14:27:43 -0500
+
+cupsys (1.1.19candidate1-1) unstable; urgency=low
+
+  * New upstream version.  I will try to follow upstream's new
+    release policy by uploading release candidate versions to 
+    unstable.
+  * Wrote a new GNU TLS patch, which was accepted by upstream.
+    Re-enable SSL support based on this.
+  * Based on recent upstream work, wrote a libpaper patch which has
+    also been accepted upstream.  Closes: #60035, #88597, #101591.
+  * Upstream fix included to allow SLP-only browsing support to work.
+    Closes: #178380.
+  * Updated the Spanish debconf template for cupsys-bsd.
+    Closes: #167171.
+  * Added cupstestppd to cupsys-client.  Closes: #176941.
+  * Don't respect TMPDIR if we don't have write permissions to that
+    directory.  Closes: #176725.
+
+ -- Jeff Licquia <licquia@debian.org>  Sat, 12 Apr 2003 14:36:20 -0500
+
+cupsys (1.1.18-3) unstable; urgency=low
+
+  * Split libcupsimage into its own package.  Closes: #187897.
+  * Added versioned build-dep on debhelper >= 2.
+
+ -- Jeff Licquia <licquia@debian.org>  Tue,  8 Apr 2003 02:59:57 -0500
+
+cupsys (1.1.18-2) unstable; urgency=high
+
+  * Disable SSL again.  Inexplicably, the GNU TLS people put the
+    OpenSSL compatibility layer under the GPL, not the LGPL.
+    This forces the effective license on libcupsys2 to GPL, which
+    I'm not comfortable with.  The urgency reflects possible
+    license conflicts for apps that link to libcupsys2.
+    Closes: #168056.
+  * Add a debconf question to ask whether unrecognized
+    application/octet-stream jobs should be printed as raw jobs.
+  * Forward-port some of the security fixes from woody.
+  * Set the default group for lppasswd to "lpadmin", in keeping
+    with the default in cupsd.  Closes: #172842.
+  * Replaced the conflict with manpages-fr, versioned this time
+    to allow for easy upgrades.  Also added a Replaces entry for
+    it.
+
+ -- Jeff Licquia <licquia@debian.org>  Sun,  5 Jan 2003 23:36:50 -0500
+
+cupsys (1.1.18-1) unstable; urgency=high
+
+  * New upstream version.  This is a security update for problems that
+    include remote root exploits - thus the urgency.
+  * Remove the conflict with manpages-fr per reports that the offending
+    files are now all gone.  Closes: #158500.
+
+ -- Jeff Licquia <licquia@debian.org>  Fri, 20 Dec 2002 03:27:18 -0500
+
+cupsys (1.1.16-4) unstable; urgency=low
+
+  * Documentation updates.
+  * Change the GNU TLS patch to more explicitly control which SSL
+    library is linked to, and support switching SSL libraries in
+    the build.  By default, the package will not use OpenSSL, so
+    autobuilders won't accidentally build it that way.
+    Closes: #167489.
+  * Add libgnutls-dev to the Dependencies for libcupsys2-dev.
+  * Set the proper permissions on cupsys-client man pages.
+
+ -- Jeff Licquia <licquia@debian.org>  Sat,  9 Nov 2002 16:39:54 -0500
+
+cupsys (1.1.16-3) unstable; urgency=low
+
+  * Totally nuke all script modifications for dh_installinit; do it
+    all manually instead.  Closes: #166878.
+
+ -- Jeff Licquia <licquia@debian.org>  Tue, 29 Oct 2002 23:06:20 -0500
+
+cupsys (1.1.16-2) unstable; urgency=low
+
+  * Add libpam-dev to Build-Depends.  Closes: #166556.
+  * Update clean target in debian/rules to clean a few more files
+    that are missed by the Makefiles.
+  * Remove SFont.cxx and T1Font.cxx from the pdftops Makefile;
+    these two files aren't needed, and including them would pull
+    in a build dep on xlibs-dev, which is bad news.  Closes: #166716.
+  * Tell dh_installdocs to not mess with the postinst/prerm, so
+    the compatibility symlinks aren't created.
+
+ -- Jeff Licquia <licquia@debian.org>  Tue, 29 Oct 2002 00:45:38 -0500
+
+cupsys (1.1.16-1) unstable; urgency=low
+
+  * New upstream version...  Closes: #165631.
+  * ...which includes bugfixes to several BSD utilities to avoid
+    segfaulting when certain options are misused.  Closes: #159597.
+  * Add upstream patch to scheduler that fixes certain printer
+    operations in the web interface.
+  * Re-enabled SSL support using the OpenSSL compatibility library
+    in libgnutls.  Closes: #150600.
+  * Use our own logic for stopping/restarting cupsd on upgrade,
+    instead of relying on dh_installinit.  Closes: #160345, #164435.
+  * Make cupsys-client Recommend cupsys-bsd.  Closes: #157974.
+  * Make sure we remove everything in /var/spool/cups on purge.
+    Closes: #163571.
+  * Make force-reload send SIGHUP, since policy prefers that mode
+    of operation.
+  * Add dependencies for libcupsys2-dev on the image libraries we
+    need.  Closes: #166451.
+
+ -- Jeff Licquia <licquia@debian.org>  Sat, 26 Oct 2002 19:37:56 -0500
+
+cupsys (1.1.15-4) unstable; urgency=low
+
+  * Fix segfault in lp when passing "-q" by itself as the last
+    option.  Closes: #150819.
+  * Make the switch to libpng3, now that woody is out.
+    Closes: #156622.
+  * It seemed that the rastertoepson filter occasionally lost its
+    cookies under certain circumstances and passed NULL for a field.
+    Cancel the pending job if that happens.  Closes: #147119.
+  * Remove .cvsignore files.
+  * Turned browsing back on by default.  With no BrowseAddresses set,
+    no broadcast packets will go out, but cupsd will recognize and
+    accept incoming packets.  Closes: #155574.
+
+ -- Jeff Licquia <licquia@debian.org>  Tue, 20 Aug 2002 15:51:45 -0500
+
+cupsys (1.1.15-3) unstable; urgency=low
+
+  * Reorganized the French man pages so they appear in the proper
+    packages.
+  * Declared a Conflict between cupsys-bsd and manpages-fr, as the
+    latter package includes man pages for lpr, lpq, and lprm.
+  * Move lpinfo and lpmove utilities to cupsys-client, where they
+    belong.
+  * Added patch from upstream that fixes some problems with
+    Orientation settings made by some PostScript generators.
+    Closes: #155534.
+  * Fixed compiler settings for the static and shared versions of
+    libcupsys2.
+
+ -- Jeff Licquia <licquia@debian.org>  Sun, 11 Aug 2002 02:45:02 -0500
+
+cupsys (1.1.15-2) unstable; urgency=high
+
+  * Removed SSL support again due to license infection problems.
+    Closes: #154792.
+  * Removed the preformatted French man pages.
+
+ -- Jeff Licquia <licquia@debian.org>  Mon, 29 Jul 2002 19:02:21 -0500
+
+cupsys (1.1.15-1) unstable; urgency=low
+
+  * New upstream version.
+  * Removed cupsys-pstoraster (since it's no longer provided in CUPS),
+    and rely on gs-esp instead for its functionality.
+  * Enabled SSL support and updated copyright file to reflect license
+    change.  Closes: #150600.
+  * Applied patch from upstream that causes the cupsd foreground
+    process to wait until the daemon is ready before exiting.
+    Also, changed init script to wait on the daemon before continuing.
+    Closes: #150426.
+  * Moved /etc/cups/certs to /var/spool/cups/certs.  Closes: #144887.
+  * Split out German and Portugese debconf templates into separate
+    files, and added French, Russian, and Spanish files.
+    Closes: #137630, #138068, #142904.
+  * Make cupsys Recommend smbclient, and handle symlinking smbspool
+    to /usr/lib/cups/backend/smb if it's available.  Closes: #82690.
+  * Make cupsys Suggest foomatic-bin for cupsomatic, so that
+    linuxprinting.org PPDs work.  Closes: #146655.
+  * Add examples/filters directory to cupsys and added the contributed
+    DVI filter to it.  Users can copy the filter and config files into
+    place themselves to get the functionality.  Closes: #55013, #136496.
+  * Fixed a bug where "-" filters are rejected in some cases.
+
+ -- Jeff Licquia <licquia@debian.org>  Mon, 29 Jul 2002 00:33:00 -0500
+
+cupsys (1.1.14-3) unstable; urgency=low
+
+  * Changed libpng dependency to "libpng2 | libpng" to accomodate the
+    current libpng policy.
+  * Changed adduser dep so that the proper adduser (that does root) is
+    available for the postinst.  Closes: #133709.
+  * Removed spaces from init script output.  Closes: #133262.
+  * Set TZ in init script to REALLY fix timezone problem.  
+    Closes: #130676.
+
+ -- Jeff Licquia <licquia@debian.org>  Sat,  9 Mar 2002 23:48:41 -0500
+
+cupsys (1.1.14-2) unstable; urgency=high
+
+  * Remove all the stuff about setting the lpd backend setuid; per
+    upstream, we don't need it anymore, and it's a security hole.
+
+ -- Jeff Licquia <licquia@debian.org>  Sun, 17 Feb 2002 18:52:45 -0500
+
+cupsys (1.1.14-1) unstable; urgency=high
+
+  * New upstream version.
+  * Fixes more buffer overflows not covered in the previous patch;
+    thus the urgency.
+
+ -- Jeff Licquia <licquia@debian.org>  Wed, 13 Feb 2002 22:40:50 -0500
+
+cupsys (1.1.13-2) unstable; urgency=high
+
+  * Fix potentially exploitable buffer overflow in cups/ipp.c.
+
+ -- Jeff Licquia <licquia@debian.org>  Sat,  9 Feb 2002 21:27:41 -0500
+
+cupsys (1.1.13-1) unstable; urgency=low
+
+  * New upstream version.
+  * Silly me.  fopen() returns NULL, not non-NULL, when it fails. :-)
+    Closes: #130532, #131433.
+
+ -- Jeff Licquia <licquia@debian.org>  Sat,  2 Feb 2002 16:10:20 -0500
+
+cupsys (1.1.12-5) unstable; urgency=low
+
+  * Fix man page references so, e.g., references go from backend(1) to
+    cups-backend(1).  Closes: #126811.
+  * Oops!  Debian has time_t->tm_gmtoff, which is defined to have the
+    opposite sign of timezone.  Is it that way on BSD?  Anyway,
+    reverse the sense of the sign for time_t->tm_gmtoff if we use
+    that.  Closes: #126195.
+  * Add header for gs_malloc to pstoraster/gscrdp.c, to prevent
+    problems with implicit declaration on 64-bit systems.
+    Closes: #126002.
+  * cgi-bin/admin.c: Be a little bit more paranoid about one's ability
+    to write to tempfiles.  Closes: #122324.
+  * Enabled OpenSLP support.
+  * Cleaned up Priorities and Sections.
+
+ -- Jeff Licquia <licquia@debian.org>  Sun, 20 Jan 2002 02:14:35 -0500
+
+cupsys (1.1.12-4) unstable; urgency=low
+
+  * Move cups-lpd man page to cupsys-bsd.  Closes: #122311.
+  * Oops!  Lost the patch to allow "cupsaccept", etc. commands.
+    Closes: #123280.
+  * Minor change to the init script output.  Closes: #121938.
+  * Changed choose-uri.tmpl to be a little more clear.
+    Closes: #117376.
+  * Moved CUPS document root from /usr/share/doc/cupsys to
+    /usr/share/cups/doc-root, and created a symlink from
+    /u/s/d/cupsys/online-docs to it.  It turns out that serving
+    files via CUPS from /usr/share/doc is a policy violation.
+    Closes: #120923.
+  * Fixed a small problem when upgrading from potato libcupsys1-dev
+    to current libcupsys2-dev.
+
+ -- Jeff Licquia <licquia@debian.org>  Mon, 17 Dec 2001 00:58:41 -0500
+
+cupsys (1.1.12-3) unstable; urgency=low
+
+  * Fix libcupsys2 shlibs file to provide the proper dependency
+    information.  Closes: #121405.
+  * Oops!  Make sure SSL support isn't built yet.
+
+ -- Jeff Licquia <licquia@debian.org>  Wed, 28 Nov 2001 11:41:17 -0500
+
+cupsys (1.1.12-2) unstable; urgency=low
+
+  * It helps to run autoconf after making a change to the configure
+    script. :-)  CXX=$CC change wasn't propagated, making the build
+    fail on hppa.
+
+ -- Jeff Licquia <licquia@debian.org>  Mon, 26 Nov 2001 12:01:58 -0500
+
+cupsys (1.1.12-1) unstable; urgency=low
+
+  * New upstream version.  Closes: #119162.
+  * Updated Standards-Version.
+  * Made cupsys depend on debconf.
+  * Removed -Wl,rpath from config-scripts/cups-sharedlibs.m4.
+  * Removed explicit libcupsys dep from cupsys.
+  * Removed "CXX=$CC" from config-scripts/cups-compiler.m4.
+  * Removed .SILENT from Makedefs so the build isn't silent anymore.
+  * On devfs, look in /dev/printers as well as /dev/parallel.
+    (Do we still need /dev/parallel?)  Closes: #114063.
+  * Changed internal file: device URI type to test:, since (per
+    upstream) it's not intended for anything other than to test
+    filters.  See bug #115252 or README.Debian for more info.
+
+ -- Jeff Licquia <licquia@debian.org>  Sun, 25 Nov 2001 11:21:32 -0500
+
+cupsys (1.1.10-4) unstable; urgency=low
+
+  * Switched cupsenable and cupsdisable symlinks to always point to
+    /usr/sbin/accept to prevent them from breaking when files move
+    around (as they did recently).  Closes: #114006.
+  * It turns out that libcupsys needs to make temp files in
+    /var/spool/cups/tmp, so that dir needs to be in the package.
+    Closes: #115154.
+  * Related to the above, when creating temp files, don't loop when
+    the open fails unless the return value is EEXIST.  Thanks to Brian
+    Ristuccia for the suggestion.
+  * Honor the DEB_BUILD_OPTTIONS "debug" setting.
+  * Per policy, make sure we build with -D_REENTRANT.
+  * Don't remove /var/spool/cups in the cupsys postrm when purging.
+  * Added German description to template.  Closes: #113604.
+  * Added Portuguese description to cupsys-bsd template.  
+    Closes: #106131.
+
+ -- Jeff Licquia <licquia@debian.org>  Thu, 18 Oct 2001 23:07:34 -0500
+
+cupsys (1.1.10-3) unstable; urgency=low
+
+  * Scale back a bit on aggressiveness on purging cupsys, as it can
+    cause us to remove the cupsys-client conffile.
+  * It turns out that client.conf is parsed by libcupsys2, not
+    cupsys-client, so it needs to switch packages.
+  * Changed PAM code so it attempts to open the "cupsys" PAM config
+    file, instead of the "cups" one.  Not sure how this broke again.
+    Closes: #110651.
+  * Per request, implemented the "reload" option in the init script.
+
+ -- Jeff Licquia <licquia@debian.org>  Wed, 19 Sep 2001 21:53:48 -0500
+
+cupsys (1.1.10-2) unstable; urgency=low
+
+  * Added Conflicts: on cupsys-pstoraster with older cupsys packages
+    because of moved files.  Closes: #106107.
+  * Fixed bug concerning update-inetd handling; it was removing the
+    inetd entry for the lpd server in cupsys-bsd with every upgrade.
+    Closes: #109298.
+
+ -- Jeff Licquia <licquia@debian.org>  Thu, 30 Aug 2001 23:14:08 -0500
+
+cupsys (1.1.10-1) unstable; urgency=low
+
+  * New upstream version - with Makefile oops fixed (1.1.10-1
+    upstream).
+  * Fixed lpadmin group creation so NIS-style lpadmin group is
+    recognized.  Closes: #78895, #107744.
+  * Replaced kups with kdelibs3-cups in Suggests: lines, and
+    reorganized Suggests line.  Closes: #109695.
+  * Moved Suggests for all add-on clients to cupsys-client.
+  * Fixed purge so /etc/cups is completely cleaned out.
+    Closes: #108488.
+  * Moved filter and backend man pages to cups-filter and
+    cups-backend to avoid conflicts with other packages.
+    Closes: #107629.
+  * Made the lpd backend non-setuid, and created a low-priority
+    debconf question to handle the few who really need it setuid.
+    Closes: #77617.
+  * Altered cupsys-bsd postinst; always remove any inetd lines when
+    removing the package (we'll put it back later if we're just
+    upgrading).
+
+ -- Jeff Licquia <licquia@debian.org>  Tue, 28 Aug 2001 00:43:36 -0500
+
+cupsys (1.1.9-1.1) unstable; urgency=low
+
+  * NMU
+  * Fix gcc 3.0/hppa build problems.  Closes: #104620, #105308.
+
+ -- LaMont Jones <lamont@debian.org>  Wed, 15 Aug 2001 19:28:23 -0600
+
+cupsys (1.1.9-1) unstable; urgency=low
+
+  * Return of the Maintainer. :-)
+  * New upstream version.
+  * Added dep on adduser (fixed bug #105382).
+
+ -- Jeff Licquia <licquia@debian.org>  Mon, 30 Jul 2001 00:28:47 -0500
+
+cupsys (1.1.8-0.1) unstable; urgency=low
+
+  * Non-maintainer upload.
+  * i think anyone who wants cupsys in woody will be happy by this nmu
+  * New upstream release (Closes: #80895, #100156, #94364)
+  * With the new upstream release the problem with cgi-bin
+    has been fixed
+    (Closes: #96055, #98264, #96530, #96055, #99914, #100707, #103095)
+  * Added cupsys-pstoraster package.
+  * Added the LOGDIR option to install rule (Closes: #94502)
+  * Suggests cupsys-driver-gimpprint | cupsomatic-ppd (Closes: #99146)
+  * Moved to DH_COMPAT=2
+  * Added a pointer to http://localhost:631/admin to README.Debian
+    (Closes: #97964)
+  * Removed the extra </Location> from cupsd.conf (Closes: #96012)
+  * Not installing copyright for libcupsys2-dev, it will have a link
+    pointing to libcupsys2 anyways (Closes: #94504)
+  * Removed maintainer postinst and prerm scripts from cupsys-client
+    and libcupsys2-dev, by purging either of them you would have
+    removed your cups documentation.
+  * added German translation of debconf template to cupsys-bsd
+    by Sebastian Feltel (Closes: #101467, #100901)
+  * changed rm -f to rm -rf from cupsys-bsd prerm, and removed the link
+    handling for /usr/doc, let debhelper worry about that.
+    (Closes: #94539, #100501, #102669)
+
+ -- Sami Haahtinen <ressu@debian.org>  Thu,  5 Jul 2001 16:04:42 +0300
+
+cupsys (1.1.6-0.1) unstable; urgency=low
+
+  * Non-maintainer upload
+  * New upstream release, fixing multiple vulnerabilities (Closes: Bug#88932)
+  * cupsys removes only its own configuration files upon purge (Closes: Bug#84341)
+  * fixed postinst, so it does not fail when the lpadmin group
+  already exists (Closes: Bug#84443)
+  * added a helpful URL to README.Debian (Closes: Bug#63590)
+  * Suggests gtklp | kups | qtcups (Closes: Bug#82974)
+
+ -- Gergely Nagy <8@free.bsd.hu>  Sat, 14 Apr 2001 18:05:23 +0200
+
+cupsys (1.1.4-3) unstable; urgency=low
+
+  * Fixed PAM module name confusion (closes bugs #76457, #77114).
+  * Fixed broken deps w.r.t. cupsys-client Replacing older cupsys
+    versions (closes bug #75241).
+  * Fixed broken deps surrounding cupsys-dev (closes bug #75242).
+  * My shlibs file was badly broken; it referred to the cupsys package
+    instead of the libcupsys2 package (closes bug #78485).
+  * Fixed problem with upgrading; --oknodo wasn't passed to
+    start-stop-daemon, causing the prerm to fail if cupsd wasn't running
+    (closes bug #70698).
+
+ -- Jeff Licquia <licquia@debian.org>  Sun,  3 Dec 2000 22:45:29 -0500
+
+cupsys (1.1.4-2) unstable; urgency=high
+
+  * Fix misconfiguration in default config; cupsd now refuses connections
+    to printers and printer classes from all hosts except localhost by
+    default.  The previous default was to allow all hosts to connect to
+    all printers - not a terribly secure default. :-)
+
+ -- Jeff Licquia <licquia@debian.org>  Sat, 18 Nov 2000 00:55:48 -0500
+
+cupsys (1.0.4-8) stable; urgency=high
+
+  * Security fix: the default configuration now no longer allows people
+    to connect to printers except from localhost.  The previous default
+    configuration allowed anyone to connect to any printer from any
+    location; not a smart security move.
+
+ -- Jeff Licquia <licquia@debian.org>  Sat, 18 Nov 2000 00:37:06 -0500
+
+cupsys (1.1.4-1) unstable; urgency=low
+
+  * New upstream version.
+  * Fixed SystemGroup to point to lpadmin again (closes bug #72155).
+
+ -- Jeff Licquia <licquia@debian.org>  Sun, 15 Oct 2000 20:36:01 -0500
+
+cupsys (1.1.2-4) unstable; urgency=low
+
+  * The scheduler will now accept up to 128 characters for a password
+    (closes bug #70946).
+
+ -- Jeff Licquia <licquia@debian.org>  Sun, 15 Oct 2000 14:54:31 -0500
+
+cupsys (1.1.2-3) unstable; urgency=low
+
+  * Re-add ppd directory to build (when did it drop out?) (closes bug
+    #70448).
+
+ -- Jeff Licquia <licquia@debian.org>  Mon, 28 Aug 2000 20:14:51 -0500
+
+cupsys (1.1.2-2) unstable; urgency=low
+
+  * Added debhelper to build deps (closes bug #69677).
+  * Fixed PAM configuration file (closes bug #69787).
+
+ -- Jeff Licquia <licquia@debian.org>  Thu, 24 Aug 2000 11:40:56 -0500
+
+cupsys (1.1.2-1) unstable; urgency=low
+
+  * Another new upstream version.
+  * More build fixes.
+
+ -- Jeff Licquia <licquia@debian.org>  Sat, 19 Aug 2000 17:15:34 -0500
+
+cupsys (1.1.1-1) unstable; urgency=low
+
+  * New upstream version - non-beta this time.
+  * Fixed up build process to reflect upstream changes.
+  * Removed lots of Debian-specific stuff that isn't needed anymore.
+
+ -- Jeff Licquia <licquia@debian.org>  Mon,  7 Aug 2000 20:27:29 -0500
+
+cupsys (1.1.0-0b3d1) unstable; urgency=low
+
+  * New upstream version.
+  * Daemon 'cups-lpd' (new to this version) added to cupsys-bsd, with
+    appropriate update-inetd calls, so cupsys-bsd is now a complete
+    replacement for lpr.
+
+ -- Jeff Licquia <licquia@debian.org>  Sun, 14 May 2000 00:08:23 -0500
+
+cupsys (1.0.4-7) frozen unstable; urgency=high
+
+  * Additional DoS fixes, included in Easy Software Products' patch for
+    the bug below.  As these are DoS bugs, I HIGHLY recommend including
+    this in potato.
+
+ -- Jeff Licquia <licquia@debian.org>  Sun, 18 Jun 2000 22:39:01 -0500
+
+cupsys (1.0.4-6) frozen unstable; urgency=high
+
+  * Fixed denial-of-service bug; POSTing non-IPP data would cause the
+    server to crash.  Closes bug #65576 (severity: critical).
+
+ -- Jeff Licquia <licquia@debian.org>  Tue, 13 Jun 2000 22:04:40 -0500
+
+cupsys (1.0.4-5) frozen unstable; urgency=low
+
+  * Backported 1.0.5 bugfix: adding a printer would fail if
+    /usr/share/cups were mounted on a different partition than /etc/cups.
+    Closes bug #62267 (severity: grave).
+
+ -- Jeff Licquia <licquia@debian.org>  Thu, 13 Apr 2000 23:09:40 -0500
+
+cupsys (1.0.4-4) frozen unstable; urgency=low
+
+  * Makefile in conf was attempting to remove /etc/printcap during build, and
+    fails to build if this fails (which it will under fakeroot); disabled
+    this.  Closes bug #60455 (severity: important).
+
+ -- Jeff Licquia <licquia@debian.org>  Wed, 15 Mar 2000 12:34:20 -0600
+
+cupsys (1.0.4-3) frozen unstable; urgency=low
+
+  * Oops - ppd directory move fails in preinst if /var/lib/cups/ppd is
+    empty.  Reported as bug #59993, fixed.
+  * Missed the library Build-Depends.  Closes bug #60090.
+  * Postrm during purge now removes /etc/cups properly.
+  * Documentation updates.
+
+ -- Jeff Licquia <licquia@debian.org>  Fri, 10 Mar 2000 22:59:07 -0600
+
+cupsys (1.0.4-2) frozen unstable; urgency=low
+
+  * Fixed documentation corruption in HTML docs (closes bug #59063).
+  * Moved /var/lib/cups/ppd/* config files (printer definitions) to
+    /etc/cups/ppd (closes bug #59263).
+  * Fixed shlibs for libcupsys1 (erroneous information) preventing
+    packages that link to it from depending properly.
+  * Changed default for browsing to Off to keep cupsd from probing the
+    local network continuously (closes bug #59277).
+
+ -- Jeff Licquia <licquia@debian.org>  Sat,  4 Mar 2000 18:23:01 -0600
+
+cupsys (1.0.4-1) unstable; urgency=low
+
+  * New upstream version.
+  * Changed policy version & tweaked for conformance.
+  * Fixed symlinks for cupsys-bsd, including /usr/doc symlinks.
+  * Reverted lp -h hack in favor of upstream fix.
+
+ -- Jeff Licquia <licquia@debian.org>  Sun,  9 Jan 2000 23:25:06 -0600
+
+cupsys (1.0.2-2) unstable; urgency=low
+
+  * Added quick hack to allow for -h option to lp (closes bug #52050).
+  * Set the lpd backend suid after quick audit; it doesn't appear to have
+    any egregious errors (closes part of bug #52381).
+  * Move /var/lib/cups/conf files to /etc/cups, with a symlink in place of
+    the old location (closes bug #52318).
+  * Added "Authentication failed" message when authorizing after the first
+    auth failure (which is likely before the first password request)
+    (closes rest of bug #50264).
+  * Made cupsys-bsd doc dir a symlink to the cupsys doc files, per policy
+    section 6.6 (closes bug #51958).
+  * Symlinked /var/lib/cups/logs to /var/log/cups (closes bug #51957).
+
+ -- Jeff Licquia <licquia@debian.org>  Mon, 13 Dec 1999 02:12:40 -0600
+
+cupsys (1.0.2-1) unstable; urgency=low
+
+  * New upstream version.
+  * Conflict with lprng, since lprng includes some SysV printing commands
+    (closes bug #50539).
+  * Added "cupsenable", "cupsdisable", "cupsaccept", and "cupsreject"
+    commands as part of an ongoing effort to reduce namespace pollution.
+    (addresses part of bug #50661 and #50384)
+  * Set both the default user and group to "lp" (for permissions fixes).
+  * Created "lpadmin" group and set SystemGroup to this.  This will
+    fix problems with CUPS not being usable initially.  As soon as
+    bug #50620 gets fixed, I'll set up to add root to the group, which
+    will make root able to configure CUPS immediately after installation.
+
+ -- Jeff Licquia <licquia@debian.org>  Mon, 29 Nov 1999 00:16:44 -0600
+
+cupsys (1.0.1-3) unstable; urgency=low
+
+  * Fixed wrong symlinks. (closes bug #50279)
+  * Stopped compression of .pdf files; they didn't gain much, broke
+    the links in the HTML, and generally caused confusion. (closes
+    part of bug #50264)
+
+ -- Jeff Licquia <licquia@debian.org>  Mon, 15 Nov 1999 22:28:56 -0600
+
+cupsys (1.0.1-2) unstable; urgency=low
+
+  * cupsys-bsd should conflict with lpr, not "lpd" (whatever that is) 
+  (closes #50047)
+  
+  * Changed priority to "extra".
+
+ -- Jeff Licquia <licquia@debian.org>  Fri, 12 Nov 1999 22:24:15 -0600
+
+cupsys (1.0.1-1) unstable; urgency=low
+
+  * Initial Release.
+
+ -- Jeff Licquia <licquia@debian.org>  Sun,  6 Nov 1999 20:58:02 -0500
+
+Local variables:
+mode: debian-changelog
+End:

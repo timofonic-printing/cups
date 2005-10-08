@@ -1,0 +1,19 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 37_gfxfont.dpatch by Kenshi Muto <kmuto@debian.org>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: No description.
+
+@DPATCH@
+diff -urNad cupsys-1.1.23/pdftops/GfxFont.cxx /tmp/dpep.ZmOqnA/cupsys-1.1.23/pdftops/GfxFont.cxx
+--- cupsys-1.1.23/pdftops/GfxFont.cxx	2005-04-17 10:52:40.576718855 +0900
++++ /tmp/dpep.ZmOqnA/cupsys-1.1.23/pdftops/GfxFont.cxx	2005-04-17 12:04:30.051336954 +0900
+@@ -969,7 +969,7 @@
+   if ((nameToGID = ff->getNameToGID())) {
+     for (i = 0; i < 256; ++i) {
+       if (!map[i] && (charName = enc[i])) {
+-	map[i] = (Gushort)(int)nameToGID->lookup(charName);
++	map[i] = (Gushort)(long)nameToGID->lookup(charName);
+       }
+     }
+     delete nameToGID;

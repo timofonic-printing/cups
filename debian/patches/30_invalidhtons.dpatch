@@ -1,0 +1,19 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 30_invalidhtons.dpatch by Kenshi Muto <kmuto@debian.org>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: No description.
+
+@DPATCH@
+diff -urNad cupsys-1.1.23/scheduler/conf.c /tmp/dpep.b3fxqG/cupsys-1.1.23/scheduler/conf.c
+--- cupsys-1.1.23/scheduler/conf.c	2005-04-17 03:42:26.731950694 +0000
++++ /tmp/dpep.b3fxqG/cupsys-1.1.23/scheduler/conf.c	2005-04-17 03:49:13.102985742 +0000
+@@ -2163,7 +2163,7 @@
+         return (0);
+       }
+       else
+-        address->sin_port = htons(port->s_port);
++        address->sin_port = port->s_port;
+     }
+   }
+ 

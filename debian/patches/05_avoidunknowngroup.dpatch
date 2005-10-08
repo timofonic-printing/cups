@@ -1,0 +1,19 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 05avoidunknowngroup.dpatch by Kenshi Muto <kmuto@debian.org>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: No description.
+
+@DPATCH@
+diff -urNad cupsys-1.1.99.b1.r4748~/systemv/Makefile cupsys-1.1.99.b1.r4748/systemv/Makefile
+--- cupsys-1.1.99.b1.r4748~/systemv/Makefile	2005-02-18 02:18:11.000000000 +0000
++++ cupsys-1.1.99.b1.r4748/systemv/Makefile	2005-10-05 12:08:23.093376200 +0000
+@@ -77,7 +77,7 @@
+ 	$(INSTALL_BIN) lp $(BINDIR)
+ 	$(INSTALL_BIN) lpoptions $(BINDIR)
+ 	$(INSTALL_BIN) lpstat $(BINDIR)
+-	-$(INSTALL_BIN) -m 4755 -o $(CUPS_USER) -g $(CUPS_GROUP) lppasswd $(BINDIR)
++	-$(INSTALL_BIN) -m 4755 -o root -g root lppasswd $(BINDIR)
+ 	if test ! -x $(BINDIR)/lppasswd; then \
+ 		chmod 755 $(BINDIR)/lppasswd; \
+ 	fi

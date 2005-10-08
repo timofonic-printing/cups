@@ -1,0 +1,28 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 07_removecvstag.dpatch by Kenshi Muto <kmuto@debian.org>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: No description.
+
+@DPATCH@
+diff -urNad cupsys-1.1.99.b1.r4748~/conf/Makefile cupsys-1.1.99.b1.r4748/conf/Makefile
+--- cupsys-1.1.99.b1.r4748~/conf/Makefile	2005-09-17 22:56:56.000000000 +0000
++++ cupsys-1.1.99.b1.r4748/conf/Makefile	2005-10-05 12:09:11.220014091 +0000
+@@ -57,6 +57,8 @@
+ 			$(INSTALL_DATA) $$file $(SERVERROOT)/$$file.N ; \
+ 		else \
+ 			$(INSTALL_DATA) $$file $(SERVERROOT) ; \
++			grep -v "\$$Id:" $(SERVERROOT)/$$file > $(SERVERROOT)/$$file.n ; \
++			mv $(SERVERROOT)/$$file.n $(SERVERROOT)/$$file ; \
+ 		fi ; \
+ 	done
+ 	for file in $(REPLACE); do \
+@@ -64,6 +66,8 @@
+ 			$(MV) $(SERVERROOT)/$$file $(SERVERROOT)/$$file.O ; \
+ 		fi ; \
+ 		$(INSTALL_DATA) $$file $(SERVERROOT) ; \
++		grep -v "\$$Id:" $(SERVERROOT)/$$file > $(SERVERROOT)/$$file.n ; \
++		mv $(SERVERROOT)/$$file.n $(SERVERROOT)/$$file ; \
+ 	done
+ 	-if test x$(PAMDIR) != x$(BUILDROOT); then \
+ 		$(INSTALL_DIR) $(PAMDIR); \

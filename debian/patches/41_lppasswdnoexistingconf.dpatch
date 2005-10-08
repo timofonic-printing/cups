@@ -1,0 +1,19 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 41_lppasswdnoexistingconf.dpatch by Kenshi Muto <kmuto@debian.org>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: No description.
+
+@DPATCH@
+diff -urNad cupsys-1.1.23/systemv/lppasswd.c /tmp/dpep.wFmN5f/cupsys-1.1.23/systemv/lppasswd.c
+--- cupsys-1.1.23/systemv/lppasswd.c	2005-04-17 10:52:41.337580368 +0900
++++ /tmp/dpep.wFmN5f/cupsys-1.1.23/systemv/lppasswd.c	2005-04-17 12:05:42.395169411 +0900
+@@ -449,7 +449,7 @@
+   */
+ 
+   unlink(passwdold);
+-  if (link(passwdmd5, passwdold))
++  if (link(passwdmd5, passwdold) && errno != ENOENT)
+   {
+     perror("lppasswd: failed to backup old password file");
+     unlink(passwdnew);

@@ -1,0 +1,35 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 44_fixconfdirperms.dpatch by Kenshi Muto <kmuto@debian.org>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: No description.
+
+@DPATCH@
+diff -urNad cupsys-1.1.99.b1.r4748~/scheduler/conf.c cupsys-1.1.99.b1.r4748/scheduler/conf.c
+--- cupsys-1.1.99.b1.r4748~/scheduler/conf.c	2005-10-01 00:34:49.000000000 +0000
++++ cupsys-1.1.99.b1.r4748/scheduler/conf.c	2005-10-05 12:48:10.908681278 +0000
+@@ -614,7 +614,7 @@
+   if (access(temp, 0))
+     mkdir(temp, 0755);
+   chown(temp, RunUser, Group);
+-  chmod(temp, 0755);
++  chmod(temp, 02755);
+ 
+   chown(StateDir, RunUser, Group);
+   chmod(StateDir, 0775);
+@@ -629,13 +629,13 @@
+     chmod(temp, 0510);
+ 
+   chown(ServerRoot, RunUser, Group);
+-  chmod(ServerRoot, 0755);
++  chmod(ServerRoot, 03755);
+ 
+   snprintf(temp, sizeof(temp), "%s/ppd", ServerRoot);
+   if (access(temp, 0))
+     mkdir(temp, 0755);
+   chown(temp, RunUser, Group);
+-  chmod(temp, 0755);
++  chmod(temp, 02755);
+ 
+   snprintf(temp, sizeof(temp), "%s/ssl", ServerRoot);
+   if (access(temp, 0))

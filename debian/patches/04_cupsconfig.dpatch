@@ -1,0 +1,19 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 04cupsconfig.dpatch by Kenshi Muto <kmuto@debian.org>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: No description.
+
+@DPATCH@
+diff -urNad cupsys-1.1.99.b1.r4748~/cups-config.in cupsys-1.1.99.b1.r4748/cups-config.in
+--- cupsys-1.1.99.b1.r4748~/cups-config.in	2005-02-18 02:18:11.000000000 +0000
++++ cupsys-1.1.99.b1.r4748/cups-config.in	2005-10-05 12:07:46.834922408 +0000
+@@ -40,7 +40,7 @@
+ # flags for C++ compiler:
+ CFLAGS=""
+ LDFLAGS="@EXPORT_LDFLAGS@"
+-LIBS="@EXPORT_SSLLIBS@ @NETLIBS@ @COMMONLIBS@"
++LIBS="@NETLIBS@ @COMMONLIBS@"
+ IMGLIBS="@EXPORT_LIBTIFF@ @EXPORT_LIBJPEG@ @EXPORT_LIBPNG@ @EXPORT_LIBZ@"
+ 
+ if test $includedir != /usr/include; then

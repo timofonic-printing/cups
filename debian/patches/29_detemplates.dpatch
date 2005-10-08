@@ -1,0 +1,28 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 29_detemplates.dpatch by Kenshi Muto <kmuto@debian.org>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: No description.
+
+@DPATCH@
+diff -urNad cupsys-1.1.23/templates/de/choose-device.tmpl /tmp/dpep.nCywJK/cupsys-1.1.23/templates/de/choose-device.tmpl
+--- cupsys-1.1.23/templates/de/choose-device.tmpl	2005-04-17 10:52:40.874664625 +0900
++++ /tmp/dpep.nCywJK/cupsys-1.1.23/templates/de/choose-device.tmpl	2005-04-17 12:03:12.856387465 +0900
+@@ -7,7 +7,7 @@
+ <TABLE CELLPADDING="0" CELLSPACING="0" BORDER="0" WIDTH="100%">
+ <TR BGCOLOR="#999966">
+ 	<TH WIDTH="16"><IMG SRC="/images/left.gif" ALT=""></TH>
+-	<TH COLSPAN="2">Ger&auml;t f&uuml; {printer_name}</TH>
++	<TH COLSPAN="2">Ger&auml;t f&uuml;r {printer_name}</TH>
+ 	<TH BGCOLOR="#cccc99" WIDTH="16"><IMG SRC="/images/right.gif" ALT=""></TH>
+ </TR>
+ <TR>
+@@ -15,7 +15,7 @@
+ </TR>
+ <TR>
+ 	<TD></TD>
+-	<TD ALIGN="RIGHT">Gere&auml;t:&nbsp;</TD>
++	<TD ALIGN="RIGHT">Ger&auml;t:&nbsp;</TD>
+ 	<TD>
+ 	<SELECT NAME="DEVICE_URI">
+ 	{[device_uri]<OPTION VALUE="{device_uri}" {?current_device_uri={device_uri}?SELECTED:}>

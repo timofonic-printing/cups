@@ -1,0 +1,60 @@
+#!/bin/sh -e
+
+# Author: Martin Pitt <martin.pitt@ubuntu.com>
+# (C) 2005  Canonical Ltd.
+#
+# Configure CUPS IPP network browsing; this is only possible if
+# cupsd-browsing.conf is included by cupsd.conf and "Browsing" is present in
+# cupsd-browsing.conf (i. e. browsing_status returns 0 or 1). If the setting
+# changed, CUPS will be restarted.
+#
+# Argument:
+# 0: disable browsing 
+# 1: enabled browsing
+# Return 0 on success, or 1 on failure (prints error to stderr)
+
+CONF=/etc/cups/cupsd-browsing.conf
+STATUS_SCRIPT=/usr/share/cups/browsing_status
+
+[ -x $STATUS_SCRIPT ] || {
+    echo "Error: cannot execute $STATUS_SCRIPT" >&2
+    exit 1
+}
+
+set +e
+$STATUS_SCRIPT
+STATUS=$?
+set -e
+
+case "$1" in
+    0)
+	NEWVAL=Off
+	;;
+    1)
+	NEWVAL=On
+	;;
+    *)
+	echo "Invalid argument (must be 0 or 1)" >&2
+	exit 1
+	;;
+esac
+
+[ $STATUS = 0 -o $STATUS = 1 ] || {
+    echo "Error: cannot modify custom configuration" >&2
+    exit 1
+}
+
+# nothing to do?
+[ $1 != $STATUS ] || exit 0
+
+sed -ri "s/^([[:space:]]*Browsing[[:space:]]+)(No|Off|Yes|On)([[:space:]]*(#.*)?)\$/\\1$NEWVAL\\3/i" $CONF
+
+# restart CUPS
+# Automatically added by dh_installinit
+if [ -x "/etc/init.d/cupsys" ]; then
+    if [ -x /usr/sbin/invoke-rc.d ]; then
+	invoke-rc.d cupsys restart || exit 0
+    else
+	/etc/init.d/cupsys restart || exit 0
+    fi
+fi

@@ -1,0 +1,238 @@
+# Vietnamese Translation for cupsys.
+# Copyright © 2005 Free Software Foundation, Inc.
+# Clytie Siddall <clytie@riverland.net.au>, 2005.
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: cupsys 1.1.23-10\n"
+"Report-Msgid-Bugs-To: pkg-cups-devel@lists.alioth.debian.org\n"
+"POT-Creation-Date: 2005-10-07 00:07+0000\n"
+"PO-Revision-Date: 2005-05-22 12:57+0930\n"
+"Last-Translator: Clytie Siddall <clytie@riverland.net.au>\n"
+"Language-Team: Vietnamese <gnomevi-list@lists.sourceforge.net>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+
+#. Type: boolean
+#. Description
+#: ../cupsys-bsd.templates:4
+msgid "Do you want to set up the BSD lpd compatibility server?"
+msgstr "Bạn có muốn thiết lập trình dịch vụ tương thích với lpd BSD không?"
+
+#. Type: boolean
+#. Description
+#: ../cupsys-bsd.templates:4
+msgid ""
+"This package contains a server that can accept BSD-style print jobs and "
+"submit them to CUPS. It should only be set up if you have other computers "
+"that submit jobs over the network via \"BSD\" or \"LPR\" services, and these "
+"computers cannot be converted to use the IPP protocol that CUPS uses."
+msgstr ""
+"Gói tin này chứa một trình cung cấp dịch vụ có thể chấp nhận việc in kiểu "
+"BSD và đệ trình chúng vào trình CUPS. Chỉ nên thiết lập nó nếu bạn có máy "
+"tính khác đệ trình việc in qua mạng dùng dịch vụ «BSD» hay «LPR», và không "
+"thể chuyển đổi máy tính ấy để dùng giao thức IPP mà phần mềm CUPS dùng."
+
+#. Type: boolean
+#. Description
+#: ../cupsys.templates:4
+msgid "Do you want CUPS to print unknown jobs as raw jobs?"
+msgstr "Bạn có muốn CUPS in mọi việc in lạ như là việc thô không?"
+
+#. Type: boolean
+#. Description
+#: ../cupsys.templates:4
+msgid ""
+"All print jobs in IPP get a MIME type. Since not all sources of print jobs "
+"can attach an appropriate type, many jobs get submitted as the MIME type "
+"application/octet-stream. Because of this, when CUPS receives a job with "
+"that MIME type, it attempts to guess what the format is. By default, if it "
+"cannot guess the proper type, it rejects the job."
+msgstr ""
+"Trong IPP, mọi việc in được một kiểu MIME. Vì không phải tất cả nguồn việc "
+"in có thể đính kèm kiểu thích hợp, nhiều việc in được đệ trình với kiểu MIME "
+"application/octet-stream (ứng dụng/dòng dạng bộ tám điều). Vì vậy, khi CUPS "
+"nhận một việc có kiểu MIME ấy thì nó cố đoán dang thức của nó. Mặc định là "
+"nếu nó không đoán được kiểu đúng thì nó sẽ từ chối việc in."
+
+#. Type: boolean
+#. Description
+#: ../cupsys.templates:4
+msgid ""
+"It is possible to cause CUPS to treat all unrecognized jobs with this MIME "
+"type as \"raw\" jobs, which causes them to be sent directly to the printer "
+"without processing."
+msgstr ""
+"Có thể làm cho CUPS phân loại mọi việc in chưa nhận ra và có kiểu MIME này "
+"như là việc in «thô». Như thế thì, CUPS sẽ gởi chúng thẳng vào máy in, không "
+"có xử lý chúng."
+
+#. Type: boolean
+#. Description
+#: ../cupsys.templates:4
+msgid ""
+"If you will be accepting print jobs from Windows computers, you probably "
+"want this option set, as Windows gives all IPP print jobs processed by a "
+"local driver the MIME type application/octet-stream. Samba also submits its "
+"print jobs this way."
+msgstr ""
+"Nếu bạn sẽ cần phải nhận việc in từ máy tính chạy hệ điều hành Windows thì "
+"rất có thể là bạn muốn lập tùy chọn này, vì phần mềm Windows gán mọi việc in "
+"IPP được xử lý bởi trình hỗ trợ thiết bị địa phương, kiểu MIME application/"
+"octet-stream. Phần mềm Samba cũng đệ trình các việc in của nó bằng cách ấy."
+
+#. Type: multiselect
+#. Choices
+#: ../cupsys.templates:22
+msgid "ipp, lpd, parallel, scsi, serial, socket, usb"
+msgstr "ipp, lpd, song song, scsi, nối tiếp, ổ cắm, usb"
+
+#. Type: multiselect
+#. Description
+#: ../cupsys.templates:24
+msgid "Select the backends you want."
+msgstr "Hãy chọn hậu phương nào bạn muốn."
+
+#. Type: multiselect
+#. Description
+#: ../cupsys.templates:24
+msgid ""
+"CUPS uses backend programs for communication with printer device or port."
+msgstr ""
+"Phần mềm CUPS dùng trình hậu phương (backend) để truyền thông với thiết bị "
+"in hay cổng."
+
+#. Type: multiselect
+#. Description
+#: ../cupsys.templates:24
+msgid ""
+"Unfortunately, some backend programs cause some trouble. (For example, some "
+"PPC kernel crashes with the parallel backend)"
+msgstr ""
+"Rất tiếc là một số chương trình hậu phương có gây ra lỗi. (Lấy thí dụ, hậu "
+"phương song song gây ra một số hạt nhân PPC bị hỏng.)"
+
+#. Type: multiselect
+#. Description
+#: ../cupsys.templates:24
+msgid ""
+"Please choose the backend program to be used by CUPS. The default choice "
+"should fit the most common environments."
+msgstr ""
+"Hãy chọn chương trình hậu phương mà phần mềm CUPS sẽ dùng. Tùy chọn mặc định "
+"nên khớp với các môi trường thường dùng."
+
+#. Type: string
+#. Description
+#: ../cupsys.templates:36
+msgid "Specify the port or/and host name that wants to be listened."
+msgstr ""
+
+#. Type: string
+#. Description
+#: ../cupsys.templates:36
+msgid ""
+"Please specify the port or the host name CUPS daemon listens. You can use "
+"following formats."
+msgstr ""
+
+#. Type: string
+#. Description
+#: ../cupsys.templates:36
+msgid "- Port number (631)"
+msgstr ""
+
+#. Type: string
+#. Description
+#: ../cupsys.templates:36
+msgid "- Host name   (debian.example.com)"
+msgstr ""
+
+#. Type: string
+#. Description
+#: ../cupsys.templates:36
+msgid "- Host:Port   (debian.example.com:631)"
+msgstr ""
+
+#. Type: string
+#. Description
+#: ../cupsys.templates:36
+msgid "- File domain socket (/var/run/cups/cups.sock)"
+msgstr ""
+
+#. Type: string
+#. Description
+#: ../cupsys.templates:36
+msgid "It is possible to combine by delimiting two or more values in space."
+msgstr ""
+
+#. Type: string
+#. Description
+#: ../cupsys.templates:36
+msgid ""
+"The default port 631 is reserved for the Internet Printing Protocol (IPP). "
+"\"localhost:631\" is recommended to the standalone environment by security "
+"reason."
+msgstr ""
+
+#. Type: boolean
+#. Description
+#: ../cupsys.templates:57
+msgid ""
+"Do you want to broadcast and/or listen for CUPS printer information on the "
+"network?"
+msgstr ""
+
+#. Type: boolean
+#. Description
+#: ../cupsys.templates:57
+msgid ""
+"CUPS daemon can broadcast printer information for clients on the network, "
+"and detect printers on the network automatically."
+msgstr ""
+
+#. Type: boolean
+#. Description
+#: ../cupsys.templates:57
+msgid ""
+"When this option is accepted, CUPS daemon will broadcast and detect by using "
+"UDP periodically."
+msgstr ""
+
+#. Type: note
+#. Description
+#: ../cupsys.templates:66
+msgid "The wrong value is found in the input."
+msgstr ""
+
+#. Type: note
+#. Description
+#: ../cupsys.templates:66
+msgid "The error occurred while parsing the port number or the host name."
+msgstr ""
+
+#. Type: note
+#. Description
+#: ../cupsys.templates:66
+msgid "Please correct it."
+msgstr ""
+
+#. Type: password
+#. Description
+#: ../cupsys.templates:73
+msgid "Admin password:"
+msgstr ""
+
+#. Type: password
+#. Description
+#: ../cupsys.templates:73
+msgid "Please enter the password for the admin (username 'root') of CUPS."
+msgstr ""
+
+#. Type: password
+#. Description
+#: ../cupsys.templates:73
+msgid "You can add/replace/delete CUPS password information by using lpadmin."
+msgstr ""

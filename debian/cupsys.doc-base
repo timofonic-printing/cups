@@ -1,0 +1,13 @@
+Document: cupsys
+Title: CUPS Documentation
+Author: Easy Software Products
+Abstract: This documentation covers the use and administration of a CUPS 
+ printing system, and the programming interface for the libcups API.
+Section: Apps/System
+ 
+Format: pdf
+Files: /usr/share/doc/cupsys/online-docs/overview.pdf
+ 
+Format: HTML
+Index: /usr/share/doc/cupsys/online-docs/documentation.html
+Files: /usr/share/doc/cupsys/online-docs/*.html

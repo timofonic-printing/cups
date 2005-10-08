@@ -1,0 +1,254 @@
+# translation of fr.po to French
+#
+#    Translators, if you are not familiar with the PO format, gettext
+#    documentation is worth reading, especially sections dedicated to
+#    this format, e.g. by running:
+#         info -n '(gettext)PO Files'
+#         info -n '(gettext)Header Entry'
+#
+#    Some information specific to po-debconf are available at
+#            /usr/share/doc/po-debconf/README-trans
+#         or http://www.debian.org/intl/l10n/po-debconf/README-trans
+#
+#    Developers do not need to manually edit POT or PO files.
+# Christian Perrier <bubulle@debian.org>, 2004.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: cupsys\n"
+"Report-Msgid-Bugs-To: pkg-cups-devel@lists.alioth.debian.org\n"
+"POT-Creation-Date: 2005-10-07 00:07+0000\n"
+"PO-Revision-Date: 2004-09-21 11:57+0200\n"
+"Last-Translator: Christian Perrier <bubulle@debian.org>\n"
+"Language-Team: French <debian-l10n-french@lists.debian.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ISO-8859-15\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.3.1\n"
+"Plural-Forms: Plural-Forms: nplurals=2; plural=n>1;\n"
+
+#. Type: boolean
+#. Description
+#: ../cupsys-bsd.templates:4
+msgid "Do you want to set up the BSD lpd compatibility server?"
+msgstr "Faut-il installer le serveur compatible avec le démon lpd de BSD ?"
+
+#. Type: boolean
+#. Description
+#: ../cupsys-bsd.templates:4
+msgid ""
+"This package contains a server that can accept BSD-style print jobs and "
+"submit them to CUPS. It should only be set up if you have other computers "
+"that submit jobs over the network via \"BSD\" or \"LPR\" services, and these "
+"computers cannot be converted to use the IPP protocol that CUPS uses."
+msgstr ""
+"Ce paquet comporte un serveur capable d'accepter des demandes d'impression "
+"au style BSD et de les donner à CUPS. Installez-le seulement si vous avez "
+"des machines qui envoient leurs demandes à travers le réseau via les "
+"services « BSD » ou « LPR » et qui ne peuvent pas accepter le protocole IPP "
+"utilisé par CUPS."
+
+#. Type: boolean
+#. Description
+#: ../cupsys.templates:4
+msgid "Do you want CUPS to print unknown jobs as raw jobs?"
+msgstr "CUPS doit-il imprimer les demandes inconnues sous forme brute ?"
+
+#. Type: boolean
+#. Description
+#: ../cupsys.templates:4
+msgid ""
+"All print jobs in IPP get a MIME type. Since not all sources of print jobs "
+"can attach an appropriate type, many jobs get submitted as the MIME type "
+"application/octet-stream. Because of this, when CUPS receives a job with "
+"that MIME type, it attempts to guess what the format is. By default, if it "
+"cannot guess the proper type, it rejects the job."
+msgstr ""
+"Toutes les demandes d'impression doivent comporter un type MIME dans le "
+"protocole IPP (« Internet Printing Protocol »). Comme certaines sources de "
+"demandes d'impression sont incapables d'affecter un type MIME adapté, de "
+"nombreuses demandes sont soumises avec le type MIME application/octet-"
+"stream. À cause de cela, lorsque CUPS reçoit une demande d'impression avec "
+"ce type MIME, il tente de déterminer quel en est le format. Par défaut, si "
+"cette tentative échoue, la demande est rejetée."
+
+#. Type: boolean
+#. Description
+#: ../cupsys.templates:4
+msgid ""
+"It is possible to cause CUPS to treat all unrecognized jobs with this MIME "
+"type as \"raw\" jobs, which causes them to be sent directly to the printer "
+"without processing."
+msgstr ""
+"CUPS peut traiter toutes les demandes non reconnues comme des demandes en "
+"format brut et les envoyer directement à l'imprimante sans aucun traitement."
+
+#. Type: boolean
+#. Description
+#: ../cupsys.templates:4
+msgid ""
+"If you will be accepting print jobs from Windows computers, you probably "
+"want this option set, as Windows gives all IPP print jobs processed by a "
+"local driver the MIME type application/octet-stream. Samba also submits its "
+"print jobs this way."
+msgstr ""
+"Si vous acceptez des demandes d'impression émis par des ordinateurs "
+"utilisant Windows, vous devriez utiliser cette option car Windows affecte le "
+"type MIME application/octet-stream à toutes les demandes émises par un "
+"pilote local d'impression. Samba soumet également ses demandes d'impression "
+"de cette manière."
+
+#. Type: multiselect
+#. Choices
+#: ../cupsys.templates:22
+msgid "ipp, lpd, parallel, scsi, serial, socket, usb"
+msgstr ""
+"IPP (Protocole d'impression Internet), LPD (« Line Printer Daemon »), "
+"Parallèle, SCSI, Série, Socket, USB"
+
+#. Type: multiselect
+#. Description
+#: ../cupsys.templates:24
+msgid "Select the backends you want."
+msgstr "Méthode de communication avec l'imprimante :"
+
+#. Type: multiselect
+#. Description
+#: ../cupsys.templates:24
+msgid ""
+"CUPS uses backend programs for communication with printer device or port."
+msgstr ""
+"Vous pouvez choisir ici la méthode de communication qui sera utilisée par "
+"CUPS dans ses échanges avec l'imprimante ou le port d'impression."
+
+#. Type: multiselect
+#. Description
+#: ../cupsys.templates:24
+msgid ""
+"Unfortunately, some backend programs cause some trouble. (For example, some "
+"PPC kernel crashes with the parallel backend)"
+msgstr ""
+"Malheureusement, certaines de ces méthodes sont connues pour causer certains "
+"problèmes (par exemple, plantage de certains noyaux PPC avec la "
+"communication parallèle)."
+
+#. Type: multiselect
+#. Description
+#: ../cupsys.templates:24
+msgid ""
+"Please choose the backend program to be used by CUPS. The default choice "
+"should fit the most common environments."
+msgstr "Le choix par défaut est adapté à la majorité des environnements."
+
+#. Type: string
+#. Description
+#: ../cupsys.templates:36
+msgid "Specify the port or/and host name that wants to be listened."
+msgstr ""
+
+#. Type: string
+#. Description
+#: ../cupsys.templates:36
+msgid ""
+"Please specify the port or the host name CUPS daemon listens. You can use "
+"following formats."
+msgstr ""
+
+#. Type: string
+#. Description
+#: ../cupsys.templates:36
+msgid "- Port number (631)"
+msgstr ""
+
+#. Type: string
+#. Description
+#: ../cupsys.templates:36
+msgid "- Host name   (debian.example.com)"
+msgstr ""
+
+#. Type: string
+#. Description
+#: ../cupsys.templates:36
+msgid "- Host:Port   (debian.example.com:631)"
+msgstr ""
+
+#. Type: string
+#. Description
+#: ../cupsys.templates:36
+msgid "- File domain socket (/var/run/cups/cups.sock)"
+msgstr ""
+
+#. Type: string
+#. Description
+#: ../cupsys.templates:36
+msgid "It is possible to combine by delimiting two or more values in space."
+msgstr ""
+
+#. Type: string
+#. Description
+#: ../cupsys.templates:36
+msgid ""
+"The default port 631 is reserved for the Internet Printing Protocol (IPP). "
+"\"localhost:631\" is recommended to the standalone environment by security "
+"reason."
+msgstr ""
+
+#. Type: boolean
+#. Description
+#: ../cupsys.templates:57
+msgid ""
+"Do you want to broadcast and/or listen for CUPS printer information on the "
+"network?"
+msgstr ""
+
+#. Type: boolean
+#. Description
+#: ../cupsys.templates:57
+msgid ""
+"CUPS daemon can broadcast printer information for clients on the network, "
+"and detect printers on the network automatically."
+msgstr ""
+
+#. Type: boolean
+#. Description
+#: ../cupsys.templates:57
+msgid ""
+"When this option is accepted, CUPS daemon will broadcast and detect by using "
+"UDP periodically."
+msgstr ""
+
+#. Type: note
+#. Description
+#: ../cupsys.templates:66
+msgid "The wrong value is found in the input."
+msgstr ""
+
+#. Type: note
+#. Description
+#: ../cupsys.templates:66
+msgid "The error occurred while parsing the port number or the host name."
+msgstr ""
+
+#. Type: note
+#. Description
+#: ../cupsys.templates:66
+msgid "Please correct it."
+msgstr ""
+
+#. Type: password
+#. Description
+#: ../cupsys.templates:73
+msgid "Admin password:"
+msgstr ""
+
+#. Type: password
+#. Description
+#: ../cupsys.templates:73
+msgid "Please enter the password for the admin (username 'root') of CUPS."
+msgstr ""
+
+#. Type: password
+#. Description
+#: ../cupsys.templates:73
+msgid "You can add/replace/delete CUPS password information by using lpadmin."
+msgstr ""

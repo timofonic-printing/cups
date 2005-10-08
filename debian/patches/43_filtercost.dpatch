@@ -1,0 +1,19 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 43_filtercost.dpatch by Kenshi Muto <kmuto@debian.org>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: No description.
+
+@DPATCH@
+diff -urNad cupsys-1.1.99.b1.r4748~/scheduler/filter.c cupsys-1.1.99.b1.r4748/scheduler/filter.c
+--- cupsys-1.1.99.b1.r4748~/scheduler/filter.c	2005-08-30 12:41:48.000000000 +0000
++++ cupsys-1.1.99.b1.r4748/scheduler/filter.c	2005-10-05 12:46:40.621600459 +0000
+@@ -222,7 +222,7 @@
+       * any...)
+       */
+ 
+-      for (j = 0, cost = 0; j < num_temp; j ++)
++      for (j = 0, cost = current->cost; j < num_temp; j ++)
+         cost += temp[j].cost;
+ 
+       if (cost < mincost)

@@ -1,0 +1,72 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 47_pid.dpatch by Kenshi Muto <kmuto@debian.org>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: No description.
+
+@DPATCH@
+diff -urNad cupsys-1.1.99.b1.r4748~/scheduler/main.c cupsys-1.1.99.b1.r4748/scheduler/main.c
+--- cupsys-1.1.99.b1.r4748~/scheduler/main.c	2005-10-05 12:59:54.000000000 +0000
++++ cupsys-1.1.99.b1.r4748/scheduler/main.c	2005-10-05 13:01:48.059763190 +0000
+@@ -69,7 +69,8 @@
+ static void	sigterm_handler(int sig);
+ static long	select_timeout(int fds);
+ static void	usage(void);
+-
++int write_pid(void);
++int remove_pid(void);
+ 
+ /*
+  * Local globals...
+@@ -424,6 +425,11 @@
+       kill(i, SIGUSR1);
+   }
+ 
++  if (write_pid() == 0) {
++    cupsdLogMessage(CUPSD_LOG_ERROR, "Unable to write pid file");
++    return (1);
++  }
++
+  /*
+   * If the administrator has configured the server to run as an unpriviledged
+   * user, change to that user now...
+@@ -840,9 +846,39 @@
+   free(input);
+   free(output);
+ 
++  remove_pid();
++
+   return (!stop_scheduler);
+ }
+ 
++/* 'write_pid()' - Write PID file.
++   'remove_pid()' - Delete PID file.
++*/
++int
++write_pid()
++{
++  FILE *f;
++  int fd;
++  int pid;
++  if (((fd = open("/var/run/cups/cupsd.pid", O_RDWR|O_CREAT, 0644)) == -1)
++      || ((f = fdopen(fd, "r+")) == NULL) ) {
++    return 0;
++  }
++  pid = getpid();
++  if (!fprintf(f, "%d\n", pid)) {
++    close(fd);
++    return 0;
++  }
++  fflush(f);
++  close(fd);
++
++  return pid;
++}
++
++int remove_pid() {
++  return unlink("/var/run/cups/cupsd.pid");
++}
++
+ 
+ /*
+  * 'cupsdClosePipe()' - Close a pipe as necessary.

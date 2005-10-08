@@ -1,0 +1,8 @@
+Template: cupsys-bsd/setuplpd
+Type: boolean
+Default: false
+_Description: Do you want to set up the BSD lpd compatibility server?
+ This package contains a server that can accept BSD-style print jobs and
+ submit them to CUPS. It should only be set up if you have other computers
+ that submit jobs over the network via "BSD" or "LPR" services, and these
+ computers cannot be converted to use the IPP protocol that CUPS uses.
