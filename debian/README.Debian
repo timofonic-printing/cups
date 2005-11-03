@@ -235,6 +235,10 @@ Miscellaneous Tips
    foomatic-filters package (this package will be installed when you
    install foomatic-filters-ppds package).
 
+ - Default location of pid file is /var/run/cups/cupsd.pid.
+   If you'd like to change this, you can modify by using
+   "PidFile <filepath>" directive at your /etc/cups/cupsd.conf.
+
 Enjoy!
 
- -- Jeff Licquia <licquia@debian.org>
+ -- Jeff Licquia <licquia@debian.org> and Kenshi Muto <kmuto@debian.org>

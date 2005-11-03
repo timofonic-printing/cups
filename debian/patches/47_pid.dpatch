@@ -5,9 +5,41 @@
 ## DP: No description.
 
 @DPATCH@
+diff -urNad cupsys-1.1.99.b1.r4748~/scheduler/conf.c cupsys-1.1.99.b1.r4748/scheduler/conf.c
+--- cupsys-1.1.99.b1.r4748~/scheduler/conf.c	2005-11-03 11:41:59.474629247 +0000
++++ cupsys-1.1.99.b1.r4748/scheduler/conf.c	2005-11-03 12:27:49.102031706 +0000
+@@ -155,7 +155,8 @@
+   { "ServerRoot",		&ServerRoot,		CUPSD_VARTYPE_STRING },
+   { "StateDir",			&StateDir,		CUPSD_VARTYPE_STRING },
+   { "TempDir",			&TempDir,		CUPSD_VARTYPE_STRING },
+-  { "Timeout",			&Timeout,		CUPSD_VARTYPE_INTEGER }
++  { "Timeout",			&Timeout,		CUPSD_VARTYPE_INTEGER },
++  { "PidFile",			&PidFile,		CUPSD_VARTYPE_STRING }
+ };
+ #define NUM_VARS	(sizeof(variables) / sizeof(variables[0]))
+ 
+@@ -290,6 +291,7 @@
+   cupsdSetString(&RemoteRoot, "remroot");
+   cupsdSetString(&ServerHeader, "CUPS/1.1");
+   cupsdSetString(&StateDir, CUPS_STATEDIR);
++  cupsdSetString(&PidFile, "/var/run/cups/cupsd.pid");
+ 
+   strlcpy(temp, ConfigurationFile, sizeof(temp));
+   if ((slash = strrchr(temp, '/')) != NULL)
+diff -urNad cupsys-1.1.99.b1.r4748~/scheduler/conf.h cupsys-1.1.99.b1.r4748/scheduler/conf.h
+--- cupsys-1.1.99.b1.r4748~/scheduler/conf.h	2005-09-28 21:12:44.000000000 +0000
++++ cupsys-1.1.99.b1.r4748/scheduler/conf.h	2005-11-03 12:17:17.895936632 +0000
+@@ -189,6 +189,7 @@
+ 					/* Array containing certificates */
+ #  endif /* HAVE_LIBSSL || HAVE_GNUTLS */
+ #endif /* HAVE_SSL */
++VAR char		*PidFile	VALUE(NULL); /* Debian CUPS pid file */
+ 
+ 
+ /*
 diff -urNad cupsys-1.1.99.b1.r4748~/scheduler/main.c cupsys-1.1.99.b1.r4748/scheduler/main.c
---- cupsys-1.1.99.b1.r4748~/scheduler/main.c	2005-10-05 12:59:54.000000000 +0000
-+++ cupsys-1.1.99.b1.r4748/scheduler/main.c	2005-10-05 13:01:48.059763190 +0000
+--- cupsys-1.1.99.b1.r4748~/scheduler/main.c	2005-11-03 11:41:30.000000000 +0000
++++ cupsys-1.1.99.b1.r4748/scheduler/main.c	2005-11-03 12:28:48.083074561 +0000
 @@ -69,7 +69,8 @@
  static void	sigterm_handler(int sig);
  static long	select_timeout(int fds);
@@ -48,7 +80,7 @@ diff -urNad cupsys-1.1.99.b1.r4748~/scheduler/main.c cupsys-1.1.99.b1.r4748/sche
 +  FILE *f;
 +  int fd;
 +  int pid;
-+  if (((fd = open("/var/run/cups/cupsd.pid", O_RDWR|O_CREAT, 0644)) == -1)
++  if (((fd = open(PidFile, O_RDWR|O_CREAT, 0644)) == -1)
 +      || ((f = fdopen(fd, "r+")) == NULL) ) {
 +    return 0;
 +  }
@@ -64,7 +96,7 @@ diff -urNad cupsys-1.1.99.b1.r4748~/scheduler/main.c cupsys-1.1.99.b1.r4748/sche
 +}
 +
 +int remove_pid() {
-+  return unlink("/var/run/cups/cupsd.pid");
++  return unlink(PidFile);
 +}
 +
  
