@@ -1,4 +1,4 @@
-cupsys (1.1.99.b1.r4748-4) UNRELEASED; urgency=low
+cupsys (1.1.99.b1.r4748-4) experimental; urgency=low
 
   * EXPERIMENTAL
   * 00_r4835.dpatch: Taken from r4835.
