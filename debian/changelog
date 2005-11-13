@@ -10,6 +10,7 @@ cupsys (1.1.99.b1.r4748-4) UNRELEASED; urgency=low
     Debian uses dh_installman.
   * 04_freebsd.dpatch: Apply Brian's patch to support GNU/kFreeBSD
     (closes: #338266)
+  * Install lppasswd as owner 'lp'.
 
  -- Kenshi Muto <kmuto@debian.org>  Fri,  4 Nov 2005 13:56:27 +0000
 

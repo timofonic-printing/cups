@@ -27,7 +27,7 @@ case "$1" in
         if [ -z "`getent group lpadmin`" ]; then
             addgroup --system lpadmin
         fi
-	chown root:lpadmin /usr/bin/lppasswd
+	chown lp:lpadmin /usr/bin/lppasswd
 	chmod u+s /usr/bin/lppasswd
     ;;
 
