@@ -1,3 +1,11 @@
+cupsys (1.1.99.b1.r4748-4) UNRELEASED; urgency=low
+
+  * EXPERIMENTAL
+  * 00_r4815.dpatch: Taken from r4815.
+  * 48_stdlib.dpatch: Fix FTBFS for arm, mips, and mipsel.
+
+ -- Kenshi Muto <kmuto@debian.org>  Fri,  4 Nov 2005 13:56:27 +0000
+
 cupsys (1.1.99.b1.r4748-3) experimental; urgency=low
 
   * EXPERIMENTAL

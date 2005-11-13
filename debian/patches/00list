@@ -1,4 +1,5 @@
-00_r4756.dpatch
+#00_r4756.dpatch
+00_r4815.dpatch
 #01_largefile.dpatch
 02_configure.dpatch
 #03_cupsimage.dpatch
@@ -28,3 +29,5 @@
 45_slashprinternames.dpatch
 #46_ppdsdat.dpatch
 47_pid.dpatch
+48_stdlib.dpatch
+#49_pthread.dpatch
