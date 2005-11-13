@@ -1,6 +1,8 @@
 #00_r4815.dpatch
 00_r4835.dpatch
 02_configure.dpatch
+03_manext.dpatch
+04_freebsd.dpatch
 05_avoidunknowngroup.dpatch
 06_replacepdftops.dpatch
 07_removecvstag.dpatch

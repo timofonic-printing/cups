@@ -1,0 +1,80 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 04_freebsd.dpatch by Kenshi Muto <kmuto@debian.org>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: man extension is handled by dh_installman
+
+@DPATCH@
+diff -urNad cupsys-1.1.99.b1.r4748~/backend/parallel.c cupsys-1.1.99.b1.r4748/backend/parallel.c
+--- cupsys-1.1.99.b1.r4748~/backend/parallel.c	2005-09-26 19:33:58.000000000 +0000
++++ cupsys-1.1.99.b1.r4748/backend/parallel.c	2005-11-13 05:45:50.959187142 +0000
+@@ -720,7 +720,7 @@
+       printf("direct parallel:%s \"Unknown\" \"Parallel Port #%d\"\n", device, i + 1);
+     }
+   }
+-#elif defined(__FreeBSD__) || defined(__OpenBSD__) || defined(__NetBSD__)
++#elif defined(__FreeBSD__) || defined(__OpenBSD__) || defined(__NetBSD__) || defined(__FreeBSD_kernel__)
+   int	i;			/* Looping var */
+   int	fd;			/* File descriptor */
+   char	device[255];		/* Device filename */
+diff -urNad cupsys-1.1.99.b1.r4748~/backend/serial.c cupsys-1.1.99.b1.r4748/backend/serial.c
+--- cupsys-1.1.99.b1.r4748~/backend/serial.c	2005-09-26 19:33:58.000000000 +0000
++++ cupsys-1.1.99.b1.r4748/backend/serial.c	2005-11-13 05:46:33.265710269 +0000
+@@ -650,10 +650,10 @@
+ void
+ list_devices(void)
+ {
+-#if defined(__hpux) || defined(__sgi) || defined(__sun) || defined(__FreeBSD__) || defined(__OpenBSD__)
++#if defined(__hpux) || defined(__sgi) || defined(__sun) || defined(__FreeBSD__) || defined(__OpenBSD__) || defined(__FreeBSD_kernel__)
+   static char	*funky_hex = "0123456789abcdefghijklmnopqrstuvwxyz";
+ 				/* Funky hex numbering used for some devices */
+-#endif /* __hpux || __sgi || __sun || __FreeBSD__ || __OpenBSD__ */
++#endif /* __hpux || __sgi || __sun || __FreeBSD__ || __OpenBSD__ || __FreeBSD_kernel__ */
+ 
+ #if defined(__linux) || defined(linux) || defined(__linux__)
+   int	i;		/* Looping var */
+@@ -900,7 +900,7 @@
+       printf("serial serial:%s?baud=38400 \"Unknown\" \"Serial Port #%d\"\n",
+              device, i + 1);
+   }
+-#elif defined(__FreeBSD__) || defined(__OpenBSD__)
++#elif defined(__FreeBSD__) || defined(__OpenBSD__) || defined(__FreeBSD_kernel__)
+   int	i, j;		/* Looping vars */
+   int	fd;		/* File descriptor */
+   char	device[255];	/* Device filename */
+diff -urNad cupsys-1.1.99.b1.r4748~/backend/usb-unix.c cupsys-1.1.99.b1.r4748/backend/usb-unix.c
+--- cupsys-1.1.99.b1.r4748~/backend/usb-unix.c	2005-11-13 05:45:25.019158647 +0000
++++ cupsys-1.1.99.b1.r4748/backend/usb-unix.c	2005-11-13 05:46:48.892318008 +0000
+@@ -628,7 +628,7 @@
+   }
+ #elif defined(__hpux)
+ #elif defined(__osf)
+-#elif defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__)
++#elif defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__) || defined(__FreeBSD_kernel__)
+   int   i;                      /* Looping var */
+   char  device[255];            /* Device filename */
+ 
+diff -urNad cupsys-1.1.99.b1.r4748~/backend/usb.c cupsys-1.1.99.b1.r4748/backend/usb.c
+--- cupsys-1.1.99.b1.r4748~/backend/usb.c	2005-09-26 19:33:58.000000000 +0000
++++ cupsys-1.1.99.b1.r4748/backend/usb.c	2005-11-13 05:47:08.534311093 +0000
+@@ -72,7 +72,7 @@
+ 
+ #ifdef __APPLE__
+ #  include "usb-darwin.c"
+-#elif defined(__linux) || defined(__sun) || defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__)
++#elif defined(__linux) || defined(__sun) || defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__) || defined(__FreeBSD_kernel__)
+ #  include "usb-unix.c"
+ #else
+ /*
+diff -urNad cupsys-1.1.99.b1.r4748~/config-scripts/cups-directories.m4 cupsys-1.1.99.b1.r4748/config-scripts/cups-directories.m4
+--- cupsys-1.1.99.b1.r4748~/config-scripts/cups-directories.m4	2005-11-13 05:45:25.050153901 +0000
++++ cupsys-1.1.99.b1.r4748/config-scripts/cups-directories.m4	2005-11-13 05:47:31.651772214 +0000
+@@ -115,7 +115,7 @@
+ 			INITDDIR="/System/Library/StartupItems/PrintingServices"
+ 			;;
+ 
+-		Linux | GNU)
++		Linux | GNU | GNU/k*BSD*)
+ 			# Linux/HURD seems to choose an init.d directory at random...
+ 			if test -d /sbin/init.d; then
+ 				# SuSE

@@ -1,8 +1,15 @@
 cupsys (1.1.99.b1.r4748-4) UNRELEASED; urgency=low
 
   * EXPERIMENTAL
-  * 00_r4815.dpatch: Taken from r4815.
+  * 00_r4835.dpatch: Taken from r4835.
+    Well, r4835 removes some files. It means dpkg-buildpackage always
+    fails when we rebuild source. Maybe it's time to change orig source.
+    Moved obsolete patches to patches/obsolete.
   * 48_stdlib.dpatch: Fix FTBFS for arm, mips, and mipsel.
+  * 03_manext.dpatch: Don't use upstream's manpage file handling.
+    Debian uses dh_installman.
+  * 04_freebsd.dpatch: Apply Brian's patch to support GNU/kFreeBSD
+    (closes: #338266)
 
  -- Kenshi Muto <kmuto@debian.org>  Fri,  4 Nov 2005 13:56:27 +0000
 

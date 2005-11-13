@@ -19,10 +19,10 @@ usr/share/man/man1/lppasswd.1
 usr/share/man/man1/lpstat.1
 usr/share/man/man1/cancel.1
 usr/share/man/man8/cupsaddsmb.8
-usr/share/man/man8/enable.8
+usr/share/man/man8/cupsenable.8
 usr/share/man/man8/lpadmin.8
 usr/share/man/man8/lpinfo.8
 usr/share/man/man8/lpmove.8
 usr/share/man/man8/reject.8
-usr/share/man/man8/disable.8
+usr/share/man/man8/cupsdisable.8
 usr/share/man/man8/accept.8

@@ -18,7 +18,7 @@ include /usr/share/cdbs/1/rules/dpatch.mk
 
 unpatch: deapply-dpatches
 
-DEB_CONFIGURE_EXTRA_FLAGS := --with-optim=$(DEB_OPTFLAGS) --with-cups-group=lpadmin --mandir=/usr/share/man --with-docdir=/usr/share/cups/doc-root --enable-slp --enable-libpaper --enable-ssl --enable-gnutls --disable-openssl
+DEB_CONFIGURE_EXTRA_FLAGS := --with-optim=$(DEB_OPTFLAGS) --with-cups-group=lpadmin --mandir=/usr/share/man --with-docdir=/usr/share/cups/doc-root --enable-slp --enable-libpaper --enable-ssl --enable-gnutls --disable-openssl --enable-threads
 DEB_MAKE_INSTALL_TARGET := install BUILDROOT=$(DEB_DESTDIR)
 #DESTDIR=$(DEB_DESTDIR) BINDIR=$(DEB_DESTDIR)/usr/bin SBINDIR=$(DEB_DESTDIR)/usr/sbin INCLUDEDIR=$(DEB_DESTDIR)/usr/include LIBDIR=$(DEB_DESTDIR)/usr/lib SERVERBIN=$(DEB_DESTDIR)/usr/lib/cups SERVERROOT=$(DEB_DESTDIR)/etc/cups BUILDROOT=$(DEB_DESTDIR)
 
@@ -32,7 +32,7 @@ clean::
 	-rm filter/libcupsimage.a
 	-rm pdftops/libxpdf.a
 	-rm scheduler/testdirsvc scheduler/testdirsvc.o
-	-rm cups/testfile cups/testfile.o
+	-rm cups/testfile cups/testfile.o cups/http-addrlist.o
 	-rm backend/http
 	-rm systemv/disable systemv/enable systemv/reject
 	-rm cups-config cups.list conf/cupsd.conf conf/pam.conf

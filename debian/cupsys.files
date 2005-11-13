@@ -17,6 +17,8 @@ usr/lib/cups/filter/rastertodymo
 usr/lib/cups/filter/rastertoepson
 usr/lib/cups/filter/rastertohp
 usr/lib/cups/filter/texttops
+usr/lib/cups/filter/rastertolabel
+usr/lib/cups/notifier
 usr/sbin/cupsd
 usr/share/cups/banners
 usr/share/cups/charsets
