@@ -1,3 +1,13 @@
+cupsys (1.1.99.b1.r4841-1) experimental; urgency=low
+
+  * EXPERIMENTAL
+  * New SVN release taken from r4841.
+  * Remove -pie and -fpie from compiler option. pie option causes
+    a problem with Debian binutils.
+    I hope this change avoids FTBFS on sparc and others. (closes: #339120)
+
+ -- Kenshi Muto <kmuto@debian.org>  Wed, 16 Nov 2005 12:27:27 +0000
+
 cupsys (1.1.99.b1.r4748-4) experimental; urgency=low
 
   * EXPERIMENTAL
