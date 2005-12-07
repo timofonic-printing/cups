@@ -7,8 +7,11 @@ cupsys (1.1.99.b1.r4841-2) UNRELEASED; urgency=low
     invalid bool option, change to true.
   * debian/cupsys.init.d: Use LSB init functions. Add lsb-base package
     dependency.
+  * debian/cupsys.postinst: Wait a second between kill -9'ing cupsys and
+    checking if the process still exists to avoid false positives and upgrade
+    failures.
 
- -- Martin Pitt <mpitt@debian.org>  Wed,  7 Dec 2005 13:50:53 +0100
+ -- Martin Pitt <mpitt@debian.org>  Wed,  7 Dec 2005 13:52:42 +0100
 
 cupsys (1.1.99.b1.r4841-1) experimental; urgency=low
 
