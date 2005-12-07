@@ -5,10 +5,65 @@
 ## DP: No description.
 
 @DPATCH@
-diff -urNad cupsys-1.1.99.b1.r4748~/scheduler/conf.c cupsys-1.1.99.b1.r4748/scheduler/conf.c
---- cupsys-1.1.99.b1.r4748~/scheduler/conf.c	2005-10-01 00:34:49.000000000 +0000
-+++ cupsys-1.1.99.b1.r4748/scheduler/conf.c	2005-10-05 12:48:10.908681278 +0000
-@@ -614,7 +614,7 @@
+diff -urNad cupsys~/scheduler/conf.c cupsys/scheduler/conf.c
+--- cupsys~/scheduler/conf.c	2005-12-07 14:34:33.000000000 +0100
++++ cupsys/scheduler/conf.c	2005-12-07 14:43:37.000000000 +0100
+@@ -364,25 +364,13 @@
+   }
+ 
+   endpwent();
++  endgrent();
+ 
+  /*
+-  * Find the default group (nobody)...
++  * Put configuration files into group 'root' to avoid privilege escalation of
++  * other users.
+   */
+-
+-  group = getgrnam("nobody");
+-  endgrent();
+-
+-  if (group != NULL)
+-    Group = group->gr_gid;
+-  else
+-  {
+-   /*
+-    * Use the (historical) NFS nobody group ID (-2 as a 16-bit twos-
+-    * complement number...)
+-    */
+-
+-    Group = 65534;
+-  }
++  Group = 0;
+ 
+  /*
+   * Numeric options...
+@@ -515,22 +503,10 @@
+ 
+       cupsdLogMessage(CUPSD_LOG_NOTICE,
+                       "Group and SystemGroup cannot use the same groups!");
+-      cupsdLogMessage(CUPSD_LOG_INFO, "Resetting Group to \"nobody\"...");
++      cupsdLogMessage(CUPSD_LOG_INFO, "Resetting Group to \"root\"...");
+ 
+-      group = getgrnam("nobody");
+       endgrent();
+-
+-      if (group != NULL)
+-	Group = group->gr_gid;
+-      else
+-      {
+-       /*
+-	* Use the (historical) NFS nobody group ID (-2 as a 16-bit twos-
+-	* complement number...)
+-	*/
+-
+-	Group = 65534;
+-      }
++      Group = 0;
+     }
+   }
+ 
+@@ -614,7 +590,7 @@
    if (access(temp, 0))
      mkdir(temp, 0755);
    chown(temp, RunUser, Group);
@@ -17,7 +72,7 @@ diff -urNad cupsys-1.1.99.b1.r4748~/scheduler/conf.c cupsys-1.1.99.b1.r4748/sche
  
    chown(StateDir, RunUser, Group);
    chmod(StateDir, 0775);
-@@ -629,13 +629,13 @@
+@@ -629,13 +605,13 @@
      chmod(temp, 0510);
  
    chown(ServerRoot, RunUser, Group);
@@ -33,3 +88,15 @@ diff -urNad cupsys-1.1.99.b1.r4748~/scheduler/conf.c cupsys-1.1.99.b1.r4748/sche
  
    snprintf(temp, sizeof(temp), "%s/ssl", ServerRoot);
    if (access(temp, 0))
+@@ -643,9 +619,11 @@
+   chown(temp, RunUser, Group);
+   chmod(temp, 0700);
+ 
++  /* Never alter permissions of central conffile
+   snprintf(temp, sizeof(temp), "%s/cupsd.conf", ServerRoot);
+   chown(temp, RunUser, Group);
+   chmod(temp, ConfigFilePerm);
++  */
+ 
+   snprintf(temp, sizeof(temp), "%s/classes.conf", ServerRoot);
+   chown(temp, RunUser, Group);

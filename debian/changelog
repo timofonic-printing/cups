@@ -18,8 +18,12 @@ cupsys (1.1.99.b1.r4841-2) UNRELEASED; urgency=low
   * debian/rules: Remove empty debian/patched on clean.
   * debian/patches/10_cupsd.conf2.dpatch: Re-enable listening to localhost to
     make the web interface work.
+  * debian/patches/44_fixconfdirperms.dpatch:
+    - Put configuration files into group root instead of nobody to avoid
+      privilege escalation of nobody/nogroup and comply to Debian standards.
+    - Disable changing permissions of cupsd.conf conffile.
 
- -- Martin Pitt <mpitt@debian.org>  Wed,  7 Dec 2005 14:32:32 +0100
+ -- Martin Pitt <mpitt@debian.org>  Wed,  7 Dec 2005 14:44:33 +0100
 
 cupsys (1.1.99.b1.r4841-1) experimental; urgency=low
 
