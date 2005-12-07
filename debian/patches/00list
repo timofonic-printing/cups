@@ -5,6 +5,7 @@
 06_replacepdftops.dpatch
 07_removecvstag.dpatch
 08_cupsd.conf.conf.d.dpatch
+09_runasuser_fixes.dpatch
 10_cupsd.conf2.dpatch
 11_pam.dpatch
 19_cupsaccept.dpatch

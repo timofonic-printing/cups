@@ -22,8 +22,16 @@ cupsys (1.1.99.b1.r4841-2) UNRELEASED; urgency=low
     - Put configuration files into group root instead of nobody to avoid
       privilege escalation of nobody/nogroup and comply to Debian standards.
     - Disable changing permissions of cupsd.conf conffile.
+  * Add debian/patches/09_runasuser_fixes.dpatch:
+    - scheduler/main.c: Generate a certificate even when running as user, just
+      as in 1.1.x; this unbreaks local certificate authorization for cupsd
+      when it runs as normal user.
+    - scheduler/main.c: When running as non-root, call initgroups() instead of
+      setgroups() to allow auxiliary groups. These are required to access
+      different device types (lp for USB/parallel printers, dialout for serial
+      printers, etc.)
 
- -- Martin Pitt <mpitt@debian.org>  Wed,  7 Dec 2005 14:44:33 +0100
+ -- Martin Pitt <mpitt@debian.org>  Wed,  7 Dec 2005 15:01:24 +0100
 
 cupsys (1.1.99.b1.r4841-1) experimental; urgency=low
 

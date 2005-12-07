@@ -1,0 +1,37 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 09_runasuser_fixes.dpatch by  <mpitt@debian.org>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: No description.
+
+@DPATCH@
+diff -urNad cupsys~/scheduler/main.c cupsys/scheduler/main.c
+--- cupsys~/scheduler/main.c	2005-12-07 14:51:18.000000000 +0100
++++ cupsys/scheduler/main.c	2005-12-07 15:00:24.000000000 +0100
+@@ -52,6 +52,7 @@
+ #include <sys/resource.h>
+ #include <syslog.h>
+ #include <grp.h>
++#include <pwd.h>
+ 
+ #if defined(HAVE_MALLOC_H) && defined(HAVE_MALLINFO)
+ #  include <malloc.h>
+@@ -434,7 +435,7 @@
+   if (RunAsUser)
+   {
+     setgid(Group);
+-    setgroups(1, &Group);
++    initgroups(getpwuid(User)->pw_name, Group);
+     setuid(User);
+   }
+ 
+@@ -812,8 +813,7 @@
+     * Update the root certificate once every 5 minutes...
+     */
+ 
+-    if ((current_time - RootCertTime) >= RootCertDuration && RootCertDuration &&
+-        !RunUser)
++    if ((current_time - RootCertTime) >= RootCertDuration && RootCertDuration)
+     {
+      /*
+       * Update the root certificate...
