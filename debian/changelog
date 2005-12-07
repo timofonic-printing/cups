@@ -1,3 +1,11 @@
+cupsys (1.1.99.b1.r4841-2) UNRELEASED; urgency=low
+
+  [ Martin Pitt ]
+  * debian/local/{enable_browsing,browsing_status}: Adapt configuration file
+    locations to new conf.d structure.
+
+ -- Martin Pitt <mpitt@debian.org>  Wed,  7 Dec 2005 13:35:45 +0100
+
 cupsys (1.1.99.b1.r4841-1) experimental; urgency=low
 
   * EXPERIMENTAL

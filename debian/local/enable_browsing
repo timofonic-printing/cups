@@ -13,7 +13,7 @@
 # 1: enabled browsing
 # Return 0 on success, or 1 on failure (prints error to stderr)
 
-CONF=/etc/cups/cupsd-browsing.conf
+CONF=/etc/cups/cups.d/browse.conf
 STATUS_SCRIPT=/usr/share/cups/browsing_status
 
 [ -x $STATUS_SCRIPT ] || {
