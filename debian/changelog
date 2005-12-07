@@ -5,8 +5,10 @@ cupsys (1.1.99.b1.r4841-2) UNRELEASED; urgency=low
     locations to new conf.d structure.
   * debian/cupsys.templates: Fix default value for cupsys/browse: 'yes' is an
     invalid bool option, change to true.
+  * debian/cupsys.init.d: Use LSB init functions. Add lsb-base package
+    dependency.
 
- -- Martin Pitt <mpitt@debian.org>  Wed,  7 Dec 2005 13:43:42 +0100
+ -- Martin Pitt <mpitt@debian.org>  Wed,  7 Dec 2005 13:50:53 +0100
 
 cupsys (1.1.99.b1.r4841-1) experimental; urgency=low
 

@@ -10,7 +10,7 @@ Package: cupsys
 Priority: optional
 Section: net
 Architecture: any
-Depends: ${shlibs:Depends}, adduser (>= 3.12), debconf (>= 1.2.9) | debconf-2.0, patch, xpdf-utils, perl-modules, procps, gs-esp
+Depends: ${shlibs:Depends}, adduser (>= 3.12), debconf (>= 1.2.9) | debconf-2.0, patch, xpdf-utils, perl-modules, procps, gs-esp, lsb-base (>= 3)
 Replaces: cupsys-pstoraster
 Conflicts: cupsys-pstoraster (<< 2)
 Recommends: cupsys-client, smbclient (>= 3.0.9), foomatic-filters

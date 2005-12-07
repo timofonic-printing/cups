@@ -18,6 +18,8 @@ test -f $DAEMON || exit 0
 
 set -e
 
+. /lib/lsb/init-functions
+
 # Get the timezone set.
 if [ -e /etc/timezone ]; then
     TZ=`cat /etc/timezone`
@@ -26,28 +28,28 @@ fi
 
 case "$1" in
   start)
-	echo -n "Starting $DESC: $NAME"
+	log_begin_msg "Starting $DESC: $NAME"
 	chown root:lpadmin /usr/share/cups/model 2>/dev/null || true
 	chmod 3775 /usr/share/cups/model 2>/dev/null || true
 	start-stop-daemon --start --quiet --pidfile "$PIDFILE" --exec $DAEMON
-	echo "."
+	log_end_msg $?
 	;;
   stop)
-	echo -n "Stopping $DESC: $NAME"
+	log_begin_msg "Stopping $DESC: $NAME"
 	start-stop-daemon --stop --quiet --user root --retry TERM/10 --oknodo --pidfile $PIDFILE --name $NAME
-	echo "."
+	log_end_msg $?
 	;;
   reload)
-	echo -n "Reloading $DESC: $NAME"
+	log_begin_msg "Reloading $DESC: $NAME"
 	start-stop-daemon --stop --quiet --pidfile $PIDFILE --name $NAME --signal 1
-	echo "."
+	log_end_msg $?
 	;;
   restart|force-reload)
-	echo -n "Restarting $DESC: $NAME"
+	log_begin_msg "Restarting $DESC: $NAME"
 	if start-stop-daemon --stop --quiet --user root --retry TERM/10 --oknodo --pidfile $PIDFILE --name $NAME; then
 		start-stop-daemon --start --quiet --pidfile "$PIDFILE" --exec $DAEMON
 	fi
-	echo "."
+	log_end_msg $?
 	;;
   status)
 	echo -n "Status of $DESC: "
