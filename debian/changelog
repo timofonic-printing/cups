@@ -10,8 +10,13 @@ cupsys (1.1.99.b1.r4841-2) UNRELEASED; urgency=low
   * debian/cupsys.postinst: Wait a second between kill -9'ing cupsys and
     checking if the process still exists to avoid false positives and upgrade
     failures.
+  * Clean up support for /etc/cups/conf.d:
+    - Add debian/patches/08_cupsd.conf.conf.d.dpatch: Add include commands to
+      default cupsd.conf file.
+    - debian/cupsys.postinst: Remove fiddling with cupsd.conf.
+    - This will ensure that cupsd.conf will remain an unchanged conffile.
 
- -- Martin Pitt <mpitt@debian.org>  Wed,  7 Dec 2005 13:52:42 +0100
+ -- Martin Pitt <mpitt@debian.org>  Wed,  7 Dec 2005 14:08:37 +0100
 
 cupsys (1.1.99.b1.r4841-1) experimental; urgency=low
 

@@ -192,15 +192,6 @@ EOF
 	else
 	  echo "Browsing off" > /etc/cups/cups.d/browse.conf
 	fi
-
-	grep -v "^\(Browsing\|Port\|Listen\)[[:space:]]" /etc/cups/cupsd.conf > /etc/cups/cupsd.conf.$$
-	if [ -z "$(grep -e "^Include[[:space:]]\+/etc/cups/cups.d/ports.conf" /etc/cups/cupsd.conf.$$)" ]; then
-	  echo "Include /etc/cups/cups.d/ports.conf" >> /etc/cups/cupsd.conf.$$
-	fi
-	if [ -z "$(grep -e "^Include[[:space:]]\+/etc/cups/cups.d/browse.conf" /etc/cups/cupsd.conf.$$)" ]; then
-	  echo "Include /etc/cups/cups.d/browse.conf" >> /etc/cups/cupsd.conf.$$
-	fi
-	mv /etc/cups/cupsd.conf.$$ /etc/cups/cupsd.conf
     ;;
 
     abort-upgrade|abort-remove|abort-deconfigure)

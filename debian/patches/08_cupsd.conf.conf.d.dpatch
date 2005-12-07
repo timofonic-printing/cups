@@ -1,0 +1,21 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 08_cupsd.conf.conf.d.dpatch by  <mpitt@debian.org>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: No description.
+
+@DPATCH@
+diff -urNad cupsys~/conf/cupsd.conf.in cupsys/conf/cupsd.conf.in
+--- cupsys~/conf/cupsd.conf.in	2005-11-04 17:21:01.000000000 +0100
++++ cupsys/conf/cupsd.conf.in	2005-12-07 14:05:18.000000000 +0100
+@@ -71,6 +71,10 @@
+   </Limit>
+ </Policy>
+ 
++# Include files in /etc/cups/conf.d
++Include /etc/cups/cups.d/ports.conf
++Include /etc/cups/cups.d/browse.conf
++
+ #
+ # End of "$Id: cupsd.conf.in 4817 2005-11-04 16:21:01Z mike $".
+ #

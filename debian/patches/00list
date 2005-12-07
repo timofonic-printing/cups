@@ -4,6 +4,7 @@
 05_avoidunknowngroup.dpatch
 06_replacepdftops.dpatch
 07_removecvstag.dpatch
+08_cupsd.conf.conf.d.dpatch
 10_cupsd.conf2.dpatch
 11_pam.dpatch
 19_cupsaccept.dpatch
