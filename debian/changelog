@@ -15,8 +15,9 @@ cupsys (1.1.99.b1.r4841-2) UNRELEASED; urgency=low
       default cupsd.conf file.
     - debian/cupsys.postinst: Remove fiddling with cupsd.conf.
     - This will ensure that cupsd.conf will remain an unchanged conffile.
+  * debian/rules: Remove empty debian/patched on clean.
 
- -- Martin Pitt <mpitt@debian.org>  Wed,  7 Dec 2005 14:08:37 +0100
+ -- Martin Pitt <mpitt@debian.org>  Wed,  7 Dec 2005 14:28:14 +0100
 
 cupsys (1.1.99.b1.r4841-1) experimental; urgency=low
 

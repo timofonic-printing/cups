@@ -37,6 +37,7 @@ clean::
 	-rm systemv/disable systemv/enable systemv/reject
 	-rm cups-config cups.list conf/cupsd.conf conf/pam.conf
 	-rm config.log config.h config.cache config.status Makedefs cups.sh
+	-rmdir --ignore-fail-on-non-empty debian/patched
 
 common-install-prehook-impl::
 	(cd fonts && $(MAKE) install BUILDROOT=$(DEB_DESTDIR))
