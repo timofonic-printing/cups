@@ -53,7 +53,7 @@ _Description: Specify the port or/and host name that wants to be listened.
 
 Template: cupsys/browse
 Type: boolean
-Default: yes
+Default: true
 _Description: Do you want to broadcast and/or listen for CUPS printer information on the network?
  CUPS daemon can broadcast printer information for clients on the network,
  and detect printers on the network automatically.
