@@ -8,12 +8,7 @@
 diff -urNad cupsys-1.1.99.b1.r4748~/conf/cupsd.conf.in cupsys-1.1.99.b1.r4748/conf/cupsd.conf.in
 --- cupsys-1.1.99.b1.r4748~/conf/cupsd.conf.in	2005-11-13 05:24:18.352183397 +0000
 +++ cupsys-1.1.99.b1.r4748/conf/cupsd.conf.in	2005-11-13 05:25:06.057880979 +0000
-@@ -14,11 +14,11 @@
- SystemGroup @CUPS_GROUP@
- 
- # Only listen for connections from the local machine.
--Listen localhost:@DEFAULT_IPP_PORT@
-+#Listen localhost:@DEFAULT_IPP_PORT@
+@@ -18,7 +18,7 @@
  @CUPS_LISTEN_DOMAINSOCKET@
  
  # Show shared printers on the local network.
