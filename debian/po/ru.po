@@ -1,3 +1,4 @@
+# translation of cupsys_1.1.23-12_ru.po to Russian
 #
 #    Translators, if you are not familiar with the PO format, gettext
 #    documentation is worth reading, especially sections dedicated to
@@ -10,24 +11,26 @@
 #         or http://www.debian.org/intl/l10n/po-debconf/README-trans
 #
 #    Developers do not need to manually edit POT or PO files.
+# Yuri Kozlov <kozlov.y@gmail.com>, 2005.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
-"Report-Msgid-Bugs-To: pkg-cups-devel@lists.alioth.debian.org\n"
-"POT-Creation-Date: 2005-10-07 00:07+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Project-Id-Version: cupsys_1.1.23-12_ru.po\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-10-04 23:07+0900\n"
+"PO-Revision-Date: 2005-11-24 20:39+0300\n"
+"Last-Translator: Yuri Kozlov <kozlov.y@gmail.com>\n"
+"Language-Team: Russian <debian-l10n-russian@lists.debian.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=KOI8-R\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.9.1\n"
 
 #. Type: boolean
 #. Description
 #: ../cupsys-bsd.templates:4
 msgid "Do you want to set up the BSD lpd compatibility server?"
-msgstr "������ ���������� the BSD lpd compatibility server?"
+msgstr "Хотите установить сервер совместимости с BSD lpd?"
 
 #. Type: boolean
 #. Description
@@ -38,17 +41,17 @@ msgid ""
 "that submit jobs over the network via \"BSD\" or \"LPR\" services, and these "
 "computers cannot be converted to use the IPP protocol that CUPS uses."
 msgstr ""
-"���� ����� �������� ������, ������� ����� ���������� � �������� ������ �  "
-"����� BSD � ������������ �� � CUPS. ��� ������������� ������������� ������   "
-"�   ���   ������,   ����   �  ����  ����  ������  ����������, "
-"��������������  ������� ����� ������ \"BSD\" ��� \"LPR\", � ��� ���������� "
-"�� ����� �������� � ���������� IPP, ������� ���������� CUPS."
+"Этот пакет содержит сервер, который может принимать задания печати в "
+"стиле BSD и посылать их в CUPS. Его рекомендуется устанавливать только "
+"в том случае, если в сети есть другие компьютеры, которые отправляют задания "
+"по сети с помощью \"BSD\" или \"LPR\" сервисов, и эти компьютеры не могут "
+"работать с протоколом IPP, который используется в CUPS."
 
 #. Type: boolean
 #. Description
 #: ../cupsys.templates:4
 msgid "Do you want CUPS to print unknown jobs as raw jobs?"
-msgstr ""
+msgstr "Хотите чтобы CUPS печатал неизвестные задания как необработанные задания?"
 
 #. Type: boolean
 #. Description
@@ -60,6 +63,11 @@ msgid ""
 "that MIME type, it attempts to guess what the format is. By default, if it "
 "cannot guess the proper type, it rejects the job."
 msgstr ""
+"Все задания печати с помощью IPP имеют тип MIME. Так как не все источники заданий "
+"печати могут присоединять соответствующий тип, многие задания посылаются с "
+"MIME типом application/octet-stream. Из-за этого, когда CUPS принимает "
+"задание с таким MIME типом, он пытается определить формат полученных данных. "
+"По умолчанию, если тип определить не удаётся, задание отбрасывается."
 
 #. Type: boolean
 #. Description
@@ -69,6 +77,9 @@ msgid ""
 "type as \"raw\" jobs, which causes them to be sent directly to the printer "
 "without processing."
 msgstr ""
+"Данная установка заставляет CUPS воспринимать нераспознанные задания с таким "
+"MIME типом как \"сырые\" задания, которые посылаются на принтер напрямую, "
+"без обработки."
 
 #. Type: boolean
 #. Description
@@ -79,25 +90,30 @@ msgid ""
 "local driver the MIME type application/octet-stream. Samba also submits its "
 "print jobs this way."
 msgstr ""
+"Если вы получаете задания печати с компьютеров с Windows, то, вероятно, лучше "
+"установить этот параметр, так как Windows присваивает всем заданиям печати "
+"IPP, обработанным локальным драйверов MIME тип application/octet-stream. "
+"Samba также отправляет свои задания печати в таком виде."
 
 #. Type: multiselect
 #. Choices
 #: ../cupsys.templates:22
 msgid "ipp, lpd, parallel, scsi, serial, socket, usb"
-msgstr ""
+msgstr "ipp, lpd, parallel, scsi, serial, socket, usb"
 
 #. Type: multiselect
 #. Description
 #: ../cupsys.templates:24
 msgid "Select the backends you want."
-msgstr ""
+msgstr "Выберите нужные интерфейсы."
 
 #. Type: multiselect
 #. Description
 #: ../cupsys.templates:24
-msgid ""
-"CUPS uses backend programs for communication with printer device or port."
+msgid "CUPS uses backend programs for communication with printer device or port."
 msgstr ""
+"CUPS использует интерфейсные программы для связи с устройством печати или "
+"портом."
 
 #. Type: multiselect
 #. Description
@@ -106,6 +122,8 @@ msgid ""
 "Unfortunately, some backend programs cause some trouble. (For example, some "
 "PPC kernel crashes with the parallel backend)"
 msgstr ""
+"К сожалению, некоторые интерфейсные программы могут вызывать проблемы. "
+"(Например, некоторые ядра PPC падают при использовании интерфейса parallel)"
 
 #. Type: multiselect
 #. Description
@@ -114,116 +132,6 @@ msgid ""
 "Please choose the backend program to be used by CUPS. The default choice "
 "should fit the most common environments."
 msgstr ""
+"Выберите интерфейсные программу, которая будет использоваться CUPS. Выбор "
+"по умолчанию должен работать с большинством оборудования."
 
-#. Type: string
-#. Description
-#: ../cupsys.templates:36
-msgid "Specify the port or/and host name that wants to be listened."
-msgstr ""
-
-#. Type: string
-#. Description
-#: ../cupsys.templates:36
-msgid ""
-"Please specify the port or the host name CUPS daemon listens. You can use "
-"following formats."
-msgstr ""
-
-#. Type: string
-#. Description
-#: ../cupsys.templates:36
-msgid "- Port number (631)"
-msgstr ""
-
-#. Type: string
-#. Description
-#: ../cupsys.templates:36
-msgid "- Host name   (debian.example.com)"
-msgstr ""
-
-#. Type: string
-#. Description
-#: ../cupsys.templates:36
-msgid "- Host:Port   (debian.example.com:631)"
-msgstr ""
-
-#. Type: string
-#. Description
-#: ../cupsys.templates:36
-msgid "- File domain socket (/var/run/cups/cups.sock)"
-msgstr ""
-
-#. Type: string
-#. Description
-#: ../cupsys.templates:36
-msgid "It is possible to combine by delimiting two or more values in space."
-msgstr ""
-
-#. Type: string
-#. Description
-#: ../cupsys.templates:36
-msgid ""
-"The default port 631 is reserved for the Internet Printing Protocol (IPP). "
-"\"localhost:631\" is recommended to the standalone environment by security "
-"reason."
-msgstr ""
-
-#. Type: boolean
-#. Description
-#: ../cupsys.templates:57
-msgid ""
-"Do you want to broadcast and/or listen for CUPS printer information on the "
-"network?"
-msgstr ""
-
-#. Type: boolean
-#. Description
-#: ../cupsys.templates:57
-msgid ""
-"CUPS daemon can broadcast printer information for clients on the network, "
-"and detect printers on the network automatically."
-msgstr ""
-
-#. Type: boolean
-#. Description
-#: ../cupsys.templates:57
-msgid ""
-"When this option is accepted, CUPS daemon will broadcast and detect by using "
-"UDP periodically."
-msgstr ""
-
-#. Type: note
-#. Description
-#: ../cupsys.templates:66
-msgid "The wrong value is found in the input."
-msgstr ""
-
-#. Type: note
-#. Description
-#: ../cupsys.templates:66
-msgid "The error occurred while parsing the port number or the host name."
-msgstr ""
-
-#. Type: note
-#. Description
-#: ../cupsys.templates:66
-msgid "Please correct it."
-msgstr ""
-
-#. Type: password
-#. Description
-#: ../cupsys.templates:73
-msgid "Admin password:"
-msgstr ""
-
-#. Type: password
-#. Description
-#: ../cupsys.templates:73
-msgid "Please enter the password for the admin (username 'root') of CUPS."
-msgstr ""
-
-#. Type: password
-#. Description
-#: ../cupsys.templates:73
-msgid "You can add/replace/delete CUPS password information by using lpadmin."
-msgstr ""

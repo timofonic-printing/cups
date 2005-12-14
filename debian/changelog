@@ -33,7 +33,10 @@ cupsys (1.1.99.b1.r4841-2) UNRELEASED; urgency=low
       different device types (lp for USB/parallel printers, dialout for serial
       printers, etc.)
 
- -- Martin Pitt <mpitt@debian.org>  Wed,  7 Dec 2005 15:24:01 +0100
+  [ Kenshi Muto ]
+  * Updated Russian debconf translation, taken from cupsys trunk.
+
+ -- Kenshi Muto <kmuto@debian.org>  Thu, 15 Dec 2005 05:48:20 +0900
 
 cupsys (1.1.99.b1.r4841-1) experimental; urgency=low
 
