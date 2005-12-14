@@ -36,6 +36,7 @@ cupsys (1.1.99.b1.r4841-2) UNRELEASED; urgency=low
   [ Kenshi Muto ]
   * Updated Russian debconf translation, taken from cupsys trunk.
   * Downgrade port and browse question to low.
+  * Add timeout routine to avoid lockup.
 
  -- Kenshi Muto <kmuto@debian.org>  Thu, 15 Dec 2005 05:48:20 +0900
 
