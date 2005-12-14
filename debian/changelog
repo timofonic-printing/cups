@@ -1,4 +1,16 @@
-cupsys (1.1.99.b1.r4841-2) UNRELEASED; urgency=low
+cupsys (1.1.99.b1.r4876-2) UNRELEASED; urgency=low
+
+  [ Kenshi Muto ]
+  * Updated Russian debconf translation, taken from cupsys trunk.
+  * Downgrade port and browse question to low.
+  * Add timeout routine to avoid lockup.
+  * debian/patches/08_cupsd.conf.conf.d.dpatch:
+    - Commented out Port/Listen/Browsing from cupsd.conf.in.
+      CUPS crashes when there is a duplicate definition.
+
+ -- Kenshi Muto <kmuto@debian.org>  Thu, 15 Dec 2005 07:15:54 +0900
+
+cupsys (1.1.99.b1.r4876-1) unstable; urgency=low
 
   [ Martin Pitt ]
   * debian/local/{enable_browsing,browsing_status}: Adapt configuration file
@@ -34,11 +46,9 @@ cupsys (1.1.99.b1.r4841-2) UNRELEASED; urgency=low
       printers, etc.)
 
   [ Kenshi Muto ]
-  * Updated Russian debconf translation, taken from cupsys trunk.
-  * Downgrade port and browse question to low.
-  * Add timeout routine to avoid lockup.
+  * New SVN release taken from r4876.
 
- -- Kenshi Muto <kmuto@debian.org>  Thu, 15 Dec 2005 05:48:20 +0900
+ -- Kenshi Muto <kmuto@debian.org>  Thu,  8 Dec 2005 21:26:22 +0900
 
 cupsys (1.1.99.b1.r4841-1) experimental; urgency=low
 

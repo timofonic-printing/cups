@@ -5,9 +5,24 @@
 ## DP: No description.
 
 @DPATCH@
-diff -urNad cupsys~/conf/cupsd.conf.in cupsys/conf/cupsd.conf.in
---- cupsys~/conf/cupsd.conf.in	2005-11-04 17:21:01.000000000 +0100
-+++ cupsys/conf/cupsd.conf.in	2005-12-07 14:05:18.000000000 +0100
+diff -urNad cupsys-1.1.99.b1.r4876~/conf/cupsd.conf.in cupsys-1.1.99.b1.r4876/conf/cupsd.conf.in
+--- cupsys-1.1.99.b1.r4876~/conf/cupsd.conf.in	2005-12-15 07:08:54.000000000 +0900
++++ cupsys-1.1.99.b1.r4876/conf/cupsd.conf.in	2005-12-15 07:10:45.000000000 +0900
+@@ -14,11 +14,11 @@
+ SystemGroup @CUPS_GROUP@
+ 
+ # Only listen for connections from the local machine.
+-Listen localhost:@DEFAULT_IPP_PORT@
+-@CUPS_LISTEN_DOMAINSOCKET@
++# Listen localhost:@DEFAULT_IPP_PORT@
++# @CUPS_LISTEN_DOMAINSOCKET@
+ 
+ # Show shared printers on the local network.
+-Browsing On
++# Browsing On
+ BrowseOrder allow,deny
+ BrowseAllow @LOCAL
+ 
 @@ -71,6 +71,10 @@
    </Limit>
  </Policy>
