@@ -9,6 +9,8 @@ cupsys (1.1.99.b1.r4876-2) UNRELEASED; urgency=low
       CUPS crashes when there is a duplicate definition.
   * Updated Swedish debconf translation.
   * Set seen false flag when ports configuration is failed.
+  * Allow '*' for hostname in ports.conf.
+  * Use /bin/echo instead of shell built-in echo.
 
  -- Kenshi Muto <kmuto@debian.org>  Thu, 15 Dec 2005 07:15:54 +0900
 

@@ -156,9 +156,9 @@ EOF
 	      } elsif (/^\d+\.\d+\.\d+\.\d+$/ || /^\d+\.\d+\.\d+\.\d:\d+$/) {
 	        # IP
 	        $ret .= "Listen $_\\n";
-	      } elsif (/^[a-zA-Z0-9-_.]+$/ || /^[a-zA-Z0-9-_.]+:\d+$/) {
+	      } elsif (/^[a-zA-Z0-9-_.*]+$/ || /^[a-zA-Z0-9-_.*]+:\d+$/) {
 	        my($tmp) = $_;
-	        if (/^[a-zA-Z0-9-_.]+:(\d+)$/) {
+	        if (/^[a-zA-Z0-9-_.*]+:(\d+)$/) {
 	          if ($1 < 0 || $1 > 65535) {
 	            # ERROR
 	            $ret = "";
@@ -183,14 +183,14 @@ EOF
 	  echo "Error: debconf has an invalid value. Run 'dpkg-reconfigure cupsys' again."
 	  return 1
 	else
-	  echo -e -n "$VAL" > /etc/cups/cups.d/ports.conf
+	  /bin/echo -e -n "$VAL" > /etc/cups/cups.d/ports.conf
 	fi
 
 	db_get cupsys/browse
 	if [ "$RET" = "true" ]; then
-	  echo "Browsing on" > /etc/cups/cups.d/browse.conf
+	  /bin/echo "Browsing on" > /etc/cups/cups.d/browse.conf
 	else
-	  echo "Browsing off" > /etc/cups/cups.d/browse.conf
+	  /bin/echo "Browsing off" > /etc/cups/cups.d/browse.conf
 	fi
     ;;
 
