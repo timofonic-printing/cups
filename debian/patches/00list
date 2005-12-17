@@ -9,7 +9,6 @@
 11_pam.dpatch
 19_cupsaccept.dpatch
 26_modprobe.dpatch
-42_parallel.dpatch
 44_fixconfdirperms.dpatch
 47_pid.dpatch
 48_stdlib.dpatch
