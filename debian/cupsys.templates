@@ -19,9 +19,9 @@ _Description: Do you want CUPS to print unknown jobs as raw jobs?
 
 Template: cupsys/backend
 Type: multiselect
-_Choices: ipp, lpd, parallel, scsi, serial, socket, usb
+__Choices: ipp, lpd, parallel, scsi, serial, socket, usb
 Default: ipp, lpd, parallel, socket, usb
-_Description: Select the backends you want.
+_Description: Printer communication backends:
  CUPS uses backend programs for communication with printer device or port.
  .
  Unfortunately, some backend programs cause some trouble.
@@ -33,40 +33,37 @@ _Description: Select the backends you want.
 Template: cupsys/ports
 Type: string
 Default: localhost:631 /var/run/cups/cups.sock
-_Description: Specify the port or/and host name that wants to be listened.
- Please specify the port or the host name CUPS daemon listens.
- You can use following formats.
+_Description: Port or/and host name where CUPS will listen to:
+ Please specify the port or the host name CUPS daemon will listen to.
+ The following formats are allowed:
  .
- - Port number (631)
+  - Port number (631);
+  - Host name   (debian.example.com);
+  - Host:Port   (debian.example.com:631);
+  - File domain socket (/var/run/cups/cups.sock).
  .
- - Host name   (debian.example.com)
- .
- - Host:Port   (debian.example.com:631)
- .
- - File domain socket (/var/run/cups/cups.sock)
- .
- It is possible to combine by delimiting two or more values in space.
+ You can combine any of these by delimiting in a space-separated list.
  .
  The default port 631 is reserved for the Internet Printing Protocol (IPP).
- "localhost:631" is recommended to the standalone environment by security
- reason.
+ "localhost:631" is recommended to setup a standalone environment for security
+ reasons.
 
 Template: cupsys/browse
 Type: boolean
 Default: true
-_Description: Do you want to broadcast and/or listen for CUPS printer information on the network?
+_Description: Broadcast and/or listen for CUPS printer information on the network?
  CUPS daemon can broadcast printer information for clients on the network,
  and detect printers on the network automatically.
  .
- When this option is accepted, CUPS daemon will broadcast and detect by
- using UDP periodically.
+ If you choose this option, the CUPS daemon will periodically send UDP
+ broadcasts to detect printers.
 
 Template: cupsys/portserror
 Type: note
-_Description: The wrong value is found in the input.
- The error occurred while parsing the port number or the host name.
+_Description: Incorrect value entered
+ an error occurred while parsing the port number or the host name.
  .
- Please correct it.
+ Please correct your input.
 
 Template: cupsys/adminpassword
 Type: password

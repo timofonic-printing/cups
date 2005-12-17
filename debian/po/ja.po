@@ -13,21 +13,21 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: cupsys 1.2.0\n"
+"Project-Id-Version: cupsys 1.2\n"
 "Report-Msgid-Bugs-To: pkg-cups-devel@lists.alioth.debian.org\n"
-"POT-Creation-Date: 2005-10-07 00:07+0000\n"
-"PO-Revision-Date: 2005-10-07 09:08+0900\n"
+"POT-Creation-Date: 2005-12-17 13:23+0900\n"
+"PO-Revision-Date: 2005-12-17 13:24+0900\n"
 "Last-Translator: Kenshi Muto <kmuto@debian.org>\n"
 "Language-Team: Japanese <debian-japanese@lists.debian.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=EUC-JP\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #. Type: boolean
 #. Description
 #: ../cupsys-bsd.templates:4
 msgid "Do you want to set up the BSD lpd compatibility server?"
-msgstr "BSD lpd ¸ß´¹¥µ¡¼¥Ğ¤ò¥»¥Ã¥È¥¢¥Ã¥×¤·¤Ş¤¹¤«?"
+msgstr "BSD lpd äº’æ›ã‚µãƒ¼ãƒã‚’ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã—ã¾ã™ã‹?"
 
 #. Type: boolean
 #. Description
@@ -38,17 +38,17 @@ msgid ""
 "that submit jobs over the network via \"BSD\" or \"LPR\" services, and these "
 "computers cannot be converted to use the IPP protocol that CUPS uses."
 msgstr ""
-"¤³¤Î¥Ñ¥Ã¥±¡¼¥¸¤Ï BSD ¥¹¥¿¥¤¥ë¤Î°õºş¥¸¥ç¥Ö¤ò¼õ¤±ÉÕ¤±¡¢CUPS ¤Ë¤½¤ì¤òÁ÷¤ë¥µ¡¼¥Ğ"
-"¤ò´Ş¤ó¤Ç¤¤¤Ş¤¹¡£\"BSD\" ¤Ş¤¿¤Ï \"LPR\" ¥µ¡¼¥Ó¥¹·ĞÍ³¤Ç¥Í¥Ã¥È¥ï¡¼¥¯±Û¤·¤Ë¥¸¥ç¥Ö"
-"¤òÁ÷¤ë¤Û¤«¤Î¥³¥ó¥Ô¥å¡¼¥¿¤¬¤¢¤ê¡¢¤«¤Ä¤½¤ì¤é¤Î¥³¥ó¥Ô¥å¡¼¥¿¤Ï CUPS ¤Î»È¤Ã¤Æ¤¤¤ë "
-"IPP ¥×¥í¥È¥³¥ë¤ò»È¤¦¤è¤¦ÊÑ¹¹¤Ç¤­¤Ê¤¤¡¢¤È¤¤¤¦¾ì¹ç¤Ë¤Î¤ß¥»¥Ã¥È¥¢¥Ã¥×¤¹¤Ù¤­¤Ç"
-"¤¹¡£"
+"ã“ã®ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ã¯ BSD ã‚¹ã‚¿ã‚¤ãƒ«ã®å°åˆ·ã‚¸ãƒ§ãƒ–ã‚’å—ã‘ä»˜ã‘ã€CUPS ã«ãã‚Œã‚’é€ã‚‹ã‚µãƒ¼ãƒ"
+"ã‚’å«ã‚“ã§ã„ã¾ã™ã€‚\"BSD\" ã¾ãŸã¯ \"LPR\" ã‚µãƒ¼ãƒ“ã‚¹çµŒç”±ã§ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯è¶Šã—ã«ã‚¸ãƒ§ãƒ–"
+"ã‚’é€ã‚‹ã»ã‹ã®ã‚³ãƒ³ãƒ”ãƒ¥ãƒ¼ã‚¿ãŒã‚ã‚Šã€ã‹ã¤ãã‚Œã‚‰ã®ã‚³ãƒ³ãƒ”ãƒ¥ãƒ¼ã‚¿ã¯ CUPS ã®ä½¿ã£ã¦ã„ã‚‹ "
+"IPP ãƒ—ãƒ­ãƒˆã‚³ãƒ«ã‚’ä½¿ã†ã‚ˆã†å¤‰æ›´ã§ããªã„ã€ã¨ã„ã†å ´åˆã«ã®ã¿ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã™ã¹ãã§"
+"ã™ã€‚"
 
 #. Type: boolean
 #. Description
 #: ../cupsys.templates:4
 msgid "Do you want CUPS to print unknown jobs as raw jobs?"
-msgstr "Ì¤ÃÎ¤Î¥¸¥ç¥Ö¤òÀ¸¥Ç¡¼¥¿ (raw) ¥¸¥ç¥Ö¤È¤·¤Æ CUPS ¤Ë°õºş¤µ¤»¤Ş¤¹¤«?"
+msgstr "æœªçŸ¥ã®ã‚¸ãƒ§ãƒ–ã‚’ç”Ÿãƒ‡ãƒ¼ã‚¿ (raw) ã‚¸ãƒ§ãƒ–ã¨ã—ã¦ CUPS ã«å°åˆ·ã•ã›ã¾ã™ã‹?"
 
 #. Type: boolean
 #. Description
@@ -60,11 +60,11 @@ msgid ""
 "that MIME type, it attempts to guess what the format is. By default, if it "
 "cannot guess the proper type, it rejects the job."
 msgstr ""
-"IPP ¤Ç¤Î¤¹¤Ù¤Æ¤Î°õºş¥¸¥ç¥Ö¤Ï MIME ·Á¼°¤ò»ı¤Á¤Ş¤¹¡£°õºş¥¸¥ç¥Ö¤Î¤¹¤Ù¤Æ¤Î¥½¡¼¥¹"
-"¤ËÅ¬ÀÚ¤Ê·Á¼°¤¬ÉÕ¤¤¤Æ¤¤¤ë¤È¤Ï¸Â¤é¤º¡¢Â¿¤¯¤Î¥¸¥ç¥Ö¤Ï MIME ·Á¼° application/"
-"octet-stream ¤È¤·¤ÆÁ÷¤é¤ì¤Ş¤¹¡£¤³¤Î¤¿¤á¡¢CUPS ¤Ï¤³¤Î¤è¤¦¤Ê MIME ·Á¼°ÉÕ¤­¤Î"
-"¥¸¥ç¥Ö¤ò¼õ¤±¼è¤ë¤È¡¢¤½¤Î¥Õ¥©¡¼¥Ş¥Ã¥È¤Ï²¿¤«¤ò¿äÂ¬¤·¤è¤¦¤È¤·¤Ş¤¹¡£¥Ç¥Õ¥©¥ë¥È¤Ç"
-"¤Ï¡¢¤â¤·Å¬Åö¤Ê·Á¼°¤ò¿äÂ¬¤Ç¤­¤Ê¤¤¾ì¹ç¡¢¤½¤Î¥¸¥ç¥Ö¤òµñÈİ¤·¤Ş¤¹¡£"
+"IPP ã§ã®ã™ã¹ã¦ã®å°åˆ·ã‚¸ãƒ§ãƒ–ã¯ MIME å½¢å¼ã‚’æŒã¡ã¾ã™ã€‚å°åˆ·ã‚¸ãƒ§ãƒ–ã®ã™ã¹ã¦ã®ã‚½ãƒ¼ã‚¹"
+"ã«é©åˆ‡ãªå½¢å¼ãŒä»˜ã„ã¦ã„ã‚‹ã¨ã¯é™ã‚‰ãšã€å¤šãã®ã‚¸ãƒ§ãƒ–ã¯ MIME å½¢å¼ application/"
+"octet-stream ã¨ã—ã¦é€ã‚‰ã‚Œã¾ã™ã€‚ã“ã®ãŸã‚ã€CUPS ã¯ã“ã®ã‚ˆã†ãª MIME å½¢å¼ä»˜ãã®"
+"ã‚¸ãƒ§ãƒ–ã‚’å—ã‘å–ã‚‹ã¨ã€ãã®ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã¯ä½•ã‹ã‚’æ¨æ¸¬ã—ã‚ˆã†ã¨ã—ã¾ã™ã€‚ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã§"
+"ã¯ã€ã‚‚ã—é©å½“ãªå½¢å¼ã‚’æ¨æ¸¬ã§ããªã„å ´åˆã€ãã®ã‚¸ãƒ§ãƒ–ã‚’æ‹’å¦ã—ã¾ã™ã€‚"
 
 #. Type: boolean
 #. Description
@@ -74,8 +74,8 @@ msgid ""
 "type as \"raw\" jobs, which causes them to be sent directly to the printer "
 "without processing."
 msgstr ""
-"¤³¤Î MIME ·Á¼°¤Î¤¹¤Ù¤Æ¤ÎÌ¤ÃÎ¤Î¥¸¥ç¥Ö¤ò¡¢²Ã¹©¤¹¤ë¤³¤È¤Ê¤¯¥×¥ê¥ó¥¿¤ËÄ¾ÀÜÁ÷¤ë¤è"
-"¤¦À¸¥Ç¡¼¥¿¡Ê\"raw\"¡Ë¥¸¥ç¥Ö¤È¤·¤Æ°·¤¦¤è¤¦¤Ë CUPS ¤òÀßÄê¤Ç¤­¤Ş¤¹¡£"
+"ã“ã® MIME å½¢å¼ã®ã™ã¹ã¦ã®æœªçŸ¥ã®ã‚¸ãƒ§ãƒ–ã‚’ã€åŠ å·¥ã™ã‚‹ã“ã¨ãªããƒ—ãƒªãƒ³ã‚¿ã«ç›´æ¥é€ã‚‹ã‚ˆ"
+"ã†ç”Ÿãƒ‡ãƒ¼ã‚¿ï¼ˆ\"raw\"ï¼‰ã‚¸ãƒ§ãƒ–ã¨ã—ã¦æ‰±ã†ã‚ˆã†ã« CUPS ã‚’è¨­å®šã§ãã¾ã™ã€‚"
 
 #. Type: boolean
 #. Description
@@ -86,22 +86,58 @@ msgid ""
 "local driver the MIME type application/octet-stream. Samba also submits its "
 "print jobs this way."
 msgstr ""
-"¤â¤· Windows ¥³¥ó¥Ô¥å¡¼¥¿¤«¤é¤Î°õºş¥¸¥ç¥Ö¤ò¼õ¤±ÉÕ¤±¤ë¾ì¹ç¡¢¤ª¤½¤é¤¯¤³¤Î¥ª¥×"
-"¥·¥ç¥ó¤òÀßÄê¤¹¤Ù¤­¤Ç¤¹¡£¤È¤¤¤¦¤Î¤â¡¢Windows ¤Ï¤¹¤Ù¤Æ¤Î IPP °õºş¥¸¥ç¥Ö¤ò¥í¡¼¥«"
-"¥ë¥É¥é¥¤¥Ğ¤Ë¤è¤Ã¤Æ MIME ·Á¼° application/octet-stream ¤Ë²Ã¹©¤¹¤ë¤«¤é¤Ç¤¹¡£"
-"Samba ¤âÆ±ÍÍ¤Ë¤½¤Î°õºş¥¸¥ç¥Ö¤ò¤³¤Î¤ä¤êÊı¤ÇÁ÷¤ê¤Ş¤¹¡£"
+"ã‚‚ã— Windows ã‚³ãƒ³ãƒ”ãƒ¥ãƒ¼ã‚¿ã‹ã‚‰ã®å°åˆ·ã‚¸ãƒ§ãƒ–ã‚’å—ã‘ä»˜ã‘ã‚‹å ´åˆã€ãŠãã‚‰ãã“ã®ã‚ªãƒ—"
+"ã‚·ãƒ§ãƒ³ã‚’è¨­å®šã™ã¹ãã§ã™ã€‚ã¨ã„ã†ã®ã‚‚ã€Windows ã¯ã™ã¹ã¦ã® IPP å°åˆ·ã‚¸ãƒ§ãƒ–ã‚’ãƒ­ãƒ¼ã‚«"
+"ãƒ«ãƒ‰ãƒ©ã‚¤ãƒã«ã‚ˆã£ã¦ MIME å½¢å¼ application/octet-stream ã«åŠ å·¥ã™ã‚‹ã‹ã‚‰ã§ã™ã€‚"
+"Samba ã‚‚åŒæ§˜ã«ãã®å°åˆ·ã‚¸ãƒ§ãƒ–ã‚’ã“ã®ã‚„ã‚Šæ–¹ã§é€ã‚Šã¾ã™ã€‚"
 
 #. Type: multiselect
 #. Choices
 #: ../cupsys.templates:22
-msgid "ipp, lpd, parallel, scsi, serial, socket, usb"
-msgstr "IPP, LPD, ¥Ñ¥é¥ì¥ë, SCSI, ¥·¥ê¥¢¥ë, ¥½¥±¥Ã¥È, USB"
+msgid "ipp"
+msgstr "IPP"
+
+#. Type: multiselect
+#. Choices
+#: ../cupsys.templates:22
+msgid "lpd"
+msgstr "LPD"
+
+#. Type: multiselect
+#. Choices
+#: ../cupsys.templates:22
+msgid "parallel"
+msgstr "ãƒ‘ãƒ©ãƒ¬ãƒ«"
+
+#. Type: multiselect
+#. Choices
+#: ../cupsys.templates:22
+msgid "scsi"
+msgstr "SCSI"
+
+#. Type: multiselect
+#. Choices
+#: ../cupsys.templates:22
+msgid "serial"
+msgstr "ã‚·ãƒªã‚¢ãƒ«"
+
+#. Type: multiselect
+#. Choices
+#: ../cupsys.templates:22
+msgid "socket"
+msgstr "ã‚½ã‚±ãƒƒãƒˆ"
+
+#. Type: multiselect
+#. Choices
+#: ../cupsys.templates:22
+msgid "usb"
+msgstr "USB"
 
 #. Type: multiselect
 #. Description
 #: ../cupsys.templates:24
-msgid "Select the backends you want."
-msgstr "ÍøÍÑ¤·¤¿¤¤¥Ğ¥Ã¥¯¥¨¥ó¥É¤òÁªÂò¤·¤Æ¤¯¤À¤µ¤¤¡£"
+msgid "Printer communication backends:"
+msgstr "ãƒ—ãƒªãƒ³ã‚¿é€šä¿¡ãƒãƒƒã‚¯ã‚¨ãƒ³ãƒ‰:"
 
 #. Type: multiselect
 #. Description
@@ -109,8 +145,8 @@ msgstr "ÍøÍÑ¤·¤¿¤¤¥Ğ¥Ã¥¯¥¨¥ó¥É¤òÁªÂò¤·¤Æ¤¯¤À¤µ¤¤¡£"
 msgid ""
 "CUPS uses backend programs for communication with printer device or port."
 msgstr ""
-"CUPS ¤Ï¥×¥ê¥ó¥¿¥Ç¥Ğ¥¤¥¹¤Ş¤¿¤Ï¥İ¡¼¥È¤È²ñÏÃ¤¹¤ë¤Î¤Ë¥Ğ¥Ã¥¯¥¨¥ó¥É¥×¥í¥°¥é¥à¤ò»È¤¤"
-"¤Ş¤¹¡£"
+"CUPS ã¯ãƒ—ãƒªãƒ³ã‚¿ãƒ‡ãƒã‚¤ã‚¹ã¾ãŸã¯ãƒãƒ¼ãƒˆã¨ä¼šè©±ã™ã‚‹ã®ã«ãƒãƒƒã‚¯ã‚¨ãƒ³ãƒ‰ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã‚’ä½¿ã„"
+"ã¾ã™ã€‚"
 
 #. Type: multiselect
 #. Description
@@ -119,8 +155,8 @@ msgid ""
 "Unfortunately, some backend programs cause some trouble. (For example, some "
 "PPC kernel crashes with the parallel backend)"
 msgstr ""
-"º¤¤Ã¤¿¤³¤È¤Ë¡¢¤¤¤¯¤Ä¤«¤Î¥Ğ¥Ã¥¯¥¨¥ó¥É¥×¥í¥°¥é¥à¤ÏÌäÂê¤ò°ú¤­µ¯¤³¤·¤Ş¤¹¡£(¤¿¤È¤¨"
-"¤Ğ¡¢¤¢¤ë¼ï¤Î PPC ¥«¡¼¥Í¥ë¤Ï parallel ¥Ğ¥Ã¥¯¥¨¥ó¥É¤Ç¥¯¥é¥Ã¥·¥å¤·¤Ş¤¹)"
+"å›°ã£ãŸã“ã¨ã«ã€ã„ãã¤ã‹ã®ãƒãƒƒã‚¯ã‚¨ãƒ³ãƒ‰ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã¯å•é¡Œã‚’å¼•ãèµ·ã“ã—ã¾ã™ã€‚(ãŸã¨ãˆ"
+"ã°ã€ã‚ã‚‹ç¨®ã® PPC ã‚«ãƒ¼ãƒãƒ«ã¯ parallel ãƒãƒƒã‚¯ã‚¨ãƒ³ãƒ‰ã§ã‚¯ãƒ©ãƒƒã‚·ãƒ¥ã—ã¾ã™)"
 
 #. Type: multiselect
 #. Description
@@ -129,127 +165,116 @@ msgid ""
 "Please choose the backend program to be used by CUPS. The default choice "
 "should fit the most common environments."
 msgstr ""
-"CUPS ¤ÇÍøÍÑ¤·¤¿¤¤¥Ğ¥Ã¥¯¥¨¥ó¥É¥×¥í¥°¥é¥à¤òÁªÂò¤·¤Æ¤¯¤À¤µ¤¤¡£¥Ç¥Õ¥©¥ë¥È¤ÎÁªÂò¤Ï"
-"¤¿¤¤¤Æ¤¤¤Î°ìÈÌÅª¤Ê´Ä¶­¤Ë¹ç¤Ã¤Æ¤¤¤Ş¤¹¡£"
+"CUPS ã§åˆ©ç”¨ã—ãŸã„ãƒãƒƒã‚¯ã‚¨ãƒ³ãƒ‰ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã‚’é¸æŠã—ã¦ãã ã•ã„ã€‚ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®é¸æŠã¯"
+"ãŸã„ã¦ã„ã®ä¸€èˆ¬çš„ãªç’°å¢ƒã«åˆã£ã¦ã„ã¾ã™ã€‚"
 
 #. Type: string
 #. Description
 #: ../cupsys.templates:36
-msgid "Specify the port or/and host name that wants to be listened."
-msgstr "´Æ»ë¤·¤¿¤¤¥İ¡¼¥È¤¢¤ë¤¤¤Ï¥Û¥¹¥ÈÌ¾¤ò»ØÄê¤·¤Æ¤¯¤À¤µ¤¤¡£"
+msgid "Port or/and host name where CUPS will listen to:"
+msgstr "CUPS ãŒç›£è¦–ã™ã‚‹ãƒãƒ¼ãƒˆã¾ãŸã¯ãƒ›ã‚¹ãƒˆå:"
 
 #. Type: string
 #. Description
 #: ../cupsys.templates:36
 msgid ""
-"Please specify the port or the host name CUPS daemon listens. You can use "
-"following formats."
+"Please specify the port or the host name CUPS daemon will listen to. The "
+"following formats are allowed:"
 msgstr ""
-"CUPS ¥Ç¡¼¥â¥ó¤Ë´Æ»ë¤µ¤»¤¿¤¤¥İ¡¼¥È¤Ş¤¿¤Ï¥Û¥¹¥ÈÌ¾¤ò»ØÄê¤·¤Æ¤¯¤À¤µ¤¤¡£¼¡¤Î¤è¤¦¤Ê"
-"½ñ¼°¤òÍøÍÑ¤Ç¤­¤Ş¤¹¡£"
+"CUPS ãƒ‡ãƒ¼ãƒ¢ãƒ³ã«ç›£è¦–ã•ã›ã‚‹ãƒãƒ¼ãƒˆã¾ãŸã¯ãƒ›ã‚¹ãƒˆåã‚’æŒ‡å®šã—ã¦ãã ã•ã„ã€‚æ¬¡ã®ã‚ˆã†ãªæ›¸"
+"å¼ã‚’åˆ©ç”¨ã§ãã¾ã™:"
 
 #. Type: string
 #. Description
 #: ../cupsys.templates:36
-msgid "- Port number (631)"
-msgstr "- ¥İ¡¼¥ÈÈÖ¹æ (631)"
+msgid ""
+" - Port number (631);\n"
+" - Host name   (debian.example.com);\n"
+" - Host:Port   (debian.example.com:631);\n"
+" - File domain socket (/var/run/cups/cups.sock)."
+msgstr ""
+" - ãƒãƒ¼ãƒˆç•ªå·      (631);\n"
+" - ãƒ›ã‚¹ãƒˆå        (debian.example.com);\n"
+" - ãƒ›ã‚¹ãƒˆå:ãƒãƒ¼ãƒˆ (debian.example.com:631);\n"
+" - ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‰ãƒ¡ã‚¤ãƒ³ã‚½ã‚±ãƒƒãƒˆ (/var/run/cups/cups.sock)ã€‚"
 
 #. Type: string
 #. Description
 #: ../cupsys.templates:36
-msgid "- Host name   (debian.example.com)"
-msgstr "- ¥Û¥¹¥ÈÌ¾  (debian.example.com)"
-
-#. Type: string
-#. Description
-#: ../cupsys.templates:36
-msgid "- Host:Port   (debian.example.com:631)"
-msgstr "- ¥Û¥¹¥È:¥İ¡¼¥È  (debian.example.com:631)"
-
-#. Type: string
-#. Description
-#: ../cupsys.templates:36
-msgid "- File domain socket (/var/run/cups/cups.sock)"
-msgstr "¥Õ¥¡¥¤¥ë¥É¥á¥¤¥ó¥½¥±¥Ã¥È (/var/run/cups/cups.sock)"
-
-#. Type: string
-#. Description
-#: ../cupsys.templates:36
-msgid "It is possible to combine by delimiting two or more values in space."
-msgstr "¥¹¥Ú¡¼¥¹¤Ç¶èÀÚ¤Ã¤ÆÊ£¿ô¤ÎÃÍ¤òÁÈ¤ß¹ç¤ï¤»¤ë¤³¤È¤â²ÄÇ½¤Ç¤¹¡£"
+msgid "You can combine any of these by delimiting in a space-separated list."
+msgstr "ã‚¹ãƒšãƒ¼ã‚¹ã§åŒºåˆ‡ã£ãŸãƒªã‚¹ãƒˆã§ã“ã‚Œã‚‰ã‚’çµ„ã¿åˆã‚ã›ã‚‹ã“ã¨ã‚‚ã§ãã¾ã™ã€‚"
 
 #. Type: string
 #. Description
 #: ../cupsys.templates:36
 msgid ""
 "The default port 631 is reserved for the Internet Printing Protocol (IPP). "
-"\"localhost:631\" is recommended to the standalone environment by security "
-"reason."
+"\"localhost:631\" is recommended to setup a standalone environment for "
+"security reasons."
 msgstr ""
-"¥Ç¥Õ¥©¥ë¥È¥İ¡¼¥È 631 ¤Ï Internet Printing Protocol (IPP) ¤ËÍ½Ìó¤µ¤ì¤Æ¤¤¤Ş¤¹¡£"
-"\"localhost:631\" ¤Ï¥»¥­¥å¥ê¥Æ¥£¾å¤ÎÍıÍ³¤«¤éÃ±ÆÈ¥Ş¥·¥ó¤Î´Ä¶­¤Ç¿ä¾©¤µ¤ì¤Ş¤¹¡£"
+"ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒãƒ¼ãƒˆ 631 ã¯ Internet Printing Protocol (IPP) ã«äºˆç´„ã•ã‚Œã¦ã„ã¾ã™ã€‚"
+"\"localhost:631\" ã¯ã‚»ã‚­ãƒ¥ãƒªãƒ†ã‚£ä¸Šã®ç†ç”±ã‹ã‚‰ã‚¹ã‚¿ãƒ³ãƒ‰ã‚¢ãƒ­ãƒ³ãªç’°å¢ƒã«ã‚»ãƒƒãƒˆã‚¢ãƒƒ"
+"ãƒ—ã™ã‚‹ã®ã«æ¨å¥¨ã•ã‚Œã¾ã™ã€‚"
 
 #. Type: boolean
 #. Description
-#: ../cupsys.templates:57
-msgid ""
-"Do you want to broadcast and/or listen for CUPS printer information on the "
-"network?"
+#: ../cupsys.templates:54
+msgid "Broadcast and/or listen for CUPS printer information on the network?"
 msgstr ""
-"¥Í¥Ã¥È¥ï¡¼¥¯¾å¤Î CUPS ¥×¥ê¥ó¥¿¾ğÊó¤Î¥Ö¥í¡¼¥É¥­¥ã¥¹¥È¤ª¤è¤Ó´Æ»ë¤ò¹Ô¤¤¤Ş¤¹¤«?"
+"ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ä¸Šã® CUPS ãƒ—ãƒªãƒ³ã‚¿æƒ…å ±ã®ãƒ–ãƒ­ãƒ¼ãƒ‰ã‚­ãƒ£ã‚¹ãƒˆãŠã‚ˆã³ç›£è¦–ã‚’è¡Œã„ã¾ã™ã‹?"
 
 #. Type: boolean
 #. Description
-#: ../cupsys.templates:57
+#: ../cupsys.templates:54
 msgid ""
 "CUPS daemon can broadcast printer information for clients on the network, "
 "and detect printers on the network automatically."
 msgstr ""
-"CUPS ¥Ç¡¼¥â¥ó¤Ï¥Í¥Ã¥È¥ï¡¼¥¯¾å¤Î¥¯¥é¥¤¥¢¥ó¥È¤Ë¥×¥ê¥ó¥¿¾ğÊó¤ò¥Ö¥í¡¼¥É¥­¥ã¥¹¥È¤·"
-"¤¿¤ê¡¢¥Í¥Ã¥È¥ï¡¼¥¯¾å¤Î¥×¥ê¥ó¥¿¤ò¼«Æ°Åª¤Ë¸¡½Ğ¤·¤¿¤ê¤Ç¤­¤Ş¤¹¡£"
+"CUPS ãƒ‡ãƒ¼ãƒ¢ãƒ³ã¯ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ä¸Šã®ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã«ãƒ—ãƒªãƒ³ã‚¿æƒ…å ±ã‚’ãƒ–ãƒ­ãƒ¼ãƒ‰ã‚­ãƒ£ã‚¹ãƒˆã—"
+"ãŸã‚Šã€ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ä¸Šã®ãƒ—ãƒªãƒ³ã‚¿ã‚’è‡ªå‹•çš„ã«æ¤œå‡ºã—ãŸã‚Šã§ãã¾ã™ã€‚"
 
 #. Type: boolean
 #. Description
-#: ../cupsys.templates:57
+#: ../cupsys.templates:54
 msgid ""
-"When this option is accepted, CUPS daemon will broadcast and detect by using "
-"UDP periodically."
+"If you choose this option, the CUPS daemon will periodically send UDP "
+"broadcasts to detect printers."
 msgstr ""
-"¤³¤ÎÁªÂò»è¤Ç¡Ö¤Ï¤¤¡×¤È¤¹¤ë¤È¡¢CUPS ¥Ç¡¼¥â¥ó¤Ï UDP ¤ò»È¤Ã¤ÆÄê´üÅª¤Ë¥Ö¥í¡¼¥É"
-"¥­¥ã¥¹¥È¤ª¤è¤Ó¸¡½Ğ¤ò¹Ô¤¤¤Ş¤¹¡£"
+"ã“ã®é¸æŠè‚¢ã‚’é¸ã¶ã¨ã€CUPS ãƒ‡ãƒ¼ãƒ¢ãƒ³ã¯ãƒ—ãƒªãƒ³ã‚¿ã‚’æ¤œå‡ºã™ã‚‹ãŸã‚ã« UDP ãƒ–ãƒ­ãƒ¼ãƒ‰ã‚­ãƒ£"
+"ã‚¹ãƒˆã‚’å®šæœŸçš„ã«é€ã‚Šã¾ã™ã€‚"
 
 #. Type: note
 #. Description
-#: ../cupsys.templates:66
-msgid "The wrong value is found in the input."
-msgstr "ÆşÎÏ¤Ë¸í¤Ã¤¿ÃÍ¤¬¸«¤Ä¤«¤ê¤Ş¤·¤¿¡£"
+#: ../cupsys.templates:63
+msgid "Incorrect value entered"
+msgstr "ä¸æ­£ãªå€¤ãŒå…¥åŠ›ã•ã‚Œã¾ã—ãŸ"
 
 #. Type: note
 #. Description
-#: ../cupsys.templates:66
-msgid "The error occurred while parsing the port number or the host name."
-msgstr "¥İ¡¼¥ÈÈÖ¹æ¤Ş¤¿¤Ï¥Û¥¹¥ÈÌ¾¤Î²ò¼áÃæ¤Ë¥¨¥é¡¼¤¬È¯À¸¤·¤Ş¤·¤¿¡£"
+#: ../cupsys.templates:63
+msgid "an error occurred while parsing the port number or the host name."
+msgstr "ãƒãƒ¼ãƒˆç•ªå·ã¾ãŸã¯ãƒ›ã‚¹ãƒˆåã®è§£é‡ˆä¸­ã«ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚"
 
 #. Type: note
 #. Description
-#: ../cupsys.templates:66
-msgid "Please correct it."
-msgstr "½¤Àµ¤·¤Æ¤¯¤À¤µ¤¤¡£"
+#: ../cupsys.templates:63
+msgid "Please correct your input."
+msgstr "å…¥åŠ›å€¤ã‚’ä¿®æ­£ã—ã¦ãã ã•ã„ã€‚"
 
 #. Type: password
 #. Description
-#: ../cupsys.templates:73
+#: ../cupsys.templates:70
 msgid "Admin password:"
-msgstr "´ÉÍı¼Ô¥Ñ¥¹¥ï¡¼¥É:"
+msgstr "ç®¡ç†è€…ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰:"
 
 #. Type: password
 #. Description
-#: ../cupsys.templates:73
+#: ../cupsys.templates:70
 msgid "Please enter the password for the admin (username 'root') of CUPS."
-msgstr "CUPS ´ÉÍı¼Ô (¥æ¡¼¥¶Ì¾ 'root') ÍÑ¤Î¥Ñ¥¹¥ï¡¼¥É¤òÆşÎÏ¤·¤Æ¤¯¤À¤µ¤¤¡£"
+msgstr "CUPS ç®¡ç†è€… (ãƒ¦ãƒ¼ã‚¶å 'root') ç”¨ã®ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰ã‚’å…¥åŠ›ã—ã¦ãã ã•ã„ã€‚"
 
 #. Type: password
 #. Description
-#: ../cupsys.templates:73
+#: ../cupsys.templates:70
 msgid "You can add/replace/delete CUPS password information by using lpadmin."
-msgstr "lpadmin ¤ò»È¤Ã¤Æ CUPS ¥Ñ¥¹¥ï¡¼¥É¾ğÊó¤òÄÉ²Ã/ÊÑ¹¹/ºï½ü¤Ç¤­¤Ş¤¹¡£"
+msgstr "lpadmin ã‚’ä½¿ã£ã¦ CUPS ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰æƒ…å ±ã‚’è¿½åŠ /å¤‰æ›´/å‰Šé™¤ã§ãã¾ã™ã€‚"
