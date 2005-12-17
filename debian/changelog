@@ -1,6 +1,7 @@
-cupsys (1.1.99.b1.r4876-2) UNRELEASED; urgency=low
+cupsys (1.1.99.b1.r4885-1) UNRELEASED; urgency=low
 
   [ Kenshi Muto ]
+  * New SVN release taken from rr4885.
   * Updated Russian debconf translation, taken from cupsys trunk.
   * Downgrade port and browse question to low.
   * Add timeout routine to avoid lockup.
