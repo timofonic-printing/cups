@@ -5,10 +5,10 @@
 ## DP: man extension is handled by dh_installman
 
 @DPATCH@
-diff -urNad cupsys-1.1.99.b1.r4748~/backend/parallel.c cupsys-1.1.99.b1.r4748/backend/parallel.c
---- cupsys-1.1.99.b1.r4748~/backend/parallel.c	2005-09-26 19:33:58.000000000 +0000
-+++ cupsys-1.1.99.b1.r4748/backend/parallel.c	2005-11-13 05:45:50.959187142 +0000
-@@ -720,7 +720,7 @@
+diff -urNad cupsys-1.1.99.b1.r4885~/backend/parallel.c cupsys-1.1.99.b1.r4885/backend/parallel.c
+--- cupsys-1.1.99.b1.r4885~/backend/parallel.c	2005-12-18 12:40:26.000000000 +0900
++++ cupsys-1.1.99.b1.r4885/backend/parallel.c	2005-12-18 12:40:34.000000000 +0900
+@@ -683,7 +683,7 @@
        printf("direct parallel:%s \"Unknown\" \"Parallel Port #%d\"\n", device, i + 1);
      }
    }
@@ -17,9 +17,9 @@ diff -urNad cupsys-1.1.99.b1.r4748~/backend/parallel.c cupsys-1.1.99.b1.r4748/ba
    int	i;			/* Looping var */
    int	fd;			/* File descriptor */
    char	device[255];		/* Device filename */
-diff -urNad cupsys-1.1.99.b1.r4748~/backend/serial.c cupsys-1.1.99.b1.r4748/backend/serial.c
---- cupsys-1.1.99.b1.r4748~/backend/serial.c	2005-09-26 19:33:58.000000000 +0000
-+++ cupsys-1.1.99.b1.r4748/backend/serial.c	2005-11-13 05:46:33.265710269 +0000
+diff -urNad cupsys-1.1.99.b1.r4885~/backend/serial.c cupsys-1.1.99.b1.r4885/backend/serial.c
+--- cupsys-1.1.99.b1.r4885~/backend/serial.c	2005-12-18 12:40:26.000000000 +0900
++++ cupsys-1.1.99.b1.r4885/backend/serial.c	2005-12-18 12:40:34.000000000 +0900
 @@ -650,10 +650,10 @@
  void
  list_devices(void)
@@ -42,10 +42,10 @@ diff -urNad cupsys-1.1.99.b1.r4748~/backend/serial.c cupsys-1.1.99.b1.r4748/back
    int	i, j;		/* Looping vars */
    int	fd;		/* File descriptor */
    char	device[255];	/* Device filename */
-diff -urNad cupsys-1.1.99.b1.r4748~/backend/usb-unix.c cupsys-1.1.99.b1.r4748/backend/usb-unix.c
---- cupsys-1.1.99.b1.r4748~/backend/usb-unix.c	2005-11-13 05:45:25.019158647 +0000
-+++ cupsys-1.1.99.b1.r4748/backend/usb-unix.c	2005-11-13 05:46:48.892318008 +0000
-@@ -628,7 +628,7 @@
+diff -urNad cupsys-1.1.99.b1.r4885~/backend/usb-unix.c cupsys-1.1.99.b1.r4885/backend/usb-unix.c
+--- cupsys-1.1.99.b1.r4885~/backend/usb-unix.c	2005-12-18 12:40:26.000000000 +0900
++++ cupsys-1.1.99.b1.r4885/backend/usb-unix.c	2005-12-18 12:40:34.000000000 +0900
+@@ -394,7 +394,7 @@
    }
  #elif defined(__hpux)
  #elif defined(__osf)
@@ -54,9 +54,9 @@ diff -urNad cupsys-1.1.99.b1.r4748~/backend/usb-unix.c cupsys-1.1.99.b1.r4748/ba
    int   i;                      /* Looping var */
    char  device[255];            /* Device filename */
  
-diff -urNad cupsys-1.1.99.b1.r4748~/backend/usb.c cupsys-1.1.99.b1.r4748/backend/usb.c
---- cupsys-1.1.99.b1.r4748~/backend/usb.c	2005-09-26 19:33:58.000000000 +0000
-+++ cupsys-1.1.99.b1.r4748/backend/usb.c	2005-11-13 05:47:08.534311093 +0000
+diff -urNad cupsys-1.1.99.b1.r4885~/backend/usb.c cupsys-1.1.99.b1.r4885/backend/usb.c
+--- cupsys-1.1.99.b1.r4885~/backend/usb.c	2005-12-18 12:40:26.000000000 +0900
++++ cupsys-1.1.99.b1.r4885/backend/usb.c	2005-12-18 12:40:34.000000000 +0900
 @@ -72,7 +72,7 @@
  
  #ifdef __APPLE__
@@ -66,10 +66,22 @@ diff -urNad cupsys-1.1.99.b1.r4748~/backend/usb.c cupsys-1.1.99.b1.r4748/backend
  #  include "usb-unix.c"
  #else
  /*
-diff -urNad cupsys-1.1.99.b1.r4748~/config-scripts/cups-directories.m4 cupsys-1.1.99.b1.r4748/config-scripts/cups-directories.m4
---- cupsys-1.1.99.b1.r4748~/config-scripts/cups-directories.m4	2005-11-13 05:45:25.050153901 +0000
-+++ cupsys-1.1.99.b1.r4748/config-scripts/cups-directories.m4	2005-11-13 05:47:31.651772214 +0000
-@@ -115,7 +115,7 @@
+diff -urNad cupsys-1.1.99.b1.r4885~/config-scripts/cups-directories.m4 cupsys-1.1.99.b1.r4885/config-scripts/cups-directories.m4
+--- cupsys-1.1.99.b1.r4885~/config-scripts/cups-directories.m4	2005-12-18 12:40:26.000000000 +0900
++++ cupsys-1.1.99.b1.r4885/config-scripts/cups-directories.m4	2005-12-18 12:40:34.000000000 +0900
+@@ -125,7 +125,7 @@
+ 			INITDDIR="/System/Library/StartupItems/PrintingServices"
+ 			;;
+ 
+-		Linux | GNU)
++		Linux | GNU | GNU/k*BSD*)
+ 			# Linux/HURD seems to choose an init.d directory at random...
+ 			if test -d /sbin/init.d; then
+ 				# SuSE
+diff -urNad cupsys-1.1.99.b1.r4885~/configure cupsys-1.1.99.b1.r4885/configure
+--- cupsys-1.1.99.b1.r4885~/configure	2005-12-18 12:40:34.000000000 +0900
++++ cupsys-1.1.99.b1.r4885/configure	2005-12-18 12:40:50.000000000 +0900
+@@ -6884,7 +6884,7 @@
  			INITDDIR="/System/Library/StartupItems/PrintingServices"
  			;;
  
