@@ -13,6 +13,7 @@ cupsys (1.1.99.b1.r4885-1) UNRELEASED; urgency=low
   * Allow '*' for hostname in ports.conf.
   * Use /bin/echo instead of shell built-in echo.
   * Improve cupsys.templates.
+  * Updated Russian, German, Czech debconf translation.
 
  -- Kenshi Muto <kmuto@debian.org>  Thu, 15 Dec 2005 07:15:54 +0900
 

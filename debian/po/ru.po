@@ -1,3 +1,4 @@
+# translation of cupsys-ru.po to Russian
 # translation of cupsys_1.1.23-12_ru.po to Russian
 #
 #    Translators, if you are not familiar with the PO format, gettext
@@ -18,7 +19,7 @@ msgstr ""
 "Project-Id-Version: cupsys_1.1.23-12_ru.po\n"
 "Report-Msgid-Bugs-To: pkg-cups-devel@lists.alioth.debian.org\n"
 "POT-Creation-Date: 2005-12-17 13:23+0900\n"
-"PO-Revision-Date: 2005-11-24 20:39+0300\n"
+"PO-Revision-Date: 2005-12-17 16:32+0300\n"
 "Last-Translator: Yuri Kozlov <kozlov.y@gmail.com>\n"
 "Language-Team: Russian <debian-l10n-russian@lists.debian.org>\n"
 "MIME-Version: 1.0\n"
@@ -101,49 +102,49 @@ msgstr ""
 #. Choices
 #: ../cupsys.templates:22
 msgid "ipp"
-msgstr ""
+msgstr "ipp"
 
 #. Type: multiselect
 #. Choices
 #: ../cupsys.templates:22
 msgid "lpd"
-msgstr ""
+msgstr "lpd"
 
 #. Type: multiselect
 #. Choices
 #: ../cupsys.templates:22
 msgid "parallel"
-msgstr ""
+msgstr "parallel"
 
 #. Type: multiselect
 #. Choices
 #: ../cupsys.templates:22
 msgid "scsi"
-msgstr ""
+msgstr "scsi"
 
 #. Type: multiselect
 #. Choices
 #: ../cupsys.templates:22
 msgid "serial"
-msgstr ""
+msgstr "serial"
 
 #. Type: multiselect
 #. Choices
 #: ../cupsys.templates:22
 msgid "socket"
-msgstr ""
+msgstr "socket"
 
 #. Type: multiselect
 #. Choices
 #: ../cupsys.templates:22
 msgid "usb"
-msgstr ""
+msgstr "usb"
 
 #. Type: multiselect
 #. Description
 #: ../cupsys.templates:24
 msgid "Printer communication backends:"
-msgstr ""
+msgstr "Интерфейсные программы для связи с принтером:"
 
 #. Type: multiselect
 #. Description
@@ -179,6 +180,7 @@ msgstr ""
 #: ../cupsys.templates:36
 msgid "Port or/and host name where CUPS will listen to:"
 msgstr ""
+"Порт или/и имя машины через который будет осуществляться подключение к CUPS:"
 
 #. Type: string
 #. Description
@@ -187,22 +189,28 @@ msgid ""
 "Please specify the port or the host name CUPS daemon will listen to. The "
 "following formats are allowed:"
 msgstr ""
+"Укажите порт или имя машины на котором будет работать демон CUPS. Допустимы "
+"следующие форматы:"
 
 #. Type: string
 #. Description
 #: ../cupsys.templates:36
+#, fuzzy
 msgid ""
 " - Port number (631);\n"
 " - Host name   (debian.example.com);\n"
 " - Host:Port   (debian.example.com:631);\n"
 " - File domain socket (/var/run/cups/cups.sock)."
 msgstr ""
+" - Номер порта (631);\n"
+" - Имя машины  (debian.example.com);\n"
+" - Машина:Порт (debian.example.com:631)."
 
 #. Type: string
 #. Description
 #: ../cupsys.templates:36
 msgid "You can combine any of these by delimiting in a space-separated list."
-msgstr ""
+msgstr "Можно использовать несколько любых типов, разделяя их пробелом."
 
 #. Type: string
 #. Description
@@ -212,12 +220,15 @@ msgid ""
 "\"localhost:631\" is recommended to setup a standalone environment for "
 "security reasons."
 msgstr ""
+"Порт по умолчанию 631 зарезервирован для протокола печати в Интернет "
+"(Internet Printing Protocol, IPP). В целях безопасности для автономных "
+"систем рекомендуется использовать настройку \"localhost:631\"."
 
 #. Type: boolean
 #. Description
 #: ../cupsys.templates:54
 msgid "Broadcast and/or listen for CUPS printer information on the network?"
-msgstr ""
+msgstr "Анонсировать и/или слушать CUPS информацию о принтере в сети?"
 
 #. Type: boolean
 #. Description
@@ -226,6 +237,8 @@ msgid ""
 "CUPS daemon can broadcast printer information for clients on the network, "
 "and detect printers on the network automatically."
 msgstr ""
+"Демон CUPS может анонсировать информацию о принтере для сетевых клиентов, и "
+"обнаруживать другие принтеры в сети автоматически."
 
 #. Type: boolean
 #. Description
@@ -234,24 +247,26 @@ msgid ""
 "If you choose this option, the CUPS daemon will periodically send UDP "
 "broadcasts to detect printers."
 msgstr ""
+"При выборе этого параметра демон CUPS будет периодически посылать "
+"широковещательные UDP пакеты для обнаружения принтеров."
 
 #. Type: note
 #. Description
 #: ../cupsys.templates:63
 msgid "Incorrect value entered"
-msgstr ""
+msgstr "Введено недопустимое значение"
 
 #. Type: note
 #. Description
 #: ../cupsys.templates:63
 msgid "an error occurred while parsing the port number or the host name."
-msgstr ""
+msgstr "при разборе номера порта или имени машины произошла ошибка."
 
 #. Type: note
 #. Description
 #: ../cupsys.templates:63
 msgid "Please correct your input."
-msgstr ""
+msgstr "Пожалуйста исправьте вводимые данные."
 
 #. Type: password
 #. Description
@@ -270,9 +285,3 @@ msgstr ""
 #: ../cupsys.templates:70
 msgid "You can add/replace/delete CUPS password information by using lpadmin."
 msgstr ""
-
-#~ msgid "ipp, lpd, parallel, scsi, serial, socket, usb"
-#~ msgstr "ipp, lpd, parallel, scsi, serial, socket, usb"
-
-#~ msgid "Select the backends you want."
-#~ msgstr "Выберите нужные интерфейсы."
