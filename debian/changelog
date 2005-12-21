@@ -16,6 +16,9 @@ cupsys (1.1.99.b1.r4885-1) UNRELEASED; urgency=low
   * Updated Russian, German, Czech debconf translation.
   * Removed example descriptions from init.d script.
 
+  [ Martin Pitt ]
+  * debian/patches/02_configure.dpatch: Adapt to r4885.
+
  -- Kenshi Muto <kmuto@debian.org>  Thu, 15 Dec 2005 07:15:54 +0900
 
 cupsys (1.1.99.b1.r4876-1) unstable; urgency=low
