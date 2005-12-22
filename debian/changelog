@@ -17,6 +17,7 @@ cupsys (1.1.99.b1.r4885-1) UNRELEASED; urgency=low
   * Removed example descriptions from init.d script.
 
   [ Martin Pitt ]
+  * Adapt debian/patches/02_configure.dpatch to r4885.
   * Move forcefully killing of cupsd if start-stop-daemon fails from
     postinst to init script, where it belongs to. Do not kill all running
     cupsd processes, but only the one in the pid file; this will unbreak cupsd
@@ -31,7 +32,7 @@ cupsys (1.1.99.b1.r4885-1) UNRELEASED; urgency=low
   * debian/rules: In clean rule, clean up a lot of files that are left behind
     by 'make clean'.
 
- -- Martin Pitt <mpitt@debian.org>  Thu, 22 Dec 2005 13:57:19 +0100
+ -- Martin Pitt <mpitt@debian.org>  Thu, 22 Dec 2005 14:11:13 +0100
 
 cupsys (1.1.99.b1.r4876-1) unstable; urgency=low
 
