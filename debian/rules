@@ -25,7 +25,9 @@ DEB_MAKE_INSTALL_TARGET := install BUILDROOT=$(DEB_DESTDIR)
 clean::
 	-rm core
 	-$(MAKE) clean
-	-rm man/*.gz man/*.z man/*.1 man/*.5 man/*.8
+	-rm man/*.gz man/*.z man/*.1 man/*.5 man/*.8 man/*.o man/mantohtml
+	-rm -f doc/help/man-*.html doc/help/standard.html doc/index.html
+	-rm -f conf/pam.std packaging/cups.list templates/edit-config.tmpl
 	-rm cups/libcups.so
 	-rm cups/libcups.a
 	-rm filter/libcupsimage.so
