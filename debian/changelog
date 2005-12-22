@@ -27,8 +27,10 @@ cupsys (1.1.99.b1.r4885-1) UNRELEASED; urgency=low
     03_cupsimage.dpatch), as we get unresolved symbols if libcupsimage
     isn't properly linked to libcupsys, causing other packages to FTBFS.
     Thanks to Adam Conrad.
+  * debian/cupsys.init.d: Add --oknodo to not fail if cupsd is already
+    running.
 
- -- Martin Pitt <mpitt@debian.org>  Thu, 22 Dec 2005 12:53:03 +0100
+ -- Martin Pitt <mpitt@debian.org>  Thu, 22 Dec 2005 12:54:40 +0100
 
 cupsys (1.1.99.b1.r4876-1) unstable; urgency=low
 
