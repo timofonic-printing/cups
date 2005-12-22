@@ -35,22 +35,6 @@ case "$1" in
 	[ -f /etc/cups/printers.conf.save ] && mv /etc/cups/printers.conf.save /etc/cups/printers.conf
 	[ -f /etc/cups/classes.conf.save ] && mv /etc/cups/classes.conf.save /etc/cups/classes.conf
 
-	if [ "$FORCE_RESTART" = "yes" ]; then
-    	  # Check cupsys is really stopped... stupid
-	  if [ -n "`pidof /usr/sbin/cupsd`" ]; then
-	    echo "Cupsys is still running... waiting 5 seconds..."
-	    sleep 5
-            if [ -n "`pidof /usr/sbin/cupsd`" ]; then
- 	      echo "Killing cupsys..."
-	      kill -9 `pidof /usr/sbin/cupsd` || true
-              sleep 1
-	    fi
-	  fi
-	  if [ -n "`ps aux | grep /usr/sbin/cupsd | grep -v grep`" ]; then
-	    echo "Hmm, cupsys (or some forked processes) won't stop. Please stop them manually."
-	    exit 1
-	  fi
-	fi
 	# Set up lpadmin group.
 	if [ -z "`getent group lpadmin`" ]; then 
 	    addgroup --system lpadmin

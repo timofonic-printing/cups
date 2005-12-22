@@ -18,8 +18,13 @@ cupsys (1.1.99.b1.r4885-1) UNRELEASED; urgency=low
 
   [ Martin Pitt ]
   * debian/patches/02_configure.dpatch: Adapt to r4885.
+  * Move forcefully killing of cupsd if start-stop-daemon fails from
+    postinst to init script, where it belongs to. Do not kill all running
+    cupsd processes, but only the one in the pid file; this will unbreak cupsd
+    behaviour in chroots.
+  * debian/cupsys.default: Remove obsolete FORCE_RESTART option.
 
- -- Kenshi Muto <kmuto@debian.org>  Thu, 15 Dec 2005 07:15:54 +0900
+ -- Martin Pitt <martin.pitt@ubuntu.com>  Thu, 22 Dec 2005 12:36:27 +0100
 
 cupsys (1.1.99.b1.r4876-1) unstable; urgency=low
 

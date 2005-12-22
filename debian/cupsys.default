@@ -1,7 +1,1 @@
 # Cups configure options
-
-# cupsys forces stop cupsd when it looks lock-up during upgrade installation.
-# If your cupsd is running outside of current environment (such as chroot),
-# maybe this behavior is unnecessary for you.
-# You can disable this force-stop working by FORCE_RESTART=no
-FORCE_RESTART=yes
