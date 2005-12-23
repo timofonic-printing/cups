@@ -15,6 +15,7 @@ cupsys (1.1.99.b1.r4885-1) UNRELEASED; urgency=low
   * Improve cupsys.templates.
   * Updated Russian, German, Czech,French debconf translation.
   * Removed example descriptions from init.d script.
+  * Fix IPv4 validation.
 
   [ Martin Pitt ]
   * Adapt debian/patches/02_configure.dpatch to r4885.
