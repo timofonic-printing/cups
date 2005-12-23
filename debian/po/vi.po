@@ -188,7 +188,7 @@ msgid ""
 msgstr ""
 " • sổ cổng (v.d. 631)\n"
 " • tên máy (v.d. vi_du.vnoss.org)\n"
-" • máy:cổng (v.d. vi_du.vnoss.org:631)\n"
+" • máy:cổng (v.d. vi_du.vnoss.org:631)"
 
 #. Type: string
 #. Description
