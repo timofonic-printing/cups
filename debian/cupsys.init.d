@@ -27,32 +27,8 @@ case "$1" in
 	;;
   stop)
 	log_begin_msg "Stopping $DESC: $NAME"
-        if [ -e $PIDFILE ]; then
-            read pid < "$PIDFILE" || true
-        fi
-	start-stop-daemon --stop --quiet --user root --retry TERM/10 --oknodo --pidfile $PIDFILE --name $NAME
-        SSR=$?
-
-        # cupsd is hard to kill sometimes
-        if [ -n "$pid" ]; then
-            if ps -p "$pid" > /dev/null 2>&1; then
-                log_warning_msg "Cups is still running, waiting 5 seconds..."
-                sleep 5
-                if ps -p "$pid" > /dev/null 2>&1; then
-                    log_warning_msg "Forcefully killing cupsd..."
-                    kill -9 "$pid"
-                    sleep 1
-                    if ps -p "$pid" > /dev/null 2>&1; then
-                        log_end_msg 1
-                        exit 1
-                    else
-                        log_end_msg 0
-                    fi
-                fi
-            fi
-        else
-	    log_end_msg $SSR
-        fi
+	start-stop-daemon --stop --quiet --retry 5 --oknodo --pidfile $PIDFILE --name $NAME
+	log_end_msg $?
 	;;
   reload)
 	log_begin_msg "Reloading $DESC: $NAME"
@@ -61,7 +37,7 @@ case "$1" in
 	;;
   restart|force-reload)
 	log_begin_msg "Restarting $DESC: $NAME"
-	if start-stop-daemon --stop --quiet --user root --retry TERM/10 --oknodo --pidfile $PIDFILE --name $NAME; then
+	if start-stop-daemon --stop --quiet --retry 5 --oknodo --pidfile $PIDFILE --name $NAME; then
 		start-stop-daemon --start --quiet --pidfile "$PIDFILE" --exec $DAEMON
 	fi
 	log_end_msg $?
