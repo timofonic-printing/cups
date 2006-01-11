@@ -23,6 +23,7 @@ case "$1" in
 	log_begin_msg "Starting $DESC: $NAME"
 	chown root:lpadmin /usr/share/cups/model 2>/dev/null || true
 	chmod 3775 /usr/share/cups/model 2>/dev/null || true
+	mkdir -p `dirname "$PIDFILE"`
 	start-stop-daemon --start --quiet --oknodo --pidfile "$PIDFILE" --exec $DAEMON
 	;;
   stop)
