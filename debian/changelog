@@ -1,16 +1,18 @@
-cupsys (1.1.99.b1.r4885-2) UNRELEASED-experimental; urgency=low
+cupsys (1.1.99.b1.r4892-1) UNRELEASED-experimental; urgency=low
 
   [ Kenshi Muto ]
   *
 
   [ Martin Pitt ]
+  * New SVN release taken from r4892.
+  * debian/patches/48_stdlib.dpatch: Adapted to new upstream version.
   * debian/cupsys.init.d:
     - Fix arguments of start-stop-daemon and remove the hideous kill
       algorithm.
     - Ensure that /var/run/cupsd exists; this makes the init script work with
       /var/run mounted on a tmpfs.
 
- -- Martin Pitt <mpitt@debian.org>  Wed, 11 Jan 2006 19:33:48 +0100
+ -- Martin Pitt <mpitt@debian.org>  Fri, 13 Jan 2006 15:55:50 +0100
 
 cupsys (1.1.99.b1.r4885-1) experimental; urgency=low
 
