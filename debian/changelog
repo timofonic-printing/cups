@@ -1,7 +1,8 @@
 cupsys (1.1.99.b1.r4892-1) UNRELEASED-experimental; urgency=low
 
   [ Kenshi Muto ]
-  *
+  * debian/postinst:
+    - Fix value extract code of $VAL.
 
   [ Martin Pitt ]
   * New SVN release taken from r4892.
