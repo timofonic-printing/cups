@@ -55,7 +55,7 @@ Architecture: any
 Depends: ${shlibs:Depends}
 Provides: libcupsys2-gnutls10
 Replaces: cupsys-client (<= 1.1.10-2), libcupsys2-gnutls10 (<= 1.1.23-11)
-Conflicts: gs-esp (<< 7.05.6-2), cupsys-driver-gimpprint (<< 4.2.5-3), libcupsys2-gnutls10 (<= 1.1.23-11)
+Conflicts: gs-esp (<< 7.05.6-2), cupsys-driver-gimpprint (<< 4.2.5-3), libcupsys2-gnutls10 (<= 1.1.23-11), cupsys (<< 1.1.99.b1)
 Description: Common UNIX Printing System(tm) - libs
  The Common UNIX Printing System (or CUPS(tm)) is a printing system and 
  general replacement for lpd and the like.  It supports the Internet 

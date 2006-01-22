@@ -3,6 +3,7 @@ cupsys (1.1.99.b1.r4892-1) UNRELEASED-experimental; urgency=low
   [ Kenshi Muto ]
   * debian/postinst:
     - Fix value extract code of $VAL.
+  * libcupsys2 should conflict with cups 1.1 series. (closes: #349341)
 
   [ Martin Pitt ]
   * New SVN release taken from r4892.
