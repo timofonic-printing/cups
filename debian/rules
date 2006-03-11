@@ -18,7 +18,7 @@ include /usr/share/cdbs/1/rules/dpatch.mk
 
 unpatch: deapply-dpatches
 
-DEB_CONFIGURE_EXTRA_FLAGS := --with-optim=$(DEB_OPTFLAGS) --with-cups-group=lpadmin --mandir=/usr/share/man --with-docdir=/usr/share/cups/doc-root --enable-slp --enable-libpaper --enable-ssl --enable-gnutls --disable-openssl --enable-threads
+DEB_CONFIGURE_EXTRA_FLAGS := --with-optim=$(DEB_OPTFLAGS) --with-cups-group=lpadmin --mandir=/usr/share/man --with-docdir=/usr/share/cups/doc-root --enable-slp --enable-libpaper --enable-ssl --enable-gnutls --disable-openssl --enable-threads --enable-install_static
 DEB_MAKE_INSTALL_TARGET := install BUILDROOT=$(DEB_DESTDIR)
 #DESTDIR=$(DEB_DESTDIR) BINDIR=$(DEB_DESTDIR)/usr/bin SBINDIR=$(DEB_DESTDIR)/usr/sbin INCLUDEDIR=$(DEB_DESTDIR)/usr/include LIBDIR=$(DEB_DESTDIR)/usr/lib SERVERBIN=$(DEB_DESTDIR)/usr/lib/cups SERVERROOT=$(DEB_DESTDIR)/etc/cups BUILDROOT=$(DEB_DESTDIR)
 
@@ -54,7 +54,7 @@ binary-post-install/cupsys::
 	(cd $(DEB_DESTDIR)/../cupsys/etc/cups && ln -sf /var/lib/cups/certs certs)
 	(cd $(DEB_DESTDIR) && mv etc/cups/interfaces etc/cups/ppd $(DEB_DESTDIR)/../cupsys/etc/cups)
 	(cd $(DEB_DESTDIR)/../cupsys/usr/share/doc/cupsys && ln -sf /usr/share/cups/doc-root online-docs)
-	(cd $(DEB_DESTDIR)/../cupsys/usr/share/man && mv man1/backend.1 man1/cups-backend.1 && mv man1/filter.1 man1/cups-filter.1)
+	#(cd $(DEB_DESTDIR)/../cupsys/usr/share/man && mv man1/backend.1 man1/cups-backend.1 && mv man1/filter.1 man1/cups-filter.1)
 	(cd $(DEB_DESTDIR)/../cupsys/etc/cups && ln -s ../xpdf/xpdfrc pdftops.conf)
 	(install -m 755 -o root -g root $(DEB_DESTDIR)/../pdftops $(DEB_DESTDIR)/../cupsys/usr/lib/cups/filter/)
 	install -o root -g root -m 644 debian/cupsys.default debian/cupsys/etc/default/cupsys

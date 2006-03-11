@@ -1,9 +1,27 @@
-cupsys (1.1.99.b1.r4892-1) UNRELEASED-experimental; urgency=low
+cupsys (1.1.99.b2-1) UNRELEASED-experimental; urgency=low
+
+  TODO:
+    CUPS 1.2b2 changes many things. We need to solve some problems
+    before uploading.
+
+  - On i386, it installs libraries to lib64 by default.
+    Some of other architectures may use other directory.
+    *.files solution becomes obsolete.
+  - Some Debian patches seem be rejected. We need to verify again.
+    03_manext, 04_freebsd, 06_replacepdftops, 07_removecvstag,
+    09_runasuser_fixes, 44_fixconfdirperms, 47_pid, 48_stdlib
+  - At least on Kenshi's environment, backend programs won't work.
+    (usb and parallel backends return nothing.)
+  - /etc/cups/client.conf, /usr/sbin/disable, /usr/sbin/enable are
+    removed from upstream.
+  - gs-esp/other alternatives issue (although other gs needs to apply
+    CUPS patch)
+  - The administration of cupsd may not work when user is in
+    chroot without pam info.
 
   [ Kenshi Muto ]
-  * debian/postinst:
-    - Fix value extract code of $VAL.
-  * libcupsys2 should conflict with cups 1.1 series. (closes: #349341)
+  * New upstream release (1.2b2)
+  * Enable LDAP support.
 
   [ Martin Pitt ]
   * New SVN release taken from r4892.
@@ -14,7 +32,7 @@ cupsys (1.1.99.b1.r4892-1) UNRELEASED-experimental; urgency=low
     - Ensure that /var/run/cupsd exists; this makes the init script work with
       /var/run mounted on a tmpfs.
 
- -- Martin Pitt <mpitt@debian.org>  Fri, 13 Jan 2006 15:55:50 +0100
+ -- Kenshi Muto <kmuto@debian.org>  Sat, 11 Mar 2006 11:27:39 +0900
 
 cupsys (1.1.99.b1.r4885-1) experimental; urgency=low
 

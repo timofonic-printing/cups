@@ -1,4 +1,4 @@
-usr/lib/libcupsimage.a
-usr/lib/libcupsimage.so
+usr/lib64/libcupsimage.so
+usr/lib64/libcupsimage.a
 usr/include/cups/image.h
 usr/include/cups/raster.h

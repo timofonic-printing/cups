@@ -1,2 +1,2 @@
 usr/lib/libcups.so.*
-etc/cups/client.conf
+usr/lib64/libcups.so.*

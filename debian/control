@@ -3,7 +3,7 @@ Priority: optional
 Section: net
 Maintainer: Debian CUPS Maintainers <pkg-cups-devel@lists.alioth.debian.org>
 Standards-Version: 3.6.1
-Build-Depends: libpam0g-dev, libtiff4-dev, libjpeg62-dev, zlib1g-dev, libpng12-dev, libslp-dev, libgnutls-dev, libpaper-dev, debhelper (>= 4.0), po-debconf, cdbs, sharutils, dpatch (>= 1.11)
+Build-Depends: libpam0g-dev, libtiff4-dev, libjpeg62-dev, zlib1g-dev, libpng12-dev, libslp-dev, libgnutls-dev, libpaper-dev, libldap2-dev, debhelper (>= 4.0), po-debconf, cdbs, sharutils, dpatch (>= 1.11)
 Uploaders: Kenshi Muto <kmuto@debian.org>, Masayuki Hatta <mhatta@debian.org>, Jeff Licquia <licquia@debian.org>, Martin-Éric Racine <q-funk@iki.fi>
 
 Package: cupsys
@@ -55,7 +55,7 @@ Architecture: any
 Depends: ${shlibs:Depends}
 Provides: libcupsys2-gnutls10
 Replaces: cupsys-client (<= 1.1.10-2), libcupsys2-gnutls10 (<= 1.1.23-11)
-Conflicts: gs-esp (<< 7.05.6-2), cupsys-driver-gimpprint (<< 4.2.5-3), libcupsys2-gnutls10 (<= 1.1.23-11), cupsys (<< 1.1.99.b1)
+Conflicts: gs-esp (<< 7.05.6-2), cupsys-driver-gimpprint (<< 4.2.5-3), libcupsys2-gnutls10 (<= 1.1.23-11)
 Description: Common UNIX Printing System(tm) - libs
  The Common UNIX Printing System (or CUPS(tm)) is a printing system and 
  general replacement for lpd and the like.  It supports the Internet 
