@@ -9,7 +9,7 @@ cupsys (1.1.99.b2-1) UNRELEASED-experimental; urgency=low
     *.files solution becomes obsolete.
   - Some Debian patches seem be rejected. We need to verify again.
     03_manext, 04_freebsd, 06_replacepdftops, 07_removecvstag,
-    09_runasuser_fixes, 44_fixconfdirperms, 47_pid, 48_stdlib
+    09_runasuser_fixes, 44_fixconfdirperms, 48_stdlib
   - At least on Kenshi's environment, backend programs won't work.
     (usb and parallel backends return nothing.)
   - /etc/cups/client.conf, /usr/sbin/disable, /usr/sbin/enable are

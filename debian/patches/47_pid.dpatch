@@ -5,52 +5,52 @@
 ## DP: No description.
 
 @DPATCH@
-diff -urNad cupsys-1.1.99.b1.r4748~/scheduler/conf.c cupsys-1.1.99.b1.r4748/scheduler/conf.c
---- cupsys-1.1.99.b1.r4748~/scheduler/conf.c	2005-11-03 11:41:59.474629247 +0000
-+++ cupsys-1.1.99.b1.r4748/scheduler/conf.c	2005-11-03 12:27:49.102031706 +0000
-@@ -155,7 +155,8 @@
-   { "ServerRoot",		&ServerRoot,		CUPSD_VARTYPE_STRING },
+diff -urNad cupsys-1.1.99.b2~/scheduler/conf.c cupsys-1.1.99.b2/scheduler/conf.c
+--- cupsys-1.1.99.b2~/scheduler/conf.c	2006-03-11 13:31:04.000000000 +0000
++++ cupsys-1.1.99.b2/scheduler/conf.c	2006-03-11 13:31:16.000000000 +0000
+@@ -170,7 +170,8 @@
    { "StateDir",			&StateDir,		CUPSD_VARTYPE_STRING },
    { "TempDir",			&TempDir,		CUPSD_VARTYPE_STRING },
--  { "Timeout",			&Timeout,		CUPSD_VARTYPE_INTEGER }
-+  { "Timeout",			&Timeout,		CUPSD_VARTYPE_INTEGER },
+   { "Timeout",			&Timeout,		CUPSD_VARTYPE_INTEGER },
+-  { "UseNetworkDefault",	&UseNetworkDefault,	CUPSD_VARTYPE_BOOLEAN }
++  { "UseNetworkDefault",	&UseNetworkDefault,	CUPSD_VARTYPE_BOOLEAN },
 +  { "PidFile",			&PidFile,		CUPSD_VARTYPE_STRING }
  };
  #define NUM_VARS	(sizeof(variables) / sizeof(variables[0]))
  
-@@ -290,6 +291,7 @@
+@@ -287,6 +288,7 @@
    cupsdSetString(&RemoteRoot, "remroot");
-   cupsdSetString(&ServerHeader, "CUPS/1.1");
+   cupsdSetString(&ServerHeader, "CUPS/1.2");
    cupsdSetString(&StateDir, CUPS_STATEDIR);
 +  cupsdSetString(&PidFile, "/var/run/cups/cupsd.pid");
  
    strlcpy(temp, ConfigurationFile, sizeof(temp));
    if ((slash = strrchr(temp, '/')) != NULL)
-diff -urNad cupsys-1.1.99.b1.r4748~/scheduler/conf.h cupsys-1.1.99.b1.r4748/scheduler/conf.h
---- cupsys-1.1.99.b1.r4748~/scheduler/conf.h	2005-09-28 21:12:44.000000000 +0000
-+++ cupsys-1.1.99.b1.r4748/scheduler/conf.h	2005-11-03 12:17:17.895936632 +0000
-@@ -189,6 +189,7 @@
- 					/* Array containing certificates */
+diff -urNad cupsys-1.1.99.b2~/scheduler/conf.h cupsys-1.1.99.b2/scheduler/conf.h
+--- cupsys-1.1.99.b2~/scheduler/conf.h	2006-03-11 13:31:04.000000000 +0000
++++ cupsys-1.1.99.b2/scheduler/conf.h	2006-03-11 13:31:16.000000000 +0000
+@@ -186,6 +186,7 @@
+ 					/* Server key file */
  #  endif /* HAVE_LIBSSL || HAVE_GNUTLS */
  #endif /* HAVE_SSL */
 +VAR char		*PidFile	VALUE(NULL); /* Debian CUPS pid file */
  
- 
- /*
-diff -urNad cupsys-1.1.99.b1.r4748~/scheduler/main.c cupsys-1.1.99.b1.r4748/scheduler/main.c
---- cupsys-1.1.99.b1.r4748~/scheduler/main.c	2005-11-03 11:41:30.000000000 +0000
-+++ cupsys-1.1.99.b1.r4748/scheduler/main.c	2005-11-03 12:28:48.083074561 +0000
-@@ -69,7 +69,8 @@
+ #ifdef HAVE_LAUNCHD
+ VAR int			LaunchdTimeout		VALUE(DEFAULT_TIMEOUT);
+diff -urNad cupsys-1.1.99.b2~/scheduler/main.c cupsys-1.1.99.b2/scheduler/main.c
+--- cupsys-1.1.99.b2~/scheduler/main.c	2006-03-11 13:31:04.000000000 +0000
++++ cupsys-1.1.99.b2/scheduler/main.c	2006-03-11 13:32:41.000000000 +0000
+@@ -89,7 +89,8 @@
  static void	sigterm_handler(int sig);
  static long	select_timeout(int fds);
- static void	usage(void);
+ static void	usage(int status);
 -
 +int write_pid(void);
-+int remove_pid(void);
++int remvoe_pid(void);
  
  /*
   * Local globals...
-@@ -424,6 +425,11 @@
+@@ -501,6 +502,11 @@
        kill(i, SIGUSR1);
    }
  
@@ -60,9 +60,9 @@ diff -urNad cupsys-1.1.99.b1.r4748~/scheduler/main.c cupsys-1.1.99.b1.r4748/sche
 +  }
 +
   /*
-   * If the administrator has configured the server to run as an unpriviledged
-   * user, change to that user now...
-@@ -840,9 +846,39 @@
+   * Start power management framework...
+   */
+@@ -1095,9 +1101,39 @@
    free(input);
    free(output);
  

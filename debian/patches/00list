@@ -11,5 +11,5 @@
 19_cupsaccept.dpatch
 26_modprobe.dpatch
 #44_fixconfdirperms.dpatch
-#47_pid.dpatch
+47_pid.dpatch
 #48_stdlib.dpatch
