@@ -48,7 +48,6 @@ $(patsubst %,install/%,$(DEB_ALL_PACKAGES)) :: install/%:
 binary-post-install/cupsys::
 	mv debian/cupsys/usr/lib/cups/backend/* debian/cupsys/usr/lib/cups/backend-available
 	install -o root -g root -m 644 doc/favicon.ico debian/cupsys/usr/share/cups/doc-root
-#	(cd $(DEB_DESTDIR)/../cupsys/usr && uudecode -o - $(DEB_DESTDIR)/../patches/ja.tar.gz.uu | tar zxf -)
 	(cd $(DEB_DESTDIR) && mv var/spool var/log $(DEB_DESTDIR)/../cupsys/var)
 	(mkdir -p $(DEB_DESTDIR)/../cupsys/var/lib/cups && install -o root -g root -m 711 -d $(DEB_DESTDIR)/../cupsys/var/lib/cups/certs)
 	(cd $(DEB_DESTDIR)/../cupsys/etc/cups && ln -sf /var/lib/cups/certs certs)
