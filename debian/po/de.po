@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: pkg-cups-devel@lists.alioth.debian.org\n"
-"POT-Creation-Date: 2005-12-17 13:23+0900\n"
+"POT-Creation-Date: 2006-03-29 14:05+0000\n"
 "PO-Revision-Date: 2005-12-17 20:58+0100\n"
 "Last-Translator: Jens Nachtigall <nachtigall@web.de>\n"
 "Language-Team: German <debian-l10n-german@lists.debian.org>\n"
@@ -268,21 +268,3 @@ msgstr ""
 #: ../cupsys.templates:63
 msgid "Please correct your input."
 msgstr "Bitte korrigieren Sie Ihre Eingabe."
-
-#. Type: password
-#. Description
-#: ../cupsys.templates:70
-msgid "Admin password:"
-msgstr ""
-
-#. Type: password
-#. Description
-#: ../cupsys.templates:70
-msgid "Please enter the password for the admin (username 'root') of CUPS."
-msgstr ""
-
-#. Type: password
-#. Description
-#: ../cupsys.templates:70
-msgid "You can add/replace/delete CUPS password information by using lpadmin."
-msgstr ""

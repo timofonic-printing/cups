@@ -64,10 +64,3 @@ _Description: Incorrect value entered
  an error occurred while parsing the port number or the host name.
  .
  Please correct your input.
-
-Template: cupsys/adminpassword
-Type: password
-_Description: Admin password:
- Please enter the password for the admin (username 'root') of CUPS.
- .
- You can add/replace/delete CUPS password information by using lpadmin.

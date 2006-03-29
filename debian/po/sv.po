@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cupsys 1.1.23-13\n"
 "Report-Msgid-Bugs-To: pkg-cups-devel@lists.alioth.debian.org\n"
-"POT-Creation-Date: 2005-12-17 13:23+0900\n"
+"POT-Creation-Date: 2006-03-29 14:05+0000\n"
 "PO-Revision-Date: 2005-12-17 08:14+0100\n"
 "Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
@@ -262,24 +262,6 @@ msgstr "ett fel inträffade vid tolkning av portnumret eller värdnamnet."
 #: ../cupsys.templates:63
 msgid "Please correct your input."
 msgstr "Vänligen rätt till det."
-
-#. Type: password
-#. Description
-#: ../cupsys.templates:70
-msgid "Admin password:"
-msgstr ""
-
-#. Type: password
-#. Description
-#: ../cupsys.templates:70
-msgid "Please enter the password for the admin (username 'root') of CUPS."
-msgstr ""
-
-#. Type: password
-#. Description
-#: ../cupsys.templates:70
-msgid "You can add/replace/delete CUPS password information by using lpadmin."
-msgstr ""
 
 #~ msgid "ipp, lpd, parallel, scsi, serial, socket, usb"
 #~ msgstr "ipp, lpd, parallell, scsi, seriell, socket, usb"

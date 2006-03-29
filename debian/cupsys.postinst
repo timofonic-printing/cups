@@ -113,21 +113,22 @@ EOF
 	  fi
 	done
 
-	# Create password file
-	db_get cupsys/adminpassword
-        VAL=$(echo -n "root:CUPS:$RET" | md5sum | cut -d' ' -f1)
-	if [ -f /etc/cups/passwd.md5 ]; then
-          if [ "$(grep "^root:" /etc/cups/passwd.md5)" ]; then
-	    sed -e "s/^root:lpadmin:.*/root:lpadmin:$VAL/" /etc/cups/passwd.md5 > /etc/cups/passwd.md5.$$
-	    mv /etc/cups/passwd.md5.$$ /etc/cups/passwd.md5
-          else
-	    echo "root:lpadmin:$VAL" >> /etc/cups/passwd.md5
-          fi
-	else
-	  echo "root:lpadmin:$VAL" > /etc/cups/passwd.md5
-	  chown root:nogroup /etc/cups/passwd.md5
-	  chmod 600 /etc/cups/passwd.md5
-	fi
+	# Create password file for Digest authentication
+        # (removed: Debian CUPS uses PAM and basic authentication)
+	#db_get cupsys/adminpassword
+        #VAL=$(echo -n "root:CUPS:$RET" | md5sum | cut -d' ' -f1)
+	#if [ -f /etc/cups/passwd.md5 ]; then
+        #  if [ "$(grep "^root:" /etc/cups/passwd.md5)" ]; then
+	#    sed -e "s/^root:lpadmin:.*/root:lpadmin:$VAL/" /etc/cups/passwd.md5 > /etc/cups/passwd.md5.$$
+	#    mv /etc/cups/passwd.md5.$$ /etc/cups/passwd.md5
+        #  else
+	#    echo "root:lpadmin:$VAL" >> /etc/cups/passwd.md5
+        #  fi
+	#else
+	#  echo "root:lpadmin:$VAL" > /etc/cups/passwd.md5
+	#  chown root:nogroup /etc/cups/passwd.md5
+	#  chmod 600 /etc/cups/passwd.md5
+	#fi
 
 	# Create /etc/cups/cups.d/ports.conf and /etc/cups/cups.d/browse.conf
 	db_get cupsys/ports

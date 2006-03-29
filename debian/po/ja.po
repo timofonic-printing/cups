@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cupsys 1.2\n"
 "Report-Msgid-Bugs-To: pkg-cups-devel@lists.alioth.debian.org\n"
-"POT-Creation-Date: 2005-12-17 13:23+0900\n"
+"POT-Creation-Date: 2006-03-29 14:05+0000\n"
 "PO-Revision-Date: 2005-12-17 13:24+0900\n"
 "Last-Translator: Kenshi Muto <kmuto@debian.org>\n"
 "Language-Team: Japanese <debian-japanese@lists.debian.org>\n"
@@ -261,20 +261,12 @@ msgstr "ポート番号またはホスト名の解釈中にエラーが発生し
 msgid "Please correct your input."
 msgstr "入力値を修正してください。"
 
-#. Type: password
-#. Description
-#: ../cupsys.templates:70
-msgid "Admin password:"
-msgstr "管理者パスワード:"
+#~ msgid "Admin password:"
+#~ msgstr "管理者パスワード:"
 
-#. Type: password
-#. Description
-#: ../cupsys.templates:70
-msgid "Please enter the password for the admin (username 'root') of CUPS."
-msgstr "CUPS 管理者 (ユーザ名 'root') 用のパスワードを入力してください。"
+#~ msgid "Please enter the password for the admin (username 'root') of CUPS."
+#~ msgstr "CUPS 管理者 (ユーザ名 'root') 用のパスワードを入力してください。"
 
-#. Type: password
-#. Description
-#: ../cupsys.templates:70
-msgid "You can add/replace/delete CUPS password information by using lpadmin."
-msgstr "lpadmin を使って CUPS パスワード情報を追加/変更/削除できます。"
+#~ msgid ""
+#~ "You can add/replace/delete CUPS password information by using lpadmin."
+#~ msgstr "lpadmin を使って CUPS パスワード情報を追加/変更/削除できます。"

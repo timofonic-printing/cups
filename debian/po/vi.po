@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cupsys 1.1.24\n"
 "Report-Msgid-Bugs-To: pkg-cups-devel@lists.alioth.debian.org\n"
-"POT-Creation-Date: 2005-12-17 13:23+0900\n"
+"POT-Creation-Date: 2006-03-29 14:05+0000\n"
 "PO-Revision-Date: 2005-12-19 17:24+1030\n"
 "Last-Translator: Clytie Siddall <clytie@riverland.net.au>\n"
 "Language-Team: Vietnamese <gnomevi-list@lists.sourceforge.net>\n"
@@ -252,24 +252,6 @@ msgstr "gặp lỗi khi phân tách số cổng hay tên máy."
 #: ../cupsys.templates:63
 msgid "Please correct your input."
 msgstr "Hãy sửa dữ liệu gõ."
-
-#. Type: password
-#. Description
-#: ../cupsys.templates:70
-msgid "Admin password:"
-msgstr ""
-
-#. Type: password
-#. Description
-#: ../cupsys.templates:70
-msgid "Please enter the password for the admin (username 'root') of CUPS."
-msgstr ""
-
-#. Type: password
-#. Description
-#: ../cupsys.templates:70
-msgid "You can add/replace/delete CUPS password information by using lpadmin."
-msgstr ""
 
 #~ msgid "ipp, lpd, parallel, scsi, serial, socket, usb"
 #~ msgstr "ipp, lpd, song song, scsi, nối tiếp, ổ cắm, usb"
