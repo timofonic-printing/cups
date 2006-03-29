@@ -5,18 +5,18 @@
 ## DP: libcupsimage needs to link to libcupsys, or we get unresolved symbols
 
 @DPATCH@
-diff -urNad cupsys-1.1.99.b1.r4841~/filter/Makefile cupsys-1.1.99.b1.r4841/filter/Makefile
---- cupsys-1.1.99.b1.r4841~/filter/Makefile	2005-10-21 00:05:42.000000000 +1000
-+++ cupsys-1.1.99.b1.r4841/filter/Makefile	2005-12-09 17:46:39.000000000 +1100
-@@ -131,9 +131,9 @@
+diff -urNad cupsys-1.1.99.b2~/filter/Makefile cupsys-1.1.99.b2/filter/Makefile
+--- cupsys-1.1.99.b2~/filter/Makefile	2006-03-15 19:57:13.000000000 +0900
++++ cupsys-1.1.99.b2/filter/Makefile	2006-03-15 19:57:13.000000000 +0900
+@@ -205,9 +205,9 @@
  # libcupsimage.so.2, libcupsimage.sl.2
  #
  
 -libcupsimage.so.2 libcupsimage.sl.2:	$(IMAGEOBJS)
 +libcupsimage.so.2 libcupsimage.sl.2:	$(IMAGEOBJS) ../cups/$(LIBCUPS)
  	echo Linking $@...
--	$(DSO) $(DSOFLAGS) -o $@ $(IMAGEOBJS) $(DSOLIBS) -lm
-+	$(DSO) $(DSOFLAGS) -o $@ $(IMAGEOBJS) $(DSOLIBS) -lm ../cups/$(LIBCUPS)
+-	$(DSO) $(ARCHFLAGS) $(DSOFLAGS) -o $@ $(IMAGEOBJS) $(DSOLIBS) -lm
++	$(DSO) $(ARCHFLAGS) $(DSOFLAGS) -o $@ $(IMAGEOBJS) $(DSOLIBS) -lm ../cups/$(LIBCUPS)
  	$(RM) `basename $@ .2`
  	$(LN) $@ `basename $@ .2`
  
