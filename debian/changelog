@@ -1,8 +1,11 @@
 cupsys (1.1.99.b2-1) UNRELEASED-experimental; urgency=low
 
   TODO:
-    CUPS 1.2b2 changes many things. We need to solve some problems
+    CUPS 1.2b2 and rc1 change many things. We need to solve some problems
     before uploading.
+    Upstream looks try to release CUPS 1.2 in a few weeks.
+    Kenshi would like to use official 1.2 code as orig.tar.gz,
+    because it includes many files which can't be handled by dpatch diff.
 
   - On i386, it installs libraries to lib64 by default.
     Some of other architectures may use other directory.
@@ -10,8 +13,8 @@ cupsys (1.1.99.b2-1) UNRELEASED-experimental; urgency=low
   - Some Debian patches seem be rejected. We need to verify again.
     03_manext, 04_freebsd, 06_replacepdftops, 07_removecvstag,
     09_runasuser_fixes, 44_fixconfdirperms, 48_stdlib
-  - At least on Kenshi's environment, backend programs won't work.
-    (usb and parallel backends return nothing.)
+  - usb and parallel backend programs won't work when I defined lp
+    as RunAsUser. root works.
   - /etc/cups/client.conf, /usr/sbin/disable, /usr/sbin/enable are
     removed from upstream.
   - gs-esp/other alternatives issue (although other gs needs to apply
@@ -20,8 +23,12 @@ cupsys (1.1.99.b2-1) UNRELEASED-experimental; urgency=low
     chroot without pam info.
 
   [ Kenshi Muto ]
-  * New upstream release (1.2b2)
+  * New upstream release (1.2b2) + r5293
   * Enable LDAP support.
+  * Remove duplicated update-rc.d (closes: #356911)
+  * Stopped asking admin password because it works only if user chooses
+    digest authentication. The default configuration of Debian uses
+    PAM and basic authentication.
 
   [ Martin Pitt ]
   * New SVN release taken from r4892.
