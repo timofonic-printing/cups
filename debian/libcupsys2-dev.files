@@ -1,6 +1,6 @@
 usr/bin/cups-config
-usr/lib64/libcups.so
-usr/lib64/libcups.a
+usr/lib/libcups.so
+usr/lib/libcups.a
 usr/include/cups/array.h
 usr/include/cups/cups.h
 usr/include/cups/dir.h
@@ -9,7 +9,6 @@ usr/include/cups/http.h
 usr/include/cups/ipp.h
 usr/include/cups/language.h
 usr/include/cups/md5.h
-usr/include/cups/normalize.h
 usr/include/cups/ppd.h
 usr/include/cups/transcode.h
 usr/include/cups/adminutil.h

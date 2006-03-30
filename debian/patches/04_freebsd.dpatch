@@ -5,72 +5,72 @@
 ## DP: man extension is handled by dh_installman
 
 @DPATCH@
-diff -urNad cupsys-1.1.99.b1.r4885~/backend/parallel.c cupsys-1.1.99.b1.r4885/backend/parallel.c
---- cupsys-1.1.99.b1.r4885~/backend/parallel.c	2005-12-18 12:40:26.000000000 +0900
-+++ cupsys-1.1.99.b1.r4885/backend/parallel.c	2005-12-18 12:40:34.000000000 +0900
-@@ -683,7 +683,7 @@
+diff -urNad cupsys-1.1.99.r5357~/backend/parallel.c cupsys-1.1.99.r5357/backend/parallel.c
+--- cupsys-1.1.99.r5357~/backend/parallel.c	2006-03-30 14:15:57.000000000 +0000
++++ cupsys-1.1.99.r5357/backend/parallel.c	2006-03-30 14:23:59.000000000 +0000
+@@ -695,7 +695,7 @@
        printf("direct parallel:%s \"Unknown\" \"Parallel Port #%d\"\n", device, i + 1);
      }
    }
--#elif defined(__FreeBSD__) || defined(__OpenBSD__) || defined(__NetBSD__)
-+#elif defined(__FreeBSD__) || defined(__OpenBSD__) || defined(__NetBSD__) || defined(__FreeBSD_kernel__)
+-#elif defined(__FreeBSD__) || defined(__OpenBSD__) || defined(__NetBSD__) || defined(__DragonFly__)
++#elif defined(__FreeBSD__) || defined(__OpenBSD__) || defined(__NetBSD__) || defined(__DragonFly__) || defined(__FreeBSD_kernel__)
    int	i;			/* Looping var */
    int	fd;			/* File descriptor */
    char	device[255];		/* Device filename */
-diff -urNad cupsys-1.1.99.b1.r4885~/backend/serial.c cupsys-1.1.99.b1.r4885/backend/serial.c
---- cupsys-1.1.99.b1.r4885~/backend/serial.c	2005-12-18 12:40:26.000000000 +0900
-+++ cupsys-1.1.99.b1.r4885/backend/serial.c	2005-12-18 12:40:34.000000000 +0900
-@@ -650,10 +650,10 @@
+diff -urNad cupsys-1.1.99.r5357~/backend/serial.c cupsys-1.1.99.r5357/backend/serial.c
+--- cupsys-1.1.99.r5357~/backend/serial.c	2006-03-07 22:07:44.000000000 +0000
++++ cupsys-1.1.99.r5357/backend/serial.c	2006-03-30 14:24:53.000000000 +0000
+@@ -661,10 +661,10 @@
  void
  list_devices(void)
  {
--#if defined(__hpux) || defined(__sgi) || defined(__sun) || defined(__FreeBSD__) || defined(__OpenBSD__)
-+#if defined(__hpux) || defined(__sgi) || defined(__sun) || defined(__FreeBSD__) || defined(__OpenBSD__) || defined(__FreeBSD_kernel__)
+-#if defined(__hpux) || defined(__sgi) || defined(__sun) || defined(__FreeBSD__) || defined(__OpenBSD__) || defined(__DragonFly__)
++#if defined(__hpux) || defined(__sgi) || defined(__sun) || defined(__FreeBSD__) || defined(__OpenBSD__) || defined(__DragonFly__) || defined(__FreeBSD_kernel__)
    static char	*funky_hex = "0123456789abcdefghijklmnopqrstuvwxyz";
  				/* Funky hex numbering used for some devices */
 -#endif /* __hpux || __sgi || __sun || __FreeBSD__ || __OpenBSD__ */
 +#endif /* __hpux || __sgi || __sun || __FreeBSD__ || __OpenBSD__ || __FreeBSD_kernel__ */
  
  #if defined(__linux) || defined(linux) || defined(__linux__)
-   int	i;		/* Looping var */
-@@ -900,7 +900,7 @@
+   int	i, j;		/* Looping vars */
+@@ -926,7 +926,7 @@
        printf("serial serial:%s?baud=38400 \"Unknown\" \"Serial Port #%d\"\n",
               device, i + 1);
    }
--#elif defined(__FreeBSD__) || defined(__OpenBSD__)
-+#elif defined(__FreeBSD__) || defined(__OpenBSD__) || defined(__FreeBSD_kernel__)
+-#elif defined(__FreeBSD__) || defined(__OpenBSD__) || defined(__DragonFly__)
++#elif defined(__FreeBSD__) || defined(__OpenBSD__) || defined(__DragonFly__) || defined(__FreeBSD_kernel__)
    int	i, j;		/* Looping vars */
    int	fd;		/* File descriptor */
    char	device[255];	/* Device filename */
-diff -urNad cupsys-1.1.99.b1.r4885~/backend/usb-unix.c cupsys-1.1.99.b1.r4885/backend/usb-unix.c
---- cupsys-1.1.99.b1.r4885~/backend/usb-unix.c	2005-12-18 12:40:26.000000000 +0900
-+++ cupsys-1.1.99.b1.r4885/backend/usb-unix.c	2005-12-18 12:40:34.000000000 +0900
-@@ -394,7 +394,7 @@
+diff -urNad cupsys-1.1.99.r5357~/backend/usb-unix.c cupsys-1.1.99.r5357/backend/usb-unix.c
+--- cupsys-1.1.99.r5357~/backend/usb-unix.c	2006-03-09 19:22:36.000000000 +0000
++++ cupsys-1.1.99.r5357/backend/usb-unix.c	2006-03-30 14:25:13.000000000 +0000
+@@ -397,7 +397,7 @@
    }
  #elif defined(__hpux)
  #elif defined(__osf)
--#elif defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__)
-+#elif defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__) || defined(__FreeBSD_kernel__)
+-#elif defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__) || defined(__DragonFly__)
++#elif defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__) || defined(__DragonFly__) || defined(__FreeBSD_kernel__)
    int   i;                      /* Looping var */
    char  device[255];            /* Device filename */
  
-diff -urNad cupsys-1.1.99.b1.r4885~/backend/usb.c cupsys-1.1.99.b1.r4885/backend/usb.c
---- cupsys-1.1.99.b1.r4885~/backend/usb.c	2005-12-18 12:40:26.000000000 +0900
-+++ cupsys-1.1.99.b1.r4885/backend/usb.c	2005-12-18 12:40:34.000000000 +0900
+diff -urNad cupsys-1.1.99.r5357~/backend/usb.c cupsys-1.1.99.r5357/backend/usb.c
+--- cupsys-1.1.99.r5357~/backend/usb.c	2006-02-24 03:15:13.000000000 +0000
++++ cupsys-1.1.99.r5357/backend/usb.c	2006-03-30 14:25:27.000000000 +0000
 @@ -72,7 +72,7 @@
  
  #ifdef __APPLE__
  #  include "usb-darwin.c"
--#elif defined(__linux) || defined(__sun) || defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__)
-+#elif defined(__linux) || defined(__sun) || defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__) || defined(__FreeBSD_kernel__)
+-#elif defined(__linux) || defined(__sun) || defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__) || defined(__DragonFly__)
++#elif defined(__linux) || defined(__sun) || defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__) || defined(__DragonFly__) || defined(__FreeBSD_kernel__)
  #  include "usb-unix.c"
  #else
  /*
-diff -urNad cupsys-1.1.99.b1.r4885~/config-scripts/cups-directories.m4 cupsys-1.1.99.b1.r4885/config-scripts/cups-directories.m4
---- cupsys-1.1.99.b1.r4885~/config-scripts/cups-directories.m4	2005-12-18 12:40:26.000000000 +0900
-+++ cupsys-1.1.99.b1.r4885/config-scripts/cups-directories.m4	2005-12-18 12:40:34.000000000 +0900
-@@ -125,7 +125,7 @@
- 			INITDDIR="/System/Library/StartupItems/PrintingServices"
+diff -urNad cupsys-1.1.99.r5357~/config-scripts/cups-directories.m4 cupsys-1.1.99.r5357/config-scripts/cups-directories.m4
+--- cupsys-1.1.99.r5357~/config-scripts/cups-directories.m4	2006-03-20 19:06:50.000000000 +0000
++++ cupsys-1.1.99.r5357/config-scripts/cups-directories.m4	2006-03-30 14:22:34.000000000 +0000
+@@ -135,7 +135,7 @@
+ 				"/System/Library/StartupItems/PrintingServices")
  			;;
  
 -		Linux | GNU)
@@ -78,11 +78,11 @@ diff -urNad cupsys-1.1.99.b1.r4885~/config-scripts/cups-directories.m4 cupsys-1.
  			# Linux/HURD seems to choose an init.d directory at random...
  			if test -d /sbin/init.d; then
  				# SuSE
-diff -urNad cupsys-1.1.99.b1.r4885~/configure cupsys-1.1.99.b1.r4885/configure
---- cupsys-1.1.99.b1.r4885~/configure	2005-12-18 12:40:34.000000000 +0900
-+++ cupsys-1.1.99.b1.r4885/configure	2005-12-18 12:40:50.000000000 +0900
-@@ -6884,7 +6884,7 @@
- 			INITDDIR="/System/Library/StartupItems/PrintingServices"
+diff -urNad cupsys-1.1.99.r5357~/configure cupsys-1.1.99.r5357/configure
+--- cupsys-1.1.99.r5357~/configure	2006-03-30 11:37:48.000000000 +0000
++++ cupsys-1.1.99.r5357/configure	2006-03-30 14:26:17.000000000 +0000
+@@ -8264,7 +8264,7 @@
+ 
  			;;
  
 -		Linux | GNU)
