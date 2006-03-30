@@ -6,8 +6,8 @@
 
 @DPATCH@
 diff -urNad cupsys-1.1.99.r5357~/backend/parallel.c cupsys-1.1.99.r5357/backend/parallel.c
---- cupsys-1.1.99.r5357~/backend/parallel.c	2006-03-30 14:15:57.000000000 +0000
-+++ cupsys-1.1.99.r5357/backend/parallel.c	2006-03-30 14:23:59.000000000 +0000
+--- cupsys-1.1.99.r5357~/backend/parallel.c	2006-03-07 22:07:44.000000000 +0000
++++ cupsys-1.1.99.r5357/backend/parallel.c	2006-03-30 15:21:44.000000000 +0000
 @@ -695,7 +695,7 @@
        printf("direct parallel:%s \"Unknown\" \"Parallel Port #%d\"\n", device, i + 1);
      }
@@ -19,7 +19,7 @@ diff -urNad cupsys-1.1.99.r5357~/backend/parallel.c cupsys-1.1.99.r5357/backend/
    char	device[255];		/* Device filename */
 diff -urNad cupsys-1.1.99.r5357~/backend/serial.c cupsys-1.1.99.r5357/backend/serial.c
 --- cupsys-1.1.99.r5357~/backend/serial.c	2006-03-07 22:07:44.000000000 +0000
-+++ cupsys-1.1.99.r5357/backend/serial.c	2006-03-30 14:24:53.000000000 +0000
++++ cupsys-1.1.99.r5357/backend/serial.c	2006-03-30 15:21:44.000000000 +0000
 @@ -661,10 +661,10 @@
  void
  list_devices(void)
@@ -44,7 +44,7 @@ diff -urNad cupsys-1.1.99.r5357~/backend/serial.c cupsys-1.1.99.r5357/backend/se
    char	device[255];	/* Device filename */
 diff -urNad cupsys-1.1.99.r5357~/backend/usb-unix.c cupsys-1.1.99.r5357/backend/usb-unix.c
 --- cupsys-1.1.99.r5357~/backend/usb-unix.c	2006-03-09 19:22:36.000000000 +0000
-+++ cupsys-1.1.99.r5357/backend/usb-unix.c	2006-03-30 14:25:13.000000000 +0000
++++ cupsys-1.1.99.r5357/backend/usb-unix.c	2006-03-30 15:21:44.000000000 +0000
 @@ -397,7 +397,7 @@
    }
  #elif defined(__hpux)
@@ -56,7 +56,7 @@ diff -urNad cupsys-1.1.99.r5357~/backend/usb-unix.c cupsys-1.1.99.r5357/backend/
  
 diff -urNad cupsys-1.1.99.r5357~/backend/usb.c cupsys-1.1.99.r5357/backend/usb.c
 --- cupsys-1.1.99.r5357~/backend/usb.c	2006-02-24 03:15:13.000000000 +0000
-+++ cupsys-1.1.99.r5357/backend/usb.c	2006-03-30 14:25:27.000000000 +0000
++++ cupsys-1.1.99.r5357/backend/usb.c	2006-03-30 15:21:44.000000000 +0000
 @@ -72,7 +72,7 @@
  
  #ifdef __APPLE__
@@ -68,7 +68,7 @@ diff -urNad cupsys-1.1.99.r5357~/backend/usb.c cupsys-1.1.99.r5357/backend/usb.c
  /*
 diff -urNad cupsys-1.1.99.r5357~/config-scripts/cups-directories.m4 cupsys-1.1.99.r5357/config-scripts/cups-directories.m4
 --- cupsys-1.1.99.r5357~/config-scripts/cups-directories.m4	2006-03-20 19:06:50.000000000 +0000
-+++ cupsys-1.1.99.r5357/config-scripts/cups-directories.m4	2006-03-30 14:22:34.000000000 +0000
++++ cupsys-1.1.99.r5357/config-scripts/cups-directories.m4	2006-03-30 15:21:44.000000000 +0000
 @@ -135,7 +135,7 @@
  				"/System/Library/StartupItems/PrintingServices")
  			;;
@@ -79,8 +79,8 @@ diff -urNad cupsys-1.1.99.r5357~/config-scripts/cups-directories.m4 cupsys-1.1.9
  			if test -d /sbin/init.d; then
  				# SuSE
 diff -urNad cupsys-1.1.99.r5357~/configure cupsys-1.1.99.r5357/configure
---- cupsys-1.1.99.r5357~/configure	2006-03-30 11:37:48.000000000 +0000
-+++ cupsys-1.1.99.r5357/configure	2006-03-30 14:26:17.000000000 +0000
+--- cupsys-1.1.99.r5357~/configure	2006-03-30 15:20:38.000000000 +0000
++++ cupsys-1.1.99.r5357/configure	2006-03-30 15:21:44.000000000 +0000
 @@ -8264,7 +8264,7 @@
  
  			;;
