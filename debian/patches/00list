@@ -1,11 +1,9 @@
-#00_r5293.dpatch
 01_cupsimage.dpatch
 #02_configure.dpatch
 #03_manext.dpatch
 04_freebsd.dpatch
 05_avoidunknowngroup.dpatch
-#06_replacepdftops.dpatch
-#07_removecvstag.dpatch
+07_removecvstag.dpatch
 08_cupsd.conf.conf.d.dpatch
 #09_runasuser_fixes.dpatch
 11_pam.dpatch
