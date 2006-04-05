@@ -1,0 +1,34 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 06_disable_backend_setuid.dpatch by  <mpitt@debian.org>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: No description.
+
+@DPATCH@
+diff -urNad cupsys~/scheduler/cups-deviced.c cupsys/scheduler/cups-deviced.c
+--- cupsys~/scheduler/cups-deviced.c	2006-03-08 13:12:12.000000000 +0100
++++ cupsys/scheduler/cups-deviced.c	2006-04-05 14:18:19.000000000 +0200
+@@ -210,23 +210,6 @@
+       continue;
+ 
+    /*
+-    * Change effective users depending on the backend permissions...
+-    */
+-
+-    if (!getuid())
+-    {
+-     /*
+-      * Backends without permissions for normal users run as root,
+-      * all others run as the unprivileged user...
+-      */
+-
+-      if (!(dent->fileinfo.st_mode & (S_IRWXG | S_IRWXO)))
+-        seteuid(0);
+-      else
+-        seteuid(normal_user);
+-    }
+-
+-   /*
+     * Run the backend with no arguments and collect the output...
+     */
+ 

@@ -4,6 +4,7 @@
 03_clean.dpatch
 04_freebsd.dpatch
 05_avoidunknowngroup.dpatch
+06_disable_backend_setuid.dpatch
 07_removecvstag.dpatch
 08_cupsd.conf.conf.d.dpatch
 #09_runasuser_fixes.dpatch
