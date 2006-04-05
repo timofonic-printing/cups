@@ -1,4 +1,4 @@
-cupsys (1.1.99.r5357-1) UNRELEASED-experimental; urgency=low
+cupsys (1.1.99.rc1-1) UNRELEASED-experimental; urgency=low
 
   TODO:
     CUPS rc1 change many things. We need to solve some problems
@@ -24,7 +24,6 @@ cupsys (1.1.99.r5357-1) UNRELEASED-experimental; urgency=low
     chroot without pam info.
 
   [ Kenshi Muto ]
-  * New upstream release (1.2rc1) + r5357
   * Enable LDAP support.
   * Remove duplicated update-rc.d (closes: #356911)
   * Stopped asking admin password because it works only if user chooses
@@ -34,15 +33,18 @@ cupsys (1.1.99.r5357-1) UNRELEASED-experimental; urgency=low
   * 03_clean.dpatch: Remove produced and remained files during build.
 
   [ Martin Pitt ]
-  * New SVN release taken from r4892.
+  * New upstream release 1.2RC1.
   * debian/patches/48_stdlib.dpatch: Adapted to new upstream version.
   * debian/cupsys.init.d:
     - Fix arguments of start-stop-daemon and remove the hideous kill
       algorithm.
     - Ensure that /var/run/cupsd exists; this makes the init script work with
       /var/run mounted on a tmpfs.
+  * debian/libcupsys2-dev.files, debian/libcupsimage2-dev.files: Remove static
+    library; upstream does not build them any more, and they are useless
+    anyway.
 
- -- Kenshi Muto <kmuto@debian.org>  Sat, 11 Mar 2006 11:27:39 +0900
+ -- Martin Pitt <mpitt@debian.org>  Wed,  5 Apr 2006 10:24:50 +0200
 
 cupsys (1.1.99.b1.r4885-1) experimental; urgency=low
 

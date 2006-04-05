@@ -1,6 +1,5 @@
 usr/bin/cups-config
 usr/lib/libcups.so
-usr/lib/libcups.a
 usr/include/cups/array.h
 usr/include/cups/cups.h
 usr/include/cups/dir.h
