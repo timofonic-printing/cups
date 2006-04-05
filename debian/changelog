@@ -12,10 +12,6 @@ cupsys (1.1.99.rc1-1) UNRELEASED-experimental; urgency=low
     Before compiling, you need to run "autoconf". (it will be unneeded
     when cups 1.2.tar.gz is officially released)
 
-  - Some Debian patches seem be rejected. We need to verify again.
-    09_runasuser_fixes
-  - usb and parallel backend programs won't work when I defined lp
-    as RunAsUser. root works.
   - /etc/cups/client.conf, /usr/sbin/disable, /usr/sbin/enable are
     removed from upstream.
   - gs-esp/other alternatives issue (although other gs needs to apply
@@ -49,8 +45,10 @@ cupsys (1.1.99.rc1-1) UNRELEASED-experimental; urgency=low
     0660, which is inaccessible for a process which runs as lp:root).
   * debian/rules: Remove --with-cups-{user,group}, upstream does not support
     them any more.
+  * debian/patches/09_runasuser_fixes.dpatch: Remove group handling bits,
+    since RunAsUser was dropped upstream.
 
- -- Martin Pitt <mpitt@debian.org>  Wed,  5 Apr 2006 15:04:08 +0200
+ -- Martin Pitt <mpitt@debian.org>  Wed,  5 Apr 2006 15:06:26 +0200
 
 cupsys (1.1.99.b1.r4885-1) experimental; urgency=low
 
