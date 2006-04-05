@@ -7,11 +7,6 @@ cupsys (1.1.99.rc1-1) UNRELEASED-experimental; urgency=low
     Kenshi would like to use official 1.2 code as orig.tar.gz,
     because it includes many files which can't be handled by dpatch diff.
 
-    Source code (cupsys-1.1.99.r5357.orig.tar.gz) is at
-    http://kmuto.jp/debian/mtu/pool/main/c/cupsys/
-    Before compiling, you need to run "autoconf". (it will be unneeded
-    when cups 1.2.tar.gz is officially released)
-
   - /etc/cups/client.conf, /usr/sbin/disable, /usr/sbin/enable are
     removed from upstream.
   - gs-esp/other alternatives issue (although other gs needs to apply
