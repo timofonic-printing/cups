@@ -18,7 +18,7 @@ include /usr/share/cdbs/1/rules/dpatch.mk
 
 unpatch: deapply-dpatches
 
-DEB_CONFIGURE_EXTRA_FLAGS := --with-optim=$(DEB_OPTFLAGS) --with-cups-group=lpadmin --libdir=/usr/lib --mandir=/usr/share/man --with-docdir=/usr/share/cups/doc-root --enable-slp --enable-libpaper --enable-ssl --enable-gnutls --disable-openssl --enable-threads --enable-static --enable-dbus --disable-pdftops --disable-launchd --with-cups-user=lp --with-cups-group=nogroup --with-system-groups=lp
+DEB_CONFIGURE_EXTRA_FLAGS := --with-optim=$(DEB_OPTFLAGS) --libdir=/usr/lib --mandir=/usr/share/man --with-docdir=/usr/share/cups/doc-root --enable-slp --enable-libpaper --enable-ssl --enable-gnutls --disable-openssl --enable-threads --enable-static --enable-dbus --disable-pdftops --disable-launchd --with-system-groups=lp
 DEB_MAKE_INSTALL_TARGET := install BUILDROOT=$(DEB_DESTDIR)
 #DESTDIR=$(DEB_DESTDIR) BINDIR=$(DEB_DESTDIR)/usr/bin SBINDIR=$(DEB_DESTDIR)/usr/sbin INCLUDEDIR=$(DEB_DESTDIR)/usr/include LIBDIR=$(DEB_DESTDIR)/usr/lib SERVERBIN=$(DEB_DESTDIR)/usr/lib/cups SERVERROOT=$(DEB_DESTDIR)/etc/cups BUILDROOT=$(DEB_DESTDIR)
 
