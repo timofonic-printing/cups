@@ -38,12 +38,12 @@ cupsys (1.1.99.rc1-1) UNRELEASED-experimental; urgency=low
     changing in scheduler/cups-deviced.c which was introduced recently in
     upstream. It totally breaks device node access (e. g. /dev/lp0 is root:lp
     0660, which is inaccessible for a process which runs as lp:root).
-  * debian/rules: Remove --with-cups-{user,group}, upstream does not support
-    them any more.
+  * debian/rules: Remove --with-cups-user, upstream does not support
+    it any more.
   * debian/patches/09_runasuser_fixes.dpatch: Remove group handling bits,
     since RunAsUser was dropped upstream.
 
- -- Martin Pitt <mpitt@debian.org>  Wed,  5 Apr 2006 15:06:26 +0200
+ -- Martin Pitt <mpitt@debian.org>  Wed,  5 Apr 2006 16:16:06 +0200
 
 cupsys (1.1.99.b1.r4885-1) experimental; urgency=low
 
