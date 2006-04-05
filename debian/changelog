@@ -13,7 +13,7 @@ cupsys (1.1.99.rc1-1) UNRELEASED-experimental; urgency=low
     when cups 1.2.tar.gz is officially released)
 
   - Some Debian patches seem be rejected. We need to verify again.
-    09_runasuser_fixes, 44_fixconfdirperms
+    09_runasuser_fixes
   - usb and parallel backend programs won't work when I defined lp
     as RunAsUser. root works.
   - /etc/cups/client.conf, /usr/sbin/disable, /usr/sbin/enable are
@@ -44,7 +44,7 @@ cupsys (1.1.99.rc1-1) UNRELEASED-experimental; urgency=low
     library; upstream does not build them any more, and they are useless
     anyway.
 
- -- Martin Pitt <mpitt@debian.org>  Wed,  5 Apr 2006 10:24:50 +0200
+ -- Martin Pitt <mpitt@debian.org>  Wed,  5 Apr 2006 12:40:55 +0200
 
 cupsys (1.1.99.b1.r4885-1) experimental; urgency=low
 

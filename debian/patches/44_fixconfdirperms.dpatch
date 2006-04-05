@@ -6,9 +6,9 @@
 
 @DPATCH@
 diff -urNad cupsys~/scheduler/conf.c cupsys/scheduler/conf.c
---- cupsys~/scheduler/conf.c	2005-11-14 22:53:30.000000000 +0100
-+++ cupsys/scheduler/conf.c	2005-12-07 15:17:32.000000000 +0100
-@@ -366,10 +366,10 @@
+--- cupsys~/scheduler/conf.c	2006-04-05 12:36:09.000000000 +0200
++++ cupsys/scheduler/conf.c	2006-04-05 12:40:14.000000000 +0200
+@@ -338,10 +338,10 @@
    endpwent();
  
   /*
@@ -21,7 +21,7 @@ diff -urNad cupsys~/scheduler/conf.c cupsys/scheduler/conf.c
    endgrent();
  
    if (group != NULL)
-@@ -515,22 +515,10 @@
+@@ -518,22 +518,10 @@
  
        cupsdLogMessage(CUPSD_LOG_NOTICE,
                        "Group and SystemGroup cannot use the same groups!");
@@ -46,40 +46,18 @@ diff -urNad cupsys~/scheduler/conf.c cupsys/scheduler/conf.c
      }
    }
  
-@@ -614,7 +602,7 @@
-   if (access(temp, 0))
-     mkdir(temp, 0755);
-   chown(temp, RunUser, Group);
--  chmod(temp, 0755);
-+  chmod(temp, 02755);
+@@ -617,11 +605,13 @@
+   check_permissions(StateDir, "certs", RunUser ? 0711 : 0511, User,
+                     SystemGroupIDs[0], 1, 1);
  
-   chown(StateDir, RunUser, Group);
-   chmod(StateDir, 0775);
-@@ -629,13 +617,13 @@
-     chmod(temp, 0510);
- 
-   chown(ServerRoot, RunUser, Group);
--  chmod(ServerRoot, 0755);
-+  chmod(ServerRoot, 03755);
- 
-   snprintf(temp, sizeof(temp), "%s/ppd", ServerRoot);
-   if (access(temp, 0))
-     mkdir(temp, 0755);
-   chown(temp, RunUser, Group);
--  chmod(temp, 0755);
-+  chmod(temp, 02755);
- 
-   snprintf(temp, sizeof(temp), "%s/ssl", ServerRoot);
-   if (access(temp, 0))
-@@ -643,9 +631,11 @@
-   chown(temp, RunUser, Group);
-   chmod(temp, 0700);
- 
+-  check_permissions(ServerRoot, NULL, 0755, RunUser, Group, 1, 0);
++  check_permissions(ServerRoot, NULL, 03755, RunUser, Group, 1, 0);
+   check_permissions(ServerRoot, "ppd", 0755, RunUser, Group, 1, 1);
+   check_permissions(ServerRoot, "ssl", 0700, RunUser, Group, 1, 0);
 +  /* Never alter permissions of central conffile
-   snprintf(temp, sizeof(temp), "%s/cupsd.conf", ServerRoot);
-   chown(temp, RunUser, Group);
-   chmod(temp, ConfigFilePerm);
+   check_permissions(ServerRoot, "cupsd.conf", ConfigFilePerm, RunUser, Group,
+                     0, 0);
 +  */
- 
-   snprintf(temp, sizeof(temp), "%s/classes.conf", ServerRoot);
-   chown(temp, RunUser, Group);
+   check_permissions(ServerRoot, "classes.conf", 0600, RunUser, Group, 0, 0);
+   check_permissions(ServerRoot, "printers.conf", 0600, RunUser, Group, 0, 0);
+   check_permissions(ServerRoot, "passwd.md5", 0600, User, Group, 0, 0);
