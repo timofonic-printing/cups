@@ -58,7 +58,6 @@ binary-post-install/cupsys::
 	(install -m 755 -o root -g root $(DEB_DESTDIR)/../pdftops $(DEB_DESTDIR)/../cupsys/usr/lib/cups/filter/)
 	install -o root -g root -m 644 debian/cupsys.default debian/cupsys/etc/default/cupsys
 binary-post-install/libcupsimage2-dev::
-	#(cd debian/libcupsimage2-dev && patch -p0 < ../image.h.patch)
 	rm -r debian/libcupsimage2-dev/usr/share/doc/libcupsimage2-dev
 	ln -s libcupsimage2 debian/libcupsimage2-dev/usr/share/doc/libcupsimage2-dev
 binary-post-install/libcupsys2-gnutls10::
