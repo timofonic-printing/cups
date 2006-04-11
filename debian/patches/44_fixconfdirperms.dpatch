@@ -5,23 +5,10 @@
 ## DP: No description.
 
 @DPATCH@
-diff -urNad cupsys~/scheduler/conf.c cupsys/scheduler/conf.c
---- cupsys~/scheduler/conf.c	2006-04-05 12:36:09.000000000 +0200
-+++ cupsys/scheduler/conf.c	2006-04-05 12:40:14.000000000 +0200
-@@ -338,10 +338,10 @@
-   endpwent();
- 
-  /*
--  * Find the default group (nobody)...
-+  * Find the default group...
-   */
- 
--  group = getgrnam("nobody");
-+  group = getgrnam(CUPS_DEFAULT_GROUP);
-   endgrent();
- 
-   if (group != NULL)
-@@ -518,22 +518,10 @@
+diff -urNad cupsys-1.1.99.rc2~/scheduler/conf.c cupsys-1.1.99.rc2/scheduler/conf.c
+--- cupsys-1.1.99.rc2~/scheduler/conf.c	2006-04-06 20:03:32.000000000 +0000
++++ cupsys-1.1.99.rc2/scheduler/conf.c	2006-04-11 10:35:14.000000000 +0000
+@@ -531,22 +531,10 @@
  
        cupsdLogMessage(CUPSD_LOG_NOTICE,
                        "Group and SystemGroup cannot use the same groups!");
@@ -46,7 +33,7 @@ diff -urNad cupsys~/scheduler/conf.c cupsys/scheduler/conf.c
      }
    }
  
-@@ -617,11 +605,13 @@
+@@ -630,11 +618,13 @@
    check_permissions(StateDir, "certs", RunUser ? 0711 : 0511, User,
                      SystemGroupIDs[0], 1, 1);
  

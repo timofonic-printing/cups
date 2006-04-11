@@ -1,20 +1,11 @@
-cupsys (1.1.99.rc1-1) UNRELEASED-experimental; urgency=low
+cupsys (1.1.99.rc2-1) UNRELEASED-experimental; urgency=low
 
   TODO:
-    CUPS rc1 change many things. We need to solve some problems
-    before uploading.
-    Upstream looks try to release CUPS 1.2 in a few weeks.
-    Kenshi would like to use official 1.2 code as orig.tar.gz,
-    because it includes many files which can't be handled by dpatch diff.
-
   - /etc/cups/client.conf, /usr/sbin/disable, /usr/sbin/enable are
-    removed from upstream.
-  - gs-esp/other alternatives issue (although other gs needs to apply
-    CUPS patch)
-  - The administration of cupsd may not work when user is in
-    chroot without pam info.
+    removed from upstream. Should we care them?
 
   [ Kenshi Muto ]
+  * New upstream release 1.2RC2.
   * Enable LDAP support.
   * Remove duplicated update-rc.d (closes: #356911)
   * Stopped asking admin password because it works only if user chooses
@@ -22,9 +13,9 @@ cupsys (1.1.99.rc1-1) UNRELEASED-experimental; urgency=low
     PAM and basic authentication.
   * Enable dbus support.
   * 03_clean.dpatch: Remove produced and remained files during build.
+  * Use 'lp' for CUPS system group instead of 'lpadmin'.
 
   [ Martin Pitt ]
-  * New upstream release 1.2RC1.
   * debian/patches/48_stdlib.dpatch: Adapted to new upstream version.
   * debian/cupsys.init.d:
     - Fix arguments of start-stop-daemon and remove the hideous kill
@@ -43,7 +34,7 @@ cupsys (1.1.99.rc1-1) UNRELEASED-experimental; urgency=low
   * debian/patches/09_runasuser_fixes.dpatch: Remove group handling bits,
     since RunAsUser was dropped upstream.
 
- -- Martin Pitt <mpitt@debian.org>  Wed,  5 Apr 2006 16:16:06 +0200
+ -- Kenshi Muto <kmuto@debian.org>  Tue, 11 Apr 2006 11:25:45 +0000
 
 cupsys (1.1.99.b1.r4885-1) experimental; urgency=low
 
