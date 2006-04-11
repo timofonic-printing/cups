@@ -1,8 +1,8 @@
 cupsys (1.1.99.rc2-1) UNRELEASED-experimental; urgency=low
 
   TODO:
-  - /etc/cups/client.conf, /usr/sbin/disable, /usr/sbin/enable are
-    removed from upstream. Should we care them?
+  - /etc/cups/client.conf has been removed upstream; {dis,en}able have been
+    renamed to cups{dis,en}able. Should we care about them?
 
   [ Kenshi Muto ]
   * New upstream release 1.2RC2.
@@ -40,7 +40,7 @@ cupsys (1.1.99.rc2-1) UNRELEASED-experimental; urgency=low
     since RunAsUser was dropped upstream.
   * debian/pdftops: Fix reading from stdin (https://launchpad.net/bugs/17124)
 
- -- Martin Pitt <mpitt@debian.org>  Wed, 12 Apr 2006 00:17:36 +0200
+ -- Martin Pitt <mpitt@debian.org>  Wed, 12 Apr 2006 00:19:46 +0200
 
 cupsys (1.1.99.b1.r4885-1) experimental; urgency=low
 
