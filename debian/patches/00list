@@ -1,5 +1,5 @@
 01_cupsimage.dpatch
-#02_configure.dpatch
+02_configure.dpatch
 #03_manext.dpatch
 03_clean.dpatch
 04_freebsd.dpatch
