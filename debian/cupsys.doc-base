@@ -5,9 +5,6 @@ Abstract: This documentation covers the use and administration of a CUPS
  printing system, and the programming interface for the libcups API.
 Section: Apps/System
  
-Format: pdf
-Files: /usr/share/doc/cupsys/online-docs/overview.pdf
- 
 Format: HTML
-Index: /usr/share/doc/cupsys/online-docs/documentation.html
+Index: /usr/share/doc/cupsys/online-docs/index.html
 Files: /usr/share/doc/cupsys/online-docs/*.html
