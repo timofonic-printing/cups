@@ -38,8 +38,9 @@ cupsys (1.1.99.rc2-1) UNRELEASED-experimental; urgency=low
     it any more.
   * debian/patches/09_runasuser_fixes.dpatch: Remove group handling bits,
     since RunAsUser was dropped upstream.
+  * debian/pdftops: Fix reading from stdin (https://launchpad.net/bugs/17124)
 
- -- Kenshi Muto <kmuto@debian.org>  Tue, 11 Apr 2006 11:25:45 +0000
+ -- Martin Pitt <mpitt@debian.org>  Wed, 12 Apr 2006 00:17:36 +0200
 
 cupsys (1.1.99.b1.r4885-1) experimental; urgency=low
 

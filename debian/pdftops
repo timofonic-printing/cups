@@ -89,7 +89,7 @@ if (! defined $pdffile)
 {
 	my $tmpfile = $ENV{TMPDIR} . "pdfin.$$.tmp";
 	open (TEMP, ">$tmpfile") || die ("ERROR: pdftops wrapper: $tmpfile: $!\n");
-	if (! copy (STDIN, TEMP))
+	if (! copy (\*STDIN, \*TEMP))
 	{
 		close (TEMP);
 		unlink $tmpfile;
