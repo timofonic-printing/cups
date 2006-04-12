@@ -161,7 +161,7 @@ Description: Common UNIX Printing System(tm) - BSD commands
  handling various document types.
  .
  This package provides the BSD commands for interacting with CUPS.  It
- is provides separately to allow CUPS to coexist with other printing
+ is provided separately to allow CUPS to coexist with other printing
  systems (to a small degree).
  .
  The terms "Common UNIX Printing System" and "CUPS" are trademarks of
