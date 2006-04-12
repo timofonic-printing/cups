@@ -13,7 +13,7 @@ set -e
 . /lib/lsb/init-functions
 
 # Get the timezone set.
-if [ -e /etc/timezone ]; then
+if [ -z "$TZ" -a -e /etc/timezone ]; then
     TZ=`cat /etc/timezone`
     export TZ
 fi
