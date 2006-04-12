@@ -48,6 +48,9 @@ case "$1" in
 	if [ -L /etc/cups/pdftops.conf -a ! -e /etc/cups/pdftops.conf ]; then
 	    rm -f /etc/cups/pdftops.conf
 	fi
+
+	# Remove obsolete /etc/cups/certs
+	[ -L /etc/cups/certs ] && rm -f /etc/cups/certs || true
     ;;
 
     abort-upgrade)
