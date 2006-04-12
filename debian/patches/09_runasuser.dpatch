@@ -7,7 +7,7 @@
 @DPATCH@
 diff -urNad cupsys~/config-scripts/cups-defaults.m4 cupsys/config-scripts/cups-defaults.m4
 --- cupsys~/config-scripts/cups-defaults.m4	2006-04-06 22:03:32.000000000 +0200
-+++ cupsys/config-scripts/cups-defaults.m4	2006-04-12 15:09:38.000000000 +0200
++++ cupsys/config-scripts/cups-defaults.m4	2006-04-12 16:12:23.000000000 +0200
 @@ -218,6 +218,17 @@
  AC_DEFINE_UNQUOTED(CUPS_DEFAULT_GROUP, "$CUPS_GROUP")
  AC_DEFINE_UNQUOTED(CUPS_DEFAULT_SYSTEM_GROUPS, "$CUPS_SYSTEM_GROUPS")
@@ -28,7 +28,7 @@ diff -urNad cupsys~/config-scripts/cups-defaults.m4 cupsys/config-scripts/cups-d
  	default_printcap="$withval",
 diff -urNad cupsys~/config.h.in cupsys/config.h.in
 --- cupsys~/config.h.in	2006-04-06 22:03:32.000000000 +0200
-+++ cupsys/config.h.in	2006-04-12 15:11:17.000000000 +0200
++++ cupsys/config.h.in	2006-04-12 16:12:23.000000000 +0200
 @@ -41,6 +41,11 @@
  #define CUPS_DEFAULT_GROUP	"sys"
  #define CUPS_DEFAULT_SYSTEM_GROUPS	"sys root system"
@@ -42,8 +42,8 @@ diff -urNad cupsys~/config.h.in cupsys/config.h.in
  /*
   * Default file permissions...
 diff -urNad cupsys~/scheduler/conf.c cupsys/scheduler/conf.c
---- cupsys~/scheduler/conf.c	2006-04-12 14:59:21.000000000 +0200
-+++ cupsys/scheduler/conf.c	2006-04-12 15:11:38.000000000 +0200
+--- cupsys~/scheduler/conf.c	2006-04-06 22:03:32.000000000 +0200
++++ cupsys/scheduler/conf.c	2006-04-12 16:12:23.000000000 +0200
 @@ -460,7 +460,11 @@
    if (!status)
      return (0);
@@ -57,8 +57,8 @@ diff -urNad cupsys~/scheduler/conf.c cupsys/scheduler/conf.c
   /*
    * Use the default system group if none was supplied in cupsd.conf...
 diff -urNad cupsys~/scheduler/main.c cupsys/scheduler/main.c
---- cupsys~/scheduler/main.c	2006-04-12 14:59:21.000000000 +0200
-+++ cupsys/scheduler/main.c	2006-04-12 15:11:27.000000000 +0200
+--- cupsys~/scheduler/main.c	2006-04-07 17:36:10.000000000 +0200
++++ cupsys/scheduler/main.c	2006-04-12 16:12:54.000000000 +0200
 @@ -56,6 +56,9 @@
  #include <sys/resource.h>
  #include <syslog.h>
@@ -69,7 +69,7 @@ diff -urNad cupsys~/scheduler/main.c cupsys/scheduler/main.c
  
  #ifdef HAVE_LAUNCH_H
  #  include <launch.h>
-@@ -515,6 +518,15 @@
+@@ -515,6 +518,20 @@
    cupsdStartSystemMonitor();
  #endif /* __APPLE__ */
  
@@ -77,15 +77,20 @@ diff -urNad cupsys~/scheduler/main.c cupsys/scheduler/main.c
 +  /*
 +   * Drop root privileges
 +   */
++   struct passwd * pwd = getpwuid(User);
++   if (!pwd) {
++     cupsdLogMessage(CUPSD_LOG_ERROR, "could not get passwd data for user id %i", User);
++     exit(EXIT_FAILURE);
++   }
 +   setgid(Group);
-+   initgroups(getpwuid(User)->pw_name, Group);
++   initgroups(pwd->pw_name, pwd->pw_gid);
 +   setuid(User);
 +#endif
 +
   /*
    * Start any pending print jobs...
    */
-@@ -996,8 +1008,7 @@
+@@ -996,8 +1013,7 @@
      * Update the root certificate once every 5 minutes...
      */
  
