@@ -1,5 +1,6 @@
 usr/bin/cancel
 usr/bin/cupstestppd
+usr/bin/cupstestdsc
 usr/bin/lp
 usr/bin/lpoptions
 usr/bin/lppasswd
@@ -13,6 +14,7 @@ usr/sbin/reject
 usr/sbin/cupsdisable
 usr/sbin/cupsenable
 usr/share/man/man1/cupstestppd.1.gz
+usr/share/man/man1/cupstestdsc.1.gz
 usr/share/man/man1/lp.1.gz
 usr/share/man/man1/lpoptions.1.gz
 usr/share/man/man1/lppasswd.1.gz
