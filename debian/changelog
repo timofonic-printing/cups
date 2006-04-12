@@ -63,8 +63,10 @@ cupsys (1.1.99.rc2-1) UNRELEASED-experimental; urgency=low
   * Add debian/patches/09_runasuser_autoconf.dpatch: autoconf changes for
     09_runasuser_fixes.dpatch changes.
   * debian/pdftops: Fix reading from stdin (https://launchpad.net/bugs/17124)
+  * debian/cupsys.preinst: Remove dangling /etc/cups/pdftops.conf symlink on
+    upgrades to unbreak printing with poppler-utils.
 
- -- Martin Pitt <mpitt@debian.org>  Wed, 12 Apr 2006 15:34:06 +0200
+ -- Martin Pitt <mpitt@debian.org>  Wed, 12 Apr 2006 16:23:32 +0200
 
 cupsys (1.1.99.b1.r4885-1) experimental; urgency=low
 

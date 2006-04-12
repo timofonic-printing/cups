@@ -43,6 +43,11 @@ case "$1" in
 	if [ -e /var/lib/cups/logs -a ! -L /var/lib/cups/logs ]; then
 	    rmdir /var/lib/cups/logs || true
 	fi
+
+	# Remove dangling pdftops.conf symlink, which is obsolete anyway
+	if [ -L /etc/cups/pdftops.conf -a ! -e /etc/cups/pdftops.conf ]; then
+	    rm -f /etc/cups/pdftops.conf
+	fi
     ;;
 
     abort-upgrade)
