@@ -6,6 +6,8 @@ cupsys (1.1.99.rc2-1) UNRELEASED-experimental; urgency=low
 
   [ Kenshi Muto ]
   * New upstream release 1.2RC2.
+    - Because -fpie config becomes optional, compiler works on amd64 and
+      other architectures. (closes: #335199)
   * Enable LDAP support.
   * Remove duplicated update-rc.d (closes: #356911)
   * Stopped asking admin password because it works only if user chooses
