@@ -21,6 +21,7 @@ cupsys (1.1.99.rc2-1) UNRELEASED-experimental; urgency=low
   * 02_configure.dpath: Remove -rpath from configure.
   * Fix typo in cupsys-bsd description. (closes: #362070)
   * Add Galician debconf translation. (closes: #361258)
+  * Update Danish debconf translation. (closes: #357969)
   * Use 'reload' during logrotate instead of 'restart'. It looks safe
     on CUPS 1.2. (though job-restart problem still remains)
 
