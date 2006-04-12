@@ -33,12 +33,12 @@ case "$1" in
 	start-stop-daemon --stop --quiet --retry 5 --oknodo --pidfile $PIDFILE --name $NAME
 	log_end_msg $?
 	;;
-  reload)
+  reload|force-reload)
 	log_begin_msg "Reloading $DESC: $NAME"
 	start-stop-daemon --stop --quiet --pidfile $PIDFILE --name $NAME --signal 1
 	log_end_msg $?
 	;;
-  restart|force-reload)
+  restart)
 	log_begin_msg "Restarting $DESC: $NAME"
 	if start-stop-daemon --stop --quiet --retry 5 --oknodo --pidfile $PIDFILE --name $NAME; then
 		start-stop-daemon --start --quiet --pidfile "$PIDFILE" --exec $DAEMON
