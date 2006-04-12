@@ -11,6 +11,7 @@
 09_runasuser_autoconf.dpatch
 11_pam.dpatch
 12_quiesce_ipp_logging.dpatch
+13_default_log_warn.dpatch
 19_cupsaccept.dpatch
 26_modprobe.dpatch
 44_fixconfdirperms.dpatch
