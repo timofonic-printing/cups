@@ -49,14 +49,9 @@ case "$1" in
 	    rm -rf /etc/cups/certs
 	fi
 	if [ -d /var/spool/cups/certs ]; then
-	    mv /var/spool/cups/certs/* /var/lib/cups/certs || true
+	    mv /var/spool/cups/certs/* /var/run/cups/certs || true
 	    rm -rf /var/spool/cups/certs
 	fi
-	if [ ! -e /etc/cups/certs ]; then
-	    ln -sf /var/lib/cups/certs /etc/cups/certs || true
-	fi
-
-	chgrp lpadmin /var/lib/cups/certs
 
 	[ -f /etc/cups/ppds.dat ] && mv /etc/cups/ppds.dat /var/cache/cups/ppd
 

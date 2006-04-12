@@ -76,10 +76,10 @@ cupsys (1.1.99.rc2-1) UNRELEASED-experimental; urgency=low
   * Add debian/patches/13_default_log_warn.dpatch: Raise default log severity
     to 'warning' to not log gazillions of IPP requests by default. (other part
     of #280718)
-  * debian/rules: Remove obsolete /etc/cups/certs and /var/lib/cups/certs
-    (certificates are managed in /var/run/certs now).
+  * debian/rules, debian/cupsys.postinst: Remove obsolete /etc/cups/certs and
+    /var/lib/cups/certs (certificates are managed in /var/run/certs now).
 
- -- Martin Pitt <mpitt@debian.org>  Wed, 12 Apr 2006 17:12:24 +0200
+ -- Martin Pitt <mpitt@debian.org>  Wed, 12 Apr 2006 17:20:01 +0200
 
 cupsys (1.1.99.b1.r4885-1) experimental; urgency=low
 
