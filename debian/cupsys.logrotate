@@ -4,7 +4,10 @@
 	rotate 7
 	sharedscripts
 	postrotate
-		[ -e /var/run/cups/cupsd.pid ] && invoke-rc.d --quiet cupsys reload > /dev/null && sleep 10
+		if [ -e /var/run/cups/cupsd.pid ]; then
+			invoke-rc.d --quiet cupsys reload > /dev/null
+			sleep 10
+		fi
 	endscript
 	compress
 	notifempty
