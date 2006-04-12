@@ -81,8 +81,10 @@ cupsys (1.1.99.rc2-1) UNRELEASED-experimental; urgency=low
   * debian/cupsys.preinst: Remove obsolete /etc/cups/certs symlink on upgrades.
   * debian/cupsys-client.files: Install cupstestdsc and manpage.
   * debian/cupsd.init: Have force-reload to reload, not restart.
+  * debian/cupsys.logrotate: Use force-reload instead of reload, since the
+    latter is not required to exist by Debian Policy.
 
- -- Martin Pitt <mpitt@debian.org>  Wed, 12 Apr 2006 18:08:16 +0200
+ -- Martin Pitt <mpitt@debian.org>  Wed, 12 Apr 2006 18:09:01 +0200
 
 cupsys (1.1.99.b1.r4885-1) experimental; urgency=low
 

@@ -5,7 +5,7 @@
 	sharedscripts
 	postrotate
 		if [ -e /var/run/cups/cupsd.pid ]; then
-			invoke-rc.d --quiet cupsys reload > /dev/null
+			invoke-rc.d --quiet cupsys force-reload > /dev/null
 			sleep 10
 		fi
 	endscript
