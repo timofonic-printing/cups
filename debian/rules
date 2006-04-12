@@ -55,7 +55,6 @@ binary-post-install/cupsys::
 	(cd $(DEB_DESTDIR) && mv etc/cups/interfaces etc/cups/ppd $(DEB_DESTDIR)/../cupsys/etc/cups)
 	(cd $(DEB_DESTDIR)/../cupsys/usr/share/doc/cupsys && ln -sf ../../cups/doc-root online-docs)
 	#(cd $(DEB_DESTDIR)/../cupsys/usr/share/man && mv man1/backend.1 man1/cups-backend.1 && mv man1/filter.1 man1/cups-filter.1)
-	(cd $(DEB_DESTDIR)/../cupsys/etc/cups && ln -s ../xpdf/xpdfrc pdftops.conf)
 	(install -m 755 -o root -g root $(DEB_DESTDIR)/../pdftops $(DEB_DESTDIR)/../cupsys/usr/lib/cups/filter/)
 	install -o root -g root -m 644 debian/cupsys.default debian/cupsys/etc/default/cupsys
 binary-post-install/libcupsimage2-dev::

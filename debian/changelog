@@ -30,6 +30,9 @@ cupsys (1.1.99.rc2-1) UNRELEASED-experimental; urgency=low
   * Use if-fi structure style for postrotate of logrotate script.
     It solves error when cupsys is not running. (closes: #347641)
   * Unset TMPDIR environment variable before running daemon. (closes: #347829)
+  * Removed /etc/cups/pdftops.conf because it was for pdftops of upstream
+    version. Debian CUPS uses xpdf-utils wrapper and doesn't need
+    pdftops.conf.
 
   [ Martin Pitt ]
   * debian/patches/48_stdlib.dpatch: Adapted to new upstream version.
