@@ -50,8 +50,6 @@ binary-post-install/cupsys::
 	mv debian/cupsys/usr/lib/cups/backend/* debian/cupsys/usr/lib/cups/backend-available
 	install -o root -g root -m 644 doc/favicon.ico debian/cupsys/usr/share/cups/doc-root
 	(cd $(DEB_DESTDIR) && mv var/spool var/log $(DEB_DESTDIR)/../cupsys/var)
-	(mkdir -p $(DEB_DESTDIR)/../cupsys/var/lib/cups && install -o root -g root -m 711 -d $(DEB_DESTDIR)/../cupsys/var/lib/cups/certs)
-	(cd $(DEB_DESTDIR)/../cupsys/etc/cups && ln -sf /var/lib/cups/certs certs)
 	(cd $(DEB_DESTDIR) && mv etc/cups/interfaces etc/cups/ppd $(DEB_DESTDIR)/../cupsys/etc/cups)
 	(cd $(DEB_DESTDIR)/../cupsys/usr/share/doc/cupsys && ln -sf ../../cups/doc-root online-docs)
 	#(cd $(DEB_DESTDIR)/../cupsys/usr/share/man && mv man1/backend.1 man1/cups-backend.1 && mv man1/filter.1 man1/cups-filter.1)
