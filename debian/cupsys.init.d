@@ -6,6 +6,8 @@ NAME=cupsd
 PIDFILE=/var/run/cups/$NAME.pid
 DESC="Common Unix Printing System"
 
+unset TMPDIR
+
 test -f $DAEMON || exit 0
 
 set -e

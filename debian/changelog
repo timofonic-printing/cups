@@ -29,6 +29,7 @@ cupsys (1.1.99.rc2-1) UNRELEASED-experimental; urgency=low
   * set TZ in init script only if TZ isn't defined yet.
   * Use if-fi structure style for postrotate of logrotate script.
     It solves error when cupsys is not running. (closes: #347641)
+  * Unset TMPDIR environment variable before running daemon. (closes: #347829)
 
   [ Martin Pitt ]
   * debian/patches/48_stdlib.dpatch: Adapted to new upstream version.
