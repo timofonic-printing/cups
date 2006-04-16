@@ -1,8 +1,4 @@
-cupsys (1.1.99.rc2-1) UNRELEASED-experimental; urgency=low
-
-  TODO:
-  - /etc/cups/client.conf has been removed upstream; {dis,en}able have been
-    renamed to cups{dis,en}able. Should we care about them?
+cupsys (1.1.99.rc2-0exp1) experimental; urgency=low
 
   [ Kenshi Muto ]
   * New upstream release 1.2RC2.
@@ -33,6 +29,8 @@ cupsys (1.1.99.rc2-1) UNRELEASED-experimental; urgency=low
   * Removed /etc/cups/pdftops.conf because it was for pdftops of upstream
     version. Debian CUPS uses xpdf-utils wrapper and doesn't need
     pdftops.conf.
+  * Notice: /etc/cups/client.conf has been removed upstream.
+  * Notice: {dis,en}able have been renamed to cups{dis,en}able.
 
   [ Martin Pitt ]
   * debian/patches/48_stdlib.dpatch: Adapted to new upstream version.
@@ -87,7 +85,7 @@ cupsys (1.1.99.rc2-1) UNRELEASED-experimental; urgency=low
   * debian/patches/20_httpGetHostname_crash.dpatch: Add some robustifications
     to httpGetHostname() to hopefully fix a reported crash.
 
- -- Martin Pitt <mpitt@debian.org>  Thu, 13 Apr 2006 13:08:54 +0200
+ -- Kenshi Muto <kmuto@debian.org>  Sun, 16 Apr 2006 17:49:57 +0900
 
 cupsys (1.1.99.b1.r4885-1) experimental; urgency=low
 

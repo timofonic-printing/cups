@@ -1,0 +1,11 @@
+cupsys (1.1.99.rc2-0exp1) experimental; urgency=low
+
+  * This is EXPERIMENTAL version.
+    - By ABI incompatibility, KDE control center will complain.
+  * 'enable' and 'disable' commands are removed.
+    Use 'cupsenable' and 'cupsdisable' instead of them.
+  * /etc/cups/client.conf has been removed upstream. Now it becomes
+    obsolete.
+
+  
+ -- Kenshi Muto <kmuto@debian.org>  Sun, 16 Apr 2006 17:39:36 +0900
