@@ -8,8 +8,10 @@ cupsys (1.1.99.rc2-0exp2) UNRELEASED-experimental; urgency=low
     - debian/rules: Install shipped PPDs into
       /usr/share/ppd/cups-included/<Manufacturer>/ and provide a symlink to
       the old /usr/share/cups/model directory for backwards compatibility.
+  * debian/cupsys.dirs: Ship /usr/lib/cups/driver/ to avoid error messages if
+    it's missing.
 
- -- Kenshi Muto <kmuto@debian.org>  Wed, 19 Apr 2006 13:11:08 +0200
+ -- Kenshi Muto <kmuto@debian.org>  Wed, 19 Apr 2006 14:27:12 +0200
 
 cupsys (1.1.99.rc2-0exp1) experimental; urgency=low
 

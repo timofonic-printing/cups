@@ -5,3 +5,4 @@ etc/cups/cups.d
 usr/lib/cups/backend-available
 var/cache/cups/ppd
 usr/share/ppd/cups-included
+usr/lib/cups/driver
