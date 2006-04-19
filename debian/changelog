@@ -1,3 +1,11 @@
+cupsys (1.1.99.rc2-0exp2) UNRELEASED-experimental; urgency=low
+
+  [Martin Pitt]
+  * debian/patches/55_ppd_okidata_name.dpatch: Change "Oki" manufacturer name
+    to "Okidata" to be consistent with other PPD files.
+
+ -- Kenshi Muto <kmuto@debian.org>  Wed, 19 Apr 2006 13:08:15 +0200
+
 cupsys (1.1.99.rc2-0exp1) experimental; urgency=low
 
   [ Kenshi Muto ]
