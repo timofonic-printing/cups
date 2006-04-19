@@ -57,6 +57,17 @@ binary-post-install/cupsys::
 	install -o root -g root -m 644 debian/cupsys.default debian/cupsys/etc/default/cupsys
 	install -m 755 debian/local/browsing_status debian/local/enable_browsing $(DEB_DESTDIR)/../cupsys/usr/share/cups
 
+	# Install PPDs into /usr/share/ppd/cups-included/<Manufacturer>, see
+	# http://wiki.debian.org/PpdFileStructureSpecification
+	for i in $(DEB_DESTDIR)/../cupsys/usr/share/cups/model/*.ppd; do \
+	  m=$$(sed -n -e '/^\*Manufacturer:/s/.*"\([^"]*\)".*/\1/p' $$i); \
+	  mkdir -p "$(DEB_DESTDIR)/../cupsys/usr/share/ppd/cups-included/$$m"; \
+	  mv $$i "$(DEB_DESTDIR)/../cupsys/usr/share/ppd/cups-included/$$m/"; \
+	done
+
+	# Compatibility for programs which still look in the old location
+	ln -s ../../ppd/cups-included $(DEB_DESTDIR)/../cupsys/usr/share/cups/model/cups-included
+
 binary-post-install/libcupsimage2-dev::
 	rm -r debian/libcupsimage2-dev/usr/share/doc/libcupsimage2-dev
 	ln -s libcupsimage2 debian/libcupsimage2-dev/usr/share/doc/libcupsimage2-dev
