@@ -10,8 +10,12 @@ cupsys (1.1.99.rc2-0exp2) UNRELEASED-experimental; urgency=low
       the old /usr/share/cups/model directory for backwards compatibility.
   * debian/cupsys.dirs: Ship /usr/lib/cups/driver/ to avoid error messages if
     it's missing.
+  * debian/patches/09_runasuser.dpatch, scheduler/cert.c: Change root
+    certificate permissions from 0440 to 0240, so that the CGI programs cannot
+    read it any more. Without this patch, cupsd presented its own certificate
+    to itself, and *every* user could do admin tasks without authentication.
 
- -- Kenshi Muto <kmuto@debian.org>  Wed, 19 Apr 2006 14:27:12 +0200
+ -- Kenshi Muto <kmuto@debian.org>  Fri, 21 Apr 2006 16:05:36 +0200
 
 cupsys (1.1.99.rc2-0exp1) experimental; urgency=low
 
