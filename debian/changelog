@@ -14,8 +14,9 @@ cupsys (1.1.99.rc2-0exp2) UNRELEASED-experimental; urgency=low
     certificate permissions from 0440 to 0240, so that the CGI programs cannot
     read it any more. Without this patch, cupsd presented its own certificate
     to itself, and *every* user could do admin tasks without authentication.
+  * debian/cupsys-client.links: Fix cupsenable/cupsdisable manpage link.
 
- -- Kenshi Muto <kmuto@debian.org>  Fri, 21 Apr 2006 16:05:36 +0200
+ -- Kenshi Muto <kmuto@debian.org>  Mon, 24 Apr 2006 18:10:19 +0200
 
 cupsys (1.1.99.rc2-0exp1) experimental; urgency=low
 
