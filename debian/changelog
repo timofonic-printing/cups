@@ -15,6 +15,7 @@ cupsys (1.1.99.rc2-0exp2) UNRELEASED-experimental; urgency=low
     read it any more. Without this patch, cupsd presented its own certificate
     to itself, and *every* user could do admin tasks without authentication.
   * debian/cupsys-client.links: Fix cupsenable/cupsdisable manpage link.
+    Closes: #364447
 
  -- Kenshi Muto <kmuto@debian.org>  Mon, 24 Apr 2006 18:10:19 +0200
 
