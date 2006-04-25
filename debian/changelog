@@ -1,6 +1,9 @@
-cupsys (1.1.99.rc2-0exp2) UNRELEASED-experimental; urgency=low
+cupsys (1.1.99.rc3-0exp1) UNRELEASED-experimental; urgency=low
 
   [Martin Pitt]
+  * New upstream release 1.2RC3.
+  * Update patches for new upstream release.
+  * Remove debian/patches/20_httpGetHostname_crash.dpatch, fixed upstream.
   * debian/patches/55_ppd_okidata_name.dpatch: Change "Oki" manufacturer name
     to "Okidata" to be consistent with other PPD files.
   * Implement http://wiki.debian.org/PpdFileStructureSpecification:
@@ -23,7 +26,7 @@ cupsys (1.1.99.rc2-0exp2) UNRELEASED-experimental; urgency=low
       moved to /etc/cups/cups.d/.
   * debian/cupsys.postrm: Clean up passwd.md5 on purge.
 
- -- Kenshi Muto <kmuto@debian.org>  Tue, 25 Apr 2006 11:47:18 +0200
+ -- Kenshi Muto <kmuto@debian.org>  Tue, 25 Apr 2006 12:27:16 +0200
 
 cupsys (1.1.99.rc2-0exp1) experimental; urgency=low
 
