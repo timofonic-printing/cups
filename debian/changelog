@@ -16,8 +16,14 @@ cupsys (1.1.99.rc2-0exp2) UNRELEASED-experimental; urgency=low
     to itself, and *every* user could do admin tasks without authentication.
   * debian/cupsys-client.links: Fix cupsenable/cupsdisable manpage link.
     Closes: #364447
+  * debian/patches/08_cupsd.conf.conf.d.dpatch:
+    - Set "BrowseAddress @LOCAL"; without this, sending browsing information
+      does not work (Browsing still has to be enabled).
+    - Add some comments to point out that the Port and Browsing settings are
+      moved to /etc/cups/cups.d/.
+  * debian/cupsys.postrm: Clean up passwd.md5 on purge.
 
- -- Kenshi Muto <kmuto@debian.org>  Mon, 24 Apr 2006 18:10:19 +0200
+ -- Kenshi Muto <kmuto@debian.org>  Tue, 25 Apr 2006 11:47:18 +0200
 
 cupsys (1.1.99.rc2-0exp1) experimental; urgency=low
 

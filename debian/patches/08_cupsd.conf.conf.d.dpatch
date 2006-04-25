@@ -5,25 +5,32 @@
 ## DP: No description.
 
 @DPATCH@
-diff -urNad cupsys-1.1.99.b1.r4876~/conf/cupsd.conf.in cupsys-1.1.99.b1.r4876/conf/cupsd.conf.in
---- cupsys-1.1.99.b1.r4876~/conf/cupsd.conf.in	2005-12-15 07:08:54.000000000 +0900
-+++ cupsys-1.1.99.b1.r4876/conf/cupsd.conf.in	2005-12-15 07:10:45.000000000 +0900
-@@ -14,11 +14,11 @@
- SystemGroup @CUPS_GROUP@
+diff -urNad cups-1.2-ubuntu~/conf/cupsd.conf.in cups-1.2-ubuntu/conf/cupsd.conf.in
+--- cups-1.2-ubuntu~/conf/cupsd.conf.in	2006-04-24 19:25:39.000000000 +0200
++++ cups-1.2-ubuntu/conf/cupsd.conf.in	2006-04-25 10:50:24.000000000 +0200
+@@ -14,13 +14,18 @@
+ SystemGroup @CUPS_SYSTEM_GROUPS@
  
  # Only listen for connections from the local machine.
 -Listen localhost:@DEFAULT_IPP_PORT@
 -@CUPS_LISTEN_DOMAINSOCKET@
++# These settings are configured in /etc/cups/cups.d/ports.conf so that
++# changing them does not require to change this file.
 +# Listen localhost:@DEFAULT_IPP_PORT@
 +# @CUPS_LISTEN_DOMAINSOCKET@
  
  # Show shared printers on the local network.
 -Browsing On
-+# Browsing On
++# The 'Browsing' setting is configured in /etc/cups/cups.d/browse.conf
++# so that changing it does not require to change this file.
++# Browsing Off
  BrowseOrder allow,deny
  BrowseAllow @LOCAL
++BrowseAddress @LOCAL
  
-@@ -71,6 +71,10 @@
+ # Default authentication type, when authentication is required...
+ DefaultAuthType Basic
+@@ -71,6 +76,10 @@
    </Limit>
  </Policy>
  
@@ -32,5 +39,5 @@ diff -urNad cupsys-1.1.99.b1.r4876~/conf/cupsd.conf.in cupsys-1.1.99.b1.r4876/co
 +Include /etc/cups/cups.d/browse.conf
 +
  #
- # End of "$Id: cupsd.conf.in 4817 2005-11-04 16:21:01Z mike $".
+ # End of "$Id: cupsd.conf.in 5114 2006-02-16 12:28:29Z mike $".
  #
