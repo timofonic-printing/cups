@@ -5,19 +5,23 @@
 ## DP: No description.
 
 @DPATCH@
-diff -urNad cupsys-1.1.99.rc2~/configure cupsys-1.1.99.rc2/configure
---- cupsys-1.1.99.rc2~/configure	2006-04-11 11:31:17.000000000 +0000
-+++ cupsys-1.1.99.rc2/configure	2006-04-11 12:30:43.000000000 +0000
-@@ -7869,9 +7869,9 @@
-                         ;;
-                 Linux | GNU)
-                         # Linux and HURD
--                	DSOFLAGS="-Wl,-rpath,$libdir $DSOFLAGS"
--                        LDFLAGS="$LDFLAGS -Wl,-rpath,$libdir"
--                        EXPORT_LDFLAGS="-Wl,-rpath,$libdir"
-+                	DSOFLAGS="$DSOFLAGS"
-+                        LDFLAGS="$LDFLAGS"
-+                        EXPORT_LDFLAGS=""
-                         ;;
+diff -urNad cupsys-1.2.1~/configure cupsys-1.2.1/configure
+--- cupsys-1.2.1~/configure	2006-05-22 20:01:55.000000000 +0000
++++ cupsys-1.2.1/configure	2006-05-28 13:11:46.000000000 +0000
+@@ -7856,11 +7856,11 @@
+                 IRIX | Linux | GNU)
+                         # IRIX, Linux, and HURD...
+ 			if test $exec_prefix != /usr; then
+-				DSOFLAGS="-Wl,-rpath,\$(libdir) $DSOFLAGS"
+-				DSO32FLAGS="-Wl,-rpath,\$(LIB32DIR) $DSO32FLAGS"
+-				DSO64FLAGS="-Wl,-rpath,\$(LIB64DIR) $DSO64FLAGS"
+-				LDFLAGS="$LDFLAGS -Wl,-rpath,\$(libdir)"
+-				EXPORT_LDFLAGS="-Wl,-rpath,\$(libdir)"
++				DSOFLAGS="$DSOFLAGS"
++				DSO32FLAGS="$DSO32FLAGS"
++				DSO64FLAGS="$DSO64FLAGS"
++				LDFLAGS="$LDFLAGS"
++				EXPORT_LDFLAGS=""
+ 			fi
+ 			;;
  	esac
- else
