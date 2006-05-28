@@ -10,6 +10,14 @@ cupsys (1.2.1-0exp1) UNRELEASED-experimental; urgency=low
     and it works. [ Kenshi Muto ]
   - Compatibility check:
     gnome-cups-manager works.
+    kprinter: see above.
+    gtklp works.
+    OpenOffice.org2 works.
+    hplip: ?
+    acroread: ?
+    samba: ?
+    rezound: ?
+    netatalk: ?
 
   [Kenshi Muto]
   * New upstream release 1.2.1.
