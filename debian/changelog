@@ -15,6 +15,9 @@ cupsys (1.2.1-0exp1) UNRELEASED-experimental; urgency=low
   * New upstream release 1.2.1.
   * Update Dutch debconf translation (closes: #369004)
     ***although I'm awaiting an update from Kurt.***[REMOVE THIS LINE BEFORE UPLOAD]
+  * Includes the installation guide of dvi filter to /usr/share/doc/
+    cupsys/examples/filters/dvipipetops.INSTALL is contributed by
+    Francesco Potort. This is partial fix for Bug#368450.
 
   [Martin Pitt]
   * New upstream release 1.2.0.
