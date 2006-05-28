@@ -2,6 +2,8 @@ cupsys (1.2.1-0exp1) UNRELEASED-experimental; urgency=low
 
   [Kenshi Muto]
   * New upstream release (1.2.1)
+  * Update Dutch debconf translation (closes: #369004)
+    ***although I'm awaiting an update from Kurt.***[REMOVE THIS LINE BEFORE UPLOAD]
 
   [Martin Pitt]
   * New upstream release 1.2.0.
