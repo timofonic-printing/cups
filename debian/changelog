@@ -1,28 +1,9 @@
-cupsys (1.2.1-0exp1) UNRELEASED-experimental; urgency=low
-
-  TODO
-  - KDE problem: library ABI problem looks be solved.
-    But another problem raises.
-    kprinter searches '/var/run/cups/cups.sock' as hostname
-    instead of localhost:631 on one of my environment. This behavior
-    makes DNS error.
-    Strangely other machine shows localhost:631 by same configuration
-    and it works. [ Kenshi Muto ]
-  - Compatibility check:
-    gnome-cups-manager works.
-    kprinter: see above.
-    gtklp works.
-    OpenOffice.org2 works.
-    hplip: ?
-    acroread: ?
-    samba: ?
-    rezound: ?
-    netatalk: ?
+cupsys (1.2.1-0exp1) experimental; urgency=low
 
   [Kenshi Muto]
   * New upstream release 1.2.1.
   * Update Dutch debconf translation (closes: #369004)
-    ***although I'm awaiting an update from Kurt.***[REMOVE THIS LINE BEFORE UPLOAD]
+  * Update Italian debconf translation (closes: #367943)
   * Includes the installation guide of dvi filter to /usr/share/doc/
     cupsys/examples/filters/dvipipetops.INSTALL is contributed by
     Francesco Potort. This is partial fix for Bug#368450.
