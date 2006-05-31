@@ -3,6 +3,7 @@ cupsys (1.2.1-1) UNRELEASED-unstable; urgency=low
   [Kenshi Muto]
   * New upstream release 1.2.1 for Debian unstable/testing.
   * 00_r5610: Apply patches from upstream r5610.
+  * Re-update Dutch debconf translation (closes: #369004)
 
  -- Kenshi Muto <kmuto@debian.org>  Wed, 31 May 2006 13:17:16 +0000
 
