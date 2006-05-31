@@ -1,0 +1,3463 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 00_r5610.dpatch by Kenshi Muto <kmuto@debian.org>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: No description.
+
+@DPATCH@
+diff -urNad cupsys-1.2.1~/CHANGES.txt cupsys-1.2.1/CHANGES.txt
+--- cupsys-1.2.1~/CHANGES.txt	2006-05-31 13:42:05.000000000 +0000
++++ cupsys-1.2.1/CHANGES.txt	2006-05-31 13:42:34.000000000 +0000
+@@ -1,6 +1,30 @@
+-CHANGES.txt - 2006-05-22
++CHANGES.txt - 2006-05-30
+ ------------------------
+ 
++CHANGES IN CUPS V1.2.2
++
++	- "make install" didn't work if you disabled all of the
++	  localizations.
++	- The scheduler didn't always choose the least costly
++	  filter.
++	- Fixed parsing of IPv6 addresses in Allow, Deny,
++	  BrowseAllow, BrowseDeny, and BrowseRelay directives
++	  (STR #1713)
++	- Printers that were shared via LDAP did not get added to
++	  the LDAP server properly (STR #1733)
++	- LDAP browsing would crash the scheduler if a required
++	  value was missing (STR #1731)
++	- Special cases for the "localhost" hostname did not
++	  work, causing printing to not work when the /etc/hosts
++	  file did not contain a localhost entry (STR #1723)
++	- Updated the Spanish translation (STR #1720)
++	- Reverse-order page output was broken when N-up or
++	  landscape orientations were used (STR #1725)
++	- The parallel, serial, socket, and USB backends needed
++	  print data before they would report back-channel data,
++	  causing problems with several new drivers (STR #1724)
++
++
+ CHANGES IN CUPS V1.2.1
+ 
+ 	- The web interface did not handle reloads properly for
+diff -urNad cupsys-1.2.1~/Makedefs.in cupsys-1.2.1/Makedefs.in
+--- cupsys-1.2.1~/Makedefs.in	2006-05-31 13:42:05.000000000 +0000
++++ cupsys-1.2.1/Makedefs.in	2006-05-31 13:44:18.000000000 +0000
+@@ -77,7 +77,9 @@
+ # Languages to install...
+ #
+ 
+-LANGUAGES	=	@LANGUAGES@
++LANGUAGES	=	ja es
++INSTALL_LANGUAGES =	install-languages
++UNINSTALL_LANGUAGES =	uninstall-languages
+ 
+ #
+ # Libraries...
+@@ -127,9 +129,9 @@
+ CXXLIBS		=	@CXXLIBS@
+ DSOFLAGS	=	@DSOFLAGS@
+ DSOLIBS		=	@DSOLIBS@ $(COMMONLIBS)
+-IMGLIBS		=	@IMGLIBS@ -lm
++IMGLIBS		=	@IMGLIBS@
+ IMGFILTERS	=	@IMGFILTERS@
+-LDFLAGS		=	-L../cups -L../filter $(RC_CFLAGS) $(ARCHFLAGS) \
++LDFLAGS		=	-L../cups -L../filter $(ARCHFLAGS) \
+ 			@LDFLAGS@ @PIEFLAGS@ $(OPTIM)
+ LINKCUPS	=	@LINKCUPS@ $(SSLLIBS)
+ LINKCUPSIMAGE	=	@LINKCUPSIMAGE@
+diff -urNad cupsys-1.2.1~/backend/Dependencies cupsys-1.2.1/backend/Dependencies
+--- cupsys-1.2.1~/backend/Dependencies	2006-05-31 13:42:05.000000000 +0000
++++ cupsys-1.2.1/backend/Dependencies	2006-05-31 13:42:34.000000000 +0000
+@@ -9,26 +9,31 @@
+ lpd.o: ../cups/md5.h ../cups/ipp-private.h ../cups/ipp.h ../cups/cups.h
+ lpd.o: ../cups/ppd.h ../cups/array.h ../cups/file.h ../cups/language.h
+ lpd.o: ../cups/string.h
+-parallel.o: ../cups/backend.h ../cups/cups.h ../cups/ipp.h ../cups/http.h
+-parallel.o: ../cups/md5.h ../cups/ppd.h ../cups/array.h ../cups/file.h
+-parallel.o: ../cups/language.h ../cups/string.h ../config.h ieee1284.c
+-parallel.o: ../cups/debug.h
++pap.o: ../cups/http.h ../cups/md5.h
++parallel.o: backend-private.h ../cups/backend.h ../cups/cups.h ../cups/ipp.h
++parallel.o: ../cups/http.h ../cups/md5.h ../cups/ppd.h ../cups/array.h
++parallel.o: ../cups/file.h ../cups/language.h ../cups/debug.h
++parallel.o: ../cups/string.h ../config.h
+ scsi.o: ../cups/backend.h ../cups/cups.h ../cups/ipp.h ../cups/http.h
+ scsi.o: ../cups/md5.h ../cups/ppd.h ../cups/array.h ../cups/file.h
+ scsi.o: ../cups/language.h ../cups/string.h ../config.h
+-serial.o: ../cups/backend.h ../cups/cups.h ../cups/ipp.h ../cups/http.h
+-serial.o: ../cups/md5.h ../cups/ppd.h ../cups/array.h ../cups/file.h
+-serial.o: ../cups/language.h ../cups/string.h ../config.h
+-snmp.o: ../cups/backend.h ../cups/http-private.h ../config.h ../cups/http.h
+-snmp.o: ../cups/md5.h ../cups/ipp-private.h ../cups/ipp.h ../cups/cups.h
+-snmp.o: ../cups/ppd.h ../cups/array.h ../cups/file.h ../cups/language.h
+-snmp.o: ../cups/string.h ../cups/array.h ../cups/file.h ieee1284.c
+-snmp.o: ../cups/debug.h
+-socket.o: ../cups/backend.h ../cups/http-private.h ../config.h ../cups/http.h
+-socket.o: ../cups/md5.h ../cups/ipp-private.h ../cups/ipp.h ../cups/cups.h
+-socket.o: ../cups/ppd.h ../cups/array.h ../cups/file.h ../cups/language.h
+-socket.o: ../cups/string.h
+-test1284.o: ../cups/string.h ../config.h ieee1284.c ../cups/debug.h
++serial.o: backend-private.h ../cups/backend.h ../cups/cups.h ../cups/ipp.h
++serial.o: ../cups/http.h ../cups/md5.h ../cups/ppd.h ../cups/array.h
++serial.o: ../cups/file.h ../cups/language.h ../cups/debug.h ../cups/string.h
++serial.o: ../config.h
++snmp.o: ../cups/http-private.h ../config.h ../cups/http.h ../cups/md5.h
++snmp.o: ../cups/ipp-private.h ../cups/ipp.h backend-private.h
++snmp.o: ../cups/backend.h ../cups/cups.h ../cups/ppd.h ../cups/array.h
++snmp.o: ../cups/file.h ../cups/language.h ../cups/debug.h ../cups/string.h
++snmp.o: ../cups/array.h ../cups/file.h
++socket.o: ../cups/http-private.h ../config.h ../cups/http.h ../cups/md5.h
++socket.o: ../cups/ipp-private.h ../cups/ipp.h backend-private.h
++socket.o: ../cups/backend.h ../cups/cups.h ../cups/ppd.h ../cups/array.h
++socket.o: ../cups/file.h ../cups/language.h ../cups/debug.h ../cups/string.h
++test1284.o: ../cups/string.h ../config.h ieee1284.c backend-private.h
++test1284.o: ../cups/backend.h ../cups/cups.h ../cups/ipp.h ../cups/http.h
++test1284.o: ../cups/md5.h ../cups/ppd.h ../cups/array.h ../cups/file.h
++test1284.o: ../cups/language.h ../cups/debug.h
+ usb.o: ../cups/backend.h ../cups/cups.h ../cups/ipp.h ../cups/http.h
+ usb.o: ../cups/md5.h ../cups/ppd.h ../cups/array.h ../cups/file.h
+ usb.o: ../cups/language.h ../cups/string.h ../config.h
+diff -urNad cupsys-1.2.1~/backend/Makefile cupsys-1.2.1/backend/Makefile
+--- cupsys-1.2.1~/backend/Makefile	2006-05-31 13:42:05.000000000 +0000
++++ cupsys-1.2.1/backend/Makefile	2006-05-31 13:42:34.000000000 +0000
+@@ -28,7 +28,8 @@
+ 
+ RBACKENDS =	ipp lpd
+ UBACKENDS =	$(PAP) parallel scsi serial snmp socket usb
+-TARGETS	=	betest test1284 $(RBACKENDS) $(UBACKENDS)
++TARGETS	=	betest test1284 libbackend.a $(RBACKENDS) $(UBACKENDS)
++LIBOBJS	=	ieee1284.o runloop.o
+ OBJS	=	betest.o ipp.o lpd.o pap.o parallel.o scsi.o \
+ 		serial.o snmp.o socket.o test1284.o usb.o
+ 
+@@ -105,6 +106,17 @@
+ 
+ 
+ #
++# libbackend.a
++#
++
++libbackend.a:	$(LIBOBJS)
++	echo Archiving $@...
++	$(RM) $@
++	$(AR) $(ARFLAGS) $@ $(LIBOBJS)
++	$(RANLIB) $@
++
++
++#
+ # ieee1394
+ #
+ 
+@@ -149,9 +161,9 @@
+ # parallel
+ #
+ 
+-parallel:	parallel.o ../cups/$(LIBCUPS)
++parallel:	parallel.o ../cups/$(LIBCUPS) libbackend.a
+ 	echo Linking $@...
+-	$(CC) $(LDFLAGS) -o parallel parallel.o $(LIBS)
++	$(CC) $(LDFLAGS) -o parallel parallel.o libbackend.a $(LIBS)
+ 
+ 
+ #
+@@ -169,37 +181,37 @@
+ # serial
+ #
+ 
+-serial:	serial.o ../cups/$(LIBCUPS)
++serial:	serial.o ../cups/$(LIBCUPS) libbackend.a
+ 	echo Linking $@...
+-	$(CC) $(LDFLAGS) -o serial serial.o $(BACKLIBS) $(LIBS)
++	$(CC) $(LDFLAGS) -o serial serial.o libbackend.a $(BACKLIBS) $(LIBS)
+ 
+ 
+ #
+ # snmp
+ #
+ 
+-snmp:	snmp.o ../cups/$(LIBCUPS)
++snmp:	snmp.o ../cups/$(LIBCUPS) libbackend.a
+ 	echo Linking $@...
+-	$(CC) $(LDFLAGS) -o snmp snmp.o $(LIBS)
++	$(CC) $(LDFLAGS) -o snmp snmp.o libbackend.a $(LIBS)
+ 
+ 
+ #
+ # socket
+ #
+ 
+-socket:	socket.o ../cups/$(LIBCUPS)
++socket:	socket.o ../cups/$(LIBCUPS) libbackend.a
+ 	echo Linking $@...
+-	$(CC) $(LDFLAGS) -o socket socket.o $(LIBS)
++	$(CC) $(LDFLAGS) -o socket socket.o libbackend.a $(LIBS)
+ 
+ 
+ #
+ # usb
+ #
+ 
+-usb:	usb.o ../cups/$(LIBCUPS)
++usb:	usb.o ../cups/$(LIBCUPS) libbackend.a
+ 	echo Linking $@...
+-	$(CC) $(LDFLAGS) -o usb usb.o $(BACKLIBS) $(LIBS)
+-usb.o:	usb.c usb-darwin.c usb-unix.c ieee1284.c
++	$(CC) $(LDFLAGS) -o usb usb.o libbackend.a $(BACKLIBS) $(LIBS)
++usb.o:	usb.c usb-darwin.c usb-unix.c
+ 
+ 
+ #
+diff -urNad cupsys-1.2.1~/backend/backend-private.h cupsys-1.2.1/backend/backend-private.h
+--- cupsys-1.2.1~/backend/backend-private.h	1970-01-01 00:00:00.000000000 +0000
++++ cupsys-1.2.1/backend/backend-private.h	2006-05-31 13:42:34.000000000 +0000
+@@ -0,0 +1,73 @@
++/*
++ * "$Id$"
++ *
++ *   Backend support definitions for the Common UNIX Printing System (CUPS).
++ *
++ *   Copyright 1997-2006 by Easy Software Products, all rights reserved.
++ *
++ *   These coded instructions, statements, and computer programs are the
++ *   property of Easy Software Products and are protected by Federal
++ *   copyright law.  Distribution and use rights are outlined in the file
++ *   "LICENSE" which should have been included with this file.  If this
++ *   file is missing or damaged please contact Easy Software Products
++ *   at:
++ *
++ *       Attn: CUPS Licensing Information
++ *       Easy Software Products
++ *       44141 Airport View Drive, Suite 204
++ *       Hollywood, Maryland 20636 USA
++ *
++ *       Voice: (301) 373-9600
++ *       EMail: cups-info@cups.org
++ *         WWW: http://www.cups.org
++ *
++ *   This file is subject to the Apple OS-Developed Software exception.
++ */
++
++#ifndef _CUPS_BACKEND_PRIVATE_H_
++#  define _CUPS_BACKEND_PRIVATE_H_
++
++
++/*
++ * Include necessary headers.
++ */
++
++#  include <cups/backend.h>
++#  include <cups/cups.h>
++#  include <cups/debug.h>
++#  include <stdlib.h>
++#  include <errno.h>
++#  include <cups/string.h>
++#  include <signal.h>
++
++
++/*
++ * C++ magic...
++ */
++
++#  ifdef _cplusplus
++extern "C" {
++#  endif /* _cplusplus */
++
++
++/*
++ * Prototypes...
++ */
++
++extern int	backendGetDeviceID(int fd, char *device_id, int device_id_size,
++		                   char *make_model, int make_model_size,
++				   const char *scheme, char *uri, int uri_size);
++extern int	backendGetMakeModel(const char *device_id, char *make_model,
++			            int make_model_size);
++extern ssize_t	backendRunLoop(int print_fd, int device_fd, int use_bc);
++
++
++#  ifdef _cplusplus
++}
++#  endif /* _cplusplus */
++#endif /* !_CUPS_BACKEND_PRIVATE_H_ */
++
++
++/*
++ * End of "$Id$".
++ */
+diff -urNad cupsys-1.2.1~/backend/ieee1284.c cupsys-1.2.1/backend/ieee1284.c
+--- cupsys-1.2.1~/backend/ieee1284.c	2006-05-31 13:42:05.000000000 +0000
++++ cupsys-1.2.1/backend/ieee1284.c	2006-05-31 13:42:34.000000000 +0000
+@@ -25,51 +25,41 @@
+  *
+  * Contents:
+  *
+- *   get_device_id()  - Get the IEEE-1284 device ID string and corresponding
+- *                      URI.
+- *   get_make_model() - Get the make and model string from the device ID.
++ *   backendGetDeviceID()  - Get the IEEE-1284 device ID string and
++ *                           corresponding URI.
++ *   backendGetMakeModel() - Get the make and model string from the device ID.
+  */
+ 
+ /*
+  * Include necessary headers.
+  */
+ 
+-#include <cups/debug.h>
+-
++#include "backend-private.h"
+ 
+-/*
+- * Prototypes...
+- */
++#ifdef __linux
++#  include <sys/ioctl.h>
++#  include <linux/lp.h>
++#  define IOCNR_GET_DEVICE_ID		1
++#  define LPIOC_GET_DEVICE_ID(len)	_IOC(_IOC_READ, 'P', IOCNR_GET_DEVICE_ID, len)
++#endif /* __linux */
+ 
+-static int	get_make_model(const char *device_id, char *make_model,
+-		               int make_model_size);
++#ifdef __sun
++#  ifdef __sparc
++#    include <sys/ecppio.h>
++#  else
++#    include <sys/ioccom.h>
++#    include <sys/ecppsys.h>
++#  endif /* __sparc */
++#endif /* __sun */
+ 
+ 
+ /*
+- * 'get_device_id()' - Get the IEEE-1284 device ID string and
+- *                     corresponding URI.
++ * 'backendGetDeviceID()' - Get the IEEE-1284 device ID string and
++ *                          corresponding URI.
+  */
+ 
+-#ifndef SNMP_BACKEND
+-#  ifdef __linux
+-#    include <sys/ioctl.h>
+-#    include <linux/lp.h>
+-#    define IOCNR_GET_DEVICE_ID		1
+-#    define LPIOC_GET_DEVICE_ID(len)	_IOC(_IOC_READ, 'P', IOCNR_GET_DEVICE_ID, len)
+-#  endif /* __linux */
+-
+-#  ifdef __sun
+-#    ifdef __sparc
+-#      include <sys/ecppio.h>
+-#    else
+-#      include <sys/ioccom.h>
+-#      include <sys/ecppsys.h>
+-#    endif /* __sparc */
+-#  endif /* __sun */
+-
+-
+ int					/* O - 0 on success, -1 on failure */
+-get_device_id(
++backendGetDeviceID(
+     int        fd,			/* I - File descriptor */
+     char       *device_id,		/* O - 1284 device ID */
+     int        device_id_size,		/* I - Size of buffer */
+@@ -93,7 +83,7 @@
+ #endif /* __sun && ECPPIOC_GETDEVID */
+ 
+ 
+-  DEBUG_printf(("get_device_id(fd=%d, device_id=%p, device_id_size=%d, "
++  DEBUG_printf(("backendGetDeviceID(fd=%d, device_id=%p, device_id_size=%d, "
+                 "make_model=%p, make_model_size=%d, scheme=\"%s\", "
+ 		"uri=%p, uri_size=%d)\n", fd, device_id, device_id_size,
+ 		make_model, make_model_size, scheme ? scheme : "(null)",
+@@ -107,7 +97,7 @@
+       !device_id || device_id_size < 32 ||
+       !make_model || make_model_size < 32)
+   {
+-    DEBUG_puts("get_device_id: Bad args!");
++    DEBUG_puts("backendGetDeviceID: Bad args!");
+     return (-1);
+   }
+ 
+@@ -155,7 +145,7 @@
+   }
+ #  ifdef DEBUG
+   else
+-    printf("get_device_id: ioctl failed - %s\n", strerror(errno));
++    printf("backendGetDeviceID: ioctl failed - %s\n", strerror(errno));
+ #  endif /* DEBUG */
+ #endif /* __linux */
+ 
+@@ -178,11 +168,11 @@
+   }
+ #  ifdef DEBUG
+   else
+-    printf("get_device_id: ioctl failed - %s\n", strerror(errno));
++    printf("backendGetDeviceID: ioctl failed - %s\n", strerror(errno));
+ #  endif /* DEBUG */
+ #endif /* __sun && ECPPIOC_GETDEVID */
+ 
+-  DEBUG_printf(("get_device_id: device_id=\"%s\"\n", device_id));
++  DEBUG_printf(("backendGetDeviceID: device_id=\"%s\"\n", device_id));
+ 
+   if (!*device_id)
+     return (-1);
+@@ -191,7 +181,7 @@
+   * Get the make and model...
+   */
+ 
+-  get_make_model(device_id, make_model, make_model_size);
++  backendGetMakeModel(device_id, make_model, make_model_size);
+ 
+  /*
+   * Then generate a device URI...
+@@ -303,15 +293,14 @@
+ 
+   return (0);
+ }
+-#endif /* !SNMP_BACKEND */
+ 
+ 
+ /*
+- * 'get_make_model()' - Get the make and model string from the device ID.
++ * 'backendGetMakeModel()' - Get the make and model string from the device ID.
+  */
+ 
+ int					/* O - 0 on success, -1 on failure */
+-get_make_model(
++backendGetMakeModel(
+     const char *device_id,		/* O - 1284 device ID */
+     char       *make_model,		/* O - Make/model */
+     int        make_model_size)		/* I - Size of buffer */
+@@ -322,7 +311,7 @@
+ 	*mdl;				/* Model string */
+ 
+ 
+-  DEBUG_printf(("get_make_model(device_id=\"%s\", "
++  DEBUG_printf(("backendGetMakeModel(device_id=\"%s\", "
+                 "make_model=%p, make_model_size=%d)\n", device_id,
+ 		make_model, make_model_size));
+ 
+@@ -332,7 +321,7 @@
+ 
+   if (!device_id || !*device_id || !make_model || make_model_size < 32)
+   {
+-    DEBUG_puts("get_make_model: Bad args!");
++    DEBUG_puts("backendGetMakeModel: Bad args!");
+     return (-1);
+   }
+ 
+diff -urNad cupsys-1.2.1~/backend/parallel.c cupsys-1.2.1/backend/parallel.c
+--- cupsys-1.2.1~/backend/parallel.c	2006-05-31 13:42:05.000000000 +0000
++++ cupsys-1.2.1/backend/parallel.c	2006-05-31 13:42:34.000000000 +0000
+@@ -33,14 +33,7 @@
+  * Include necessary headers.
+  */
+ 
+-#include <cups/backend.h>
+-#include <cups/cups.h>
+-#include <stdio.h>
+-#include <stdlib.h>
+-#include <errno.h>
+-#include <cups/string.h>
+-#include <signal.h>
+-#include "ieee1284.c"
++#include "backend-private.h"
+ 
+ #ifdef __hpux
+ #  include <sys/time.h>
+@@ -94,25 +87,18 @@
+ 		resource[1024],		/* Resource info (device and options) */
+ 		*options;		/* Pointer to options */
+   int		port;			/* Port number (not used) */
+-  int		fp;			/* Print file */
++  int		print_fd,		/* Print file */
++		device_fd;		/* Parallel device */
+   int		copies;			/* Number of copies to print */
+-  int		fd;			/* Parallel device */
+-  int		rbytes;			/* Number of bytes read */
+-  int		wbytes;			/* Number of bytes written */
+-  size_t	nbytes,			/* Number of bytes read */
+-		tbytes;			/* Total number of bytes written */
+-  char		buffer[8192],		/* Output buffer */
+-		*bufptr;		/* Pointer into buffer */
++  size_t	tbytes;			/* Total number of bytes written */
+   struct termios opts;			/* Parallel port options */
+-  fd_set	input,			/* Input set for select() */
+-		output;			/* Output set for select() */
++#if defined(__linux) && defined(LP_POUTPA)
++  unsigned int	status;			/* Port status (off-line, out-of-paper, etc.) */
+   int		paperout;		/* Paper out? */
++#endif /* __linux && LP_POUTPA */
+ #if defined(HAVE_SIGACTION) && !defined(HAVE_SIGSET)
+   struct sigaction action;		/* Actions for POSIX signals */
+ #endif /* HAVE_SIGACTION && !HAVE_SIGSET */
+-#ifdef __linux
+-  unsigned int	status;			/* Port status (off-line, out-of-paper, etc.) */
+-#endif /* __linux */
+ 
+ 
+  /*
+@@ -157,8 +143,8 @@
+ 
+   if (argc == 6)
+   {
+-    fp     = 0;
+-    copies = 1;
++    print_fd = 0;
++    copies   = 1;
+   }
+   else
+   {
+@@ -166,7 +152,7 @@
+     * Try to open the print file...
+     */
+ 
+-    if ((fp = open(argv[6], O_RDONLY)) < 0)
++    if ((print_fd = open(argv[6], O_RDONLY)) < 0)
+     {
+       perror("ERROR: unable to open print file");
+       return (CUPS_BACKEND_FAILED);
+@@ -206,7 +192,7 @@
+ 
+   do
+   {
+-    if ((fd = open(resource, O_WRONLY | O_EXCL)) == -1)
++    if ((device_fd = open(resource, O_WRONLY | O_EXCL)) == -1)
+     {
+       if (getenv("CLASS") != NULL)
+       {
+@@ -217,8 +203,8 @@
+ 	* available printer in the class.
+ 	*/
+ 
+-        fputs("INFO: Unable to open parallel port, queuing on next printer in class...\n",
+-	      stderr);
++        fputs("INFO: Unable to open parallel port, queuing on next printer "
++	      "in class...\n", stderr);
+ 
+        /*
+         * Sleep 5 seconds to keep the job from requeuing too rapidly...
+@@ -231,23 +217,26 @@
+ 
+       if (errno == EBUSY)
+       {
+-        fputs("INFO: Parallel port busy; will retry in 30 seconds...\n", stderr);
++        fputs("INFO: Parallel port busy; will retry in 30 seconds...\n",
++	      stderr);
+ 	sleep(30);
+       }
+       else if (errno == ENXIO || errno == EIO || errno == ENOENT)
+       {
+-        fputs("INFO: Printer not connected; will retry in 30 seconds...\n", stderr);
++        fputs("INFO: Printer not connected; will retry in 30 seconds...\n",
++	      stderr);
+ 	sleep(30);
+       }
+       else
+       {
+-	fprintf(stderr, "ERROR: Unable to open parallel port device file \"%s\": %s\n",
++	fprintf(stderr,
++	        "ERROR: Unable to open parallel port device file \"%s\": %s\n",
+ 	        resource, strerror(errno));
+ 	return (CUPS_BACKEND_FAILED);
+       }
+     }
+   }
+-  while (fd < 0);
++  while (device_fd < 0);
+ 
+   fputs("STATE: -connecting-to-device\n", stderr);
+ 
+@@ -255,25 +244,21 @@
+   * Set any options provided...
+   */
+ 
+-  tcgetattr(fd, &opts);
++  tcgetattr(device_fd, &opts);
+ 
+   opts.c_lflag &= ~(ICANON | ECHO | ISIG);	/* Raw mode */
+ 
+   /**** No options supported yet ****/
+ 
+-  tcsetattr(fd, TCSANOW, &opts);
+-
+- /*
+-  * Check printer status...
+-  */
+-
+-  paperout = 0;
++  tcsetattr(device_fd, TCSANOW, &opts);
+ 
+ #if defined(__linux) && defined(LP_POUTPA)
+  /*
+   * Show the printer status before we send the file...
+   */
+ 
++  paperout = 0;
++
+   while (!ioctl(fd, LPGETSTATUS, &status))
+   {
+     fprintf(stderr, "DEBUG: LPGETSTATUS returned a port status of %02X...\n", status);
+@@ -298,146 +283,38 @@
+ #endif /* __linux && LP_POUTPA */
+ 
+  /*
+-  * Now that we are "connected" to the port, ignore SIGTERM so that we
+-  * can finish out any page data the driver sends (e.g. to eject the
+-  * current page...  Only ignore SIGTERM if we are printing data from
+-  * stdin (otherwise you can't cancel raw jobs...)
+-  */
+-
+-  if (argc < 7)
+-  {
+-#ifdef HAVE_SIGSET /* Use System V signals over POSIX to avoid bugs */
+-    sigset(SIGTERM, SIG_IGN);
+-#elif defined(HAVE_SIGACTION)
+-    memset(&action, 0, sizeof(action));
+-
+-    sigemptyset(&action.sa_mask);
+-    action.sa_handler = SIG_IGN;
+-    sigaction(SIGTERM, &action, NULL);
+-#else
+-    signal(SIGTERM, SIG_IGN);
+-#endif /* HAVE_SIGSET */
+-  }
+-
+- /*
+   * Finally, send the print file...
+   */
+ 
+-  wbytes = 0;
++  tbytes = 0;
+ 
+-  while (copies > 0)
++  while (copies > 0 && tbytes >= 0)
+   {
+     copies --;
+ 
+-    if (fp != 0)
++    if (print_fd != 0)
+     {
+       fputs("PAGE: 1 1\n", stderr);
+-      lseek(fp, 0, SEEK_SET);
++      lseek(print_fd, 0, SEEK_SET);
+     }
+ 
+-    tbytes = 0;
+-    while ((nbytes = read(fp, buffer, sizeof(buffer))) > 0)
+-    {
+-     /*
+-      * Write the print data to the printer...
+-      */
+-
+-      tbytes += nbytes;
+-      bufptr = buffer;
+-
+-      while (nbytes > 0)
+-      {
+-       /*
+-        * See if we are ready to read or write...
+-	*/
+-
+-        do
+-	{
+-          FD_ZERO(&input);
+-	  FD_SET(fd, &input);
+-	  FD_ZERO(&output);
+-	  FD_SET(fd, &output);
+-        }
+-	while (select(fd + 1, &input, &output, NULL, NULL) < 0);
+-
+-        if (FD_ISSET(fd, &input))
+-	{
+-	 /*
+-	  * Read backchannel data...
+-	  */
+-
+-	  if ((rbytes = read(fd, resource, sizeof(resource))) > 0)
+-	  {
+-	    fprintf(stderr, "DEBUG: Received %d bytes of back-channel data!\n",
+-	            rbytes);
+-            cupsBackChannelWrite(resource, rbytes, 1.0);
+-          }
+-	}
+-
+-        if (FD_ISSET(fd, &output))
+-	{
+-	 /*
+-	  * Write print data...
+-	  */
+-
+-	  if ((wbytes = write(fd, bufptr, nbytes)) < 0)
+-	    if (errno == ENOTTY)
+-	      wbytes = write(fd, bufptr, nbytes);
+-
+-	  if (wbytes < 0)
+-	  {
+-	   /*
+-	    * Check for retryable errors...
+-	    */
+-
+-            if (errno == ENOSPC)
+-	    {
+-	      paperout = 1;
+-	      fputs("ERROR: Out of paper!\n", stderr);
+-	      fputs("STATUS: +media-tray-empty-error\n", stderr);
+-	    }
+-	    else if (errno != EAGAIN && errno != EINTR)
+-	    {
+-	      perror("ERROR: Unable to send print file to printer");
+-	      break;
+-	    }
+-	  }
+-	  else
+-	  {
+-	   /*
+-	    * Update count and pointer...
+-	    */
+-
+-            if (paperout)
+-	    {
+-	      fputs("STATUS: -media-tray-empty-error\n", stderr);
+-	      paperout = 0;
+-	    }
+-
+-	    nbytes -= wbytes;
+-	    bufptr += wbytes;
+-	  }
+-	}
+-      }
+-
+-      if (wbytes < 0)
+-        break;
++    tbytes = backendRunLoop(print_fd, device_fd, 1);
+ 
+-      if (argc > 6)
+-	fprintf(stderr, "INFO: Sending print file, %lu bytes...\n",
+-	        (unsigned long)tbytes);
+-    }
++    if (print_fd != 0 && tbytes >= 0)
++      fprintf(stderr, "INFO: Sent print file, " CUPS_LLFMT " bytes...\n",
++	      CUPS_LLCAST tbytes);
+   }
+ 
+  /*
+   * Close the socket connection and input file and return...
+   */
+ 
+-  close(fd);
+-  if (fp != 0)
+-    close(fp);
++  close(device_fd);
+ 
+-  return (wbytes < 0 ? CUPS_BACKEND_FAILED : CUPS_BACKEND_OK);
++  if (print_fd != 0)
++    close(print_fd);
++
++  return (tbytes < 0 ? CUPS_BACKEND_FAILED : CUPS_BACKEND_OK);
+ }
+ 
+ 
+@@ -485,9 +362,9 @@
+       * Now grab the IEEE 1284 device ID string...
+       */
+ 
+-      if (!get_device_id(fd, device_id, sizeof(device_id),
+-                         make_model, sizeof(make_model),
+-			 NULL, NULL, 0))
++      if (!backendGetDeviceID(fd, device_id, sizeof(device_id),
++                              make_model, sizeof(make_model),
++			      NULL, NULL, 0))
+ 	printf("direct parallel:%s \"%s\" \"%s LPT #%d\" \"%s\"\n", device,
+ 	       make_model, make_model, i + 1, device_id);
+       else
+diff -urNad cupsys-1.2.1~/backend/runloop.c cupsys-1.2.1/backend/runloop.c
+--- cupsys-1.2.1~/backend/runloop.c	1970-01-01 00:00:00.000000000 +0000
++++ cupsys-1.2.1/backend/runloop.c	2006-05-31 13:42:34.000000000 +0000
+@@ -0,0 +1,218 @@
++/*
++ * "$Id$"
++ *
++ *   Common run loop API for the Common UNIX Printing System (CUPS).
++ *
++ *   Copyright 2006 by Easy Software Products, all rights reserved.
++ *
++ *   These coded instructions, statements, and computer programs are the
++ *   property of Easy Software Products and are protected by Federal
++ *   copyright law.  Distribution and use rights are outlined in the file
++ *   "LICENSE" which should have been included with this file.  If this
++ *   file is missing or damaged please contact Easy Software Products
++ *   at:
++ *
++ *       Attn: CUPS Licensing Information
++ *       Easy Software Products
++ *       44141 Airport View Drive, Suite 204
++ *       Hollywood, Maryland 20636 USA
++ *
++ *       Voice: (301) 373-9600
++ *       EMail: cups-info@cups.org
++ *         WWW: http://www.cups.org
++ *
++ *   This file is subject to the Apple OS-Developed Software exception.
++ *
++ * Contents:
++ *
++ *   backendRunLoop() - Read and write print and back-channel data.
++ */
++
++/*
++ * Include necessary headers.
++ */
++
++#include "backend-private.h"
++#include <sys/select.h>
++
++
++/*
++ * 'backendRunLoop()' - Read and write print and back-channel data.
++ */
++
++ssize_t					/* O - Total bytes on success, -1 on error */
++backendRunLoop(int print_fd,		/* I - Print file descriptor */
++               int device_fd,		/* I - Device file descriptor */
++	       int use_bc)		/* I - Use back-channel? */
++{
++  int		nfds;			/* Maximum file descriptor value + 1 */
++  fd_set	input,			/* Input set for reading */
++		output;			/* Output set for writing */
++  ssize_t	print_bytes,		/* Print bytes read */
++		bc_bytes,		/* Backchannel bytes read */
++		total_bytes,		/* Total bytes written */
++		bytes;			/* Bytes written */
++  int		paperout;		/* "Paper out" status */
++  char		print_buffer[8192],	/* Print data buffer */
++		*print_ptr,		/* Pointer into print data buffer */
++		bc_buffer[1024];	/* Back-channel data buffer */
++#if defined(HAVE_SIGACTION) && !defined(HAVE_SIGSET)
++  struct sigaction action;		/* Actions for POSIX signals */
++#endif /* HAVE_SIGACTION && !HAVE_SIGSET */
++
++
++ /*
++  * If we are printing data from a print driver on stdin, ignore SIGTERM
++  * so that the driver can finish out any page data, e.g. to eject the
++  * current page.  We only do this for stdin printing as otherwise there
++  * is no way to cancel a raw print job...
++  */
++
++  if (!print_fd)
++  {
++#ifdef HAVE_SIGSET /* Use System V signals over POSIX to avoid bugs */
++    sigset(SIGTERM, SIG_IGN);
++#elif defined(HAVE_SIGACTION)
++    memset(&action, 0, sizeof(action));
++
++    sigemptyset(&action.sa_mask);
++    action.sa_handler = SIG_IGN;
++    sigaction(SIGTERM, &action, NULL);
++#else
++    signal(SIGTERM, SIG_IGN);
++#endif /* HAVE_SIGSET */
++  }
++
++ /*
++  * Figure out the maximum file descriptor value to use with select()...
++  */
++
++  nfds = (print_fd > device_fd ? print_fd : device_fd) + 1;
++
++ /*
++  * Now loop until we are out of data from print_fd...
++  */
++
++  for (print_bytes = 0, print_ptr = print_buffer, paperout = 0, total_bytes = 0;;)
++  {
++   /*
++    * Use select() to determine whether we have data to copy around...
++    */
++
++    FD_ZERO(&input);
++    if (!print_bytes)
++      FD_SET(print_fd, &input);
++    if (use_bc)
++      FD_SET(device_fd, &input);
++
++    FD_ZERO(&output);
++    if (print_bytes)
++      FD_SET(device_fd, &output);
++
++    if (select(nfds, &input, &output, NULL, NULL) < 0)
++      continue;				/* Ignore errors here */
++
++   /*
++    * Check if we have back-channel data ready...
++    */
++
++    if (FD_ISSET(device_fd, &input))
++    {
++      if ((bc_bytes = read(device_fd, bc_buffer, sizeof(bc_buffer))) > 0)
++      {
++	fprintf(stderr,
++	        "DEBUG: Received " CUPS_LLFMT " bytes of back-channel data!\n",
++	        CUPS_LLCAST bc_bytes);
++        cupsBackChannelWrite(bc_buffer, bc_bytes, 1.0);
++      }
++    }
++
++   /*
++    * Check if we have print data ready...
++    */
++
++    if (FD_ISSET(print_fd, &input))
++    {
++      if ((print_bytes = read(print_fd, print_buffer,
++                              sizeof(print_buffer))) < 0)
++      {
++       /*
++        * Read error - bail if we don't see EAGAIN or EINTR...
++	*/
++
++	if (errno != EAGAIN || errno != EINTR)
++	{
++	  perror("ERROR: Unable to read print data");
++	  return (-1);
++	}
++
++        print_bytes = 0;
++      }
++      else if (print_bytes == 0)
++      {
++       /*
++        * End of file, break out of the loop...
++	*/
++
++        break;
++      }
++
++      print_ptr = print_buffer;
++    }
++
++   /*
++    * Check if the device is ready to receive data and we have data to
++    * send...
++    */
++
++    if (print_bytes && FD_ISSET(device_fd, &output))
++    {
++      if ((bytes = write(device_fd, print_ptr, print_bytes)) < 0)
++      {
++       /*
++        * Write error - bail if we don't see an error we can retry...
++	*/
++
++        if (errno == ENOSPC)
++	{
++	  if (!paperout)
++	  {
++	    fputs("ERROR: Out of paper!\n", stderr);
++	    fputs("STATUS: +media-tray-empty-error\n", stderr);
++	    paperout = 1;
++	  }
++        }
++	else if (errno != EAGAIN && errno != EINTR && errno != ENOTTY)
++	{
++	  perror("ERROR: Unable to write print data");
++	  return (-1);
++	}
++      }
++      else
++      {
++        if (paperout)
++	{
++	  fputs("STATUS: -media-tray-empty-error\n", stderr);
++	  paperout = 0;
++	}
++
++        fprintf(stderr, "DEBUG: Wrote %d bytes...\n", (int)bytes);
++
++        print_bytes -= bytes;
++	print_ptr   += bytes;
++	total_bytes += bytes;
++      }
++    }
++  }
++
++ /*
++  * Return with success...
++  */
++
++  return (total_bytes);
++}
++
++
++/*
++ * End of "$Id$".
++ */
+diff -urNad cupsys-1.2.1~/backend/serial.c cupsys-1.2.1/backend/serial.c
+--- cupsys-1.2.1~/backend/serial.c	2006-05-31 13:42:05.000000000 +0000
++++ cupsys-1.2.1/backend/serial.c	2006-05-31 13:42:34.000000000 +0000
+@@ -33,13 +33,7 @@
+  * Include necessary headers.
+  */
+ 
+-#include <cups/backend.h>
+-#include <cups/cups.h>
+-#include <stdio.h>
+-#include <stdlib.h>
+-#include <errno.h>
+-#include <cups/string.h>
+-#include <signal.h>
++#include "backend-private.h"
+ 
+ #ifdef __hpux
+ #  include <sys/modem.h>
+@@ -121,21 +115,23 @@
+ 		value[255],		/* Value of option */
+ 		*ptr;			/* Pointer into name or value */
+   int		port;			/* Port number (not used) */
+-  int		fp;			/* Print file */
+   int		copies;			/* Number of copies to print */
+-  int		fd;			/* Parallel device */
+-  int		rbytes;			/* Number of bytes read */
+-  int		wbytes;			/* Number of bytes written */
+-  size_t	nbytes,			/* Number of bytes read */
+-		tbytes;			/* Total number of bytes written */
++  int		print_fd,		/* Print file */
++		device_fd;		/* Serial device */
++  int		nfds;			/* Maximum file descriptor value + 1 */
++  fd_set	input,			/* Input set for reading */
++		output;			/* Output set for writing */
++  ssize_t	print_bytes,		/* Print bytes read */
++		bc_bytes,		/* Backchannel bytes read */
++		total_bytes,		/* Total bytes written */
++		bytes;			/* Bytes written */
+   int		dtrdsr;			/* Do dtr/dsr flow control? */
+-  int		bufsize;		/* Size of output buffer for writes */
+-  char		buffer[8192],		/* Output buffer */
+-		*bufptr;		/* Pointer into buffer */
++  int		print_size;		/* Size of output buffer for writes */
++  char		print_buffer[8192],	/* Print data buffer */
++		*print_ptr,		/* Pointer into print data buffer */
++		bc_buffer[1024];	/* Back-channel data buffer */
+   struct termios opts;			/* Serial port options */
+   struct termios origopts;		/* Original port options */
+-  fd_set	input,			/* Input set for select() */
+-		output;			/* Output set for select() */
+ #if defined(HAVE_SIGACTION) && !defined(HAVE_SIGSET)
+   struct sigaction action;		/* Actions for POSIX signals */
+ #endif /* HAVE_SIGACTION && !HAVE_SIGSET */
+@@ -183,8 +179,8 @@
+ 
+   if (argc == 6)
+   {
+-    fp     = 0;
+-    copies = 1;
++    print_fd = 0;
++    copies   = 1;
+   }
+   else
+   {
+@@ -192,7 +188,7 @@
+     * Try to open the print file...
+     */
+ 
+-    if ((fp = open(argv[6], O_RDONLY)) < 0)
++    if ((print_fd = open(argv[6], O_RDONLY)) < 0)
+     {
+       perror("ERROR: unable to open print file");
+       return (CUPS_BACKEND_FAILED);
+@@ -232,7 +228,8 @@
+ 
+   do
+   {
+-    if ((fd = open(resource, O_WRONLY | O_NOCTTY | O_EXCL | O_NDELAY)) == -1)
++    if ((device_fd = open(resource, O_RDWR | O_NOCTTY | O_EXCL |
++                                    O_NDELAY)) == -1)
+     {
+       if (getenv("CLASS") != NULL)
+       {
+@@ -268,7 +265,7 @@
+       }
+     }
+   }
+-  while (fd < 0);
++  while (device_fd < 0);
+ 
+   fputs("STATE: -connecting-to-device\n", stderr);
+ 
+@@ -276,16 +273,18 @@
+   * Set any options provided...
+   */
+ 
+-  tcgetattr(fd, &origopts);
+-  tcgetattr(fd, &opts);
++  tcgetattr(device_fd, &origopts);
++  tcgetattr(device_fd, &opts);
+ 
+-  opts.c_lflag &= ~(ICANON | ECHO | ISIG);	/* Raw mode */
+-  opts.c_oflag &= ~OPOST;			/* Don't post-process */
++  opts.c_lflag &= ~(ICANON | ECHO | ISIG);
++					/* Raw mode */
++  opts.c_oflag &= ~OPOST;		/* Don't post-process */
+ 
+-  bufsize = 96;		/* 9600 baud / 10 bits/char / 10Hz */
+-  dtrdsr  = 0;		/* No dtr/dsr flow control */
++  print_size = 96;			/* 9600 baud / 10 bits/char / 10Hz */
++  dtrdsr     = 0;			/* No dtr/dsr flow control */
+ 
+-  if (options != NULL)
++  if (options)
++  {
+     while (*options)
+     {
+      /*
+@@ -326,7 +325,7 @@
+         * Set the baud rate...
+ 	*/
+ 
+-        bufsize = atoi(value) / 100;
++        print_size = atoi(value) / 100;
+ 
+ #if B19200 == 19200
+         cfsetispeed(&opts, atoi(value));
+@@ -488,9 +487,10 @@
+ 	}
+       }
+     }
++  }
+ 
+-  tcsetattr(fd, TCSANOW, &opts);
+-  fcntl(fd, F_SETFL, 0);
++  tcsetattr(device_fd, TCSANOW, &opts);
++  fcntl(device_fd, F_SETFL, 0);
+ 
+  /*
+   * Now that we are "connected" to the port, ignore SIGTERM so that we
+@@ -499,7 +499,7 @@
+   * stdin (otherwise you can't cancel raw jobs...)
+   */
+ 
+-  if (argc < 7)
++  if (print_fd != 0)
+   {
+ #ifdef HAVE_SIGSET /* Use System V signals over POSIX to avoid bugs */
+     sigset(SIGTERM, SIG_IGN);
+@@ -515,133 +515,181 @@
+   }
+ 
+  /*
+-  * Finally, send the print file...
++  * Figure out the maximum file descriptor value to use with select()...
+   */
+ 
+-  if (bufsize > sizeof(buffer))
+-    bufsize = sizeof(buffer);
++  nfds = (print_fd > device_fd ? print_fd : device_fd) + 1;
+ 
+-  wbytes = 0;
++ /*
++  * Finally, send the print file.  Ordinarily we would just use the
++  * backendRunLoop() function, however since we need to use smaller
++  * writes and may need to do DSR/DTR flow control, we duplicate much
++  * of the code here instead...
++  */
++
++  if (print_size > sizeof(print_buffer))
++    print_size = sizeof(print_buffer);
++
++  total_bytes = 0;
+ 
+   while (copies > 0)
+   {
+     copies --;
+ 
+-    if (fp != 0)
++    if (print_fd != 0)
+     {
+       fputs("PAGE: 1 1\n", stderr);
+-      lseek(fp, 0, SEEK_SET);
++      lseek(print_fd, 0, SEEK_SET);
+     }
+ 
+-    if (dtrdsr)
++   /*
++    * Now loop until we are out of data from print_fd...
++    */
++
++    for (print_bytes = 0, print_ptr = print_buffer;;)
+     {
+      /*
+-      * Check the port and sleep until DSR is set...
++      * Use select() to determine whether we have data to copy around...
+       */
+ 
+-      int status;
++      FD_ZERO(&input);
++      if (!print_bytes)
++	FD_SET(print_fd, &input);
++      FD_SET(device_fd, &input);
+ 
++      FD_ZERO(&output);
++      if (print_bytes)
++	FD_SET(device_fd, &output);
+ 
+-      if (!ioctl(fd, TIOCMGET, &status))
+-        if (!(status & TIOCM_DSR))
++      if (select(nfds, &input, &output, NULL, NULL) < 0)
++	continue;			/* Ignore errors here */
++
++     /*
++      * Check if we have back-channel data ready...
++      */
++
++      if (FD_ISSET(device_fd, &input))
++      {
++	if ((bc_bytes = read(device_fd, bc_buffer, sizeof(bc_buffer))) > 0)
++	{
++	  fprintf(stderr,
++	          "DEBUG: Received " CUPS_LLFMT " bytes of back-channel data!\n",
++	          CUPS_LLCAST bc_bytes);
++          cupsBackChannelWrite(bc_buffer, bc_bytes, 1.0);
++	}
++      }
++
++     /*
++      * Check if we have print data ready...
++      */
++
++      if (FD_ISSET(print_fd, &input))
++      {
++	if ((print_bytes = read(print_fd, print_buffer, print_size)) < 0)
+ 	{
+ 	 /*
+-	  * Wait for DSR to go high...
++          * Read error - bail if we don't see EAGAIN or EINTR...
+ 	  */
+ 
+-	  fputs("DEBUG: DSR is low; waiting for device...\n", stderr);
+-
+-          do
++	  if (errno != EAGAIN || errno != EINTR)
+ 	  {
+-	    sleep(1);
+-	    if (ioctl(fd, TIOCMGET, &status))
+-	      break;
+-	  }
+-	  while (!(status & TIOCM_DSR));
+-
+-	  fputs("DEBUG: DSR is high; writing to device...\n", stderr);
+-        }
+-    }
++	    perror("ERROR: Unable to read print data");
+ 
+-    tbytes = 0;
+-    while ((nbytes = read(fp, buffer, bufsize)) > 0)
+-    {
+-     /*
+-      * Write the print data to the printer...
+-      */
++            tcsetattr(device_fd, TCSADRAIN, &origopts);
+ 
+-      tbytes += nbytes;
+-      bufptr = buffer;
++	    close(device_fd);
+ 
+-      while (nbytes > 0)
+-      {
+-       /*
+-        * See if we are ready to read or write...
+-	*/
++	    if (print_fd != 0)
++	      close(print_fd);
+ 
+-        do
+-	{
+-          FD_ZERO(&input);
+-	  FD_SET(fd, &input);
+-	  FD_ZERO(&output);
+-	  FD_SET(fd, &output);
+-        }
+-	while (select(fd + 1, &input, &output, NULL, NULL) < 0);
++	    return (CUPS_BACKEND_FAILED);
++	  }
+ 
+-        if (FD_ISSET(fd, &input))
++          print_bytes = 0;
++	}
++	else if (print_bytes == 0)
+ 	{
+ 	 /*
+-	  * Read backchannel data...
++          * End of file, break out of the loop...
+ 	  */
+ 
+-	  if ((rbytes = read(fd, resource, sizeof(resource))) > 0)
+-	  {
+-	    fprintf(stderr, "DEBUG: Received %d bytes of back-channel data!\n",
+-	            rbytes);
+-            cupsBackChannelWrite(resource, rbytes, 1.0);
+-          }
++          break;
+ 	}
+ 
+-        if (FD_ISSET(fd, &output))
++	print_ptr = print_buffer;
++      }
++
++     /*
++      * Check if the device is ready to receive data and we have data to
++      * send...
++      */
++
++      if (print_bytes && FD_ISSET(device_fd, &output))
++      {
++	if (dtrdsr)
+ 	{
+ 	 /*
+-	  * Write print data...
++	  * Check the port and sleep until DSR is set...
+ 	  */
+ 
+-	  if ((wbytes = write(fd, bufptr, nbytes)) < 0)
+-	    if (errno == ENOTTY)
+-	      wbytes = write(fd, bufptr, nbytes);
++	  int status;
+ 
+-	  if (wbytes < 0)
+-	  {
+-	   /*
+-	    * Check for retryable errors...
+-	    */
+ 
+-	    if (errno != EAGAIN && errno != EINTR)
++	  if (!ioctl(device_fd, TIOCMGET, &status))
++            if (!(status & TIOCM_DSR))
+ 	    {
+-	      perror("ERROR: Unable to send print file to printer");
+-	      break;
+-	    }
+-	  }
+-	  else
++	     /*
++	      * Wait for DSR to go high...
++	      */
++
++	      fputs("DEBUG: DSR is low; waiting for device...\n", stderr);
++
++              do
++	      {
++	       /*
++	        * Poll every 100ms...
++		*/
++
++		usleep(100000);
++
++		if (ioctl(device_fd, TIOCMGET, &status))
++		  break;
++	      }
++	      while (!(status & TIOCM_DSR));
++
++	      fputs("DEBUG: DSR is high; writing to device...\n", stderr);
++            }
++	}
++
++	if ((bytes = write(device_fd, print_ptr, print_bytes)) < 0)
++	{
++	 /*
++          * Write error - bail if we don't see an error we can retry...
++	  */
++
++	  if (errno != EAGAIN && errno != EINTR && errno != ENOTTY)
+ 	  {
+-	   /*
+-	    * Update count and pointer...
+-	    */
++	    perror("ERROR: Unable to write print data");
+ 
+-	    nbytes -= wbytes;
+-	    bufptr += wbytes;
++            tcsetattr(device_fd, TCSADRAIN, &origopts);
++
++	    close(device_fd);
++
++	    if (print_fd != 0)
++	      close(print_fd);
++
++	    return (CUPS_BACKEND_FAILED);
+ 	  }
+ 	}
+-      }
+-
+-      if (wbytes < 0)
+-        break;
++	else
++	{
++          fprintf(stderr, "DEBUG: Wrote %d bytes...\n", (int)bytes);
+ 
+-      if (argc > 6)
+-	fprintf(stderr, "INFO: Sending print file, %lu bytes...\n",
+-	        (unsigned long)tbytes);
++          print_bytes -= bytes;
++	  print_ptr   += bytes;
++	  total_bytes += bytes;
++	}
++      }
+     }
+   }
+ 
+@@ -649,13 +697,14 @@
+   * Close the serial port and input file and return...
+   */
+ 
+-  tcsetattr(fd, TCSADRAIN, &origopts);
++  tcsetattr(device_fd, TCSADRAIN, &origopts);
+ 
+-  close(fd);
+-  if (fp != 0)
+-    close(fp);
++  close(device_fd);
+ 
+-  return (wbytes < 0 ? CUPS_BACKEND_FAILED : CUPS_BACKEND_OK);
++  if (print_fd != 0)
++    close(print_fd);
++
++  return (total_bytes < 0 ? CUPS_BACKEND_FAILED : CUPS_BACKEND_OK);
+ }
+ 
+ 
+diff -urNad cupsys-1.2.1~/backend/snmp.c cupsys-1.2.1/backend/snmp.c
+--- cupsys-1.2.1~/backend/snmp.c	2006-05-31 13:42:05.000000000 +0000
++++ cupsys-1.2.1/backend/snmp.c	2006-05-31 13:42:34.000000000 +0000
+@@ -77,17 +77,10 @@
+  * Include necessary headers.
+  */
+ 
+-#include <cups/backend.h>
+ #include <cups/http-private.h>
+-#include <cups/cups.h>
+-#include <cups/string.h>
++#include "backend-private.h"
+ #include <cups/array.h>
+ #include <cups/file.h>
+-#include <errno.h>
+-#include <signal.h>
+-
+-#define SNMP_BACKEND
+-#include "ieee1284.c"
+ 
+ 
+ /*
+@@ -1656,7 +1649,7 @@
+ 	if (model)
+           strlcpy(temp, model->values[0].string.text, sizeof(temp));
+ 	else if (info)
+-	  get_make_model(info->values[0].string.text, temp, sizeof(temp));
++	  backendGetMakeModel(info->values[0].string.text, temp, sizeof(temp));
+ 
+         fix_make_model(make_model, temp, sizeof(make_model));
+ 
+@@ -1928,8 +1921,8 @@
+       * Description is the IEEE-1284 device ID...
+       */
+ 
+-      get_make_model(packet.object_value.string, make_model,
+-                     sizeof(make_model));
++      backendGetMakeModel(packet.object_value.string, make_model,
++                	  sizeof(make_model));
+     }
+     else
+     {
+diff -urNad cupsys-1.2.1~/backend/socket.c cupsys-1.2.1/backend/socket.c
+--- cupsys-1.2.1~/backend/socket.c	2006-05-31 13:42:05.000000000 +0000
++++ cupsys-1.2.1/backend/socket.c	2006-05-31 13:42:34.000000000 +0000
+@@ -32,17 +32,11 @@
+  * Include necessary headers.
+  */
+ 
+-#include <cups/backend.h>
+ #include <cups/http-private.h>
+-#include <cups/cups.h>
+-#include <stdio.h>
+-#include <stdlib.h>
++#include "backend-private.h"
+ #include <stdarg.h>
+-#include <cups/string.h>
+-#include <errno.h>
+ #include <sys/types.h>
+ #include <sys/stat.h>
+-#include <signal.h>
+ 
+ #ifdef WIN32
+ #  include <winsock.h>
+@@ -76,24 +70,19 @@
+ 		name[255],		/* Name of option */
+ 		value[255],		/* Value of option */
+ 		*ptr;			/* Pointer into name or value */
+-  int		fp;			/* Print file */
++  int		print_fd;		/* Print file */
+   int		copies;			/* Number of copies to print */
+   int		waiteof;		/* Wait for end-of-file? */
+   int		port;			/* Port number */
+   char		portname[255];		/* Port name */
+   int		delay;			/* Delay for retries... */
+-  int		fd;			/* AppSocket */
++  int		device_fd;		/* AppSocket */
+   int		error;			/* Error code (if any) */
+   http_addrlist_t *addrlist;		/* Address list */
+-  int		rbytes;			/* Number of bytes read */
+-  int		wbytes;			/* Number of bytes written */
+-  int		nbytes;			/* Number of bytes read */
+-  size_t	tbytes;			/* Total number of bytes written */
+-  char		buffer[8192],		/* Output buffer */
+-		*bufptr;		/* Pointer into buffer */
++  ssize_t	tbytes;			/* Total number of bytes written */
+   struct timeval timeout;		/* Timeout for select() */
+-  fd_set	input,			/* Input set for select() */
+-		output;			/* Output set for select() */
++  fd_set	input;			/* Input set for select() */
++  ssize_t	bc_bytes;		/* Number of back-channel bytes read */
+ #if defined(HAVE_SIGACTION) && !defined(HAVE_SIGSET)
+   struct sigaction action;		/* Actions for POSIX signals */
+ #endif /* HAVE_SIGACTION && !HAVE_SIGSET */
+@@ -142,8 +131,8 @@
+ 
+   if (argc == 6)
+   {
+-    fp     = 0;
+-    copies = 1;
++    print_fd = 0;
++    copies   = 1;
+   }
+   else
+   {
+@@ -151,7 +140,7 @@
+     * Try to open the print file...
+     */
+ 
+-    if ((fp = open(argv[6], O_RDONLY)) < 0)
++    if ((print_fd = open(argv[6], O_RDONLY)) < 0)
+     {
+       perror("ERROR: unable to open print file");
+       return (CUPS_BACKEND_FAILED);
+@@ -252,228 +241,134 @@
+   fprintf(stderr, "INFO: Attempting to connect to host %s on port %d\n",
+           hostname, port);
+ 
+-  wbytes = 0;
++  fputs("STATE: +connecting-to-device\n", stderr);
+ 
+-  while (copies > 0)
++  for (delay = 5;;)
+   {
+-    fputs("STATE: +connecting-to-device\n", stderr);
+-
+-    for (delay = 5;;)
++    if (!httpAddrConnect(addrlist, &device_fd))
+     {
+-      if (!httpAddrConnect(addrlist, &fd))
+-      {
+-	error = errno;
+-	fd    = -1;
++      error     = errno;
++      device_fd = -1;
+ 
+-	if (getenv("CLASS") != NULL)
+-	{
+-	 /*
+-          * If the CLASS environment variable is set, the job was submitted
+-	  * to a class and not to a specific queue.  In this case, we want
+-	  * to abort immediately so that the job can be requeued on the next
+-	  * available printer in the class.
+-	  */
++      if (getenv("CLASS") != NULL)
++      {
++       /*
++        * If the CLASS environment variable is set, the job was submitted
++	* to a class and not to a specific queue.  In this case, we want
++	* to abort immediately so that the job can be requeued on the next
++	* available printer in the class.
++	*/
+ 
+-          fprintf(stderr, "INFO: Unable to connect to \"%s\", queuing on next printer in class...\n",
+-		  hostname);
++        fprintf(stderr, "INFO: Unable to connect to \"%s\", queuing on next printer in class...\n",
++		hostname);
+ 
+-	 /*
+-          * Sleep 5 seconds to keep the job from requeuing too rapidly...
+-	  */
++       /*
++        * Sleep 5 seconds to keep the job from requeuing too rapidly...
++	*/
+ 
+-	  sleep(5);
++	sleep(5);
+ 
+-          return (CUPS_BACKEND_FAILED);
+-	}
++        return (CUPS_BACKEND_FAILED);
++      }
+ 
+-	if (error == ECONNREFUSED || error == EHOSTDOWN ||
+-            error == EHOSTUNREACH)
+-	{
+-	  fprintf(stderr, "INFO: Network host \'%s\' is busy; will retry in %d seconds...\n",
+-                  hostname, delay);
+-	  sleep(delay);
++      if (error == ECONNREFUSED || error == EHOSTDOWN ||
++          error == EHOSTUNREACH)
++      {
++	fprintf(stderr,
++	        "INFO: Network host \'%s\' is busy; will retry in %d seconds...\n",
++                hostname, delay);
++	sleep(delay);
+ 
+-	  if (delay < 30)
+-	    delay += 5;
+-	}
+-	else
+-	{
+-	  perror("ERROR: Unable to connect to printer (retrying in 30 seconds)");
+-	  sleep(30);
+-	}
++	if (delay < 30)
++	  delay += 5;
+       }
+       else
+-	break;
++      {
++	perror("ERROR: Unable to connect to printer (retrying in 30 seconds)");
++	sleep(30);
++      }
+     }
++    else
++      break;
++  }
+ 
+-    fputs("STATE: -connecting-to-device\n", stderr);
+-
+-   /*
+-    * Now that we are "connected" to the port, ignore SIGTERM so that we
+-    * can finish out any page data the driver sends (e.g. to eject the
+-    * current page...  Only ignore SIGTERM if we are printing data from
+-    * stdin (otherwise you can't cancel raw jobs...)
+-    */
+-
+-    if (argc < 7)
+-    {
+-#ifdef HAVE_SIGSET /* Use System V signals over POSIX to avoid bugs */
+-      sigset(SIGTERM, SIG_IGN);
+-#elif defined(HAVE_SIGACTION)
+-      memset(&action, 0, sizeof(action));
++  fputs("STATE: -connecting-to-device\n", stderr);
+ 
+-      sigemptyset(&action.sa_mask);
+-      action.sa_handler = SIG_IGN;
+-      sigaction(SIGTERM, &action, NULL);
+-#else
+-      signal(SIGTERM, SIG_IGN);
+-#endif /* HAVE_SIGSET */
+-    }
++ /*
++  * Print everything...
++  */
+ 
+-   /*
+-    * Finally, send the print file...
+-    */
++  tbytes = 0;
+ 
++  while (copies > 0 && tbytes >= 0)
++  {
+     copies --;
+ 
+-    if (fp != 0)
++    if (print_fd != 0)
+     {
+       fputs("PAGE: 1 1\n", stderr);
+-      lseek(fp, 0, SEEK_SET);
++      lseek(print_fd, 0, SEEK_SET);
+     }
+ 
+-    fputs("INFO: Connected to host, sending print job...\n", stderr);
+-
+-    tbytes = 0;
+-    while ((nbytes = read(fp, buffer, sizeof(buffer))) > 0)
+-    {
+-     /*
+-      * Write the print data to the printer...
+-      */
+-
+-      tbytes += nbytes;
+-      bufptr = buffer;
+-
+-      while (nbytes > 0)
+-      {
+-       /*
+-        * See if we are ready to read or write...
+-	*/
+-
+-        do
+-	{
+-          FD_ZERO(&input);
+-	  FD_SET(fd, &input);
+-	  FD_ZERO(&output);
+-	  FD_SET(fd, &output);
+-        }
+-	while (select(fd + 1, &input, &output, NULL, NULL) < 0);
+-
+-        if (FD_ISSET(fd, &input))
+-	{
+-	 /*
+-	  * Read backchannel data...
+-	  */
+-
+-	  if ((rbytes = recv(fd, resource, sizeof(resource), 0)) > 0)
+-	  {
+-	    fprintf(stderr, "DEBUG: Received %d bytes of back-channel data!\n",
+-	            rbytes);
+-            cupsBackChannelWrite(resource, rbytes, 1.0);
+-          }
+-	}
+-
+-        if (FD_ISSET(fd, &output))
+-	{
+-	 /*
+-	  * Write print data...
+-	  */
+-
+-	  if ((wbytes = send(fd, bufptr, nbytes, 0)) < 0)
+-	  {
+-	   /*
+-	    * Check for retryable errors...
+-	    */
++    tbytes = backendRunLoop(print_fd, device_fd, 1);
+ 
+-	    if (errno != EAGAIN && errno != EINTR)
+-	    {
+-	      perror("ERROR: Unable to send print file to printer");
+-	      break;
+-	    }
+-	  }
+-	  else
+-	  {
+-	   /*
+-	    * Update count and pointer...
+-	    */
++    if (print_fd != 0 && tbytes >= 0)
++      fprintf(stderr, "INFO: Sent print file, " CUPS_LLFMT " bytes...\n",
++	      CUPS_LLCAST tbytes);
++  }
+ 
+-	    nbytes -= wbytes;
+-	    bufptr += wbytes;
+-	  }
+-        }
+-      }
++  if (waiteof)
++  {
++   /*
++    * Shutdown the socket and wait for the other end to finish...
++    */
+ 
+-      if (wbytes < 0)
+-        break;
++    fputs("INFO: Print file sent, waiting for printer to finish...\n", stderr);
+ 
+-      if (argc > 6)
+-	fprintf(stderr, "INFO: Sending print file, %lu bytes...\n",
+-	        (unsigned long)tbytes);
+-    }
++    shutdown(device_fd, 1);
+ 
+-    if (waiteof)
++    for (;;)
+     {
+      /*
+-      * Shutdown the socket and wait for the other end to finish...
++      * Wait a maximum of 90 seconds for backchannel data or a closed
++      * connection...
+       */
+ 
+-      fputs("INFO: Print file sent, waiting for printer to finish...\n", stderr);
++      timeout.tv_sec  = 90;
++      timeout.tv_usec = 0;
+ 
+-      shutdown(fd, 1);
++      FD_ZERO(&input);
++      FD_SET(device_fd, &input);
+ 
+-      for (;;)
++#ifdef __hpux
++      if (select(device_fd + 1, (int *)&input, NULL, NULL, &timeout) > 0)
++#else
++      if (select(device_fd + 1, &input, NULL, NULL, &timeout) > 0)
++#endif /* __hpux */
+       {
+        /*
+-	* Wait a maximum of 90 seconds for backchannel data or a closed
+-	* connection...
++	* Grab the data coming back and spit it out to stderr...
+ 	*/
+ 
+-	timeout.tv_sec  = 90;
+-	timeout.tv_usec = 0;
+-
+-	FD_ZERO(&input);
+-	FD_SET(fd, &input);
+-
+-  #ifdef __hpux
+-	if (select(fd + 1, (int *)&input, NULL, NULL, &timeout) > 0)
+-  #else
+-	if (select(fd + 1, &input, NULL, NULL, &timeout) > 0)
+-  #endif /* __hpux */
++	if ((bc_bytes = read(device_fd, resource, sizeof(resource))) > 0)
+ 	{
+-	 /*
+-	  * Grab the data coming back and spit it out to stderr...
+-	  */
+-
+-	  if ((rbytes = recv(fd, resource, sizeof(resource), 0)) > 0)
+-	  {
+-	    fprintf(stderr, "DEBUG: Received %d bytes of back-channel data!\n",
+-		    rbytes);
+-	    cupsBackChannelWrite(resource, rbytes, 1.0);
+-	  }
+-	  else
+-	    break;
++	  fprintf(stderr, "DEBUG: Received %d bytes of back-channel data!\n",
++		  (int)bc_bytes);
++	  cupsBackChannelWrite(resource, bc_bytes, 1.0);
+ 	}
+ 	else
+ 	  break;
+       }
++      else
++	break;
+     }
++  }
+ 
+-   /*
+-    * Close the socket connection...
+-    */
++ /*
++  * Close the socket connection...
++  */
+ 
+-    close(fd);
+-  }
++  close(device_fd);
+ 
+   httpAddrFreeList(addrlist);
+ 
+@@ -481,13 +376,13 @@
+   * Close the input file and return...
+   */
+ 
+-  if (fp != 0)
+-    close(fp);
++  if (print_fd != 0)
++    close(print_fd);
+ 
+-  if (wbytes >= 0)
++  if (tbytes >= 0)
+     fputs("INFO: Ready to print.\n", stderr);
+ 
+-  return (wbytes < 0 ? CUPS_BACKEND_FAILED : CUPS_BACKEND_OK);
++  return (tbytes < 0 ? CUPS_BACKEND_FAILED : CUPS_BACKEND_OK);
+ }
+ 
+ 
+diff -urNad cupsys-1.2.1~/backend/test1284.c cupsys-1.2.1/backend/test1284.c
+--- cupsys-1.2.1~/backend/test1284.c	2006-05-31 13:42:05.000000000 +0000
++++ cupsys-1.2.1/backend/test1284.c	2006-05-31 13:42:34.000000000 +0000
+@@ -41,6 +41,7 @@
+ #  include <unistd.h>
+ #  include <fcntl.h>
+ #endif /* WIN32 */
++
+ #define DEBUG
+ #include "ieee1284.c"
+ 
+@@ -76,8 +77,8 @@
+ 
+     printf("%s:\n", argv[i]);
+ 
+-    get_device_id(fd, device_id, sizeof(device_id), make_model,
+-                  sizeof(make_model), "test", uri, sizeof(uri));
++    backendGetDeviceID(fd, device_id, sizeof(device_id), make_model,
++                       sizeof(make_model), "test", uri, sizeof(uri));
+ 
+     printf("    device_id=\"%s\"\n", device_id);
+     printf("    make_model=\"%s\"\n", make_model);
+diff -urNad cupsys-1.2.1~/backend/usb-unix.c cupsys-1.2.1/backend/usb-unix.c
+--- cupsys-1.2.1~/backend/usb-unix.c	2006-05-31 13:42:05.000000000 +0000
++++ cupsys-1.2.1/backend/usb-unix.c	2006-05-31 13:42:34.000000000 +0000
+@@ -55,30 +55,20 @@
+              const char *hostname,	/* I - Hostname/manufacturer */
+              const char *resource,	/* I - Resource/modelname */
+ 	     const char *options,	/* I - Device options/serial number */
+-	     int        fp,		/* I - File descriptor to print */
++	     int        print_fd,	/* I - File descriptor to print */
+ 	     int        copies,		/* I - Copies to print */
+ 	     int	argc,		/* I - Number of command-line arguments (6 or 7) */
+ 	     char	*argv[])	/* I - Command-line arguments */
+ {
+-  int		usebc;			/* Use backchannel path? */
+-  int		fd;			/* USB device */
+-  int		rbytes;			/* Number of bytes read */
+-  int		wbytes;			/* Number of bytes written */
+-  size_t	nbytes,			/* Number of bytes read */
+-		tbytes;			/* Total number of bytes written */
+-  char		buffer[8192],		/* Output buffer */
+-		*bufptr,		/* Pointer into buffer */
+-		backbuf[1024];		/* Backchannel buffer */
++  int		use_bc;			/* Use backchannel path? */
++  int		device_fd;		/* USB device */
++  size_t	tbytes;			/* Total number of bytes written */
+   struct termios opts;			/* Parallel port options */
+-  fd_set	input,			/* Input set for select() */
+-		output;			/* Output set for select() */
+-  int		paperout;		/* Paper out? */
+-#if defined(HAVE_SIGACTION) && !defined(HAVE_SIGSET)
+-  struct sigaction action;		/* Actions for POSIX signals */
+-#endif /* HAVE_SIGACTION && !HAVE_SIGSET */
+-#ifdef __linux
++#if defined(__linux) && defined(LP_POUTPA)
+   unsigned int	status;			/* Port status (off-line, out-of-paper, etc.) */
+-#endif /* __linux */
++  int		paperout;		/* Paper out? */
++#endif /* __linux && LP_POUTPA */
++
+ 
+   (void)argc;
+   (void)argv;
+@@ -89,7 +79,7 @@
+   * when they get a read request...
+   */
+ 
+-  usebc = strcasecmp(hostname, "Canon") != 0;
++  use_bc = strcasecmp(hostname, "Canon") != 0;
+ 
+  /*
+   * Open the USB port device...
+@@ -99,7 +89,7 @@
+ 
+   do
+   {
+-    if ((fd = open_device(uri)) == -1)
++    if ((device_fd = open_device(uri)) == -1)
+     {
+       if (getenv("CLASS") != NULL)
+       {
+@@ -127,7 +117,8 @@
+         fputs("INFO: USB port busy; will retry in 30 seconds...\n", stderr);
+ 	sleep(30);
+       }
+-      else if (errno == ENXIO || errno == EIO || errno == ENOENT || errno == ENODEV)
++      else if (errno == ENXIO || errno == EIO || errno == ENOENT ||
++               errno == ENODEV)
+       {
+         fputs("INFO: Printer not connected; will retry in 30 seconds...\n", stderr);
+ 	sleep(30);
+@@ -140,7 +131,7 @@
+       }
+     }
+   }
+-  while (fd < 0);
++  while (device_fd < 0);
+ 
+   fputs("STATE: -connecting-to-device\n", stderr);
+ 
+@@ -148,28 +139,25 @@
+   * Set any options provided...
+   */
+ 
+-  tcgetattr(fd, &opts);
++  tcgetattr(device_fd, &opts);
+ 
+   opts.c_lflag &= ~(ICANON | ECHO | ISIG);	/* Raw mode */
+ 
+   /**** No options supported yet ****/
+ 
+-  tcsetattr(fd, TCSANOW, &opts);
+-
+- /*
+-  * Check printer status...
+-  */
+-
+-  paperout = 0;
++  tcsetattr(device_fd, TCSANOW, &opts);
+ 
+ #if defined(__linux) && defined(LP_POUTPA)
+  /*
+   * Show the printer status before we send the file...
+   */
+ 
+-  while (!ioctl(fd, LPGETSTATUS, &status))
++  paperout = 0;
++
++  while (!ioctl(device_fd, LPGETSTATUS, &status))
+   {
+-    fprintf(stderr, "DEBUG: LPGETSTATUS returned a port status of %02X...\n", status);
++    fprintf(stderr, "DEBUG: LPGETSTATUS returned a port status of %02X...\n",
++            status);
+ 
+     if (status & LP_POUTPA)
+     {
+@@ -191,146 +179,35 @@
+ #endif /* __linux && LP_POUTPA */
+ 
+  /*
+-  * Now that we are "connected" to the port, ignore SIGTERM so that we
+-  * can finish out any page data the driver sends (e.g. to eject the
+-  * current page...  Only ignore SIGTERM if we are printing data from
+-  * stdin (otherwise you can't cancel raw jobs...)
+-  */
+-
+-  if (!fp)
+-  {
+-#ifdef HAVE_SIGSET /* Use System V signals over POSIX to avoid bugs */
+-    sigset(SIGTERM, SIG_IGN);
+-#elif defined(HAVE_SIGACTION)
+-    memset(&action, 0, sizeof(action));
+-
+-    sigemptyset(&action.sa_mask);
+-    action.sa_handler = SIG_IGN;
+-    sigaction(SIGTERM, &action, NULL);
+-#else
+-    signal(SIGTERM, SIG_IGN);
+-#endif /* HAVE_SIGSET */
+-  }
+-
+- /*
+   * Finally, send the print file...
+   */
+ 
+-  wbytes = 0;
++  tbytes = 0;
+ 
+-  while (copies > 0)
++  while (copies > 0 && tbytes >= 0)
+   {
+     copies --;
+ 
+-    if (fp != 0)
++    if (print_fd != 0)
+     {
+       fputs("PAGE: 1 1\n", stderr);
+-      lseek(fp, 0, SEEK_SET);
++      lseek(print_fd, 0, SEEK_SET);
+     }
+ 
+-    tbytes = 0;
+-    while ((nbytes = read(fp, buffer, sizeof(buffer))) > 0)
+-    {
+-     /*
+-      * Write the print data to the printer...
+-      */
+-
+-      tbytes += nbytes;
+-      bufptr = buffer;
+-
+-      while (nbytes > 0)
+-      {
+-       /*
+-        * See if we are ready to read or write...
+-	*/
+-
+-        do
+-	{
+-          FD_ZERO(&input);
+-	  if (usebc)
+-	    FD_SET(fd, &input);
+-
+-	  FD_ZERO(&output);
+-	  FD_SET(fd, &output);
+-        }
+-	while (select(fd + 1, &input, &output, NULL, NULL) < 0);
+-
+-        if (FD_ISSET(fd, &input))
+-	{
+-	 /*
+-	  * Read backchannel data...
+-	  */
+-
+-	  if ((rbytes = read(fd, backbuf, sizeof(backbuf))) > 0)
+-	  {
+-	    fprintf(stderr, "DEBUG: Received %d bytes of back-channel data!\n",
+-	            rbytes);
+-            cupsBackChannelWrite(backbuf, rbytes, 1.0);
+-          }
+-	}
+-
+-        if (FD_ISSET(fd, &output))
+-	{
+-	 /*
+-	  * Write print data...
+-	  */
+-
+-	  if ((wbytes = write(fd, bufptr, nbytes)) < 0)
+-	    if (errno == ENOTTY)
+-	      wbytes = write(fd, bufptr, nbytes);
+-
+-	  if (wbytes < 0)
+-	  {
+-	   /*
+-	    * Check for retryable errors...
+-	    */
+-
+-	    if (errno == ENOSPC)
+-	    {
+-	      paperout = 1;
+-	      fputs("ERROR: Out of paper!\n", stderr);
+-	      fputs("STATUS: +media-tray-empty-error\n", stderr);
+-	    }
+-	    else if (errno != EAGAIN && errno != EINTR)
+-	    {
+-	      perror("ERROR: Unable to send print file to printer");
+-	      break;
+-	    }
+-	  }
+-	  else
+-	  {
+-	   /*
+-	    * Update count and pointer...
+-	    */
+-
+-            if (paperout)
+-	    {
+-	      fputs("STATUS: -media-tray-empty-error\n", stderr);
+-	      paperout = 0;
+-	    }
+-
+-	    nbytes -= wbytes;
+-	    bufptr += wbytes;
+-	  }
+-	}
+-      }
+-
+-      if (wbytes < 0)
+-        break;
++    tbytes = backendRunLoop(print_fd, device_fd, 1);
+ 
+-      if (fp)
+-	fprintf(stderr, "INFO: Sending print file, %lu bytes...\n",
+-	        (unsigned long)tbytes);
+-    }
++    if (print_fd != 0 && tbytes >= 0)
++      fprintf(stderr, "INFO: Sent print file, " CUPS_LLFMT " bytes...\n",
++	      CUPS_LLCAST tbytes);
+   }
+ 
+  /*
+   * Close the USB port and return...
+   */
+ 
+-  close(fd);
++  close(device_fd);
+ 
+-  return (wbytes < 0 ? CUPS_BACKEND_FAILED : CUPS_BACKEND_OK);
++  return (tbytes < 0 ? CUPS_BACKEND_FAILED : CUPS_BACKEND_OK);
+ }
+ 
+ 
+@@ -372,9 +249,9 @@
+ 
+     if ((fd = open(device, O_RDWR | O_EXCL)) >= 0)
+     {
+-      if (!get_device_id(fd, device_id, sizeof(device_id),
+-                         make_model, sizeof(make_model),
+-			 "usb", device_uri, sizeof(device_uri)))
++      if (!backendGetDeviceID(fd, device_id, sizeof(device_id),
++                              make_model, sizeof(make_model),
++			      "usb", device_uri, sizeof(device_uri)))
+ 	printf("direct %s \"%s\" \"%s USB #%d\" \"%s\"\n", device_uri,
+ 	       make_model, make_model, i + 1, device_id);
+ 
+@@ -401,9 +278,9 @@
+ 
+     if ((fd = open(device, O_RDWR | O_EXCL)) >= 0)
+     {
+-      if (!get_device_id(fd, device_id, sizeof(device_id),
+-                         make_model, sizeof(make_model),
+-			 "usb", device_uri, sizeof(device_uri)))
++      if (!backendGetDeviceID(fd, device_id, sizeof(device_id),
++                              make_model, sizeof(make_model),
++			      "usb", device_uri, sizeof(device_uri)))
+ 	printf("direct %s \"%s\" \"%s USB #%d\" \"%s\"\n", device_uri,
+ 	       make_model, make_model, i + 1, device_id);
+ 
+@@ -486,9 +363,9 @@
+ 
+ 	if ((fd = open(device, O_RDWR | O_EXCL)) >= 0)
+ 	{
+-	  get_device_id(fd, device_id, sizeof(device_id),
+-                        make_model, sizeof(make_model),
+-			"usb", device_uri, sizeof(device_uri));
++	  backendGetDeviceID(fd, device_id, sizeof(device_id),
++                             make_model, sizeof(make_model),
++			     "usb", device_uri, sizeof(device_uri));
+ 	}
+ 	else
+ 	{
+@@ -572,9 +449,9 @@
+ 	sprintf(device, "/dev/usb/printer%d", i);
+ 
+ 	if ((fd = open(device, O_RDWR | O_EXCL)) >= 0)
+-	  get_device_id(fd, device_id, sizeof(device_id),
+-                        make_model, sizeof(make_model),
+-			"usb", device_uri, sizeof(device_uri));
++	  backendGetDeviceID(fd, device_id, sizeof(device_id),
++                             make_model, sizeof(make_model),
++			     "usb", device_uri, sizeof(device_uri));
+ 	else
+ 	{
+ 	 /*
+diff -urNad cupsys-1.2.1~/backend/usb.c cupsys-1.2.1/backend/usb.c
+--- cupsys-1.2.1~/backend/usb.c	2006-05-31 13:42:05.000000000 +0000
++++ cupsys-1.2.1/backend/usb.c	2006-05-31 13:42:34.000000000 +0000
+@@ -63,7 +63,7 @@
+ void	list_devices(void);
+ int	print_device(const char *uri, const char *hostname,
+ 	             const char *resource, const char *options,
+-		     int fp, int copies, int argc, char *argv[]);
++		     int print_fd, int copies, int argc, char *argv[]);
+ 
+ 
+ /*
+@@ -108,7 +108,7 @@
+              const char *hostname,	/* I - Hostname/manufacturer */
+              const char *resource,	/* I - Resource/modelname */
+ 	     const char *options,	/* I - Device options/serial number */
+-	     int        fp,		/* I - File descriptor to print */
++	     int        print_fd,	/* I - File descriptor to print */
+ 	     int        copies,		/* I - Copies to print */
+ 	     int	argc,		/* I - Number of command-line arguments (6 or 7) */
+ 	     char	*argv[])	/* I - Command-line arguments */
+@@ -124,7 +124,7 @@
+   (void)hostname;
+   (void)resource;
+   (void)options;
+-  (void)fp;
++  (void)print_fd;
+   (void)copies;
+   (void)argc;
+   (void)argv;
+@@ -146,7 +146,7 @@
+ main(int  argc,				/* I - Number of command-line arguments (6 or 7) */
+      char *argv[])			/* I - Command-line arguments */
+ {
+-  int		fp;			/* Print file */
++  int		print_fd;		/* Print file */
+   int		copies;			/* Number of copies to print */
+   int		status;			/* Exit status */
+   int		port;			/* Port number (not used) */
+@@ -232,8 +232,8 @@
+ 
+   if (argc == 6)
+   {
+-    fp     = 0;
+-    copies = 1;
++    print_fd = 0;
++    copies   = 1;
+   }
+   else
+   {
+@@ -241,7 +241,7 @@
+     * Try to open the print file...
+     */
+ 
+-    if ((fp = open(argv[6], O_RDONLY)) < 0)
++    if ((print_fd = open(argv[6], O_RDONLY)) < 0)
+     {
+       fprintf(stderr, "ERROR: unable to open print file %s - %s\n",
+               argv[6], strerror(errno));
+@@ -255,14 +255,15 @@
+   * Finally, send the print file...
+   */
+ 
+-  status = print_device(uri, hostname, resource, options, fp, copies, argc, argv);
++  status = print_device(uri, hostname, resource, options, print_fd, copies,
++                        argc, argv);
+ 
+  /*
+   * Close the input file and return...
+   */
+ 
+-  if (fp != 0)
+-    close(fp);
++  if (print_fd != 0)
++    close(print_fd);
+ 
+   return (status);
+ }
+diff -urNad cupsys-1.2.1~/config-scripts/cups-compiler.m4 cupsys-1.2.1/config-scripts/cups-compiler.m4
+--- cupsys-1.2.1~/config-scripts/cups-compiler.m4	2006-05-31 13:42:05.000000000 +0000
++++ cupsys-1.2.1/config-scripts/cups-compiler.m4	2006-05-31 13:42:34.000000000 +0000
+@@ -24,19 +24,26 @@
+ 
+ dnl Clear the debugging and non-shared library options unless the user asks
+ dnl for them...
+-ARCHFLAGS=""
+ OPTIM=""
+-AC_SUBST(ARCHFLAGS)
+ AC_SUBST(OPTIM)
+ 
+ AC_ARG_WITH(optim, [  --with-optim="flags"    set optimization flags ])
+-AC_ARG_WITH(archflags, [  --with-arch="flags"     set default architecture flags ])
+-
+ AC_ARG_ENABLE(debug, [  --enable-debug          turn on debugging, default=no],
+ 	[if test x$enable_debug = xyes; then
+ 		OPTIM="-g"
+ 	fi])
+ 
++dnl Setup general architecture flags...
++AC_ARG_WITH(archflags, [  --with-arch="flags"     set default architecture flags ])
++
++if test -z "$with_archflags"; then
++	ARCHFLAGS=""
++else
++	ARCHFLAGS="$with_archflags"
++fi
++
++AC_SUBST(ARCHFLAGS)
++
+ dnl Setup support for separate 32/64-bit library generation...
+ AC_ARG_ENABLE(32bit, [  --enable-32bit          generate 32-bit libraries on 32/64-bit systems, default=no])
+ AC_ARG_WITH(arch32flags, [  --with-arch32="flags"   specifies 32-bit architecture flags])
+@@ -118,17 +125,6 @@
+ 	fi
+ 
+ 	case "$uname" in
+-		Darwin*)
+-			if test -z "$with_archflags"; then
+-				if test "x`uname -m`" = xi386; then
+-					# Build universal binaries for OSX on Intel...
+-					ARCHFLAGS="-arch i386 -arch ppc"
+-				fi
+-			else
+-				ARCHFLAGS="$with_archflags"
+-			fi
+-			;;
+-
+ 		IRIX)
+ 			if test "x$enable_32bit" = xyes; then
+ 				# Build 32-bit libraries, 64-bit base...
+@@ -149,8 +145,6 @@
+ 					else
+ 						ARCHFLAGS="$with_arch64flags"
+ 					fi
+-				else
+-					ARCHFLAGS="$with_archflags"
+ 				fi
+ 			fi
+ 
+@@ -173,8 +167,6 @@
+ 					else
+ 						ARCHFLAGS="$with_arch32flags"
+ 					fi
+-				else
+-					ARCHFLAGS="$with_archflags"
+ 				fi
+ 			fi
+ 			;;
+@@ -202,8 +194,6 @@
+ 					else
+ 						ARCHFLAGS="$with_arch64flags"
+ 					fi
+-				else
+-					ARCHFLAGS="$with_archflags"
+ 				fi
+ 			fi
+ 
+@@ -229,8 +219,6 @@
+ 					else
+ 						ARCHFLAGS="$with_arch32flags"
+ 					fi
+-				else
+-					ARCHFLAGS="$with_archflags"
+ 				fi
+ 			fi
+ 			;;
+@@ -255,8 +243,6 @@
+ 					else
+ 						ARCHFLAGS="$with_arch64flags"
+ 					fi
+-				else
+-					ARCHFLAGS="$with_archflags"
+ 				fi
+ 			fi
+ 
+@@ -279,8 +265,6 @@
+ 					else
+ 						ARCHFLAGS="$with_arch32flags"
+ 					fi
+-				else
+-					ARCHFLAGS="$with_archflags"
+ 				fi
+ 			fi
+ 			;;
+@@ -313,8 +297,6 @@
+ 			if test -z "$with_archflags"; then
+ 				# Build portable binaries for all HP systems...
+ 				ARCHFLAGS="+DAportable"
+-			else
+-				ARCHFLAGS="$with_archflags"
+ 			fi
+ 
+ 			if test $PICFLAG = 1; then
+@@ -353,8 +335,6 @@
+ 					else
+ 						ARCHFLAGS="$with_arch64flags"
+ 					fi
+-				else
+-					ARCHFLAGS="$with_archflags"
+ 				fi
+ 			fi
+ 
+@@ -377,8 +357,6 @@
+ 					else
+ 						ARCHFLAGS="$with_arch32flags"
+ 					fi
+-				else
+-					ARCHFLAGS="$with_archflags"
+ 				fi
+ 			fi
+ 			;;
+@@ -386,7 +364,7 @@
+ 			# Solaris
+ 			if test -z "$OPTIM"; then
+ 				if test "x$with_optim" = x; then
+-					OPTIM="-xO4"
++					OPTIM="-xO2"
+ 				else
+ 					OPTIM="$with_optim $OPTIM"
+ 				fi
+@@ -419,8 +397,6 @@
+ 					else
+ 						ARCHFLAGS="$with_arch64flags"
+ 					fi
+-				else
+-					ARCHFLAGS="$with_archflags"
+ 				fi
+ 			else
+ 				if test "x$enable_64bit" = xyes; then
+@@ -446,8 +422,6 @@
+ 					else
+ 						ARCHFLAGS="$with_arch32flags"
+ 					fi
+-				else
+-					ARCHFLAGS="$with_archflags"
+ 				fi
+ 			fi
+ 			;;
+diff -urNad cupsys-1.2.1~/config-scripts/cups-image.m4 cupsys-1.2.1/config-scripts/cups-image.m4
+--- cupsys-1.2.1~/config-scripts/cups-image.m4	2006-05-31 13:42:05.000000000 +0000
++++ cupsys-1.2.1/config-scripts/cups-image.m4	2006-05-31 13:42:34.000000000 +0000
+@@ -38,10 +38,6 @@
+ 
+ AC_SUBST(IMGFILTERS)
+ 
+-dnl Save the current libraries since we don't want the image libraries
+-dnl included with every program...
+-SAVELIBS="$LIBS"
+-
+ dnl Check for image libraries...
+ AC_ARG_ENABLE(jpeg, [  --enable-jpeg           turn on JPEG support, default=yes])
+ AC_ARG_ENABLE(png, [  --enable-png            turn on PNG support, default=yes])
+@@ -57,6 +53,14 @@
+ AC_SUBST(LIBTIFF)
+ AC_SUBST(LIBZ)
+ 
++dnl Image libraries use math library functions...
++AC_SEARCH_LIBS(pow, m)
++
++dnl Save the current libraries since we don't want the image libraries
++dnl included with every program...
++SAVELIBS="$LIBS"
++
++dnl JPEG library...
+ if test x$enable_jpeg != xno; then
+     AC_CHECK_HEADER(jpeglib.h,
+ 	AC_CHECK_LIB(jpeg, jpeg_destroy_decompress,
+@@ -67,24 +71,24 @@
+     AC_MSG_NOTICE([JPEG support disabled with --disable-jpeg.])
+ fi
+ 
++dnl ZLIB library...
+ AC_CHECK_HEADER(zlib.h,
+     AC_CHECK_LIB(z, gzgets,
+ 	AC_DEFINE(HAVE_LIBZ)
+ 	LIBZ="-lz"
+ 	LIBS="$LIBS -lz"))
+ 
+-dnl PNG library uses math library functions...
+-AC_CHECK_LIB(m, pow)
+-
++dnl PNG library...
+ if test x$enable_png != xno; then
+     AC_CHECK_HEADER(png.h,
+ 	AC_CHECK_LIB(png, png_create_read_struct,
+ 	    AC_DEFINE(HAVE_LIBPNG)
+-	    LIBPNG="-lpng -lm"))
++	    LIBPNG="-lpng"))
+ else
+     AC_MSG_NOTICE([PNG support disabled with --disable-png.])
+ fi
+ 
++dnl TIFF library...
+ if test x$enable_tiff != xno; then
+     AC_CHECK_HEADER(tiff.h,
+ 	AC_CHECK_LIB(tiff, TIFFReadScanline,
+diff -urNad cupsys-1.2.1~/config-scripts/cups-sharedlibs.m4 cupsys-1.2.1/config-scripts/cups-sharedlibs.m4
+--- cupsys-1.2.1~/config-scripts/cups-sharedlibs.m4	2006-05-31 13:42:05.000000000 +0000
++++ cupsys-1.2.1/config-scripts/cups-sharedlibs.m4	2006-05-31 13:42:34.000000000 +0000
+@@ -117,7 +117,7 @@
+ 	# rather than to the executables.  This makes things smaller if you
+ 	# are using any static libraries, and it also allows us to distribute
+ 	# a single DSO rather than a bunch...
+-	DSOLIBS="\$(LIBPNG) \$(LIBTIFF) \$(LIBJPEG) \$(LIBZ)"
++	DSOLIBS="\$(LIBTIFF) \$(LIBPNG) \$(LIBJPEG) \$(LIBZ)"
+ 	IMGLIBS=""
+ 
+ 	# Tell the run-time linkers where to find a DSO.  Some platforms
+@@ -126,46 +126,46 @@
+ 	case $uname in
+                 HP-UX*)
+ 			# HP-UX needs the path, even for /usr/lib...
+-                	DSOFLAGS="+s +b \$(libdir) $DSOFLAGS"
+-                	DSO32FLAGS="+s +b \$(LIB32DIR) $DSO32FLAGS"
+-                	DSO64FLAGS="+s +b \$(LIB64DIR) $DSO64FLAGS"
+-                	LDFLAGS="$LDFLAGS -Wl,+s,+b,\$(libdir)"
+-                	EXPORT_LDFLAGS="-Wl,+s,+b,\$(libdir)"
++                	DSOFLAGS="+s +b $libdir $DSOFLAGS"
++                	DSO32FLAGS="+s +b $LIB32DIR $DSO32FLAGS"
++                	DSO64FLAGS="+s +b $LIB64DIR $DSO64FLAGS"
++                	LDFLAGS="$LDFLAGS -Wl,+s,+b,$libdir"
++                	EXPORT_LDFLAGS="-Wl,+s,+b,$libdir"
+ 			;;
+                 SunOS*)
+                 	# Solaris...
+ 			if test $exec_prefix != /usr; then
+-				DSOFLAGS="-R\$(libdir) $DSOFLAGS"
+-				DSO32FLAGS="-R\$(LIB32DIR) $DSO32FLAGS"
+-				DSO64FLAGS="-R\$(LIB64DIR) $DSO64FLAGS"
+-				LDFLAGS="$LDFLAGS -R\$(libdir)"
+-				EXPORT_LDFLAGS="-R\$(libdir)"
++				DSOFLAGS="-R$libdir $DSOFLAGS"
++				DSO32FLAGS="-R$LIB32DIR $DSO32FLAGS"
++				DSO64FLAGS="-R$LIB64DIR $DSO64FLAGS"
++				LDFLAGS="$LDFLAGS -R$libdir"
++				EXPORT_LDFLAGS="-R$libdir"
+ 			fi
+ 			;;
+                 *BSD*)
+                         # *BSD...
+ 			if test $exec_prefix != /usr; then
+-				DSOFLAGS="-Wl,-R\$(libdir) $DSOFLAGS"
+-				DSO32FLAGS="-Wl,-R\$(LIB32DIR) $DSO32FLAGS"
+-				DSO64FLAGS="-Wl,-R\$(LIB64DIR) $DSO64FLAGS"
+-				LDFLAGS="$LDFLAGS -Wl,-R\$(libdir)"
+-				EXPORT_LDFLAGS="-Wl,-R\$(libdir)"
++				DSOFLAGS="-Wl,-R$libdir $DSOFLAGS"
++				DSO32FLAGS="-Wl,-R$LIB32DIR $DSO32FLAGS"
++				DSO64FLAGS="-Wl,-R$LIB64DIR $DSO64FLAGS"
++				LDFLAGS="$LDFLAGS -Wl,-R$libdir"
++				EXPORT_LDFLAGS="-Wl,-R$libdir"
+ 			fi
+ 			;;
+                 IRIX | Linux | GNU)
+                         # IRIX, Linux, and HURD...
+ 			if test $exec_prefix != /usr; then
+-				DSOFLAGS="-Wl,-rpath,\$(libdir) $DSOFLAGS"
+-				DSO32FLAGS="-Wl,-rpath,\$(LIB32DIR) $DSO32FLAGS"
+-				DSO64FLAGS="-Wl,-rpath,\$(LIB64DIR) $DSO64FLAGS"
+-				LDFLAGS="$LDFLAGS -Wl,-rpath,\$(libdir)"
+-				EXPORT_LDFLAGS="-Wl,-rpath,\$(libdir)"
++				DSOFLAGS="-Wl,-rpath,$libdir $DSOFLAGS"
++				DSO32FLAGS="-Wl,-rpath,$LIB32DIR $DSO32FLAGS"
++				DSO64FLAGS="-Wl,-rpath,$LIB64DIR $DSO64FLAGS"
++				LDFLAGS="$LDFLAGS -Wl,-rpath,$libdir"
++				EXPORT_LDFLAGS="-Wl,-rpath,$libdir"
+ 			fi
+ 			;;
+ 	esac
+ else
+ 	DSOLIBS=""
+-	IMGLIBS="\$(LIBPNG) \$(LIBTIFF) \$(LIBJPEG) \$(LIBZ)"
++	IMGLIBS="\$(LIBTIFF) \$(LIBPNG) \$(LIBJPEG) \$(LIBZ)"
+ fi
+ 
+ AC_SUBST(DSOLIBS)
+diff -urNad cupsys-1.2.1~/configure.in cupsys-1.2.1/configure.in
+--- cupsys-1.2.1~/configure.in	2006-05-31 13:42:05.000000000 +0000
++++ cupsys-1.2.1/configure.in	2006-05-31 13:42:34.000000000 +0000
+@@ -47,8 +47,12 @@
+ sinclude(config-scripts/cups-pdf.m4)
+ sinclude(config-scripts/cups-scripting.m4)
+ 
++INSTALL_LANGUAGES=""
++UNINSTALL_LANGUAGES=""
+ LANGFILES=""
+ if test "x$LANGUAGES" != x; then
++	INSTALL_LANGUAGES="install-languages"
++	UNINSTALL_LANGUAGES="uninstall-languages"
+ 	for lang in $LANGUAGES; do
+ 		LANGFILES="$LANGFILES doc/$lang/index.html"
+ 		LANGFILES="$LANGFILES templates/$lang/edit-config.tmpl"
+@@ -56,6 +60,9 @@
+ 	done
+ fi
+ 
++AC_SUBST(INSTALL_LANGUAGES)
++AC_SUBST(UNINSTALL_LANGUAGES)
++
+ AC_OUTPUT(Makedefs packaging/cups.list init/cups.sh init/cups-lpd cups-config
+ 	  conf/cupsd.conf conf/pam.std doc/index.html
+ 	  doc/help/standard.html man/client.conf.man
+diff -urNad cupsys-1.2.1~/cups/http-addrlist.c cupsys-1.2.1/cups/http-addrlist.c
+--- cupsys-1.2.1~/cups/http-addrlist.c	2006-05-31 13:42:05.000000000 +0000
++++ cupsys-1.2.1/cups/http-addrlist.c	2006-05-31 13:42:34.000000000 +0000
+@@ -506,6 +506,9 @@
+ 	temp->addr.ipv6.sin6_addr.s6_addr32[3] = htonl(1);
+ #  endif /* WIN32 */
+ 
++        if (!first)
++          first = temp;
++
+         addr = temp;
+       }
+ 
+@@ -527,6 +530,9 @@
+ 	temp->addr.ipv4.sin_port        = htons(portnum);
+ 	temp->addr.ipv4.sin_addr.s_addr = htonl(0x7f000001);
+ 
++        if (!first)
++          first = temp;
++
+         if (addr)
+ 	  addr->next = temp;
+ 	else
+@@ -556,6 +562,9 @@
+         temp->addr.ipv6.sin6_family = AF_INET6;
+ 	temp->addr.ipv6.sin6_port   = htons(portnum);
+ 
++        if (!first)
++          first = temp;
++
+         addr = temp;
+       }
+ 
+@@ -576,6 +585,9 @@
+         temp->addr.ipv4.sin_family = AF_INET;
+ 	temp->addr.ipv4.sin_port   = htons(portnum);
+ 
++        if (!first)
++          first = temp;
++
+         if (addr)
+ 	  addr->next = temp;
+ 	else
+diff -urNad cupsys-1.2.1~/doc/Makefile cupsys-1.2.1/doc/Makefile
+--- cupsys-1.2.1~/doc/Makefile	2006-05-31 13:42:05.000000000 +0000
++++ cupsys-1.2.1/doc/Makefile	2006-05-31 13:42:34.000000000 +0000
+@@ -200,7 +200,7 @@
+ # Install all documentation files...
+ #
+ 
+-install:	all
++install:	all install-languages
+ 	$(INSTALL_DIR) -m 755 $(DOCDIR)
+ 	for file in $(WEBPAGES); do \
+ 		$(INSTALL_MAN) $$file $(DOCDIR); \
+@@ -213,6 +213,8 @@
+ 	for file in $(WEBIMAGES) $(WEBBUTTONS); do \
+ 		$(INSTALL_MAN) $$file $(DOCDIR)/images; \
+ 	done
++
++install-languages:
+ 	for lang in $(LANGUAGES); do \
+ 		$(INSTALL_DIR) -m 755 $(DOCDIR)/$$lang/images; \
+ 		if test -f $$lang/index.html; then \
+@@ -230,7 +232,7 @@
+ # Unnstall all documentation files...
+ #
+ 
+-uninstall:
++uninstall: uninstall-languages
+ 	for file in $(WEBPAGES); do \
+ 		$(RM) $(DOCDIR)/$$file; \
+ 	done
+@@ -240,6 +242,11 @@
+ 	for file in $(WEBIMAGES) $(WEBBUTTONS); do \
+ 		$(INSTALL_MAN) $(DOCDIR)/images/$$file; \
+ 	done
++	-$(RMDIR) $(DOCDIR)/images
++	-$(RMDIR) $(DOCDIR)/help
++	-$(RMDIR) $(DOCDIR)
++
++uninstall-languages:
+ 	-for lang in $(LANGUAGES); do \
+ 		$(RM) $(DOCDIR)/$$lang/index.html; \
+ 		for file in $(WEBBUTTONS); do \
+@@ -248,9 +255,6 @@
+ 		$(RMDIR) $(DOCDIR)/$$lang/images; \
+ 		$(RMDIR) $(DOCDIR)/$$lang; \
+ 	done
+-	-$(RMDIR) $(DOCDIR)/images
+-	-$(RMDIR) $(DOCDIR)/help
+-	-$(RMDIR) $(DOCDIR)
+ 
+ 
+ #
+diff -urNad cupsys-1.2.1~/filter/pstops.c cupsys-1.2.1/filter/pstops.c
+--- cupsys-1.2.1~/filter/pstops.c	2006-05-31 13:42:05.000000000 +0000
++++ cupsys-1.2.1/filter/pstops.c	2006-05-31 13:42:34.000000000 +0000
+@@ -1,5 +1,5 @@
+ /*
+- * "$Id: pstops.c 5570 2006-05-22 18:31:23Z mike $"
++ * "$Id: pstops.c 5604 2006-05-30 18:31:48Z mike $"
+  *
+  *   PostScript filter for the Common UNIX Printing System (CUPS).
+  *
+@@ -49,6 +49,7 @@
+  *   set_pstops_options() - Set pstops options...
+  *   skip_page()          - Skip past a page that won't be printed...
+  *   start_nup()          - Start processing for N-up printing...
++ *   write_labels()       - Write the actual page labels.
+  */
+ 
+ /*
+@@ -204,6 +205,7 @@
+ 				  size_t linesize);
+ static void		start_nup(pstops_doc_t *doc, int number,
+ 				  int show_border, const int *bounding_box);
++static void		write_labels(pstops_doc_t *doc, int orient);
+ 
+ 
+ /*
+@@ -1856,15 +1858,15 @@
+         int          number)		/* I - Page number */
+ {
+   if (doc->mirror || Orientation || doc->number_up > 1)
+-    puts("userdict/ESPsave get restore");
++    doc_puts(doc, "userdict/ESPsave get restore\n");
+ 
+   switch (doc->number_up)
+   {
+     case 1 :
+ 	if (doc->use_ESPshowpage)
+ 	{
+-	  WriteLabels(Orientation);
+-          puts("ESPshowpage");
++	  write_labels(doc, Orientation);
++          doc_puts(doc, "ESPshowpage\n");
+ 	}
+ 	break;
+ 
+@@ -1878,7 +1880,7 @@
+ 	    * Rotate the labels back to portrait...
+ 	    */
+ 
+-	    WriteLabels(Orientation - 1);
++	    write_labels(doc, Orientation - 1);
+ 	  }
+ 	  else if (Orientation == 0)
+ 	  {
+@@ -1886,7 +1888,7 @@
+ 	    * Rotate the labels to landscape...
+ 	    */
+ 
+-	    WriteLabels(doc->normal_landscape ? 1 : 3);
++	    write_labels(doc, doc->normal_landscape ? 1 : 3);
+ 	  }
+ 	  else
+ 	  {
+@@ -1894,18 +1896,18 @@
+ 	    * Rotate the labels to landscape...
+ 	    */
+ 
+-	    WriteLabels(doc->normal_landscape ? 3 : 1);
++	    write_labels(doc, doc->normal_landscape ? 3 : 1);
+ 	  }
+ 
+-          puts("ESPshowpage");
++          doc_puts(doc, "ESPshowpage\n");
+ 	}
+         break;
+ 
+     default :
+ 	if (is_last_page(number) && doc->use_ESPshowpage)
+ 	{
+-	  WriteLabels(Orientation);
+-          puts("ESPshowpage");
++	  write_labels(doc, Orientation);
++          doc_puts(doc, "ESPshowpage\n");
+ 	}
+         break;
+   }
+@@ -2935,5 +2937,51 @@
+ 
+ 
+ /*
+- * End of "$Id: pstops.c 5570 2006-05-22 18:31:23Z mike $".
++ * 'write_labels()' - Write the actual page labels.
++ *
++ * This function is a copy of the one in common.c since we need to
++ * use doc_puts/doc_printf instead of puts/printf...
++ */
++
++static void
++write_labels(pstops_doc_t *doc,		/* I - Document information */
++             int          orient)	/* I - Orientation of the page */
++{
++  float	width,				/* Width of page */
++	length;				/* Length of page */
++
++
++  doc_puts(doc, "gsave\n");
++
++  if ((orient ^ Orientation) & 1)
++  {
++    width  = PageLength;
++    length = PageWidth;
++  }
++  else
++  {
++    width  = PageWidth;
++    length = PageLength;
++  }
++
++  switch (orient & 3)
++  {
++    case 1 : /* Landscape */
++        doc_printf(doc, "%.1f 0.0 translate 90 rotate\n", length);
++        break;
++    case 2 : /* Reverse Portrait */
++        doc_printf(doc, "%.1f %.1f translate 180 rotate\n", width, length);
++        break;
++    case 3 : /* Reverse Landscape */
++        doc_printf(doc, "0.0 %.1f translate -90 rotate\n", width);
++        break;
++  }
++
++  doc_puts(doc, "ESPwl\n");
++  doc_puts(doc, "grestore\n");
++}
++
++
++/*
++ * End of "$Id: pstops.c 5604 2006-05-30 18:31:48Z mike $".
+  */
+diff -urNad cupsys-1.2.1~/locale/Makefile cupsys-1.2.1/locale/Makefile
+--- cupsys-1.2.1~/locale/Makefile	2006-05-31 13:42:05.000000000 +0000
++++ cupsys-1.2.1/locale/Makefile	2006-05-31 13:43:12.000000000 +0000
+@@ -51,7 +51,9 @@
+ # Install files...
+ #
+ 
+-install:	all
++install:	all install-languages
++
++install-languages:
+ 	$(INSTALL_DIR) -m 755 $(LOCALEDIR)
+ 	for loc in $(LANGUAGES) ; do \
+ 		if test -f cups_$$loc.po; then \
+@@ -65,12 +67,12 @@
+ # Uninstall files...
+ #
+ 
+-uninstall:
++uninstall: uninstall-languages
++
++uninstall-languages:
+ 	-for loc in $(LANGUAGES) ; do \
+ 		$(RM) $(LOCALEDIR)/$$loc/cups_$$loc.po ; \
+-		$(RMDIR) $(LOCALEDIR)/$$loc ; \
+ 	done
+-	-$(RMDIR) $(LOCALEDIR)
+ 
+ 
+ #
+diff -urNad cupsys-1.2.1~/locale/cups_es.po cupsys-1.2.1/locale/cups_es.po
+--- cupsys-1.2.1~/locale/cups_es.po	2006-05-31 13:42:05.000000000 +0000
++++ cupsys-1.2.1/locale/cups_es.po	2006-05-31 13:42:34.000000000 +0000
+@@ -1,34 +1,37 @@
++#
+ # "$Id$"
+-# Message catalog template for the Common UNIX Printing System (CUPS).
+-# Copyright 2005-2006 by Easy Software Products.
+-# These coded instructions, statements, and computer programs are the
+-# property of Easy Software Products and are protected by Federal
+-# copyright law.  Distribution and use rights are outlined in the file
+-# "LICENSE.txt" which should have been included with this file.  If this
+-# file is missing or damaged please contact Easy Software Products
+-# at:
+-# Attn: CUPS Licensing Information
+-# Easy Software Products
+-# 44141 Airport View Drive, Suite 204
+-# Hollywood, Maryland 20636 USA
+-# Voice: (301) 373-9600
+-# EMail: cups-info@cups.org
+-# WWW: http://www.cups.org
+-# , fuzzy
+-# <>, 2006.
+-# 
+-# 
++#
++#   Spanish message catalog for the Common UNIX Printing System (CUPS).
++#
++#   Copyright 2005-2006 by Easy Software Products.
++#
++#   These coded instructions, statements, and computer programs are the
++#   property of Easy Software Products and are protected by Federal
++#   copyright law.  Distribution and use rights are outlined in the file
++#   "LICENSE.txt" which should have been included with this file.  If this
++#   file is missing or damaged please contact Easy Software Products
++#   at:
++#
++#       Attn: CUPS Licensing Information
++#       Easy Software Products
++#       44141 Airport View Drive, Suite 204
++#       Hollywood, Maryland 20636 USA
++#
++#       Voice: (301) 373-9600
++#       EMail: cups-info@cups.org
++#         WWW: http://www.cups.org
++#
+ msgid ""
+ msgstr ""
+ "Project-Id-Version: CUPS 1.2\n"
+ "Report-Msgid-Bugs-To: http://www.cups.org/str.php\n"
+-"POT-Creation-Date: 2006-05-21 10:08-0400\n"
+-"PO-Revision-Date: 2006-03-25 21:48+0100\n"
++"POT-Creation-Date: 2006-05-21 10:07-0400\n"
++"PO-Revision-Date: 2006-05-23 12:21+0200\n"
+ "Last-Translator: Juan Pablo González Riopedre <riopedre@tiscali.es>\n"
+ "Language-Team: Spanish\n"
+ "MIME-Version: 1.0\n"
+ "Content-Type: text/plain; charset=UTF-8\n"
+-"Content-Transfer-Encoding: 8bit\n"
++"Content-Transfer-Encoding: 8bit"
+ 
+ msgid "Options Installed"
+ msgstr "Opciones instaladas"
+@@ -2993,12 +2996,12 @@
+ 
+ #, c-format
+ msgid "Password for %s on %s? "
+-msgstr ""
++msgstr "¿Contraseña de %s en %s? "
+ 
+-#, fuzzy
+ msgid ""
+ "      **FAIL**  1284DeviceId must be 1284DeviceID!\n"
+ "                REF: Page 72, section 5.5\n"
+ msgstr ""
+-"      **FALLO**  Preferencia %s incorrecta %s.\n"
+-"                REF: Página 122, sección 5.17\n"
++"      **FALLO**  1284DeviceId debe ser 1284DeviceID.\n"
++"                REF: Página 72, sección 5.5\n"
++
+diff -urNad cupsys-1.2.1~/packaging/cups.list.in cupsys-1.2.1/packaging/cups.list.in
+--- cupsys-1.2.1~/packaging/cups.list.in	2006-05-31 13:42:05.000000000 +0000
++++ cupsys-1.2.1/packaging/cups.list.in	2006-05-31 13:42:34.000000000 +0000
+@@ -342,7 +342,7 @@
+ %subpackage ja
+ f 0644 root sys $LOCALEDIR/ja/cups_ja.po locale/cups_ja.po
+ %subpackage pl
+-#f 0644 root sys $LOCALEDIR/pl/cups_pl.po locale/cups_pl.po
++f 0644 root sys $LOCALEDIR/pl/cups_pl.po locale/cups_pl.po
+ %subpackage sv
+ f 0644 root sys $LOCALEDIR/sv/cups_sv.po locale/cups_sv.po
+ %subpackage
+diff -urNad cupsys-1.2.1~/packaging/cups.spec.in cupsys-1.2.1/packaging/cups.spec.in
+--- cupsys-1.2.1~/packaging/cups.spec.in	2006-05-31 13:42:05.000000000 +0000
++++ cupsys-1.2.1/packaging/cups.spec.in	2006-05-31 13:42:34.000000000 +0000
+@@ -399,7 +399,7 @@
+ /usr/share/doc/cups/pl/images/*
+ %dir /usr/share/cups/templates/pl
+ /usr/share/cups/templates/pl/*
+-#/usr/share/locale/pl/cups_pl.po
++/usr/share/locale/pl/cups_pl.po
+ 
+ %files sv
+ %defattr(-,root,root)
+diff -urNad cupsys-1.2.1~/scheduler/conf.c cupsys-1.2.1/scheduler/conf.c
+--- cupsys-1.2.1~/scheduler/conf.c	2006-05-31 13:42:05.000000000 +0000
++++ cupsys-1.2.1/scheduler/conf.c	2006-05-31 13:42:34.000000000 +0000
+@@ -1277,33 +1277,14 @@
+   const char	*maskval,		/* Pointer to start of mask value */
+ 		*ptr,			/* Pointer into value */
+ 		*ptr2;			/* ... */
+-  static unsigned netmasks[4][4] =	/* Standard IPv4 netmasks... */
+-  {
+-    { 0xffffffff, 0xffffffff, 0xffffffff, 0xff000000 },
+-    { 0xffffffff, 0xffffffff, 0xffffffff, 0xffff0000 },
+-    { 0xffffffff, 0xffffffff, 0xffffffff, 0xffffff00 },
+-    { 0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff }
+-  };
+-#ifdef AF_INET6
+-  static unsigned netmasks6[8][4] =	/* Standard IPv6 netmasks... */
+-  {
+-    { 0xffff0000, 0x00000000, 0x00000000, 0x00000000 },
+-    { 0xffffffff, 0x00000000, 0x00000000, 0x00000000 },
+-    { 0xffffffff, 0xffff0000, 0x00000000, 0x00000000 },
+-    { 0xffffffff, 0xffffffff, 0x00000000, 0x00000000 },
+-    { 0xffffffff, 0xffffffff, 0xffff0000, 0x00000000 },
+-    { 0xffffffff, 0xffffffff, 0xffffffff, 0x00000000 },
+-    { 0xffffffff, 0xffffffff, 0xffffffff, 0xffff0000 },
+-    { 0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff }
+-  };
+-#endif /* AF_INET6 */
+ 
+ 
+  /*
+   * Get the address...
+   */
+ 
+-  memset(ip, 0, sizeof(unsigned) * 4);
++  ip[0]   = ip[1]   = ip[2]   = ip[2]   = 0x00000000;
++  mask[0] = mask[1] = mask[2] = mask[3] = 0xffffffff;
+ 
+   if ((maskval = strchr(value, '/')) != NULL)
+     maskval ++;
+@@ -1334,6 +1315,7 @@
+ 	     ptr2 = strchr(ptr2 + 1, ':'), j ++);
+ 
+         i = 7 - j;
++	ptr ++;
+       }
+       else if (isxdigit(*ptr & 255))
+       {
+@@ -1343,9 +1325,9 @@
+ 	  return (0);
+ 
+         if (i & 1)
+-          ip[i] |= ipval;
++          ip[i / 2] |= ipval;
+ 	else
+-          ip[i] |= ipval << 16;
++          ip[i / 2] |= ipval << 16;
+       }
+       else
+         return (0);
+@@ -1354,7 +1336,10 @@
+         ptr ++;
+     }
+ 
+-    ipcount = i;
++    if (*ptr != ']')
++      return (0);
++
++    ptr ++;
+ 
+     if (*ptr && *ptr != '/')
+       return (0);
+@@ -1371,6 +1356,9 @@
+ 
+     ip[3] |= ((((ip[0] << 8) | ip[1]) << 8) | ip[2]) << 8;
+     ip[0] = ip[1] = ip[2] = 0;
++
++    if (ipcount < 4)
++      mask[3] = (0xffffffff << (32 - 8 * ipcount)) & 0xffffffff;
+   }
+ 
+   if (*maskval)
+@@ -1381,55 +1369,15 @@
+ 
+     memset(mask, 0, sizeof(unsigned) * 4);
+ 
+-#ifdef AF_INET6
+-    if (*maskval == '[')
+-    {
+-     /*
+-      * Get hexadecimal mask value...
+-      */
+-
+-      for (i = 0, ptr = maskval + 1; *ptr && i < 8; i ++)
+-      {
+-	if (*ptr == ']')
+-	  break;
+-	else if (!strncmp(ptr, "::", 2))
+-	{
+-          for (ptr2 = strchr(ptr + 2, ':'), j = 0;
+-	       ptr2;
+-	       ptr2 = strchr(ptr2 + 1, ':'), j ++);
+-
+-          i = 7 - j;
+-	}
+-	else if (isxdigit(*ptr & 255))
+-	{
+-          ipval = strtoul(ptr, (char **)&ptr, 16);
+-
+-	  if (ipval > 0xffff)
+-	    return (0);
+-
+-          if (i & 1)
+-            mask[i] |= ipval;
+-	  else
+-            mask[i] |= ipval << 16;
+-	}
+-	else
+-          return (0);
+-
+-        while (*ptr == ':')
+-          ptr ++;
+-      }
+-
+-      if (*ptr)
+-	return (0);
+-    }
+-    else
+-#endif /* AF_INET6 */
+     if (strchr(maskval, '.'))
+     {
+      /*
+       * Get dotted-decimal mask...
+       */
+ 
++      if (family != AF_INET)
++        return (0);
++
+       if (sscanf(maskval, "%u.%u.%u.%u", mask + 0, mask + 1, mask + 2, mask + 3) != 4)
+         return (0);
+ 
+@@ -1447,6 +1395,9 @@
+ #ifdef AF_INET6
+       if (family == AF_INET6)
+       {
++        if (i > 128)
++	  return (0);
++
+         i = 128 - i;
+ 
+ 	if (i <= 96)
+@@ -1478,25 +1429,20 @@
+       else
+ #endif /* AF_INET6 */
+       {
+-        i = 32 - i;
++        if (i > 32)
++	  return (0);
+ 
+         mask[0] = 0xffffffff;
+         mask[1] = 0xffffffff;
+         mask[2] = 0xffffffff;
+ 
+-	if (i > 0)
+-          mask[3] = (0xffffffff << i) & 0xffffffff;
++	if (i < 32)
++          mask[3] = (0xffffffff << (32 - i)) & 0xffffffff;
+ 	else
+ 	  mask[3] = 0xffffffff;
+       }
+     }
+   }
+-#ifdef AF_INET6
+-  else if (family == AF_INET6)
+-    memcpy(mask, netmasks6[ipcount - 1], sizeof(unsigned) * 4);
+-#endif /* AF_INET6 */
+-  else
+-    memcpy(mask, netmasks[ipcount - 1], sizeof(unsigned) * 4);
+ 
+   cupsdLogMessage(CUPSD_LOG_DEBUG2,
+                   "get_addr_and_mask(value=\"%s\", "
+@@ -1634,7 +1580,12 @@
+       else
+ 	cupsdDenyIP(loc, ones, zeros);
+     }
++#ifdef AF_INET6
++    else if (value[0] == '*' || value[0] == '.' || 
++             (!isdigit(value[0] & 255) && value[0] != '['))
++#else
+     else if (value[0] == '*' || value[0] == '.' || !isdigit(value[0] & 255))
++#endif /* AF_INET6 */
+     {
+      /*
+       * Host or domain name...
+@@ -2406,7 +2357,12 @@
+ 	  else
+ 	    cupsdDenyIP(location, ones, zeros);
+ 	}
+-	else if (value[0] == '*' || value[0] == '.' || !isdigit(value[0]))
++#ifdef AF_INET6
++	else if (value[0] == '*' || value[0] == '.' || 
++        	 (!isdigit(value[0] & 255) && value[0] != '['))
++#else
++	else if (value[0] == '*' || value[0] == '.' || !isdigit(value[0] & 255))
++#endif /* AF_INET6 */
+ 	{
+ 	 /*
+           * Host or domain name...
+@@ -2490,7 +2446,12 @@
+       *    nnn.nnn.nnn.nnn/mmm.mmm.mmm.mmm
+       */
+ 
+-      if (value[0] == '*' || value[0] == '.' || !isdigit(value[0]))
++#ifdef AF_INET6
++      if (value[0] == '*' || value[0] == '.' || 
++          (!isdigit(value[0] & 255) && value[0] != '['))
++#else
++      if (value[0] == '*' || value[0] == '.' || !isdigit(value[0] & 255))
++#endif /* AF_INET6 */
+       {
+        /*
+         * Host or domain name...
+diff -urNad cupsys-1.2.1~/scheduler/dirsvc.c cupsys-1.2.1/scheduler/dirsvc.c
+--- cupsys-1.2.1~/scheduler/dirsvc.c	2006-05-31 13:42:05.000000000 +0000
++++ cupsys-1.2.1/scheduler/dirsvc.c	2006-05-31 13:42:34.000000000 +0000
+@@ -36,6 +36,7 @@
+  *   cupsdStopPolling()            - Stop polling servers as needed.
+  *   cupsdUpdateCUPSBrowse()       - Update the browse lists using the CUPS
+  *                                   protocol.
++ *   cupsdUpdateLDAPBrowse()       - Scan for new printers via LDAP...
+  *   cupsdUpdatePolling()          - Read status messages from the poll daemons.
+  *   cupsdUpdateSLPBrowse()        - Get browsing information via SLP.
+  *   dequote()                     - Remote quotes from a string.
+@@ -1526,39 +1527,57 @@
+   * Loop through the available printers...
+   */
+ 
+-  if ((e = ldap_first_entry(BrowseLDAPHandle, res)) == NULL)
++  for (e = ldap_first_entry(BrowseLDAPHandle, res);
++       e;
++       e = ldap_next_entry(BrowseLDAPHandle, e))
+   {
+-    cupsdLogMessage(CUPSD_LOG_ERROR, "Unable to get LDAP printer entry!");
+-    return;
+-  }
++   /*
++    * Get the required values from this entry...
++    */
++
++    if ((value = ldap_get_values(BrowseLDAPHandle, e,
++                                 "printerDescription")) == NULL)
++      continue;
+ 
+-  while (e)
+-  {
+-    value = ldap_get_values(BrowseLDAPHandle, e, "printerDescription");
+     strlcpy(info, *value, sizeof(info));
+     ldap_value_free(value);
+ 
+-    value = ldap_get_values(BrowseLDAPHandle, e, "printerLocation");
++    if ((value = ldap_get_values(BrowseLDAPHandle, e,
++                                 "printerLocation")) == NULL)
++      continue;
++
+     strlcpy(location, *value, sizeof(location));
+     ldap_value_free(value);
+ 
+-    value = ldap_get_values(BrowseLDAPHandle, e, "printerMakeAndModel");
++    if ((value = ldap_get_values(BrowseLDAPHandle, e,
++                                 "printerMakeAndModel")) == NULL)
++      continue;
++
+     strlcpy(make_model, *value, sizeof(make_model));
+     ldap_value_free(value);
+ 
+-    value = ldap_get_values(BrowseLDAPHandle, e, "printerType");
++    if ((value = ldap_get_values(BrowseLDAPHandle, e,
++                                 "printerType")) == NULL)
++      continue;
++
+     type = atoi(*value);
+     ldap_value_free(value);
+ 
+-    value = ldap_get_values(BrowseLDAPHandle, e, "printerURI");
++    if ((value = ldap_get_values(BrowseLDAPHandle, e,
++                                 "printerURI")) == NULL)
++      continue;
++
+     strlcpy(uri, *value, sizeof(uri));
+     ldap_value_free(value);
+ 
++   /*
++    * Process the entry as browse data...
++    */
++
+     if (!is_local_queue(uri, host, sizeof(host), resource, sizeof(resource)))
+       process_browse_data(uri, host, resource, type, IPP_PRINTER_IDLE,
+                           location, info, make_model, 0, NULL);
+ 
+-    e = ldap_next_entry(BrowseLDAPHandle, e);
+   }
+ }
+ #endif /* HAVE_OPENLDAP */
+@@ -2696,7 +2715,7 @@
+   mods[6].mod_type = "objectClass";
+   mods[6].mod_values = (char **)objectClass_values;
+ 
+-  snprintf(dn, sizeof(dn), "cn=%s,ou=printers,%s", p->info, BrowseLDAPDN);
++  snprintf(dn, sizeof(dn), "cn=%s,ou=printers,%s", p->name, BrowseLDAPDN);
+   cupsdLogMessage(CUPSD_LOG_DEBUG2, "send_ldap_browse: dn=\"%s\"", dn);
+ 
+   if (ldap_count_entries(BrowseLDAPHandle, res) > 0)
+@@ -2724,7 +2743,7 @@
+   else 
+   {
+    /*
+-    * Printer has already been registered, modify the current
++    * Printer has never been registered, add the current
+     * registration...
+     */
+ 
+@@ -2734,11 +2753,11 @@
+     for (i = 0; i < 7; i ++)
+     {
+       pmods[i]         = mods + i;
+-      pmods[i]->mod_op = LDAP_MOD_REPLACE;
++      pmods[i]->mod_op = LDAP_MOD_ADD;
+     }
+     pmods[i] = NULL;
+ 
+-    if ((rc = ldap_modify_s(BrowseLDAPHandle, dn, pmods)) != LDAP_SUCCESS)
++    if ((rc = ldap_add_s(BrowseLDAPHandle, dn, pmods)) != LDAP_SUCCESS)
+       cupsdLogMessage(CUPSD_LOG_ERROR,
+                       "LDAP add for %s failed with status %d: %s",
+                       p->name, rc, ldap_err2string(rc));
+diff -urNad cupsys-1.2.1~/scheduler/filter.c cupsys-1.2.1/scheduler/filter.c
+--- cupsys-1.2.1~/scheduler/filter.c	2006-05-31 13:42:05.000000000 +0000
++++ cupsys-1.2.1/scheduler/filter.c	2006-05-31 13:42:34.000000000 +0000
+@@ -346,6 +346,8 @@
+     * any...)
+     */
+ 
++    tempcost += current->cost;
++
+     if (tempcost < mincost)
+     {
+       cupsArrayDelete(mintemp);
+@@ -356,7 +358,7 @@
+       */
+ 
+       mintemp = temp;
+-      mincost = tempcost + current->cost;
++      mincost = tempcost;
+       cupsArrayInsert(mintemp, current);
+     }
+     else
+diff -urNad cupsys-1.2.1~/scheduler/mime.c cupsys-1.2.1/scheduler/mime.c
+--- cupsys-1.2.1~/scheduler/mime.c	2006-05-31 13:42:05.000000000 +0000
++++ cupsys-1.2.1/scheduler/mime.c	2006-05-31 13:42:34.000000000 +0000
+@@ -51,6 +51,7 @@
+ #include <stdlib.h>
+ #include <ctype.h>
+ 
++#include <cups/debug.h>
+ #include <cups/dir.h>
+ #include <cups/string.h>
+ #include "mime.h"
+@@ -486,6 +487,8 @@
+   if ((fp = cupsFileOpen(filename, "r")) == NULL)
+     return;
+ 
++  DEBUG_printf(("\"%s\":\n", filename));
++
+  /*
+   * Then read each line from the file, skipping any comments in the file...
+   */
+@@ -496,6 +499,8 @@
+     * Skip blank lines and lines starting with a #...
+     */
+ 
++    DEBUG_puts(line);
++
+     if (!line[0] || line[0] == '#')
+       continue;
+ 
+@@ -544,7 +549,10 @@
+       continue;
+ 
+     if ((dsttype = mimeType(mime, super, type)) == NULL)
++    {
++      DEBUG_printf(("    Destination type %s/%s not found!\n", super, type));
+       continue;
++    }
+ 
+    /*
+     * Then get the cost and filter program...
+@@ -575,7 +583,10 @@
+       */
+ 
+       if (!add_fcache(filtercache, filter, filterpath))
++      {
++        DEBUG_printf(("    Filter %s not found in %s!\n", filter, filterpath)); 
+         continue;
++      }
+     }
+ 
+    /*
+@@ -655,6 +666,8 @@
+   if ((fp = cupsFileOpen(filename, "r")) == NULL)
+     return;
+ 
++  DEBUG_printf(("\"%s\":\n", filename));
++
+  /*
+   * Then read each line from the file, skipping any comments in the file...
+   */
+@@ -665,6 +678,8 @@
+     * Skip blank lines and lines starting with a #...
+     */
+ 
++    DEBUG_puts(line);
++
+     if (!line[0] || line[0] == '#')
+       continue;
+ 
+diff -urNad cupsys-1.2.1~/scheduler/testmime.c cupsys-1.2.1/scheduler/testmime.c
+--- cupsys-1.2.1~/scheduler/testmime.c	2006-05-31 13:42:05.000000000 +0000
++++ cupsys-1.2.1/scheduler/testmime.c	2006-05-31 13:42:34.000000000 +0000
+@@ -71,7 +71,7 @@
+   mime        = NULL;
+   src         = NULL;
+   dst         = NULL;
+-  filter_path = "../filter:../pdftops";
++  filter_path = "../filter:../pdftops:" CUPS_SERVERBIN "/filter";
+ 
+   for (i = 1; i < argc; i ++)
+     if (!strcmp(argv[i], "-d"))
+diff -urNad cupsys-1.2.1~/templates/Makefile cupsys-1.2.1/templates/Makefile
+--- cupsys-1.2.1~/templates/Makefile	2006-05-31 13:42:05.000000000 +0000
++++ cupsys-1.2.1/templates/Makefile	2006-05-31 13:42:34.000000000 +0000
+@@ -118,11 +118,13 @@
+ # Install files...
+ #
+ 
+-install: all
++install: all $(INSTALL_LANGUAGES)
+ 	$(INSTALL_DIR) -m 755 $(DATADIR)/templates
+ 	for file in $(FILES); do \
+ 		$(INSTALL_DATA) $$file $(DATADIR)/templates; \
+ 	done
++
++install-languages:
+ 	for lang in $(LANGUAGES); do \
+ 		$(INSTALL_DIR) -m 755 $(DATADIR)/templates/$$lang; \
+ 		for file in $(FILES); do \
+@@ -137,17 +139,19 @@
+ # Uninstall files...
+ #
+ 
+-uninstall:
++uninstall: $(UNINSTALL_LANGUAGES)
+ 	for file in $(FILES); do \
+ 		$(RM) $(DATADIR)/templates/$$file; \
+ 	done
++	-$(RMDIR) $(DATADIR)/templates
++
++uninstall-languages:
+ 	for lang in $(LANGUAGES); do \
+ 		for file in $(FILES); do \
+ 			$(RM) $(DATADIR)/templates/$$lang/$$file; \
+ 		done \
+ 		$(RMDIR) $(DATADIR)/templates/$$lang; \
+ 	done
+-	-$(RMDIR) $(DATADIR)/templates
+ 
+ 
+ #

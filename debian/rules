@@ -35,7 +35,7 @@ clean::
 	-rm pdftops/libxpdf.a
 	-rm scheduler/testdirsvc scheduler/testdirsvc.o
 	-rm cups/testfile cups/testfile.o cups/http-addrlist.o
-	-rm backend/http
+	-rm backend/http backend/runloop.o backend/ieee1284.o
 	-rm systemv/disable systemv/enable systemv/reject
 	-rm cups-config cups.list conf/cupsd.conf conf/pam.conf
 	-rm config.log config.h config.cache config.status Makedefs cups.sh
