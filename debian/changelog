@@ -1,4 +1,4 @@
-cupsys (1.2.1-1) UNRELEASED-unstable; urgency=low
+cupsys (1.2.1-1) unstable; urgency=low
 
   [Kenshi Muto]
   * New upstream release 1.2.1 for Debian unstable/testing.
