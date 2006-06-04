@@ -1,11 +1,15 @@
-cupsys (1.1.99.rc2-0exp1) experimental; urgency=low
+cupsys (1.2.1-1) unstable; urgency=low
 
-  * This is EXPERIMENTAL version.
-    - By ABI incompatibility, KDE control center will complain.
-  * 'enable' and 'disable' commands are removed.
-    Use 'cupsenable' and 'cupsdisable' instead of them.
-  * /etc/cups/client.conf has been removed upstream. Now it becomes
-    obsolete.
+  * New upstream release 1.2.1.
+    This is major version up of CUPS and has several changes from
+    1.1 series.
+    Although CUPS 1.2 provides a backward compatibility, your
+    old configuration won't work in some cases.
+  * 'enable' / 'disable' commands are removed. Use 'cupsenable' /
+    'cupsdisable'.
+  * Ports/Listen and Browsing parameters are splitted from main
+    /etc/cups/cupsd.conf. You can modify /etc/cups/cups.d/ports.conf
+    and /etc/cups/cups.d/browsing.conf by 'dpkg-reconfigure cupsys'
+    or by hand.
 
-  
- -- Kenshi Muto <kmuto@debian.org>  Sun, 16 Apr 2006 17:39:36 +0900
+ -- Kenshi Muto <kmuto@debian.org>  Sun,  4 Jun 2006 07:43:22 +0000
