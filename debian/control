@@ -26,6 +26,25 @@ Description: Common UNIX Printing System(tm) - libs
  Easy Software Products (www.easysw.com), and refer to the original
  source packages from which these packages are made.
 
+Package: libcupsimage2
+Priority: optional
+Section: libs
+Architecture: any
+Depends: ${shlibs:Depends}
+Replaces: libcupsys2 (<= 1.1.18-2)
+Description: Common UNIX Printing System(tm) - image libs
+ The Common UNIX Printing System (or CUPS(tm)) is a printing system and 
+ general replacement for lpd and the like.  It supports the Internet 
+ Printing Protocol (IPP), and has its own filtering driver model for 
+ handling various document types.
+ .
+ This package provides the image libraries for handling the CUPS
+ raster format.
+ .
+ The terms "Common UNIX Printing System" and "CUPS" are trademarks of
+ Easy Software Products (www.easysw.com), and refer to the original
+ source packages from which these packages are made.
+
 Package: cupsys
 Priority: optional
 Section: net
@@ -101,25 +120,6 @@ Description: Common UNIX Printing System(tm) - development files
  .
  This package provides the files necessary for developing CUPS-aware
  applications and CUPS drivers.
- .
- The terms "Common UNIX Printing System" and "CUPS" are trademarks of
- Easy Software Products (www.easysw.com), and refer to the original
- source packages from which these packages are made.
-
-Package: libcupsimage2
-Priority: optional
-Section: libs
-Architecture: any
-Depends: ${shlibs:Depends}
-Replaces: libcupsys2 (<= 1.1.18-2)
-Description: Common UNIX Printing System(tm) - image libs
- The Common UNIX Printing System (or CUPS(tm)) is a printing system and 
- general replacement for lpd and the like.  It supports the Internet 
- Printing Protocol (IPP), and has its own filtering driver model for 
- handling various document types.
- .
- This package provides the image libraries for handling the CUPS
- raster format.
  .
  The terms "Common UNIX Printing System" and "CUPS" are trademarks of
  Easy Software Products (www.easysw.com), and refer to the original
