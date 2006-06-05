@@ -1,3 +1,10 @@
+cupsys (1.2.1-2) UNRELEASED-unstable; urgency=low
+
+  [Kenshi Muto]
+  * Provides /etc/cups/ssl directory for SSL. (closes: #370407, #370450)
+
+ -- Kenshi Muto <kmuto@debian.org>  Mon,  5 Jun 2006 22:44:55 +0900
+
 cupsys (1.2.1-1) unstable; urgency=low
 
   [Kenshi Muto]
