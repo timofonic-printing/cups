@@ -1,4 +1,4 @@
-cupsys (1.2.1-2) UNRELEASED-unstable; urgency=low
+cupsys (1.2.1-2) unstable; urgency=low
 
   [Kenshi Muto]
   * Provides /etc/cups/ssl directory for SSL. (closes: #370407, #370450)
