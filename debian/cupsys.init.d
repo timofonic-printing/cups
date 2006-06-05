@@ -27,6 +27,7 @@ case "$1" in
 	chmod 3775 /usr/share/cups/model 2>/dev/null || true
 	mkdir -p `dirname "$PIDFILE"`
 	start-stop-daemon --start --quiet --oknodo --pidfile "$PIDFILE" --exec $DAEMON
+	log_end_msg $?
 	;;
   stop)
 	log_begin_msg "Stopping $DESC: $NAME"
