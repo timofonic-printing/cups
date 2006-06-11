@@ -18,3 +18,4 @@
 47_pid.dpatch
 #48_stdlib.dpatch
 55_ppd_okidata_name.dpatch
+56_dirsvc.dpatch
