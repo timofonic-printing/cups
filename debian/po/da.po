@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: da\n"
 "Report-Msgid-Bugs-To: pkg-cups-devel@lists.alioth.debian.org\n"
 "POT-Creation-Date: 2006-03-29 14:05+0000\n"
-"PO-Revision-Date: 2006-03-20 15:58+0100\n"
+"PO-Revision-Date: 2006-06-07 18:05+0200\n"
 "Last-Translator: Claus Hindsgaul <claus.hindsgaul@gmail.com>\n"
 "Language-Team: Danish <dansk@klid.dk>\n"
 "MIME-Version: 1.0\n"
@@ -138,8 +138,7 @@ msgstr "Printer-kommunikationsveje:"
 #. Type: multiselect
 #. Description
 #: ../cupsys.templates:24
-msgid ""
-"CUPS uses backend programs for communication with printer device or port."
+msgid "CUPS uses backend programs for communication with printer device or port."
 msgstr ""
 "CUPS bruger bagvedliggende programmer til at kommunikere med printerenheden "
 "eller -porten."
@@ -183,7 +182,6 @@ msgstr ""
 #. Type: string
 #. Description
 #: ../cupsys.templates:36
-#, fuzzy
 msgid ""
 " - Port number (631);\n"
 " - Host name   (debian.example.com);\n"
@@ -191,8 +189,9 @@ msgid ""
 " - File domain socket (/var/run/cups/cups.sock)."
 msgstr ""
 " - Portnummer  (631);\n"
-" - værtsnavn   (debian.example.com);\n"
-" - Vært:Port   (debian.example.com:631)."
+" - værtsnavn   (debian.eksempel.dk);\n"
+" - Vært:Port   (debian.eksempel.dk:631);\n"
+" - Fildomænesokkel (/var/run/cups/cups.sock)."
 
 #. Type: string
 #. Description
@@ -261,3 +260,4 @@ msgstr "Ret venligst din indtastning."
 
 #~ msgid "Select the backends you want."
 #~ msgstr "Vælg det bagvedliggende program, du ønsker."
+
