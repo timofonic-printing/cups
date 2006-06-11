@@ -1,9 +1,9 @@
-00_r5610.dpatch
-#02_configure.dpatch
+00_r5643.dpatch
+02_configure.dpatch
 #03_manext.dpatch
 03_clean.dpatch
 04_freebsd.dpatch
-05_avoidunknowngroup.dpatch
+#05_avoidunknowngroup.dpatch
 06_disable_backend_setuid.dpatch
 07_removecvstag.dpatch
 08_cupsd.conf.conf.d.dpatch
