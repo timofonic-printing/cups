@@ -4,6 +4,7 @@ cupsys (1.2.1-3) UNRELEASED-unstable; urgency=low
   * Apply upstream svn change r5643.
   * Remove unnecessary %s from dirsvc.c and will solve a mysterious
     cupsd crash. Thanks Neil. (closes: #372696)
+  * Improve the wording of NEWS file, thanks Tomas (closes: #372256)
   * Update debconf translations:
     - Danish (closes: #371170)
     - French (closes: #372714) 

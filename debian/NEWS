@@ -7,15 +7,17 @@ cupsys (1.2.1-1) unstable; urgency=low
     old configuration won't work in some cases.
   * 'enable' / 'disable' commands are removed. Use 'cupsenable' /
     'cupsdisable'.
-  * Port/Listen and Browsing parameters are splitted from newer
-    /etc/cups/cupsd.conf. You can modify /etc/cups/cups.d/ports.conf
-    and /etc/cups/cups.d/browsing.conf by 'dpkg-reconfigure cupsys'
-    or by hand.
-    If you'd like to use this feature, replace Port/Listen
-    line of /etc/cups/cupsd.conf with
-    'Include /etc/cups/cups.d/ports.conf' and replace Browsing line
-    with 'Include /etc/cups/cups.d/browse.conf'.
-    (Parameters are already taken from old /etc/cups/cupsd.conf
-     automatically.)
+  * Port/Listen and Browsing parameters have been split off of
+    /etc/cups/cupsd.conf into separate files. You can modify
+    /etc/cups/cups.d/ports.conf and
+    /etc/cups/cups.d/browsing.conf by runing
+    'dpkg-reconfigure cupsys' or by hand.
+    If you'd like to use these features, then replace the lines
+    'Port/Listen' inside /etc/cups/cupsd.conf with
+    'Include /etc/cups/cups.d/ports.conf' and 'Browsing' with
+    'Include /etc/cups/cups.d/browse.conf'.
+    (These settings are being moved automatically from the old
+     /etc/cups/cupsd.conf config file to the new files
+     /etc/cups/cups.d/ports.conf and /etc/cups/cups.d/browse.conf)
 
  -- Kenshi Muto <kmuto@debian.org>  Sun,  4 Jun 2006 07:43:22 +0000
