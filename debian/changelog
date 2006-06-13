@@ -8,6 +8,7 @@ cupsys (1.2.1-3) UNRELEASED-unstable; urgency=low
   * Update debconf translations:
     - Danish (closes: #371170)
     - French (closes: #372714) 
+    - Italian (closes: #372198)
 
  -- Kenshi Muto <kmuto@debian.org>  Sun, 11 Jun 2006 11:51:01 +0000
 

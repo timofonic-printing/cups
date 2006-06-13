@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: cupsys 1.1.23 italian debconf templates\n"
 "Report-Msgid-Bugs-To: pkg-cups-devel@lists.alioth.debian.org\n"
 "POT-Creation-Date: 2006-03-29 14:05+0000\n"
-"PO-Revision-Date: 2006-05-18 18:16+0200\n"
+"PO-Revision-Date: 2006-06-11 17:44+0200\n"
 "Last-Translator: Luca Monducci <luca.mo@tiscali.it>\n"
 "Language-Team: Italian <tp@lists.linux.it>\n"
 "MIME-Version: 1.0\n"
@@ -182,7 +182,6 @@ msgstr ""
 #. Type: string
 #. Description
 #: ../cupsys.templates:36
-#, fuzzy
 msgid ""
 " - Port number (631);\n"
 " - Host name   (debian.example.com);\n"
@@ -192,6 +191,7 @@ msgstr ""
 " - Numero porta (631);\n"
 " - Nome host    (debian.esempio.com);\n"
 " - Host:Porta   (debian.esempio.com:631)."
+" - File socket di dominio (/var/run/cups/cups.sock)."
 
 #. Type: string
 #. Description
