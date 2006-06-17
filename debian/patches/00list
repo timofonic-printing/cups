@@ -1,4 +1,4 @@
-00_r5643.dpatch
+00_r5673.dpatch
 02_configure.dpatch
 #03_manext.dpatch
 03_clean.dpatch
@@ -18,4 +18,3 @@
 47_pid.dpatch
 #48_stdlib.dpatch
 55_ppd_okidata_name.dpatch
-56_dirsvc.dpatch
