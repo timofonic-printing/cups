@@ -6,6 +6,7 @@ cupsys (1.2.1-3) UNRELEASED-unstable; urgency=low
       cupsd crash. Thanks Neil. (closes: #372696)
     - Support again * character as IP address. (closes: #372291)
   * Improve the wording of NEWS file, thanks Tomas (closes: #372256)
+  * 53_usr_share_ppd_support: Use /usr/share/ppd as PPD path.
   * Update debconf translations:
     - Danish (closes: #371170)
     - French (closes: #372714) 
