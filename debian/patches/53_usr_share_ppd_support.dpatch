@@ -5,10 +5,10 @@
 ## DP: No description.
 
 @DPATCH@
-diff -urNad cupsys-1.1.99.b1.r4929~/scheduler/cups-driverd.c cupsys-1.1.99.b1.r4929/scheduler/cups-driverd.c
---- cupsys-1.1.99.b1.r4929~/scheduler/cups-driverd.c	2005-10-25 20:23:10.000000000 +0200
-+++ cupsys-1.1.99.b1.r4929/scheduler/cups-driverd.c	2006-04-07 15:43:44.000000000 +0200
-@@ -289,10 +289,7 @@
+diff -urNad cupsys-1.2.1~/scheduler/cups-driverd.c cupsys-1.2.1/scheduler/cups-driverd.c
+--- cupsys-1.2.1~/scheduler/cups-driverd.c	2006-04-18 15:16:00.000000000 +0000
++++ cupsys-1.2.1/scheduler/cups-driverd.c	2006-06-18 07:13:15.000000000 +0000
+@@ -302,10 +302,7 @@
      * Try opening the file...
      */
  
@@ -16,11 +16,11 @@ diff -urNad cupsys-1.1.99.b1.r4929~/scheduler/cups-driverd.c cupsys-1.1.99.b1.r4
 -      datadir = CUPS_DATADIR;
 -
 -    snprintf(line, sizeof(line), "%s/model/%s", datadir, name);
-+    snprintf(line, sizeof(line), "/usr/share/ppd/%s", datadir, name);
++    snprintf(line, sizeof(line), "/usr/share/ppd/%s", name);
      if ((fp = cupsFileOpen(line, "r")) == NULL)
      {
        fprintf(stderr, "ERROR: [cups-driverd] Unable to open \"%s\" - %s\n",
-@@ -443,11 +440,7 @@
+@@ -459,11 +456,7 @@
  
    SortedPPDs = NumPPDs;
  
