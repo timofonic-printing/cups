@@ -25,11 +25,13 @@ case "$1" in
     purge)
 	rm -rf /var/lib/cups
 	rm -rf /var/log/cups
+	rm -rf /var/run/cups
+	rm -rf /var/cache/cups
 	rm -rf /var/spool/cups
 	rm -rf /etc/cups/interfaces
 	rm -rf /etc/cups/ppd
 	rm -rf /etc/cups/passwd.md5
-	rm -f /etc/cups/cups.d/*
+	rm -rf /etc/cups/cups.d
 	rm -f /etc/cups/printers.conf* /etc/cups/classes.conf.* \
 		/var/lib/cups/ppds.dat /etc/cups/raw.convs /etc/cups/raw.types
 	rmdir /etc/cups 2>/dev/null || true
