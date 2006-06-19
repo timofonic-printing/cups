@@ -6,7 +6,7 @@
 #05_avoidunknowngroup.dpatch
 06_disable_backend_setuid.dpatch
 07_removecvstag.dpatch
-08_cupsd.conf.conf.d.dpatch
+#08_cupsd.conf.conf.d.dpatch
 09_runasuser.dpatch
 09_runasuser_autoconf.dpatch
 11_pam.dpatch

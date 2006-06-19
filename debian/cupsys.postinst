@@ -52,6 +52,9 @@ case "$1" in
 	    mv /var/spool/cups/certs/* /var/run/cups/certs || true
 	    rm -rf /var/spool/cups/certs
 	fi
+	if [ -d /var/lib/cups/certs ]; then
+	    rm -rf /va/lib/cups/certs
+	fi
 
 	[ -f /etc/cups/ppds.dat ] && mv /etc/cups/ppds.dat /var/cache/cups/ppd
 
@@ -125,52 +128,71 @@ EOF
 	#  chmod 600 /etc/cups/passwd.md5
 	#fi
 
-	# Create /etc/cups/cups.d/ports.conf and /etc/cups/cups.d/browse.conf
-	db_get cupsys/ports
-	VAL=$(echo "$RET" | perl -e '$ret = ""; while (<STDIN>) { chomp;
-	    @values = split(/\s+/);
-	    foreach(@values) {
-	      if (/^\d+$/ && $_ >= 0 && $_ < 65536) {
-	        # PORT
-	        $ret .= "Port $_\\n";
-	      } elsif (/^\d+\.\d+\.\d+\.\d+$/ || /^\d+\.\d+\.\d+\.\d+:\d+$/) {
-	        # IP
-	        $ret .= "Listen $_\\n";
-	      } elsif (/^[a-zA-Z0-9-_.*]+$/ || /^[a-zA-Z0-9-_.*]+:\d+$/) {
-	        my($tmp) = $_;
-	        if (/^[a-zA-Z0-9-_.*]+:(\d+)$/) {
-	          if ($1 < 0 || $1 > 65535) {
-	            # ERROR
-	            $ret = "";
-	            last;
-	          }
-	        }
-	        # HOSTNAME
-	        $ret .= "Listen $_\\n";
-	      } elsif (/^\//) {
-	        # domain socket
-	        $ret .= "Listen $_\\n";
-	      } else {
-	        # ERROR
-	        $ret = "";
-	        last;
-	      }
-	    }
-	    print $ret;
-	  }')
-
-	if [ -z "$VAL" ]; then
-	  echo "Error: debconf has an invalid value. Run 'dpkg-reconfigure cupsys' again."
-	  return 1
-	else
-	  /bin/echo -e -n "$VAL" > /etc/cups/cups.d/ports.conf
+	# Revert to single file
+	if [ -f /etc/cups/cups.d/ports.conf -o -f /etc/cups/cups.d/browse.conf ]; then
+	  perl -e 'sub readfile { local($_) = @_; open(F, $_); while (<F>) { print; } }; while (<STDIN>) { s#^Include\s+(/etc/cups/cups.d/(?:ports.conf|browse.conf))#&readfile($1)#e; print;}' < /etc/cups/cupsd.conf > /etc/cups/cupsd.conf.$$
+	  mv /etc/cups/cupsd.conf.$$ /etc/cups/cupsd.conf
+	  rm -f /etc/cups/cups.d/ports.conf /etc/cups/cups.d/browse.conf
+	  rmdir /etc/cups/cups.d 2>/dev/null || /bin/true
 	fi
+	#
+	# Create /etc/cups/cups.d/ports.conf and /etc/cups/cups.d/browse.conf
+	#db_get cupsys/ports
+	#VAL=$(echo "$RET" | perl -e '$ret = ""; while (<STDIN>) { chomp;
+	#    @values = split(/\s+/);
+	#    foreach(@values) {
+	#      if (/^\d+$/ && $_ >= 0 && $_ < 65536) {
+	#        # PORT
+	#        $ret .= "Port $_\\n";
+	#      } elsif (/^\d+\.\d+\.\d+\.\d+$/ || /^\d+\.\d+\.\d+\.\d+:\d+$/) {
+	#        # IP
+	#        $ret .= "Listen $_\\n";
+	#      } elsif (/^[a-zA-Z0-9-_.*]+$/ || /^[a-zA-Z0-9-_.*]+:\d+$/) {
+	#        my($tmp) = $_;
+	#        if (/^[a-zA-Z0-9-_.*]+:(\d+)$/) {
+	#          if ($1 < 0 || $1 > 65535) {
+	#            # ERROR
+	#            $ret = "";
+	#            last;
+	#          }
+	#        }
+	#        # HOSTNAME
+	#        $ret .= "Listen $_\\n";
+	#      } elsif (/^\//) {
+	#        # domain socket
+	#        $ret .= "Listen $_\\n";
+	#      } else {
+	#        # ERROR
+	#        $ret = "";
+	#        last;
+	#      }
+	#    }
+	#    print $ret;
+	#  }')
 
-	db_get cupsys/browse
-	if [ "$RET" = "true" ]; then
-	  /bin/echo "Browsing on" > /etc/cups/cups.d/browse.conf
-	else
-	  /bin/echo "Browsing off" > /etc/cups/cups.d/browse.conf
+	#if [ -z "$VAL" ]; then
+	#  echo "Error: debconf has an invalid value. Run 'dpkg-reconfigure cupsys' again."
+	#  return 1
+	#else
+	#  /bin/echo -e -n "$VAL" > /etc/cups/cups.d/ports.conf
+	#fi
+
+	#db_get cupsys/browse
+	#if [ "$RET" = "true" ]; then
+	#  /bin/echo "Browsing on" > /etc/cups/cups.d/browse.conf
+	#else
+	#  /bin/echo "Browsing off" > /etc/cups/cups.d/browse.conf
+	#fi
+
+	# permission configuration
+	chown root:lp /etc/cups ; chmod 3755 /etc/cups
+	chown root:lp /etc/cups/cupsd.conf ; chmod 640 /etc/cups/cupsd.conf
+	chown root:lp /etc/cups/ppd ; chmod 755 /etc/cups/ppd
+	if [ -f /etc/cups/classes.conf ]; then
+	  chown root:lp /etc/cups/classes.conf ; chmod 600 /etc/cups/classes.conf
+	fi
+	if [ -f /etc/cups/printers.conf ]; then
+	  chown root:lp /etc/cups/printers.conf ; chmod 600 /etc/cups/printers.conf
 	fi
     ;;
 

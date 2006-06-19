@@ -1,7 +1,6 @@
 var/run/cups
 usr/share/doc/cupsys
 etc/default
-etc/cups/cups.d
 etc/cups/ssl
 usr/lib/cups/backend-available
 var/cache/cups/ppd

@@ -11,6 +11,11 @@ cupsys (1.2.1-3) UNRELEASED-unstable; urgency=low
     Make symlink /usr/share/ppd/cups-transitional-dir -> /usr/share/cups/ppd
     for keeping a compatibility. We'll migrate all of PPD files to
     /usr/share/ppd in the future.
+  * Revert to use single /etc/cups/cupsd.conf file for the configuration
+    instead of using separate files in /etc/cups/cups.d. The migration will
+    be done automatically. (closes: #345973, #372727)
+  * Apply correct permission modes to the files under /etc/cups at postinst
+    stage.
   * Update debconf translations:
     - Danish (closes: #371170)
     - French (closes: #372714) 
