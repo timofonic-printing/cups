@@ -29,38 +29,3 @@ _Description: Printer communication backends:
  .
  Please choose the backend program to be used by CUPS. The default choice
  should fit the most common environments.
-
-Template: cupsys/ports
-Type: string
-Default: localhost:631 /var/run/cups/cups.sock
-_Description: Port or/and host name where CUPS will listen to:
- Please specify the port or the host name CUPS daemon will listen to.
- The following formats are allowed:
- .
-  - Port number (631);
-  - Host name   (debian.example.com);
-  - Host:Port   (debian.example.com:631);
-  - File domain socket (/var/run/cups/cups.sock).
- .
- You can combine any of these by delimiting in a space-separated list.
- .
- The default port 631 is reserved for the Internet Printing Protocol (IPP).
- "localhost:631" is recommended to setup a standalone environment for security
- reasons.
-
-Template: cupsys/browse
-Type: boolean
-Default: true
-_Description: Broadcast and/or listen for CUPS printer information on the network?
- CUPS daemon can broadcast printer information for clients on the network,
- and detect printers on the network automatically.
- .
- If you choose this option, the CUPS daemon will periodically send UDP
- broadcasts to detect printers.
-
-Template: cupsys/portserror
-Type: note
-_Description: Incorrect value entered
- an error occurred while parsing the port number or the host name.
- .
- Please correct your input.

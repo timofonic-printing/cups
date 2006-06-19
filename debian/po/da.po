@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: da\n"
 "Report-Msgid-Bugs-To: pkg-cups-devel@lists.alioth.debian.org\n"
-"POT-Creation-Date: 2006-03-29 14:05+0000\n"
+"POT-Creation-Date: 2006-06-19 16:05+0000\n"
 "PO-Revision-Date: 2006-06-07 18:05+0200\n"
 "Last-Translator: Claus Hindsgaul <claus.hindsgaul@gmail.com>\n"
 "Language-Team: Danish <dansk@klid.dk>\n"
@@ -138,7 +138,8 @@ msgstr "Printer-kommunikationsveje:"
 #. Type: multiselect
 #. Description
 #: ../cupsys.templates:24
-msgid "CUPS uses backend programs for communication with printer device or port."
+msgid ""
+"CUPS uses backend programs for communication with printer device or port."
 msgstr ""
 "CUPS bruger bagvedliggende programmer til at kommunikere med printerenheden "
 "eller -porten."
@@ -163,101 +164,68 @@ msgstr ""
 "Vælg det bagvedliggende program, CUPS skal bruge. Det forvalgte burde være "
 "passende under de mest almindelige forhold."
 
-#. Type: string
-#. Description
-#: ../cupsys.templates:36
-msgid "Port or/and host name where CUPS will listen to:"
-msgstr "Port og/eller værtsnavn, CUPS skal lytte på:"
+#~ msgid "Port or/and host name where CUPS will listen to:"
+#~ msgstr "Port og/eller værtsnavn, CUPS skal lytte på:"
 
-#. Type: string
-#. Description
-#: ../cupsys.templates:36
-msgid ""
-"Please specify the port or the host name CUPS daemon will listen to. The "
-"following formats are allowed:"
-msgstr ""
-"Angiv port eller værtsnavn, CUPS-dæmonen skal lytte på. Følgende formater er "
-"gyldige:"
+#~ msgid ""
+#~ "Please specify the port or the host name CUPS daemon will listen to. The "
+#~ "following formats are allowed:"
+#~ msgstr ""
+#~ "Angiv port eller værtsnavn, CUPS-dæmonen skal lytte på. Følgende formater "
+#~ "er gyldige:"
 
-#. Type: string
-#. Description
-#: ../cupsys.templates:36
-msgid ""
-" - Port number (631);\n"
-" - Host name   (debian.example.com);\n"
-" - Host:Port   (debian.example.com:631);\n"
-" - File domain socket (/var/run/cups/cups.sock)."
-msgstr ""
-" - Portnummer  (631);\n"
-" - værtsnavn   (debian.eksempel.dk);\n"
-" - Vært:Port   (debian.eksempel.dk:631);\n"
-" - Fildomænesokkel (/var/run/cups/cups.sock)."
+#~ msgid ""
+#~ " - Port number (631);\n"
+#~ " - Host name   (debian.example.com);\n"
+#~ " - Host:Port   (debian.example.com:631);\n"
+#~ " - File domain socket (/var/run/cups/cups.sock)."
+#~ msgstr ""
+#~ " - Portnummer  (631);\n"
+#~ " - værtsnavn   (debian.eksempel.dk);\n"
+#~ " - Vært:Port   (debian.eksempel.dk:631);\n"
+#~ " - Fildomænesokkel (/var/run/cups/cups.sock)."
 
-#. Type: string
-#. Description
-#: ../cupsys.templates:36
-msgid "You can combine any of these by delimiting in a space-separated list."
-msgstr "Du kan kombinere disse i en liste adskilt med mellemrum."
+#~ msgid ""
+#~ "You can combine any of these by delimiting in a space-separated list."
+#~ msgstr "Du kan kombinere disse i en liste adskilt med mellemrum."
 
-#. Type: string
-#. Description
-#: ../cupsys.templates:36
-msgid ""
-"The default port 631 is reserved for the Internet Printing Protocol (IPP). "
-"\"localhost:631\" is recommended to setup a standalone environment for "
-"security reasons."
-msgstr ""
-"Standardporten 631 er reserveret til Internet-PrinterProtokollen (IPP). "
-"\"localhost:631\" anbefales af sikkerhedsgrunde for at sætte et selvstændigt "
-"miljø op."
+#~ msgid ""
+#~ "The default port 631 is reserved for the Internet Printing Protocol "
+#~ "(IPP). \"localhost:631\" is recommended to setup a standalone environment "
+#~ "for security reasons."
+#~ msgstr ""
+#~ "Standardporten 631 er reserveret til Internet-PrinterProtokollen (IPP). "
+#~ "\"localhost:631\" anbefales af sikkerhedsgrunde for at sætte et "
+#~ "selvstændigt miljø op."
 
-#. Type: boolean
-#. Description
-#: ../cupsys.templates:54
-msgid "Broadcast and/or listen for CUPS printer information on the network?"
-msgstr "Rundsend og/eller lyt efter CUPS-printeroplysninger på netværket?"
+#~ msgid "Broadcast and/or listen for CUPS printer information on the network?"
+#~ msgstr "Rundsend og/eller lyt efter CUPS-printeroplysninger på netværket?"
 
-#. Type: boolean
-#. Description
-#: ../cupsys.templates:54
-msgid ""
-"CUPS daemon can broadcast printer information for clients on the network, "
-"and detect printers on the network automatically."
-msgstr ""
-"CUPS-dæmonen kan rundsende printeroplysninger til klienter på netværket og "
-"detektere printere på netværket automatisk."
+#~ msgid ""
+#~ "CUPS daemon can broadcast printer information for clients on the network, "
+#~ "and detect printers on the network automatically."
+#~ msgstr ""
+#~ "CUPS-dæmonen kan rundsende printeroplysninger til klienter på netværket "
+#~ "og detektere printere på netværket automatisk."
 
-#. Type: boolean
-#. Description
-#: ../cupsys.templates:54
-msgid ""
-"If you choose this option, the CUPS daemon will periodically send UDP "
-"broadcasts to detect printers."
-msgstr ""
-"Hvis du vælger denne indstilling, vil CUPS-dæmonen periodisk sende UDP-"
-"rundsendinger for at detektere printere."
+#~ msgid ""
+#~ "If you choose this option, the CUPS daemon will periodically send UDP "
+#~ "broadcasts to detect printers."
+#~ msgstr ""
+#~ "Hvis du vælger denne indstilling, vil CUPS-dæmonen periodisk sende UDP-"
+#~ "rundsendinger for at detektere printere."
 
-#. Type: note
-#. Description
-#: ../cupsys.templates:63
-msgid "Incorrect value entered"
-msgstr "Ugyldig værdi indtastet"
+#~ msgid "Incorrect value entered"
+#~ msgstr "Ugyldig værdi indtastet"
 
-#. Type: note
-#. Description
-#: ../cupsys.templates:63
-msgid "an error occurred while parsing the port number or the host name."
-msgstr "der opstod en fejl under tolkningaf portnummer eller værtsnavn."
+#~ msgid "an error occurred while parsing the port number or the host name."
+#~ msgstr "der opstod en fejl under tolkningaf portnummer eller værtsnavn."
 
-#. Type: note
-#. Description
-#: ../cupsys.templates:63
-msgid "Please correct your input."
-msgstr "Ret venligst din indtastning."
+#~ msgid "Please correct your input."
+#~ msgstr "Ret venligst din indtastning."
 
 #~ msgid "ipp, lpd, parallel, scsi, serial, socket, usb"
 #~ msgstr "ipp, lpd, parallel, scsi, seriel, sokkel, usb"
 
 #~ msgid "Select the backends you want."
 #~ msgstr "Vælg det bagvedliggende program, du ønsker."
-

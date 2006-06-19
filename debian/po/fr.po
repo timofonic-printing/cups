@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fr\n"
 "Report-Msgid-Bugs-To: pkg-cups-devel@lists.alioth.debian.org\n"
-"POT-Creation-Date: 2006-03-29 14:05+0000\n"
+"POT-Creation-Date: 2006-06-19 16:05+0000\n"
 "PO-Revision-Date: 2006-06-07 11:50+0200\n"
 "Last-Translator: Christian Perrier <bubulle@debian.org>\n"
 "Language-Team: French <debian-l10n-french@lists.debian.org>\n"
@@ -173,98 +173,68 @@ msgid ""
 "should fit the most common environments."
 msgstr "Le choix par défaut est adapté à la majorité des environnements."
 
-#. Type: string
-#. Description
-#: ../cupsys.templates:36
-msgid "Port or/and host name where CUPS will listen to:"
-msgstr "Port ou nom d'hôte où CUPS sera à l'écoute :"
+#~ msgid "Port or/and host name where CUPS will listen to:"
+#~ msgstr "Port ou nom d'hôte où CUPS sera à l'écoute :"
 
-#. Type: string
-#. Description
-#: ../cupsys.templates:36
-msgid ""
-"Please specify the port or the host name CUPS daemon will listen to. The "
-"following formats are allowed:"
-msgstr ""
-"Veuillez indiquer le port ou le nom d'hôte où le démon CUPS sera à l'écoute. "
-"Les formats suivants peuvent être utilisés :"
+#~ msgid ""
+#~ "Please specify the port or the host name CUPS daemon will listen to. The "
+#~ "following formats are allowed:"
+#~ msgstr ""
+#~ "Veuillez indiquer le port ou le nom d'hôte où le démon CUPS sera à "
+#~ "l'écoute. Les formats suivants peuvent être utilisés :"
 
-#. Type: string
-#. Description
-#: ../cupsys.templates:36
-msgid ""
-" - Port number (631);\n"
-" - Host name   (debian.example.com);\n"
-" - Host:Port   (debian.example.com:631);\n"
-" - File domain socket (/var/run/cups/cups.sock)."
-msgstr ""
-" - numéro de port (p. ex. 631) ;\n"
-" - nom d'hôte (p. ex. debian.asso.fr) ;\n"
-" - hôte:port (p. ex. debian.asso.fr:631) ;\n"
-" - fichier « socket » (/var/run/cups/cups.sock)."
+#~ msgid ""
+#~ " - Port number (631);\n"
+#~ " - Host name   (debian.example.com);\n"
+#~ " - Host:Port   (debian.example.com:631);\n"
+#~ " - File domain socket (/var/run/cups/cups.sock)."
+#~ msgstr ""
+#~ " - numéro de port (p. ex. 631) ;\n"
+#~ " - nom d'hôte (p. ex. debian.asso.fr) ;\n"
+#~ " - hôte:port (p. ex. debian.asso.fr:631) ;\n"
+#~ " - fichier « socket » (/var/run/cups/cups.sock)."
 
-#. Type: string
-#. Description
-#: ../cupsys.templates:36
-msgid "You can combine any of these by delimiting in a space-separated list."
-msgstr "Ces formats peuvent être combinés ensemble, séparés par des espaces."
+#~ msgid ""
+#~ "You can combine any of these by delimiting in a space-separated list."
+#~ msgstr ""
+#~ "Ces formats peuvent être combinés ensemble, séparés par des espaces."
 
-#. Type: string
-#. Description
-#: ../cupsys.templates:36
-msgid ""
-"The default port 631 is reserved for the Internet Printing Protocol (IPP). "
-"\"localhost:631\" is recommended to setup a standalone environment for "
-"security reasons."
-msgstr ""
-"Le port par défaut (631) est le port réservé pour le protocole d'impression "
-"Internet (« Internet Printing Protocol » : IPP). Pour des raisons de "
-"sécurité, la valeur « localhost:631 » est recommandée pour un environnement "
-"autonome."
+#~ msgid ""
+#~ "The default port 631 is reserved for the Internet Printing Protocol "
+#~ "(IPP). \"localhost:631\" is recommended to setup a standalone environment "
+#~ "for security reasons."
+#~ msgstr ""
+#~ "Le port par défaut (631) est le port réservé pour le protocole "
+#~ "d'impression Internet (« Internet Printing Protocol » : IPP). Pour des "
+#~ "raisons de sécurité, la valeur « localhost:631 » est recommandée pour un "
+#~ "environnement autonome."
 
-#. Type: boolean
-#. Description
-#: ../cupsys.templates:54
-msgid "Broadcast and/or listen for CUPS printer information on the network?"
-msgstr ""
-"Faut-il annoncer les imprimantes sur le réseau et en détecter de nouvelles ?"
+#~ msgid "Broadcast and/or listen for CUPS printer information on the network?"
+#~ msgstr ""
+#~ "Faut-il annoncer les imprimantes sur le réseau et en détecter de "
+#~ "nouvelles ?"
 
-#. Type: boolean
-#. Description
-#: ../cupsys.templates:54
-msgid ""
-"CUPS daemon can broadcast printer information for clients on the network, "
-"and detect printers on the network automatically."
-msgstr ""
-"Le démon CUPS peut faire connaître les imprimantes qu'il gère aux clients "
-"sur le réseau et détecter automatiquement de nouvelles imprimantes."
+#~ msgid ""
+#~ "CUPS daemon can broadcast printer information for clients on the network, "
+#~ "and detect printers on the network automatically."
+#~ msgstr ""
+#~ "Le démon CUPS peut faire connaître les imprimantes qu'il gère aux clients "
+#~ "sur le réseau et détecter automatiquement de nouvelles imprimantes."
 
-#. Type: boolean
-#. Description
-#: ../cupsys.templates:54
-msgid ""
-"If you choose this option, the CUPS daemon will periodically send UDP "
-"broadcasts to detect printers."
-msgstr ""
-"Si vous choisissez cette option, le démon CUPS utilisera périodiquement des "
-"diffusions UDP pour détecter de nouvelles imprimantes."
+#~ msgid ""
+#~ "If you choose this option, the CUPS daemon will periodically send UDP "
+#~ "broadcasts to detect printers."
+#~ msgstr ""
+#~ "Si vous choisissez cette option, le démon CUPS utilisera périodiquement "
+#~ "des diffusions UDP pour détecter de nouvelles imprimantes."
 
-#. Type: note
-#. Description
-#: ../cupsys.templates:63
-msgid "Incorrect value entered"
-msgstr "Valeur saisie incorrecte"
+#~ msgid "Incorrect value entered"
+#~ msgstr "Valeur saisie incorrecte"
 
-#. Type: note
-#. Description
-#: ../cupsys.templates:63
-msgid "an error occurred while parsing the port number or the host name."
-msgstr ""
-"Une erreur s'est produite lors de l'analyse du nom d'hôte ou du numéro de "
-"port."
+#~ msgid "an error occurred while parsing the port number or the host name."
+#~ msgstr ""
+#~ "Une erreur s'est produite lors de l'analyse du nom d'hôte ou du numéro de "
+#~ "port."
 
-#. Type: note
-#. Description
-#: ../cupsys.templates:63
-msgid "Please correct your input."
-msgstr "Veuillez corriger votre saisie."
+#~ msgid "Please correct your input."
+#~ msgstr "Veuillez corriger votre saisie."

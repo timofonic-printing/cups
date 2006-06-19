@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cupsys 1.2\n"
 "Report-Msgid-Bugs-To: pkg-cups-devel@lists.alioth.debian.org\n"
-"POT-Creation-Date: 2006-03-29 14:05+0000\n"
+"POT-Creation-Date: 2006-06-19 16:05+0000\n"
 "PO-Revision-Date: 2005-12-17 13:24+0900\n"
 "Last-Translator: Kenshi Muto <kmuto@debian.org>\n"
 "Language-Team: Japanese <debian-japanese@lists.debian.org>\n"
@@ -168,98 +168,67 @@ msgstr ""
 "CUPS で利用したいバックエンドプログラムを選択してください。デフォルトの選択は"
 "たいていの一般的な環境に合っています。"
 
-#. Type: string
-#. Description
-#: ../cupsys.templates:36
-msgid "Port or/and host name where CUPS will listen to:"
-msgstr "CUPS が監視するポートまたはホスト名:"
+#~ msgid "Port or/and host name where CUPS will listen to:"
+#~ msgstr "CUPS が監視するポートまたはホスト名:"
 
-#. Type: string
-#. Description
-#: ../cupsys.templates:36
-msgid ""
-"Please specify the port or the host name CUPS daemon will listen to. The "
-"following formats are allowed:"
-msgstr ""
-"CUPS デーモンに監視させるポートまたはホスト名を指定してください。次のような書"
-"式を利用できます:"
+#~ msgid ""
+#~ "Please specify the port or the host name CUPS daemon will listen to. The "
+#~ "following formats are allowed:"
+#~ msgstr ""
+#~ "CUPS デーモンに監視させるポートまたはホスト名を指定してください。次のよう"
+#~ "な書式を利用できます:"
 
-#. Type: string
-#. Description
-#: ../cupsys.templates:36
-msgid ""
-" - Port number (631);\n"
-" - Host name   (debian.example.com);\n"
-" - Host:Port   (debian.example.com:631);\n"
-" - File domain socket (/var/run/cups/cups.sock)."
-msgstr ""
-" - ポート番号      (631);\n"
-" - ホスト名        (debian.example.com);\n"
-" - ホスト名:ポート (debian.example.com:631);\n"
-" - ファイルドメインソケット (/var/run/cups/cups.sock)。"
+#~ msgid ""
+#~ " - Port number (631);\n"
+#~ " - Host name   (debian.example.com);\n"
+#~ " - Host:Port   (debian.example.com:631);\n"
+#~ " - File domain socket (/var/run/cups/cups.sock)."
+#~ msgstr ""
+#~ " - ポート番号      (631);\n"
+#~ " - ホスト名        (debian.example.com);\n"
+#~ " - ホスト名:ポート (debian.example.com:631);\n"
+#~ " - ファイルドメインソケット (/var/run/cups/cups.sock)。"
 
-#. Type: string
-#. Description
-#: ../cupsys.templates:36
-msgid "You can combine any of these by delimiting in a space-separated list."
-msgstr "スペースで区切ったリストでこれらを組み合わせることもできます。"
+#~ msgid ""
+#~ "You can combine any of these by delimiting in a space-separated list."
+#~ msgstr "スペースで区切ったリストでこれらを組み合わせることもできます。"
 
-#. Type: string
-#. Description
-#: ../cupsys.templates:36
-msgid ""
-"The default port 631 is reserved for the Internet Printing Protocol (IPP). "
-"\"localhost:631\" is recommended to setup a standalone environment for "
-"security reasons."
-msgstr ""
-"デフォルトポート 631 は Internet Printing Protocol (IPP) に予約されています。"
-"\"localhost:631\" はセキュリティ上の理由からスタンドアロンな環境にセットアッ"
-"プするのに推奨されます。"
+#~ msgid ""
+#~ "The default port 631 is reserved for the Internet Printing Protocol "
+#~ "(IPP). \"localhost:631\" is recommended to setup a standalone environment "
+#~ "for security reasons."
+#~ msgstr ""
+#~ "デフォルトポート 631 は Internet Printing Protocol (IPP) に予約されていま"
+#~ "す。\"localhost:631\" はセキュリティ上の理由からスタンドアロンな環境にセッ"
+#~ "トアップするのに推奨されます。"
 
-#. Type: boolean
-#. Description
-#: ../cupsys.templates:54
-msgid "Broadcast and/or listen for CUPS printer information on the network?"
-msgstr ""
-"ネットワーク上の CUPS プリンタ情報のブロードキャストおよび監視を行いますか?"
+#~ msgid "Broadcast and/or listen for CUPS printer information on the network?"
+#~ msgstr ""
+#~ "ネットワーク上の CUPS プリンタ情報のブロードキャストおよび監視を行います"
+#~ "か?"
 
-#. Type: boolean
-#. Description
-#: ../cupsys.templates:54
-msgid ""
-"CUPS daemon can broadcast printer information for clients on the network, "
-"and detect printers on the network automatically."
-msgstr ""
-"CUPS デーモンはネットワーク上のクライアントにプリンタ情報をブロードキャストし"
-"たり、ネットワーク上のプリンタを自動的に検出したりできます。"
+#~ msgid ""
+#~ "CUPS daemon can broadcast printer information for clients on the network, "
+#~ "and detect printers on the network automatically."
+#~ msgstr ""
+#~ "CUPS デーモンはネットワーク上のクライアントにプリンタ情報をブロードキャス"
+#~ "トしたり、ネットワーク上のプリンタを自動的に検出したりできます。"
 
-#. Type: boolean
-#. Description
-#: ../cupsys.templates:54
-msgid ""
-"If you choose this option, the CUPS daemon will periodically send UDP "
-"broadcasts to detect printers."
-msgstr ""
-"この選択肢を選ぶと、CUPS デーモンはプリンタを検出するために UDP ブロードキャ"
-"ストを定期的に送ります。"
+#~ msgid ""
+#~ "If you choose this option, the CUPS daemon will periodically send UDP "
+#~ "broadcasts to detect printers."
+#~ msgstr ""
+#~ "この選択肢を選ぶと、CUPS デーモンはプリンタを検出するために UDP ブロード"
+#~ "キャストを定期的に送ります。"
 
-#. Type: note
-#. Description
-#: ../cupsys.templates:63
-msgid "Incorrect value entered"
-msgstr "不正な値が入力されました"
+#~ msgid "Incorrect value entered"
+#~ msgstr "不正な値が入力されました"
 
-#. Type: note
-#. Description
-#: ../cupsys.templates:63
-msgid "an error occurred while parsing the port number or the host name."
-msgstr "ポート番号またはホスト名の解釈中にエラーが発生しました。"
+#~ msgid "an error occurred while parsing the port number or the host name."
+#~ msgstr "ポート番号またはホスト名の解釈中にエラーが発生しました。"
 
-#. Type: note
-#. Description
-#: ../cupsys.templates:63
-msgid "Please correct your input."
-msgstr "入力値を修正してください。"
+#~ msgid "Please correct your input."
+#~ msgstr "入力値を修正してください。"
 
 #~ msgid "Admin password:"
 #~ msgstr "管理者パスワード:"

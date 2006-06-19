@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cupsys\n"
 "Report-Msgid-Bugs-To: pkg-cups-devel@lists.alioth.debian.org\n"
-"POT-Creation-Date: 2006-03-29 14:05+0000\n"
+"POT-Creation-Date: 2006-06-19 16:05+0000\n"
 "PO-Revision-Date: 2004-04-25 10:34+0300\n"
 "Last-Translator: Gürkan Aslan <gurkan@iaslan.com>\n"
 "Language-Team: Turkish <debian-l10n-turkish@lists.debian.org>\n"
@@ -161,85 +161,6 @@ msgid ""
 msgstr ""
 "Lütfen CUPS tarafından kullanılacak arkayüz programını seçin. Öntanımlı "
 "seçim çoğu ortam için uygundur."
-
-#. Type: string
-#. Description
-#: ../cupsys.templates:36
-msgid "Port or/and host name where CUPS will listen to:"
-msgstr ""
-
-#. Type: string
-#. Description
-#: ../cupsys.templates:36
-msgid ""
-"Please specify the port or the host name CUPS daemon will listen to. The "
-"following formats are allowed:"
-msgstr ""
-
-#. Type: string
-#. Description
-#: ../cupsys.templates:36
-msgid ""
-" - Port number (631);\n"
-" - Host name   (debian.example.com);\n"
-" - Host:Port   (debian.example.com:631);\n"
-" - File domain socket (/var/run/cups/cups.sock)."
-msgstr ""
-
-#. Type: string
-#. Description
-#: ../cupsys.templates:36
-msgid "You can combine any of these by delimiting in a space-separated list."
-msgstr ""
-
-#. Type: string
-#. Description
-#: ../cupsys.templates:36
-msgid ""
-"The default port 631 is reserved for the Internet Printing Protocol (IPP). "
-"\"localhost:631\" is recommended to setup a standalone environment for "
-"security reasons."
-msgstr ""
-
-#. Type: boolean
-#. Description
-#: ../cupsys.templates:54
-msgid "Broadcast and/or listen for CUPS printer information on the network?"
-msgstr ""
-
-#. Type: boolean
-#. Description
-#: ../cupsys.templates:54
-msgid ""
-"CUPS daemon can broadcast printer information for clients on the network, "
-"and detect printers on the network automatically."
-msgstr ""
-
-#. Type: boolean
-#. Description
-#: ../cupsys.templates:54
-msgid ""
-"If you choose this option, the CUPS daemon will periodically send UDP "
-"broadcasts to detect printers."
-msgstr ""
-
-#. Type: note
-#. Description
-#: ../cupsys.templates:63
-msgid "Incorrect value entered"
-msgstr ""
-
-#. Type: note
-#. Description
-#: ../cupsys.templates:63
-msgid "an error occurred while parsing the port number or the host name."
-msgstr ""
-
-#. Type: note
-#. Description
-#: ../cupsys.templates:63
-msgid "Please correct your input."
-msgstr ""
 
 #~ msgid "ipp, lpd, parallel, scsi, serial, socket, usb"
 #~ msgstr "ipp, lpd, paralel, scsi, seri, soket, usb"

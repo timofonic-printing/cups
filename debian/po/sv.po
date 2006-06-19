@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cupsys 1.1.23-13\n"
 "Report-Msgid-Bugs-To: pkg-cups-devel@lists.alioth.debian.org\n"
-"POT-Creation-Date: 2006-03-29 14:05+0000\n"
+"POT-Creation-Date: 2006-06-19 16:05+0000\n"
 "PO-Revision-Date: 2005-12-17 08:14+0100\n"
 "Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
@@ -169,99 +169,67 @@ msgstr ""
 "Vänligen välj det baksystemprogram som ska användas av CUPS. Det förvalda "
 "valet bör passa den flesta vanliga miljöer."
 
-#. Type: string
-#. Description
-#: ../cupsys.templates:36
-msgid "Port or/and host name where CUPS will listen to:"
-msgstr "Port och/eller värdnamn som CUPS lyssnar på:"
+#~ msgid "Port or/and host name where CUPS will listen to:"
+#~ msgstr "Port och/eller värdnamn som CUPS lyssnar på:"
 
-#. Type: string
-#. Description
-#: ../cupsys.templates:36
-msgid ""
-"Please specify the port or the host name CUPS daemon will listen to. The "
-"following formats are allowed:"
-msgstr ""
-"Vänligen ange porten eller värdnamnet som CUPS-demonen ska lyssna på. "
-"Följande format är tillåtna:"
+#~ msgid ""
+#~ "Please specify the port or the host name CUPS daemon will listen to. The "
+#~ "following formats are allowed:"
+#~ msgstr ""
+#~ "Vänligen ange porten eller värdnamnet som CUPS-demonen ska lyssna på. "
+#~ "Följande format är tillåtna:"
 
-#. Type: string
-#. Description
-#: ../cupsys.templates:36
 #, fuzzy
-msgid ""
-" - Port number (631);\n"
-" - Host name   (debian.example.com);\n"
-" - Host:Port   (debian.example.com:631);\n"
-" - File domain socket (/var/run/cups/cups.sock)."
-msgstr ""
-" - Portnummer (631);\n"
-" - Värdnamn   (debian.exempel.se);\n"
-" - Värd:Port   (debian.exempel.se:631)."
+#~ msgid ""
+#~ " - Port number (631);\n"
+#~ " - Host name   (debian.example.com);\n"
+#~ " - Host:Port   (debian.example.com:631);\n"
+#~ " - File domain socket (/var/run/cups/cups.sock)."
+#~ msgstr ""
+#~ " - Portnummer (631);\n"
+#~ " - Värdnamn   (debian.exempel.se);\n"
+#~ " - Värd:Port   (debian.exempel.se:631)."
 
-#. Type: string
-#. Description
-#: ../cupsys.templates:36
-msgid "You can combine any of these by delimiting in a space-separated list."
-msgstr "Du kan kombinera flera av dessa genom att avgränsa med mellanslag."
+#~ msgid ""
+#~ "You can combine any of these by delimiting in a space-separated list."
+#~ msgstr "Du kan kombinera flera av dessa genom att avgränsa med mellanslag."
 
-#. Type: string
-#. Description
-#: ../cupsys.templates:36
-msgid ""
-"The default port 631 is reserved for the Internet Printing Protocol (IPP). "
-"\"localhost:631\" is recommended to setup a standalone environment for "
-"security reasons."
-msgstr ""
-"Standardport 631 är reserverad för Internet Printing Protocol (IPP). "
-"\"localhost:631\" är rekommenderad för att ställa in en fristående miljö av "
-"säkerhetsskäl."
+#~ msgid ""
+#~ "The default port 631 is reserved for the Internet Printing Protocol "
+#~ "(IPP). \"localhost:631\" is recommended to setup a standalone environment "
+#~ "for security reasons."
+#~ msgstr ""
+#~ "Standardport 631 är reserverad för Internet Printing Protocol (IPP). "
+#~ "\"localhost:631\" är rekommenderad för att ställa in en fristående miljö "
+#~ "av säkerhetsskäl."
 
-#. Type: boolean
-#. Description
-#: ../cupsys.templates:54
-msgid "Broadcast and/or listen for CUPS printer information on the network?"
-msgstr ""
-"Vill du sända ut och/eller lyssna efter skrivarinformation för CUPS på "
-"nätverket?"
+#~ msgid "Broadcast and/or listen for CUPS printer information on the network?"
+#~ msgstr ""
+#~ "Vill du sända ut och/eller lyssna efter skrivarinformation för CUPS på "
+#~ "nätverket?"
 
-#. Type: boolean
-#. Description
-#: ../cupsys.templates:54
-msgid ""
-"CUPS daemon can broadcast printer information for clients on the network, "
-"and detect printers on the network automatically."
-msgstr ""
-"CUPS-demonen kan sända ut skrivarinformation för klienter på nätverket och "
-"automatiskt identifiera skrivare på nätverket."
+#~ msgid ""
+#~ "CUPS daemon can broadcast printer information for clients on the network, "
+#~ "and detect printers on the network automatically."
+#~ msgstr ""
+#~ "CUPS-demonen kan sända ut skrivarinformation för klienter på nätverket "
+#~ "och automatiskt identifiera skrivare på nätverket."
 
-#. Type: boolean
-#. Description
-#: ../cupsys.templates:54
-msgid ""
-"If you choose this option, the CUPS daemon will periodically send UDP "
-"broadcasts to detect printers."
-msgstr ""
-"Om du valde detta alternativ kommer CUPS-demonen att med jämna mellanrum "
-"sända UDP-broadcast för att identifiera skrivare."
+#~ msgid ""
+#~ "If you choose this option, the CUPS daemon will periodically send UDP "
+#~ "broadcasts to detect printers."
+#~ msgstr ""
+#~ "Om du valde detta alternativ kommer CUPS-demonen att med jämna mellanrum "
+#~ "sända UDP-broadcast för att identifiera skrivare."
 
-#. Type: note
-#. Description
-#: ../cupsys.templates:63
-msgid "Incorrect value entered"
-msgstr "Felaktigt värde angivet"
+#~ msgid "Incorrect value entered"
+#~ msgstr "Felaktigt värde angivet"
 
-#. Type: note
-#. Description
-#: ../cupsys.templates:63
-msgid "an error occurred while parsing the port number or the host name."
-msgstr "ett fel inträffade vid tolkning av portnumret eller värdnamnet."
+#~ msgid "an error occurred while parsing the port number or the host name."
+#~ msgstr "ett fel inträffade vid tolkning av portnumret eller värdnamnet."
 
-#. Type: note
-#. Description
-#: ../cupsys.templates:63
-msgid "Please correct your input."
-msgstr "Vänligen rätt till det."
+#~ msgid "Please correct your input."
+#~ msgstr "Vänligen rätt till det."
 
 #~ msgid "ipp, lpd, parallel, scsi, serial, socket, usb"
 #~ msgstr "ipp, lpd, parallell, scsi, seriell, socket, usb"

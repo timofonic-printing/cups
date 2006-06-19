@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cupsys\n"
 "Report-Msgid-Bugs-To: pkg-cups-devel@lists.alioth.debian.org\n"
-"POT-Creation-Date: 2006-03-29 14:05+0000\n"
+"POT-Creation-Date: 2006-06-19 16:05+0000\n"
 "PO-Revision-Date: 2005-12-17 16:00+0100\n"
 "Last-Translator: Miroslav Kure <kurem@debian.cz>\n"
 "Language-Team: Czech <debian-l10n-czech@lists.debian.org>\n"
@@ -166,94 +166,62 @@ msgstr ""
 "Vyberte ovladač, který má CUPS  použít. Implicitní volba se hodí do většiny "
 "běžných prostředí."
 
-#. Type: string
-#. Description
-#: ../cupsys.templates:36
-msgid "Port or/and host name where CUPS will listen to:"
-msgstr "Port a/nebo jméno počítače, na kterém má CUPS naslouchat:"
+#~ msgid "Port or/and host name where CUPS will listen to:"
+#~ msgstr "Port a/nebo jméno počítače, na kterém má CUPS naslouchat:"
 
-#. Type: string
-#. Description
-#: ../cupsys.templates:36
-msgid ""
-"Please specify the port or the host name CUPS daemon will listen to. The "
-"following formats are allowed:"
-msgstr ""
-"Zadejte prosím port nebo jméno počítače, na kterém má daemon CUPS naslouchat "
-"příchozím spojením. Povoleny jsou následující formáty:"
+#~ msgid ""
+#~ "Please specify the port or the host name CUPS daemon will listen to. The "
+#~ "following formats are allowed:"
+#~ msgstr ""
+#~ "Zadejte prosím port nebo jméno počítače, na kterém má daemon CUPS "
+#~ "naslouchat příchozím spojením. Povoleny jsou následující formáty:"
 
-#. Type: string
-#. Description
-#: ../cupsys.templates:36
 #, fuzzy
-msgid ""
-" - Port number (631);\n"
-" - Host name   (debian.example.com);\n"
-" - Host:Port   (debian.example.com:631);\n"
-" - File domain socket (/var/run/cups/cups.sock)."
-msgstr ""
-" - Číslo portu    (631);\n"
-" - Jméno počítače (debian.priklad.cz);\n"
-" - Počítač:Port   (debian.priklad.cz:631)."
+#~ msgid ""
+#~ " - Port number (631);\n"
+#~ " - Host name   (debian.example.com);\n"
+#~ " - Host:Port   (debian.example.com:631);\n"
+#~ " - File domain socket (/var/run/cups/cups.sock)."
+#~ msgstr ""
+#~ " - Číslo portu    (631);\n"
+#~ " - Jméno počítače (debian.priklad.cz);\n"
+#~ " - Počítač:Port   (debian.priklad.cz:631)."
 
-#. Type: string
-#. Description
-#: ../cupsys.templates:36
-msgid "You can combine any of these by delimiting in a space-separated list."
-msgstr "Můžete jich zadat libovolný počet, stačí je oddělit mezerami."
+#~ msgid ""
+#~ "You can combine any of these by delimiting in a space-separated list."
+#~ msgstr "Můžete jich zadat libovolný počet, stačí je oddělit mezerami."
 
-#. Type: string
-#. Description
-#: ../cupsys.templates:36
-msgid ""
-"The default port 631 is reserved for the Internet Printing Protocol (IPP). "
-"\"localhost:631\" is recommended to setup a standalone environment for "
-"security reasons."
-msgstr ""
-"Výchozí port 631 je rezervovaný právě pro Internet Printing Protocol (IPP). "
-"Pro samostatný počítač se z bezpečnostních důvodů doporučuje nastavení "
-"\"localhost:631\"."
+#~ msgid ""
+#~ "The default port 631 is reserved for the Internet Printing Protocol "
+#~ "(IPP). \"localhost:631\" is recommended to setup a standalone environment "
+#~ "for security reasons."
+#~ msgstr ""
+#~ "Výchozí port 631 je rezervovaný právě pro Internet Printing Protocol "
+#~ "(IPP). Pro samostatný počítač se z bezpečnostních důvodů doporučuje "
+#~ "nastavení \"localhost:631\"."
 
-#. Type: boolean
-#. Description
-#: ../cupsys.templates:54
-msgid "Broadcast and/or listen for CUPS printer information on the network?"
-msgstr "Vysílat a/nebo poslouchat na síti informace o CUPS tiskárnách?"
+#~ msgid "Broadcast and/or listen for CUPS printer information on the network?"
+#~ msgstr "Vysílat a/nebo poslouchat na síti informace o CUPS tiskárnách?"
 
-#. Type: boolean
-#. Description
-#: ../cupsys.templates:54
-msgid ""
-"CUPS daemon can broadcast printer information for clients on the network, "
-"and detect printers on the network automatically."
-msgstr ""
-"Daemon CUPS může do sítě vysílat své informace o tiskárnách a také umí na "
-"síti zjišťovat tiskárny nové."
+#~ msgid ""
+#~ "CUPS daemon can broadcast printer information for clients on the network, "
+#~ "and detect printers on the network automatically."
+#~ msgstr ""
+#~ "Daemon CUPS může do sítě vysílat své informace o tiskárnách a také umí na "
+#~ "síti zjišťovat tiskárny nové."
 
-#. Type: boolean
-#. Description
-#: ../cupsys.templates:54
-msgid ""
-"If you choose this option, the CUPS daemon will periodically send UDP "
-"broadcasts to detect printers."
-msgstr ""
-"Povolíte-li tuto volbu, daemon CUPS bude periodicky vysílat celoplošné UDP "
-"dotazy, kterými bude zjišťovat nové tiskárny."
+#~ msgid ""
+#~ "If you choose this option, the CUPS daemon will periodically send UDP "
+#~ "broadcasts to detect printers."
+#~ msgstr ""
+#~ "Povolíte-li tuto volbu, daemon CUPS bude periodicky vysílat celoplošné "
+#~ "UDP dotazy, kterými bude zjišťovat nové tiskárny."
 
-#. Type: note
-#. Description
-#: ../cupsys.templates:63
-msgid "Incorrect value entered"
-msgstr "Zadána chybná hodnota"
+#~ msgid "Incorrect value entered"
+#~ msgstr "Zadána chybná hodnota"
 
-#. Type: note
-#. Description
-#: ../cupsys.templates:63
-msgid "an error occurred while parsing the port number or the host name."
-msgstr "Při zpracovávání čísla portu nebo názvu počítače se vyskytla chyba."
+#~ msgid "an error occurred while parsing the port number or the host name."
+#~ msgstr "Při zpracovávání čísla portu nebo názvu počítače se vyskytla chyba."
 
-#. Type: note
-#. Description
-#: ../cupsys.templates:63
-msgid "Please correct your input."
-msgstr "Opravte prosím svou odpověď."
+#~ msgid "Please correct your input."
+#~ msgstr "Opravte prosím svou odpověď."

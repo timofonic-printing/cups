@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cupsys 1.1.24\n"
 "Report-Msgid-Bugs-To: pkg-cups-devel@lists.alioth.debian.org\n"
-"POT-Creation-Date: 2006-03-29 14:05+0000\n"
+"POT-Creation-Date: 2006-06-19 16:05+0000\n"
 "PO-Revision-Date: 2005-12-19 17:24+1030\n"
 "Last-Translator: Clytie Siddall <clytie@riverland.net.au>\n"
 "Language-Team: Vietnamese <gnomevi-list@lists.sourceforge.net>\n"
@@ -160,98 +160,67 @@ msgstr ""
 "Hãy chọn chương trình hậu phương mà phần mềm CUPS sẽ dùng. Tùy chọn mặc định "
 "nên khớp với các môi trường thường dùng."
 
-#. Type: string
-#. Description
-#: ../cupsys.templates:36
-msgid "Port or/and host name where CUPS will listen to:"
-msgstr "Cổng và/hay tên máy nơi CUPS se lắng nghe:"
+#~ msgid "Port or/and host name where CUPS will listen to:"
+#~ msgstr "Cổng và/hay tên máy nơi CUPS se lắng nghe:"
 
-#. Type: string
-#. Description
-#: ../cupsys.templates:36
-msgid ""
-"Please specify the port or the host name CUPS daemon will listen to. The "
-"following formats are allowed:"
-msgstr ""
-"Hãy gõ cổng hay tên máy trên mà trình nền CUPS sẽ lắng nghe. Cho phép những "
-"khuôn dạng theo đây:"
+#~ msgid ""
+#~ "Please specify the port or the host name CUPS daemon will listen to. The "
+#~ "following formats are allowed:"
+#~ msgstr ""
+#~ "Hãy gõ cổng hay tên máy trên mà trình nền CUPS sẽ lắng nghe. Cho phép "
+#~ "những khuôn dạng theo đây:"
 
-#. Type: string
-#. Description
-#: ../cupsys.templates:36
 #, fuzzy
-msgid ""
-" - Port number (631);\n"
-" - Host name   (debian.example.com);\n"
-" - Host:Port   (debian.example.com:631);\n"
-" - File domain socket (/var/run/cups/cups.sock)."
-msgstr ""
-" • sổ cổng (v.d. 631)\n"
-" • tên máy (v.d. vi_du.vnoss.org)\n"
-" • máy:cổng (v.d. vi_du.vnoss.org:631)"
+#~ msgid ""
+#~ " - Port number (631);\n"
+#~ " - Host name   (debian.example.com);\n"
+#~ " - Host:Port   (debian.example.com:631);\n"
+#~ " - File domain socket (/var/run/cups/cups.sock)."
+#~ msgstr ""
+#~ " • sổ cổng (v.d. 631)\n"
+#~ " • tên máy (v.d. vi_du.vnoss.org)\n"
+#~ " • máy:cổng (v.d. vi_du.vnoss.org:631)"
 
-#. Type: string
-#. Description
-#: ../cupsys.templates:36
-msgid "You can combine any of these by delimiting in a space-separated list."
-msgstr ""
-"Bạn có thể kết hợp vài khuôn dạng phân cách bởi khoảng trắng trong danh sách."
+#~ msgid ""
+#~ "You can combine any of these by delimiting in a space-separated list."
+#~ msgstr ""
+#~ "Bạn có thể kết hợp vài khuôn dạng phân cách bởi khoảng trắng trong danh "
+#~ "sách."
 
-#. Type: string
-#. Description
-#: ../cupsys.templates:36
-msgid ""
-"The default port 631 is reserved for the Internet Printing Protocol (IPP). "
-"\"localhost:631\" is recommended to setup a standalone environment for "
-"security reasons."
-msgstr ""
-"Cổng mặc định 631 dành cho Giao thức In Mạng (Internet Printing Protocol: "
-"IPP). Khuyên bạn dùng « localhost:631 » để thiết lập môi trường độc lập vì "
-"lý do bảo mật. "
+#~ msgid ""
+#~ "The default port 631 is reserved for the Internet Printing Protocol "
+#~ "(IPP). \"localhost:631\" is recommended to setup a standalone environment "
+#~ "for security reasons."
+#~ msgstr ""
+#~ "Cổng mặc định 631 dành cho Giao thức In Mạng (Internet Printing Protocol: "
+#~ "IPP). Khuyên bạn dùng « localhost:631 » để thiết lập môi trường độc lập "
+#~ "vì lý do bảo mật. "
 
-#. Type: boolean
-#. Description
-#: ../cupsys.templates:54
-msgid "Broadcast and/or listen for CUPS printer information on the network?"
-msgstr "Phát thanh và/hay lắng nghe thông tin máy in CUPS trên mạng không?"
+#~ msgid "Broadcast and/or listen for CUPS printer information on the network?"
+#~ msgstr "Phát thanh và/hay lắng nghe thông tin máy in CUPS trên mạng không?"
 
-#. Type: boolean
-#. Description
-#: ../cupsys.templates:54
-msgid ""
-"CUPS daemon can broadcast printer information for clients on the network, "
-"and detect printers on the network automatically."
-msgstr ""
-"Trình nền CUPS có thể phát thanh thông tin về máy in cho trình khách trên "
-"mạng nghe, và tự động phát hiện máy in nào trên mạng."
+#~ msgid ""
+#~ "CUPS daemon can broadcast printer information for clients on the network, "
+#~ "and detect printers on the network automatically."
+#~ msgstr ""
+#~ "Trình nền CUPS có thể phát thanh thông tin về máy in cho trình khách trên "
+#~ "mạng nghe, và tự động phát hiện máy in nào trên mạng."
 
-#. Type: boolean
-#. Description
-#: ../cupsys.templates:54
-msgid ""
-"If you choose this option, the CUPS daemon will periodically send UDP "
-"broadcasts to detect printers."
-msgstr ""
-"Nếu bạn lập tùy chọn này, trình nền CUPS sẽ gởi định kỳ việc phát thanh UDP "
-"để phát hiện máy in."
+#~ msgid ""
+#~ "If you choose this option, the CUPS daemon will periodically send UDP "
+#~ "broadcasts to detect printers."
+#~ msgstr ""
+#~ "Nếu bạn lập tùy chọn này, trình nền CUPS sẽ gởi định kỳ việc phát thanh "
+#~ "UDP để phát hiện máy in."
 
-#. Type: note
-#. Description
-#: ../cupsys.templates:63
-msgid "Incorrect value entered"
-msgstr "Gõ sai giá trị"
+#~ msgid "Incorrect value entered"
+#~ msgstr "Gõ sai giá trị"
 
-#. Type: note
-#. Description
-#: ../cupsys.templates:63
-msgid "an error occurred while parsing the port number or the host name."
-msgstr "gặp lỗi khi phân tách số cổng hay tên máy."
+#~ msgid "an error occurred while parsing the port number or the host name."
+#~ msgstr "gặp lỗi khi phân tách số cổng hay tên máy."
 
-#. Type: note
-#. Description
-#: ../cupsys.templates:63
-msgid "Please correct your input."
-msgstr "Hãy sửa dữ liệu gõ."
+#~ msgid "Please correct your input."
+#~ msgstr "Hãy sửa dữ liệu gõ."
 
 #~ msgid "ipp, lpd, parallel, scsi, serial, socket, usb"
 #~ msgstr "ipp, lpd, song song, scsi, nối tiếp, ổ cắm, usb"
