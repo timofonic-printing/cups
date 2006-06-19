@@ -5,9 +5,9 @@
 ## DP: No description.
 
 @DPATCH@
-diff -urNad cupsys-1.1.99.r5357~/Makefile cupsys-1.1.99.r5357/Makefile
---- cupsys-1.1.99.r5357~/Makefile	2006-03-20 19:06:50.000000000 +0000
-+++ cupsys-1.1.99.r5357/Makefile	2006-03-30 15:18:54.000000000 +0000
+diff -urNad cupsys-1.2.1~/Makefile cupsys-1.2.1/Makefile
+--- cupsys-1.2.1~/Makefile	2006-06-11 12:01:59.000000000 +0000
++++ cupsys-1.2.1/Makefile	2006-06-11 12:02:53.000000000 +0000
 @@ -55,6 +55,7 @@
  		echo Cleaning in $$dir... ;\
  		(cd $$dir; $(MAKE) $(MFLAGS) clean) || exit 1;\
@@ -16,22 +16,24 @@ diff -urNad cupsys-1.1.99.r5357~/Makefile cupsys-1.1.99.r5357/Makefile
  
  
  #
-diff -urNad cupsys-1.1.99.r5357~/doc/Makefile cupsys-1.1.99.r5357/doc/Makefile
---- cupsys-1.1.99.r5357~/doc/Makefile	2006-03-23 20:23:19.000000000 +0000
-+++ cupsys-1.1.99.r5357/doc/Makefile	2006-03-30 15:15:07.000000000 +0000
-@@ -187,6 +187,8 @@
+diff -urNad cupsys-1.2.1~/doc/Makefile cupsys-1.2.1/doc/Makefile
+--- cupsys-1.2.1~/doc/Makefile	2006-06-11 12:02:53.000000000 +0000
++++ cupsys-1.2.1/doc/Makefile	2006-06-11 12:03:09.000000000 +0000
+@@ -187,6 +187,10 @@
  #
  
  clean:
 +	$(RM) doc/es/index.html
 +	$(RM) doc/ja/index.html
++	$(RM) doc/pl/index.html
++	$(RM) doc/sv/index.html
  
  
  #
-diff -urNad cupsys-1.1.99.r5357~/man/Makefile cupsys-1.1.99.r5357/man/Makefile
---- cupsys-1.1.99.r5357~/man/Makefile	2006-03-21 02:35:37.000000000 +0000
-+++ cupsys-1.1.99.r5357/man/Makefile	2006-03-30 15:17:26.000000000 +0000
-@@ -88,6 +88,7 @@
+diff -urNad cupsys-1.2.1~/man/Makefile cupsys-1.2.1/man/Makefile
+--- cupsys-1.2.1~/man/Makefile	2006-06-11 12:01:59.000000000 +0000
++++ cupsys-1.2.1/man/Makefile	2006-06-11 12:02:53.000000000 +0000
+@@ -90,6 +90,7 @@
  	for file in $(MAN8); do \
  		$(RM) ../doc/help/man-`basename $$file .$(MAN8EXT)`.html; \
  	done
@@ -39,9 +41,9 @@ diff -urNad cupsys-1.1.99.r5357~/man/Makefile cupsys-1.1.99.r5357/man/Makefile
  
  
  #
-diff -urNad cupsys-1.1.99.r5357~/templates/Makefile cupsys-1.1.99.r5357/templates/Makefile
---- cupsys-1.1.99.r5357~/templates/Makefile	2006-03-18 13:18:18.000000000 +0000
-+++ cupsys-1.1.99.r5357/templates/Makefile	2006-03-30 15:18:07.000000000 +0000
+diff -urNad cupsys-1.2.1~/templates/Makefile cupsys-1.2.1/templates/Makefile
+--- cupsys-1.2.1~/templates/Makefile	2006-06-11 12:02:53.000000000 +0000
++++ cupsys-1.2.1/templates/Makefile	2006-06-11 12:02:53.000000000 +0000
 @@ -105,6 +105,7 @@
  #
  
