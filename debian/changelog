@@ -2,6 +2,7 @@ cupsys (1.2.1-4) UNRELEASED-unstable; urgency=low
 
   [Kenshi Muto]
   * Bug, bug, bug, ... our BTS is tainted by duplicate bugs like flood.
+  * Include changelogs during 1.1.23-13 - 1.1.23-15. (closes: #374494)
 
  -- Kenshi Muto <kmuto@debian.org>  Wed, 21 Jun 2006 15:06:02 +0000
 
@@ -306,12 +307,52 @@ cupsys (1.1.99.b1.r4748-1) experimental; urgency=low
 
  -- Kenshi Muto <kmuto@debian.org>  Wed,  5 Oct 2005 12:54:27 +0000
 
-cupsys (1.1.23-13) UNRELEASED; urgency=low
+cupsys (1.1.23-15) unstable; urgency=high
+
+  [Kenshi Muto]
+  * Allow '*' for hostname in ports.conf. (closes: #340975)
+  * Fix IPv4 address validation.
+  * Use /bin/echo instead of shell built-in echo. (closes: #343566)
+  * Improve cupsys.templates. (closes: #343498)
+  * Updated Swedish debconf translation.
+  * Updated Russian debconf translation.
+  * Updated German debconf translation.
+  * Updated Czech debconf translation. (closes: #343716)
+  * Updated French debconf translation. (closes: #344116)
+  * Updated Vietnamese debconf translation.
+  * Removed example descriptions from init.d script. (closes: #334842)
+  * Apply kFreeBSD patch. (closes: 338266)
+
+ -- Kenshi Muto <kmuto@debian.org>  Fri, 16 Dec 2005 21:05:47 +0900
+
+cupsys (1.1.23-14) unstable; urgency=high
+
+  [Kenshi Muto]
+  * Downgrade port and browse question to low. (closes: #343341)
+  * debian/patches/08_cupsd.conf.conf.d.dpatch:
+    - Commented out Port/Listen/Browsing in cupsd.conf.in because
+      CUPS crashes when there is a duplicate definition!
+      (closes: #343251, #343279, ##343285, #343292)
+  * Added NEWS to explain how to fix this for 1.1.23-13 users:
+    Tweaking cupsd.conf via postinst is a bad idea, so I gave up
+    trying to correct this automatically. Instead, comment out the 
+    Port/Listen/Browsing lines in /etc/cups/cupsd.conf if you had 
+    already replaced this file by the one from 1.1.23-13.
+  * Updated Swedish debconf translation. (closes: #343397)
+  * Set seen false flag when ports configuration is failed.
+    (closes: #343400)
+
+  [Martin-Éric Racine]
+  * Added debian/watch file.
+
+ -- Kenshi Muto <kmuto@debian.org>  Thu, 15 Dec 2005 06:00:09 +0900
+
+cupsys (1.1.23-13) unstable; urgency=high
 
   * 38_pdftopscan.dpatch: Apply CAN-2005-0064, CAN-2004-0888,
     and CAN-2005-2097 patches. (closes: #324459, #324460, #324464)
     Because Debian cupsys uses xpdf wrapper instead of forked pdftops,
-    users aren't affected these security problems.
+    so users aren't affected these security problems.
     This patch is just for users who want to create own pdftops from
     source.
   * Move Port/Listen and Browsing configurations from /etc/cups/
@@ -320,9 +361,19 @@ cupsys (1.1.23-13) UNRELEASED; urgency=low
     /etc/cups/cups.d/ports.conf: Port/Listen configuration.
     /etc/cups/cups.d/browse.conf: Browsing configuration
 
-    Migration will be done automatically.
     You can configure these values by using "dpkg-reconfigure cupsys".
     (closes: #235906, #297695, #178838, #288838)
+
+  * Added Swedish debconf translation (closes: #338545). Thanks Daniel.
+  * Updated Russian debconf translation (closes: #340626). Thanks Yuri.
+
+  * Applied xpdf patch to fix buffer overflows [pdftops/Stream.cxx,
+    pdftops/Stream.h, CAN-2005-3191, CAN-2005-3192,
+    48_security_CAN-2005-3191.dpatch]
+    Because Debian cupsys uses xpdf wrapper instead of forked pdftops,
+    so users aren't affected these security problems.
+    This patch is just for users who want to create own pdftops from
+    source.
 
  -- Kenshi Muto <kmuto@debian.org>  Mon, 22 Aug 2005 18:50:26 +0900
 
