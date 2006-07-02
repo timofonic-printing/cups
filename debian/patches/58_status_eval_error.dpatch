@@ -1,0 +1,37 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 58_status_eval_error.dpatch by Kenshi Muto <kmuto@debian.org>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: No description.
+
+@DPATCH@
+diff -urNad cupsys-1.2.1~/backend/parallel.c cupsys-1.2.1/backend/parallel.c
+--- cupsys-1.2.1~/backend/parallel.c	2006-07-02 19:25:49.000000000 +0900
++++ cupsys-1.2.1/backend/parallel.c	2006-07-02 19:26:51.000000000 +0900
+@@ -271,9 +271,9 @@
+       paperout = 1;
+     }
+ 
+-    if (!(status & LP_PERRORP))
++    if (status & LP_PERRORP)
+       fputs("WARNING: Printer fault!\n", stderr);
+-    else if (!(status & LP_PSELECD))
++    else if (status & LP_PSELECD)
+       fputs("WARNING: Printer off-line.\n", stderr);
+     else
+       break;
+diff -urNad cupsys-1.2.1~/backend/usb-unix.c cupsys-1.2.1/backend/usb-unix.c
+--- cupsys-1.2.1~/backend/usb-unix.c	2006-07-02 19:25:49.000000000 +0900
++++ cupsys-1.2.1/backend/usb-unix.c	2006-07-02 19:25:50.000000000 +0900
+@@ -168,9 +168,9 @@
+       paperout = 1;
+     }
+ 
+-    if (!(status & LP_PERRORP))
++    if (status & LP_PERRORP)
+       fputs("WARNING: Printer fault!\n", stderr);
+-    else if (!(status & LP_PSELECD))
++    else if (status & LP_PSELECD)
+       fputs("WARNING: Printer off-line.\n", stderr);
+     else
+       break;

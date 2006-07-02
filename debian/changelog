@@ -6,6 +6,8 @@ cupsys (1.2.1-4) UNRELEASED-unstable; urgency=low
   * 56_cupsaddsmb: avoid infinite loop when connect with Samba fails
     by something reasons. (closes: #376232)
     This patch fixes missing localized message.
+  * 57_status_logic_error: parallel/usb backends had a logic error around
+    verifying printer status code. This patch fixes it. (closes: #347522)
 
  -- Kenshi Muto <kmuto@debian.org>  Wed, 21 Jun 2006 15:06:02 +0000
 
