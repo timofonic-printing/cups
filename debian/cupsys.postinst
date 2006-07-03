@@ -99,11 +99,11 @@ EOF
 	    db_fset cupsys/raw-print changed false
 	fi
 	# Set up backends
-	(cd /usr/lib/cups/backend && rm -f http ipp lpd parallel scsi serial socket usb snmp)
 	db_get cupsys/backend && SELECTED=$RET
 	list=`echo $SELECTED | sed -e 's/, /,/g'`
 	save_IFS=$IFS
 	IFS=,
+	(cd /usr/lib/cups/backend && rm -f http ipp lpd parallel scsi serial socket usb snmp)
 	for module in $list; do
 	  ln -s ../backend-available/$module /usr/lib/cups/backend/$module
 	  if [ "$module" = "ipp" ]; then

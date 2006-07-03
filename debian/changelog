@@ -11,6 +11,8 @@ cupsys (1.2.1-4) UNRELEASED-unstable; urgency=medium
   * Add snmp to backend choices. Because I don't make sure this backend
     is stable, the default is disabled. Use dpkg-reconfigure cupsys to
     enable. (closes: #376496)
+  * Don't remove backend symlinks during reconfigure/upgrade process.
+    (closes: #376499)
 
  -- Kenshi Muto <kmuto@debian.org>  Wed, 21 Jun 2006 15:06:02 +0000
 
