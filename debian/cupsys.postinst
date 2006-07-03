@@ -99,7 +99,7 @@ EOF
 	    db_fset cupsys/raw-print changed false
 	fi
 	# Set up backends
-	(cd /usr/lib/cups/backend && rm -f http ipp lpd parallel scsi serial socket usb)
+	(cd /usr/lib/cups/backend && rm -f http ipp lpd parallel scsi serial socket usb snmp)
 	db_get cupsys/backend && SELECTED=$RET
 	list=`echo $SELECTED | sed -e 's/, /,/g'`
 	save_IFS=$IFS
