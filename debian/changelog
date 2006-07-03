@@ -1,4 +1,4 @@
-cupsys (1.2.1-4) UNRELEASED-unstable; urgency=low
+cupsys (1.2.1-4) UNRELEASED-unstable; urgency=medium
 
   [Kenshi Muto]
   * Bug, bug, bug, ... our BTS is tainted by duplicate bugs like flood.
@@ -8,6 +8,9 @@ cupsys (1.2.1-4) UNRELEASED-unstable; urgency=low
     This patch fixes missing localized message.
   * 57_status_logic_error: parallel/usb backends had a logic error around
     verifying printer status code. This patch fixes it. (closes: #347522)
+  * Add snmp to backend choices. Because I don't make sure this backend
+    is stable, the default is disabled. Use dpkg-reconfigure cupsys to
+    enable. (closes: #376496)
 
  -- Kenshi Muto <kmuto@debian.org>  Wed, 21 Jun 2006 15:06:02 +0000
 

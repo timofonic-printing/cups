@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: pkg-cups-devel@lists.alioth.debian.org\n"
-"POT-Creation-Date: 2006-06-19 16:05+0000\n"
+"POT-Creation-Date: 2006-07-03 22:26+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,13 +18,13 @@ msgstr ""
 
 #. Type: boolean
 #. Description
-#: ../cupsys-bsd.templates:4
+#: ../cupsys-bsd.templates:1001
 msgid "Do you want to set up the BSD lpd compatibility server?"
 msgstr ""
 
 #. Type: boolean
 #. Description
-#: ../cupsys-bsd.templates:4
+#: ../cupsys-bsd.templates:1002
 msgid ""
 "This package contains a server that can accept BSD-style print jobs and "
 "submit them to CUPS. It should only be set up if you have other computers "
@@ -34,13 +34,13 @@ msgstr ""
 
 #. Type: boolean
 #. Description
-#: ../cupsys.templates:4
+#: ../cupsys.templates:1001
 msgid "Do you want CUPS to print unknown jobs as raw jobs?"
 msgstr ""
 
 #. Type: boolean
 #. Description
-#: ../cupsys.templates:4
+#: ../cupsys.templates:1002
 msgid ""
 "All print jobs in IPP get a MIME type. Since not all sources of print jobs "
 "can attach an appropriate type, many jobs get submitted as the MIME type "
@@ -51,7 +51,7 @@ msgstr ""
 
 #. Type: boolean
 #. Description
-#: ../cupsys.templates:4
+#: ../cupsys.templates:1003
 msgid ""
 "It is possible to cause CUPS to treat all unrecognized jobs with this MIME "
 "type as \"raw\" jobs, which causes them to be sent directly to the printer "
@@ -60,7 +60,7 @@ msgstr ""
 
 #. Type: boolean
 #. Description
-#: ../cupsys.templates:4
+#: ../cupsys.templates:1004
 msgid ""
 "If you will be accepting print jobs from Windows computers, you probably "
 "want this option set, as Windows gives all IPP print jobs processed by a "
@@ -70,62 +70,68 @@ msgstr ""
 
 #. Type: multiselect
 #. Choices
-#: ../cupsys.templates:22
+#: ../cupsys.templates:2001
 msgid "ipp"
 msgstr ""
 
 #. Type: multiselect
 #. Choices
-#: ../cupsys.templates:22
+#: ../cupsys.templates:2002
 msgid "lpd"
 msgstr ""
 
 #. Type: multiselect
 #. Choices
-#: ../cupsys.templates:22
+#: ../cupsys.templates:2003
 msgid "parallel"
 msgstr ""
 
 #. Type: multiselect
 #. Choices
-#: ../cupsys.templates:22
+#: ../cupsys.templates:2004
 msgid "scsi"
 msgstr ""
 
 #. Type: multiselect
 #. Choices
-#: ../cupsys.templates:22
+#: ../cupsys.templates:2005
 msgid "serial"
 msgstr ""
 
 #. Type: multiselect
 #. Choices
-#: ../cupsys.templates:22
+#: ../cupsys.templates:2006
 msgid "socket"
 msgstr ""
 
 #. Type: multiselect
 #. Choices
-#: ../cupsys.templates:22
+#: ../cupsys.templates:2007
 msgid "usb"
 msgstr ""
 
 #. Type: multiselect
+#. Choices
+#: ../cupsys.templates:2008
+msgid "snmp"
+msgstr ""
+
+#. Type: multiselect
 #. Description
-#: ../cupsys.templates:24
+#: ../cupsys.templates:2009
 msgid "Printer communication backends:"
 msgstr ""
 
 #. Type: multiselect
 #. Description
-#: ../cupsys.templates:24
+#: ../cupsys.templates:2010
 msgid ""
 "CUPS uses backend programs for communication with printer device or port."
 msgstr ""
 
 #. Type: multiselect
 #. Description
-#: ../cupsys.templates:24
+#: ../cupsys.templates:2011
 msgid ""
 "Unfortunately, some backend programs cause some trouble. (For example, some "
 "PPC kernel crashes with the parallel backend)"
@@ -133,7 +139,7 @@ msgstr ""
 
 #. Type: multiselect
 #. Description
-#: ../cupsys.templates:24
+#: ../cupsys.templates:2012
 msgid ""
 "Please choose the backend program to be used by CUPS. The default choice "
 "should fit the most common environments."
