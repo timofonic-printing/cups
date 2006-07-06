@@ -14,6 +14,8 @@ cupsys (1.2.1-4) UNRELEASED-unstable; urgency=medium
   * Don't remove backend symlinks during reconfigure/upgrade process.
     (closes: #376499)
   * Check Include directive with case insensitive. (closes: #376883)
+  * libcupsys2 has /etc/cups directory to allow admin put own
+    client.conf. (closes: #370788)
 
  -- Kenshi Muto <kmuto@debian.org>  Wed, 21 Jun 2006 15:06:02 +0000
 
