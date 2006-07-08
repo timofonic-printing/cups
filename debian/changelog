@@ -16,6 +16,9 @@ cupsys (1.2.1-4) UNRELEASED-unstable; urgency=medium
   * Check Include directive with case insensitive. (closes: #376883)
   * libcupsys2 has /etc/cups directory to allow admin put own
     client.conf. (closes: #370788)
+  * Include sample client.conf in libcupsys2. You can copy /usr/share/
+    doc/libcupsys2/examples/client.conf to /etc/cups or ~/.cups and modify
+    for your environment. (closes: #376840)
 
  -- Kenshi Muto <kmuto@debian.org>  Wed, 21 Jun 2006 15:06:02 +0000
 
