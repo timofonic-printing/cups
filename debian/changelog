@@ -6,8 +6,6 @@ cupsys (1.2.1-4) UNRELEASED-unstable; urgency=medium
   * 56_cupsaddsmb: avoid infinite loop when connect with Samba fails
     by something reasons. (closes: #376232)
     This patch fixes missing localized message.
-  * 57_status_logic_error: parallel/usb backends had a logic error around
-    verifying printer status code. This patch fixes it. (closes: #347522)
   * Add snmp to backend choices. Because I don't make sure this backend
     is stable, the default is disabled. Use dpkg-reconfigure cupsys to
     enable. (closes: #376496)
