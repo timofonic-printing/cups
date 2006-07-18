@@ -18,6 +18,8 @@ cupsys (1.2.1-4) UNRELEASED-unstable; urgency=medium
   * Include sample client.conf in libcupsys2. You can copy /usr/share/
     doc/libcupsys2/examples/client.conf to /etc/cups or ~/.cups and modify
     for your environment. (closes: #376840)
+  * Split locale files to new package "cupsys-common". (closes: #378659)
+    This package is used by cupsys and cupsys-client/cupsys-bsd.
 
  -- Kenshi Muto <kmuto@debian.org>  Wed, 21 Jun 2006 15:06:02 +0000
 
