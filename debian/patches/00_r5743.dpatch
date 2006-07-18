@@ -1,20 +1,73 @@
 #! /bin/sh /usr/share/dpatch/dpatch-run
-## 00_r5673.dpatch by Kenshi Muto <kmuto@debian.org>
+## 00_r5743.dpatch by Kenshi Muto <kmuto@debian.org>
 ##
 ## All lines beginning with `## DP:' are a description of the patch.
 ## DP: No description.
 
 @DPATCH@
 diff -urNad cupsys-1.2.1~/CHANGES.txt cupsys-1.2.1/CHANGES.txt
---- cupsys-1.2.1~/CHANGES.txt	2006-06-17 05:05:01.000000000 +0000
-+++ cupsys-1.2.1/CHANGES.txt	2006-06-17 05:14:56.000000000 +0000
-@@ -1,6 +1,78 @@
+--- cupsys-1.2.1~/CHANGES.txt	2006-05-22 18:47:09.000000000 +0000
++++ cupsys-1.2.1/CHANGES.txt	2006-07-18 11:27:13.000000000 +0000
+@@ -1,8 +1,134 @@
 -CHANGES.txt - 2006-05-22
-+CHANGES.txt - 2006-06-16
++CHANGES.txt - 2006-07-17
  ------------------------
  
 +CHANGES IN CUPS V1.2.2
 +
++	- Documentation updates (STR #1765, STR #1780)
++	- The scheduler now creates self-signed SSL certficates
++	  automatically when using OpenSSL and CDSA for
++	  encryption, just as for GNU TLS.
++	- The SNMP backend sporatically reported some printers as
++	  "unknown" (STR #1774)
++	- The scheduler now forces BrowseTimeout to be at least
++	  twice the BrowseInterval value and non-zero to avoid
++	  common configuration errors.
++	- The scheduler incorrectly returned printer URIs of the
++	  form "ipp://server/printers/classname" for classes (STR
++	  #1813)
++	- Updated Japanese localization (STR #1805)
++	- The scheduler's SSL certificate/key directory was not
++	  created on installation (STR #1788)
++	- Added a mailto.conf man page and help page (STR #1754)
++	- The parallel and USB backends no longer wait for the
++	  printer to go on-line - this caused problems with
++	  certain printers that don't follow with the IEEE-1284
++	  standard (STR #1738)
++	- The scheduler could crash on a reload when implicit
++	  classes were present (STR #1828)
++	- The IPP backend incorrectly used the CUPS_ENCRYPTION
++	  environment variable to determine the default
++	  encryption mode when printing (STR #1820)
++	- USB printing did not work on Solaris (STR #1756)
++	- The scheduler sorted job priorities in the wrong order
++	  (STR #1811)
++	- The scheduler did not automatically restart notifiers
++	  that exited or crashed (STR #1793)
++	- IPv6 support did not work on NetBSD (STR #1834)
++	- The EPM packaging file did not work (STR #1804)
++	- The scheduler used up the CPU if BrowseRemoteProtocols
++	  was empty (STR #1792)
++	- Custom page sizes did not work (STR #1787)
++	- The SNMP backend could crash on some systems when SNMP
++	  logging was enabled (STR #1789)
++	- Browsing could produce some funny printer names when
++	  ServerName was set to an IP address (STR #1799)
++	- Fixed the log message for BrowseRelay (STR #1798)
++	- Fixes to allow CUPS to compile on MirBSD (STR #1796)
++	- The scheduler incorrectly set the FINAL_CONTENT_TYPE
++	  environment variable (STR #1795)
++	- The pdftops filter incorrectly embedded a "produced by"
++	  comment, causing PDF printing not to work on some
++	  operating systems (STR #1801)
++	- Sending raw jobs from a client system could cause the
++	  client's scheduler to eventually crash (STR #1786)
++	- The scheduler now checks that the notifier exists prior
++	  to accepting a new subscription request.
++	- The scheduler now reports the supported
++	  notify-recipient schemes based on the contents of the
++	  ServerBin/notifier directory.
 +	- Event notifications did not include the
 +	  notify-sequence-number or other required attributes
 +	  (STR #1747)
@@ -87,10 +140,13 @@ diff -urNad cupsys-1.2.1~/CHANGES.txt cupsys-1.2.1/CHANGES.txt
 +
  CHANGES IN CUPS V1.2.1
  
++	- "lprm -h hostname" did not work (STR #1800)
  	- The web interface did not handle reloads properly for
+ 	  MSIE (STR #1716)
+ 	- The configure script no longer adds linker rpath
 diff -urNad cupsys-1.2.1~/Makedefs.in cupsys-1.2.1/Makedefs.in
---- cupsys-1.2.1~/Makedefs.in	2006-06-17 05:05:01.000000000 +0000
-+++ cupsys-1.2.1/Makedefs.in	2006-06-17 05:16:17.000000000 +0000
+--- cupsys-1.2.1~/Makedefs.in	2006-05-22 00:59:11.000000000 +0000
++++ cupsys-1.2.1/Makedefs.in	2006-07-18 11:27:13.000000000 +0000
 @@ -77,7 +77,9 @@
  # Languages to install...
  #
@@ -115,8 +171,8 @@ diff -urNad cupsys-1.2.1~/Makedefs.in cupsys-1.2.1/Makedefs.in
  LINKCUPS	=	@LINKCUPS@ $(SSLLIBS)
  LINKCUPSIMAGE	=	@LINKCUPSIMAGE@
 diff -urNad cupsys-1.2.1~/backend/Dependencies cupsys-1.2.1/backend/Dependencies
---- cupsys-1.2.1~/backend/Dependencies	2006-06-17 05:05:01.000000000 +0000
-+++ cupsys-1.2.1/backend/Dependencies	2006-06-17 05:14:56.000000000 +0000
+--- cupsys-1.2.1~/backend/Dependencies	2006-04-18 20:45:30.000000000 +0000
++++ cupsys-1.2.1/backend/Dependencies	2006-07-18 11:27:13.000000000 +0000
 @@ -9,26 +9,31 @@
  lpd.o: ../cups/md5.h ../cups/ipp-private.h ../cups/ipp.h ../cups/cups.h
  lpd.o: ../cups/ppd.h ../cups/array.h ../cups/file.h ../cups/language.h
@@ -167,8 +223,8 @@ diff -urNad cupsys-1.2.1~/backend/Dependencies cupsys-1.2.1/backend/Dependencies
  usb.o: ../cups/md5.h ../cups/ppd.h ../cups/array.h ../cups/file.h
  usb.o: ../cups/language.h ../cups/string.h ../config.h
 diff -urNad cupsys-1.2.1~/backend/Makefile cupsys-1.2.1/backend/Makefile
---- cupsys-1.2.1~/backend/Makefile	2006-06-17 05:05:01.000000000 +0000
-+++ cupsys-1.2.1/backend/Makefile	2006-06-17 05:14:56.000000000 +0000
+--- cupsys-1.2.1~/backend/Makefile	2006-04-27 13:58:43.000000000 +0000
++++ cupsys-1.2.1/backend/Makefile	2006-07-18 11:27:13.000000000 +0000
 @@ -28,7 +28,8 @@
  
  RBACKENDS =	ipp lpd
@@ -258,7 +314,7 @@ diff -urNad cupsys-1.2.1~/backend/Makefile cupsys-1.2.1/backend/Makefile
  #
 diff -urNad cupsys-1.2.1~/backend/backend-private.h cupsys-1.2.1/backend/backend-private.h
 --- cupsys-1.2.1~/backend/backend-private.h	1970-01-01 00:00:00.000000000 +0000
-+++ cupsys-1.2.1/backend/backend-private.h	2006-06-17 05:14:56.000000000 +0000
++++ cupsys-1.2.1/backend/backend-private.h	2006-07-18 11:27:13.000000000 +0000
 @@ -0,0 +1,73 @@
 +/*
 + * "$Id$"
@@ -333,9 +389,123 @@ diff -urNad cupsys-1.2.1~/backend/backend-private.h cupsys-1.2.1/backend/backend
 +/*
 + * End of "$Id$".
 + */
+diff -urNad cupsys-1.2.1~/backend/easysw-firewire-design.txt cupsys-1.2.1/backend/easysw-firewire-design.txt
+--- cupsys-1.2.1~/backend/easysw-firewire-design.txt	2002-05-24 18:15:46.000000000 +0000
++++ cupsys-1.2.1/backend/easysw-firewire-design.txt	2006-07-18 11:27:13.000000000 +0000
+@@ -1,71 +0,0 @@
+-Preliminary Design for CUPS Firewire Printer Backend - 03/19/2002
+------------------------------------------------------------------
+-
+-OVERVIEW
+-
+-    Easy Software Products will develop an IEEE-1394, a.k.a.
+-    Firewire, printing interface for its Common UNIX Printing
+-    System ("CUPS") for initial use under the Linux operating
+-    system.  A follow-on implementation for MacOS X is
+-    anticipated as well.
+-
+-    The operating system interfaces for IEEE-1394 ports vary
+-    widely; the CUPS printing interface will abstract the OS
+-    layer to a simpler interface geared towards discovering,
+-    opening, reading from, writing to, and closing IEEE-1394
+-    printers.
+-
+-    The initial development of the CUPS backend will be targeted
+-    at the EPSON Stylus Pro 10000 large format printer, which
+-    requires the bandwidth provided by Firewire in order to
+-    print at full speed.  This printer supports printing via
+-    Serial Bus Protocol 2 (SBP-2) using the SCSI and PWG command
+-    sets. The CUPS backend will implement the PWG command set on
+-    LUN 0 only.
+-
+-
+-OS ABSTRACTION LAYER
+-
+-    The OS abstraction layer will be a thin client library that
+-    implements the following functions:
+-
+-        ieee1394_list
+-	ieee1394_open
+-	ieee1394_close
+-	ieee1394_read
+-	ieee1394_write
+-	ieee1394_error
+-
+-    The "ieee1394_list" function will list all of the available
+-    printer devices on the bus.  The device information will
+-    consist of the device URI (ieee1394:/something) used to
+-    access the device and the make and model information, if
+-    available, for the device ("EPSON Stylus Printer").
+-
+-    The "ieee1394_open" and "ieee1394_close" functions will open
+-    and close a connection to the printer, respectively.
+-
+-    The "ieee1394_read" and "ieee1394_write" functions will read
+-    and write data to and from the printer, respectively.  The
+-    read function will be non-blocking, returning data only if
+-    there is data coming back from the printer.
+-
+-    The "ieee1394_error" function will return a string
+-    describing the last error or NULL if no error occurred.
+-
+-    The library will be responsible for creating any background
+-    threads that are needed to monitor the connection to the
+-    printer.
+-
+-
+-CUPS BACKEND
+-
+-    The CUPS backend will use the OS abstraction layer to list
+-    and access the Firewire printers.  The "main" function will
+-    read and write printer data, while the "list_devices"
+-    function will be called as necessary to identify the
+-    available devices.
+-
+-    The CUPS 1.1 backend will record any status information in
+-    the error log file, while the 1.2 backend will supply it to
+-    the printer driver process.
+diff -urNad cupsys-1.2.1~/backend/easysw-firewire-linux.txt cupsys-1.2.1/backend/easysw-firewire-linux.txt
+--- cupsys-1.2.1~/backend/easysw-firewire-linux.txt	2002-05-24 18:15:46.000000000 +0000
++++ cupsys-1.2.1/backend/easysw-firewire-linux.txt	2006-07-18 11:27:13.000000000 +0000
+@@ -1,35 +0,0 @@
+-Easy Software Products
+-44141 Airport View Drive
+-Suite 204
+-Hollywood, Maryland 20636
+-+1.301.373.9600
+-March 8, 2002
+-
+-
+-Subject: EPSON Firewire Printer Driver for Linux
+-
+-Currently, no Firewire printer support exists for Linux.  Since
+-the latest EPSON printer products depend on the Firewire
+-interface to print at full speed, a solution is needed to
+-support customers using Linux as their server platform.
+-
+-The Linux Firewire subsystem provides a user-mode driver
+-interface that allows driver programs to access Firewire
+-devices.  Easy Software Products will utilize this interface to
+-develop a "backend" program for the Common UNIX Printing System
+-that will allow users to print to EPSON printers using the
+-Firewire interface.
+-
+-After examining the Linux interface, we estimate that it will
+-require approximately 30 hours of development time to write,
+-test, and document the Firewire backend, for a total cost of
+-$3,000. The new backend will become a standard part of the CUPS
+-software distribution and will be included with at least the
+-following Linux distributions:
+-
+-    - Caldera Linux
+-    - Mandrake Linux
+-    - Red Hat Linux
+-    - SuSE Linux
+-
+-ESP will provide EPSON with binaries for Red Hat Linux 7.2.
 diff -urNad cupsys-1.2.1~/backend/ieee1284.c cupsys-1.2.1/backend/ieee1284.c
---- cupsys-1.2.1~/backend/ieee1284.c	2006-06-17 05:05:01.000000000 +0000
-+++ cupsys-1.2.1/backend/ieee1284.c	2006-06-17 05:14:56.000000000 +0000
+--- cupsys-1.2.1~/backend/ieee1284.c	2006-04-19 21:36:43.000000000 +0000
++++ cupsys-1.2.1/backend/ieee1284.c	2006-07-18 11:27:13.000000000 +0000
 @@ -25,51 +25,41 @@
   *
   * Contents:
@@ -495,9 +665,31 @@ diff -urNad cupsys-1.2.1~/backend/ieee1284.c cupsys-1.2.1/backend/ieee1284.c
      return (-1);
    }
  
+diff -urNad cupsys-1.2.1~/backend/ipp.c cupsys-1.2.1/backend/ipp.c
+--- cupsys-1.2.1~/backend/ipp.c	2006-05-20 12:23:40.000000000 +0000
++++ cupsys-1.2.1/backend/ipp.c	2006-07-18 11:27:13.000000000 +0000
+@@ -211,7 +211,8 @@
+   */
+ 
+   if ((content_type = getenv("FINAL_CONTENT_TYPE")) == NULL)
+-    content_type = "application/octet-stream";
++    if ((content_type = getenv("CONTENT_TYPE")) == NULL)
++      content_type = "application/octet-stream";
+ 
+  /*
+   * Extract the hostname and printer name from the URI...
+@@ -229,6 +230,8 @@
+ 
+   if (!strcmp(method, "https"))
+     cupsSetEncryption(HTTP_ENCRYPT_ALWAYS);
++  else
++    cupsSetEncryption(HTTP_ENCRYPT_IF_REQUESTED);
+ 
+  /*
+   * See if there are any options...
 diff -urNad cupsys-1.2.1~/backend/parallel.c cupsys-1.2.1/backend/parallel.c
---- cupsys-1.2.1~/backend/parallel.c	2006-06-17 05:05:01.000000000 +0000
-+++ cupsys-1.2.1/backend/parallel.c	2006-06-17 05:14:56.000000000 +0000
+--- cupsys-1.2.1~/backend/parallel.c	2006-04-10 02:51:12.000000000 +0000
++++ cupsys-1.2.1/backend/parallel.c	2006-07-18 11:27:13.000000000 +0000
 @@ -33,14 +33,7 @@
   * Include necessary headers.
   */
@@ -514,7 +706,7 @@ diff -urNad cupsys-1.2.1~/backend/parallel.c cupsys-1.2.1/backend/parallel.c
  
  #ifdef __hpux
  #  include <sys/time.h>
-@@ -94,25 +87,18 @@
+@@ -94,25 +87,14 @@
  		resource[1024],		/* Resource info (device and options) */
  		*options;		/* Pointer to options */
    int		port;			/* Port number (not used) */
@@ -533,10 +725,7 @@ diff -urNad cupsys-1.2.1~/backend/parallel.c cupsys-1.2.1/backend/parallel.c
    struct termios opts;			/* Parallel port options */
 -  fd_set	input,			/* Input set for select() */
 -		output;			/* Output set for select() */
-+#if defined(__linux) && defined(LP_POUTPA)
-+  unsigned int	status;			/* Port status (off-line, out-of-paper, etc.) */
-   int		paperout;		/* Paper out? */
-+#endif /* __linux && LP_POUTPA */
+-  int		paperout;		/* Paper out? */
  #if defined(HAVE_SIGACTION) && !defined(HAVE_SIGSET)
    struct sigaction action;		/* Actions for POSIX signals */
  #endif /* HAVE_SIGACTION && !HAVE_SIGSET */
@@ -546,7 +735,7 @@ diff -urNad cupsys-1.2.1~/backend/parallel.c cupsys-1.2.1/backend/parallel.c
  
  
   /*
-@@ -157,8 +143,8 @@
+@@ -157,8 +139,8 @@
  
    if (argc == 6)
    {
@@ -557,7 +746,7 @@ diff -urNad cupsys-1.2.1~/backend/parallel.c cupsys-1.2.1/backend/parallel.c
    }
    else
    {
-@@ -166,7 +152,7 @@
+@@ -166,7 +148,7 @@
      * Try to open the print file...
      */
  
@@ -566,7 +755,7 @@ diff -urNad cupsys-1.2.1~/backend/parallel.c cupsys-1.2.1/backend/parallel.c
      {
        perror("ERROR: unable to open print file");
        return (CUPS_BACKEND_FAILED);
-@@ -206,7 +192,7 @@
+@@ -206,7 +188,7 @@
  
    do
    {
@@ -575,7 +764,7 @@ diff -urNad cupsys-1.2.1~/backend/parallel.c cupsys-1.2.1/backend/parallel.c
      {
        if (getenv("CLASS") != NULL)
        {
-@@ -217,8 +203,8 @@
+@@ -217,8 +199,8 @@
  	* available printer in the class.
  	*/
  
@@ -586,7 +775,7 @@ diff -urNad cupsys-1.2.1~/backend/parallel.c cupsys-1.2.1/backend/parallel.c
  
         /*
          * Sleep 5 seconds to keep the job from requeuing too rapidly...
-@@ -231,23 +217,26 @@
+@@ -231,23 +213,26 @@
  
        if (errno == EBUSY)
        {
@@ -617,7 +806,7 @@ diff -urNad cupsys-1.2.1~/backend/parallel.c cupsys-1.2.1/backend/parallel.c
  
    fputs("STATE: -connecting-to-device\n", stderr);
  
-@@ -255,25 +244,21 @@
+@@ -255,189 +240,47 @@
    * Set any options provided...
    */
  
@@ -635,22 +824,36 @@ diff -urNad cupsys-1.2.1~/backend/parallel.c cupsys-1.2.1/backend/parallel.c
 -  */
 -
 -  paperout = 0;
-+  tcsetattr(device_fd, TCSANOW, &opts);
- 
- #if defined(__linux) && defined(LP_POUTPA)
-  /*
-   * Show the printer status before we send the file...
-   */
- 
-+  paperout = 0;
-+
-   while (!ioctl(fd, LPGETSTATUS, &status))
-   {
-     fprintf(stderr, "DEBUG: LPGETSTATUS returned a port status of %02X...\n", status);
-@@ -298,146 +283,38 @@
- #endif /* __linux && LP_POUTPA */
- 
-  /*
+-
+-#if defined(__linux) && defined(LP_POUTPA)
+- /*
+-  * Show the printer status before we send the file...
+-  */
+-
+-  while (!ioctl(fd, LPGETSTATUS, &status))
+-  {
+-    fprintf(stderr, "DEBUG: LPGETSTATUS returned a port status of %02X...\n", status);
+-
+-    if (status & LP_POUTPA)
+-    {
+-      fputs("WARNING: Media tray empty!\n", stderr);
+-      fputs("STATUS: +media-tray-empty-error\n", stderr);
+-
+-      paperout = 1;
+-    }
+-
+-    if (!(status & LP_PERRORP))
+-      fputs("WARNING: Printer fault!\n", stderr);
+-    else if (!(status & LP_PSELECD))
+-      fputs("WARNING: Printer off-line.\n", stderr);
+-    else
+-      break;
+-
+-    sleep(5);
+-  }
+-#endif /* __linux && LP_POUTPA */
+-
+- /*
 -  * Now that we are "connected" to the port, ignore SIGTERM so that we
 -  * can finish out any page data the driver sends (e.g. to eject the
 -  * current page...  Only ignore SIGTERM if we are printing data from
@@ -671,8 +874,9 @@ diff -urNad cupsys-1.2.1~/backend/parallel.c cupsys-1.2.1/backend/parallel.c
 -    signal(SIGTERM, SIG_IGN);
 -#endif /* HAVE_SIGSET */
 -  }
--
-- /*
++  tcsetattr(device_fd, TCSANOW, &opts);
+ 
+  /*
    * Finally, send the print file...
    */
  
@@ -807,7 +1011,7 @@ diff -urNad cupsys-1.2.1~/backend/parallel.c cupsys-1.2.1/backend/parallel.c
  }
  
  
-@@ -485,9 +362,9 @@
+@@ -485,9 +328,9 @@
        * Now grab the IEEE 1284 device ID string...
        */
  
@@ -822,8 +1026,8 @@ diff -urNad cupsys-1.2.1~/backend/parallel.c cupsys-1.2.1/backend/parallel.c
        else
 diff -urNad cupsys-1.2.1~/backend/runloop.c cupsys-1.2.1/backend/runloop.c
 --- cupsys-1.2.1~/backend/runloop.c	1970-01-01 00:00:00.000000000 +0000
-+++ cupsys-1.2.1/backend/runloop.c	2006-06-17 05:14:56.000000000 +0000
-@@ -0,0 +1,218 @@
++++ cupsys-1.2.1/backend/runloop.c	2006-07-18 11:27:13.000000000 +0000
+@@ -0,0 +1,258 @@
 +/*
 + * "$Id$"
 + *
@@ -879,6 +1083,7 @@ diff -urNad cupsys-1.2.1~/backend/runloop.c cupsys-1.2.1/backend/runloop.c
 +		total_bytes,		/* Total bytes written */
 +		bytes;			/* Bytes written */
 +  int		paperout;		/* "Paper out" status */
++  int		offline;		/* "Off-line" status */
 +  char		print_buffer[8192],	/* Print data buffer */
 +		*print_ptr,		/* Pointer into print data buffer */
 +		bc_buffer[1024];	/* Back-channel data buffer */
@@ -886,6 +1091,9 @@ diff -urNad cupsys-1.2.1~/backend/runloop.c cupsys-1.2.1/backend/runloop.c
 +  struct sigaction action;		/* Actions for POSIX signals */
 +#endif /* HAVE_SIGACTION && !HAVE_SIGSET */
 +
++
++  fprintf(stderr, "DEBUG: backendRunLoop(print_fd=%d, device_fd=%d, use_bc=%d)\n",
++          print_fd, device_fd, use_bc);
 +
 + /*
 +  * If we are printing data from a print driver on stdin, ignore SIGTERM
@@ -919,7 +1127,7 @@ diff -urNad cupsys-1.2.1~/backend/runloop.c cupsys-1.2.1/backend/runloop.c
 +  * Now loop until we are out of data from print_fd...
 +  */
 +
-+  for (print_bytes = 0, print_ptr = print_buffer, paperout = 0, total_bytes = 0;;)
++  for (print_bytes = 0, print_ptr = print_buffer, offline = 0, paperout = 0, total_bytes = 0;;)
 +  {
 +   /*
 +    * Use select() to determine whether we have data to copy around...
@@ -932,11 +1140,28 @@ diff -urNad cupsys-1.2.1~/backend/runloop.c cupsys-1.2.1/backend/runloop.c
 +      FD_SET(device_fd, &input);
 +
 +    FD_ZERO(&output);
-+    if (print_bytes)
++    if (print_bytes || !use_bc)
 +      FD_SET(device_fd, &output);
 +
-+    if (select(nfds, &input, &output, NULL, NULL) < 0)
-+      continue;				/* Ignore errors here */
++    if (use_bc)
++    {
++      if (select(nfds, &input, &output, NULL, NULL) < 0)
++      {
++       /*
++	* Pause printing to clear any pending errors...
++	*/
++
++	if (errno == ENXIO && !offline)
++	{
++	  fputs("STATE: +offline-error\n", stderr);
++	  fputs("INFO: Printer is currently off-line.\n", stderr);
++	  offline = 1;
++	}
++
++	sleep(1);
++	continue;
++      }
++    }
 +
 +   /*
 +    * Check if we have back-channel data ready...
@@ -984,6 +1209,9 @@ diff -urNad cupsys-1.2.1~/backend/runloop.c cupsys-1.2.1/backend/runloop.c
 +      }
 +
 +      print_ptr = print_buffer;
++
++      fprintf(stderr, "DEBUG: Read %d bytes of print data...\n",
++              (int)print_bytes);
 +    }
 +
 +   /*
@@ -1008,6 +1236,15 @@ diff -urNad cupsys-1.2.1~/backend/runloop.c cupsys-1.2.1/backend/runloop.c
 +	    paperout = 1;
 +	  }
 +        }
++	else if (errno == ENXIO)
++	{
++	  if (!offline)
++	  {
++	    fputs("STATE: +offline-error\n", stderr);
++	    fputs("INFO: Printer is currently off-line.\n", stderr);
++	    offline = 1;
++	  }
++	}
 +	else if (errno != EAGAIN && errno != EINTR && errno != ENOTTY)
 +	{
 +	  perror("ERROR: Unable to write print data");
@@ -1022,7 +1259,14 @@ diff -urNad cupsys-1.2.1~/backend/runloop.c cupsys-1.2.1/backend/runloop.c
 +	  paperout = 0;
 +	}
 +
-+        fprintf(stderr, "DEBUG: Wrote %d bytes...\n", (int)bytes);
++	if (offline)
++	{
++	  fputs("STATE: -offline-error\n", stderr);
++	  fputs("INFO: Printer is now on-line.\n", stderr);
++	  offline = 0;
++	}
++
++        fprintf(stderr, "DEBUG: Wrote %d bytes of print data...\n", (int)bytes);
 +
 +        print_bytes -= bytes;
 +	print_ptr   += bytes;
@@ -1043,8 +1287,8 @@ diff -urNad cupsys-1.2.1~/backend/runloop.c cupsys-1.2.1/backend/runloop.c
 + * End of "$Id$".
 + */
 diff -urNad cupsys-1.2.1~/backend/serial.c cupsys-1.2.1/backend/serial.c
---- cupsys-1.2.1~/backend/serial.c	2006-06-17 05:05:01.000000000 +0000
-+++ cupsys-1.2.1/backend/serial.c	2006-06-17 05:14:56.000000000 +0000
+--- cupsys-1.2.1~/backend/serial.c	2006-05-20 12:23:40.000000000 +0000
++++ cupsys-1.2.1/backend/serial.c	2006-07-18 11:27:13.000000000 +0000
 @@ -33,13 +33,7 @@
   * Include necessary headers.
   */
@@ -1475,8 +1719,8 @@ diff -urNad cupsys-1.2.1~/backend/serial.c cupsys-1.2.1/backend/serial.c
  
  
 diff -urNad cupsys-1.2.1~/backend/snmp.c cupsys-1.2.1/backend/snmp.c
---- cupsys-1.2.1~/backend/snmp.c	2006-06-17 05:05:01.000000000 +0000
-+++ cupsys-1.2.1/backend/snmp.c	2006-06-17 05:14:56.000000000 +0000
+--- cupsys-1.2.1~/backend/snmp.c	2006-05-02 15:03:17.000000000 +0000
++++ cupsys-1.2.1/backend/snmp.c	2006-07-18 11:27:13.000000000 +0000
 @@ -77,17 +77,10 @@
   * Include necessary headers.
   */
@@ -1496,6 +1740,24 @@ diff -urNad cupsys-1.2.1~/backend/snmp.c cupsys-1.2.1/backend/snmp.c
  
  
  /*
+@@ -391,7 +384,7 @@
+ 
+   debug_printf("DEBUG: add_cache(addr=%p, addrname=\"%s\", uri=\"%s\", "
+                   "id=\"%s\", make_and_model=\"%s\")\n",
+-               addr, addrname, uri, id ? id :  "(null)",
++               addr, addrname, uri ? uri : "(null)", id ? id :  "(null)",
+ 	       make_and_model ? make_and_model : "(null)");
+ 
+   temp = calloc(1, sizeof(snmp_cache_t));
+@@ -1210,7 +1203,7 @@
+ compare_cache(snmp_cache_t *a,		/* I - First cache entry */
+               snmp_cache_t *b)		/* I - Second cache entry */
+ {
+-  return (a->address.ipv4.sin_addr.s_addr - b->address.ipv4.sin_addr.s_addr);
++  return (strcasecmp(a->addrname, b->addrname));
+ }
+ 
+ 
 @@ -1648,6 +1641,14 @@
   	  info = NULL;
  
@@ -1522,6 +1784,17 @@ diff -urNad cupsys-1.2.1~/backend/snmp.c cupsys-1.2.1/backend/snmp.c
  
          fix_make_model(make_model, temp, sizeof(make_model));
  
+@@ -1871,8 +1874,8 @@
+   * Find a matching device in the cache...
+   */
+ 
+-  key.address = addr;
+-  device      = (snmp_cache_t *)cupsArrayFind(Devices, &key);
++  key.addrname = addrname;
++  device       = (snmp_cache_t *)cupsArrayFind(Devices, &key);
+ 
+  /*
+   * Process the message...
 @@ -1928,8 +1931,8 @@
        * Description is the IEEE-1284 device ID...
        */
@@ -1534,8 +1807,8 @@ diff -urNad cupsys-1.2.1~/backend/snmp.c cupsys-1.2.1/backend/snmp.c
      else
      {
 diff -urNad cupsys-1.2.1~/backend/socket.c cupsys-1.2.1/backend/socket.c
---- cupsys-1.2.1~/backend/socket.c	2006-06-17 05:05:01.000000000 +0000
-+++ cupsys-1.2.1/backend/socket.c	2006-06-17 05:14:56.000000000 +0000
+--- cupsys-1.2.1~/backend/socket.c	2006-03-07 22:07:44.000000000 +0000
++++ cupsys-1.2.1/backend/socket.c	2006-07-18 11:27:13.000000000 +0000
 @@ -32,17 +32,11 @@
   * Include necessary headers.
   */
@@ -1935,8 +2208,8 @@ diff -urNad cupsys-1.2.1~/backend/socket.c cupsys-1.2.1/backend/socket.c
  
  
 diff -urNad cupsys-1.2.1~/backend/test1284.c cupsys-1.2.1/backend/test1284.c
---- cupsys-1.2.1~/backend/test1284.c	2006-06-17 05:05:01.000000000 +0000
-+++ cupsys-1.2.1/backend/test1284.c	2006-06-17 05:14:56.000000000 +0000
+--- cupsys-1.2.1~/backend/test1284.c	2006-01-10 20:02:46.000000000 +0000
++++ cupsys-1.2.1/backend/test1284.c	2006-07-18 11:27:13.000000000 +0000
 @@ -41,6 +41,7 @@
  #  include <unistd.h>
  #  include <fcntl.h>
@@ -1957,8 +2230,8 @@ diff -urNad cupsys-1.2.1~/backend/test1284.c cupsys-1.2.1/backend/test1284.c
      printf("    device_id=\"%s\"\n", device_id);
      printf("    make_model=\"%s\"\n", make_model);
 diff -urNad cupsys-1.2.1~/backend/usb-darwin.c cupsys-1.2.1/backend/usb-darwin.c
---- cupsys-1.2.1~/backend/usb-darwin.c	2006-06-17 05:05:01.000000000 +0000
-+++ cupsys-1.2.1/backend/usb-darwin.c	2006-06-17 05:14:56.000000000 +0000
+--- cupsys-1.2.1~/backend/usb-darwin.c	2006-05-03 19:39:30.000000000 +0000
++++ cupsys-1.2.1/backend/usb-darwin.c	2006-07-18 11:27:13.000000000 +0000
 @@ -1310,7 +1310,7 @@
       */
      start = mach_absolute_time();
@@ -1969,8 +2242,8 @@ diff -urNad cupsys-1.2.1~/backend/usb-darwin.c cupsys-1.2.1/backend/usb-darwin.c
      if ( kIOReturnSuccess == readstatus && rbytes > 0 ) {
  
 diff -urNad cupsys-1.2.1~/backend/usb-unix.c cupsys-1.2.1/backend/usb-unix.c
---- cupsys-1.2.1~/backend/usb-unix.c	2006-06-17 05:05:01.000000000 +0000
-+++ cupsys-1.2.1/backend/usb-unix.c	2006-06-17 05:14:56.000000000 +0000
+--- cupsys-1.2.1~/backend/usb-unix.c	2006-05-20 12:23:40.000000000 +0000
++++ cupsys-1.2.1/backend/usb-unix.c	2006-07-18 11:27:13.000000000 +0000
 @@ -27,8 +27,9 @@
   *
   * Contents:
@@ -1982,7 +2255,16 @@ diff -urNad cupsys-1.2.1~/backend/usb-unix.c cupsys-1.2.1/backend/usb-unix.c
   */
  
  /*
-@@ -55,30 +56,20 @@
+@@ -43,7 +44,7 @@
+  * Local functions...
+  */
+ 
+-int	open_device(const char *uri);
++int	open_device(const char *uri, int *use_bc);
+ 
+ 
+ /*
+@@ -55,43 +56,21 @@
               const char *hostname,	/* I - Hostname/manufacturer */
               const char *resource,	/* I - Resource/modelname */
  	     const char *options,	/* I - Device options/serial number */
@@ -2012,34 +2294,43 @@ diff -urNad cupsys-1.2.1~/backend/usb-unix.c cupsys-1.2.1/backend/usb-unix.c
 -  struct sigaction action;		/* Actions for POSIX signals */
 -#endif /* HAVE_SIGACTION && !HAVE_SIGSET */
 -#ifdef __linux
-+#if defined(__linux) && defined(LP_POUTPA)
-   unsigned int	status;			/* Port status (off-line, out-of-paper, etc.) */
+-  unsigned int	status;			/* Port status (off-line, out-of-paper, etc.) */
 -#endif /* __linux */
-+  int		paperout;		/* Paper out? */
-+#endif /* __linux && LP_POUTPA */
 +
  
    (void)argc;
    (void)argv;
-@@ -89,7 +80,7 @@
-   * when they get a read request...
-   */
- 
--  usebc = strcasecmp(hostname, "Canon") != 0;
-+  use_bc = strcasecmp(hostname, "Canon") != 0;
  
   /*
+-  * Disable backchannel data when printing to Canon USB printers - apparently
+-  * Canon printers will return the IEEE-1284 device ID over and over and over
+-  * when they get a read request...
+-  */
+-
+-  usebc = strcasecmp(hostname, "Canon") != 0;
+-
+- /*
    * Open the USB port device...
-@@ -99,7 +90,7 @@
+   */
+ 
+@@ -99,7 +78,15 @@
  
    do
    {
 -    if ((fd = open_device(uri)) == -1)
-+    if ((device_fd = open_device(uri)) == -1)
++   /*
++    * Disable backchannel data when printing to Canon USB printers - apparently
++    * Canon printers will return the IEEE-1284 device ID over and over and over
++    * when they get a read request...
++    */
++
++    use_bc = strcasecmp(hostname, "Canon") != 0;
++
++    if ((device_fd = open_device(uri, &use_bc)) == -1)
      {
        if (getenv("CLASS") != NULL)
        {
-@@ -127,7 +118,8 @@
+@@ -127,7 +114,8 @@
          fputs("INFO: USB port busy; will retry in 30 seconds...\n", stderr);
  	sleep(30);
        }
@@ -2049,7 +2340,7 @@ diff -urNad cupsys-1.2.1~/backend/usb-unix.c cupsys-1.2.1/backend/usb-unix.c
        {
          fputs("INFO: Printer not connected; will retry in 30 seconds...\n", stderr);
  	sleep(30);
-@@ -140,7 +132,7 @@
+@@ -140,7 +128,7 @@
        }
      }
    }
@@ -2058,7 +2349,7 @@ diff -urNad cupsys-1.2.1~/backend/usb-unix.c cupsys-1.2.1/backend/usb-unix.c
  
    fputs("STATE: -connecting-to-device\n", stderr);
  
-@@ -148,28 +140,25 @@
+@@ -148,189 +136,44 @@
    * Set any options provided...
    */
  
@@ -2076,28 +2367,36 @@ diff -urNad cupsys-1.2.1~/backend/usb-unix.c cupsys-1.2.1/backend/usb-unix.c
 -  */
 -
 -  paperout = 0;
-+  tcsetattr(device_fd, TCSANOW, &opts);
- 
- #if defined(__linux) && defined(LP_POUTPA)
-  /*
-   * Show the printer status before we send the file...
-   */
- 
+-
+-#if defined(__linux) && defined(LP_POUTPA)
+- /*
+-  * Show the printer status before we send the file...
+-  */
+-
 -  while (!ioctl(fd, LPGETSTATUS, &status))
-+  paperout = 0;
-+
-+  while (!ioctl(device_fd, LPGETSTATUS, &status))
-   {
+-  {
 -    fprintf(stderr, "DEBUG: LPGETSTATUS returned a port status of %02X...\n", status);
-+    fprintf(stderr, "DEBUG: LPGETSTATUS returned a port status of %02X...\n",
-+            status);
- 
-     if (status & LP_POUTPA)
-     {
-@@ -191,146 +180,35 @@
- #endif /* __linux && LP_POUTPA */
- 
-  /*
+-
+-    if (status & LP_POUTPA)
+-    {
+-      fputs("WARNING: Media tray empty!\n", stderr);
+-      fputs("STATUS: +media-tray-empty-error\n", stderr);
+-
+-      paperout = 1;
+-    }
+-
+-    if (!(status & LP_PERRORP))
+-      fputs("WARNING: Printer fault!\n", stderr);
+-    else if (!(status & LP_PSELECD))
+-      fputs("WARNING: Printer off-line.\n", stderr);
+-    else
+-      break;
+-
+-    sleep(5);
+-  }
+-#endif /* __linux && LP_POUTPA */
+-
+- /*
 -  * Now that we are "connected" to the port, ignore SIGTERM so that we
 -  * can finish out any page data the driver sends (e.g. to eject the
 -  * current page...  Only ignore SIGTERM if we are printing data from
@@ -2118,8 +2417,9 @@ diff -urNad cupsys-1.2.1~/backend/usb-unix.c cupsys-1.2.1/backend/usb-unix.c
 -    signal(SIGTERM, SIG_IGN);
 -#endif /* HAVE_SIGSET */
 -  }
--
-- /*
++  tcsetattr(device_fd, TCSANOW, &opts);
+ 
+  /*
    * Finally, send the print file...
    */
  
@@ -2228,7 +2528,7 @@ diff -urNad cupsys-1.2.1~/backend/usb-unix.c cupsys-1.2.1/backend/usb-unix.c
 -
 -      if (wbytes < 0)
 -        break;
-+    tbytes = backendRunLoop(print_fd, device_fd, 1);
++    tbytes = backendRunLoop(print_fd, device_fd, use_bc);
  
 -      if (fp)
 -	fprintf(stderr, "INFO: Sending print file, %lu bytes...\n",
@@ -2251,7 +2551,7 @@ diff -urNad cupsys-1.2.1~/backend/usb-unix.c cupsys-1.2.1/backend/usb-unix.c
  }
  
  
-@@ -372,9 +250,9 @@
+@@ -372,9 +215,9 @@
  
      if ((fd = open(device, O_RDWR | O_EXCL)) >= 0)
      {
@@ -2264,9 +2564,12 @@ diff -urNad cupsys-1.2.1~/backend/usb-unix.c cupsys-1.2.1/backend/usb-unix.c
  	printf("direct %s \"%s\" \"%s USB #%d\" \"%s\"\n", device_uri,
  	       make_model, make_model, i + 1, device_id);
  
-@@ -401,9 +279,9 @@
+@@ -399,11 +242,11 @@
+   {
+     sprintf(device, "/dev/usb/printer%d", i);
  
-     if ((fd = open(device, O_RDWR | O_EXCL)) >= 0)
+-    if ((fd = open(device, O_RDWR | O_EXCL)) >= 0)
++    if ((fd = open(device, O_WRONLY | O_EXCL)) >= 0)
      {
 -      if (!get_device_id(fd, device_id, sizeof(device_id),
 -                         make_model, sizeof(make_model),
@@ -2277,7 +2580,21 @@ diff -urNad cupsys-1.2.1~/backend/usb-unix.c cupsys-1.2.1/backend/usb-unix.c
  	printf("direct %s \"%s\" \"%s USB #%d\" \"%s\"\n", device_uri,
  	       make_model, make_model, i + 1, device_id);
  
-@@ -446,7 +324,14 @@
+@@ -436,8 +279,12 @@
+  */
+ 
+ int					/* O - File descriptor or -1 on error */
+-open_device(const char *uri)		/* I - Device URI */
++open_device(const char *uri,		/* I - Device URI */
++            int        *use_bc)		/* O - Set to 0 for unidirectional */
+ {
++  int	fd;				/* File descriptor */
++
++
+  /*
+   * The generic implementation just treats the URI as a device filename...
+   * Specific operating systems may also support using the device serial
+@@ -446,7 +293,14 @@
  
    if (!strncmp(uri, "usb:/dev/", 9))
  #ifdef __linux
@@ -2293,7 +2610,15 @@ diff -urNad cupsys-1.2.1~/backend/usb-unix.c cupsys-1.2.1/backend/usb-unix.c
    else if (!strncmp(uri, "usb://", 6))
    {
     /*
-@@ -486,9 +371,9 @@
+@@ -455,7 +309,6 @@
+ 
+     int		i;			/* Looping var */
+     int		busy;			/* Are any ports busy? */
+-    int		fd;			/* File descriptor */
+     char	format[255],		/* Format for device filename */
+ 		device[255],		/* Device filename */
+ 		device_id[1024],	/* Device ID string */
+@@ -486,9 +339,9 @@
  
  	if ((fd = open(device, O_RDWR | O_EXCL)) >= 0)
  	{
@@ -2306,7 +2631,7 @@ diff -urNad cupsys-1.2.1~/backend/usb-unix.c cupsys-1.2.1/backend/usb-unix.c
  	}
  	else
  	{
-@@ -545,7 +430,14 @@
+@@ -545,7 +398,14 @@
      return (-1);
    }
  #elif defined(__sun) && defined(ECPPIOC_GETDEVID)
@@ -2322,22 +2647,68 @@ diff -urNad cupsys-1.2.1~/backend/usb-unix.c cupsys-1.2.1/backend/usb-unix.c
    else if (!strncmp(uri, "usb://", 6))
    {
     /*
-@@ -572,9 +464,9 @@
+@@ -554,7 +414,6 @@
+ 
+     int		i;			/* Looping var */
+     int		busy;			/* Are any ports busy? */
+-    int		fd;			/* File descriptor */
+     char	device[255],		/* Device filename */
+ 		device_id[1024],	/* Device ID string */
+ 		make_model[1024],	/* Make and model */
+@@ -571,10 +430,10 @@
+       {
  	sprintf(device, "/dev/usb/printer%d", i);
  
- 	if ((fd = open(device, O_RDWR | O_EXCL)) >= 0)
+-	if ((fd = open(device, O_RDWR | O_EXCL)) >= 0)
 -	  get_device_id(fd, device_id, sizeof(device_id),
 -                        make_model, sizeof(make_model),
 -			"usb", device_uri, sizeof(device_uri));
++	if ((fd = open(device, O_WRONLY | O_EXCL)) >= 0)
 +	  backendGetDeviceID(fd, device_id, sizeof(device_id),
 +                             make_model, sizeof(make_model),
 +			     "usb", device_uri, sizeof(device_uri));
  	else
  	{
  	 /*
+@@ -589,7 +448,17 @@
+         }
+ 
+         if (!strcmp(uri, device_uri))
+-	  return (fd);	/* Yes, return this file descriptor... */
++	{
++	 /*
++	  * Yes, return this file descriptor...
++	  */
++
++          fputs("DEBUG: Setting use_bc to 0!\n", stderr);
++
++          *use_bc = 0;
++
++	  return (fd);
++	}
+ 
+        /*
+ 	* This wasn't the one...
+@@ -622,7 +491,15 @@
+     return (-1);
+   }
+ #else
+-    return (open(uri + 4, O_RDWR | O_EXCL));
++  {
++    if ((fd = open(uri + 4, O_RDWR | O_EXCL)) < 0)
++    {
++      fd      = open(uri + 4, O_WRONLY | O_EXCL);
++      *use_bc = 0;
++    }
++
++    return (fd);
++  }
+ #endif /* __linux */
+   else
+   {
 diff -urNad cupsys-1.2.1~/backend/usb.c cupsys-1.2.1/backend/usb.c
---- cupsys-1.2.1~/backend/usb.c	2006-06-17 05:05:01.000000000 +0000
-+++ cupsys-1.2.1/backend/usb.c	2006-06-17 05:14:56.000000000 +0000
+--- cupsys-1.2.1~/backend/usb.c	2006-04-06 20:03:32.000000000 +0000
++++ cupsys-1.2.1/backend/usb.c	2006-07-18 11:27:13.000000000 +0000
 @@ -63,7 +63,7 @@
  void	list_devices(void);
  int	print_device(const char *uri, const char *hostname,
@@ -2414,8 +2785,8 @@ diff -urNad cupsys-1.2.1~/backend/usb.c cupsys-1.2.1/backend/usb.c
    return (status);
  }
 diff -urNad cupsys-1.2.1~/berkeley/lpq.c cupsys-1.2.1/berkeley/lpq.c
---- cupsys-1.2.1~/berkeley/lpq.c	2006-06-17 05:05:01.000000000 +0000
-+++ cupsys-1.2.1/berkeley/lpq.c	2006-06-17 05:14:56.000000000 +0000
+--- cupsys-1.2.1~/berkeley/lpq.c	2006-03-28 16:00:17.000000000 +0000
++++ cupsys-1.2.1/berkeley/lpq.c	2006-07-18 11:27:13.000000000 +0000
 @@ -79,8 +79,6 @@
    cups_lang_t	*language;		/* Language */
  
@@ -2425,9 +2796,88 @@ diff -urNad cupsys-1.2.1~/berkeley/lpq.c cupsys-1.2.1/berkeley/lpq.c
   /*
    * Check for command-line options...
    */
+diff -urNad cupsys-1.2.1~/berkeley/lprm.c cupsys-1.2.1/berkeley/lprm.c
+--- cupsys-1.2.1~/berkeley/lprm.c	2006-01-29 14:39:44.000000000 +0000
++++ cupsys-1.2.1/berkeley/lprm.c	2006-07-18 11:27:13.000000000 +0000
+@@ -57,7 +57,8 @@
+   ipp_op_t	op;		/* Operation */
+   cups_lang_t	*language;	/* Language */
+   int		num_dests;	/* Number of destinations */
+-  cups_dest_t	*dests;		/* Destinations */
++  cups_dest_t	*dests,		/* Destinations */
++		*defdest;	/* Default destination */
+   http_encryption_t encryption;	/* Encryption? */
+ 
+ 
+@@ -72,11 +73,6 @@
+   http       = NULL;
+   encryption = cupsEncryption();
+   language   = cupsLangDefault();
+-  num_dests  = cupsGetDests(&dests);
+-
+-  for (i = 0; i < num_dests; i ++)
+-    if (dests[i].is_default)
+-      dest = dests[i].name;
+ 
+  /*
+   * Open a connection to the server...
+@@ -85,10 +81,13 @@
+   if ((http = httpConnectEncrypt(cupsServer(), ippPort(), encryption)) == NULL)
+   {
+     _cupsLangPuts(stderr, _("lprm: Unable to contact server!\n"));
+-    cupsFreeDests(num_dests, dests);
+     return (1);
+   }
+ 
++  num_dests  = cupsGetDests2(http, &dests);
++  defdest    = cupsGetDest(NULL, NULL, num_dests, dests);
++  dest       = defdest ? defdest->name : NULL;
++
+  /*
+   * Process command-line arguments...
+   */
+@@ -102,6 +101,7 @@
+ 	    encryption = HTTP_ENCRYPT_REQUIRED;
+ 
+ 	    httpEncryption(http, encryption);
++	    cupsSetEncryption(encryption);
+ #else
+             _cupsLangPrintf(stderr,
+ 	                    _("%s: Sorry, no encryption support compiled in!\n"),
+@@ -152,9 +152,6 @@
+ 	    break;
+ 	    
+         case 'h' : /* Connect to host */
+-	    if (http != NULL)
+-	      httpClose(http);
+-
+ 	    if (argv[i][2] != '\0')
+               cupsSetServer(argv[i] + 2);
+ 	    else
+@@ -172,6 +169,20 @@
+ 	      else
+                 cupsSetServer(argv[i]);
+ 	    }
++
++            httpClose(http);
++            cupsFreeDests(num_dests, dests);
++
++	    if ((http = httpConnectEncrypt(cupsServer(), ippPort(),
++	                                   encryption)) == NULL)
++	    {
++	      _cupsLangPuts(stderr, _("lprm: Unable to contact server!\n"));
++	      return (1);
++	    }
++
++	    num_dests  = cupsGetDests2(http, &dests);
++	    defdest    = cupsGetDest(NULL, NULL, num_dests, dests);
++	    dest       = defdest ? defdest->name : NULL;
+ 	    break;
+ 
+ 	default :
 diff -urNad cupsys-1.2.1~/cgi-bin/help-index.c cupsys-1.2.1/cgi-bin/help-index.c
 --- cupsys-1.2.1~/cgi-bin/help-index.c	2006-02-21 19:13:01.000000000 +0000
-+++ cupsys-1.2.1/cgi-bin/help-index.c	2006-06-17 05:14:56.000000000 +0000
++++ cupsys-1.2.1/cgi-bin/help-index.c	2006-07-18 11:27:13.000000000 +0000
 @@ -842,7 +842,7 @@
  	if (isspace(*ptr & 255))
  	{
@@ -2438,8 +2888,8 @@ diff -urNad cupsys-1.2.1~/cgi-bin/help-index.c cupsys-1.2.1/cgi-bin/help-index.c
  	  *text++ = ' ';
          }
 diff -urNad cupsys-1.2.1~/config-scripts/cups-compiler.m4 cupsys-1.2.1/config-scripts/cups-compiler.m4
---- cupsys-1.2.1~/config-scripts/cups-compiler.m4	2006-06-17 05:05:01.000000000 +0000
-+++ cupsys-1.2.1/config-scripts/cups-compiler.m4	2006-06-17 05:14:56.000000000 +0000
+--- cupsys-1.2.1~/config-scripts/cups-compiler.m4	2006-05-22 01:10:11.000000000 +0000
++++ cupsys-1.2.1/config-scripts/cups-compiler.m4	2006-07-18 11:27:13.000000000 +0000
 @@ -24,22 +24,31 @@
  
  dnl Clear the debugging and non-shared library options unless the user asks
@@ -2559,16 +3009,21 @@ diff -urNad cupsys-1.2.1~/config-scripts/cups-compiler.m4 cupsys-1.2.1/config-sc
  				fi
  			fi
  			;;
-@@ -313,8 +300,6 @@
- 			if test -z "$with_archflags"; then
- 				# Build portable binaries for all HP systems...
- 				ARCHFLAGS="+DAportable"
+@@ -310,13 +297,6 @@
+ 			# Warning 829 is passing constant string as char *
+ 			CXXFLAGS="+W336,829 $CXXFLAGS"
+ 
+-			if test -z "$with_archflags"; then
+-				# Build portable binaries for all HP systems...
+-				ARCHFLAGS="+DAportable"
 -			else
 -				ARCHFLAGS="$with_archflags"
- 			fi
- 
+-			fi
+-
  			if test $PICFLAG = 1; then
-@@ -353,8 +338,6 @@
+ 				OPTIM="+z $OPTIM"
+ 			fi
+@@ -353,8 +333,6 @@
  					else
  						ARCHFLAGS="$with_arch64flags"
  					fi
@@ -2577,7 +3032,7 @@ diff -urNad cupsys-1.2.1~/config-scripts/cups-compiler.m4 cupsys-1.2.1/config-sc
  				fi
  			fi
  
-@@ -377,8 +360,6 @@
+@@ -377,8 +355,6 @@
  					else
  						ARCHFLAGS="$with_arch32flags"
  					fi
@@ -2586,7 +3041,7 @@ diff -urNad cupsys-1.2.1~/config-scripts/cups-compiler.m4 cupsys-1.2.1/config-sc
  				fi
  			fi
  			;;
-@@ -386,7 +367,7 @@
+@@ -386,7 +362,7 @@
  			# Solaris
  			if test -z "$OPTIM"; then
  				if test "x$with_optim" = x; then
@@ -2595,7 +3050,7 @@ diff -urNad cupsys-1.2.1~/config-scripts/cups-compiler.m4 cupsys-1.2.1/config-sc
  				else
  					OPTIM="$with_optim $OPTIM"
  				fi
-@@ -419,8 +400,6 @@
+@@ -419,8 +395,6 @@
  					else
  						ARCHFLAGS="$with_arch64flags"
  					fi
@@ -2604,7 +3059,7 @@ diff -urNad cupsys-1.2.1~/config-scripts/cups-compiler.m4 cupsys-1.2.1/config-sc
  				fi
  			else
  				if test "x$enable_64bit" = xyes; then
-@@ -446,8 +425,6 @@
+@@ -446,8 +420,6 @@
  					else
  						ARCHFLAGS="$with_arch32flags"
  					fi
@@ -2614,8 +3069,8 @@ diff -urNad cupsys-1.2.1~/config-scripts/cups-compiler.m4 cupsys-1.2.1/config-sc
  			fi
  			;;
 diff -urNad cupsys-1.2.1~/config-scripts/cups-defaults.m4 cupsys-1.2.1/config-scripts/cups-defaults.m4
---- cupsys-1.2.1~/config-scripts/cups-defaults.m4	2006-06-17 05:05:01.000000000 +0000
-+++ cupsys-1.2.1/config-scripts/cups-defaults.m4	2006-06-17 05:14:56.000000000 +0000
+--- cupsys-1.2.1~/config-scripts/cups-defaults.m4	2006-04-26 19:52:27.000000000 +0000
++++ cupsys-1.2.1/config-scripts/cups-defaults.m4	2006-07-18 11:27:13.000000000 +0000
 @@ -30,7 +30,7 @@
  AC_SUBST(LANGUAGES)
  
@@ -2710,9 +3165,21 @@ diff -urNad cupsys-1.2.1~/config-scripts/cups-defaults.m4 cupsys-1.2.1/config-sc
  	fi
  else
  	CUPS_DEFAULT_PRINTCAP=""
+diff -urNad cupsys-1.2.1~/config-scripts/cups-directories.m4 cupsys-1.2.1/config-scripts/cups-directories.m4
+--- cupsys-1.2.1~/config-scripts/cups-directories.m4	2006-05-19 12:44:29.000000000 +0000
++++ cupsys-1.2.1/config-scripts/cups-directories.m4	2006-07-18 11:27:13.000000000 +0000
+@@ -115,7 +115,7 @@
+ 
+ if test x$rcdir = x; then
+ 	case "$uname" in
+-		FreeBSD* | OpenBSD*)
++		FreeBSD* | OpenBSD* | MirBsD* | ekkoBSD*)
+ 			# FreeBSD and OpenBSD
+ 			INITDIR=""
+ 			INITDDIR=""
 diff -urNad cupsys-1.2.1~/config-scripts/cups-image.m4 cupsys-1.2.1/config-scripts/cups-image.m4
---- cupsys-1.2.1~/config-scripts/cups-image.m4	2006-06-17 05:05:01.000000000 +0000
-+++ cupsys-1.2.1/config-scripts/cups-image.m4	2006-06-17 05:14:56.000000000 +0000
+--- cupsys-1.2.1~/config-scripts/cups-image.m4	2006-04-26 19:52:27.000000000 +0000
++++ cupsys-1.2.1/config-scripts/cups-image.m4	2006-07-18 11:27:13.000000000 +0000
 @@ -38,10 +38,6 @@
  
  AC_SUBST(IMGFILTERS)
@@ -2769,8 +3236,8 @@ diff -urNad cupsys-1.2.1~/config-scripts/cups-image.m4 cupsys-1.2.1/config-scrip
      AC_CHECK_HEADER(tiff.h,
  	AC_CHECK_LIB(tiff, TIFFReadScanline,
 diff -urNad cupsys-1.2.1~/config-scripts/cups-network.m4 cupsys-1.2.1/config-scripts/cups-network.m4
---- cupsys-1.2.1~/config-scripts/cups-network.m4	2006-06-17 05:05:01.000000000 +0000
-+++ cupsys-1.2.1/config-scripts/cups-network.m4	2006-06-17 05:14:56.000000000 +0000
+--- cupsys-1.2.1~/config-scripts/cups-network.m4	2006-04-26 19:52:27.000000000 +0000
++++ cupsys-1.2.1/config-scripts/cups-network.m4	2006-07-18 11:27:13.000000000 +0000
 @@ -46,7 +46,7 @@
  	maxfiles=4096
  fi
@@ -2781,8 +3248,8 @@ diff -urNad cupsys-1.2.1~/config-scripts/cups-network.m4 cupsys-1.2.1/config-scr
  
  AC_DEFINE_UNQUOTED(CUPS_MAX_FDS, $maxfiles)
 diff -urNad cupsys-1.2.1~/config-scripts/cups-sharedlibs.m4 cupsys-1.2.1/config-scripts/cups-sharedlibs.m4
---- cupsys-1.2.1~/config-scripts/cups-sharedlibs.m4	2006-06-17 05:05:01.000000000 +0000
-+++ cupsys-1.2.1/config-scripts/cups-sharedlibs.m4	2006-06-17 05:14:56.000000000 +0000
+--- cupsys-1.2.1~/config-scripts/cups-sharedlibs.m4	2006-05-22 15:34:01.000000000 +0000
++++ cupsys-1.2.1/config-scripts/cups-sharedlibs.m4	2006-07-18 11:27:13.000000000 +0000
 @@ -117,7 +117,7 @@
  	# rather than to the executables.  This makes things smaller if you
  	# are using any static libraries, and it also allows us to distribute
@@ -2861,8 +3328,8 @@ diff -urNad cupsys-1.2.1~/config-scripts/cups-sharedlibs.m4 cupsys-1.2.1/config-
  
  AC_SUBST(DSOLIBS)
 diff -urNad cupsys-1.2.1~/config-scripts/cups-ssl.m4 cupsys-1.2.1/config-scripts/cups-ssl.m4
---- cupsys-1.2.1~/config-scripts/cups-ssl.m4	2006-06-17 05:05:01.000000000 +0000
-+++ cupsys-1.2.1/config-scripts/cups-ssl.m4	2006-06-17 05:14:56.000000000 +0000
+--- cupsys-1.2.1~/config-scripts/cups-ssl.m4	2006-05-15 13:52:16.000000000 +0000
++++ cupsys-1.2.1/config-scripts/cups-ssl.m4	2006-07-18 11:27:13.000000000 +0000
 @@ -48,6 +48,7 @@
  		 # certificates for CUPS, so don't enable encryption on
  		 # /admin just yet...
@@ -2872,8 +3339,8 @@ diff -urNad cupsys-1.2.1~/config-scripts/cups-ssl.m4 cupsys-1.2.1/config-scripts
  		 AC_DEFINE(HAVE_CDSASSL)])
  	fi
 diff -urNad cupsys-1.2.1~/config.h.in cupsys-1.2.1/config.h.in
---- cupsys-1.2.1~/config.h.in	2006-06-17 05:05:01.000000000 +0000
-+++ cupsys-1.2.1/config.h.in	2006-06-17 05:14:56.000000000 +0000
+--- cupsys-1.2.1~/config.h.in	2006-05-02 14:20:26.000000000 +0000
++++ cupsys-1.2.1/config.h.in	2006-07-18 11:27:13.000000000 +0000
 @@ -261,6 +261,13 @@
  
  
@@ -2889,8 +3356,8 @@ diff -urNad cupsys-1.2.1~/config.h.in cupsys-1.2.1/config.h.in
   */
  
 diff -urNad cupsys-1.2.1~/configure.in cupsys-1.2.1/configure.in
---- cupsys-1.2.1~/configure.in	2006-06-17 05:05:01.000000000 +0000
-+++ cupsys-1.2.1/configure.in	2006-06-17 05:14:56.000000000 +0000
+--- cupsys-1.2.1~/configure.in	2006-04-27 13:40:30.000000000 +0000
++++ cupsys-1.2.1/configure.in	2006-07-18 11:27:13.000000000 +0000
 @@ -47,8 +47,12 @@
  sinclude(config-scripts/cups-pdf.m4)
  sinclude(config-scripts/cups-scripting.m4)
@@ -2915,8 +3382,8 @@ diff -urNad cupsys-1.2.1~/configure.in cupsys-1.2.1/configure.in
  	  conf/cupsd.conf conf/pam.std doc/index.html
  	  doc/help/standard.html man/client.conf.man
 diff -urNad cupsys-1.2.1~/cups/Makefile cupsys-1.2.1/cups/Makefile
---- cupsys-1.2.1~/cups/Makefile	2006-06-17 05:05:01.000000000 +0000
-+++ cupsys-1.2.1/cups/Makefile	2006-06-17 05:14:56.000000000 +0000
+--- cupsys-1.2.1~/cups/Makefile	2006-05-22 00:59:11.000000000 +0000
++++ cupsys-1.2.1/cups/Makefile	2006-07-18 11:27:13.000000000 +0000
 @@ -138,7 +138,7 @@
  clean:
  	$(RM) $(OBJS) $(TARGETS)
@@ -2942,8 +3409,8 @@ diff -urNad cupsys-1.2.1~/cups/Makefile cupsys-1.2.1/cups/Makefile
  
  #
 diff -urNad cupsys-1.2.1~/cups/adminutil.c cupsys-1.2.1/cups/adminutil.c
---- cupsys-1.2.1~/cups/adminutil.c	2006-06-17 05:05:01.000000000 +0000
-+++ cupsys-1.2.1/cups/adminutil.c	2006-06-17 05:14:56.000000000 +0000
+--- cupsys-1.2.1~/cups/adminutil.c	2006-03-14 02:38:07.000000000 +0000
++++ cupsys-1.2.1/cups/adminutil.c	2006-07-18 11:27:13.000000000 +0000
 @@ -222,18 +222,18 @@
        */
  
@@ -2983,9 +3450,123 @@ diff -urNad cupsys-1.2.1~/cups/adminutil.c cupsys-1.2.1/cups/adminutil.c
    }
  
    cupsFileClose(srcfp);
+diff -urNad cupsys-1.2.1~/cups/emit.c cupsys-1.2.1/cups/emit.c
+--- cupsys-1.2.1~/cups/emit.c	2006-03-09 15:27:27.000000000 +0000
++++ cupsys-1.2.1/cups/emit.c	2006-07-18 11:27:13.000000000 +0000
+@@ -50,6 +50,7 @@
+ #include <stdlib.h>
+ #include "string.h"
+ #include <errno.h>
++#include "debug.h"
+ 
+ #if defined(WIN32) || defined(__EMX__)
+ #  include <io.h>
+@@ -111,6 +112,9 @@
+   ppd_choice_t	**collect;		/* Collected choices */
+ 
+ 
++  DEBUG_printf(("ppdCollect2(ppd=%p, section=%d, min_order=%f, choices=%p)\n",
++                ppd, section, min_order, choices));
++
+   if (ppd == NULL)
+     return (0);
+ 
+@@ -132,6 +136,8 @@
+ 	for (k = o->num_choices, c = o->choices; k > 0; k --, c ++)
+ 	  if (c->marked && count < 1000)
+ 	  {
++	    DEBUG_printf(("ppdCollect2: %s=%s marked...\n", o->keyword,
++	                  c->choice));
+             collect[count] = c;
+ 	    count ++;
+ 	  }
+@@ -142,6 +148,8 @@
+ 	  for (m = o->num_choices, c = o->choices; m > 0; m --, c ++)
+ 	    if (c->marked && count < 1000)
+ 	    {
++	      DEBUG_printf(("ppdCollect2: %s=%s marked...\n", o->keyword,
++	                    c->choice));
+               collect[count] = c;
+ 	      count ++;
+ 	    }
+@@ -155,6 +163,8 @@
+     qsort(collect, count, sizeof(ppd_choice_t *),
+           (int (*)(const void *, const void *))ppd_sort);
+ 
++  DEBUG_printf(("ppdCollect2: %d marked choices...\n", count));
++
+  /*
+   * Return the array and number of choices; if 0, free the array since
+   * it isn't needed.
+@@ -492,6 +502,9 @@
+   struct lconv	*loc;			/* Locale data */
+ 
+ 
++  DEBUG_printf(("ppdEmitString(ppd=%p, section=%d, min_order=%f)\n",
++                ppd, section, min_order));
++
+  /*
+   * Range check input...
+   */
+@@ -527,6 +540,8 @@
+            !strcasecmp(choices[i]->option->keyword, "PageRegion")) &&
+           !strcasecmp(choices[i]->choice, "Custom"))
+       {
++        DEBUG_puts("ppdEmitString: Custom size set!");
++
+         bufsize += 37;			/* %%BeginFeature: *CustomPageSize True\n */
+         bufsize += 50;			/* Five 9-digit numbers + newline */
+       }
+@@ -580,6 +595,8 @@
+   * Allocate memory...
+   */
+ 
++  DEBUG_printf(("ppdEmitString: Allocating %d bytes for string...\n", bufsize));
++
+   if ((buffer = calloc(1, bufsize)) == NULL)
+   {
+     free(choices);
+@@ -608,6 +625,9 @@
+       * Send DSC comments with option...
+       */
+ 
++      DEBUG_printf(("Adding code for %s=%s...\n", choices[i]->option->keyword,
++                    choices[i]->choice));
++
+       if ((!strcasecmp(choices[i]->option->keyword, "PageSize") ||
+            !strcasecmp(choices[i]->option->keyword, "PageRegion")) &&
+           !strcasecmp(choices[i]->choice, "Custom"))
+@@ -800,6 +820,9 @@
+       strlcpy(bufptr, "%%EndFeature\n"
+ 		      "} stopped cleartomark\n", bufend - bufptr + 1);
+       bufptr += strlen(bufptr);
++
++      DEBUG_printf(("ppdEmitString: Offset in string is %d...\n",
++                    bufptr - buffer));
+     }
+     else
+     {
 diff -urNad cupsys-1.2.1~/cups/http-addrlist.c cupsys-1.2.1/cups/http-addrlist.c
---- cupsys-1.2.1~/cups/http-addrlist.c	2006-06-17 05:05:01.000000000 +0000
-+++ cupsys-1.2.1/cups/http-addrlist.c	2006-06-17 05:14:56.000000000 +0000
+--- cupsys-1.2.1~/cups/http-addrlist.c	2006-03-29 15:36:15.000000000 +0000
++++ cupsys-1.2.1/cups/http-addrlist.c	2006-07-18 11:27:13.000000000 +0000
+@@ -412,7 +412,7 @@
+           if (host->h_addrtype == AF_INET6)
+ 	  {
+             temp->addr.ipv6.sin6_family = AF_INET6;
+-	    memcpy(&(temp->addr.ipv6), host->h_addr_list[i],
++	    memcpy(&(temp->addr.ipv6.sin6_addr), host->h_addr_list[i],
+ 	           sizeof(temp->addr.ipv6));
+             temp->addr.ipv6.sin6_port = htons(portnum);
+ 	  }
+@@ -420,7 +420,7 @@
+ #  endif /* AF_INET6 */
+ 	  {
+             temp->addr.ipv4.sin_family = AF_INET;
+-	    memcpy(&(temp->addr.ipv4), host->h_addr_list[i],
++	    memcpy(&(temp->addr.ipv4.sin_addr), host->h_addr_list[i],
+ 	           sizeof(temp->addr.ipv4));
+             temp->addr.ipv4.sin_port = htons(portnum);
+           }
 @@ -506,6 +506,9 @@
  	temp->addr.ipv6.sin6_addr.s6_addr32[3] = htonl(1);
  #  endif /* WIN32 */
@@ -3027,8 +3608,8 @@ diff -urNad cupsys-1.2.1~/cups/http-addrlist.c cupsys-1.2.1/cups/http-addrlist.c
  	  addr->next = temp;
  	else
 diff -urNad cupsys-1.2.1~/cups/http.c cupsys-1.2.1/cups/http.c
---- cupsys-1.2.1~/cups/http.c	2006-06-17 05:05:01.000000000 +0000
-+++ cupsys-1.2.1/cups/http.c	2006-06-17 05:14:56.000000000 +0000
+--- cupsys-1.2.1~/cups/http.c	2006-04-17 21:24:17.000000000 +0000
++++ cupsys-1.2.1/cups/http.c	2006-07-18 11:27:13.000000000 +0000
 @@ -866,7 +866,7 @@
        * No newline; see if there is more data to be read...
        */
@@ -3104,8 +3685,17 @@ diff -urNad cupsys-1.2.1~/cups/http.c cupsys-1.2.1/cups/http.c
      while ((error = SSLHandshake(conn->session)) == errSSLWouldBlock)
        usleep(1000);
 diff -urNad cupsys-1.2.1~/cups/http.h cupsys-1.2.1/cups/http.h
---- cupsys-1.2.1~/cups/http.h	2006-06-17 05:05:01.000000000 +0000
-+++ cupsys-1.2.1/cups/http.h	2006-06-17 05:14:56.000000000 +0000
+--- cupsys-1.2.1~/cups/http.h	2006-03-15 21:16:05.000000000 +0000
++++ cupsys-1.2.1/cups/http.h	2006-07-18 11:27:13.000000000 +0000
+@@ -98,7 +98,7 @@
+ #if defined(AF_INET6) && !defined(s6_addr32)
+ #  if defined(__sun)
+ #    define s6_addr32	_S6_un._S6_u32
+-#  elif defined(__FreeBSD__) || defined(__APPLE__)
++#  elif defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__) || defined(__APPLE__)
+ #    define s6_addr32	__u6_addr.__u6_addr32
+ #  elif defined(__osf__)
+ #    define s6_addr32	s6_un.sa6_laddr
 @@ -322,6 +322,14 @@
  
  typedef struct _http_s			/**** HTTP connection structure. ****/
@@ -3122,8 +3712,8 @@ diff -urNad cupsys-1.2.1~/cups/http.h cupsys-1.2.1/cups/http.h
    int			blocking;	/* To block or not to block */
    int			error;		/* Last error on read */
 diff -urNad cupsys-1.2.1~/cups/ipp.c cupsys-1.2.1/cups/ipp.c
---- cupsys-1.2.1~/cups/ipp.c	2006-06-17 05:05:01.000000000 +0000
-+++ cupsys-1.2.1/cups/ipp.c	2006-06-17 05:14:56.000000000 +0000
+--- cupsys-1.2.1~/cups/ipp.c	2006-04-17 20:39:05.000000000 +0000
++++ cupsys-1.2.1/cups/ipp.c	2006-07-18 11:27:13.000000000 +0000
 @@ -2742,10 +2742,10 @@
        if (!http->blocking)
        {
@@ -3137,9 +3727,146 @@ diff -urNad cupsys-1.2.1~/cups/ipp.c cupsys-1.2.1/cups/ipp.c
  	{
  	 /*
            * Signal no data...
+diff -urNad cupsys-1.2.1~/cups/mark.c cupsys-1.2.1/cups/mark.c
+--- cupsys-1.2.1~/cups/mark.c	2006-05-15 20:06:46.000000000 +0000
++++ cupsys-1.2.1/cups/mark.c	2006-07-18 11:27:13.000000000 +0000
+@@ -407,6 +407,7 @@
+       ppd_cparam_t	*cparam;	/* Custom parameter */
+       char		*units;		/* Custom points units */
+ 
++
+       if ((coption = ppdFindCustomOption(ppd, option)) != NULL)
+       {
+         if ((cparam = (ppd_cparam_t *)cupsArrayFirst(coption->params)) == NULL)
+@@ -455,6 +456,12 @@
+ 	}
+       }
+     }
++
++   /*
++    * Make sure that we keep the option marked below...
++    */
++
++    choice = "Custom";
+   }
+   else if (choice[0] == '{')
+   {
+diff -urNad cupsys-1.2.1~/cups/testhttp.c cupsys-1.2.1/cups/testhttp.c
+--- cupsys-1.2.1~/cups/testhttp.c	2006-03-29 15:26:44.000000000 +0000
++++ cupsys-1.2.1/cups/testhttp.c	2006-07-18 11:27:13.000000000 +0000
+@@ -3,7 +3,7 @@
+  *
+  *   HTTP test program for the Common UNIX Printing System (CUPS).
+  *
+- *   Copyright 1997-2005 by Easy Software Products.
++ *   Copyright 1997-2006 by Easy Software Products.
+  *
+  *   These coded instructions, statements, and computer programs are the
+  *   property of Easy Software Products and are protected by Federal
+@@ -311,9 +311,21 @@
+     addrlist = httpAddrGetList(hostname, AF_UNSPEC, NULL);
+     if (addrlist)
+     {
+-      for (i = 0, addr = addrlist; addr; i ++, addr = addr->next);
++      for (i = 0, addr = addrlist; addr; i ++, addr = addr->next)
++      {
++        char	numeric[1024];		/* Numeric IP address */
++
++
++	httpAddrString(&(addr->addr), numeric, sizeof(numeric));
++	if (!strcmp(numeric, "UNKNOWN"))
++	  break;
++      }
++
++      if (addr)
++        printf("FAIL (bad address for %s)\n", hostname);
++      else
++        printf("PASS (%d address(es) for %s)\n", i, hostname);
+ 
+-      printf("PASS (%d address(es) for %s)\n", i, hostname);
+       httpAddrFreeList(addrlist);
+     }
+     else
+diff -urNad cupsys-1.2.1~/cups/testppd.c cupsys-1.2.1/cups/testppd.c
+--- cupsys-1.2.1~/cups/testppd.c	2006-05-02 20:38:12.000000000 +0000
++++ cupsys-1.2.1/cups/testppd.c	2006-07-18 11:27:13.000000000 +0000
+@@ -59,6 +59,39 @@
+ 			"%%BeginFeature: *InputSlot Tray\n"
+ 			"InputSlot=Tray\n"
+ 			"%%EndFeature\n"
++			"} stopped cleartomark\n"
++			"[{\n"
++			"%%BeginFeature: *IntOption None\n"
++			"%%EndFeature\n"
++			"} stopped cleartomark\n"
++			"[{\n"
++			"%%BeginFeature: *StringOption None\n"
++			"%%EndFeature\n"
++			"} stopped cleartomark\n";
++
++static const char	*custom_code =
++			"[{\n"
++			"%%BeginFeature: *CustomPageSize True\n"
++			"400\n"
++			"500\n"
++			"0\n"
++			"0\n"
++			"0\n"
++			"PageSize=Custom\n"
++			"%%EndFeature\n"
++			"} stopped cleartomark\n"
++			"[{\n"
++			"%%BeginFeature: *InputSlot Tray\n"
++			"InputSlot=Tray\n"
++			"%%EndFeature\n"
++			"} stopped cleartomark\n"
++			"[{\n"
++			"%%BeginFeature: *IntOption None\n"
++			"%%EndFeature\n"
++			"} stopped cleartomark\n"
++			"[{\n"
++			"%%BeginFeature: *StringOption None\n"
++			"%%EndFeature\n"
+ 			"} stopped cleartomark\n";
+ 
+ 
+@@ -107,7 +140,7 @@
+       printf("FAIL (%d conflicts)\n", conflicts);
+     }
+ 
+-    fputs("ppdEmitString: ", stdout);
++    fputs("ppdEmitString (defaults): ", stdout);
+     if ((s = ppdEmitString(ppd, PPD_ORDER_ANY, 0.0)) != NULL &&
+ 	!strcmp(s, default_code))
+       puts("PASS");
+@@ -123,6 +156,24 @@
+     if (s)
+       free(s);
+ 
++    fputs("ppdEmitString (custom size): ", stdout);
++    ppdMarkOption(ppd, "PageSize", "Custom.400x500");
++
++    if ((s = ppdEmitString(ppd, PPD_ORDER_ANY, 0.0)) != NULL &&
++	!strcmp(s, custom_code))
++      puts("PASS");
++    else
++    {
++      printf("FAIL (%d bytes instead of %d)\n", s ? (int)strlen(s) : 0,
++	     (int)strlen(custom_code));
++
++      if (s)
++	puts(s);
++    }
++
++    if (s)
++      free(s);
++
+     ppdClose(ppd);
+   }
+   else
 diff -urNad cupsys-1.2.1~/cups/util.c cupsys-1.2.1/cups/util.c
 --- cupsys-1.2.1~/cups/util.c	2006-03-06 13:02:23.000000000 +0000
-+++ cupsys-1.2.1/cups/util.c	2006-06-17 05:14:56.000000000 +0000
++++ cupsys-1.2.1/cups/util.c	2006-07-18 11:27:13.000000000 +0000
 @@ -800,6 +800,8 @@
              const char *name)		/* I - Printer name */
  {
@@ -3149,7 +3876,21 @@ diff -urNad cupsys-1.2.1~/cups/util.c cupsys-1.2.1/cups/util.c
    http_t	*http2;			/* Alternate HTTP connection */
    int		fd;			/* PPD file */
    char		localhost[HTTP_MAX_URI],/* Local hostname */
-@@ -845,9 +847,11 @@
+@@ -835,19 +837,25 @@
+                             resource, sizeof(resource), 0))
+     return (NULL);
+ 
++  DEBUG_printf(("Printer hostname=\"%s\", port=%d\n", hostname, port));
++
+  /*
+   * Remap local hostname to localhost...
+   */
+ 
+   httpGetHostname(NULL, localhost, sizeof(localhost));
+ 
++  DEBUG_printf(("Local hostname=\"%s\"\n", localhost));
++
+   if (!strcasecmp(localhost, hostname))
      strcpy(hostname, "localhost");
  
   /*
@@ -3162,7 +3903,14 @@ diff -urNad cupsys-1.2.1~/cups/util.c cupsys-1.2.1/cups/util.c
  #ifdef AF_INET6
    if (http->hostaddr->addr.sa_family == AF_INET6)
      http_port = ntohs(http->hostaddr->ipv6.sin6_port);
-@@ -862,7 +866,7 @@
+@@ -858,11 +866,14 @@
+   else
+     http_port = ippPort(); 
+ 
++  DEBUG_printf(("Connection hostname=\"%s\", port=%d\n", http_hostname,
++                http_port));
++
+  /*
    * Reconnect to the correct server as needed...
    */
  
@@ -3171,7 +3919,7 @@ diff -urNad cupsys-1.2.1~/cups/util.c cupsys-1.2.1/cups/util.c
      http2 = http;
    else if ((http2 = httpConnectEncrypt(hostname, port,
                                         cupsEncryption())) == NULL)
-@@ -1394,7 +1398,8 @@
+@@ -1394,7 +1405,8 @@
  	     char       *printer,	/* O - Printer name [HTTP_MAX_URI] */
               char       *hostname)	/* O - Hostname [HTTP_MAX_URI] */
  {
@@ -3181,7 +3929,7 @@ diff -urNad cupsys-1.2.1~/cups/util.c cupsys-1.2.1/cups/util.c
    _cups_globals_t  *cg = _cupsGlobals();/* Pointer to library globals */
  
  
-@@ -1415,6 +1420,8 @@
+@@ -1415,6 +1427,8 @@
  
    strlcpy(hostbuf, cupsServer(), sizeof(hostbuf));
  
@@ -3190,7 +3938,7 @@ diff -urNad cupsys-1.2.1~/cups/util.c cupsys-1.2.1/cups/util.c
    if (hostname != NULL)
      strlcpy(hostname, hostbuf, HTTP_MAX_URI);
    else
-@@ -1427,7 +1434,7 @@
+@@ -1427,7 +1441,7 @@
  
    if (cg->http != NULL)
    {
@@ -3199,7 +3947,7 @@ diff -urNad cupsys-1.2.1~/cups/util.c cupsys-1.2.1/cups/util.c
        return (printer);
  
      httpClose(cg->http);
-@@ -1473,7 +1480,9 @@
+@@ -1473,7 +1487,9 @@
    char		uri[HTTP_MAX_URI],	/* printer-uri attribute */
  		scheme[HTTP_MAX_URI],	/* Scheme name */
  		username[HTTP_MAX_URI],	/* Username:password */
@@ -3210,7 +3958,7 @@ diff -urNad cupsys-1.2.1~/cups/util.c cupsys-1.2.1/cups/util.c
    static const char * const requested_attrs[] =
  		{			/* Requested attributes */
  		  "printer-uri-supported",
-@@ -1505,9 +1514,11 @@
+@@ -1505,9 +1521,11 @@
    DEBUG_printf(("cups_get_printer_uri: printer-uri=\"%s\"\n", uri));
  
   /*
@@ -3223,7 +3971,7 @@ diff -urNad cupsys-1.2.1~/cups/util.c cupsys-1.2.1/cups/util.c
  #ifdef AF_INET6
    if (http->hostaddr->addr.sa_family == AF_INET6)
      http_port = ntohs(http->hostaddr->ipv6.sin6_port);
-@@ -1585,7 +1596,7 @@
+@@ -1585,7 +1603,7 @@
  	    * Found a class!  Connect to the right server...
  	    */
  
@@ -3232,10 +3980,63 @@ diff -urNad cupsys-1.2.1~/cups/util.c cupsys-1.2.1/cups/util.c
  	      http2 = http;
  	    else if ((http2 = httpConnectEncrypt(host, *port,
  						 cupsEncryption())) == NULL)
+diff -urNad cupsys-1.2.1~/cups-config.in cupsys-1.2.1/cups-config.in
+--- cupsys-1.2.1~/cups-config.in	2006-05-10 18:57:46.000000000 +0000
++++ cupsys-1.2.1/cups-config.in	2006-07-18 11:27:13.000000000 +0000
+@@ -42,8 +42,8 @@
+ # flags for C++ compiler:
+ CFLAGS=""
+ LDFLAGS="@EXPORT_LDFLAGS@"
+-LIBS="@EXPORT_SSLLIBS@ @LIBS@"
+-IMGLIBS="@EXPORT_LIBTIFF@ @EXPORT_LIBJPEG@ @EXPORT_LIBPNG@ @EXPORT_LIBZ@"
++LIBS="@EXPORT_SSLLIBS@ @EXPORT_LIBZ@ @LIBS@"
++IMGLIBS="@EXPORT_LIBTIFF@ @EXPORT_LIBJPEG@ @EXPORT_LIBPNG@"
+ 
+ # Check for local invocation...
+ selfdir=`dirname $0`
+@@ -53,7 +53,7 @@
+     LDFLAGS="-L$selfdir/cups -L$selfdir/filter $LDFLAGS"
+     libdir="$selfdir/cups"
+     imagelibdir="$selfdir/filter"
+-    if test ! -e "$selfdir/cups/raster.h"; then
++    if test ! -f "$selfdir/cups/raster.h"; then
+         ln -s ../filter/raster.h "$selfdir/cups"
+     fi
+ else
+@@ -115,13 +115,13 @@
+  	        if test $image = no; then
+  	            echo -lcups $LIBS
+  		else
+- 	            echo -lcupsimage $IMGLIBS -lcups $LIBS
++ 	            echo -lcupsimage -lcups $IMGLIBS $LIBS
+  		fi
+ 	    else
+ 	        if test $image = no; then
+ 	            echo $libdir/libcups.a $LIBS
+ 		else
+-	            echo $imagelibdir/libcupsimage.a $IMGLIBS $libdir/libcups.a $LIBS
++	            echo $imagelibdir/libcupsimage.a $libdir/libcups.a $IMGLIBS $LIBS
+ 		fi
+ 	    fi
+ 	    ;;
 diff -urNad cupsys-1.2.1~/doc/Makefile cupsys-1.2.1/doc/Makefile
---- cupsys-1.2.1~/doc/Makefile	2006-06-17 05:05:01.000000000 +0000
-+++ cupsys-1.2.1/doc/Makefile	2006-06-17 05:14:56.000000000 +0000
-@@ -200,7 +200,7 @@
+--- cupsys-1.2.1~/doc/Makefile	2006-05-08 20:32:27.000000000 +0000
++++ cupsys-1.2.1/doc/Makefile	2006-07-18 11:27:13.000000000 +0000
+@@ -153,11 +153,13 @@
+ 			help/network.html \
+ 			help/options.html \
+ 			help/overview.html \
++			help/policies.html \
+ 			help/ref-access_log.html \
+ 			help/ref-classes-conf.html \
+ 			help/ref-client-conf.html \
+ 			help/ref-cupsd-conf.html \
+ 			help/ref-error_log.html \
++			help/ref-mailto-conf.html \
+ 			help/ref-page_log.html \
+ 			help/ref-printers-conf.html \
+ 			help/ref-snmp-conf.html \
+@@ -200,7 +202,7 @@
  # Install all documentation files...
  #
  
@@ -3244,7 +4045,7 @@ diff -urNad cupsys-1.2.1~/doc/Makefile cupsys-1.2.1/doc/Makefile
  	$(INSTALL_DIR) -m 755 $(DOCDIR)
  	for file in $(WEBPAGES); do \
  		$(INSTALL_MAN) $$file $(DOCDIR); \
-@@ -213,6 +213,8 @@
+@@ -213,6 +215,8 @@
  	for file in $(WEBIMAGES) $(WEBBUTTONS); do \
  		$(INSTALL_MAN) $$file $(DOCDIR)/images; \
  	done
@@ -3253,7 +4054,7 @@ diff -urNad cupsys-1.2.1~/doc/Makefile cupsys-1.2.1/doc/Makefile
  	for lang in $(LANGUAGES); do \
  		$(INSTALL_DIR) -m 755 $(DOCDIR)/$$lang/images; \
  		if test -f $$lang/index.html; then \
-@@ -230,7 +232,7 @@
+@@ -230,7 +234,7 @@
  # Unnstall all documentation files...
  #
  
@@ -3262,7 +4063,7 @@ diff -urNad cupsys-1.2.1~/doc/Makefile cupsys-1.2.1/doc/Makefile
  	for file in $(WEBPAGES); do \
  		$(RM) $(DOCDIR)/$$file; \
  	done
-@@ -240,6 +242,11 @@
+@@ -240,6 +244,11 @@
  	for file in $(WEBIMAGES) $(WEBBUTTONS); do \
  		$(INSTALL_MAN) $(DOCDIR)/images/$$file; \
  	done
@@ -3274,7 +4075,7 @@ diff -urNad cupsys-1.2.1~/doc/Makefile cupsys-1.2.1/doc/Makefile
  	-for lang in $(LANGUAGES); do \
  		$(RM) $(DOCDIR)/$$lang/index.html; \
  		for file in $(WEBBUTTONS); do \
-@@ -248,9 +255,6 @@
+@@ -248,9 +257,6 @@
  		$(RMDIR) $(DOCDIR)/$$lang/images; \
  		$(RMDIR) $(DOCDIR)/$$lang; \
  	done
@@ -3284,9 +4085,799 @@ diff -urNad cupsys-1.2.1~/doc/Makefile cupsys-1.2.1/doc/Makefile
  
  
  #
+diff -urNad cupsys-1.2.1~/doc/help/policies.html cupsys-1.2.1/doc/help/policies.html
+--- cupsys-1.2.1~/doc/help/policies.html	1970-01-01 00:00:00.000000000 +0000
++++ cupsys-1.2.1/doc/help/policies.html	2006-07-18 11:27:13.000000000 +0000
+@@ -0,0 +1,677 @@
++<HTML>
++<!-- SECTION: Getting Started -->
++<HEAD>
++	<TITLE>Managing Operation Policies</TITLE>
++</HEAD>
++<BODY>
++
++<P>Operation policies are the rules used for each IPP operation
++in CUPS. These rules include things like "user must provide a
++password", "user must be in the system group", "allow only from
++the local system", and so forth. Until CUPS 1.2, these rules were
++largely hardcoded and could only be customized at a very basic
++level.</P>
++
++<P>CUPS 1.2 adds a new fine-grained policy layer which allows you
++to completely redefine the rules for each operation and/or
++printer. Each policy is named and defines access control rules
++for each IPP operation. This document describes how to manage
++policies and their rules.</P>
++
++<H2 CLASS="title"><A NAME="BASICS">The Basics</A></H2>
++
++<P>Operation policies are used for all IPP requests sent to the
++scheduler and are evaluated <em>after</em> the <A
++HREF="ref-cupsd-conf.html#Location"><TT>Location</TT></A> based
++access control rules. This means that operation policies can only
++add additional security restrictions to a request, never relax
++them. Use <TT>Location</TT> based access control rules for
++server-wide limits and operation policies for limits on
++individual printers, tasks, or services.</P>
++
++<P>Policies are stored in the <VAR>cupsd.conf</VAR> file in <A
++HREF="ref-cupsd-conf.html#Policy"><TT>Policy</TT></A> sections.
++Each policy has an alphanumeric name that is used to select it.
++Inside the policy section are one or more <A
++HREF="ref-cupsd-conf.html#LimitIPP"><TT>Limit</TT></A>
++subsections which list the operations that are affected by the
++rules inside it. <A HREF="#LISTING01">Listing 1</A> shows the
++default operation policy, appropriately called "default", that is
++shipped with CUPS.</P>
++
++<P>The easiest way to add a policy to the <VAR>cupsd.conf</VAR>
++file is to use the web interface. Click on the
++<VAR>Administration</VAR> tab and then the <VAR>Edit
++Configuration File</VAR> button to edit the current
++<VAR>cupsd.conf</VAR> file. Click on the <VAR>Save Changes</VAR>
++button to save the changes and restart the scheduler. If you edit
++the <VAR>cupsd.conf</VAR> file from the console, make sure to <A
++HREF="ref-cupsd-conf.html">restart the cupsd process</A> before
++trying to use the new policy.</P>
++
++<PRE CLASS="command">
++<EM>Listing 1: <A NAME="LISTING01">Default Operation Policy</A></EM>
++
++ 1    &lt;Policy default>
++ 2      # Job-related operations must be done by the owner or an
++      adminstrator...
++ 3      &lt;Limit Send-Document Send-URI Hold-Job Release-Job
++      Restart-Job Purge-Jobs Set-Job-Attributes
++      Create-Job-Subscription Renew-Subscription
++      Cancel-Subscription Get-Notifications Reprocess-Job
++      Cancel-Current-Job Suspend-Current-Job Resume-Job
++      CUPS-Move-Job>
++ 4        Require user @OWNER @SYSTEM
++ 5        Order deny,allow
++ 6      &lt;/Limit>
++ 7    
++ 8      # All administration operations require an adminstrator
++      to authenticate...
++ 9      &lt;Limit Pause-Printer Resume-Printer
++      Set-Printer-Attributes Enable-Printer Disable-Printer
++      Pause-Printer-After-Current-Job Hold-New-Jobs
++      Release-Held-New-Jobs Deactivate-Printer Activate-Printer
++      Restart-Printer Shutdown-Printer Startup-Printer
++      Promote-Job Schedule-Job-After CUPS-Add-Printer
++      CUPS-Delete-Printer CUPS-Add-Class CUPS-Delete-Class
++      CUPS-Accept-Jobs CUPS-Reject-Jobs CUPS-Set-Default>
++10        AuthType Basic
++11        Require user @SYSTEM
++12        Order deny,allow
++13      &lt;/Limit>
++14    
++15      # Only the owner or an administrator can cancel or
++      authenticate a job...
++16      &lt;Limit Cancel-Job CUPS-Authenticate-Job>
++17        Require user @OWNER @SYSTEM
++18        Order deny,allow
++19      &lt;/Limit>
++20    
++21      &lt;Limit All>
++22        Order deny,allow
++23      &lt;/Limit>
++24    &lt;/Policy>
++</PRE>
++
++<H3>The Default CUPS Operation Policy</H3>
++
++<P>The policy definition starts with an opening <TT>Policy</TT>
++directive:</P>
++
++<PRE CLASS="command">
++ 1    &lt;Policy default>
++</PRE>
++
++<P>The first <TT>Limit</TT> subsection defines the rules for IPP
++job operations:</P>
++
++<PRE CLASS="command">
++ 3      &lt;Limit Send-Document Send-URI Hold-Job Release-Job
++      Restart-Job Purge-Jobs Set-Job-Attributes
++      Create-Job-Subscription Renew-Subscription
++      Cancel-Subscription Get-Notifications Reprocess-Job
++      Cancel-Current-Job Suspend-Current-Job Resume-Job
++      CUPS-Move-Job>
++ 4        Require user @OWNER @SYSTEM
++ 5        Order deny,allow
++ 6      &lt;/Limit>
++</PRE>
++
++<P>The operation names are listed on a single line
++with spaces separating them. Each name corresponds to the IPP
++operation described in any of the IETF or PWG standards documents
++for the Internet Printing Protocol. <A HREF="#TABLE01">Table
++1</A> lists all of the operations that have been defined along
++with their usage in CUPS.</P>
++
++<P>The access control rules are listed after the <TT>Limit</TT>
++line and are the same as those used for <A
++HREF="ref-cupsd-conf.html#Location"><TT>Location</TT></A>
++sections. In this case, we require the owner of the job
++("@OWNER") or a member of the <A
++HREF="ref-cupsd-conf.html#SystemGroup"><TT>SystemGroup</TT></A>
++("@SYSTEM") to do the operation. Because we do not include an <A
++HREF="ref-cupsd-conf.html#AuthType"><TT>AuthType</TT></A>
++directive here, the user information can come from the IPP
++request itself or the authenticated username from the HTTP
++request. The administrative operations starting on line 9,
++however, <em>do</em> use the <TT>AuthType</TT> directive, and so
++administrative operations need to be authenticated:</P>
++
++<PRE CLASS="command">
++ 9      &lt;Limit Pause-Printer Resume-Printer
++      Set-Printer-Attributes Enable-Printer Disable-Printer
++      Pause-Printer-After-Current-Job Hold-New-Jobs
++      Release-Held-New-Jobs Deactivate-Printer Activate-Printer
++      Restart-Printer Shutdown-Printer Startup-Printer
++      Promote-Job Schedule-Job-After CUPS-Add-Printer
++      CUPS-Delete-Printer CUPS-Add-Class CUPS-Delete-Class
++      CUPS-Accept-Jobs CUPS-Reject-Jobs CUPS-Set-Default>
++10        AuthType Basic
++11        Require user @SYSTEM
++12        Order deny,allow
++13      &lt;/Limit>
++</PRE>
++
++<P>The "Order deny,allow" line at the end of both <TT>Limit</TT>
++subsections allows the request to come from any system allowed by
++the <TT>Location</TT> sections elsewhere in the
++<VAR>cupsd.conf</VAR> file.</P>
++
++<P>The <TT>Cancel-Job</TT> and <TT>CUPS-Authenticate-Job</TT>
++operations are listed separately to allow the web interface to
++more easily edit their policy without disturbing the rest. Like
++the rest of the job operations, we want the job's owner
++("@OWNER") or an administrator ("@SYSTEM") to do it:</P>
++
++<PRE CLASS="command">
++16      &lt;Limit Cancel-Job CUPS-Authenticate-Job>
++17        Require user @OWNER @SYSTEM
++18        Order deny,allow
++19      &lt;/Limit>
++</PRE>
++
++<P>The last <TT>Limit</TT> subsection in any policy uses the
++special operation name <TT>All</TT>. CUPS will use the rules in
++this subsection for any operation you don't list specifically in
++the policy. In this case, all other operations are allowed
++without a username or authentication:</P>
++
++<PRE CLASS="command">
++21      &lt;Limit All>
++22        Order deny,allow
++23      &lt;/Limit>
++24    &lt;/Policy>
++</PRE>
++
++
++<DIV CLASS="table"><TABLE WIDTH="80%" SUMMARY="IPP Operation Names">
++<CAPTION>Table 1: <A NAME="TABLE01">IPP Operation Names</A></CAPTION>
++<THEAD>
++<TR>
++	<TH>Name</TH>
++	<TH>Used by CUPS?</TH>
++	<TH>Description</TH>
++</TR>
++</THEAD>
++<TBODY>
++<TR>
++	<TD NOWRAP><TT>Print-Job</TT></TD>
++	<TD>Yes</TD>
++	<TD>Creates a print job with a single file.</TD>
++</TR>
++<TR>
++	<TD NOWRAP><TT>Print-URI</TT></TD>
++	<TD>No</TD>
++	<TD>Create a print job with a single URI.</TD>
++</TR>
++<TR>
++	<TD NOWRAP><TT>Validate-Job</TT></TD>
++	<TD>Yes</TD>
++	<TD>Validates a print request before printing.</TD>
++</TR>
++<TR>
++	<TD NOWRAP><TT>Create-Job</TT></TD>
++	<TD>Yes</TD>
++	<TD>Creates a print job with no files or URIs.</TD>
++</TR>
++<TR>
++	<TD NOWRAP><TT>Send-Document</TT></TD>
++	<TD>Yes</TD>
++	<TD>Adds a file to a print job.</TD>
++</TR>
++<TR>
++	<TD NOWRAP><TT>Send-URI</TT></TD>
++	<TD>No</TD>
++	<TD>Adds a URI to a print job.</TD>
++</TR>
++<TR>
++	<TD NOWRAP><TT>Cancel-Job</TT></TD>
++	<TD>Yes</TD>
++	<TD>Cancels a print job.</TD>
++</TR>
++<TR>
++	<TD NOWRAP><TT>Get-Job-Attributes</TT></TD>
++	<TD>Yes</TD>
++	<TD>Gets information and options associated with a job.</TD>
++</TR>
++<TR>
++	<TD NOWRAP><TT>Get-Jobs</TT></TD>
++	<TD>Yes</TD>
++	<TD>Gets a list of jobs.</TD>
++</TR>
++<TR>
++	<TD NOWRAP><TT>Get-Printer-Attributes</TT></TD>
++	<TD>Yes</TD>
++	<TD>Gets information and options associated with a printer or class.</TD>
++</TR>
++<TR>
++	<TD NOWRAP><TT>Hold-Job</TT></TD>
++	<TD>Yes</TD>
++	<TD>Holds a print job for printing.</TD>
++</TR>
++<TR>
++	<TD NOWRAP><TT>Release-Job</TT></TD>
++	<TD>Yes</TD>
++	<TD>Releases a print job for printing.</TD>
++</TR>
++<TR>
++	<TD NOWRAP><TT>Restart-Job</TT></TD>
++	<TD>Yes</TD>
++	<TD>Reprints a print job.</TD>
++</TR>
++<TR>
++	<TD NOWRAP><TT>Pause-Printer</TT></TD>
++	<TD>Yes</TD>
++	<TD>Stops a printer or class.</TD>
++</TR>
++<TR>
++	<TD NOWRAP><TT>Resume-Printer</TT></TD>
++	<TD>Yes</TD>
++	<TD>Starts a printer or class.</TD>
++</TR>
++<TR>
++	<TD NOWRAP><TT>Purge-Jobs</TT></TD>
++	<TD>Yes</TD>
++	<TD>Cancels all jobs on the server or a printer or class
++	and removes the job history information.</TD>
++</TR>
++<TR>
++	<TD NOWRAP><TT>Set-Printer-Attributes</TT></TD>
++	<TD>No</TD>
++	<TD>Sets printer or class information; CUPS uses
++	CUPS-Add-Modify-Printer and CUPS-Add-Modify-Class
++	instead.</TD>
++</TR>
++<TR>
++	<TD NOWRAP><TT>Set-Job-Attributes</TT></TD>
++	<TD>Yes</TD>
++	<TD>Changes job options.</TD>
++</TR>
++<TR>
++	<TD NOWRAP><TT>Get-Printer-Supported-Values</TT></TD>
++	<TD>No</TD>
++	<TD>Gets -supported attributes for a printer based on job
++	options.</TD>
++</TR>
++<TR>
++	<TD NOWRAP><TT>Create-Printer-Subscription</TT></TD>
++	<TD>Yes</TD>
++	<TD>Creates an event subscription for a printer or the server.</TD>
++</TR>
++<TR>
++	<TD NOWRAP><TT>Create-Job-Subscription</TT></TD>
++	<TD>Yes</TD>
++	<TD>Creates an event subscription for a job.</TD>
++</TR>
++<TR>
++	<TD NOWRAP><TT>Get-Subscription-Attributes</TT></TD>
++	<TD>Yes</TD>
++	<TD>Gets information for an event subscription.</TD>
++</TR>
++<TR>
++	<TD NOWRAP><TT>Get-Subscriptions</TT></TD>
++	<TD>Yes</TD>
++	<TD>Gets a list of event subscriptions.</TD>
++</TR>
++<TR>
++	<TD NOWRAP><TT>Renew-Subscription</TT></TD>
++	<TD>Yes</TD>
++	<TD>Renews an event subscription that is about to expire.</TD>
++</TR>
++<TR>
++	<TD NOWRAP><TT>Cancel-Subscription</TT></TD>
++	<TD>Yes</TD>
++	<TD>Cancels an event subscription.</TD>
++</TR>
++<TR>
++	<TD NOWRAP><TT>Get-Notifications</TT></TD>
++	<TD>Yes</TD>
++	<TD>Gets (pending) events for an event subscription.</TD>
++</TR>
++<TR>
++	<TD NOWRAP><TT>Send-Notifications</TT></TD>
++	<TD>No</TD>
++	<TD>Sends events for an event subscription.</TD>
++</TR>
++<TR>
++	<TD NOWRAP><TT>Get-Printer-Support-Files</TT></TD>
++	<TD>No</TD>
++	<TD>Gets printer driver files for a Novell client.</TD>
++</TR>
++<TR>
++	<TD NOWRAP><TT>Enable-Printer</TT></TD>
++	<TD>Yes</TD>
++	<TD>Starts a printer or class.</TD>
++</TR>
++<TR>
++	<TD NOWRAP><TT>Disable-Printer</TT></TD>
++	<TD>Yes</TD>
++	<TD>Stops a printer or class.</TD>
++</TR>
++<TR>
++	<TD NOWRAP><TT>Pause-Printer-After-Current-Job</TT></TD>
++	<TD>No</TD>
++	<TD>Stops a printer or class after the current job is finished.</TD>
++</TR>
++<TR>
++	<TD NOWRAP><TT>Hold-New-Jobs</TT></TD>
++	<TD>No</TD>
++	<TD>Holds new jobs submitted to a printer or class.</TD>
++</TR>
++<TR>
++	<TD NOWRAP><TT>Release-Held-New-Jobs</TT></TD>
++	<TD>No</TD>
++	<TD>Releases jobs that were held because of the
++	Hold-New-Jobs operation.</TD>
++</TR>
++<TR>
++	<TD NOWRAP><TT>Deactivate-Printer</TT></TD>
++	<TD>No</TD>
++	<TD>Deactivates a printer or class.</TD>
++</TR>
++<TR>
++	<TD NOWRAP><TT>Activate-Printer</TT></TD>
++	<TD>No</TD>
++	<TD>Activates a printer or class.</TD>
++</TR>
++<TR>
++	<TD NOWRAP><TT>Restart-Printer</TT></TD>
++	<TD>No</TD>
++	<TD>Restarts a printer or class, resuming print jobs as needed.</TD>
++</TR>
++<TR>
++	<TD NOWRAP><TT>Shutdown-Printer</TT></TD>
++	<TD>No</TD>
++	<TD>Powers a printer or class off.</TD>
++</TR>
++<TR>
++	<TD NOWRAP><TT>Startup-Printer</TT></TD>
++	<TD>No</TD>
++	<TD>Powers a printer or class on.</TD>
++</TR>
++<TR>
++	<TD NOWRAP><TT>Reprocess-Job</TT></TD>
++	<TD>No</TD>
++	<TD>Reprints a job on a different printer or class; CUPS has the
++	CUPS-Move-Job operation instead.</TD>
++</TR>
++<TR>
++	<TD NOWRAP><TT>Cancel-Current-Job</TT></TD>
++	<TD>No</TD>
++	<TD>Cancels the current job on a printer or class.</TD>
++</TR>
++<TR>
++	<TD NOWRAP><TT>Suspend-Current-Job</TT></TD>
++	<TD>No</TD>
++	<TD>Stops the current job on a printer or class.</TD>
++</TR>
++<TR>
++	<TD NOWRAP><TT>Resume-Job</TT></TD>
++	<TD>No</TD>
++	<TD>Resumes printing of a stopped job.</TD>
++</TR>
++<TR>
++	<TD NOWRAP><TT>Promote-Job</TT></TD>
++	<TD>No</TD>
++	<TD>Prints a job before others.</TD>
++</TR>
++<TR>
++	<TD NOWRAP><TT>Schedule-Job-After</TT></TD>
++	<TD>No</TD>
++	<TD>Prints a job after others.</TD>
++</TR>
++<TR>
++	<TD NOWRAP><TT>CUPS-Get-Default</TT></TD>
++	<TD>Yes</TD>
++	<TD>Gets the server/network default printer or class.</TD>
++</TR>
++<TR>
++	<TD NOWRAP><TT>CUPS-Get-Printers</TT></TD>
++	<TD>Yes</TD>
++	<TD>Gets a list of printers and/or classes.</TD>
++</TR>
++<TR>
++	<TD NOWRAP><TT>CUPS-Add-Modify-Printer</TT></TD>
++	<TD>Yes</TD>
++	<TD>Adds or modifies a printer.</TD>
++</TR>
++<TR>
++	<TD NOWRAP><TT>CUPS-Delete-Printer</TT></TD>
++	<TD>Yes</TD>
++	<TD>Removes a printer.</TD>
++</TR>
++<TR>
++	<TD NOWRAP><TT>CUPS-Get-Classes</TT></TD>
++	<TD>Yes</TD>
++	<TD>Gets a list of classes.</TD>
++</TR>
++<TR>
++	<TD NOWRAP><TT>CUPS-Add-Modify-Class</TT></TD>
++	<TD>Yes</TD>
++	<TD>Adds or modifies a class.</TD>
++</TR>
++<TR>
++	<TD NOWRAP><TT>CUPS-Delete-Class</TT></TD>
++	<TD>Yes</TD>
++	<TD>Removes a class.</TD>
++</TR>
++<TR>
++	<TD NOWRAP><TT>CUPS-Accept-Jobs</TT></TD>
++	<TD>Yes</TD>
++	<TD>Sets a printer's or class' printer-is-accepting-jobs
++	attribute to true.</TD>
++</TR>
++<TR>
++	<TD NOWRAP><TT>CUPS-Reject-Jobs</TT></TD>
++	<TD>Yes</TD>
++	<TD>Sets a printer's or class' printer-is-accepting-jobs
++	attribute to false.</TD>
++</TR>
++<TR>
++	<TD NOWRAP><TT>CUPS-Set-Default</TT></TD>
++	<TD>Yes</TD>
++	<TD>Sets the server/network default printer or class.</TD>
++</TR>
++<TR>
++	<TD NOWRAP><TT>CUPS-Get-Devices</TT></TD>
++	<TD>Yes</TD>
++	<TD>Gets a list of printer devices.</TD>
++</TR>
++<TR>
++	<TD NOWRAP><TT>CUPS-Get-PPDs</TT></TD>
++	<TD>Yes</TD>
++	<TD>Gets a list of printer drivers or manufacturers.</TD>
++</TR>
++<TR>
++	<TD NOWRAP><TT>CUPS-Move-Job</TT></TD>
++	<TD>Yes</TD>
++	<TD>Moves a job to a different printer or class.</TD>
++</TR>
++<TR>
++	<TD NOWRAP><TT>CUPS-Authenticate-Job</TT></TD>
++	<TD>Yes</TD>
++	<TD>Authenticates a job for printing.</TD>
++</TR>
++</TBODY>
++</TABLE></DIV>
++
++
++<H2 CLASS="title"><A NAME="CREATING">Creating Your Own Policies</A></H2>
++
++<P>The easiest way to create a new policy is to start with the
++default policy and then make changes to the copy. The first
++change you'll make is to give the policy a new name. Policy names
++can use the same characters as a printer name, specifically all
++printable characters except space, slash (/), and pound (#):</P>
++
++<PRE CLASS="command">
++&lt;Policy mypolicy>
++</PRE>
++
++<P>Then you need to decide exactly what limits you want for the
++policy. For example, if you want to allow any user to cancel any
++other users' jobs, you can change the <TT>Cancel-Job</TT> limits
++to:</P>
++
++<PRE CLASS="command">
++&lt;Limit Cancel-Job>
++  Order deny,allow
++&lt;/Limit>
++</PRE>
++
++<P>The directives inside the <TT>Limit</TT> subsection can use
++any of the normal limiting directives: <A
++HREF="ref-cupsd-conf.html#Allow"><TT>Allow</TT></A>, <A
++HREF="ref-cupsd-conf.html#AuthType"><TT>AuthType</TT></A>, <A
++HREF="ref-cupsd-conf.html#Deny"><TT>Deny</TT></A>, <A
++HREF="ref-cupsd-conf.html#Encryption"><TT>Encryption</TT></A>, <A
++HREF="ref-cupsd-conf.html#Require"><TT>Require</TT></A>, and <A
++HREF="ref-cupsd-conf.html#Satisfy"><TT>Satisfy</TT></A>. <A
++HREF="#TABLE02">Table 2</A> lists some basic "recipes" for
++different access control rules.</P>
++
++<DIV CLASS="table"><TABLE WIDTH="80%" SUMMARY="Access Control Recipes">
++<CAPTION>Table 2: <A NAME="TABLE02">Access Control Recipes</A></CAPTION>
++<THEAD>
++<TR>
++	<TH>Access Level</TH>
++	<TH>Directives to Use</TH>
++</TR>
++</THEAD>
++<TBODY>
++<TR>
++	<TD>Allow Everyone</TD>
++	<TD><PRE>Order deny,allow
++Allow from all</PRE></TD>
++</TR>
++<TR>
++	<TD>Allow Everyone on the Local Network</TD>
++	<TD><PRE>Order deny,allow
++Allow from @LOCAL</PRE></TD>
++</TR>
++<TR>
++	<TD>Deny Everyone/Disable Operation(s)</TD>
++	<TD><PRE>Order allow,deny
++Deny from all</PRE></TD>
++</TR>
++<TR>
++	<TD>Require Login (System) Password</TD>
++	<TD><PRE>AuthType Basic</PRE></TD>
++</TR>
++<TR>
++	<TD>Require CUPS (lppasswd) Password</TD>
++	<TD><PRE>AuthType BasicDigest</PRE></TD>
++</TR>
++<TR>
++	<TD>Require the Owner of a Job or Subscription</TD>
++	<TD><PRE>Require user @OWNER</PRE></TD>
++</TR>
++<TR>
++	<TD>Require an Administrative User</TD>
++	<TD><PRE>Require user @SYSTEM</PRE></TD>
++</TR>
++<TR>
++	<TD>Require Member of Group "foogroup"</TD>
++	<TD><PRE>Require user @foogroup</PRE></TD>
++</TR>
++<TR>
++	<TD>Require "john" or "mary"</TD>
++	<TD><PRE>Require user john mary</PRE></TD>
++</TR>
++<TR>
++	<TD>Require Encryption</TD>
++	<TD><PRE>Encryption Required</PRE></TD>
++</TR>
++</TABLE></DIV>
++
++
++<H3>Creating a Policy for a Computer Lab</H3>
++
++<P>One common operating scenario is a computer lab. The lab is
++managed by one or more technicians that assist the users of the
++lab and handle the basic administration tasks. <A
++HREF="#LISTING02">Listing 2</A> shows an operation policy that
++only allows access from the lab's subnet, 10.0.2.x, and allows
++the lab technicians, who are members of a special UNIX group for
++that lab called "lab999", to do job, printer, and subscription
++management operations.</P>
++
++<PRE CLASS="command">
++<EM>Listing 2: <A NAME="LISTING02">Operation Policy for a Lab</A></EM>
++
++ 1    &lt;Policy lab999>
++ 2      # Job- and subscription-related operations must be done
++      by the owner, a lab technician, or an adminstrator...
++ 3      &lt;Limit Send-Document Send-URI Hold-Job Release-Job
++      Restart-Job Purge-Jobs Set-Job-Attributes
++      Create-Job-Subscription Renew-Subscription
++      Cancel-Subscription Get-Notifications Reprocess-Job
++      Cancel-Current-Job Suspend-Current-Job Resume-Job
++      CUPS-Move-Job Cancel-Job CUPS-Authenticate-Job>
++ 4        Require user @OWNER @lab999 @SYSTEM
++ 5        Order allow,deny
++ 6        Allow from 10.0.2.0/24
++ 7      &lt;/Limit>
++ 8    
++ 9      # All administration operations require a lab technician
++      or an adminstrator to authenticate...
++10      &lt;Limit Pause-Printer Resume-Printer
++      Set-Printer-Attributes Enable-Printer Disable-Printer
++      Pause-Printer-After-Current-Job Hold-New-Jobs
++      Release-Held-New-Jobs Deactivate-Printer Activate-Printer
++      Restart-Printer Shutdown-Printer Startup-Printer
++      Promote-Job Schedule-Job-After CUPS-Accept-Jobs
++      CUPS-Reject-Jobs CUPS-Set-Default>
++11        AuthType Basic
++12        Require user @lab999 @SYSTEM
++13        Order allow,deny
++14        Allow from 10.0.2.0/24
++15      &lt;/Limit>
++16
++17      # All other operations are allowed from the lab network...
++18      &lt;Limit All>
++19        Order allow,deny
++20        Allow from 10.0.2.0/24
++21      &lt;/Limit>
++22    &lt;/Policy>
++</PRE>
++
++
++<H2 CLASS="title"><A NAME="SELECT">Using Policies</A></H2>
++
++<P>Once you have created a policy, you can use it in two ways.
++The first way is to assign it as the default policy for the
++system using the <A
++HREF="ref-cupsd-conf.html#DefaultPolicy"><TT>DefaultPolicy</TT></A>
++directive in the <VAR>cupsd.conf</VAR> file. For example, add the
++following line to the <VAR>cupsd.conf</VAR> file to use the
++"lab999" policy from the previous section:</P>
++
++<PRE CLASS="command">
++DefaultPolicy lab999
++</PRE>
++
++<P>To associate the policy with one or more printers, use either
++the <A HREF="man-lpadmin.html">lpadmin(8)</A> command or the web
++interface to change the operation policy for each printer. When
++using the <B>lpadmin</B> command, the <TT>-o
++printer-op-policy=name</TT> option sets the operation policy for
++a printer. For example, enter the following command to use the
++"lab999" policy from the previous section with a printer named
++"LaserJet4000":</P>
++
++<PRE CLASS="command">
++lpadmin -p LaserJet4000 -o printer-op-policy=lab999
++</PRE>
++
++<P>To make the same change in the web interface, go to the
++printer's web page, for example
++"http://localhost:631/printers/LaserJet4000", and click on the
++<VAR>Set Printer Options</VAR> button. Scroll down to the bottom
++of the page and choose the desired policy from the pull-down
++list. Click on <VAR>Save Changes</VAR> to change the policy for
++the printer.</P>
++
++</BODY>
++</HTML>
+diff -urNad cupsys-1.2.1~/doc/help/ref-mailto-conf.html cupsys-1.2.1/doc/help/ref-mailto-conf.html
+--- cupsys-1.2.1~/doc/help/ref-mailto-conf.html	1970-01-01 00:00:00.000000000 +0000
++++ cupsys-1.2.1/doc/help/ref-mailto-conf.html	2006-07-18 11:27:13.000000000 +0000
+@@ -0,0 +1,105 @@
++<HTML>
++<!-- SECTION: References -->
++<HEAD>
++	<TITLE>mailto.conf</TITLE>
++</HEAD>
++<BODY>
++
++<P>The <VAR>/etc/cups/mailto.conf</VAR> file contains several
++directives that defines the local mail server and email
++notification preferences for CUPS. Each directive is listed on a
++line by itself followed by its value. Comments are introduced
++using the number sign ("#") character at the beginning of a
++line.</P>
++
++
++<H2 CLASS="title"><A NAME="Cc">Cc</A></H2>
++
++<H3>Examples</H3>
++
++<PRE CLASS="command">
++Cc bigbrother@domain.com
++Cc John Doe &lt;jd@domain.com>
++</PRE>
++
++<H3>Description</H3>
++
++<P>The <CODE>Cc</CODE> directive specifies an additional
++recipient ("carbon copy") for all email notifications. The
++default is to not send a copy to anyone but the subscriber.</P>
++
++
++<H2 CLASS="title"><A NAME="From">From</A></H2>
++
++<H3>Examples</H3>
++
++<PRE CLASS="command">
++From printserver@domain.com
++From Your Happy Printer &lt;printserver@domain.com>
++</PRE>
++
++<H3>Description</H3>
++
++<P>The <CODE>From</CODE> directive specifies the sender of email
++notifications. The default is the <A
++HREF="ref-cupsd-conf.html#ServerAdmin"><TT>ServerAdmin</TT><A>
++address defined in the <VAR>cupsd.conf</VAR> file.</P>
++
++
++<H2 CLASS="title"><A NAME="Sendmail">Sendmail</A></H2>
++
++<H3>Examples</H3>
++
++<PRE CLASS="command">
++Sendmail /usr/sbin/sendmail
++Sendmail /usr/lib/sendmail -bm -i
++</PRE>
++
++<H3>Description</H3>
++
++<P>The <CODE>Sendmail</CODE> directive specifies the command to
++run to deliver an email locally. This directive cannot be used
++with the <TT>SMTPServer</TT> directive, and if both
++<TT>Sendmail</TT> and <TT>SMTPServer</TT> lines appear in the
++<VAR>mailto.conf</VAR> file, only the last line is used. The
++default is <TT>/usr/sbin/sendmail</TT>.</P>
++
++
++<H2 CLASS="title"><A NAME="SMTPServer">SMTPServer</A></H2>
++
++<H3>Examples</H3>
++
++<PRE CLASS="command">
++SMTPServer mail.domain.com
++SMTPServer 192.168.2.1
++</PRE>
++
++<H3>Description</H3>
++
++<P>The <CODE>SMTPServer</CODE> directive specifies a hostname or
++IP address of a (possibly remote) SMTP mail server. This
++directive cannot be used with the <TT>Sendmail</TT> directive,
++and if both <TT>Sendmail</TT> and <TT>SMTPServer</TT> lines
++appear in the <VAR>mailto.conf</VAR> file, only the last line is
++used. The default is to use the <TT>Sendmail</TT> command
++instead.</P>
++
++
++<H2 CLASS="title"><A NAME="Subject">Subject</A></H2>
++
++<H3>Examples</H3>
++
++<PRE CLASS="command">
++Subject [CUPS]
++Subject URGENT EMAIL NOTIFICATION
++</PRE>
++
++<H3>Description</H3>
++
++<P>The <CODE>Subject</CODE> directive specifies a prefix string to
++add to the subject of each email notification. The default is to
++not add a prefix string.</P>
++
++
++</BODY>
++</HTML>
 diff -urNad cupsys-1.2.1~/doc/help/spec-raster.html cupsys-1.2.1/doc/help/spec-raster.html
 --- cupsys-1.2.1~/doc/help/spec-raster.html	2006-05-11 20:07:26.000000000 +0000
-+++ cupsys-1.2.1/doc/help/spec-raster.html	2006-06-17 05:14:56.000000000 +0000
++++ cupsys-1.2.1/doc/help/spec-raster.html	2006-07-18 11:27:13.000000000 +0000
 @@ -14,9 +14,10 @@
  a printable format.</P>
  
@@ -3341,8 +4932,8 @@ diff -urNad cupsys-1.2.1~/doc/help/spec-raster.html cupsys-1.2.1/doc/help/spec-r
  
  <ul>
 diff -urNad cupsys-1.2.1~/filter/Makefile cupsys-1.2.1/filter/Makefile
---- cupsys-1.2.1~/filter/Makefile	2006-06-17 05:05:01.000000000 +0000
-+++ cupsys-1.2.1/filter/Makefile	2006-06-17 05:14:56.000000000 +0000
+--- cupsys-1.2.1~/filter/Makefile	2006-05-22 00:59:11.000000000 +0000
++++ cupsys-1.2.1/filter/Makefile	2006-07-18 11:27:13.000000000 +0000
 @@ -33,6 +33,7 @@
  		libcupsimage.a \
  		$(LIB32CUPSIMAGE) \
@@ -3392,8 +4983,8 @@ diff -urNad cupsys-1.2.1~/filter/Makefile cupsys-1.2.1/filter/Makefile
  #
  
 diff -urNad cupsys-1.2.1~/filter/pstops.c cupsys-1.2.1/filter/pstops.c
---- cupsys-1.2.1~/filter/pstops.c	2006-06-17 05:05:01.000000000 +0000
-+++ cupsys-1.2.1/filter/pstops.c	2006-06-17 05:15:20.000000000 +0000
+--- cupsys-1.2.1~/filter/pstops.c	2006-05-22 18:31:23.000000000 +0000
++++ cupsys-1.2.1/filter/pstops.c	2006-07-18 11:27:13.000000000 +0000
 @@ -1,5 +1,5 @@
  /*
 - * "$Id: pstops.c 5570 2006-05-22 18:31:23Z mike $"
@@ -3578,7 +5169,7 @@ diff -urNad cupsys-1.2.1~/filter/pstops.c cupsys-1.2.1/filter/pstops.c
   */
 diff -urNad cupsys-1.2.1~/filter/raster.c cupsys-1.2.1/filter/raster.c
 --- cupsys-1.2.1~/filter/raster.c	2006-05-15 05:02:15.000000000 +0000
-+++ cupsys-1.2.1/filter/raster.c	2006-06-17 05:14:56.000000000 +0000
++++ cupsys-1.2.1/filter/raster.c	2006-07-18 11:27:13.000000000 +0000
 @@ -34,23 +34,25 @@
   *
   * Contents:
@@ -4441,7 +6032,7 @@ diff -urNad cupsys-1.2.1~/filter/raster.c cupsys-1.2.1/filter/raster.c
  
 diff -urNad cupsys-1.2.1~/filter/raster.h cupsys-1.2.1/filter/raster.h
 --- cupsys-1.2.1~/filter/raster.h	2006-05-12 15:06:42.000000000 +0000
-+++ cupsys-1.2.1/filter/raster.h	2006-06-17 05:14:56.000000000 +0000
++++ cupsys-1.2.1/filter/raster.h	2006-07-18 11:27:13.000000000 +0000
 @@ -60,12 +60,15 @@
   * Constants...
   */
@@ -4462,7 +6053,7 @@ diff -urNad cupsys-1.2.1~/filter/raster.h cupsys-1.2.1/filter/raster.h
   * The following definition can be used to determine if the
 diff -urNad cupsys-1.2.1~/filter/rasterbench.c cupsys-1.2.1/filter/rasterbench.c
 --- cupsys-1.2.1~/filter/rasterbench.c	1970-01-01 00:00:00.000000000 +0000
-+++ cupsys-1.2.1/filter/rasterbench.c	2006-06-17 05:14:56.000000000 +0000
++++ cupsys-1.2.1/filter/rasterbench.c	2006-07-18 11:27:13.000000000 +0000
 @@ -0,0 +1,355 @@
 +/*
 + * "$Id$"
@@ -4821,8 +6412,29 @@ diff -urNad cupsys-1.2.1~/filter/rasterbench.c cupsys-1.2.1/filter/rasterbench.c
 + */
 diff -urNad cupsys-1.2.1~/filter/rastertolabel.c cupsys-1.2.1/filter/rastertolabel.c
 --- cupsys-1.2.1~/filter/rastertolabel.c	2006-03-13 16:41:45.000000000 +0000
-+++ cupsys-1.2.1/filter/rastertolabel.c	2006-06-17 05:14:56.000000000 +0000
-@@ -647,7 +647,7 @@
++++ cupsys-1.2.1/filter/rastertolabel.c	2006-07-18 11:27:13.000000000 +0000
+@@ -352,6 +352,8 @@
+         printf("! 0 %u %u %u %u\r\n", header->HWResolution[0],
+ 	       header->HWResolution[1], header->cupsHeight,
+ 	       header->NumCopies);
++	printf("PAGE-WIDTH %d\r\n", header->cupsWidth);
++	printf("PAGE-HEIGHT %d\r\n", header->cupsWidth);
+         break;
+   }
+ 
+@@ -588,7 +590,10 @@
+         * Print the label...
+ 	*/
+ 
+-        puts("FORM\r");
++	if ((choice = ppdFindMarkedChoice(ppd, "zeMediaTracking")) == NULL ||
++	    strcmp(choice->choice, "Continuous"))
++          puts("FORM\r");
++
+ 	puts("PRINT\r");
+ 	break;
+   }
+@@ -647,7 +652,7 @@
  {
    int		i;			/* Looping var */
    unsigned char	*ptr;			/* Pointer into buffer */
@@ -4832,8 +6444,8 @@ diff -urNad cupsys-1.2.1~/filter/rastertolabel.c cupsys-1.2.1/filter/rastertolab
    int		repeat_count;		/* Number of repeated characters */
    static const char *hex = "0123456789ABCDEF";
 diff -urNad cupsys-1.2.1~/locale/Makefile cupsys-1.2.1/locale/Makefile
---- cupsys-1.2.1~/locale/Makefile	2006-06-17 05:05:01.000000000 +0000
-+++ cupsys-1.2.1/locale/Makefile	2006-06-17 05:14:56.000000000 +0000
+--- cupsys-1.2.1~/locale/Makefile	2006-04-22 04:05:45.000000000 +0000
++++ cupsys-1.2.1/locale/Makefile	2006-07-18 11:27:13.000000000 +0000
 @@ -51,7 +51,9 @@
  # Install files...
  #
@@ -4862,8 +6474,8 @@ diff -urNad cupsys-1.2.1~/locale/Makefile cupsys-1.2.1/locale/Makefile
  
  #
 diff -urNad cupsys-1.2.1~/locale/cups_es.po cupsys-1.2.1/locale/cups_es.po
---- cupsys-1.2.1~/locale/cups_es.po	2006-06-17 05:05:01.000000000 +0000
-+++ cupsys-1.2.1/locale/cups_es.po	2006-06-17 05:14:56.000000000 +0000
+--- cupsys-1.2.1~/locale/cups_es.po	2006-05-21 14:08:21.000000000 +0000
++++ cupsys-1.2.1/locale/cups_es.po	2006-07-18 11:27:13.000000000 +0000
 @@ -1,29 +1,32 @@
 +#
  # "$Id$"
@@ -5855,9 +7467,48 @@ diff -urNad cupsys-1.2.1~/locale/cups_es.po cupsys-1.2.1/locale/cups_es.po
 +"      **FALLO**  1284DeviceId debe ser 1284DeviceID.\n"
 +"                REF: Página 72, sección 5.5\n"
 +
+diff -urNad cupsys-1.2.1~/locale/cups_ja.po cupsys-1.2.1/locale/cups_ja.po
+--- cupsys-1.2.1~/locale/cups_ja.po	2006-05-21 14:08:21.000000000 +0000
++++ cupsys-1.2.1/locale/cups_ja.po	2006-07-18 11:27:13.000000000 +0000
+@@ -26,7 +26,7 @@
+ "Project-Id-Version: CUPS 1.2\n"
+ "Report-Msgid-Bugs-To: http://www.cups.org/str.php\n"
+ "POT-Creation-Date: 2006-05-21 10:08-0400\n"
+-"PO-Revision-Date: 2006-03-29 23:44+0900\n"
++"PO-Revision-Date: 2006-06-27 22:55+0900\n"
+ "Last-Translator: Kenshi Muto <kmuto@debian.org>\n"
+ "Language-Team: Japanese <LL@li.org>\n"
+ "MIME-Version: 1.0\n"
+@@ -2929,12 +2929,11 @@
+ 
+ #, c-format
+ msgid "Password for %s on %s? "
+-msgstr ""
++msgstr "%s のパスワード (%s 上)? "
+ 
+-#, fuzzy
+ msgid ""
+ "      **FAIL**  1284DeviceId must be 1284DeviceID!\n"
+ "                REF: Page 72, section 5.5\n"
+ msgstr ""
+-"      **FAIL**  不正な %s が %s を選んでいます!\n"
+-"                REF: 122 ページ、セクション 5.17\n"
++"      **FAIL**  1284DeviceId は 1284DeviceID でなければなりません!\n"
++"                REF: 72 ページ、セクション 5.5\n"
+diff -urNad cupsys-1.2.1~/man/Makefile cupsys-1.2.1/man/Makefile
+--- cupsys-1.2.1~/man/Makefile	2006-04-30 16:27:50.000000000 +0000
++++ cupsys-1.2.1/man/Makefile	2006-07-18 11:27:13.000000000 +0000
+@@ -44,6 +44,7 @@
+ 		client.conf.$(MAN5EXT) \
+ 		cups-snmp.conf.$(MAN5EXT) \
+ 		cupsd.conf.$(MAN5EXT) \
++		mailto.conf.$(MAN5EXT) \
+ 		mime.convs.$(MAN5EXT) \
+ 		mime.types.$(MAN5EXT) \
+ 		printers.conf.$(MAN5EXT) \
 diff -urNad cupsys-1.2.1~/man/cupsaddsmb.man.in cupsys-1.2.1/man/cupsaddsmb.man.in
 --- cupsys-1.2.1~/man/cupsaddsmb.man.in	2006-04-20 18:25:40.000000000 +0000
-+++ cupsys-1.2.1/man/cupsaddsmb.man.in	2006-06-17 05:14:56.000000000 +0000
++++ cupsys-1.2.1/man/cupsaddsmb.man.in	2006-07-18 11:27:13.000000000 +0000
 @@ -21,7 +21,7 @@
  .\"       EMail: cups-info@cups.org
  .\"         WWW: http://www.cups.org
@@ -5890,8 +7541,8 @@ diff -urNad cupsys-1.2.1~/man/cupsaddsmb.man.in cupsys-1.2.1/man/cupsaddsmb.man.
  .LP
  \fBNote:\fR Unlike Windows, case is significant - make sure that
 diff -urNad cupsys-1.2.1~/man/cupsd.conf.man.in cupsys-1.2.1/man/cupsd.conf.man.in
---- cupsys-1.2.1~/man/cupsd.conf.man.in	2006-06-17 05:05:01.000000000 +0000
-+++ cupsys-1.2.1/man/cupsd.conf.man.in	2006-06-17 05:14:56.000000000 +0000
+--- cupsys-1.2.1~/man/cupsd.conf.man.in	2006-03-23 19:53:24.000000000 +0000
++++ cupsys-1.2.1/man/cupsd.conf.man.in	2006-07-18 11:27:13.000000000 +0000
 @@ -21,7 +21,7 @@
  .\"       EMail: cups-info@cups.org
  .\"         WWW: http://www.cups.org
@@ -5913,10 +7564,169 @@ diff -urNad cupsys-1.2.1~/man/cupsd.conf.man.in cupsys-1.2.1/man/cupsd.conf.man.
  .TP 5
  <Location /path> ... </Location>
  .br
+diff -urNad cupsys-1.2.1~/man/lpadmin.man cupsys-1.2.1/man/lpadmin.man
+--- cupsys-1.2.1~/man/lpadmin.man	2006-03-23 19:53:24.000000000 +0000
++++ cupsys-1.2.1/man/lpadmin.man	2006-07-18 11:27:13.000000000 +0000
+@@ -21,7 +21,7 @@
+ .\"       EMail: cups-info@cups.org
+ .\"         WWW: http://www.cups.org
+ .\"
+-.TH lpadmin 8 "Common UNIX Printing System" "23 March 2006" "Easy Software Products"
++.TH lpadmin 8 "Common UNIX Printing System" "13 July 2006" "Easy Software Products"
+ .SH NAME
+ lpadmin \- configure cups printers and classes
+ .SH SYNOPSIS
+@@ -123,6 +123,27 @@
+ Sets the binary communications program to use when printing,
+ "none", "bcp", or "tbcp". The default program is "none".
+ .TP 5
++-o printer-error-policy=name
++.br
++Sets the error policy to be used when the printer backend is 
++unable to send the job to the printer. The name must be one of 
++"cancel-job", "retry-job" or "stop-printer". The default error 
++policy is "stop-printer".
++.TP 5
++-o printer-is-shared=true/false
++.br
++Sets the printer to shared/published or unshared/unpublished.
++Shared/published printers are publically announced by the server
++on the LAN based on the browsing configuration in
++\fBcupsd.conf\fR, while unshared/unpublished printers are not
++announced. The default value is "true".
++.TP 5
++-o printer-op-policy=name
++.br
++Sets the IPP operation policy associated with the printer. The
++name must be defined in the \fBcupsd.conf\fR in a Policy section.
++The default operation policy is "default".
++.TP 5
+ -r class
+ .br
+ Removes the named \fIprinter\fR from \fIclass\fR.  If the
+@@ -144,7 +165,8 @@
+ .br
+ Sets the \fIdevice-uri\fR attribute of the printer queue.  If
+ \fIdevice-uri\fR is a filename it is automatically converted to
+-the form \fIfile:///file/name\fR.
++the form \fIfile:///file/name\fR. Use the \fIlpinfo(8)\fR command
++to get a list of supported device URIs and schemes.
+ .TP 5
+ -D "info"
+ .br
+@@ -176,7 +198,8 @@
+ The CUPS version of \fIlpadmin\fR does not support all of the
+ System V or Solaris printing system configuration options.
+ .SH SEE ALSO
+-\fIaccept(8)\fR, \fIcupsenable(8)\fR, \fIlpoptions(1)\fR,
++\fIaccept(8)\fR, \fIcupsenable(8)\fR, \fIlpinfo(8)\fR,
++\fIlpoptions(1)\fR,
+ .br
+ http://localhost:631/help
+ .SH COPYRIGHT
+diff -urNad cupsys-1.2.1~/man/mailto.conf.man cupsys-1.2.1/man/mailto.conf.man
+--- cupsys-1.2.1~/man/mailto.conf.man	1970-01-01 00:00:00.000000000 +0000
++++ cupsys-1.2.1/man/mailto.conf.man	2006-07-18 11:27:13.000000000 +0000
+@@ -0,0 +1,69 @@
++.\"
++.\" "$Id$"
++.\"
++.\"   mailto.conf man page for the Common UNIX Printing System (CUPS).
++.\"
++.\"   Copyright 1997-2006 by Easy Software Products.
++.\"
++.\"   These coded instructions, statements, and computer programs are the
++.\"   property of Easy Software Products and are protected by Federal
++.\"   copyright law.  Distribution and use rights are outlined in the file
++.\"   "LICENSE.txt" which should have been included with this file.  If this
++.\"   file is missing or damaged please contact Easy Software Products
++.\"   at:
++.\"
++.\"       Attn: CUPS Licensing Information
++.\"       Easy Software Products
++.\"       44141 Airport View Drive, Suite 204
++.\"       Hollywood, Maryland 20636 USA
++.\"
++.\"       Voice: (301) 373-9600
++.\"       EMail: cups-info@cups.org
++.\"         WWW: http://www.cups.org
++.\"
++.TH mailto.conf 5 "Common UNIX Printing System" "12 July 2006" "Easy Software Products"
++.SH NAME
++mailto.conf \- configuration file for cups email notifier
++.SH DESCRIPTION
++The \fImailto.conf\fR file defines the local mail server and
++email notification preferences for CUPS.
++.LP
++Each line in the file can be a configuration directive, a blank line,
++or a comment. Comment lines start with the # character.
++.SH DIRECTIVES
++.TP 5
++Cc \fIcc-address@domain.com\fR
++.br
++Specifies an additional recipient for all email notifications.
++.TP 5
++From \fIfrom-address@domain.com\fR
++.br
++Specifies the sender of email notifications.
++.TP 5
++Sendmail \fIsendmail command and options\fR
++.br
++Specifies the sendmail command to use when sending email
++notifications. Only one \fISendmail\fR or \fISMTPServer\fR line
++may be present in the \fImailto.conf\fR file. If multiple lines
++are present, only the last one is used.
++.TP 5
++SMTPServer \fIservername\fR
++.br
++Specifies a SMTP server to send email notifications to. Only one
++\fISendmail\fR or \fISMTPServer\fR line may be present in the
++\fImailto.conf\fR file. If multiple lines are present, only the
++last one is used.
++.TP 5
++Subject \fIsubject-prefix\fR
++.br
++Specifies a prefix string for the subject line of an email notification.
++.SH SEE ALSO
++\fIclasses.conf(5)\fR, \fIcupsd(8)\fR, \fIcupsd.conf(5)\fR,
++\fImime.convs(5)\fR, \fImime.types(5)\fR, \fIprinters.conf(5)\fR,
++.br
++http://localhost:631/help
++.SH COPYRIGHT
++Copyright 1997-2006 by Easy Software Products, All Rights Reserved.
++.\"
++.\" End of "$Id$".
++.\"
+diff -urNad cupsys-1.2.1~/notifier/testnotify.c cupsys-1.2.1/notifier/testnotify.c
+--- cupsys-1.2.1~/notifier/testnotify.c	2005-11-12 03:15:10.000000000 +0000
++++ cupsys-1.2.1/notifier/testnotify.c	2006-07-18 11:27:13.000000000 +0000
+@@ -82,6 +82,14 @@
+ 
+     print_attributes(event, 4);
+     ippDelete(event);
++
++   /*
++    * If the recipient URI is "testnotify://nowait", then we exit after each
++    * event...
++    */
++
++    if (!strcmp(argv[1], "testnotify://nowait"))
++      return (0);
+   }
+ }
+ 
 diff -urNad cupsys-1.2.1~/packaging/cups.list.in cupsys-1.2.1/packaging/cups.list.in
---- cupsys-1.2.1~/packaging/cups.list.in	2006-06-17 05:05:01.000000000 +0000
-+++ cupsys-1.2.1/packaging/cups.list.in	2006-06-17 05:14:56.000000000 +0000
-@@ -270,7 +270,7 @@
+--- cupsys-1.2.1~/packaging/cups.list.in	2006-04-30 16:27:50.000000000 +0000
++++ cupsys-1.2.1/packaging/cups.list.in	2006-07-18 11:27:13.000000000 +0000
+@@ -173,6 +173,7 @@
+ $MAN1EXT=@MAN1EXT@
+ $MAN5EXT=@MAN5EXT@
+ $MAN7EXT=@MAN7EXT@
++$MAN8EXT=@MAN8EXT@
+ $MAN8DIR=@MAN8DIR@
+ 
+ $DSOLIBS=@DSOLIBS@
+@@ -270,7 +271,7 @@
  f 0755 root sys $BINDIR/cupstestppd systemv/cupstestppd
  f 0755 root sys $BINDIR/lp systemv/lp
  f 0755 root sys $BINDIR/lpoptions systemv/lpoptions
@@ -5925,7 +7735,7 @@ diff -urNad cupsys-1.2.1~/packaging/cups.list.in cupsys-1.2.1/packaging/cups.lis
  f 0755 root sys $BINDIR/lpq berkeley/lpq
  f 0755 root sys $BINDIR/lpr berkeley/lpr
  f 0755 root sys $BINDIR/lprm berkeley/lprm
-@@ -342,7 +342,7 @@
+@@ -342,7 +343,7 @@
  %subpackage ja
  f 0644 root sys $LOCALEDIR/ja/cups_ja.po locale/cups_ja.po
  %subpackage pl
@@ -5934,10 +7744,50 @@ diff -urNad cupsys-1.2.1~/packaging/cups.list.in cupsys-1.2.1/packaging/cups.lis
  %subpackage sv
  f 0644 root sys $LOCALEDIR/sv/cups_sv.po locale/cups_sv.po
  %subpackage
+@@ -418,6 +419,7 @@
+ d 0755 root sys $SERVERROOT -
+ d 0755 root $CUPS_GROUP $SERVERROOT/interfaces -
+ d 0755 root $CUPS_GROUP $SERVERROOT/ppd -
++d 0700 root $CUPS_GROUP $SERVERROOT/ssl -
+ c $CUPS_PERM root $CUPS_GROUP $SERVERROOT conf/*.conf
+ f $CUPS_PERM root $CUPS_GROUP $SERVERROOT/cupsd.conf.default conf/cupsd.conf
+ f 0644 root $CUPS_GROUP $SERVERROOT/mime.convs conf/mime.convs
+@@ -462,6 +464,7 @@
+ f 0644 root sys $DOCDIR/help/network.html doc/help/network.html
+ f 0644 root sys $DOCDIR/help/options.html doc/help/options.html
+ f 0644 root sys $DOCDIR/help/overview.html doc/help/overview.html
++f 0644 root sys $DOCDIR/help/policies.html doc/help/policies.html
+ f 0644 root sys $DOCDIR/help/security.html doc/help/security.html
+ f 0644 root sys $DOCDIR/help/standard.html doc/help/standard.html
+ f 0644 root sys $DOCDIR/help/translation.html doc/help/translation.html
+@@ -518,6 +521,7 @@
+ 
+ f 0644 root sys $MANDIR/man5/classes.conf.$MAN5EXT man/classes.conf.$MAN5EXT
+ f 0644 root sys $MANDIR/man5/cupsd.conf.$MAN5EXT man/cupsd.conf.$MAN5EXT
++f 0644 root sys $MANDIR/man5/mailto.conf.$MAN5EXT man/mailto.conf.$MAN5EXT
+ f 0644 root sys $MANDIR/man5/mime.convs.$MAN5EXT man/mime.convs.$MAN5EXT
+ f 0644 root sys $MANDIR/man5/mime.types.$MAN5EXT man/mime.types.$MAN5EXT
+ f 0644 root sys $MANDIR/man5/printers.conf.$MAN5EXT man/printers.conf.$MAN5EXT
 diff -urNad cupsys-1.2.1~/packaging/cups.spec.in cupsys-1.2.1/packaging/cups.spec.in
---- cupsys-1.2.1~/packaging/cups.spec.in	2006-06-17 05:05:01.000000000 +0000
-+++ cupsys-1.2.1/packaging/cups.spec.in	2006-06-17 05:14:56.000000000 +0000
-@@ -399,7 +399,7 @@
+--- cupsys-1.2.1~/packaging/cups.spec.in	2006-04-22 04:05:45.000000000 +0000
++++ cupsys-1.2.1/packaging/cups.spec.in	2006-07-18 11:27:13.000000000 +0000
+@@ -204,6 +204,7 @@
+ /etc/cups/mime.types
+ /etc/cups/mime.convs
+ %dir /etc/cups/ppd
++%attr(0700,root,root) %dir /etc/cups/ssl
+ 
+ %if %{?_with_dbus:1}%{!?_with_dbus:0}
+ # DBUS
+@@ -291,6 +292,7 @@
+ /usr/share/doc/cups/help/network.html
+ /usr/share/doc/cups/help/options.html
+ /usr/share/doc/cups/help/overview.html
++/usr/share/doc/cups/help/policies.html
+ /usr/share/doc/cups/help/ref-*.html
+ /usr/share/doc/cups/help/security.html
+ /usr/share/doc/cups/help/standard.html
+@@ -399,7 +401,7 @@
  /usr/share/doc/cups/pl/images/*
  %dir /usr/share/cups/templates/pl
  /usr/share/cups/templates/pl/*
@@ -5946,9 +7796,52 @@ diff -urNad cupsys-1.2.1~/packaging/cups.spec.in cupsys-1.2.1/packaging/cups.spe
  
  %files sv
  %defattr(-,root,root)
+diff -urNad cupsys-1.2.1~/pdftops/PSOutputDev.cxx cupsys-1.2.1/pdftops/PSOutputDev.cxx
+--- cupsys-1.2.1~/pdftops/PSOutputDev.cxx	2005-09-22 18:11:02.000000000 +0000
++++ cupsys-1.2.1/pdftops/PSOutputDev.cxx	2006-07-18 11:27:13.000000000 +0000
+@@ -1158,7 +1158,7 @@
+     break;
+   }
+ 
+-  writePSFmt("% Produced by xpdf/pdftops %s\n", xpdfVersion);
++  writePSFmt("%%Producer: xpdf/pdftops %s\n", xpdfVersion);
+   xref->getDocInfo(&info);
+   if (info.dictLookup("Creator", &obj1)->isString()) {
+     writePS("%%Creator: ");
+diff -urNad cupsys-1.2.1~/ppd/zebracpl.ppd cupsys-1.2.1/ppd/zebracpl.ppd
+--- cupsys-1.2.1~/ppd/zebracpl.ppd	2006-05-11 17:43:12.000000000 +0000
++++ cupsys-1.2.1/ppd/zebracpl.ppd	2006-07-18 11:27:13.000000000 +0000
+@@ -120,6 +120,14 @@
+ *Resolution 203dpi/203 DPI: "<</HWResolution[203 203]>>setpagedevice"
+ *CloseUI: *Resolution
+ 
++*OpenUI *zeMediaTracking/Media Tracking: PickOne
++*OrderDependency: 20 AnySetup *zeMediaTracking
++*DefaultzeMediaTracking: Web
++*zeMediaTracking Continuous: ""
++*zeMediaTracking Web/Non-continuous (Web sensing): ""
++*zeMediaTracking Mark/Non-continuous (Mark sensing): ""
++*CloseUI: *zeMediaTracking
++
+ *OpenGroup: PrinterSettings/Printer Settings
+ *OpenUI *Darkness/Media Darkness: PickOne
+ *OrderDependency: 20 AnySetup *Darkness
+diff -urNad cupsys-1.2.1~/scheduler/Makefile cupsys-1.2.1/scheduler/Makefile
+--- cupsys-1.2.1~/scheduler/Makefile	2006-03-05 16:48:12.000000000 +0000
++++ cupsys-1.2.1/scheduler/Makefile	2006-07-18 11:27:13.000000000 +0000
+@@ -127,6 +127,9 @@
+ 	echo Creating $(SERVERROOT)/ppd...
+ 	$(INSTALL_DIR) -m 755 $(SERVERROOT)/ppd
+ 	-chgrp $(CUPS_GROUP) $(SERVERROOT)/ppd
++	echo Creating $(SERVERROOT)/ssl...
++	$(INSTALL_DIR) -m 700 $(SERVERROOT)/ssl
++	-chgrp $(CUPS_GROUP) $(SERVERROOT)/ssl
+ 	echo Creating $(STATEDIR)...
+ 	$(INSTALL_DIR) -m 755 $(STATEDIR)
+ 	echo Creating $(STATEDIR)/certs...
 diff -urNad cupsys-1.2.1~/scheduler/auth.c cupsys-1.2.1/scheduler/auth.c
---- cupsys-1.2.1~/scheduler/auth.c	2006-06-17 05:05:01.000000000 +0000
-+++ cupsys-1.2.1/scheduler/auth.c	2006-06-17 05:14:56.000000000 +0000
+--- cupsys-1.2.1~/scheduler/auth.c	2006-05-22 15:34:01.000000000 +0000
++++ cupsys-1.2.1/scheduler/auth.c	2006-07-18 11:27:13.000000000 +0000
 @@ -869,9 +869,12 @@
  	    */
  
@@ -5964,8 +7857,8 @@ diff -urNad cupsys-1.2.1~/scheduler/auth.c cupsys-1.2.1/scheduler/auth.c
  	      {
  	       /*
 diff -urNad cupsys-1.2.1~/scheduler/client.c cupsys-1.2.1/scheduler/client.c
---- cupsys-1.2.1~/scheduler/client.c	2006-06-17 05:05:01.000000000 +0000
-+++ cupsys-1.2.1/scheduler/client.c	2006-06-17 05:14:56.000000000 +0000
+--- cupsys-1.2.1~/scheduler/client.c	2006-05-22 15:34:01.000000000 +0000
++++ cupsys-1.2.1/scheduler/client.c	2006-07-18 11:27:13.000000000 +0000
 @@ -54,6 +54,11 @@
  
  #ifdef HAVE_CDSASSL
@@ -5978,6 +7871,19 @@ diff -urNad cupsys-1.2.1~/scheduler/client.c cupsys-1.2.1/scheduler/client.c
  #endif /* HAVE_CDSASSL */
  #ifdef HAVE_GNUTLS
  #  include <gnutls/x509.h>
+@@ -78,9 +83,9 @@
+ static int		is_cgi(cupsd_client_t *con, const char *filename,
+ 		               struct stat *filestats, mime_type_t *type);
+ static int		is_path_absolute(const char *path);
+-#ifdef HAVE_GNUTLS
+-static void		make_certificate(void);
+-#endif /* HAVE_GNUTLS */
++#ifdef HAVE_SSL
++static int		make_certificate(void);
++#endif /* HAVE_SSL */
+ static int		pipe_command(cupsd_client_t *con, int infile, int *outfile,
+ 			             char *command, char *options, int root);
+ static int		write_file(cupsd_client_t *con, http_status_t code,
 @@ -1882,24 +1887,27 @@
  
  
@@ -6018,7 +7924,55 @@ diff -urNad cupsys-1.2.1~/scheduler/client.c cupsys-1.2.1/scheduler/client.c
  
    cupsdLogMessage(CUPSD_LOG_INFO, "Started \"%s\" (pid=%d)", command,
                    con->pipe_pid);
-@@ -2659,7 +2667,7 @@
+@@ -2520,6 +2528,20 @@
+ 
+ 
+  /*
++  * Verify that we have a certificate...
++  */
++
++  if (access(ServerKey, 0) || access(ServerCertificate, 0))
++  {
++   /*
++    * Nope, make a self-signed certificate...
++    */
++
++    if (!make_certificate())
++      return (0);
++  }
++
++ /*
+   * Create the SSL context and accept the connection...
+   */
+ 
+@@ -2571,7 +2593,8 @@
+     * Nope, make a self-signed certificate...
+     */
+ 
+-    make_certificate();
++    if (!make_certificate())
++      return (0);
+   }
+ 
+  /*
+@@ -2646,6 +2669,16 @@
+ 
+   if (!conn->certsArray)
+   {
++   /*
++    * No keychain (yet), make a self-signed certificate...
++    */
++
++    if (make_certificate())
++      conn->certsArray = get_cdsa_server_certs();
++  }
++
++  if (!conn->certsArray)
++  {
+     cupsdLogMessage(CUPSD_LOG_ERROR,
+         	    "EncryptClient: Could not find signing key in keychain "
+ 		    "\"%s\"", ServerCertificate);
+@@ -2659,7 +2692,7 @@
      error = SSLSetIOFuncs(conn->session, _httpReadCDSA, _httpWriteCDSA);
  
    if (!error)
@@ -6027,7 +7981,7 @@ diff -urNad cupsys-1.2.1~/scheduler/client.c cupsys-1.2.1/scheduler/client.c
  
    if (!error)
    {
-@@ -2697,8 +2705,8 @@
+@@ -2697,8 +2730,8 @@
                      "encrypt_client: Unable to encrypt connection from %s!",
                      con->http.hostname);
  
@@ -6038,9 +7992,262 @@ diff -urNad cupsys-1.2.1~/scheduler/client.c cupsys-1.2.1/scheduler/client.c
  
      con->http.error  = error;
      con->http.status = HTTP_ERROR;
+@@ -3308,14 +3341,92 @@
+ }
+ 
+ 
+-#ifdef HAVE_GNUTLS
++#ifdef HAVE_SSL
+ /*
+  * 'make_certificate()' - Make a self-signed SSL/TLS certificate.
+  */
+ 
+-static void
++static int				/* O - 1 on success, 0 on failure */
+ make_certificate(void)
+ {
++#if defined(HAVE_LIBSSL) && defined(HAVE_WAITPID)
++  int	pid,				/* Process ID of command */
++	status;				/* Status of command */
++  char	command[1024],			/* Command */
++	*argv[11],			/* Command-line arguments */
++	*envp[MAX_ENV];			/* Environment variables */
++
++
++ /*
++  * Run the "openssl" command to generate a self-signed certificate
++  * that is good for 10 years:
++  *
++  *     openssl req -new -x509 -keyout ServerKey \
++  *             -out ServerCertificate -days 3650 -nodes
++  */
++
++  if (!cupsFileFind("openssl", getenv("PATH"), 1, command, sizeof(command)))
++  {
++    cupsdLogMessage(CUPSD_LOG_ERROR,
++                    "No SSL certificate and openssl command not found!");
++    return (0);
++  }
++
++  cupsdLogMessage(CUPSD_LOG_INFO,
++                  "Generating SSL server key and certificate...");
++
++  argv[0]  = "openssl";
++  argv[1]  = "req";
++  argv[2]  = "-new";
++  argv[3]  = "-x509";
++  argv[4]  = "-keyout";
++  argv[5]  = ServerKey;
++  argv[6]  = "-out";
++  argv[7]  = ServerCertificate;
++  argv[8]  = "-days";
++  argv[9]  = "3650";
++  argv[10] = "-nodes";
++  argv[11] = NULL;
++
++  cupsdLoadEnv(envp, MAX_ENV);
++
++  if (!cupsdStartProcess(command, argv, envp, -1, -1, -1, -1, 1, &pid))
++    return (0);
++
++  while (waitpid(pid, &status, 0) < 0)
++    if (errno != EINTR)
++    {
++      status = 1;
++      break;
++    }
++
++  cupsdFinishProcess(pid, command, sizeof(command));
++
++  if (status)
++  {
++    if (WIFEXITED(status))
++      cupsdLogMessage(CUPSD_LOG_ERROR,
++                      "Unable to create SSL server key and certificate - "
++		      "the openssl command stopped with status %d!",
++	              WEXITSTATUS(status));
++    else
++      cupsdLogMessage(CUPSD_LOG_ERROR,
++                      "Unable to create SSL server key and certificate - "
++		      "the openssl command crashed on signal %d!",
++	              WTERMSIG(status));
++  }
++  else
++  {
++    cupsdLogMessage(CUPSD_LOG_INFO, "Created SSL server key file \"%s\"...",
++		    ServerKey);
++    cupsdLogMessage(CUPSD_LOG_INFO,
++                    "Created SSL server certificate file \"%s\"...",
++		    ServerCertificate);
++  }
++
++  return (!status);
++
++#elif defined(HAVE_GNUTLS)
+   gnutls_x509_crt	crt;		/* Self-signed certificate */
+   gnutls_x509_privkey	key;		/* Encryption key */
+   cups_lang_t		*language;	/* Default language info */
+@@ -3331,7 +3442,7 @@
+   * Create the encryption key...
+   */
+ 
+-  cupsdLogMessage(CUPSD_LOG_INFO, "Generating server key...");
++  cupsdLogMessage(CUPSD_LOG_INFO, "Generating SSL server key...");
+ 
+   gnutls_x509_privkey_init(&key);
+   gnutls_x509_privkey_generate(key, GNUTLS_PK_RSA, 2048, 0);
+@@ -3345,33 +3456,33 @@
+   if ((result = gnutls_x509_privkey_export(key, GNUTLS_X509_FMT_PEM,
+                                            buffer, &bytes)) < 0)
+   {
+-    cupsdLogMessage(CUPSD_LOG_ERROR, "Unable to export server key - %s",
++    cupsdLogMessage(CUPSD_LOG_ERROR, "Unable to export SSL server key - %s",
+                     gnutls_strerror(result));
+     gnutls_x509_privkey_deinit(key);
+-    return;
++    return (0);
+   }
+   else if ((fp = cupsFileOpen(ServerKey, "w")) != NULL)
+   {
+     cupsFileWrite(fp, (char *)buffer, bytes);
+     cupsFileClose(fp);
+ 
+-    cupsdLogMessage(CUPSD_LOG_INFO, "Created server key file \"%s\"...",
++    cupsdLogMessage(CUPSD_LOG_INFO, "Created SSL server key file \"%s\"...",
+ 		    ServerKey);
+   }
+   else
+   {
+     cupsdLogMessage(CUPSD_LOG_ERROR,
+-                    "Unable to create server key file \"%s\" - %s",
++                    "Unable to create SSL server key file \"%s\" - %s",
+ 		    ServerKey, strerror(errno));
+     gnutls_x509_privkey_deinit(key);
+-    return;
++    return (0);
+   }
+ 
+  /*
+   * Create the self-signed certificate...
+   */
+ 
+-  cupsdLogMessage(CUPSD_LOG_INFO, "Generating self-signed certificate...");
++  cupsdLogMessage(CUPSD_LOG_INFO, "Generating self-signed SSL certificate...");
+ 
+   language  = cupsLangDefault();
+   curtime   = time(NULL);
+@@ -3424,7 +3535,7 @@
+   if ((result = gnutls_x509_crt_export(crt, GNUTLS_X509_FMT_PEM,
+                                        buffer, &bytes)) < 0)
+     cupsdLogMessage(CUPSD_LOG_ERROR,
+-                    "Unable to export server certificate - %s",
++                    "Unable to export SSL server certificate - %s",
+ 		    gnutls_strerror(result));
+   else if ((fp = cupsFileOpen(ServerCertificate, "w")) != NULL)
+   {
+@@ -3432,12 +3543,12 @@
+     cupsFileClose(fp);
+ 
+     cupsdLogMessage(CUPSD_LOG_INFO,
+-                    "Created 10-year server certificate file \"%s\"...",
++                    "Created SSL server certificate file \"%s\"...",
+ 		    ServerCertificate);
+   }
+   else
+     cupsdLogMessage(CUPSD_LOG_ERROR,
+-                    "Unable to create server certificate file \"%s\" - %s",
++                    "Unable to create SSL server certificate file \"%s\" - %s",
+ 		    ServerCertificate, strerror(errno));
+ 
+  /*
+@@ -3446,8 +3557,83 @@
+ 
+   gnutls_x509_crt_deinit(crt);
+   gnutls_x509_privkey_deinit(key);
++
++  return (1);
++
++#elif defined(HAVE_CDSASSL) && defined(HAVE_WAITPID)
++  int	pid,				/* Process ID of command */
++	status;				/* Status of command */
++  char	command[1024],			/* Command */
++	keychain[1024],			/* Keychain argument */
++	*argv[5],			/* Command-line arguments */
++	*envp[MAX_ENV];			/* Environment variables */
++
++
++ /*
++  * Run the "certtool" command to generate a self-signed certificate:
++  *
++  *     certtool c Z k=ServerCertificate
++  */
++
++  if (!cupsFileFind("certtool", getenv("PATH"), 1, command, sizeof(command)))
++  {
++    cupsdLogMessage(CUPSD_LOG_ERROR,
++                    "No SSL certificate and certtool command not found!");
++    return (0);
++  }
++
++  cupsdLogMessage(CUPSD_LOG_INFO,
++                  "Generating SSL server key and certificate...");
++
++  snprintf(keychain, sizeof(keychain), "k=%s", ServerCertificate);
++
++  argv[0] = "certtool";
++  argv[1] = "c";
++  argv[2] = "Z";
++  argv[3] = keychain;
++  argv[4] = NULL;
++
++  cupsdLoadEnv(envp, MAX_ENV);
++
++  if (!cupsdStartProcess(command, argv, envp, -1, -1, -1, -1, 1, &pid))
++    return (0);
++
++  while (waitpid(pid, &status, 0) < 0)
++    if (errno != EINTR)
++    {
++      status = 1;
++      break;
++    }
++
++  cupsdFinishProcess(pid, command, sizeof(command));
++
++  if (status)
++  {
++    if (WIFEXITED(status))
++      cupsdLogMessage(CUPSD_LOG_ERROR,
++                      "Unable to create SSL server key and certificate - "
++		      "the certtool command stopped with status %d!",
++	              WEXITSTATUS(status));
++    else
++      cupsdLogMessage(CUPSD_LOG_ERROR,
++                      "Unable to create SSL server key and certificate - "
++		      "the certtool command crashed on signal %d!",
++	              WTERMSIG(status));
++  }
++  else
++  {
++    cupsdLogMessage(CUPSD_LOG_INFO,
++                    "Created SSL server certificate file \"%s\"...",
++		    ServerCertificate);
++  }
++
++  return (!status);
++
++#else
++  return (0);
++#endif /* HAVE_LIBSSL && HAVE_WAITPID */
+ }
+-#endif /* HAVE_GNUTLS */
++#endif /* HAVE_SSL */
+ 
+ 
+ /*
 diff -urNad cupsys-1.2.1~/scheduler/conf.c cupsys-1.2.1/scheduler/conf.c
---- cupsys-1.2.1~/scheduler/conf.c	2006-06-17 05:05:01.000000000 +0000
-+++ cupsys-1.2.1/scheduler/conf.c	2006-06-17 05:14:56.000000000 +0000
+--- cupsys-1.2.1~/scheduler/conf.c	2006-05-02 18:13:40.000000000 +0000
++++ cupsys-1.2.1/scheduler/conf.c	2006-07-18 11:27:13.000000000 +0000
 @@ -289,6 +289,11 @@
    cupsdSetString(&ServerHeader, "CUPS/1.2");
    cupsdSetString(&StateDir, CUPS_STATEDIR);
@@ -6053,7 +8260,47 @@ diff -urNad cupsys-1.2.1~/scheduler/conf.c cupsys-1.2.1/scheduler/conf.c
    strlcpy(temp, ConfigurationFile, sizeof(temp));
    if ((slash = strrchr(temp, '/')) != NULL)
      *slash = '\0';
-@@ -1277,33 +1282,14 @@
+@@ -463,6 +468,14 @@
+   RunUser = getuid();
+ 
+  /*
++  * See if the ServerName is an IP address...
++  */
++
++  for (slash = ServerName; isdigit(*slash & 255) || *slash == '.'; slash ++);
++
++  ServerNameIsIP = !*slash;
++
++ /*
+   * Use the default system group if none was supplied in cupsd.conf...
+   */
+ 
+@@ -780,6 +793,24 @@
+                   MaxClientsPerHost);
+ 
+  /*
++  * Make sure that BrowseTimeout is at least twice the interval...
++  */
++
++  if (BrowseTimeout < (2 * BrowseInterval) || BrowseTimeout <= 0)
++  {
++    cupsdLogMessage(CUPSD_LOG_ALERT, "Invalid BrowseTimeout value %d!",
++                    BrowseTimeout);
++
++    if (BrowseInterval)
++      BrowseTimeout = BrowseInterval * 2;
++    else
++      BrowseTimeout = DEFAULT_TIMEOUT;
++
++    cupsdLogMessage(CUPSD_LOG_ALERT, "Reset BrowseTimeout to %d!",
++                    BrowseTimeout);
++  }
++
++ /*
+   * Update the default policy, as needed...
+   */
+ 
+@@ -1277,33 +1308,14 @@
    const char	*maskval,		/* Pointer to start of mask value */
  		*ptr,			/* Pointer into value */
  		*ptr2;			/* ... */
@@ -6089,7 +8336,7 @@ diff -urNad cupsys-1.2.1~/scheduler/conf.c cupsys-1.2.1/scheduler/conf.c
  
    if ((maskval = strchr(value, '/')) != NULL)
      maskval ++;
-@@ -1334,6 +1320,7 @@
+@@ -1334,6 +1346,7 @@
  	     ptr2 = strchr(ptr2 + 1, ':'), j ++);
  
          i = 7 - j;
@@ -6097,7 +8344,7 @@ diff -urNad cupsys-1.2.1~/scheduler/conf.c cupsys-1.2.1/scheduler/conf.c
        }
        else if (isxdigit(*ptr & 255))
        {
-@@ -1343,9 +1330,9 @@
+@@ -1343,9 +1356,9 @@
  	  return (0);
  
          if (i & 1)
@@ -6109,7 +8356,7 @@ diff -urNad cupsys-1.2.1~/scheduler/conf.c cupsys-1.2.1/scheduler/conf.c
        }
        else
          return (0);
-@@ -1354,7 +1341,10 @@
+@@ -1354,7 +1367,10 @@
          ptr ++;
      }
  
@@ -6121,7 +8368,7 @@ diff -urNad cupsys-1.2.1~/scheduler/conf.c cupsys-1.2.1/scheduler/conf.c
  
      if (*ptr && *ptr != '/')
        return (0);
-@@ -1366,70 +1356,55 @@
+@@ -1366,70 +1382,55 @@
      * Parse dotted-decimal IPv4 address...
      */
  
@@ -6223,7 +8470,7 @@ diff -urNad cupsys-1.2.1~/scheduler/conf.c cupsys-1.2.1/scheduler/conf.c
        if (sscanf(maskval, "%u.%u.%u.%u", mask + 0, mask + 1, mask + 2, mask + 3) != 4)
          return (0);
  
-@@ -1447,6 +1422,9 @@
+@@ -1447,6 +1448,9 @@
  #ifdef AF_INET6
        if (family == AF_INET6)
        {
@@ -6233,7 +8480,7 @@ diff -urNad cupsys-1.2.1~/scheduler/conf.c cupsys-1.2.1/scheduler/conf.c
          i = 128 - i;
  
  	if (i <= 96)
-@@ -1478,25 +1456,20 @@
+@@ -1478,25 +1482,20 @@
        else
  #endif /* AF_INET6 */
        {
@@ -6263,7 +8510,7 @@ diff -urNad cupsys-1.2.1~/scheduler/conf.c cupsys-1.2.1/scheduler/conf.c
  
    cupsdLogMessage(CUPSD_LOG_DEBUG2,
                    "get_addr_and_mask(value=\"%s\", "
-@@ -1634,7 +1607,12 @@
+@@ -1634,7 +1633,12 @@
        else
  	cupsdDenyIP(loc, ones, zeros);
      }
@@ -6276,7 +8523,7 @@ diff -urNad cupsys-1.2.1~/scheduler/conf.c cupsys-1.2.1/scheduler/conf.c
      {
       /*
        * Host or domain name...
-@@ -2406,7 +2384,12 @@
+@@ -2406,7 +2410,12 @@
  	  else
  	    cupsdDenyIP(location, ones, zeros);
  	}
@@ -6290,7 +8537,7 @@ diff -urNad cupsys-1.2.1~/scheduler/conf.c cupsys-1.2.1/scheduler/conf.c
  	{
  	 /*
            * Host or domain name...
-@@ -2490,7 +2473,12 @@
+@@ -2490,7 +2499,12 @@
        *    nnn.nnn.nnn.nnn/mmm.mmm.mmm.mmm
        */
  
@@ -6304,9 +8551,43 @@ diff -urNad cupsys-1.2.1~/scheduler/conf.c cupsys-1.2.1/scheduler/conf.c
        {
         /*
          * Host or domain name...
+@@ -2584,7 +2598,7 @@
+ 	    strlcpy(temp2, relay->from.mask.name.name, sizeof(temp2));
+   
+ 	  cupsdLogMessage(CUPSD_LOG_INFO, "Relaying from %s to %s:%d (IPv4)",
+-			  temp, temp2, ntohs(relay->to.ipv4.sin_port));
++			  temp2, temp, ntohs(relay->to.ipv4.sin_port));
+   
+ 	  NumRelays ++;
+ 	}
+@@ -2973,7 +2987,12 @@
+ 		  n *= 262144;
+ 	      }
+ 
+-	      *((int *)var->ptr) = n;
++              if (n < 0)
++		cupsdLogMessage(CUPSD_LOG_ERROR,
++	                	"Bad negative integer value for %s on line %d!",
++				line, linenum);
++	      else
++		*((int *)var->ptr) = n;
+ 	    }
+ 	    break;
+ 
+diff -urNad cupsys-1.2.1~/scheduler/conf.h cupsys-1.2.1/scheduler/conf.h
+--- cupsys-1.2.1~/scheduler/conf.h	2006-03-02 17:47:53.000000000 +0000
++++ cupsys-1.2.1/scheduler/conf.h	2006-07-18 11:27:13.000000000 +0000
+@@ -74,6 +74,7 @@
+ 					/* Directory for request files */
+ 			*DocumentRoot		VALUE(NULL);
+ 					/* Root directory for documents */
++VAR int			ServerNameIsIP		VALUE(0);
+ VAR int			NumSystemGroups		VALUE(0);
+ 					/* Number of system group names */
+ VAR char		*SystemGroups[MAX_SYSTEM_GROUPS];
 diff -urNad cupsys-1.2.1~/scheduler/dirsvc.c cupsys-1.2.1/scheduler/dirsvc.c
---- cupsys-1.2.1~/scheduler/dirsvc.c	2006-06-17 05:05:01.000000000 +0000
-+++ cupsys-1.2.1/scheduler/dirsvc.c	2006-06-17 05:14:56.000000000 +0000
+--- cupsys-1.2.1~/scheduler/dirsvc.c	2006-05-19 19:39:28.000000000 +0000
++++ cupsys-1.2.1/scheduler/dirsvc.c	2006-07-18 11:27:13.000000000 +0000
 @@ -36,6 +36,7 @@
   *   cupsdStopPolling()            - Stop polling servers as needed.
   *   cupsdUpdateCUPSBrowse()       - Update the browse lists using the CUPS
@@ -6315,7 +8596,86 @@ diff -urNad cupsys-1.2.1~/scheduler/dirsvc.c cupsys-1.2.1/scheduler/dirsvc.c
   *   cupsdUpdatePolling()          - Read status messages from the poll daemons.
   *   cupsdUpdateSLPBrowse()        - Get browsing information via SLP.
   *   dequote()                     - Remote quotes from a string.
-@@ -1526,39 +1527,57 @@
+@@ -211,10 +212,11 @@
+ 	else
+           p = cupsdAddPrinter(value);
+ 
+-	p->accepting   = 1;
+-	p->state       = IPP_PRINTER_IDLE;
+-	p->type        |= CUPS_PRINTER_REMOTE;
+-	p->browse_time = now + BrowseTimeout;
++	p->accepting     = 1;
++	p->state         = IPP_PRINTER_IDLE;
++	p->type          |= CUPS_PRINTER_REMOTE;
++	p->browse_time   = now;
++	p->browse_expire = now + BrowseTimeout;
+ 
+        /*
+         * Set the default printer as needed...
+@@ -251,10 +253,11 @@
+ 	else
+           p = cupsdAddClass(value);
+ 
+-	p->accepting   = 1;
+-	p->state       = IPP_PRINTER_IDLE;
+-	p->type        |= CUPS_PRINTER_REMOTE;
+-	p->browse_time = now + BrowseTimeout;
++	p->accepting     = 1;
++	p->state         = IPP_PRINTER_IDLE;
++	p->type          |= CUPS_PRINTER_REMOTE;
++	p->browse_time   = now;
++	p->browse_expire = now + BrowseTimeout;
+ 
+        /*
+         * Set the default printer as needed...
+@@ -415,8 +418,8 @@
+       {
+         time_t t = atoi(value);
+ 
+-	if (t > (now + BrowseInterval))
+-          p->browse_time = t;
++	if (t > p->browse_expire)
++          p->browse_expire = t;
+       }
+       else
+       {
+@@ -590,7 +593,7 @@
+ 
+     cupsFilePrintf(fp, "Type %d\n", printer->type);
+ 
+-    cupsFilePrintf(fp, "BrowseTime %d\n", (int)printer->browse_time);
++    cupsFilePrintf(fp, "BrowseTime %d\n", (int)printer->browse_expire);
+ 
+     if (printer->info)
+       cupsFilePrintf(fp, "Info %s\n", printer->info);
+@@ -905,14 +908,21 @@
+     fcntl(BrowseSocket, F_SETFD, fcntl(BrowseSocket, F_GETFD) | FD_CLOEXEC);
+ 
+    /*
+-    * Finally, add the socket to the input selection set...
++    * Finally, add the socket to the input selection set as needed...
+     */
+ 
+-    cupsdLogMessage(CUPSD_LOG_DEBUG2,
+-                    "cupsdStartBrowsing: Adding fd %d to InputSet...",
+-                    BrowseSocket);
++    if (BrowseRemoteProtocols & BROWSE_CUPS)
++    {
++     /*
++      * We only listen if we want remote printers...
++      */
+ 
+-    FD_SET(BrowseSocket, InputSet);
++      cupsdLogMessage(CUPSD_LOG_DEBUG2,
++                      "cupsdStartBrowsing: Adding fd %d to InputSet...",
++                      BrowseSocket);
++
++      FD_SET(BrowseSocket, InputSet);
++    }
+   }
+   else
+     BrowseSocket = -1;
+@@ -1526,39 +1536,57 @@
    * Loop through the available printers...
    */
  
@@ -6385,7 +8745,16 @@ diff -urNad cupsys-1.2.1~/scheduler/dirsvc.c cupsys-1.2.1/scheduler/dirsvc.c
    }
  }
  #endif /* HAVE_OPENLDAP */
-@@ -2521,7 +2540,7 @@
+@@ -1866,7 +1894,7 @@
+   hptr   = strchr(host, '.');
+   sptr   = strchr(ServerName, '.');
+ 
+-  if (sptr != NULL && hptr != NULL)
++  if (!ServerNameIsIP && sptr != NULL && hptr != NULL)
+   {
+    /*
+     * Strip the common domain name components...
+@@ -2521,7 +2549,7 @@
  
  	  httpAssembleURIf(HTTP_URI_CODING_ALL, uri, sizeof(uri), "ipp", NULL,
  	                   iface->hostname, iface->port,
@@ -6394,7 +8763,7 @@ diff -urNad cupsys-1.2.1~/scheduler/dirsvc.c cupsys-1.2.1/scheduler/dirsvc.c
  			                                    "/printers/%s",
  			   p->name);
  	  snprintf(packet, sizeof(packet), "%x %x %s \"%s\" \"%s\" \"%s\" %s\n",
-@@ -2660,13 +2679,13 @@
+@@ -2660,13 +2688,13 @@
  
    sprintf(typestring, "%u", p->type);
  
@@ -6412,7 +8781,7 @@ diff -urNad cupsys-1.2.1~/scheduler/dirsvc.c cupsys-1.2.1/scheduler/dirsvc.c
    make_model[1] = NULL;
    type[0]       = typestring;
    type[1]       = NULL;
-@@ -2674,7 +2693,7 @@
+@@ -2674,7 +2702,7 @@
    uri[1]        = NULL;
  
    snprintf(filter, sizeof(filter),
@@ -6421,7 +8790,7 @@ diff -urNad cupsys-1.2.1~/scheduler/dirsvc.c cupsys-1.2.1/scheduler/dirsvc.c
  
    ldap_search_s(BrowseLDAPHandle, BrowseLDAPDN, LDAP_SCOPE_SUBTREE,
                  filter, (char **)ldap_attrs, 0, &res);
-@@ -2696,7 +2715,7 @@
+@@ -2696,7 +2724,7 @@
    mods[6].mod_type = "objectClass";
    mods[6].mod_values = (char **)objectClass_values;
  
@@ -6430,7 +8799,7 @@ diff -urNad cupsys-1.2.1~/scheduler/dirsvc.c cupsys-1.2.1/scheduler/dirsvc.c
    cupsdLogMessage(CUPSD_LOG_DEBUG2, "send_ldap_browse: dn=\"%s\"", dn);
  
    if (ldap_count_entries(BrowseLDAPHandle, res) > 0)
-@@ -2724,7 +2743,7 @@
+@@ -2724,7 +2752,7 @@
    else 
    {
     /*
@@ -6439,7 +8808,7 @@ diff -urNad cupsys-1.2.1~/scheduler/dirsvc.c cupsys-1.2.1/scheduler/dirsvc.c
      * registration...
      */
  
-@@ -2734,11 +2753,11 @@
+@@ -2734,11 +2762,11 @@
      for (i = 0; i < 7; i ++)
      {
        pmods[i]         = mods + i;
@@ -6454,8 +8823,8 @@ diff -urNad cupsys-1.2.1~/scheduler/dirsvc.c cupsys-1.2.1/scheduler/dirsvc.c
                        "LDAP add for %s failed with status %d: %s",
                        p->name, rc, ldap_err2string(rc));
 diff -urNad cupsys-1.2.1~/scheduler/filter.c cupsys-1.2.1/scheduler/filter.c
---- cupsys-1.2.1~/scheduler/filter.c	2006-06-17 05:05:01.000000000 +0000
-+++ cupsys-1.2.1/scheduler/filter.c	2006-06-17 05:14:56.000000000 +0000
+--- cupsys-1.2.1~/scheduler/filter.c	2006-05-05 16:33:57.000000000 +0000
++++ cupsys-1.2.1/scheduler/filter.c	2006-07-18 11:27:13.000000000 +0000
 @@ -346,6 +346,8 @@
      * any...)
      */
@@ -6474,10 +8843,183 @@ diff -urNad cupsys-1.2.1~/scheduler/filter.c cupsys-1.2.1/scheduler/filter.c
        cupsArrayInsert(mintemp, current);
      }
      else
+diff -urNad cupsys-1.2.1~/scheduler/ipp.c cupsys-1.2.1/scheduler/ipp.c
+--- cupsys-1.2.1~/scheduler/ipp.c	2006-05-20 12:23:40.000000000 +0000
++++ cupsys-1.2.1/scheduler/ipp.c	2006-07-18 11:27:13.000000000 +0000
+@@ -4334,7 +4334,8 @@
+   {
+     httpAssembleURIf(HTTP_URI_CODING_ALL, printer_uri, sizeof(printer_uri),
+                      "ipp", NULL, con->servername, con->serverport,
+-		     "/printers/%s", printer->name);
++		     (printer->type & CUPS_PRINTER_CLASS) ?
++		         "/classes/%s" : "/printers/%s", printer->name);
+     ippAddString(con->response, IPP_TAG_PRINTER, IPP_TAG_URI,
+         	 "printer-uri-supported", NULL, printer_uri);
+     cupsdLogMessage(CUPSD_LOG_DEBUG2, "printer-uri-supported=\"%s\"",
+@@ -4677,8 +4678,8 @@
+   ipp_attribute_t	*attr;		/* Current attribute */
+   const char		*dest;		/* Destination */
+   cups_ptype_t		dtype;		/* Destination type (printer or class) */
+-  char			method[HTTP_MAX_URI],
+-					/* Method portion of URI */
++  char			scheme[HTTP_MAX_URI],
++					/* Scheme portion of URI */
+ 			userpass[HTTP_MAX_URI],
+ 					/* Username portion of URI */
+ 			host[HTTP_MAX_URI],
+@@ -4718,8 +4719,8 @@
+                   "cupsdCreateSubscription(con=%p(%d), uri=\"%s\")",
+                   con, con->http.fd, uri->values[0].string.text);
+ 
+-  httpSeparateURI(HTTP_URI_CODING_ALL, uri->values[0].string.text, method,
+-                  sizeof(method), userpass, sizeof(userpass), host,
++  httpSeparateURI(HTTP_URI_CODING_ALL, uri->values[0].string.text, scheme,
++                  sizeof(scheme), userpass, sizeof(userpass), host,
+ 		  sizeof(host), &port, resource, sizeof(resource));
+ 
+   if (!strcmp(resource, "/"))
+@@ -4811,10 +4812,55 @@
+     {
+       if (!strcmp(attr->name, "notify-recipient") &&
+           attr->value_tag == IPP_TAG_URI)
++      {
++       /*
++        * Validate the recipient scheme against the ServerBin/notifier
++	* directory...
++	*/
++
++	char	notifier[1024];		/* Notifier filename */
++
++
+         recipient = attr->values[0].string.text;
++
++	if (httpSeparateURI(HTTP_URI_CODING_ALL, recipient,
++	                    scheme, sizeof(scheme), userpass, sizeof(userpass),
++			    host, sizeof(host), &port,
++			    resource, sizeof(resource)) < HTTP_URI_OK)
++        {
++          send_ipp_status(con, IPP_NOT_POSSIBLE,
++	                  _("Bad notify-recipient URI \"%s\"!"), recipient);
++	  ippAddInteger(con->response, IPP_TAG_SUBSCRIPTION, IPP_TAG_ENUM,
++	                "notify-status-code", IPP_URI_SCHEME);
++	  return;
++	}
++
++        snprintf(notifier, sizeof(notifier), "%s/notifier/%s", ServerBin,
++	         scheme);
++        if (access(notifier, X_OK))
++	{
++          send_ipp_status(con, IPP_NOT_POSSIBLE,
++	                  _("notify-recipient URI \"%s\" uses unknown scheme!"),
++			  recipient);
++	  ippAddInteger(con->response, IPP_TAG_SUBSCRIPTION, IPP_TAG_ENUM,
++	                "notify-status-code", IPP_URI_SCHEME);
++	  return;
++	}
++      }
+       else if (!strcmp(attr->name, "notify-pull-method") &&
+                attr->value_tag == IPP_TAG_KEYWORD)
++      {
+         pullmethod = attr->values[0].string.text;
++
++        if (strcmp(pullmethod, "ippget"))
++	{
++          send_ipp_status(con, IPP_NOT_POSSIBLE,
++	                  _("Bad notify-pull-method \"%s\"!"), pullmethod);
++	  ippAddInteger(con->response, IPP_TAG_SUBSCRIPTION, IPP_TAG_ENUM,
++	                "notify-status-code", IPP_ATTRIBUTES);
++	  return;
++	}
++      }
+       else if (!strcmp(attr->name, "notify-charset") &&
+                attr->value_tag == IPP_TAG_CHARSET &&
+ 	       strcmp(attr->values[0].string.text, "us-ascii") &&
+@@ -8764,19 +8810,11 @@
+   cupsdStartPrinter(printer, 1);
+ 
+   if (dtype & CUPS_PRINTER_CLASS)
+-  {
+     cupsdLogMessage(CUPSD_LOG_INFO, "Class \"%s\" started by \"%s\".", name,
+                     get_username(con));
+-    cupsdAddEvent(CUPSD_EVENT_PRINTER_MODIFIED, printer, NULL,
+-                  "Class \"%s\" started by \"%s\".", name, get_username(con));
+-  }
+   else
+-  {
+     cupsdLogMessage(CUPSD_LOG_INFO, "Printer \"%s\" started by \"%s\".", name,
+                     get_username(con));
+-    cupsdAddEvent(CUPSD_EVENT_PRINTER_MODIFIED, printer, NULL,
+-                  "Printer \"%s\" started by \"%s\".", name, get_username(con));
+-  }
+ 
+   cupsdCheckJobs();
+ 
+@@ -8860,19 +8898,11 @@
+   cupsdStopPrinter(printer, 1);
+ 
+   if (dtype & CUPS_PRINTER_CLASS)
+-  {
+     cupsdLogMessage(CUPSD_LOG_INFO, "Class \"%s\" stopped by \"%s\".", name,
+                     get_username(con));
+-    cupsdAddEvent(CUPSD_EVENT_PRINTER_MODIFIED, printer, NULL,
+-                  "Class \"%s\" stopped by \"%s\".", name, get_username(con));
+-  }
+   else
+-  {
+     cupsdLogMessage(CUPSD_LOG_INFO, "Printer \"%s\" stopped by \"%s\".", name,
+                     get_username(con));
+-    cupsdAddEvent(CUPSD_EVENT_PRINTER_MODIFIED, printer, NULL,
+-                  "Printer \"%s\" stopped by \"%s\".", name, get_username(con));
+-  }
+ 
+  /*
+   * Everything was ok, so return OK status...
 diff -urNad cupsys-1.2.1~/scheduler/job.c cupsys-1.2.1/scheduler/job.c
---- cupsys-1.2.1~/scheduler/job.c	2006-06-17 05:05:01.000000000 +0000
-+++ cupsys-1.2.1/scheduler/job.c	2006-06-17 05:14:56.000000000 +0000
-@@ -3090,28 +3090,6 @@
+--- cupsys-1.2.1~/scheduler/job.c	2006-05-18 21:00:56.000000000 +0000
++++ cupsys-1.2.1/scheduler/job.c	2006-07-18 11:27:13.000000000 +0000
+@@ -506,8 +506,19 @@
+ 	  */
+ 
+ 	  cupsdStopJob(job, 0);
+-	  job->state->values[0].integer = IPP_JOB_PENDING;
+-	  job->state_value              = IPP_JOB_PENDING;
++
++          if (!(printer->type & CUPS_PRINTER_REMOTE) ||
++	      (printer->type & CUPS_PRINTER_IMPLICIT))
++	  {
++	   /*
++	    * Mark the job as pending again - we'll retry on another
++	    * printer...
++	    */
++
++	    job->state->values[0].integer = IPP_JOB_PENDING;
++	    job->state_value              = IPP_JOB_PENDING;
++          }
++
+ 	  cupsdSaveJob(job);
+ 
+ 	 /*
+@@ -1753,8 +1764,8 @@
+   int	diff;				/* Difference */
+ 
+ 
+-  if ((diff = ((cupsd_job_t *)first)->priority -
+-              ((cupsd_job_t *)second)->priority) != 0)
++  if ((diff = ((cupsd_job_t *)second)->priority -
++              ((cupsd_job_t *)first)->priority) != 0)
+     return (diff);
+   else
+     return (((cupsd_job_t *)first)->id - ((cupsd_job_t *)second)->id);
+@@ -3011,7 +3022,7 @@
+   {
+     snprintf(final_content_type, sizeof(final_content_type),
+              "FINAL_CONTENT_TYPE=%s/%s",
+-	     filter->dst->super, filter->dst->type);
++	     filter->src->super, filter->src->type);
+     envp[envc ++] = final_content_type;
+   }
+ 
+@@ -3090,28 +3101,6 @@
    job->status = 0;
    memset(job->filters, 0, sizeof(job->filters));
  
@@ -6506,7 +9048,7 @@ diff -urNad cupsys-1.2.1~/scheduler/job.c cupsys-1.2.1/scheduler/job.c
    for (i = 0, slot = 0, filter = (mime_filter_t *)cupsArrayFirst(filters);
         filter;
         i ++, filter = (mime_filter_t *)cupsArrayNext(filters))
-@@ -3165,36 +3143,43 @@
+@@ -3165,36 +3154,43 @@
  	else
  	{
  	  job->print_pipes[0] = -1;
@@ -6575,7 +9117,7 @@ diff -urNad cupsys-1.2.1~/scheduler/job.c cupsys-1.2.1/scheduler/job.c
  	}
  
  	cupsdLogMessage(CUPSD_LOG_DEBUG2,
-@@ -3274,25 +3259,7 @@
+@@ -3274,25 +3270,7 @@
        argv[0] = sani_uri;
  
        filterfds[slot][0] = -1;
@@ -6602,9 +9144,30 @@ diff -urNad cupsys-1.2.1~/scheduler/job.c cupsys-1.2.1/scheduler/job.c
  
        cupsdLogMessage(CUPSD_LOG_DEBUG2, "start_job: backend=\"%s\"",
                        command);
+diff -urNad cupsys-1.2.1~/scheduler/listen.c cupsys-1.2.1/scheduler/listen.c
+--- cupsys-1.2.1~/scheduler/listen.c	2006-02-06 02:57:43.000000000 +0000
++++ cupsys-1.2.1/scheduler/listen.c	2006-07-18 11:27:13.000000000 +0000
+@@ -331,7 +331,7 @@
+     * "any" address...
+     */
+ 
+-    if (!LocalPort && p > 0 &&
++    if ((!LocalPort || LocalEncryption == HTTP_ENCRYPT_ALWAYS) && p > 0 &&
+         (httpAddrLocalhost(&(lis->address)) ||
+          httpAddrAny(&(lis->address))))
+     {
+@@ -373,6 +373,8 @@
+     */
+ 
+     cupsdSetEnv("CUPS_SERVER", have_domain);
++
++    LocalEncryption = HTTP_ENCRYPT_IF_REQUESTED;
+   }
+   else
+   {
 diff -urNad cupsys-1.2.1~/scheduler/main.c cupsys-1.2.1/scheduler/main.c
---- cupsys-1.2.1~/scheduler/main.c	2006-06-17 05:05:01.000000000 +0000
-+++ cupsys-1.2.1/scheduler/main.c	2006-06-17 05:14:56.000000000 +0000
+--- cupsys-1.2.1~/scheduler/main.c	2006-05-04 20:53:35.000000000 +0000
++++ cupsys-1.2.1/scheduler/main.c	2006-07-18 11:27:13.000000000 +0000
 @@ -357,8 +357,8 @@
  
    getrlimit(RLIMIT_NOFILE, &limit);
@@ -6617,8 +9180,8 @@ diff -urNad cupsys-1.2.1~/scheduler/main.c cupsys-1.2.1/scheduler/main.c
      MaxFDs = limit.rlim_max;
  
 diff -urNad cupsys-1.2.1~/scheduler/mime.c cupsys-1.2.1/scheduler/mime.c
---- cupsys-1.2.1~/scheduler/mime.c	2006-06-17 05:05:01.000000000 +0000
-+++ cupsys-1.2.1/scheduler/mime.c	2006-06-17 05:14:56.000000000 +0000
+--- cupsys-1.2.1~/scheduler/mime.c	2006-05-05 17:58:07.000000000 +0000
++++ cupsys-1.2.1/scheduler/mime.c	2006-07-18 11:27:13.000000000 +0000
 @@ -51,6 +51,7 @@
  #include <stdlib.h>
  #include <ctype.h>
@@ -6687,8 +9250,88 @@ diff -urNad cupsys-1.2.1~/scheduler/mime.c cupsys-1.2.1/scheduler/mime.c
  
 diff -urNad cupsys-1.2.1~/scheduler/printers.c cupsys-1.2.1/scheduler/printers.c
 --- cupsys-1.2.1~/scheduler/printers.c	2006-05-16 19:47:26.000000000 +0000
-+++ cupsys-1.2.1/scheduler/printers.c	2006-06-17 05:14:56.000000000 +0000
-@@ -665,7 +665,7 @@
++++ cupsys-1.2.1/scheduler/printers.c	2006-07-18 11:27:13.000000000 +0000
+@@ -62,6 +62,7 @@
+  */
+ 
+ #include "cupsd.h"
++#include <cups/dir.h>
+ 
+ 
+ /*
+@@ -257,6 +258,11 @@
+ {
+   int			i;		/* Looping var */
+   ipp_attribute_t	*attr;		/* Attribute data */
++  cups_dir_t		*dir;		/* Notifier directory */
++  cups_dentry_t		*dent;		/* Notifier directory entry */
++  cups_array_t		*notifiers;	/* Notifier array */
++  char			filename[1024],	/* Filename */
++			*notifier;	/* Current notifier */
+   static const int nups[] =		/* number-up-supported values */
+ 		{ 1, 2, 4, 6, 9, 16 };
+   static const ipp_orient_t orients[4] =/* orientation-requested-supported values */
+@@ -502,11 +508,11 @@
+   ippAddInteger(CommonData, IPP_TAG_PRINTER, IPP_TAG_INTEGER,
+                "notify-max-events-supported", MaxEvents);
+ 
+-  /* notify-notify-events-default */
++  /* notify-events-default */
+   ippAddString(CommonData, IPP_TAG_PRINTER, IPP_TAG_KEYWORD,
+                "notify-events-default", NULL, "job-completed");
+ 
+-  /* notify-notify-events-supported */
++  /* notify-events-supported */
+   ippAddStrings(CommonData, IPP_TAG_PRINTER, IPP_TAG_KEYWORD,
+                 "notify-events-supported",
+ 		(int)(sizeof(notify_events) / sizeof(notify_events[0])),
+@@ -516,10 +522,32 @@
+   ippAddString(CommonData, IPP_TAG_PRINTER, IPP_TAG_KEYWORD,
+                "notify-pull-method-supported", NULL, "ippget");
+ 
+-  /* TODO: scan notifier directory */
+   /* notify-schemes-supported */
+-  ippAddString(CommonData, IPP_TAG_PRINTER, IPP_TAG_KEYWORD,
+-               "notify-schemes-supported", NULL, "mailto");
++  snprintf(filename, sizeof(filename), "%s/notifier", ServerBin);
++  if ((dir = cupsDirOpen(filename)) != NULL)
++  {
++    notifiers = cupsArrayNew((cups_array_func_t)strcmp, NULL);
++
++    while ((dent = cupsDirRead(dir)) != NULL)
++      if (S_ISREG(dent->fileinfo.st_mode) &&
++          (dent->fileinfo.st_mode & S_IXOTH) != 0)
++        cupsArrayAdd(notifiers, _cupsStrAlloc(dent->filename));
++
++    if (cupsArrayCount(notifiers) > 0)
++    {
++      attr = ippAddStrings(CommonData, IPP_TAG_PRINTER, IPP_TAG_KEYWORD,
++        	           "notify-schemes-supported",
++			   cupsArrayCount(notifiers), NULL, NULL);
++
++      for (i = 0, notifier = (char *)cupsArrayFirst(notifiers);
++           notifier;
++	   i ++, notifier = (char *)cupsArrayNext(notifiers))
++	attr->values[i].string.text = notifier;
++    }
++
++    cupsArrayDelete(notifiers);
++    cupsDirClose(dir);
++  }
+ 
+   /* number-up-supported */
+   ippAddIntegers(CommonData, IPP_TAG_PRINTER, IPP_TAG_INTEGER,
+@@ -618,6 +646,9 @@
+ 
+   cupsArrayRemove(Printers, p);
+ 
++  if (p->type & CUPS_PRINTER_IMPLICIT)
++    cupsArrayRemove(ImplicitPrinters, p);
++
+  /*
+   * Remove the dummy interface/icon/option files under IRIX...
+   */
+@@ -665,7 +696,7 @@
  	   dp = (cupsd_printer_t *)cupsArrayNext(Printers))
  	if (dp != p && (dp->type & CUPS_PRINTER_DEFAULT))
  	{
@@ -6697,9 +9340,17 @@ diff -urNad cupsys-1.2.1~/scheduler/printers.c cupsys-1.2.1/scheduler/printers.c
  	  break;
  	}
      }
+@@ -1233,6 +1264,7 @@
+   */
+ 
+   cupsArrayAdd(Printers, p);
++
+   if (p->type & CUPS_PRINTER_IMPLICIT)
+     cupsArrayAdd(ImplicitPrinters, p);
+ }
 diff -urNad cupsys-1.2.1~/scheduler/subscriptions.c cupsys-1.2.1/scheduler/subscriptions.c
 --- cupsys-1.2.1~/scheduler/subscriptions.c	2006-03-18 03:05:12.000000000 +0000
-+++ cupsys-1.2.1/scheduler/subscriptions.c	2006-06-17 05:14:56.000000000 +0000
++++ cupsys-1.2.1/scheduler/subscriptions.c	2006-07-18 11:27:13.000000000 +0000
 @@ -36,7 +36,6 @@
   *   cupsdStopAllNotifiers()       - Stop all notifier processes.
   *   cupsdUpdateNotifierStatus()   - Read messages from notifiers.
@@ -6716,7 +9367,19 @@ diff -urNad cupsys-1.2.1~/scheduler/subscriptions.c cupsys-1.2.1/scheduler/subsc
  static void	cupsd_delete_event(cupsd_event_t *event);
  #ifdef HAVE_DBUS
  static void	cupsd_send_dbus(cupsd_eventmask_t event, cupsd_printer_t *dest,
-@@ -114,29 +112,11 @@
+@@ -91,6 +89,11 @@
+   cupsd_subscription_t	*sub;		/* Current subscription */
+ 
+ 
++  cupsdLogMessage(CUPSD_LOG_DEBUG2,
++                  "cupsdAddEvent(event=%s, dest=%p(%s), job=%p(%d), text=\"%s\", ...)",
++		  cupsdEventName(event), dest, dest ? dest->name : "",
++		  job, job ? job->id : 0, text);
++
+  /*
+   * Keep track of events with any OS-supplied notification mechanisms...
+   */
+@@ -114,29 +117,11 @@
    }
  
   /*
@@ -6747,7 +9410,7 @@ diff -urNad cupsys-1.2.1~/scheduler/subscriptions.c cupsys-1.2.1/scheduler/subsc
         sub;
         sub = (cupsd_subscription_t *)cupsArrayNext(Subscriptions))
    {
-@@ -149,185 +129,168 @@
+@@ -149,178 +134,161 @@
  	(sub->job == job || !sub->job))
      {
       /*
@@ -7029,29 +9692,19 @@ diff -urNad cupsys-1.2.1~/scheduler/subscriptions.c cupsys-1.2.1/scheduler/subsc
 +              break;
  	}
  
+-       /*
+-	* Add the new event to the main cache...
+-	*/
+-
+-	Events[NumEvents] = temp;
+-	NumEvents ++;
 +	ippAddInteger(temp->attrs, IPP_TAG_EVENT_NOTIFICATION, IPP_TAG_INTEGER,
 +	              "job-impressions-completed",
 +		      job->sheets ? job->sheets->values[0].integer : 0);
-+
-        /*
--	* Add the new event to the main cache...
-+	* Send the notification for this subscription...
- 	*/
- 
--	Events[NumEvents] = temp;
--	NumEvents ++;
-+	cupsd_send_notification(sub, temp);
        }
--
--     /*
--      * Send the notification for this subscription...
--      */
--
--      cupsd_send_notification(sub, temp);
-     }
-   }
  
-@@ -438,8 +401,6 @@
+      /*
+@@ -438,8 +406,6 @@
    cupsd_subscription_t	*sub;		/* Subscription */
  
  
@@ -7060,7 +9713,7 @@ diff -urNad cupsys-1.2.1~/scheduler/subscriptions.c cupsys-1.2.1/scheduler/subsc
    if (!Subscriptions)
      return;
  
-@@ -462,6 +423,9 @@
+@@ -462,6 +428,9 @@
      cupsd_subscription_t *sub,		/* I - Subscription object */
      int                  update)	/* I - 1 = update subscriptions.conf */
  {
@@ -7070,7 +9723,7 @@ diff -urNad cupsys-1.2.1~/scheduler/subscriptions.c cupsys-1.2.1/scheduler/subsc
   /*
    * Close the pipe to the notifier as needed...
    */
-@@ -483,7 +447,12 @@
+@@ -483,7 +452,12 @@
    cupsdClearString(&(sub->recipient));
  
    if (sub->events)
@@ -7083,7 +9736,7 @@ diff -urNad cupsys-1.2.1~/scheduler/subscriptions.c cupsys-1.2.1/scheduler/subsc
  
    free(sub);
  
-@@ -1300,27 +1269,6 @@
+@@ -1300,27 +1274,6 @@
  
  
  /*
@@ -7111,7 +9764,7 @@ diff -urNad cupsys-1.2.1~/scheduler/subscriptions.c cupsys-1.2.1/scheduler/subsc
   * 'cupsd_delete_event()' - Delete a single event...
   *
   * Oldest events must be deleted first, otherwise the subscription cache
-@@ -1330,43 +1278,6 @@
+@@ -1330,43 +1283,6 @@
  static void
  cupsd_delete_event(cupsd_event_t *event)/* I - Event to delete */
  {
@@ -7155,7 +9808,16 @@ diff -urNad cupsys-1.2.1~/scheduler/subscriptions.c cupsys-1.2.1/scheduler/subsc
   /*
    * Free memory...
    */
-@@ -1490,6 +1401,25 @@
+@@ -1468,7 +1384,7 @@
+   ipp_state_t	state;			/* IPP event state */
+ 
+ 
+-  cupsdLogMessage(CUPSD_LOG_DEBUG,
++  cupsdLogMessage(CUPSD_LOG_DEBUG2,
+                   "cupsd_send_notification(sub=%p(%d), event=%p(%s))\n",
+                   sub, sub->id, event, cupsdEventName(event->event));
+ 
+@@ -1490,6 +1406,25 @@
    }
  
   /*
@@ -7181,9 +9843,66 @@ diff -urNad cupsys-1.2.1~/scheduler/subscriptions.c cupsys-1.2.1/scheduler/subsc
    * Add the event to the subscription.  Since the events array is
    * always MaxEvents in length, and since we will have already
    * removed an event from the subscription cache if we hit the
+@@ -1505,13 +1440,16 @@
+ 
+   if (sub->recipient)
+   {
+-    if (sub->pipe < 0)
+-      cupsd_start_notifier(sub);
++    for (;;)
++    {
++      if (sub->pipe < 0)
++	cupsd_start_notifier(sub);
+ 
+-    cupsdLogMessage(CUPSD_LOG_DEBUG, "sub->pipe=%d", sub->pipe);
++      cupsdLogMessage(CUPSD_LOG_DEBUG2, "sub->pipe=%d", sub->pipe);
++
++      if (sub->pipe < 0)
++	break;
+ 
+-    if (sub->pipe >= 0)
+-    {
+       event->attrs->state = IPP_IDLE;
+ 
+       while ((state = ippWriteFile(sub->pipe, event->attrs)) != IPP_DATA)
+@@ -1519,9 +1457,34 @@
+ 	  break;
+ 
+       if (state == IPP_ERROR)
++      {
++        if (errno == EPIPE)
++	{
++	 /*
++	  * Notifier died, try restarting it...
++	  */
++
++          cupsdLogMessage(CUPSD_LOG_WARN,
++	                  "Notifier for subscription %d (%s) went away, "
++			  "retrying!",
++			  sub->id, sub->recipient);
++	  cupsdEndProcess(sub->pid, 0);
++
++	  close(sub->pipe);
++	  sub->pipe = -1;
++          continue;
++	}
++
+         cupsdLogMessage(CUPSD_LOG_ERROR,
+ 	                "Unable to send event for subscription %d (%s)!",
+ 			sub->id, sub->recipient);
++      }
++
++     /*
++      * If we get this far, break out of the loop...
++      */
++
++      break;
+     }
+   }
+ 
 diff -urNad cupsys-1.2.1~/scheduler/subscriptions.h cupsys-1.2.1/scheduler/subscriptions.h
 --- cupsys-1.2.1~/scheduler/subscriptions.h	2006-04-06 20:03:32.000000000 +0000
-+++ cupsys-1.2.1/scheduler/subscriptions.h	2006-06-17 05:14:56.000000000 +0000
++++ cupsys-1.2.1/scheduler/subscriptions.h	2006-07-18 11:27:13.000000000 +0000
 @@ -131,11 +131,9 @@
  VAR cups_array_t *Subscriptions VALUE(NULL);
  					/* Active subscriptions */
@@ -7199,8 +9918,8 @@ diff -urNad cupsys-1.2.1~/scheduler/subscriptions.h cupsys-1.2.1/scheduler/subsc
  					/* Pipes for notifier error/debug output */
  VAR cupsd_statbuf_t *NotifierStatusBuffer VALUE(NULL);
 diff -urNad cupsys-1.2.1~/scheduler/testmime.c cupsys-1.2.1/scheduler/testmime.c
---- cupsys-1.2.1~/scheduler/testmime.c	2006-06-17 05:05:01.000000000 +0000
-+++ cupsys-1.2.1/scheduler/testmime.c	2006-06-17 05:14:56.000000000 +0000
+--- cupsys-1.2.1~/scheduler/testmime.c	2006-05-16 19:47:26.000000000 +0000
++++ cupsys-1.2.1/scheduler/testmime.c	2006-07-18 11:27:13.000000000 +0000
 @@ -71,7 +71,7 @@
    mime        = NULL;
    src         = NULL;
@@ -7211,8 +9930,8 @@ diff -urNad cupsys-1.2.1~/scheduler/testmime.c cupsys-1.2.1/scheduler/testmime.c
    for (i = 1; i < argc; i ++)
      if (!strcmp(argv[i], "-d"))
 diff -urNad cupsys-1.2.1~/systemv/Makefile cupsys-1.2.1/systemv/Makefile
---- cupsys-1.2.1~/systemv/Makefile	2006-06-17 05:05:01.000000000 +0000
-+++ cupsys-1.2.1/systemv/Makefile	2006-06-17 05:14:56.000000000 +0000
+--- cupsys-1.2.1~/systemv/Makefile	2006-03-21 02:35:37.000000000 +0000
++++ cupsys-1.2.1/systemv/Makefile	2006-07-18 11:27:13.000000000 +0000
 @@ -78,7 +78,7 @@
  	$(INSTALL_BIN) lp $(BINDIR)
  	$(INSTALL_BIN) lpoptions $(BINDIR)
@@ -7222,9 +9941,23 @@ diff -urNad cupsys-1.2.1~/systemv/Makefile cupsys-1.2.1/systemv/Makefile
  
  
  #
+diff -urNad cupsys-1.2.1~/systemv/cancel.c cupsys-1.2.1/systemv/cancel.c
+--- cupsys-1.2.1~/systemv/cancel.c	2006-02-08 18:39:56.000000000 +0000
++++ cupsys-1.2.1/systemv/cancel.c	2006-07-18 11:27:13.000000000 +0000
+@@ -121,7 +121,10 @@
+ 
+         case 'h' : /* Connect to host */
+ 	    if (http != NULL)
++	    {
+ 	      httpClose(http);
++	      http = NULL;
++	    }
+ 
+ 	    if (argv[i][2] != '\0')
+               cupsSetServer(argv[i] + 2);
 diff -urNad cupsys-1.2.1~/systemv/lpstat.c cupsys-1.2.1/systemv/lpstat.c
---- cupsys-1.2.1~/systemv/lpstat.c	2006-06-17 05:05:01.000000000 +0000
-+++ cupsys-1.2.1/systemv/lpstat.c	2006-06-17 05:14:56.000000000 +0000
+--- cupsys-1.2.1~/systemv/lpstat.c	2006-05-15 20:06:46.000000000 +0000
++++ cupsys-1.2.1/systemv/lpstat.c	2006-07-18 11:27:13.000000000 +0000
 @@ -70,26 +70,59 @@
   */
  
@@ -7297,8 +10030,8 @@ diff -urNad cupsys-1.2.1~/systemv/lpstat.c cupsys-1.2.1/systemv/lpstat.c
    num_dests   = 0;
    dests       = NULL;
 diff -urNad cupsys-1.2.1~/templates/Makefile cupsys-1.2.1/templates/Makefile
---- cupsys-1.2.1~/templates/Makefile	2006-06-17 05:05:01.000000000 +0000
-+++ cupsys-1.2.1/templates/Makefile	2006-06-17 05:14:56.000000000 +0000
+--- cupsys-1.2.1~/templates/Makefile	2006-03-18 13:18:18.000000000 +0000
++++ cupsys-1.2.1/templates/Makefile	2006-07-18 11:27:13.000000000 +0000
 @@ -118,11 +118,13 @@
  # Install files...
  #
@@ -7336,3 +10069,80 @@ diff -urNad cupsys-1.2.1~/templates/Makefile cupsys-1.2.1/templates/Makefile
  
  
  #
+diff -urNad cupsys-1.2.1~/templates/ja/printers.tmpl cupsys-1.2.1/templates/ja/printers.tmpl
+--- cupsys-1.2.1~/templates/ja/printers.tmpl	2006-04-25 17:15:45.000000000 +0000
++++ cupsys-1.2.1/templates/ja/printers.tmpl	2006-07-18 11:27:13.000000000 +0000
+@@ -12,7 +12,7 @@
+ <B>場所:</B> {printer_location}<BR>
+ <B>メーカとモデル:</B> {printer_make_and_model}<BR>
+ <B>プリンタの状態:</B> {printer_state=3?待機中:{printer_state=4?処理中:停止}},
+-{printer_is_accepting_jobs=0?ジョブを拒否中:ジョブを受け付け中}, {printer_is_shared=0?not:} 公開。
++{printer_is_accepting_jobs=0?ジョブを拒否中:ジョブを受け付け中}, {printer_is_shared=0?非:}公開。
+ {?device_uri=?:<BR><B>デバイス URI:</B> {device_uri}}
+ 
+ <P>
+diff -urNad cupsys-1.2.1~/test/ipptest.c cupsys-1.2.1/test/ipptest.c
+--- cupsys-1.2.1~/test/ipptest.c	2006-04-17 20:07:24.000000000 +0000
++++ cupsys-1.2.1/test/ipptest.c	2006-07-18 11:27:13.000000000 +0000
+@@ -122,6 +122,7 @@
+   int		status;			/* Status of tests... */
+   const char	*uri;			/* URI to use */
+   const char	*testfile;		/* Test file to use */
++  int		interval;		/* Test interval */
+ 
+ 
+  /*
+@@ -133,6 +134,7 @@
+   uri      = NULL;
+   testfile = NULL;
+   status   = 0;
++  interval = 0;
+ 
+   for (i = 1; i < argc; i ++)
+   {
+@@ -140,6 +142,15 @@
+     {
+       if (!strcmp(argv[i], "-v"))
+         Verbosity ++;
++      else if (!strcmp(argv[i], "-i"))
++      {
++        i++;
++
++	if (i >= argc)
++	  usage(NULL);
++	else
++	  interval = atoi(argv[i]);
++      }
+       else
+         usage(argv[i]);
+     }
+@@ -174,6 +185,19 @@
+     usage(NULL);
+ 
+  /*
++  * Loop if the interval is set...
++  */
++
++  if (interval)
++  {
++    for (;;)
++    {
++      sleep(interval);
++      do_tests(uri, testfile);
++    }
++  }
++
++ /*
+   * Exit...
+   */
+ 
+@@ -890,7 +914,8 @@
+   fputs("Usage: ipptest [options] URL testfile [ ... testfileN ]\n", stderr);
+   fputs("Options:\n", stderr);
+   fputs("\n", stderr);
+-  fputs("-v     Show all attributes in response, even on success.\n", stderr);
++  fputs("-i N    Repeat the last test file once every N seconds.\n", stderr);
++  fputs("-v      Show all attributes in response, even on success.\n", stderr);
+ 
+   exit(1);
+ }

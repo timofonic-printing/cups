@@ -3,6 +3,7 @@ cupsys (1.2.1-4) UNRELEASED-unstable; urgency=medium
   [Kenshi Muto]
   * Bug, bug, bug, ... our BTS is tainted by duplicate bugs like flood.
   * Include changelogs during 1.1.23-13 - 1.1.23-15. (closes: #374494)
+  * Apply upstream svn change r5743.
   * 56_cupsaddsmb: avoid infinite loop when connect with Samba fails
     by something reasons. (closes: #376232)
     This patch fixes missing localized message.
