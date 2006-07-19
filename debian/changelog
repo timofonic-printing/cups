@@ -27,6 +27,8 @@ cupsys (1.2.1-4) unstable; urgency=medium
     that lp module is loaded by discover or any other hardware detection
     programs instead of CUPS. We provide a module loader by init script
     for user's convenience at this time.
+  * 60_device_uri: preserve old URI during the printer configuration on
+    Web interface.
 
  -- Kenshi Muto <kmuto@debian.org>  Wed, 21 Jun 2006 15:06:02 +0000
 
