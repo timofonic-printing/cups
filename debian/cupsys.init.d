@@ -32,8 +32,7 @@ case "$1" in
 	mkdir -p `dirname "$PIDFILE"`
 	if [ "$LOAD_LP_MODULE" = "yes" -a -f /usr/lib/cups/backend/parallel \
              -a -f /proc/devices -a -z "$(grep -e ' lp$' /proc/devices 2>/dev/null)" ]; then
-	    modprobe -q lp || true
-          fi
+	  modprobe -q lp || true
 	fi
 	start-stop-daemon --start --quiet --oknodo --pidfile "$PIDFILE" --exec $DAEMON
 	log_end_msg $?
