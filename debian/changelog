@@ -5,6 +5,9 @@ cupsys (1.2.1-4) UNRELEASED-unstable; urgency=medium
   * Include changelogs during 1.1.23-13 - 1.1.23-15. (closes: #374494)
   * Apply upstream svn change r5754.
   * 58_fixdestc: avoid build failure of r5754 (add ipp-private.h include).
+  * 59_de_docroot: install German translation/images. Although upstream
+    SVN has, Debian diff structure can't handle a binary diff. This patch
+    will be removed when 1.2.2 is released.
   * Add snmp to backend choices. Because I don't make sure this backend
     is stable, the default is disabled. Use dpkg-reconfigure cupsys to
     enable. (closes: #376496)
