@@ -21,6 +21,11 @@ cupsys (1.2.1-4) UNRELEASED-unstable; urgency=medium
     for your environment. (closes: #376840)
   * Split locale files to new package "cupsys-common". (closes: #378659)
     This package is used by cupsys and cupsys-client/cupsys-bsd.
+  * removed 26_modprobe: because parallel backend executes with user 'lp'
+    permission, modprobe can't work. We CUPS team believe it's better 
+    that lp module is loaded by discover or any other hardware detection
+    programs instead of CUPS. We provide a module loader by init script
+    for user's convenience at this time.
 
  -- Kenshi Muto <kmuto@debian.org>  Wed, 21 Jun 2006 15:06:02 +0000
 

@@ -12,6 +12,10 @@ test -f $DAEMON || exit 0
 
 set -e
 
+if [ -r /etc/default/cupsys ]; then
+  . /etc/default/cupsys
+fi
+
 . /lib/lsb/init-functions
 
 # Get the timezone set.
@@ -26,6 +30,11 @@ case "$1" in
 	chown root:lpadmin /usr/share/cups/model 2>/dev/null || true
 	chmod 3775 /usr/share/cups/model 2>/dev/null || true
 	mkdir -p `dirname "$PIDFILE"`
+	if [ "$LOAD_LP_MODULE" = "yes" -a -f /usr/lib/cups/backend/parallel \\
+             -a -f /proc/devices -a -z "$(grep -e ' lp$' /proc/devices 2>/dev/null)" ]; then
+	    modprobe -q lp || true
+          fi
+	fi
 	start-stop-daemon --start --quiet --oknodo --pidfile "$PIDFILE" --exec $DAEMON
 	log_end_msg $?
 	;;

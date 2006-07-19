@@ -13,7 +13,7 @@
 12_quiesce_ipp_logging.dpatch
 13_default_log_warn.dpatch
 19_cupsaccept.dpatch
-26_modprobe.dpatch
+#26_modprobe.dpatch
 44_fixconfdirperms.dpatch
 47_pid.dpatch
 #48_stdlib.dpatch
