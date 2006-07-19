@@ -47,6 +47,7 @@ common-install-prehook-impl::
 $(patsubst %,install/%,$(DEB_ALL_PACKAGES)) :: install/%:
 	dh_movefiles -p$(cdbs_curpkg)
 binary-post-install/cupsys::
+	uudecode -o - doc/de/doc-de-images.tar.gz.uu | tar zCxf debian/cupsys/usr/share/cups/doc-root/de -
 	mv debian/cupsys/usr/lib/cups/backend/* debian/cupsys/usr/lib/cups/backend-available
 	install -o root -g root -m 644 doc/favicon.ico debian/cupsys/usr/share/cups/doc-root
 	(cd $(DEB_DESTDIR) && mv var/spool var/log $(DEB_DESTDIR)/../cupsys/var)
