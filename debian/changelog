@@ -1,9 +1,10 @@
-cupsys (1.2.1-4) UNRELEASED-unstable; urgency=medium
+cupsys (1.2.1-4) unstable; urgency=medium
 
   [Kenshi Muto]
-  * Bug, bug, bug, ... our BTS is tainted by duplicate bugs like flood.
   * Include changelogs during 1.1.23-13 - 1.1.23-15. (closes: #374494)
   * Apply upstream svn change r5754.
+    - Fix negotiation problem between unstable clients and sarge servers.
+      (closes: #375359)
   * 58_fixdestc: avoid build failure of r5754 (add ipp-private.h include).
   * 59_de_docroot: install German translation/images. Although upstream
     SVN has, Debian diff structure can't handle a binary diff. This patch
