@@ -1,9 +1,10 @@
-cupsys (1.2.1-5) UNRELEASED; urgency=low
+cupsys (1.2.2-1) UNRELEASED; urgency=low
 
-  [Kenshi Muto]
-  * bug squash march
+  * New upstream release
+  [ Kenshi Muto]
+  * Bug squash march
 
- -- Kenshi Muto <kmuto@debian.org>  Wed, 19 Jul 2006 04:47:14 +0000
+ -- Kenshi Muto <kmuto@debian.org>  Fri, 21 Jul 2006 08:43:10 +0000
 
 cupsys (1.2.1-4) unstable; urgency=medium
 
