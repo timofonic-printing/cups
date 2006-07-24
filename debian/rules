@@ -55,7 +55,7 @@ binary-post-install/cupsys::
 	#(cd $(DEB_DESTDIR)/../cupsys/usr/share/man && mv man1/backend.1 man1/cups-backend.1 && mv man1/filter.1 man1/cups-filter.1)
 	(install -m 755 -o root -g root $(DEB_DESTDIR)/../pdftops $(DEB_DESTDIR)/../cupsys/usr/lib/cups/filter/)
 	install -o root -g root -m 644 debian/cupsys.default debian/cupsys/etc/default/cupsys
-	install -m 755 debian/local/browsing_status debian/local/enable_browsing $(DEB_DESTDIR)/../cupsys/usr/share/cups
+	install -m 755 debian/local/browsing_status debian/local/enable_browsing debian/local/sharing_status debian/local/enable_sharing $(DEB_DESTDIR)/../cupsys/usr/share/cups
 
 	# Install PPDs into /usr/share/ppd/cups-included/<Manufacturer>, see
 	# http://wiki.debian.org/PpdFileStructureSpecification

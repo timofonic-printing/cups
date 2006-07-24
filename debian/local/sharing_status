@@ -1,0 +1,23 @@
+#!/bin/sh -e
+
+# Author: Martin Pitt <martin.pitt@ubuntu.com>
+# (C) 2005  Canonical Ltd.
+#
+# Get the status of IPP network browsing through exit code:
+#
+# 0: sharing is disabled (default configuration)
+# 1: sharing is enabled for LAN
+# 2: the configuration was adapted manually; in this case enable_sharing cannot
+#    be used
+
+CONF=/etc/cups/cupsd.conf
+
+[ -f $CONF ] || exit 2
+
+if egrep -qi '^[[:space:]]*(Port|Listen)[[:space:]]+(631)[[:space:]]*(#.*)?$' $CONF; then
+    exit 1
+fi
+if egrep -qi '^[[:space:]]*Listen[[:space:]]+(localhost|127.0.0.1):631[[:space:]]*(#.*)?$' $CONF; then
+    exit 0
+fi
+exit 2

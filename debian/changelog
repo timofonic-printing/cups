@@ -27,8 +27,12 @@ cupsys (1.2.2-1) UNRELEASED; urgency=low
     them).
   * debian/local/{enable_browsing,browsing_status}: Adapt to single-file
     configuration file style.
+  * Add debian/local/{enable_sharing,sharing_status}: Similar to
+    enable_browsing and browsing_status, this switches between "Listen
+    localhost:631" and "Port 631" (just as the web interface does). Install
+    files in debian/rules.
 
- -- Kenshi Muto <kmuto@debian.org>  Mon, 24 Jul 2006 10:55:22 +0200
+ -- Kenshi Muto <kmuto@debian.org>  Mon, 24 Jul 2006 10:59:27 +0200
 
 cupsys (1.2.1-4) unstable; urgency=medium
 
