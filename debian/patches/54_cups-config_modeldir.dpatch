@@ -20,7 +20,7 @@ diff -urNad cupsys-1.1.99.b1.r4929~/cups-config.in cupsys-1.1.99.b1.r4929/cups-c
  	--static)
  	    static=yes
  	    ;;
-+        --modeldir
++        --modeldir)
 +	    echo /usr/share/ppd
  	--version)
  	    echo $VERSION
