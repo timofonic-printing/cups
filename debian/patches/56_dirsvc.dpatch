@@ -1,0 +1,19 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 56_dirsvc.dpatch by Kenshi Muto <kmuto@debian.org>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: No description.
+
+@DPATCH@
+diff -urNad cupsys-1.2.1~/scheduler/dirsvc.c cupsys-1.2.1/scheduler/dirsvc.c
+--- cupsys-1.2.1~/scheduler/dirsvc.c	2006-06-11 11:41:06.000000000 +0000
++++ cupsys-1.2.1/scheduler/dirsvc.c	2006-06-11 11:50:51.000000000 +0000
+@@ -2521,7 +2521,7 @@
+ 
+ 	  httpAssembleURIf(HTTP_URI_CODING_ALL, uri, sizeof(uri), "ipp", NULL,
+ 	                   iface->hostname, iface->port,
+-			   (p->type & CUPS_PRINTER_CLASS) ? "/classes/%s%s" :
++			   (p->type & CUPS_PRINTER_CLASS) ? "/classes/%s" :
+ 			                                    "/printers/%s",
+ 			   p->name);
+ 	  snprintf(packet, sizeof(packet), "%x %x %s \"%s\" \"%s\" \"%s\" %s\n",

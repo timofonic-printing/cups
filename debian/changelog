@@ -10,8 +10,9 @@ cupsys (1.2.2-1) UNRELEASED; urgency=low
   * debian/cupsys.init.d: If lp module loading is requested, also load the
     'ppdev' module to fix the name and model detection of parallel printers on
     newer kernels.
+  * Revive debian/patches/56_dirsvc.dpatch; it's still not fixed upstream.
 
- -- Kenshi Muto <kmuto@debian.org>  Mon, 24 Jul 2006 09:44:00 +0200
+ -- Kenshi Muto <kmuto@debian.org>  Mon, 24 Jul 2006 09:46:32 +0200
 
 cupsys (1.2.1-4) unstable; urgency=medium
 
