@@ -1,0 +1,27 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 54_cups-config_modeldir.dpatch by  <martin.pitt@ubuntu.com>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: No description.
+
+@DPATCH@
+diff -urNad cupsys-1.1.99.b1.r4929~/cups-config.in cupsys-1.1.99.b1.r4929/cups-config.in
+--- cupsys-1.1.99.b1.r4929~/cups-config.in	2005-10-19 15:48:06.000000000 +0200
++++ cupsys-1.1.99.b1.r4929/cups-config.in	2006-04-07 16:04:46.000000000 +0200
+@@ -61,6 +61,7 @@
+     echo "       cups-config [--image] [--static] --libs"
+     echo "       cups-config --serverbin"
+     echo "       cups-config --serverroot"
++    echo "       cups-config --modeldir"
+     echo "       cups-config --version"
+ 
+     exit $1
+@@ -118,6 +119,8 @@
+ 	--static)
+ 	    static=yes
+ 	    ;;
++        --modeldir
++	    echo /usr/share/ppd
+ 	--version)
+ 	    echo $VERSION
+ 	    ;;

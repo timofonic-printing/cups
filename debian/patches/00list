@@ -18,6 +18,7 @@
 47_pid.dpatch
 #48_stdlib.dpatch
 53_usr_share_ppd_support.dpatch
+54_cups-config_modeldir.dpatch
 55_ppd_okidata_name.dpatch
 56_dirsvc.dpatch
 #57_cupsaddsmb.dpatch
