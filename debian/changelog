@@ -25,8 +25,10 @@ cupsys (1.2.2-1) UNRELEASED; urgency=low
     PPD base path.
   * debian/cupsys.examples: Do not ship .svn files (upstream Makefiles install
     them).
+  * debian/local/{enable_browsing,browsing_status}: Adapt to single-file
+    configuration file style.
 
- -- Martin Pitt <mpitt@debian.org>  Mon, 24 Jul 2006 10:14:37 +0200
+ -- Kenshi Muto <kmuto@debian.org>  Mon, 24 Jul 2006 10:55:22 +0200
 
 cupsys (1.2.1-4) unstable; urgency=medium
 
