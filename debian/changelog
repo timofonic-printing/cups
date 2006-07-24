@@ -23,8 +23,10 @@ cupsys (1.2.2-1) UNRELEASED; urgency=low
   * debian/patches/54_cups-config_modeldir.dpatch: Add --modeldir to
     cups-config so that other packages can use it to figure out the correct
     PPD base path.
+  * debian/cupsys.examples: Do not ship .svn files (upstream Makefiles install
+    them).
 
- -- Kenshi Muto <kmuto@debian.org>  Mon, 24 Jul 2006 09:59:39 +0200
+ -- Martin Pitt <mpitt@debian.org>  Mon, 24 Jul 2006 10:14:37 +0200
 
 cupsys (1.2.1-4) unstable; urgency=medium
 
