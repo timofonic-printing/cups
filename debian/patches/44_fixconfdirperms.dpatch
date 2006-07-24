@@ -5,10 +5,10 @@
 ## DP: No description.
 
 @DPATCH@
-diff -urNad cupsys-1.1.99.rc2~/scheduler/conf.c cupsys-1.1.99.rc2/scheduler/conf.c
---- cupsys-1.1.99.rc2~/scheduler/conf.c	2006-04-06 20:03:32.000000000 +0000
-+++ cupsys-1.1.99.rc2/scheduler/conf.c	2006-04-11 10:35:14.000000000 +0000
-@@ -531,22 +531,10 @@
+diff -urNad cups-1.2-ubuntu~/scheduler/conf.c cups-1.2-ubuntu/scheduler/conf.c
+--- cups-1.2-ubuntu~/scheduler/conf.c	2006-06-27 15:59:30.000000000 +0200
++++ cups-1.2-ubuntu/scheduler/conf.c	2006-06-27 15:59:51.000000000 +0200
+@@ -540,22 +540,10 @@
  
        cupsdLogMessage(CUPSD_LOG_NOTICE,
                        "Group and SystemGroup cannot use the same groups!");
@@ -33,7 +33,29 @@ diff -urNad cupsys-1.1.99.rc2~/scheduler/conf.c cupsys-1.1.99.rc2/scheduler/conf
      }
    }
  
-@@ -630,11 +618,13 @@
+@@ -609,21 +597,10 @@
+   if (ServerCertificate[0] != '/')
+     cupsdSetStringf(&ServerCertificate, "%s/%s", ServerRoot, ServerCertificate);
+ 
+-  if (!strncmp(ServerRoot, ServerCertificate, strlen(ServerRoot)))
+-  {
+-    chown(ServerCertificate, RunUser, Group);
+-    chmod(ServerCertificate, 0600);
+-  }
+-
+ #  if defined(HAVE_LIBSSL) || defined(HAVE_GNUTLS)
+   if (ServerKey[0] != '/')
+     cupsdSetStringf(&ServerKey, "%s/%s", ServerRoot, ServerKey);
+ 
+-  if (!strncmp(ServerRoot, ServerKey, strlen(ServerRoot)))
+-  {
+-    chown(ServerKey, RunUser, Group);
+-    chmod(ServerKey, 0600);
+-  }
+ #  endif /* HAVE_LIBSSL || HAVE_GNUTLS */
+ #endif /* HAVE_SSL */
+ 
+@@ -639,11 +616,13 @@
    check_permissions(StateDir, "certs", RunUser ? 0711 : 0511, User,
                      SystemGroupIDs[0], 1, 1);
  

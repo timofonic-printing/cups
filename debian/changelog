@@ -16,8 +16,13 @@ cupsys (1.2.2-1) UNRELEASED; urgency=low
     concerning detection of parallel port printers and other 'permission
     denied' bugs if privilege dropping is enabled (it is disabled by default in
     Debian).
+  * debian/patches/44_fixconfdirperms.dpatch: Do not change owner and mode of
+    SSL certificate, in order to not break permissions of customized global
+    ones (like the one from the ssl-cert package). Grrr, cups, no, you cannot
+    own the world!
 
- -- Kenshi Muto <kmuto@debian.org>  Mon, 24 Jul 2006 09:53:51 +0200
+
+ -- Kenshi Muto <kmuto@debian.org>  Mon, 24 Jul 2006 09:55:26 +0200
 
 cupsys (1.2.1-4) unstable; urgency=medium
 
