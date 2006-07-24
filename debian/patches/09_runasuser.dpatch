@@ -111,3 +111,22 @@ diff -urNad cups-1.2~/scheduler/main.c cups-1.2/scheduler/main.c
      {
       /*
        * Update the root certificate...
+diff -urNad cups-1.2-ubuntu~/scheduler/process.c cups-1.2-ubuntu/scheduler/process.c
+--- cups-1.2-ubuntu~/scheduler/process.c	2006-04-06 22:32:07.000000000 +0200
++++ cups-1.2-ubuntu/scheduler/process.c	2006-04-24 19:16:09.000000000 +0200
+@@ -245,15 +245,6 @@
+       if (setuid(User))
+         exit(errno);
+     }
+-    else
+-    {
+-     /*
+-      * Reset group membership to just the main one we belong to.
+-      */
+-
+-      setgid(Group);
+-      setgroups(1, &Group);
+-    }
+ 
+    /*
+     * Change umask to restrict permissions on created files...

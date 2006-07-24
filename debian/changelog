@@ -11,8 +11,13 @@ cupsys (1.2.2-1) UNRELEASED; urgency=low
     'ppdev' module to fix the name and model detection of parallel printers on
     newer kernels.
   * Revive debian/patches/56_dirsvc.dpatch; it's still not fixed upstream.
+  * debian/patches/09_runasuser.dpatch: Do not drop additional group
+    privileges in scheduler/process.c. This should fix a range of bugs
+    concerning detection of parallel port printers and other 'permission
+    denied' bugs if privilege dropping is enabled (it is disabled by default in
+    Debian).
 
- -- Kenshi Muto <kmuto@debian.org>  Mon, 24 Jul 2006 09:46:32 +0200
+ -- Kenshi Muto <kmuto@debian.org>  Mon, 24 Jul 2006 09:53:51 +0200
 
 cupsys (1.2.1-4) unstable; urgency=medium
 
