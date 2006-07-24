@@ -23,32 +23,3 @@ diff -urNad cups-1.2~/configure cups-1.2/configure
  			;;
  	esac
  else
-diff -urNad cups-1.2~/configure.rej cups-1.2/configure.rej
---- cups-1.2~/configure.rej	1970-01-01 01:00:00.000000000 +0100
-+++ cups-1.2/configure.rej	2006-07-21 18:45:32.000000000 +0200
-@@ -0,0 +1,25 @@
-+***************
-+*** 7856,7866 ****
-+                  IRIX | Linux | GNU)
-+                          # IRIX, Linux, and HURD...
-+  			if test $exec_prefix != /usr; then
-+- 				DSOFLAGS="-Wl,-rpath,\$(libdir) $DSOFLAGS"
-+- 				DSO32FLAGS="-Wl,-rpath,\$(LIB32DIR) $DSO32FLAGS"
-+- 				DSO64FLAGS="-Wl,-rpath,\$(LIB64DIR) $DSO64FLAGS"
-+- 				LDFLAGS="$LDFLAGS -Wl,-rpath,\$(libdir)"
-+- 				EXPORT_LDFLAGS="-Wl,-rpath,\$(libdir)"
-+  			fi
-+  			;;
-+  	esac
-+--- 7856,7866 ----
-+                  IRIX | Linux | GNU)
-+                          # IRIX, Linux, and HURD...
-+  			if test $exec_prefix != /usr; then
-++ 				DSOFLAGS="$DSOFLAGS"
-++ 				DSO32FLAGS="$DSO32FLAGS"
-++ 				DSO64FLAGS="$DSO64FLAGS"
-++ 				LDFLAGS="$LDFLAGS"
-++ 				EXPORT_LDFLAGS=""
-+  			fi
-+  			;;
-+  	esac
