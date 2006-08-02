@@ -1,6 +1,8 @@
-cupsys (1.2.2-2) UNRELEASED; urgency=low
+cupsys (1.2.2-2) UNRELEASED; urgency=high
 
-  * 
+  [ Kenshi Muto ]
+  * 61_abi_compatibility: Provide library API compatibility with
+    CUPS 1.1 series. (closes: #380619)
 
  -- Kenshi Muto <kmuto@debian.org>  Thu, 27 Jul 2006 23:40:54 +0900
 
