@@ -7,6 +7,9 @@ cupsys (1.2.2-2) UNRELEASED; urgency=high
     libcupsys2 version 1.2 changed its private API. This breaks
     old cupsys 1.1, but we believe cupsys is only one application
     is affected by this change. (closes: #380619)
+  * Provide an new package, "cupsys-dbg" to help chasing the
+    problems at user's environment.
+  * Increment compat to 5.
 
  -- Kenshi Muto <kmuto@debian.org>  Thu, 27 Jul 2006 23:40:54 +0900
 
