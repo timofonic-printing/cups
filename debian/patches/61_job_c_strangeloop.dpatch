@@ -1,0 +1,19 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 61_job_c_strangeloop.dpatch by Kenshi Muto <kmuto@debian.org>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: No description.
+
+@DPATCH@
+diff -urNad cupsys-1.2.2~/scheduler/job.c cupsys-1.2.2/scheduler/job.c
+--- cupsys-1.2.2~/scheduler/job.c	2006-08-09 15:16:18.000000000 +0000
++++ cupsys-1.2.2/scheduler/job.c	2006-08-09 15:17:17.000000000 +0000
+@@ -1728,7 +1728,7 @@
+       break;
+   }
+ 
+-  if (ptr == NULL && errno)
++  if (ptr == NULL) /* "&& errno" makes a strange infinite loop */
+   {
+    /*
+     * See if all of the filters and the backend have returned their
