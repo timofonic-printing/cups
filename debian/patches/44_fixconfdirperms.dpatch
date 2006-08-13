@@ -5,10 +5,21 @@
 ## DP: No description.
 
 @DPATCH@
-diff -urNad cups-1.2-ubuntu~/scheduler/conf.c cups-1.2-ubuntu/scheduler/conf.c
---- cups-1.2-ubuntu~/scheduler/conf.c	2006-06-27 15:59:30.000000000 +0200
-+++ cups-1.2-ubuntu/scheduler/conf.c	2006-06-27 15:59:51.000000000 +0200
-@@ -540,22 +540,10 @@
+diff -urNad cupsys-1.2.2~/man/lppasswd.man cupsys-1.2.2/man/lppasswd.man
+--- cupsys-1.2.2~/man/lppasswd.man	2006-08-13 04:26:43.000000000 +0000
++++ cupsys-1.2.2/man/lppasswd.man	2006-08-13 04:30:06.000000000 +0000
+@@ -59,6 +59,7 @@
+ that could grant super-user privileges to unprivileged users,
+ paranoid system administrators may wish to disable or change the
+ ownership of the program to an unprivileged account.
++(So Debian installs \fllppasswd\fR command with setuid to lp)
+ .SH SEE ALSO
+ \fIlp(1)\fR, \fIlpr(1)\fR,
+ .br
+diff -urNad cupsys-1.2.2~/scheduler/conf.c cupsys-1.2.2/scheduler/conf.c
+--- cupsys-1.2.2~/scheduler/conf.c	2006-08-13 04:30:05.000000000 +0000
++++ cupsys-1.2.2/scheduler/conf.c	2006-08-13 04:33:29.000000000 +0000
+@@ -548,22 +548,10 @@
  
        cupsdLogMessage(CUPSD_LOG_NOTICE,
                        "Group and SystemGroup cannot use the same groups!");
@@ -33,7 +44,7 @@ diff -urNad cups-1.2-ubuntu~/scheduler/conf.c cups-1.2-ubuntu/scheduler/conf.c
      }
    }
  
-@@ -609,21 +597,10 @@
+@@ -617,21 +605,10 @@
    if (ServerCertificate[0] != '/')
      cupsdSetStringf(&ServerCertificate, "%s/%s", ServerRoot, ServerCertificate);
  
@@ -55,12 +66,12 @@ diff -urNad cups-1.2-ubuntu~/scheduler/conf.c cups-1.2-ubuntu/scheduler/conf.c
  #  endif /* HAVE_LIBSSL || HAVE_GNUTLS */
  #endif /* HAVE_SSL */
  
-@@ -639,11 +616,13 @@
+@@ -647,11 +624,13 @@
    check_permissions(StateDir, "certs", RunUser ? 0711 : 0511, User,
                      SystemGroupIDs[0], 1, 1);
  
 -  check_permissions(ServerRoot, NULL, 0755, RunUser, Group, 1, 0);
-+  check_permissions(ServerRoot, NULL, 03755, RunUser, Group, 1, 0);
++  check_permissions(ServerRoot, NULL, 03755, User, Group, 1, 0);
    check_permissions(ServerRoot, "ppd", 0755, RunUser, Group, 1, 1);
    check_permissions(ServerRoot, "ssl", 0700, RunUser, Group, 1, 0);
 +  /* Never alter permissions of central conffile

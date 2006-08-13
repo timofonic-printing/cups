@@ -13,6 +13,9 @@ cupsys (1.2.2-2) UNRELEASED; urgency=high
   * Provide an new package, "cupsys-dbg" to help chasing the
     problems at user's environment.
   * Increment compat to 5.
+  * 44_fixconfdirperms: set owner lp for /etc/cups directory.
+    And modify lppasswd.man to mention about Debian
+    specific changes. lppasswd command now work. (closes: #378062)
 
  -- Kenshi Muto <kmuto@debian.org>  Thu, 27 Jul 2006 23:40:54 +0900
 
