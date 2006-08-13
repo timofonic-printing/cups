@@ -1,11 +1,13 @@
 cupsys (1.2.2-2) UNRELEASED; urgency=high
 
   [ Kenshi Muto ]
-  * Apply upstream svn change r5809.
+  * Apply upstream svn change r5818.
     - BrowseRelay didn't work on Debian (closes: #372855)
     61_job_c_strangeloop.dpatch: I don't make sure but job.c of
-    r5809 causes strange CPU busy when it gets printing jobs.
+    r5818 causes strange CPU busy when it gets printing jobs.
     This patch avoids it.
+  * 12_quiesce_ipp_logging: some part are merged into the upstream
+    source. updated.
   * libcupsys2 conflicts cupsys version 1.1.
     libcupsys2 version 1.2 changed its private API. This breaks
     old cupsys 1.1, but we believe cupsys is only one application

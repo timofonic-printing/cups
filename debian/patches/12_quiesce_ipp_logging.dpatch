@@ -5,28 +5,9 @@
 ## DP: No description.
 
 @DPATCH@
-diff -urNad cupsys~/scheduler/ipp.c cupsys/scheduler/ipp.c
---- cupsys~/scheduler/ipp.c	2006-04-07 17:36:10.000000000 +0200
-+++ cupsys/scheduler/ipp.c	2006-04-12 16:44:34.000000000 +0200
-@@ -8057,13 +8057,13 @@
-               _cupsLangString(con->language, message), ap);
-     va_end(ap);
- 
--    cupsdLogMessage(status >= IPP_BAD_REQUEST ? CUPSD_LOG_ERROR : CUPSD_LOG_INFO,
-+    cupsdLogMessage(status >= IPP_BAD_REQUEST ? CUPSD_LOG_INFO : CUPSD_LOG_DEBUG,
-                     "%s %s: %s",
- 		    ippOpString(con->request->request.op.operation_id),
- 		    ippErrorString(status), formatted);
-   }
-   else
--    cupsdLogMessage(status >= IPP_BAD_REQUEST ? CUPSD_LOG_ERROR : CUPSD_LOG_INFO,
-+    cupsdLogMessage(status >= IPP_BAD_REQUEST ? CUPSD_LOG_INFO : CUPSD_LOG_DEBUG,
-                     "%s %s",
- 		    ippOpString(con->request->request.op.operation_id),
- 		    ippErrorString(status));
-diff -urNad cupsys~/scheduler/log.c cupsys/scheduler/log.c
---- cupsys~/scheduler/log.c	2006-02-27 21:57:07.000000000 +0100
-+++ cupsys/scheduler/log.c	2006-04-12 16:43:26.000000000 +0200
+diff -urNad cupsys-1.2.2~/scheduler/log.c cupsys-1.2.2/scheduler/log.c
+--- cupsys-1.2.2~/scheduler/log.c	2006-08-13 04:49:19.000000000 +0000
++++ cupsys-1.2.2/scheduler/log.c	2006-08-13 05:17:06.000000000 +0000
 @@ -354,6 +354,12 @@
  		  "STATUS"
  		};

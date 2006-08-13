@@ -1,20 +1,29 @@
 #! /bin/sh /usr/share/dpatch/dpatch-run
-## 00_r5809.dpatch by Kenshi Muto <kmuto@debian.org>
+## 00_r5818.dpatch by Kenshi Muto <kmuto@debian.org>
 ##
 ## All lines beginning with `## DP:' are a description of the patch.
 ## DP: No description.
 
 @DPATCH@
 diff -urNad cupsys-1.2.2~/CHANGES.txt cupsys-1.2.2/CHANGES.txt
---- cupsys-1.2.2~/CHANGES.txt	2006-08-09 10:49:14.000000000 +0000
-+++ cupsys-1.2.2/CHANGES.txt	2006-08-09 10:51:06.000000000 +0000
-@@ -1,6 +1,30 @@
+--- cupsys-1.2.2~/CHANGES.txt	2006-08-13 04:49:20.000000000 +0000
++++ cupsys-1.2.2/CHANGES.txt	2006-08-13 04:50:12.000000000 +0000
+@@ -1,6 +1,39 @@
 -CHANGES.txt - 2006-07-18
-+CHANGES.txt - 2006-08-07
++CHANGES.txt - 2006-08-09
  ------------------------
  
 +CHANGES IN CUPS V1.2.3
 +
++	- The admin page's simple settings options did not check
++	  for local domain socket or IPv6 addresses and did not
++	  use "localhost" as the listen address.
++	- An empty BrowseProtocols, BrowseLocalProtocols, or
++	  BrowseRemoteProtocols line would crash the scheduler
++	  instead of disabling the corresponding browsing options.
++	- The scheduler now logs IPP operation status as debug
++	  messages instead of info or error.
++	- cupsFileRewind() didn't clear the end-of-file state.
 +	- cupstestppd didn't report the actual misspelling of the
 +	  1284DeviceID attribute (STR #1849) 
 +	- BrowseRelay didn't work on Debian (STR #1887)
@@ -41,8 +50,8 @@ diff -urNad cupsys-1.2.2~/CHANGES.txt cupsys-1.2.2/CHANGES.txt
  
  	- Documentation updates (STR #1765, STR #1780)
 diff -urNad cupsys-1.2.2~/Makedefs.in cupsys-1.2.2/Makedefs.in
---- cupsys-1.2.2~/Makedefs.in	2006-08-09 10:49:14.000000000 +0000
-+++ cupsys-1.2.2/Makedefs.in	2006-08-09 10:51:06.000000000 +0000
+--- cupsys-1.2.2~/Makedefs.in	2006-08-13 04:49:20.000000000 +0000
++++ cupsys-1.2.2/Makedefs.in	2006-08-13 04:50:11.000000000 +0000
 @@ -174,12 +174,16 @@
  # We have to define these first because autoconf uses ${prefix}
  # and ${exec_prefix} for most of the other directories...
@@ -61,8 +70,8 @@ diff -urNad cupsys-1.2.2~/Makedefs.in cupsys-1.2.2/Makedefs.in
  includedir	=	@includedir@
  infodir		=	@infodir@
 diff -urNad cupsys-1.2.2~/README.txt cupsys-1.2.2/README.txt
---- cupsys-1.2.2~/README.txt	2006-08-09 10:49:14.000000000 +0000
-+++ cupsys-1.2.2/README.txt	2006-08-09 10:51:06.000000000 +0000
+--- cupsys-1.2.2~/README.txt	2006-08-13 04:49:20.000000000 +0000
++++ cupsys-1.2.2/README.txt	2006-08-13 04:50:12.000000000 +0000
 @@ -1,4 +1,4 @@
 -README - CUPS v1.2.0 - 2006-05-08
 +README - CUPS v1.2.3 - 2006-07-20
@@ -70,8 +79,8 @@ diff -urNad cupsys-1.2.2~/README.txt cupsys-1.2.2/README.txt
  
  Looking for compile instructions?  Read the file "INSTALL.txt"
 diff -urNad cupsys-1.2.2~/backend/backend-private.h cupsys-1.2.2/backend/backend-private.h
---- cupsys-1.2.2~/backend/backend-private.h	2006-08-09 10:49:14.000000000 +0000
-+++ cupsys-1.2.2/backend/backend-private.h	2006-08-09 10:51:06.000000000 +0000
+--- cupsys-1.2.2~/backend/backend-private.h	2006-08-13 04:49:20.000000000 +0000
++++ cupsys-1.2.2/backend/backend-private.h	2006-08-13 04:50:11.000000000 +0000
 @@ -45,9 +45,9 @@
   * C++ magic...
   */
@@ -97,8 +106,8 @@ diff -urNad cupsys-1.2.2~/backend/backend-private.h cupsys-1.2.2/backend/backend
  
  
 diff -urNad cupsys-1.2.2~/backend/runloop.c cupsys-1.2.2/backend/runloop.c
---- cupsys-1.2.2~/backend/runloop.c	2006-08-09 10:49:14.000000000 +0000
-+++ cupsys-1.2.2/backend/runloop.c	2006-08-09 10:51:06.000000000 +0000
+--- cupsys-1.2.2~/backend/runloop.c	2006-08-13 04:49:20.000000000 +0000
++++ cupsys-1.2.2/backend/runloop.c	2006-08-13 04:50:11.000000000 +0000
 @@ -33,7 +33,11 @@
   */
  
@@ -113,8 +122,8 @@ diff -urNad cupsys-1.2.2~/backend/runloop.c cupsys-1.2.2/backend/runloop.c
  
  /*
 diff -urNad cupsys-1.2.2~/backend/snmp.c cupsys-1.2.2/backend/snmp.c
---- cupsys-1.2.2~/backend/snmp.c	2006-08-09 10:49:14.000000000 +0000
-+++ cupsys-1.2.2/backend/snmp.c	2006-08-09 10:51:06.000000000 +0000
+--- cupsys-1.2.2~/backend/snmp.c	2006-08-13 04:49:20.000000000 +0000
++++ cupsys-1.2.2/backend/snmp.c	2006-08-13 04:50:11.000000000 +0000
 @@ -52,6 +52,7 @@
   *                               packed integer value.
   *   compare_cache()           - Compare two cache entries.
@@ -501,8 +510,8 @@ diff -urNad cupsys-1.2.2~/backend/snmp.c cupsys-1.2.2/backend/snmp.c
  
  
 diff -urNad cupsys-1.2.2~/config-scripts/cups-defaults.m4 cupsys-1.2.2/config-scripts/cups-defaults.m4
---- cupsys-1.2.2~/config-scripts/cups-defaults.m4	2006-08-09 10:49:14.000000000 +0000
-+++ cupsys-1.2.2/config-scripts/cups-defaults.m4	2006-08-09 10:51:06.000000000 +0000
+--- cupsys-1.2.2~/config-scripts/cups-defaults.m4	2006-08-13 04:49:20.000000000 +0000
++++ cupsys-1.2.2/config-scripts/cups-defaults.m4	2006-08-13 04:50:11.000000000 +0000
 @@ -25,7 +25,9 @@
  
  dnl Default langugages...
@@ -515,8 +524,8 @@ diff -urNad cupsys-1.2.2~/config-scripts/cups-defaults.m4 cupsys-1.2.2/config-sc
  AC_SUBST(LANGUAGES)
  
 diff -urNad cupsys-1.2.2~/config-scripts/cups-directories.m4 cupsys-1.2.2/config-scripts/cups-directories.m4
---- cupsys-1.2.2~/config-scripts/cups-directories.m4	2006-08-09 10:49:14.000000000 +0000
-+++ cupsys-1.2.2/config-scripts/cups-directories.m4	2006-08-09 10:51:06.000000000 +0000
+--- cupsys-1.2.2~/config-scripts/cups-directories.m4	2006-08-13 04:49:20.000000000 +0000
++++ cupsys-1.2.2/config-scripts/cups-directories.m4	2006-08-13 04:50:12.000000000 +0000
 @@ -57,6 +57,15 @@
  	sharedstatedir="/usr/com"
  fi
@@ -543,8 +552,8 @@ diff -urNad cupsys-1.2.2~/config-scripts/cups-directories.m4 cupsys-1.2.2/config
  
  dnl Fix "includedir" variable if it hasn't been specified...
 diff -urNad cupsys-1.2.2~/config-scripts/cups-manpages.m4 cupsys-1.2.2/config-scripts/cups-manpages.m4
---- cupsys-1.2.2~/config-scripts/cups-manpages.m4	2006-08-09 10:49:14.000000000 +0000
-+++ cupsys-1.2.2/config-scripts/cups-manpages.m4	2006-08-09 10:51:06.000000000 +0000
+--- cupsys-1.2.2~/config-scripts/cups-manpages.m4	2006-08-13 04:49:20.000000000 +0000
++++ cupsys-1.2.2/config-scripts/cups-manpages.m4	2006-08-13 04:50:11.000000000 +0000
 @@ -3,7 +3,7 @@
  dnl
  dnl   Manpage stuff for the Common UNIX Printing System (CUPS).
@@ -568,8 +577,8 @@ diff -urNad cupsys-1.2.2~/config-scripts/cups-manpages.m4 cupsys-1.2.2/config-sc
  	case "$uname" in
          	Darwin* | Linux | GNU | *BSD* | AIX*)
 diff -urNad cupsys-1.2.2~/configure.in cupsys-1.2.2/configure.in
---- cupsys-1.2.2~/configure.in	2006-08-09 10:49:14.000000000 +0000
-+++ cupsys-1.2.2/configure.in	2006-08-09 10:51:06.000000000 +0000
+--- cupsys-1.2.2~/configure.in	2006-08-13 04:49:20.000000000 +0000
++++ cupsys-1.2.2/configure.in	2006-08-13 04:50:12.000000000 +0000
 @@ -54,9 +54,17 @@
  	INSTALL_LANGUAGES="install-languages"
  	UNINSTALL_LANGUAGES="uninstall-languages"
@@ -592,8 +601,8 @@ diff -urNad cupsys-1.2.2~/configure.in cupsys-1.2.2/configure.in
  fi
  
 diff -urNad cupsys-1.2.2~/cups/Makefile cupsys-1.2.2/cups/Makefile
---- cupsys-1.2.2~/cups/Makefile	2006-08-09 10:49:14.000000000 +0000
-+++ cupsys-1.2.2/cups/Makefile	2006-08-09 10:51:06.000000000 +0000
+--- cupsys-1.2.2~/cups/Makefile	2006-08-13 04:49:20.000000000 +0000
++++ cupsys-1.2.2/cups/Makefile	2006-08-13 04:50:12.000000000 +0000
 @@ -93,6 +93,7 @@
  HEADERS	=	\
  		adminutil.h \
@@ -602,9 +611,62 @@ diff -urNad cupsys-1.2.2~/cups/Makefile cupsys-1.2.2/cups/Makefile
  		cups.h \
  		dir.h \
  		file.h \
+diff -urNad cupsys-1.2.2~/cups/adminutil.c cupsys-1.2.2/cups/adminutil.c
+--- cupsys-1.2.2~/cups/adminutil.c	2006-07-18 19:53:24.000000000 +0000
++++ cupsys-1.2.2/cups/adminutil.c	2006-08-13 04:50:12.000000000 +0000
+@@ -784,7 +784,14 @@
+ 	if ((port = strrchr(value, ':')) != NULL)
+ 	  *port = '\0';
+ 
+-	if (strcasecmp(value, "localhost") && strcmp(value, "127.0.0.1"))
++	if (strcasecmp(value, "localhost") && strcmp(value, "127.0.0.1")
++#ifdef AF_LOCAL
++            && *value != '/'
++#endif /* AF_LOCAL */
++#ifdef AF_INET6
++            && strcmp(value, "::1")
++#endif /* AF_INET6 */
++	    )
+ 	  remote_access = 1;
+       }
+       else if (!strcasecmp(line, "Browsing"))
+@@ -860,7 +867,14 @@
+ 	in_location       = 0;
+       }
+       else if (!strcasecmp(line, "Allow") && in_admin_location &&
+-               strcasecmp(value, "localhost") && strcasecmp(value, "127.0.0.1"))
++               strcasecmp(value, "localhost") && strcasecmp(value, "127.0.0.1")
++#ifdef AF_LOCAL
++	       && *value != '/'
++#endif /* AF_LOCAL */
++#ifdef AF_INET6
++	       && strcmp(value, "::1")
++#endif /* AF_INET6 */
++	       )
+       {
+ 	remote_admin = 1;
+       }
+@@ -1084,7 +1098,7 @@
+ 	{
+ 	  cupsFilePuts(temp, "# Only listen for connections from the local "
+ 	                     "machine.\n");
+-	  cupsFilePrintf(temp, "Listen 127.0.0.1:%d\n", ippPort());
++	  cupsFilePrintf(temp, "Listen localhost:%d\n", ippPort());
+ 	}
+ 
+ #ifdef CUPS_DEFAULT_DOMAINSOCKET
+@@ -1440,7 +1454,7 @@
+     {
+       cupsFilePuts(temp,
+                    "# Only listen for connections from the local machine.\n");
+-      cupsFilePrintf(temp, "Listen 127.0.0.1:%d\n", ippPort());
++      cupsFilePrintf(temp, "Listen localhost:%d\n", ippPort());
+     }
+ 
+ #ifdef CUPS_DEFAULT_DOMAINSOCKET
 diff -urNad cupsys-1.2.2~/cups/cups.h cupsys-1.2.2/cups/cups.h
---- cupsys-1.2.2~/cups/cups.h	2006-08-09 10:49:14.000000000 +0000
-+++ cupsys-1.2.2/cups/cups.h	2006-08-09 10:51:06.000000000 +0000
+--- cupsys-1.2.2~/cups/cups.h	2006-08-13 04:49:20.000000000 +0000
++++ cupsys-1.2.2/cups/cups.h	2006-08-13 04:50:12.000000000 +0000
 @@ -61,10 +61,10 @@
   * Constants...
   */
@@ -619,8 +681,8 @@ diff -urNad cupsys-1.2.2~/cups/cups.h cupsys-1.2.2/cups/cups.h
  
  
 diff -urNad cupsys-1.2.2~/cups/dir.h cupsys-1.2.2/cups/dir.h
---- cupsys-1.2.2~/cups/dir.h	2006-08-09 10:49:14.000000000 +0000
-+++ cupsys-1.2.2/cups/dir.h	2006-08-09 10:51:06.000000000 +0000
+--- cupsys-1.2.2~/cups/dir.h	2006-08-13 04:49:20.000000000 +0000
++++ cupsys-1.2.2/cups/dir.h	2006-08-13 04:50:12.000000000 +0000
 @@ -5,7 +5,7 @@
   *
   *   This set of APIs abstracts enumeration of directory entries.
@@ -654,9 +716,20 @@ diff -urNad cupsys-1.2.2~/cups/dir.h cupsys-1.2.2/cups/dir.h
  #endif /* !_CUPS_DIR_H_ */
  
  /*
+diff -urNad cupsys-1.2.2~/cups/file.c cupsys-1.2.2/cups/file.c
+--- cupsys-1.2.2~/cups/file.c	2006-03-23 16:47:46.000000000 +0000
++++ cupsys-1.2.2/cups/file.c	2006-08-13 04:50:12.000000000 +0000
+@@ -1260,6 +1260,7 @@
+   fp->pos = 0;
+   fp->ptr = NULL;
+   fp->end = NULL;
++  fp->eof = 0;
+ 
+   return (0);
+ }
 diff -urNad cupsys-1.2.2~/cups/file.h cupsys-1.2.2/cups/file.h
---- cupsys-1.2.2~/cups/file.h	2006-08-09 10:49:14.000000000 +0000
-+++ cupsys-1.2.2/cups/file.h	2006-08-09 10:51:06.000000000 +0000
+--- cupsys-1.2.2~/cups/file.h	2006-08-13 04:49:20.000000000 +0000
++++ cupsys-1.2.2/cups/file.h	2006-08-13 04:50:12.000000000 +0000
 @@ -8,7 +8,7 @@
   *   our own file functions allows us to provide transparent support of
   *   gzip'd print files, PPD files, etc.
@@ -691,8 +764,8 @@ diff -urNad cupsys-1.2.2~/cups/file.h cupsys-1.2.2/cups/file.h
  
  /*
 diff -urNad cupsys-1.2.2~/cups/http.h cupsys-1.2.2/cups/http.h
---- cupsys-1.2.2~/cups/http.h	2006-08-09 10:49:14.000000000 +0000
-+++ cupsys-1.2.2/cups/http.h	2006-08-09 10:51:06.000000000 +0000
+--- cupsys-1.2.2~/cups/http.h	2006-08-13 04:49:20.000000000 +0000
++++ cupsys-1.2.2/cups/http.h	2006-08-13 04:50:12.000000000 +0000
 @@ -39,8 +39,8 @@
  #    include <winsock2.h>
  #    include <ws2tcpip.h>
@@ -715,8 +788,8 @@ diff -urNad cupsys-1.2.2~/cups/http.h cupsys-1.2.2/cups/http.h
  #      include <sys/un.h>
  #    endif /* AF_LOCAL */
 diff -urNad cupsys-1.2.2~/cups/language.c cupsys-1.2.2/cups/language.c
---- cupsys-1.2.2~/cups/language.c	2006-08-09 10:49:14.000000000 +0000
-+++ cupsys-1.2.2/cups/language.c	2006-08-09 10:51:06.000000000 +0000
+--- cupsys-1.2.2~/cups/language.c	2006-08-13 04:49:20.000000000 +0000
++++ cupsys-1.2.2/cups/language.c	2006-08-13 04:50:12.000000000 +0000
 @@ -1288,6 +1288,8 @@
  	  *d = *d * 8 + *s - '0';
  	  s ++;
@@ -727,8 +800,8 @@ diff -urNad cupsys-1.2.2~/cups/language.c cupsys-1.2.2/cups/language.c
        else
        {
 diff -urNad cupsys-1.2.2~/cups/transcode.c cupsys-1.2.2/cups/transcode.c
---- cupsys-1.2.2~/cups/transcode.c	2006-08-09 10:49:14.000000000 +0000
-+++ cupsys-1.2.2/cups/transcode.c	2006-08-09 10:51:06.000000000 +0000
+--- cupsys-1.2.2~/cups/transcode.c	2006-08-13 04:49:20.000000000 +0000
++++ cupsys-1.2.2/cups/transcode.c	2006-08-13 04:50:12.000000000 +0000
 @@ -1142,7 +1142,7 @@
   */
  
@@ -739,8 +812,8 @@ diff -urNad cupsys-1.2.2~/cups/transcode.c cupsys-1.2.2/cups/transcode.c
      const cups_encoding_t encoding)	/* I - Encoding */
  {
 diff -urNad cupsys-1.2.2~/cups-config.in cupsys-1.2.2/cups-config.in
---- cupsys-1.2.2~/cups-config.in	2006-08-09 10:49:14.000000000 +0000
-+++ cupsys-1.2.2/cups-config.in	2006-08-09 10:51:06.000000000 +0000
+--- cupsys-1.2.2~/cups-config.in	2006-08-13 04:49:20.000000000 +0000
++++ cupsys-1.2.2/cups-config.in	2006-08-13 04:50:11.000000000 +0000
 @@ -32,6 +32,7 @@
  includedir=@includedir@
  libdir=@libdir@
@@ -750,8 +823,8 @@ diff -urNad cupsys-1.2.2~/cups-config.in cupsys-1.2.2/cups-config.in
  sysconfdir=@sysconfdir@
  cups_datadir=@CUPS_DATADIR@
 diff -urNad cupsys-1.2.2~/doc/help/ref-snmp-conf.html cupsys-1.2.2/doc/help/ref-snmp-conf.html
---- cupsys-1.2.2~/doc/help/ref-snmp-conf.html	2006-08-09 10:49:14.000000000 +0000
-+++ cupsys-1.2.2/doc/help/ref-snmp-conf.html	2006-08-09 10:51:06.000000000 +0000
+--- cupsys-1.2.2~/doc/help/ref-snmp-conf.html	2006-08-13 04:49:20.000000000 +0000
++++ cupsys-1.2.2/doc/help/ref-snmp-conf.html	2006-08-13 04:50:12.000000000 +0000
 @@ -96,5 +96,22 @@
  
  <P>The default setting is <VAR>off</VAR>.</P>
@@ -776,8 +849,8 @@ diff -urNad cupsys-1.2.2~/doc/help/ref-snmp-conf.html cupsys-1.2.2/doc/help/ref-
  </BODY>
  </HTML>
 diff -urNad cupsys-1.2.2~/man/cups-snmp.conf.man cupsys-1.2.2/man/cups-snmp.conf.man
---- cupsys-1.2.2~/man/cups-snmp.conf.man	2006-08-09 10:49:14.000000000 +0000
-+++ cupsys-1.2.2/man/cups-snmp.conf.man	2006-08-09 10:51:06.000000000 +0000
+--- cupsys-1.2.2~/man/cups-snmp.conf.man	2006-08-13 04:49:20.000000000 +0000
++++ cupsys-1.2.2/man/cups-snmp.conf.man	2006-08-13 04:50:12.000000000 +0000
 @@ -21,7 +21,7 @@
  .\"       EMail: cups-info@cups.org
  .\"         WWW: http://www.cups.org
@@ -800,8 +873,8 @@ diff -urNad cupsys-1.2.2~/man/cups-snmp.conf.man cupsys-1.2.2/man/cups-snmp.conf
  http://localhost:631/help
  .SH COPYRIGHT
 diff -urNad cupsys-1.2.2~/packaging/cups.list.in cupsys-1.2.2/packaging/cups.list.in
---- cupsys-1.2.2~/packaging/cups.list.in	2006-08-09 10:49:14.000000000 +0000
-+++ cupsys-1.2.2/packaging/cups.list.in	2006-08-09 10:51:06.000000000 +0000
+--- cupsys-1.2.2~/packaging/cups.list.in	2006-08-13 04:49:20.000000000 +0000
++++ cupsys-1.2.2/packaging/cups.list.in	2006-08-13 04:50:11.000000000 +0000
 @@ -122,6 +122,7 @@
  $prefix=@prefix@
  $exec_prefix=@exec_prefix@
@@ -819,9 +892,26 @@ diff -urNad cupsys-1.2.2~/packaging/cups.list.in cupsys-1.2.2/packaging/cups.lis
  %subpackage es
  f 0644 root sys $LOCALEDIR/es/cups_es.po locale/cups_es.po
  %subpackage ja
+diff -urNad cupsys-1.2.2~/scheduler/conf.c cupsys-1.2.2/scheduler/conf.c
+--- cupsys-1.2.2~/scheduler/conf.c	2006-08-13 04:49:19.000000000 +0000
++++ cupsys-1.2.2/scheduler/conf.c	2006-08-13 04:50:12.000000000 +0000
+@@ -1947,6 +1947,13 @@
+ 
+ 
+  /*
++  * Empty protocol line yields NULL pointer...
++  */
++
++  if (!s)
++    return (0);
++
++ /*
+   * Loop through the value string,...
+   */
+ 
 diff -urNad cupsys-1.2.2~/scheduler/cups-lpd.c cupsys-1.2.2/scheduler/cups-lpd.c
---- cupsys-1.2.2~/scheduler/cups-lpd.c	2006-08-09 10:49:14.000000000 +0000
-+++ cupsys-1.2.2/scheduler/cups-lpd.c	2006-08-09 10:51:06.000000000 +0000
+--- cupsys-1.2.2~/scheduler/cups-lpd.c	2006-08-13 04:49:20.000000000 +0000
++++ cupsys-1.2.2/scheduler/cups-lpd.c	2006-08-13 04:50:12.000000000 +0000
 @@ -471,7 +471,7 @@
  
      request = ippNewRequest(CUPS_GET_PRINTERS);
@@ -841,8 +931,8 @@ diff -urNad cupsys-1.2.2~/scheduler/cups-lpd.c cupsys-1.2.2/scheduler/cups-lpd.c
  		  (int)(sizeof(requested) / sizeof(requested[0])),
                    NULL, requested);
 diff -urNad cupsys-1.2.2~/scheduler/cups-polld.c cupsys-1.2.2/scheduler/cups-polld.c
---- cupsys-1.2.2~/scheduler/cups-polld.c	2006-08-09 10:49:14.000000000 +0000
-+++ cupsys-1.2.2/scheduler/cups-polld.c	2006-08-09 10:51:06.000000000 +0000
+--- cupsys-1.2.2~/scheduler/cups-polld.c	2006-08-13 04:49:20.000000000 +0000
++++ cupsys-1.2.2/scheduler/cups-polld.c	2006-08-13 04:50:12.000000000 +0000
 @@ -260,6 +260,7 @@
    * Do the request and get back a response...
    */
@@ -860,8 +950,8 @@ diff -urNad cupsys-1.2.2~/scheduler/cups-polld.c cupsys-1.2.2/scheduler/cups-pol
  
     /*
 diff -urNad cupsys-1.2.2~/scheduler/dirsvc.c cupsys-1.2.2/scheduler/dirsvc.c
---- cupsys-1.2.2~/scheduler/dirsvc.c	2006-08-09 10:49:14.000000000 +0000
-+++ cupsys-1.2.2/scheduler/dirsvc.c	2006-08-09 10:51:06.000000000 +0000
+--- cupsys-1.2.2~/scheduler/dirsvc.c	2006-08-13 04:49:20.000000000 +0000
++++ cupsys-1.2.2/scheduler/dirsvc.c	2006-08-13 04:50:12.000000000 +0000
 @@ -1468,7 +1468,7 @@
      if (cupsdCheckAuth(address, srcname, len, 1, &(Relays[i].from)))
        if (sendto(BrowseSocket, packet, bytes, 0,
@@ -907,9 +997,29 @@ diff -urNad cupsys-1.2.2~/scheduler/dirsvc.c cupsys-1.2.2/scheduler/dirsvc.c
        {
         /*
          * Unable to send browse packet, so remove this address from the
+diff -urNad cupsys-1.2.2~/scheduler/ipp.c cupsys-1.2.2/scheduler/ipp.c
+--- cupsys-1.2.2~/scheduler/ipp.c	2006-08-13 04:49:19.000000000 +0000
++++ cupsys-1.2.2/scheduler/ipp.c	2006-08-13 04:50:12.000000000 +0000
+@@ -8053,14 +8053,12 @@
+               _cupsLangString(con->language, message), ap);
+     va_end(ap);
+ 
+-    cupsdLogMessage(status >= IPP_BAD_REQUEST ? CUPSD_LOG_ERROR : CUPSD_LOG_INFO,
+-                    "%s %s: %s",
++    cupsdLogMessage(CUPSD_LOG_DEBUG, "%s %s: %s",
+ 		    ippOpString(con->request->request.op.operation_id),
+ 		    ippErrorString(status), formatted);
+   }
+   else
+-    cupsdLogMessage(status >= IPP_BAD_REQUEST ? CUPSD_LOG_ERROR : CUPSD_LOG_INFO,
+-                    "%s %s",
++    cupsdLogMessage(CUPSD_LOG_DEBUG, "%s %s",
+ 		    ippOpString(con->request->request.op.operation_id),
+ 		    ippErrorString(status));
+ 
 diff -urNad cupsys-1.2.2~/scheduler/job.c cupsys-1.2.2/scheduler/job.c
---- cupsys-1.2.2~/scheduler/job.c	2006-08-09 10:49:14.000000000 +0000
-+++ cupsys-1.2.2/scheduler/job.c	2006-08-09 10:51:06.000000000 +0000
+--- cupsys-1.2.2~/scheduler/job.c	2006-08-13 04:49:20.000000000 +0000
++++ cupsys-1.2.2/scheduler/job.c	2006-08-13 04:50:12.000000000 +0000
 @@ -1728,7 +1728,7 @@
        break;
    }
@@ -929,9 +1039,30 @@ diff -urNad cupsys-1.2.2~/scheduler/job.c cupsys-1.2.2/scheduler/job.c
    {
      snprintf(final_content_type, sizeof(final_content_type),
               "FINAL_CONTENT_TYPE=%s/%s",
+diff -urNad cupsys-1.2.2~/scheduler/main.c cupsys-1.2.2/scheduler/main.c
+--- cupsys-1.2.2~/scheduler/main.c	2006-08-13 04:49:19.000000000 +0000
++++ cupsys-1.2.2/scheduler/main.c	2006-08-13 04:50:12.000000000 +0000
+@@ -660,7 +660,7 @@
+     * inactivity...
+     */
+ 
+-    if (timeout.tv_sec == 86400 && Launchd && LaunchdTimeout &&
++    if (timeout.tv_sec == 86400 && Launchd && LaunchdTimeout && !NumPolled &&
+ 	(!Browsing || !(BrowseLocalProtocols & BROWSE_DNSSD) ||
+ 	 cupsArrayCount(Printers) == 0))
+     {
+@@ -1628,7 +1628,7 @@
+                          kCFBooleanTrue);
+ 
+     if ((Browsing && BrowseLocalProtocols && cupsArrayCount(Printers)) ||
+-        cupsArrayCount(ActiveJobs))
++        cupsArrayCount(ActiveJobs) || NumPolled)
+       CFDictionaryAddValue(cupsd_dict, CFSTR(LAUNCH_JOBKEY_RUNATLOAD),
+                            kCFBooleanTrue);
+     else
 diff -urNad cupsys-1.2.2~/scheduler/mime.h cupsys-1.2.2/scheduler/mime.h
---- cupsys-1.2.2~/scheduler/mime.h	2006-08-09 10:49:14.000000000 +0000
-+++ cupsys-1.2.2/scheduler/mime.h	2006-08-09 10:51:06.000000000 +0000
+--- cupsys-1.2.2~/scheduler/mime.h	2006-08-13 04:49:20.000000000 +0000
++++ cupsys-1.2.2/scheduler/mime.h	2006-08-13 04:50:12.000000000 +0000
 @@ -34,9 +34,9 @@
   * C++ magic...
   */
@@ -957,8 +1088,8 @@ diff -urNad cupsys-1.2.2~/scheduler/mime.h cupsys-1.2.2/scheduler/mime.h
  
  /*
 diff -urNad cupsys-1.2.2~/scheduler/statbuf.c cupsys-1.2.2/scheduler/statbuf.c
---- cupsys-1.2.2~/scheduler/statbuf.c	2006-08-09 10:49:14.000000000 +0000
-+++ cupsys-1.2.2/scheduler/statbuf.c	2006-08-09 10:51:06.000000000 +0000
+--- cupsys-1.2.2~/scheduler/statbuf.c	2006-08-13 04:49:20.000000000 +0000
++++ cupsys-1.2.2/scheduler/statbuf.c	2006-08-13 04:50:12.000000000 +0000
 @@ -141,6 +141,13 @@
  
  
@@ -982,8 +1113,8 @@ diff -urNad cupsys-1.2.2~/scheduler/statbuf.c cupsys-1.2.2/scheduler/statbuf.c
        return (line);
      }
 diff -urNad cupsys-1.2.2~/systemv/cupstestppd.c cupsys-1.2.2/systemv/cupstestppd.c
---- cupsys-1.2.2~/systemv/cupstestppd.c	2006-08-09 10:49:14.000000000 +0000
-+++ cupsys-1.2.2/systemv/cupstestppd.c	2006-08-09 10:51:06.000000000 +0000
+--- cupsys-1.2.2~/systemv/cupstestppd.c	2006-08-13 04:49:20.000000000 +0000
++++ cupsys-1.2.2/systemv/cupstestppd.c	2006-08-13 04:50:12.000000000 +0000
 @@ -306,9 +306,9 @@
        * Look for default keywords with no matching option...
        */
