@@ -18,6 +18,9 @@ cupsys (1.2.2-2) UNRELEASED; urgency=high
   * 44_fixconfdirperms: set owner lp for /etc/cups directory.
     And modify lppasswd.man to mention about Debian
     specific changes. lppasswd command now work. (closes: #378062)
+  * 62_classes_crash: when class hasn't any printers, cupsd will
+    crash immedieately after receiving a job. This patch avoids
+    a crash.
 
  -- Kenshi Muto <kmuto@debian.org>  Thu, 27 Jul 2006 23:40:54 +0900
 
