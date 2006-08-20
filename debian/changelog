@@ -1,7 +1,13 @@
-cupsys (1.2.2-2) UNRELEASED; urgency=high
+cupsys (1.2.2-3) UNRELEASED; urgency=low
+
+  * BSP march
+
+ -- Kenshi Muto <kmuto@debian.org>  Sun, 20 Aug 2006 18:44:24 +0900
+
+cupsys (1.2.2-2) unstable; urgency=high
 
   [ Kenshi Muto ]
-  * Apply upstream svn change r5818.
+  * Apply upstream svn change r5845.
     - BrowseRelay didn't work on Debian (closes: #372855)
     61_job_c_strangeloop.dpatch: I don't make sure but job.c of
     r5818 causes strange CPU busy when it gets printing jobs.
