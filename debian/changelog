@@ -1,8 +1,8 @@
-cupsys (1.2.2-3) UNRELEASED; urgency=low
+cupsys (1.2.3-1) UNRELEASED; urgency=medium
 
-  * BSP march
+  * New upstream release
 
- -- Kenshi Muto <kmuto@debian.org>  Sun, 20 Aug 2006 18:44:24 +0900
+ -- Kenshi Muto <kmuto@debian.org>  Thu, 31 Aug 2006 13:08:32 +0000
 
 cupsys (1.2.2-2) unstable; urgency=high
 

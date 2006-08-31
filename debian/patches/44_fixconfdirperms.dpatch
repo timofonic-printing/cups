@@ -5,9 +5,9 @@
 ## DP: No description.
 
 @DPATCH@
-diff -urNad cupsys-1.2.2~/man/lppasswd.man cupsys-1.2.2/man/lppasswd.man
---- cupsys-1.2.2~/man/lppasswd.man	2006-08-13 04:26:43.000000000 +0000
-+++ cupsys-1.2.2/man/lppasswd.man	2006-08-13 04:30:06.000000000 +0000
+diff -urNad cupsys-1.2.3~/man/lppasswd.man cupsys-1.2.3/man/lppasswd.man
+--- cupsys-1.2.3~/man/lppasswd.man	2006-03-20 15:29:09.000000000 +0000
++++ cupsys-1.2.3/man/lppasswd.man	2006-08-31 13:10:46.000000000 +0000
 @@ -59,6 +59,7 @@
  that could grant super-user privileges to unprivileged users,
  paranoid system administrators may wish to disable or change the
@@ -16,9 +16,9 @@ diff -urNad cupsys-1.2.2~/man/lppasswd.man cupsys-1.2.2/man/lppasswd.man
  .SH SEE ALSO
  \fIlp(1)\fR, \fIlpr(1)\fR,
  .br
-diff -urNad cupsys-1.2.2~/scheduler/conf.c cupsys-1.2.2/scheduler/conf.c
---- cupsys-1.2.2~/scheduler/conf.c	2006-08-13 04:30:05.000000000 +0000
-+++ cupsys-1.2.2/scheduler/conf.c	2006-08-13 04:33:29.000000000 +0000
+diff -urNad cupsys-1.2.3~/scheduler/conf.c cupsys-1.2.3/scheduler/conf.c
+--- cupsys-1.2.3~/scheduler/conf.c	2006-08-31 13:10:45.000000000 +0000
++++ cupsys-1.2.3/scheduler/conf.c	2006-08-31 13:14:50.000000000 +0000
 @@ -548,22 +548,10 @@
  
        cupsdLogMessage(CUPSD_LOG_NOTICE,
@@ -66,18 +66,18 @@ diff -urNad cupsys-1.2.2~/scheduler/conf.c cupsys-1.2.2/scheduler/conf.c
  #  endif /* HAVE_LIBSSL || HAVE_GNUTLS */
  #endif /* HAVE_SSL */
  
-@@ -647,11 +624,13 @@
-   check_permissions(StateDir, "certs", RunUser ? 0711 : 0511, User,
-                     SystemGroupIDs[0], 1, 1);
- 
--  check_permissions(ServerRoot, NULL, 0755, RunUser, Group, 1, 0);
-+  check_permissions(ServerRoot, NULL, 03755, User, Group, 1, 0);
-   check_permissions(ServerRoot, "ppd", 0755, RunUser, Group, 1, 1);
-   check_permissions(ServerRoot, "ssl", 0700, RunUser, Group, 1, 0);
-+  /* Never alter permissions of central conffile
-   check_permissions(ServerRoot, "cupsd.conf", ConfigFilePerm, RunUser, Group,
-                     0, 0);
-+  */
-   check_permissions(ServerRoot, "classes.conf", 0600, RunUser, Group, 0, 0);
-   check_permissions(ServerRoot, "printers.conf", 0600, RunUser, Group, 0, 0);
-   check_permissions(ServerRoot, "passwd.md5", 0600, User, Group, 0, 0);
+@@ -644,11 +621,13 @@
+       check_permissions(StateDir, NULL, 0755, RunUser, Group, 1, 1) < 0 ||
+       check_permissions(StateDir, "certs", RunUser ? 0711 : 0511, User,
+                 	SystemGroupIDs[0], 1, 1) < 0 ||
+-      check_permissions(ServerRoot, NULL, 0755, RunUser, Group, 1, 0) < 0 ||
++      check_permissions(ServerRoot, NULL, 3755, RunUser, Group, 1, 0) < 0 ||
+       check_permissions(ServerRoot, "ppd", 0755, RunUser, Group, 1, 1) < 0 ||
+       check_permissions(ServerRoot, "ssl", 0700, RunUser, Group, 1, 0) < 0 ||
++      /* Never alter permissions of central conffile
+       check_permissions(ServerRoot, "cupsd.conf", ConfigFilePerm, RunUser,
+                         Group, 0, 0) < 0 ||
++      */
+       check_permissions(ServerRoot, "classes.conf", 0600, RunUser, Group,
+                         0, 0) < 0 ||
+       check_permissions(ServerRoot, "printers.conf", 0600, RunUser, Group,
