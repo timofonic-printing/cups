@@ -176,6 +176,7 @@ Section: net
 Architecture: all
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Conflicts: cupsys (<< 1.2.1-4)
+Replaces: cupsys (<< 1.2.1-4)
 Description: Common UNIX Printing System(tm) - common files
  The Common UNIX Printing System (or CUPS(tm)) is a printing system and 
  general replacement for lpd and the like.  It supports the Internet 
