@@ -71,7 +71,7 @@ diff -urNad cupsys-1.2.3~/scheduler/conf.c cupsys-1.2.3/scheduler/conf.c
        check_permissions(StateDir, "certs", RunUser ? 0711 : 0511, User,
                  	SystemGroupIDs[0], 1, 1) < 0 ||
 -      check_permissions(ServerRoot, NULL, 0755, RunUser, Group, 1, 0) < 0 ||
-+      check_permissions(ServerRoot, NULL, 3755, RunUser, Group, 1, 0) < 0 ||
++      check_permissions(ServerRoot, NULL, 03755, RunUser, Group, 1, 0) < 0 ||
        check_permissions(ServerRoot, "ppd", 0755, RunUser, Group, 1, 1) < 0 ||
        check_permissions(ServerRoot, "ssl", 0700, RunUser, Group, 1, 0) < 0 ||
 +      /* Never alter permissions of central conffile
