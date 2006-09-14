@@ -7,6 +7,9 @@ cupsys (1.2.3-1) UNRELEASED; urgency=medium
   * debian/patches/44_fixconfdirperms.dpatch: Fix file mode specification:
     3755 -> 03755 (regression of svn commit 353).
 
+  [ Kenshi Muto ]
+  * Apply upstream svn r5958.
+
  -- Kenshi Muto <kmuto@debian.org>  Fri,  8 Sep 2006 11:28:12 +0200
 
 cupsys (1.2.2-2) unstable; urgency=high
