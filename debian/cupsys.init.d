@@ -31,7 +31,8 @@ case "$1" in
 	chmod 3775 /usr/share/cups/model 2>/dev/null || true
 	mkdir -p `dirname "$PIDFILE"`
 	if [ "$LOAD_LP_MODULE" = "yes" -a -f /usr/lib/cups/backend/parallel \
-             -a -f /proc/devices -a -z "$(grep -e ' lp$' /proc/devices 2>/dev/null)" ]; then
+             -a -f /proc/devices -a -f /proc/modules -a -x /sbin/modprobe \
+             -a -z "$(grep -e ' lp$' /proc/devices 2>/dev/null)" ]; then
 	  modprobe -q lp || true
 	  modprobe -q ppdev || true
 	fi
