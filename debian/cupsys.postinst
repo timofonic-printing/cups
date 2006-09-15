@@ -129,11 +129,13 @@ EOF
 	#fi
 
 	# Revert to single file
-	if [ -f /etc/cups/cups.d/ports.conf -o -f /etc/cups/cups.d/browse.conf ]; then
-	  perl -e 'sub readfile { local($_) = @_; open(F, $_); while (<F>) { print; } }; while (<STDIN>) { s#^Include\s+(/etc/cups/cups.d/(?:ports.conf|browse.conf))#&readfile($1)#ei; print;}' < /etc/cups/cupsd.conf > /etc/cups/cupsd.conf.$$
-	  mv /etc/cups/cupsd.conf.$$ /etc/cups/cupsd.conf
-	  rm -f /etc/cups/cups.d/ports.conf /etc/cups/cups.d/browse.conf
-	  rmdir /etc/cups/cups.d 2>/dev/null || /bin/true
+	if [ $(dpkg --compare-versions "$2" gt 1.1.23-12 && dpkg --compare-versions "$2" lt 1.2.1-3 && echo "yes") ]; then
+	  if [ -f /etc/cups/cups.d/ports.conf -o -f /etc/cups/cups.d/browse.conf ]; then
+	    perl -e 'sub readfile { local($_) = @_; open(F, $_); while (<F>) { print; } }; while (<STDIN>) { s#^Include\s+(/etc/cups/cups.d/(?:ports.conf|browse.conf))#&readfile($1)#ei; print;}' < /etc/cups/cupsd.conf > /etc/cups/cupsd.conf.$$
+	    mv /etc/cups/cupsd.conf.$$ /etc/cups/cupsd.conf
+	    rm -f /etc/cups/cups.d/ports.conf /etc/cups/cups.d/browse.conf
+	    rmdir /etc/cups/cups.d 2>/dev/null || /bin/true
+	  fi
 	fi
 	#
 	# Create /etc/cups/cups.d/ports.conf and /etc/cups/cups.d/browse.conf
