@@ -23,6 +23,8 @@ cupsys (1.2.3-1) UNRELEASED; urgency=medium
   * Merge old separated style configuration to the single format
     only if user upgraded from an affected version. (closes: #386551)
   * Provide /usr/share/cups/drivers to contain Windows drivers.
+  * 57_cupsaddsmb: original cupsaddsmb easily goes infinite and DoS-like
+    loop. Debian cupsaddsmb ends soon when it catches an error.
 
  -- Kenshi Muto <kmuto@debian.org>  Fri,  8 Sep 2006 11:28:12 +0200
 

@@ -1,46 +1,19 @@
 #! /bin/sh /usr/share/dpatch/dpatch-run
-## 56_cupsaddsmb.dpatch by Kenshi Muto <kmuto@debian.org>
+## 57_cupsaddsmb.dpatch by Kenshi Muto <kmuto@debian.org>
 ##
 ## All lines beginning with `## DP:' are a description of the patch.
 ## DP: No description.
 
 @DPATCH@
-diff -urNad cupsys-1.2.1~/systemv/cupsaddsmb.c cupsys-1.2.1/systemv/cupsaddsmb.c
---- cupsys-1.2.1~/systemv/cupsaddsmb.c	2006-07-01 10:54:43.000000000 +0000
-+++ cupsys-1.2.1/systemv/cupsaddsmb.c	2006-07-01 12:14:15.000000000 +0000
-@@ -240,26 +240,30 @@
-   * Try to export it...
-   */
- 
--  for (status = 0; !status;)
--  {
-+/*  for (status = 0; !status;)
-+  { */
-    /*
-     * Get the password, as needed...
-     */
- 
-     if (!SAMBAPassword)
-     {
--      snprintf(prompt, sizeof(prompt),
-+      /* snprintf(prompt, sizeof(prompt),
-                _("Password for %s required to access %s via SAMBA: "),
- 	       SAMBAUser, SAMBAServer);
- 
-       if ((SAMBAPassword = cupsGetPassword(prompt)) == NULL)
--	break;
-+	break; */
-+      _cupsLangPrintf(stderr,
-+               _("Password for %s required to access %s via SAMBA: "),
-+	       SAMBAUser, SAMBAServer); /* localize */
-+      SAMBAPassword = cupsGetPassword("");
-     }
- 
+diff -urNad cupsys-1.2.3~/systemv/cupsaddsmb.c cupsys-1.2.3/systemv/cupsaddsmb.c
+--- cupsys-1.2.3~/systemv/cupsaddsmb.c	2006-09-15 14:45:03.000000000 +0000
++++ cupsys-1.2.3/systemv/cupsaddsmb.c	2006-09-15 14:46:16.000000000 +0000
+@@ -263,6 +263,8 @@
      status = cupsAdminExportSamba(dest, ppdfile, SAMBAServer,
                                    SAMBAUser, SAMBAPassword,
  				  Verbosity ? stderr : NULL);
--  }
-+  /* } */
++
++    break; /* Debian patch: anyway force to break */
+   }
  
    unlink(ppdfile);
- 

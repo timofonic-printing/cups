@@ -21,9 +21,10 @@
 54_cups-config_modeldir.dpatch
 55_ppd_okidata_name.dpatch
 56_dirsvc.dpatch
-#57_cupsaddsmb.dpatch
+57_cupsaddsmb.dpatch
 #58_fixdestc.dpatch
 #59_de_docroot.dpatch
 60_device_uri.dpatch
 #61_job_c_strangeloop.dpatch
 62_classes_crash.dpatch
+#64_driverfolder.dpatch
