@@ -1,5 +1,6 @@
 var/run/cups
 usr/share/doc/cupsys
+usr/share/cups/drivers
 etc/default
 etc/cups/ssl
 usr/lib/cups/backend-available

@@ -22,6 +22,7 @@ cupsys (1.2.3-1) UNRELEASED; urgency=medium
   * bump up libcupsys2.shlibs version to 1.2.3. (closes: #385724)
   * Merge old separated style configuration to the single format
     only if user upgraded from an affected version. (closes: #386551)
+  * Provide /usr/share/cups/drivers to contain Windows drivers.
 
  -- Kenshi Muto <kmuto@debian.org>  Fri,  8 Sep 2006 11:28:12 +0200
 
