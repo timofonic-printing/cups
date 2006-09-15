@@ -5,19 +5,18 @@
 ## DP: No description.
 
 @DPATCH@
-diff -urNad cupsys-1.2.2~/scheduler/classes.c cupsys-1.2.2/scheduler/classes.c
---- cupsys-1.2.2~/scheduler/classes.c	2006-08-13 08:07:43.000000000 +0000
-+++ cupsys-1.2.2/scheduler/classes.c	2006-08-13 08:56:01.000000000 +0000
-@@ -274,6 +274,12 @@
-   * Thanks to Joel Fredrikson for helping us get this right!
-   */
- 
-+  if (c->last_printer == 0)
-+  {
-+     cupsdLogMessage(CUPSD_LOG_ERROR, "Class \"%s\" hasn't any printers!", name);
-+     return (NULL); /* strange, but there is no printer in class */
-+  }
-+
-   for (i = c->last_printer + 1; ; i ++)
-   {
+diff -urNad cupsys-1.2.3~/scheduler/classes.c cupsys-1.2.3/scheduler/classes.c
+--- cupsys-1.2.3~/scheduler/classes.c	2006-02-22 22:43:17.000000000 +0000
++++ cupsys-1.2.3/scheduler/classes.c	2006-09-15 12:33:25.000000000 +0000
+@@ -279,6 +279,11 @@
      if (i >= c->num_printers)
+       i = 0;
+ 
++    if (c->num_printers == 0) {
++      cupsdLogMessage(CUPSD_LOG_ERROR, "Class \"%s\" hasn't any printers!", name);
++      return (NULL);
++    }
++
+     if (c->printers[i]->accepting &&
+         (c->printers[i]->state == IPP_PRINTER_IDLE ||
+          ((c->printers[i]->type & CUPS_PRINTER_REMOTE) && !c->printers[i]->job)))
