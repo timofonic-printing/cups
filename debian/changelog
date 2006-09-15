@@ -1,6 +1,8 @@
 cupsys (1.2.3-1) UNRELEASED; urgency=medium
 
   * New upstream release
+    - fixed "usb backend stalls with 'Printer off-line'" (STR1738,
+      closes: #383091)
 
   [ Martin Pitt ]
   * Add appropriate Replaces: to cupsys-common to unbreak upgrades.
