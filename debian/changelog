@@ -13,6 +13,7 @@ cupsys (1.2.3-1) UNRELEASED; urgency=medium
     modprobe (closes: #387176).
   * 62_classes_crash: fix incorrect code. old code returned an error
     even if user use the correct class configuration. (closes: #384654)
+  * bump up libcupsys2.shlibs version to 1.2.3. (closes: #385724)
 
  -- Kenshi Muto <kmuto@debian.org>  Fri,  8 Sep 2006 11:28:12 +0200
 
