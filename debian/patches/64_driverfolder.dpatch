@@ -1,0 +1,41 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 64_driverfolder.dpatch by Kenshi Muto <kmuto@debian.org>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: No description.
+
+@DPATCH@
+diff -urNad cupsys-1.2.3~/cups/adminutil.c cupsys-1.2.3/cups/adminutil.c
+--- cupsys-1.2.3~/cups/adminutil.c	2006-08-24 15:55:42.000000000 +0000
++++ cupsys-1.2.3/cups/adminutil.c	2006-09-15 13:54:11.000000000 +0000
+@@ -449,11 +449,12 @@
+ 
+     snprintf(subcmd, sizeof(subcmd),
+              "mkdir W32X86;"
+-	     "put %s W32X86/%s.ppd;"
+-	     "put %s/drivers/ps5ui.dll W32X86/ps5ui.dll;"
+-	     "put %s/drivers/pscript.hlp W32X86/pscript.hlp;"
+-	     "put %s/drivers/pscript.ntf W32X86/pscript.ntf;"
+-	     "put %s/drivers/pscript5.dll W32X86/pscript5.dll",
++             "mkdir W32X86/3;"
++	     "put %s W32X86/3/%s.ppd;"
++	     "put %s/drivers/ps5ui.dll W32X86/3/ps5ui.dll;"
++	     "put %s/drivers/pscript.hlp W32X86/3/pscript.hlp;"
++	     "put %s/drivers/pscript.ntf W32X86/3/pscript.ntf;"
++	     "put %s/drivers/pscript5.dll W32X86/3/pscript5.dll",
+ 	     ppd, dest, cg->cups_datadir, cg->cups_datadir,
+ 	     cg->cups_datadir, cg->cups_datadir);
+ 
+@@ -487,9 +488,9 @@
+       */
+ 
+       snprintf(subcmd, sizeof(subcmd),
+-               "put %s/drivers/cups6.ini W32X86/cups6.ini;"
+-               "put %s/drivers/cupsps6.dll W32X86/cupsps6.dll;"
+-	       "put %s/drivers/cupsui6.dll W32X86/cupsui6.dll",
++               "put %s/drivers/cups6.ini W32X86/3/cups6.ini;"
++               "put %s/drivers/cupsps6.dll W32X86/3/cupsps6.dll;"
++	       "put %s/drivers/cupsui6.dll W32X86/3/cupsui6.dll",
+ 	       cg->cups_datadir, cg->cups_datadir, cg->cups_datadir);
+ 
+       if ((status = do_samba_command("smbclient", address, subcmd,
