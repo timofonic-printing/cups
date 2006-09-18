@@ -1,4 +1,4 @@
-cupsys (1.2.3-1) UNRELEASED; urgency=medium
+cupsys (1.2.3-1) unstable; urgency=medium
 
   * New upstream release
     - The parallel and USB backends no longer wait for the
