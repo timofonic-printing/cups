@@ -5,11 +5,11 @@
 ## DP: No description.
 
 @DPATCH@
-diff -urNad cupsys-1.2.1~/scheduler/dirsvc.c cupsys-1.2.1/scheduler/dirsvc.c
---- cupsys-1.2.1~/scheduler/dirsvc.c	2006-06-11 11:41:06.000000000 +0000
-+++ cupsys-1.2.1/scheduler/dirsvc.c	2006-06-11 11:50:51.000000000 +0000
-@@ -2521,7 +2521,7 @@
- 
+diff -urNad cups-1.2-ubuntu~/scheduler/dirsvc.c cups-1.2-ubuntu/scheduler/dirsvc.c
+--- cups-1.2-ubuntu~/scheduler/dirsvc.c	2006-09-15 19:49:10.000000000 +0200
++++ cups-1.2-ubuntu/scheduler/dirsvc.c	2006-09-15 19:49:12.000000000 +0200
+@@ -2613,7 +2613,7 @@
+ 	{
  	  httpAssembleURIf(HTTP_URI_CODING_ALL, uri, sizeof(uri), "ipp", NULL,
  	                   iface->hostname, iface->port,
 -			   (p->type & CUPS_PRINTER_CLASS) ? "/classes/%s%s" :

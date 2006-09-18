@@ -1,3 +1,12 @@
+cupsys (1.2.3-2) UNRELEASED; urgency=low
+
+  [ Martin Pitt ]
+  * debian/patches/56_dirsvc.dpatch: Update patch so that a patch/unpatch
+    cycle restores the source properly instead of breaking dirsvc.c in two
+    different places.
+
+ -- Kenshi Muto <kmuto@debian.org>  Mon, 18 Sep 2006 10:14:35 +0200
+
 cupsys (1.2.3-1) unstable; urgency=medium
 
   * New upstream release
