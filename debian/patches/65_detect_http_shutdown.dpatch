@@ -1,0 +1,19 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 65_detect_http_shutdown.dpatch by Kenshi Muto <kmuto@debian.org>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: No description.
+
+@DPATCH@
+diff -urNad cupsys-1.2.4~/cups/ipp.c cupsys-1.2.4/cups/ipp.c
+--- cupsys-1.2.4~/cups/ipp.c	2006-06-02 15:15:23.000000000 +0000
++++ cupsys-1.2.4/cups/ipp.c	2006-09-24 10:19:16.000000000 +0000
+@@ -1054,7 +1054,7 @@
+           if ((n = (*cb)(src, buffer, 8)) < 8)
+ 	  {
+ 	    DEBUG_printf(("ippReadIO: Unable to read header (%d bytes read)!\n", n));
+-	    return (n == 0 ? IPP_IDLE : IPP_ERROR);
++	    return (IPP_ERROR);
+ 	  }
+ 
+ 	 /*

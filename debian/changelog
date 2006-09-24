@@ -1,11 +1,21 @@
-cupsys (1.2.3-2) UNRELEASED; urgency=low
+cupsys (1.2.4-1) unstable; urgency=medium
 
+  * New upstream release
+    - The web interface change settings and edit configuration
+      file buttons would truncate the cupsd.conf file (STR #1976,
+      closes: #377640)
+      Because this bug seems critical, we upload this fixed version
+      as urgency=medium.
   [ Martin Pitt ]
   * debian/patches/56_dirsvc.dpatch: Update patch so that a patch/unpatch
     cycle restores the source properly instead of breaking dirsvc.c in two
     different places.
 
- -- Kenshi Muto <kmuto@debian.org>  Mon, 18 Sep 2006 10:14:35 +0200
+  [ Kenshi Muto ]
+  * debian/patches/65_detect_http_shutdown.dpatch: avoid that
+    gnome-cups-manager eats CPU 100%. (closes: #377640)
+
+ -- Kenshi Muto <kmuto@debian.org>  Sun, 24 Sep 2006 09:54:44 +0000
 
 cupsys (1.2.3-1) unstable; urgency=medium
 

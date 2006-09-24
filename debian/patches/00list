@@ -28,3 +28,4 @@
 #61_job_c_strangeloop.dpatch
 62_classes_crash.dpatch
 #64_driverfolder.dpatch
+65_detect_http_shutdown.dpatch
