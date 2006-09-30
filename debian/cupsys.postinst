@@ -111,9 +111,9 @@ EOF
 	IFS=,
 	(cd /usr/lib/cups/backend && rm -f http ipp lpd parallel scsi serial socket usb snmp)
 	for module in $list; do
-	  ln -s ../backend-available/$module /usr/lib/cups/backend/$module
+	  ln /usr/lib/cups/backend-available/$module /usr/lib/cups/backend/$module
 	  if [ "$module" = "ipp" ]; then
-            ln -s ipp /usr/lib/cups/backend/http
+            ln /usr/lib/cups/backend/ipp /usr/lib/cups/backend/http
 	  fi
 	done
 

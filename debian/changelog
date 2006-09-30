@@ -6,6 +6,10 @@ cupsys (1.2.4-2) UNRELEASED; urgency=low
     /usr/share/cups/cups-included. (closes: #381266, #383291)
   * Update debconf translations:
     - Brazilian Portuguese (closes: #389222)
+  * Tried to solve the backend permission problem. CUPS scheduler
+    uses a permission and owner information of backend program.
+    - Install ipp and lpd as mode 0700.
+    - Create backend links as hardlink instead of symlink.
 
  -- Kenshi Muto <kmuto@debian.org>  Sat, 30 Sep 2006 14:56:29 +0900
 

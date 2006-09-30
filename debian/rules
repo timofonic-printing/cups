@@ -22,6 +22,7 @@ DEB_CONFIGURE_EXTRA_FLAGS := --with-optim=$(DEB_OPTFLAGS) --libdir=/usr/lib --ma
 DEB_MAKE_INSTALL_TARGET := install BUILDROOT=$(DEB_DESTDIR)
 DEB_INSTALL_CHANGELOGS_ALL := CHANGES.txt
 DEB_DH_STRIP_ARGS := --dbg-package=cupsys-dbg
+DEB_DH_FIXPERMS_ARGS := -Xusr/lib/cups/backend-available
 
 clean::
 	-rm core
