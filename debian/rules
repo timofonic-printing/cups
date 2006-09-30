@@ -67,8 +67,8 @@ binary-post-install/cupsys::
 	done
 
 	# Compatibility for programs which still look in the old location
-	ln -s ../../ppd/cups-included $(DEB_DESTDIR)/../cupsys/usr/share/cups/model/cups-included
-	ln -s ../cups/model $(DEB_DESTDIR)/../cupsys/usr/share/ppd/cups-transitional-dir
+	#ln -s ../../ppd/cups-included $(DEB_DESTDIR)/../cupsys/usr/share/cups/model/cups-included
+	#ln -s ../cups/model $(DEB_DESTDIR)/../cupsys/usr/share/ppd/cups-transitional-dir
 
 binary-post-install/libcupsimage2-dev::
 	rm -r debian/libcupsimage2-dev/usr/share/doc/libcupsimage2-dev

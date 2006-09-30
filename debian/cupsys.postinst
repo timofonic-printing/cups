@@ -55,6 +55,12 @@ case "$1" in
 	if [ -d /var/lib/cups/certs ]; then
 	    rm -rf /va/lib/cups/certs
 	fi
+	if [ -L /usr/share/ppd/cups-transitional-dir ]; then
+	    rm -f /usr/share/ppd/cups-transitional-dir
+	fi
+	if [ -L /usr/share/cups/model/cups-included ]; then
+	    rm -f /usr/share/cups/model/cups-included
+	fi
 
 	[ -f /etc/cups/ppds.dat ] && mv /etc/cups/ppds.dat /var/cache/cups/ppd
 
