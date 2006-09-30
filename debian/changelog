@@ -14,7 +14,7 @@ cupsys (1.2.4-1) unstable; urgency=medium
   * New upstream release
     - The web interface change settings and edit configuration
       file buttons would truncate the cupsd.conf file (STR #1976,
-      closes: #377640)
+      closes: #389093)
       Because this bug seems critical, we upload this fixed version
       as urgency=medium.
   [ Martin Pitt ]
