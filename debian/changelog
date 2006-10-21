@@ -1,10 +1,12 @@
-cupsys (1.2.4-3) UNRELEASED; urgency=low
+cupsys (1.2.5-1) UNRELEASED; urgency=low
+
+  * New upstream release
 
   [ Kenshi Muto ]
   * provides /etc/pam.d/cupsys correctly. (closes: #392142)
     (renamed debian/pam to debian/cupsys.pam)
 
- -- Kenshi Muto <kmuto@debian.org>  Tue, 10 Oct 2006 23:57:51 +0000
+ -- Kenshi Muto <kmuto@debian.org>  Sat, 21 Oct 2006 01:18:34 +0000
 
 cupsys (1.2.4-2) unstable; urgency=low
 
