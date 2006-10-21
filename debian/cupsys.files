@@ -31,6 +31,9 @@ usr/share/man/man7/backend.7.gz
 usr/share/man/man7/filter.7.gz
 usr/share/man/man5/classes.conf.5.gz
 usr/share/man/man5/cupsd.conf.5.gz
+usr/share/man/man5/cups-snmp.conf.5.gz
+usr/share/man/man5/mailto.conf.5.gz
+usr/share/man/man5/subscriptions.conf.5.gz
 usr/share/man/man5/mime.convs.5.gz
 usr/share/man/man5/mime.types.5.gz
 usr/share/man/man5/printers.conf.5.gz
