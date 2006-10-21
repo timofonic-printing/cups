@@ -1,11 +1,13 @@
-cupsys (1.2.5-1) UNRELEASED; urgency=low
+cupsys (1.2.5-1) unstable; urgency=medium
 
-  * New upstream release
+  * New upstream release.
 
   [ Kenshi Muto ]
   * 00_r6052: Apply SVN r6052 to pass the compile with libpaper.
   * provides /etc/pam.d/cupsys correctly. (closes: #392142)
     (renamed debian/pam to debian/cupsys.pam)
+  * fixed "ppd API fails to discover printer nickname and options"
+    problem" by upstream (closes: #394255)
 
  -- Kenshi Muto <kmuto@debian.org>  Sat, 21 Oct 2006 01:18:34 +0000
 
