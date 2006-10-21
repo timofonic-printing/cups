@@ -42,7 +42,11 @@ clean::
 	-rm cups-config cups.list conf/cupsd.conf conf/pam.conf
 	-rm config.log config.h config.cache config.status Makedefs cups.sh
 	-rmdir --ignore-fail-on-non-empty debian/patched
-	-rm -f doc/es/index.html doc/ja/index.html man/client.conf.man man/cups-deviced.man man/cups-driverd.man man/cups-lpd.man man/cupsaddsmb.man man/cupsd.man man/cupsd.conf.man man/lpoptions.man templates/ja/header.tmpl templates/es/header.tmpl templates/header.tmpl init/cups.sh init/cups-lpd
+	-rm -f man/client.conf.man man/cups-deviced.man man/cups-driverd.man man/cups-lpd.man man/cupsaddsmb.man man/cupsd.man man/cupsd.conf.man man/lpoptions.man templates/header.tmpl templates/edit-config.tmpl init/cups.sh init/cups-lpd
+	-for l in de es et ja pl sv; do \
+	  rm -f doc/$l/index.html; \
+	  rm -f templates/$l/header.tmpl templates/$l/edit-config.tmpl; \
+	done
 
 common-install-prehook-impl::
 	(cd fonts && $(MAKE) install BUILDROOT=$(DEB_DESTDIR))
