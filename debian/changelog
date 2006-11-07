@@ -1,9 +1,12 @@
-cupsys (1.2.5-2) UNRELEASED; urgency=low
+cupsys (1.2.6-1) unstable; urgency=low
 
-  [ Kenshi Muto ]
-  * 00_r6068: Apply SVN r6068.
+  * New upstream release
+    Fixes bugs include
+    - "lpc status" did not show the number of queued jobs for
+      disabled queues
+    - The lpstat program could hang
 
- -- Kenshi Muto <kmuto@debian.org>  Tue, 31 Oct 2006 22:35:07 +0900
+ -- Kenshi Muto <kmuto@debian.org>  Tue,  7 Nov 2006 21:09:33 +0900
 
 cupsys (1.2.5-1) unstable; urgency=medium
 
