@@ -1,0 +1,169 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Piarres Beobide <pi@beobide.net>, 2005.
+msgid ""
+msgstr ""
+"Project-Id-Version: cups-debconf\n"
+"Report-Msgid-Bugs-To: pkg-cups-devel@lists.alioth.debian.org\n"
+"POT-Creation-Date: 2006-07-03 22:26+0900\n"
+"PO-Revision-Date: 2006-11-13 12:46+0100\n"
+"Last-Translator: Piarres Beobide <pi@beobide.net>\n"
+"Language-Team: Librezale <librezale@librezale.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Translate Toolkit 0.10.1\n"
+
+#. Type: boolean
+#. Description
+#: ../cupsys-bsd.templates:1001
+msgid "Do you want to set up the BSD lpd compatibility server?"
+msgstr "BSD lpd bateragarritasun zerbiztaria konfiguratu nahi al duzu?"
+
+
+#. Type: boolean
+#. Description
+#: ../cupsys-bsd.templates:1002
+msgid ""
+"This package contains a server that can accept BSD-style print jobs and "
+"submit them to CUPS. It should only be set up if you have other computers "
+"that submit jobs over the network via \"BSD\" or \"LPR\" services, and these "
+"computers cannot be converted to use the IPP protocol that CUPS uses."
+msgstr ""
+"Pakete honek BSD-moduko inprimatze lanak onartu eta CUPS-era bidaltzen dituen "
+"zerbitzari bat du. Berau \"BSD\" edo \"LPR\" zerbitzuen bidez sare bidez lanak "
+"bidaltzen dituzten eta CUPS-ek erabiltzen duen IPP protokoloa erabili ezin duten "
+"ordenagailuak badituzu bakarrik konfiguratu behar da."
+
+
+#. Type: boolean
+#. Description
+#: ../cupsys.templates:1001
+msgid "Do you want CUPS to print unknown jobs as raw jobs?"
+msgstr "CUPS-ek lan ezezagunak lan gordinak bezala inprimatzea nahi duzu?"
+
+
+#. Type: boolean
+#. Description
+#: ../cupsys.templates:1002
+msgid ""
+"All print jobs in IPP get a MIME type. Since not all sources of print jobs "
+"can attach an appropriate type, many jobs get submitted as the MIME type "
+"application/octet-stream. Because of this, when CUPS receives a job with "
+"that MIME type, it attempts to guess what the format is. By default, if it "
+"cannot guess the proper type, it rejects the job."
+msgstr ""
+"IPP inprimatze lan guztiek MIME mota bat dute. Inprimatze lan jatorri guztiek "
+"ezin dutenez mota zuzena ezarri, lan gehienal application/octet-stream MIME "
+"mota erabiliaz bidaltzen dita. Honegatik CUP-ek MIME mota hoentako lan bat "
+"jasotzean zein formatukoa den antzematen saiatuko da. Lehenespen bezala "
+"dagokien mota antzeman ezin diren lanak ukatu egingo dira."
+
+#. Type: boolean
+#. Description
+#: ../cupsys.templates:1003
+msgid ""
+"It is possible to cause CUPS to treat all unrecognized jobs with this MIME "
+"type as \"raw\" jobs, which causes them to be sent directly to the printer "
+"without processing."
+msgstr ""
+"Posible da CUPS-ek MIME mota honetako lanak lan \"gordinak\" bezala kudea "
+"ditzan, honela lan hauek prozesatu gabe bidaliko dira inprimagailura."
+
+#. Type: boolean
+#. Description
+#: ../cupsys.templates:1004
+msgid ""
+"If you will be accepting print jobs from Windows computers, you probably "
+"want this option set, as Windows gives all IPP print jobs processed by a "
+"local driver the MIME type application/octet-stream. Samba also submits its "
+"print jobs this way."
+msgstr ""
+"Windows ordenagailutik inprimatze lanak onartu behar badituzu, ziurrenik "
+"aukera hau gaitu beharko duzu Windows-ek kontrolagailu lokal batek prozesaturiko "
+"IPP inprimatze lan guztiei application/octet-stream MIME mota ezartzen bait die. "
+"Sama-k ere inprimatze lanak era hoentara bidaltzen ditu."
+
+#. Type: multiselect
+#. Choices
+#: ../cupsys.templates:2001
+msgid "ipp"
+msgstr "ipp"
+
+#. Type: multiselect
+#. Choices
+#: ../cupsys.templates:2002
+msgid "lpd"
+msgstr "lds"
+
+#. Type: multiselect
+#. Choices
+#: ../cupsys.templates:2003
+msgid "parallel"
+msgstr "paraleloa"
+
+#. Type: multiselect
+#. Choices
+#: ../cupsys.templates:2004
+msgid "scsi"
+msgstr "scsi"
+
+#. Type: multiselect
+#. Choices
+#: ../cupsys.templates:2005
+msgid "serial"
+msgstr "seriea"
+
+#. Type: multiselect
+#. Choices
+#: ../cupsys.templates:2006
+msgid "socket"
+msgstr "socket"
+
+#. Type: multiselect
+#. Choices
+#: ../cupsys.templates:2007
+msgid "usb"
+msgstr "usb"
+
+#. Type: multiselect
+#. Choices
+#: ../cupsys.templates:2008
+msgid "snmp"
+msgstr "snmp"
+
+#. Type: multiselect
+#. Description
+#: ../cupsys.templates:2009
+msgid "Printer communication backends:"
+msgstr "Inprimagailu komunikazio motorea:"
+
+#. Type: multiselect
+#. Description
+#: ../cupsys.templates:2010
+msgid ""
+"CUPS uses backend programs for communication with printer device or port."
+msgstr ""
+"CUPS-ek inrpimagailu gailu edo atakarekin komunikazioa lortzeko motoreak erabiltzen ditu."
+
+
+#. Type: multiselect
+#. Description
+#: ../cupsys.templates:2011
+msgid ""
+"Unfortunately, some backend programs cause some trouble. (For example, some "
+"PPC kernel crashes with the parallel backend)"
+msgstr ""
+"Zoritxarrez, zenbait motorek arazoak zor ditzakete. (Adibidez zenbait "
+"PPC kernel hasutura motore paraleloaz)"
+
+#. Type: multiselect
+#. Description
+#: ../cupsys.templates:2012
+msgid ""
+"Please choose the backend program to be used by CUPS. The default choice "
+"should fit the most common environments."
+msgstr ""
+"Mesedez hautatu CUPS-ek erabiliko duen komunikazio motorea. Aukera lehenetsiak "
+"ingurune arruntenetan funtzionatu beharko luke."

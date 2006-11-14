@@ -1,3 +1,12 @@
+cupsys (1.2.6-2) UNRELEASED; urgency=low
+
+  [ Kenshi Muto ]
+  * Debconf translation
+    - Brazillian Portuguese (closes: #397842)
+    - Basque (closes: #398574)
+
+ -- Kenshi Muto <kmuto@debian.org>  Tue, 14 Nov 2006 22:29:08 +0900
+
 cupsys (1.2.6-1) unstable; urgency=low
 
   * New upstream release
