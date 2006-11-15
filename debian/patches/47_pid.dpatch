@@ -5,9 +5,9 @@
 ## DP: No description.
 
 @DPATCH@
-diff -urNad cupsys-1.1.99.b2~/scheduler/conf.c cupsys-1.1.99.b2/scheduler/conf.c
---- cupsys-1.1.99.b2~/scheduler/conf.c	2006-03-11 13:31:04.000000000 +0000
-+++ cupsys-1.1.99.b2/scheduler/conf.c	2006-03-11 13:31:16.000000000 +0000
+diff -urNad cupsys-1.2.6~/scheduler/conf.c cupsys-1.2.6/scheduler/conf.c
+--- cupsys-1.2.6~/scheduler/conf.c	2006-11-15 09:52:47.000000000 +0900
++++ cupsys-1.2.6/scheduler/conf.c	2006-11-15 09:52:47.000000000 +0900
 @@ -170,7 +170,8 @@
    { "StateDir",			&StateDir,		CUPSD_VARTYPE_STRING },
    { "TempDir",			&TempDir,		CUPSD_VARTYPE_STRING },
@@ -18,18 +18,18 @@ diff -urNad cupsys-1.1.99.b2~/scheduler/conf.c cupsys-1.1.99.b2/scheduler/conf.c
  };
  #define NUM_VARS	(sizeof(variables) / sizeof(variables[0]))
  
-@@ -287,6 +288,7 @@
+@@ -288,6 +289,7 @@
    cupsdSetString(&RemoteRoot, "remroot");
    cupsdSetString(&ServerHeader, "CUPS/1.2");
    cupsdSetString(&StateDir, CUPS_STATEDIR);
 +  cupsdSetString(&PidFile, "/var/run/cups/cupsd.pid");
  
-   strlcpy(temp, ConfigurationFile, sizeof(temp));
-   if ((slash = strrchr(temp, '/')) != NULL)
-diff -urNad cupsys-1.1.99.b2~/scheduler/conf.h cupsys-1.1.99.b2/scheduler/conf.h
---- cupsys-1.1.99.b2~/scheduler/conf.h	2006-03-11 13:31:04.000000000 +0000
-+++ cupsys-1.1.99.b2/scheduler/conf.h	2006-03-11 13:31:16.000000000 +0000
-@@ -186,6 +186,7 @@
+   if (!strcmp(CUPS_DEFAULT_PRINTCAP, "/etc/printers.conf"))
+     PrintcapFormat = PRINTCAP_SOLARIS;
+diff -urNad cupsys-1.2.6~/scheduler/conf.h cupsys-1.2.6/scheduler/conf.h
+--- cupsys-1.2.6~/scheduler/conf.h	2006-06-27 03:34:20.000000000 +0900
++++ cupsys-1.2.6/scheduler/conf.h	2006-11-15 09:52:47.000000000 +0900
+@@ -187,6 +187,7 @@
  					/* Server key file */
  #  endif /* HAVE_LIBSSL || HAVE_GNUTLS */
  #endif /* HAVE_SSL */
@@ -37,22 +37,21 @@ diff -urNad cupsys-1.1.99.b2~/scheduler/conf.h cupsys-1.1.99.b2/scheduler/conf.h
  
  #ifdef HAVE_LAUNCHD
  VAR int			LaunchdTimeout		VALUE(DEFAULT_TIMEOUT);
-diff -urNad cupsys-1.1.99.b2~/scheduler/main.c cupsys-1.1.99.b2/scheduler/main.c
---- cupsys-1.1.99.b2~/scheduler/main.c	2006-03-11 13:31:04.000000000 +0000
-+++ cupsys-1.1.99.b2/scheduler/main.c	2006-03-11 13:32:41.000000000 +0000
-@@ -89,7 +89,8 @@
- static void	sigterm_handler(int sig);
- static long	select_timeout(int fds);
- static void	usage(int status);
--
-+int write_pid(void);
-+int remvoe_pid(void);
+diff -urNad cupsys-1.2.6~/scheduler/main.c cupsys-1.2.6/scheduler/main.c
+--- cupsys-1.2.6~/scheduler/main.c	2006-11-15 09:52:46.000000000 +0900
++++ cupsys-1.2.6/scheduler/main.c	2006-11-15 09:54:01.000000000 +0900
+@@ -92,6 +92,8 @@
+ static void		sigterm_handler(int sig);
+ static long		select_timeout(int fds);
+ static void		usage(int status);
++int			write_pid(void);
++int			remove_pid(void);
+ 
  
  /*
-  * Local globals...
-@@ -501,6 +502,11 @@
-       kill(i, SIGUSR1);
+@@ -506,6 +508,11 @@
    }
+ #endif /* __sgi */
  
 +  if (write_pid() == 0) {
 +    cupsdLogMessage(CUPSD_LOG_ERROR, "Unable to write pid file");
@@ -60,9 +59,9 @@ diff -urNad cupsys-1.1.99.b2~/scheduler/main.c cupsys-1.1.99.b2/scheduler/main.c
 +  }
 +
   /*
-   * Start power management framework...
+   * Initialize authentication certificates...
    */
-@@ -1095,9 +1101,39 @@
+@@ -1161,9 +1168,39 @@
    free(input);
    free(output);
  

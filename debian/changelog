@@ -4,6 +4,9 @@ cupsys (1.2.6-2) UNRELEASED; urgency=low
   * Debconf translation
     - Brazillian Portuguese (closes: #397842)
     - Basque (closes: #398574)
+  * 00_r6100: Apply SVN r6100.
+    - Fixed an inefficiency in the SNMP IPP detection code
+      (closes: #397833)
 
  -- Kenshi Muto <kmuto@debian.org>  Tue, 14 Nov 2006 22:29:08 +0900
 
