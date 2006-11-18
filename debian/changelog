@@ -1,4 +1,4 @@
-cupsys (1.2.7-1) UNRELEASED; urgency=low
+cupsys (1.2.7-1) unstable; urgency=low
 
   * New upstream release
     - Added Italian translation
