@@ -1,3 +1,10 @@
+cupsys (1.2.7-1) unstable; urgency=low
+
+  * New upstream release
+    - Added Italian translation
+
+ -- Kenshi Muto <kmuto@debian.org>  Sat, 18 Nov 2006 10:03:30 +0900
+
 cupsys (1.2.6-2) unstable; urgency=low
 
   [ Kenshi Muto ]
