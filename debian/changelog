@@ -1,7 +1,11 @@
-cupsys (1.2.7-1) unstable; urgency=low
+cupsys (1.2.7-1) UNRELEASED; urgency=low
 
   * New upstream release
     - Added Italian translation
+
+  [ Kenshi Muto ]
+  * Add printer.schema to /usr/share/doc/cupsys/examples for LDAP.
+    (closes: #399122)
 
  -- Kenshi Muto <kmuto@debian.org>  Sat, 18 Nov 2006 10:03:30 +0900
 
