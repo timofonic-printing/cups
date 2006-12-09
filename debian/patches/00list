@@ -29,3 +29,4 @@
 #64_driverfolder.dpatch
 65_detect_http_shutdown.dpatch
 66_setegid.dpatch
+67_printcap.dpatch

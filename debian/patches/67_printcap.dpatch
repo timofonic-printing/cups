@@ -1,0 +1,41 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 67_printcap.dpatch by Kenshi Muto <kmuto@debian.org>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: No description.
+
+@DPATCH@
+diff -urNad cupsys-1.2.7~/conf/cupsd.conf.in cupsys-1.2.7/conf/cupsd.conf.in
+--- cupsys-1.2.7~/conf/cupsd.conf.in	2006-12-09 14:31:45.000000000 +0000
++++ cupsys-1.2.7/conf/cupsd.conf.in	2006-12-09 14:33:59.000000000 +0000
+@@ -75,3 +75,30 @@
+ #
+ # End of "$Id: cupsd.conf.in 5454 2006-04-23 21:46:38Z mike $".
+ #
++
++#
++# Printcap: the name of the printcap file.  Default is /etc/printcap.
++# Leave blank to disable printcap file generation.
++#
++
++Printcap /var/run/cups/printcap
++
++#
++# PrintcapFormat: the format of the printcap file, currently either
++# BSD or Solaris.  The default is "BSD".
++#
++
++#PrintcapFormat BSD
++#PrintcapFormat Solaris
++
++#
++# PrintcapGUI: the name of the GUI options panel program to associate
++# with print queues under IRIX.  The default is "/usr/bin/glpoptions"
++# from ESP Print Pro.
++#
++# This option is only used under IRIX; the options panel program
++# must accept the "-d printer" and "-o options" options and write
++# the selected printer options back to stdout on completion.
++#
++
++#PrintcapGUI /usr/bin/glpoptions
