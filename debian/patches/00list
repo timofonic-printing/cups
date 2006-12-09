@@ -1,9 +1,10 @@
+00_r6149.dpatch
 02_configure.dpatch
 #03_manext.dpatch
 03_clean.dpatch
 04_freebsd.dpatch
 #05_avoidunknowngroup.dpatch
-06_disable_backend_setuid.dpatch
+#06_disable_backend_setuid.dpatch
 07_removecvstag.dpatch
 #08_cupsd.conf.conf.d.dpatch
 09_runasuser.dpatch
@@ -27,3 +28,4 @@
 62_classes_crash.dpatch
 #64_driverfolder.dpatch
 65_detect_http_shutdown.dpatch
+66_setegid.dpatch
