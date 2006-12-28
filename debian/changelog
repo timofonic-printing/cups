@@ -1,4 +1,4 @@
-cupsys (1.2.7-2) UNRELEASED; urgency=high
+cupsys (1.2.7-2) unstable; urgency=high
 
   [ Kenshi Muto ]
   * Applied upstream patches to fix some (include RC) bugs as dpatch style:
