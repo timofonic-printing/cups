@@ -1,0 +1,28 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 00_07str2123.dpatch by Kenshi Muto <kmuto@debian.org>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: No description.
+
+@DPATCH@
+diff -urNad cupsys-1.2.7~/backend/runloop.c cupsys-1.2.7/backend/runloop.c
+--- cupsys-1.2.7~/backend/runloop.c	2006-12-28 12:00:51.000000000 +0000
++++ cupsys-1.2.7/backend/runloop.c	2006-12-28 13:18:23.000000000 +0000
+@@ -206,7 +206,7 @@
+ 	  if (!paperout)
+ 	  {
+ 	    fputs("ERROR: Out of paper!\n", stderr);
+-	    fputs("STATUS: +media-tray-empty-error\n", stderr);
++	    fputs("STATE: +media-empty-error\n", stderr);
+ 	    paperout = 1;
+ 	  }
+         }
+@@ -229,7 +229,7 @@
+       {
+         if (paperout)
+ 	{
+-	  fputs("STATUS: -media-tray-empty-error\n", stderr);
++	  fputs("STATE: -media-empty-error\n", stderr);
+ 	  paperout = 0;
+ 	}
+ 

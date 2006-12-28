@@ -1,0 +1,28 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 00_04str2117.dpatch by Kenshi Muto <kmuto@debian.org>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: No description.
+
+@DPATCH@
+diff -urNad cupsys-1.2.7~/scheduler/conf.c cupsys-1.2.7/scheduler/conf.c
+--- cupsys-1.2.7~/scheduler/conf.c	2006-12-28 12:00:51.000000000 +0000
++++ cupsys-1.2.7/scheduler/conf.c	2006-12-28 13:06:05.000000000 +0000
+@@ -1316,7 +1316,7 @@
+   * Get the address...
+   */
+ 
+-  ip[0]   = ip[1]   = ip[2]   = ip[2]   = 0x00000000;
++  ip[0]   = ip[1]   = ip[2]   = ip[3]   = 0x00000000;
+   mask[0] = mask[1] = mask[2] = mask[3] = 0xffffffff;
+ 
+   if ((maskval = strchr(value, '/')) != NULL)
+@@ -1501,7 +1501,7 @@
+ 
+   cupsdLogMessage(CUPSD_LOG_DEBUG2,
+                   "get_addr_and_mask(value=\"%s\", "
+-                  "ip=[%08x:%08x:%08x:%08x], mask=[%08x:%08x:%08x:%08x]",
++                  "ip=[%08x:%08x:%08x:%08x], mask=[%08x:%08x:%08x:%08x])",
+              value, ip[0], ip[1], ip[2], ip[3], mask[0], mask[1], mask[2],
+ 	     mask[3]);
+ 

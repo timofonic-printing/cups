@@ -1,15 +1,25 @@
-cupsys (1.2.7-2) UNRELEASED; urgency=low
+cupsys (1.2.7-2) UNRELEASED; urgency=high
 
   [ Kenshi Muto ]
-  * Apply upstream r6149. Fixed some bugs around raster handling,
-    printer status, IPv6 and so on.
-  * Trying to revert seteuid way of upstream. (disabled 06_disable
-   _backend_setuid patch to let backend works as upstream imagined)
-    Put 66_setegid.dpatch to set GID.
-  * Add Printcap/PrintcapFormat/PrintcapGUI variables to cupsd.conf
-    file. (closes: #401981)
-    (It's a known problem that when you reset configuration file
-    from Web interface, configuration won't back to 100% original.)
+  * Applied upstream patches to fix some (include RC) bugs as dpatch style:
+    - STR2106: Raw PBM files did not print correctly
+    - STR2111: The PostScript filter did not properly output
+      document setup commands for reversed output (closes: Bug#403703)
+    - STR2117: The scheduler did not parse IPv6 netmask properly
+    - STR2121: cupsDoAuthentication() did not translate the password
+      prompt
+    - STR2123: The backends incorrectly used STATUS:
+      media-tray-empty-error messages for out-of-paper conditions
+    - STR2133: httpGetLength2() did not handle error messages without
+      content correctly
+    - STR2135: cupsMarkOptions() did not handle the
+      multiple-document-handling option
+    - STR2137: Collated output produced by the PostScript filter could
+      lose some options
+    - STR2144: job-hold-until with time values for the next day would
+      be held for 60 days
+  * 67_printcap: Add Printcap/PrintcapFormat/PrintcapGUI variables to
+    cupsd.conf file. (closes: #401981)
 
  -- Kenshi Muto <kmuto@debian.org>  Wed,  6 Dec 2006 22:42:34 +0000
 
