@@ -20,6 +20,8 @@ cupsys (1.2.7-2) UNRELEASED; urgency=high
       be held for 60 days
   * 67_printcap: Add Printcap/PrintcapFormat/PrintcapGUI variables to
     cupsd.conf file. (closes: #401981)
+  * cupsys makes /var/run/cups/certs. Although CUPS daemon can make
+    it automatically, the daemon logs an warning.
 
  -- Kenshi Muto <kmuto@debian.org>  Wed,  6 Dec 2006 22:42:34 +0000
 
