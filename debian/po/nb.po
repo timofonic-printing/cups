@@ -1,0 +1,167 @@
+# translation of cupsys_1.2.7-2_templates.po to Norwegian Bokmål
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Bjørn Steensrud <bjornst@powertech.no>, 2007.
+msgid ""
+msgstr ""
+"Project-Id-Version: cupsys_1.2.7-2_templates\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2006-12-29 04:30+0100\n"
+"PO-Revision-Date: 2007-01-09 21:43+0100\n"
+"Last-Translator: Bjørn Steensrud <bjornst@powertech.no>\n"
+"Language-Team: Norwegian Bokmål <i18n-nb@lister.ping.uio.no>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.2\n"
+
+#. Type: boolean
+#. Description
+#: ../cupsys-bsd.templates:1001
+msgid "Do you want to set up the BSD lpd compatibility server?"
+msgstr "Vil du sette opp en tjener kompatibel med BSD lpd?"
+
+#. Type: boolean
+#. Description
+#: ../cupsys-bsd.templates:1001
+msgid ""
+"This package contains a server that can accept BSD-style print jobs and "
+"submit them to CUPS. It should only be set up if you have other computers "
+"that submit jobs over the network via \"BSD\" or \"LPR\" services, and these "
+"computers cannot be converted to use the IPP protocol that CUPS uses."
+msgstr ""
+"Denne pakka inneholder en tjener som kan ta imot utskriftsjobber som "
+"er i BSD-stil og sende dem over til CUPS. Du bør bare sette den opp "
+"dersom du har andre datamaskiner som sender utskrifter over nettverket "
+"via «BSD» eller «LPR»-tjenester, og disse maskinene ikke kan endres til "
+"å bruke IPP - Internet Printing Protocol - som CUPS bruker."
+
+#. Type: boolean
+#. Description
+#: ../cupsys.templates:1001
+msgid "Do you want CUPS to print unknown jobs as raw jobs?"
+msgstr "Vil du at CUPS skal skrive ut ukjente jobber som rå utskrift?"
+
+#. Type: boolean
+#. Description
+#: ../cupsys.templates:1001
+msgid ""
+"All print jobs in IPP get a MIME type. Since not all sources of print jobs "
+"can attach an appropriate type, many jobs get submitted as the MIME type "
+"application/octet-stream. Because of this, when CUPS receives a job with "
+"that MIME type, it attempts to guess what the format is. By default, if it "
+"cannot guess the proper type, it rejects the job."
+msgstr ""
+"Alle utskriftsjobber i IPP får en MIME-type. Siden ikke alle kilder som sender "
+"utskriftsjobber kan legge på en passende type, så blir mange jobber "
+"levert som MIME-typen application/octet-stream. Derfor forsøker CUPS å finne "
+"ut hva formatet er når den mottar en jobb med denne MIME-typen. Standard er "
+"at den avviser utskriftsjobben hvis den ikke kan gjette seg til den "
+"rette typen-"
+
+#. Type: boolean
+#. Description
+#: ../cupsys.templates:1001
+msgid ""
+"It is possible to cause CUPS to treat all unrecognized jobs with this MIME "
+"type as \"raw\" jobs, which causes them to be sent directly to the printer "
+"without processing."
+msgstr ""
+"Det er mulig å få CUPS til å behandle alle ukjente jobber med denne MIME-typen "
+"som «rå» jobber, noe som gjør at de sendes direkte til skriveren uten behandling."
+
+#. Type: boolean
+#. Description
+#: ../cupsys.templates:1001
+msgid ""
+"If you will be accepting print jobs from Windows computers, you probably "
+"want this option set, as Windows gives all IPP print jobs processed by a "
+"local driver the MIME type application/octet-stream. Samba also submits its "
+"print jobs this way."
+msgstr ""
+"Hvis du kommer til å ta imot utskriftsjobber fra Windows-maskiner, så "
+"bør du nok slå på dette, siden Windows setter MIME-typen "
+"application/octet-stream på alle IPP-jobber behandlet gjennom en lokal "
+"driver. Samba sender også sine utskriftsjobber på den måten."
+
+#. Type: multiselect
+#. Choices
+#: ../cupsys.templates:2001
+msgid "ipp"
+msgstr "ipp"
+
+#. Type: multiselect
+#. Choices
+#: ../cupsys.templates:2001
+msgid "lpd"
+msgstr "lpd"
+
+#. Type: multiselect
+#. Choices
+#: ../cupsys.templates:2001
+msgid "parallel"
+msgstr "parallell"
+
+#. Type: multiselect
+#. Choices
+#: ../cupsys.templates:2001
+msgid "scsi"
+msgstr "scsi"
+
+#. Type: multiselect
+#. Choices
+#: ../cupsys.templates:2001
+msgid "serial"
+msgstr "seriell"
+
+#. Type: multiselect
+#. Choices
+#: ../cupsys.templates:2001
+msgid "socket"
+msgstr "sokkel"
+
+#. Type: multiselect
+#. Choices
+#: ../cupsys.templates:2001
+msgid "usb"
+msgstr "usb"
+
+#. Type: multiselect
+#. Choices
+#: ../cupsys.templates:2001
+msgid "snmp"
+msgstr "snmp"
+
+#. Type: multiselect
+#. Description
+#: ../cupsys.templates:2002
+msgid "Printer communication backends:"
+msgstr "Kommunikasjonsmotorer for skriver:"
+
+#. Type: multiselect
+#. Description
+#: ../cupsys.templates:2002
+msgid "CUPS uses backend programs for communication with printer device or port."
+msgstr "CUPS bruker «motor»-programmer til å kommunisere med skriverenheten eller porten."
+
+#. Type: multiselect
+#. Description
+#: ../cupsys.templates:2002
+msgid ""
+"Unfortunately, some backend programs cause some trouble. (For example, some "
+"PPC kernel crashes with the parallel backend)"
+msgstr ""
+"Dessverre lager noen motorer vanskeligheter. (Noen PPD-kjerner, for eksempel, "
+"krasjer med parallell-motoren)"
+
+#. Type: multiselect
+#. Description
+#: ../cupsys.templates:2002
+msgid ""
+"Please choose the backend program to be used by CUPS. The default choice "
+"should fit the most common environments."
+msgstr ""
+"Velg motor-program som CUPS skal bruke. Standardvalget passer antakelig "
+"i de vanligste miljøene."
+

@@ -8,6 +8,7 @@ cupsys (1.2.7-3) UNRELEASED; urgency=high
     to satisfy LSB 3.2. (closes: #408154)
   * Debconf translation
     - Portuguese (closes: #408332)
+    - Norwegian (closes: #406253)
 
  -- Kenshi Muto <kmuto@debian.org>  Thu,  1 Feb 2007 10:17:30 +0000
 
