@@ -7,3 +7,5 @@ usr/lib/cups/backend-available
 var/cache/cups/ppd
 usr/share/ppd/cups-included
 usr/lib/cups/driver
+usr/local/share/ppd
+opt/share/ppd

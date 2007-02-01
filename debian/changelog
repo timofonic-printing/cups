@@ -4,6 +4,8 @@ cupsys (1.2.7-3) UNRELEASED; urgency=high
   * removed STR2137 patch. This patch corruted some
     Postscript files. (closes: #403703) This was a release 
     critical bug.
+  * Provides /usr/local/share/ppd and /opt/share/ppd
+    to satisfy LSB 3.2. (closes: #408154)
   * Debconf translation
     - Portuguese (closes: #408332)
 
