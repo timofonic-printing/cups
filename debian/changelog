@@ -6,6 +6,9 @@ cupsys (1.2.7-3) UNRELEASED; urgency=high
     critical bug.
   * Provides /usr/local/share/ppd and /opt/share/ppd
     to satisfy LSB 3.2. (closes: #408154)
+  * Applied upstream patch:
+    - STR2198: The scheduler still loaded the remote printer cache,
+      even when browsing was disabled
   * Debconf translation
     - Portuguese (closes: #408332)
     - Norwegian (closes: #406253)
