@@ -71,13 +71,10 @@ binary-post-install/cupsys::
 	  mv $$i "$(DEB_DESTDIR)/../cupsys/usr/share/ppd/cups-included/$$m/"; \
 	done
 
-	# Add symlink to local files required by LSB
-	ln -s /usr/local/share/ppd $(DEB_DESTDIR)/../cupsys/usr/share/ppd/1-local-admin
-	ln -s /opt/share/ppd $(DEB_DESTDIR)/../cupsys/usr/share/ppd/2-third-party
-
 	# Compatibility for programs which still look in the old location
 	#ln -s ../../ppd/cups-included $(DEB_DESTDIR)/../cupsys/usr/share/cups/model/cups-included
 	#ln -s ../cups/model $(DEB_DESTDIR)/../cupsys/usr/share/ppd/cups-transitional-dir
+	dh_usrlocal
 
 binary-post-install/libcupsimage2-dev::
 	rm -r debian/libcupsimage2-dev/usr/share/doc/libcupsimage2-dev

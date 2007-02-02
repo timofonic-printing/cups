@@ -1,4 +1,13 @@
-cupsys (1.2.7-3) UNRELEASED; urgency=high
+cupsys (1.2.7-4) unstable; urgency=high
+
+  [ Kenshi Muto ]
+  * Use dh_usrlocal to install files in /usr/local in the
+    maintainer scripts, instead of shipping them in the deb.
+    This was policy violation (closes: #409335)
+
+ -- Kenshi Muto <kmuto@debian.org>  Fri,  2 Feb 2007 18:16:24 +0900
+
+cupsys (1.2.7-3) unstable; urgency=high
 
   [ Kenshi Muto ]
   * removed STR2137 patch. This patch corruted some
