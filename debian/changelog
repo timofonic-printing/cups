@@ -1,3 +1,11 @@
+cupsys (1.2.7-5) UNRELEASED; urgency=low
+
+  [ Kenshi Muto ]
+  * Applied templates improvement patch contributed by
+    debian-l10n-english team. (closes: #416350)
+
+ -- Kenshi Muto <kmuto@debian.org>  Tue, 27 Mar 2007 22:08:00 +0900
+
 cupsys (1.2.7-4) unstable; urgency=high
 
   [ Kenshi Muto ]
