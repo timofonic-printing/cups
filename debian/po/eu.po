@@ -1,37 +1,37 @@
-# SOME DESCRIPTIVE TITLE.
+# translation of cupsys-eu.po to librezale
+# Piarres Beobide <pi@beobide.net>, 2005, 2007.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# Piarres Beobide <pi@beobide.net>, 2005.
 msgid ""
 msgstr ""
-"Project-Id-Version: cups-debconf\n"
+"Project-Id-Version: cupsys-eu\n"
 "Report-Msgid-Bugs-To: pkg-cups-devel@lists.alioth.debian.org\n"
-"POT-Creation-Date: 2007-03-27 22:18+0900\n"
-"PO-Revision-Date: 2006-11-13 12:46+0100\n"
+"POT-Creation-Date: 2007-03-27 07:14+0200\n"
+"PO-Revision-Date: 2007-03-27 15:56+0200\n"
 "Last-Translator: Piarres Beobide <pi@beobide.net>\n"
-"Language-Team: Librezale <librezale@librezale.org>\n"
+"Language-Team: librezale <librezale@librezale.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Translate Toolkit 0.10.1\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
 
 #. Type: boolean
 #. Description
 #: ../cupsys-bsd.templates:1001
 msgid "Do you want to set up the BSD lpd compatibility server?"
-msgstr "BSD lpd bateragarritasun zerbiztaria konfiguratu nahi al duzu?"
+msgstr "BSD lpd bateragarritasun zerbitzaria konfiguratu nahi al duzu?"
 
 #. Type: boolean
 #. Description
 #: ../cupsys-bsd.templates:1001
-#, fuzzy
 msgid ""
 "The CUPS package contains a server that can accept BSD-style print jobs and "
 "submit them to CUPS. It should only be set up if other computers are likely "
 "to submit jobs over the network via the \"BSD\" or \"LPR\" services, and "
 "these computers cannot be converted to use the IPP protocol that CUPS uses."
 msgstr ""
-"Pakete honek BSD-moduko inprimatze lanak onartu eta CUPS-era bidaltzen "
+"CUPS paketeak BSD-moduko inprimatze lanak onartu eta CUPS-era bidaltzen "
 "dituen zerbitzari bat du. Berau \"BSD\" edo \"LPR\" zerbitzuen bidez sare "
 "bidez lanak bidaltzen dituzten eta CUPS-ek erabiltzen duen IPP protokoloa "
 "erabili ezin duten ordenagailuak badituzu bakarrik konfiguratu behar da."
@@ -45,28 +45,25 @@ msgstr "CUPS-ek lan ezezagunak lan gordinak bezala inprimatzea nahi duzu?"
 #. Type: boolean
 #. Description
 #: ../cupsys.templates:1001
-#, fuzzy
 msgid ""
 "The Internet Printing Protocol (IPP) enforces a MIME type for all print "
 "jobs. Since not all sources of print jobs can attach an appropriate type, "
 "many jobs get submitted as the MIME type application/octet-stream and could "
 "be rejected if CUPS cannot guess the job's format."
 msgstr ""
-"IPP inprimatze lan guztiek MIME mota bat dute. Inprimatze lan jatorri "
-"guztiek ezin dutenez mota zuzena ezarri, lan gehienal application/octet-"
-"stream MIME mota erabiliaz bidaltzen dita. Honegatik CUP-ek MIME mota "
-"hoentako lan bat jasotzean zein formatukoa den antzematen saiatuko da. "
-"Lehenespen bezala dagokien mota antzeman ezin diren lanak ukatu egingo dira."
+"Internet Inprimatze Protokoloak (IPP) MIME mota bat indartzen du inprimatze "
+"lan guztientzat. Inprimatze lan jatorri guztiek ezin dutenez mota zuzena ezarri, "
+"lan asko application/octet-stream MIME mota bezala bidaltzen dira eta ukatu egin "
+"daitezke CUPS ez bada lan formatu bezeroa ezagutzeko gauza."
 
 #. Type: boolean
 #. Description
 #: ../cupsys.templates:1001
-#, fuzzy
 msgid ""
 "CUPS can handle all such jobs as \"raw\" jobs, which causes them to be sent "
 "directly to the printer without processing."
 msgstr ""
-"Posible da CUPS-ek MIME mota honetako lanak lan \"gordinak\" bezala kudea "
+"Posible da CUPS-ek lan hauek guztiak lan \"gordinak\" bezala kudea "
 "ditzan, honela lan hauek prozesatu gabe bidaliko dira inprimagailura."
 
 #. Type: boolean
@@ -76,6 +73,8 @@ msgid ""
 "It is recommended to choose this option if the server will be accepting "
 "print jobs from Windows computers or Samba servers."
 msgstr ""
+"Gomendagarria da aukera hau hautatzea zerbitzariak windows duten ordenagailu edo "
+"Samba zerbitzarietatik lanak jasoko baditu."
 
 #. Type: multiselect
 #. Choices
@@ -134,23 +133,20 @@ msgstr "Inprimagailu komunikazio motorea:"
 #. Type: multiselect
 #. Description
 #: ../cupsys.templates:2002
-#, fuzzy
-msgid ""
-"CUPS uses backend programs to communicate with the printer device or port."
+msgid "CUPS uses backend programs to communicate with the printer device or port."
 msgstr ""
-"CUPS-ek inrpimagailu gailu edo atakarekin komunikazioa lortzeko motoreak "
+"CUPS-ek inprimagailu gailu edo atakarekin komunikazioa lortzeko interfaze programak"
 "erabiltzen ditu."
 
 #. Type: multiselect
 #. Description
 #: ../cupsys.templates:2002
-#, fuzzy
 msgid ""
 "Unfortunately, some backend programs are likely to cause some trouble. For "
 "example, some PPC kernels crash with the parallel backend."
 msgstr ""
-"Zoritxarrez, zenbait motorek arazoak zor ditzakete. (Adibidez zenbait PPC "
-"kernel hasutura motore paraleloaz)"
+"Zoritxarrez, zenbait interaze programek arazoak zor ditzakete. (Adibidez zenbait PPC "
+"kernel haustura motore paraleloaz)"
 
 #. Type: multiselect
 #. Description
@@ -162,14 +158,3 @@ msgstr ""
 "Mesedez hautatu CUPS-ek erabiliko duen komunikazio motorea. Aukera "
 "lehenetsiak ingurune arruntenetan funtzionatu beharko luke."
 
-#~ msgid ""
-#~ "If you will be accepting print jobs from Windows computers, you probably "
-#~ "want this option set, as Windows gives all IPP print jobs processed by a "
-#~ "local driver the MIME type application/octet-stream. Samba also submits "
-#~ "its print jobs this way."
-#~ msgstr ""
-#~ "Windows ordenagailutik inprimatze lanak onartu behar badituzu, ziurrenik "
-#~ "aukera hau gaitu beharko duzu Windows-ek kontrolagailu lokal batek "
-#~ "prozesaturiko IPP inprimatze lan guztiei application/octet-stream MIME "
-#~ "mota ezartzen bait die. Sama-k ere inprimatze lanak era hoentara "
-#~ "bidaltzen ditu."
