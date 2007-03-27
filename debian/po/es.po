@@ -21,8 +21,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: cupsys 1.2.2-1\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-07-28 05:01-0600\n"
+"Report-Msgid-Bugs-To: pkg-cups-devel@lists.alioth.debian.org\n"
+"POT-Creation-Date: 2007-03-27 22:18+0900\n"
 "PO-Revision-Date: 2006-08-15 01:10+0200\n"
 "Last-Translator: Carlos Valdivia Yagüe <valyag@dat.etsit.upm.es>\n"
 "Language-Team: Debian L10n Spanish Team <debian-l10n-spanish@lists.debian."
@@ -40,11 +40,12 @@ msgstr "¿Desea configurar el servidor de compatibilidad lpd de BSD?"
 #. Type: boolean
 #. Description
 #: ../cupsys-bsd.templates:1001
+#, fuzzy
 msgid ""
-"This package contains a server that can accept BSD-style print jobs and "
-"submit them to CUPS. It should only be set up if you have other computers "
-"that submit jobs over the network via \"BSD\" or \"LPR\" services, and these "
-"computers cannot be converted to use the IPP protocol that CUPS uses."
+"The CUPS package contains a server that can accept BSD-style print jobs and "
+"submit them to CUPS. It should only be set up if other computers are likely "
+"to submit jobs over the network via the \"BSD\" or \"LPR\" services, and "
+"these computers cannot be converted to use the IPP protocol that CUPS uses."
 msgstr ""
 "Este paquete incluye un servidor que acepta trabajos de impresión al estilo "
 "BSD y se los envía a CUPS. Configúrelo únicamente en el caso de que haya "
@@ -61,12 +62,12 @@ msgstr "¿Quiere que CUPS imprima en bruto los trabajos desconocidos?"
 #. Type: boolean
 #. Description
 #: ../cupsys.templates:1001
+#, fuzzy
 msgid ""
-"All print jobs in IPP get a MIME type. Since not all sources of print jobs "
-"can attach an appropriate type, many jobs get submitted as the MIME type "
-"application/octet-stream. Because of this, when CUPS receives a job with "
-"that MIME type, it attempts to guess what the format is. By default, if it "
-"cannot guess the proper type, it rejects the job."
+"The Internet Printing Protocol (IPP) enforces a MIME type for all print "
+"jobs. Since not all sources of print jobs can attach an appropriate type, "
+"many jobs get submitted as the MIME type application/octet-stream and could "
+"be rejected if CUPS cannot guess the job's format."
 msgstr ""
 "En IPP todos los trabajos de impresión tienen un tipo MIME. Puesto que no "
 "todas las fuentes de trabajos de impresión asignan correctamente algún tipo "
@@ -77,10 +78,10 @@ msgstr ""
 #. Type: boolean
 #. Description
 #: ../cupsys.templates:1001
+#, fuzzy
 msgid ""
-"It is possible to cause CUPS to treat all unrecognized jobs with this MIME "
-"type as \"raw\" jobs, which causes them to be sent directly to the printer "
-"without processing."
+"CUPS can handle all such jobs as \"raw\" jobs, which causes them to be sent "
+"directly to the printer without processing."
 msgstr ""
 "Es posible hacer que CUPS trate todos los trabajos no reconocidos, con este "
 "tipo MIME, como trabajos «en bruto», con lo que se mandan directamente a la "
@@ -90,15 +91,9 @@ msgstr ""
 #. Description
 #: ../cupsys.templates:1001
 msgid ""
-"If you will be accepting print jobs from Windows computers, you probably "
-"want this option set, as Windows gives all IPP print jobs processed by a "
-"local driver the MIME type application/octet-stream. Samba also submits its "
-"print jobs this way."
+"It is recommended to choose this option if the server will be accepting "
+"print jobs from Windows computers or Samba servers."
 msgstr ""
-"Si va a recibir trabajos de impresión desde sistemas Windows es muy probable "
-"que desee activar esta opción, ya que Windows da a los trabajos de impresión "
-"IPP que procesa localmente el tipo application/octet-stream. Samba también "
-"envía los trabajos de impresión de esta manera."
 
 #. Type: multiselect
 #. Choices
@@ -157,21 +152,22 @@ msgstr "Motores de comunicación con la impresora:"
 #. Type: multiselect
 #. Description
 #: ../cupsys.templates:2002
+#, fuzzy
 msgid ""
-"CUPS uses backend programs for communication with printer device or port."
-msgstr ""
-"CUPS utiliza diversos motores para comunicarse con la impresora."
+"CUPS uses backend programs to communicate with the printer device or port."
+msgstr "CUPS utiliza diversos motores para comunicarse con la impresora."
 
 #. Type: multiselect
 #. Description
 #: ../cupsys.templates:2002
+#, fuzzy
 msgid ""
-"Unfortunately, some backend programs cause some trouble. (For example, some "
-"PPC kernel crashes with the parallel backend)"
+"Unfortunately, some backend programs are likely to cause some trouble. For "
+"example, some PPC kernels crash with the parallel backend."
 msgstr ""
 "Desafortunadamente, ciertos motores pueden causar problemas. (Por ejemplo, "
-"con el motor del puerto paralelo se producen algunas caídas del núcleo en "
-"la arquitectura PPC."
+"con el motor del puerto paralelo se producen algunas caídas del núcleo en la "
+"arquitectura PPC."
 
 #. Type: multiselect
 #. Description
@@ -182,3 +178,14 @@ msgid ""
 msgstr ""
 "Por favor, elija el motor que utilizará CUPS. La opción predeterminada "
 "debería ser apta para los entornos más comunes."
+
+#~ msgid ""
+#~ "If you will be accepting print jobs from Windows computers, you probably "
+#~ "want this option set, as Windows gives all IPP print jobs processed by a "
+#~ "local driver the MIME type application/octet-stream. Samba also submits "
+#~ "its print jobs this way."
+#~ msgstr ""
+#~ "Si va a recibir trabajos de impresión desde sistemas Windows es muy "
+#~ "probable que desee activar esta opción, ya que Windows da a los trabajos "
+#~ "de impresión IPP que procesa localmente el tipo application/octet-stream. "
+#~ "Samba también envía los trabajos de impresión de esta manera."

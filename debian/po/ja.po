@@ -15,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cupsys 1.2\n"
 "Report-Msgid-Bugs-To: pkg-cups-devel@lists.alioth.debian.org\n"
-"POT-Creation-Date: 2006-07-03 22:26+0900\n"
-"PO-Revision-Date: 2005-12-17 13:24+0900\n"
+"POT-Creation-Date: 2007-03-27 22:18+0900\n"
+"PO-Revision-Date: 2007-03-27 22:25+0900\n"
 "Last-Translator: Kenshi Muto <kmuto@debian.org>\n"
 "Language-Team: Japanese <debian-japanese@lists.debian.org>\n"
 "MIME-Version: 1.0\n"
@@ -31,18 +31,13 @@ msgstr "BSD lpd 互換サーバをセットアップしますか?"
 
 #. Type: boolean
 #. Description
-#: ../cupsys-bsd.templates:1002
+#: ../cupsys-bsd.templates:1001
 msgid ""
-"This package contains a server that can accept BSD-style print jobs and "
-"submit them to CUPS. It should only be set up if you have other computers "
-"that submit jobs over the network via \"BSD\" or \"LPR\" services, and these "
-"computers cannot be converted to use the IPP protocol that CUPS uses."
-msgstr ""
-"このパッケージは BSD スタイルの印刷ジョブを受け付け、CUPS にそれを送るサーバ"
-"を含んでいます。\"BSD\" または \"LPR\" サービス経由でネットワーク越しにジョブ"
-"を送るほかのコンピュータがあり、かつそれらのコンピュータは CUPS の使っている "
-"IPP プロトコルを使うよう変更できない、という場合にのみセットアップすべきで"
-"す。"
+"The CUPS package contains a server that can accept BSD-style print jobs and "
+"submit them to CUPS. It should only be set up if other computers are likely "
+"to submit jobs over the network via the \"BSD\" or \"LPR\" services, and "
+"these computers cannot be converted to use the IPP protocol that CUPS uses."
+msgstr "CUPS パッケージは BSD スタイルの印刷ジョブを受け付け、CUPS にそれを送るサーバを含んでいます。\"BSD\" または \"LPR\" サービス経由でネットワーク越しにジョブを送るほかのコンピュータがあり、かつそれらのコンピュータは CUPS の使っている IPP プロトコルを使うよう変更できない、という場合にのみセットアップすべきです。"
 
 #. Type: boolean
 #. Description
@@ -52,44 +47,29 @@ msgstr "未知のジョブを生データ (raw) ジョブとして CUPS に印�
 
 #. Type: boolean
 #. Description
-#: ../cupsys.templates:1002
+#: ../cupsys.templates:1001
 msgid ""
-"All print jobs in IPP get a MIME type. Since not all sources of print jobs "
-"can attach an appropriate type, many jobs get submitted as the MIME type "
-"application/octet-stream. Because of this, when CUPS receives a job with "
-"that MIME type, it attempts to guess what the format is. By default, if it "
-"cannot guess the proper type, it rejects the job."
-msgstr ""
-"IPP でのすべての印刷ジョブは MIME 形式を持ちます。印刷ジョブのすべてのソース"
-"に適切な形式が付いているとは限らず、多くのジョブは MIME 形式 application/"
-"octet-stream として送られます。このため、CUPS はこのような MIME 形式付きの"
-"ジョブを受け取ると、そのフォーマットは何かを推測しようとします。デフォルトで"
-"は、もし適当な形式を推測できない場合、そのジョブを拒否します。"
+"The Internet Printing Protocol (IPP) enforces a MIME type for all print "
+"jobs. Since not all sources of print jobs can attach an appropriate type, "
+"many jobs get submitted as the MIME type application/octet-stream and could "
+"be rejected if CUPS cannot guess the job's format."
+msgstr "Internet Printing Protocol (IPP) でのすべての印刷ジョブは MIME 形式を持ちます。印刷ジョブのすべてのソースに適切な形式が付いているとは限らず、多くのジョブは MIME 形式 application/octet-stream として送られ,CUPS がそのジョブのフォーマットを推測できなかったときには拒否されます。"
 
 #. Type: boolean
 #. Description
-#: ../cupsys.templates:1003
+#: ../cupsys.templates:1001
 msgid ""
-"It is possible to cause CUPS to treat all unrecognized jobs with this MIME "
-"type as \"raw\" jobs, which causes them to be sent directly to the printer "
-"without processing."
-msgstr ""
-"この MIME 形式のすべての未知のジョブを、加工することなくプリンタに直接送るよ"
-"う生データ（\"raw\"）ジョブとして扱うように CUPS を設定できます。"
+"CUPS can handle all such jobs as \"raw\" jobs, which causes them to be sent "
+"directly to the printer without processing."
+msgstr "そのようなジョブを、すべて生データ (\"raw\") ジョブとして加工なしに直接プリンタに送るように CUPS を設定できます。"
 
 #. Type: boolean
 #. Description
-#: ../cupsys.templates:1004
+#: ../cupsys.templates:1001
 msgid ""
-"If you will be accepting print jobs from Windows computers, you probably "
-"want this option set, as Windows gives all IPP print jobs processed by a "
-"local driver the MIME type application/octet-stream. Samba also submits its "
-"print jobs this way."
-msgstr ""
-"もし Windows コンピュータからの印刷ジョブを受け付ける場合、おそらくこのオプ"
-"ションを設定すべきです。というのも、Windows はすべての IPP 印刷ジョブをローカ"
-"ルドライバによって MIME 形式 application/octet-stream に加工するからです。"
-"Samba も同様にその印刷ジョブをこのやり方で送ります。"
+"It is recommended to choose this option if the server will be accepting "
+"print jobs from Windows computers or Samba servers."
+msgstr "サーバが Windows コンピュータあるいは Samba サーバからの印刷ジョブを受け付ける場合は、この選択肢で「はい」と答えることをお勧めします。"
 
 #. Type: multiselect
 #. Choices
@@ -99,149 +79,73 @@ msgstr "IPP"
 
 #. Type: multiselect
 #. Choices
-#: ../cupsys.templates:2002
+#: ../cupsys.templates:2001
 msgid "lpd"
 msgstr "LPD"
 
 #. Type: multiselect
 #. Choices
-#: ../cupsys.templates:2003
+#: ../cupsys.templates:2001
 msgid "parallel"
 msgstr "パラレル"
 
 #. Type: multiselect
 #. Choices
-#: ../cupsys.templates:2004
+#: ../cupsys.templates:2001
 msgid "scsi"
 msgstr "SCSI"
 
 #. Type: multiselect
 #. Choices
-#: ../cupsys.templates:2005
+#: ../cupsys.templates:2001
 msgid "serial"
 msgstr "シリアル"
 
 #. Type: multiselect
 #. Choices
-#: ../cupsys.templates:2006
+#: ../cupsys.templates:2001
 msgid "socket"
 msgstr "ソケット"
 
 #. Type: multiselect
 #. Choices
-#: ../cupsys.templates:2007
+#: ../cupsys.templates:2001
 msgid "usb"
 msgstr "USB"
 
 #. Type: multiselect
 #. Choices
-#: ../cupsys.templates:2008
+#: ../cupsys.templates:2001
 msgid "snmp"
 msgstr "SNMP"
 
 #. Type: multiselect
 #. Description
-#: ../cupsys.templates:2009
+#: ../cupsys.templates:2002
 msgid "Printer communication backends:"
 msgstr "プリンタ通信バックエンド:"
 
 #. Type: multiselect
 #. Description
-#: ../cupsys.templates:2010
+#: ../cupsys.templates:2002
 msgid ""
-"CUPS uses backend programs for communication with printer device or port."
-msgstr ""
-"CUPS はプリンタデバイスまたはポートと会話するのにバックエンドプログラムを使い"
-"ます。"
+"CUPS uses backend programs to communicate with the printer device or port."
+msgstr "CUPS はプリンタデバイスまたはポートと会話するのにバックエンドプログラムを使います。"
 
 #. Type: multiselect
 #. Description
-#: ../cupsys.templates:2011
+#: ../cupsys.templates:2002
 msgid ""
-"Unfortunately, some backend programs cause some trouble. (For example, some "
-"PPC kernel crashes with the parallel backend)"
-msgstr ""
-"困ったことに、いくつかのバックエンドプログラムは問題を引き起こします。(たとえ"
-"ば、ある種の PPC カーネルは parallel バックエンドでクラッシュします)"
+"Unfortunately, some backend programs are likely to cause some trouble. For "
+"example, some PPC kernels crash with the parallel backend."
+msgstr "困ったことに、いくつかのバックエンドプログラムは種々の問題を引き起こします。たとえば、ある種の PPC カーネルは parallel バックエンドでクラッシュします。"
 
 #. Type: multiselect
 #. Description
-#: ../cupsys.templates:2012
+#: ../cupsys.templates:2002
 msgid ""
 "Please choose the backend program to be used by CUPS. The default choice "
 "should fit the most common environments."
 msgstr ""
 "CUPS で利用したいバックエンドプログラムを選択してください。デフォルトの選択は"
 "たいていの一般的な環境に合っています。"
-
-#~ msgid "Port or/and host name where CUPS will listen to:"
-#~ msgstr "CUPS が監視するポートまたはホスト名:"
-
-#~ msgid ""
-#~ "Please specify the port or the host name CUPS daemon will listen to. The "
-#~ "following formats are allowed:"
-#~ msgstr ""
-#~ "CUPS デーモンに監視させるポートまたはホスト名を指定してください。次のよう"
-#~ "な書式を利用できます:"
-
-#~ msgid ""
-#~ " - Port number (631);\n"
-#~ " - Host name   (debian.example.com);\n"
-#~ " - Host:Port   (debian.example.com:631);\n"
-#~ " - File domain socket (/var/run/cups/cups.sock)."
-#~ msgstr ""
-#~ " - ポート番号      (631);\n"
-#~ " - ホスト名        (debian.example.com);\n"
-#~ " - ホスト名:ポート (debian.example.com:631);\n"
-#~ " - ファイルドメインソケット (/var/run/cups/cups.sock)。"
-
-#~ msgid ""
-#~ "You can combine any of these by delimiting in a space-separated list."
-#~ msgstr "スペースで区切ったリストでこれらを組み合わせることもできます。"
-
-#~ msgid ""
-#~ "The default port 631 is reserved for the Internet Printing Protocol "
-#~ "(IPP). \"localhost:631\" is recommended to setup a standalone environment "
-#~ "for security reasons."
-#~ msgstr ""
-#~ "デフォルトポート 631 は Internet Printing Protocol (IPP) に予約されていま"
-#~ "す。\"localhost:631\" はセキュリティ上の理由からスタンドアロンな環境にセッ"
-#~ "トアップするのに推奨されます。"
-
-#~ msgid "Broadcast and/or listen for CUPS printer information on the network?"
-#~ msgstr ""
-#~ "ネットワーク上の CUPS プリンタ情報のブロードキャストおよび監視を行います"
-#~ "か?"
-
-#~ msgid ""
-#~ "CUPS daemon can broadcast printer information for clients on the network, "
-#~ "and detect printers on the network automatically."
-#~ msgstr ""
-#~ "CUPS デーモンはネットワーク上のクライアントにプリンタ情報をブロードキャス"
-#~ "トしたり、ネットワーク上のプリンタを自動的に検出したりできます。"
-
-#~ msgid ""
-#~ "If you choose this option, the CUPS daemon will periodically send UDP "
-#~ "broadcasts to detect printers."
-#~ msgstr ""
-#~ "この選択肢を選ぶと、CUPS デーモンはプリンタを検出するために UDP ブロード"
-#~ "キャストを定期的に送ります。"
-
-#~ msgid "Incorrect value entered"
-#~ msgstr "不正な値が入力されました"
-
-#~ msgid "an error occurred while parsing the port number or the host name."
-#~ msgstr "ポート番号またはホスト名の解釈中にエラーが発生しました。"
-
-#~ msgid "Please correct your input."
-#~ msgstr "入力値を修正してください。"
-
-#~ msgid "Admin password:"
-#~ msgstr "管理者パスワード:"
-
-#~ msgid "Please enter the password for the admin (username 'root') of CUPS."
-#~ msgstr "CUPS 管理者 (ユーザ名 'root') 用のパスワードを入力してください。"
-
-#~ msgid ""
-#~ "You can add/replace/delete CUPS password information by using lpadmin."
-#~ msgstr "lpadmin を使って CUPS パスワード情報を追加/変更/削除できます。"
