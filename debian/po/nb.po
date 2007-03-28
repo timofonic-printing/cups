@@ -1,20 +1,20 @@
-# translation of cupsys_1.2.7-2_templates.po to Norwegian Bokmål
+# translation of nb.po_[sQSfZa].po to Norwegian Bokmål
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 #
 # Bjørn Steensrud <bjornst@powertech.no>, 2007.
 msgid ""
 msgstr ""
-"Project-Id-Version: cupsys_1.2.7-2_templates\n"
+"Project-Id-Version: nb.po_[sQSfZa]\n"
 "Report-Msgid-Bugs-To: pkg-cups-devel@lists.alioth.debian.org\n"
-"POT-Creation-Date: 2007-03-27 22:18+0900\n"
-"PO-Revision-Date: 2007-01-09 21:43+0100\n"
+"POT-Creation-Date: 2007-03-27 07:14+0200\n"
+"PO-Revision-Date: 2007-03-27 19:04+0200\n"
 "Last-Translator: Bjørn Steensrud <bjornst@powertech.no>\n"
 "Language-Team: Norwegian Bokmål <i18n-nb@lister.ping.uio.no>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11.2\n"
+"X-Generator: KBabel 1.11.4\n"
 
 #. Type: boolean
 #. Description
@@ -25,14 +25,13 @@ msgstr "Vil du sette opp en tjener kompatibel med BSD lpd?"
 #. Type: boolean
 #. Description
 #: ../cupsys-bsd.templates:1001
-#, fuzzy
 msgid ""
 "The CUPS package contains a server that can accept BSD-style print jobs and "
 "submit them to CUPS. It should only be set up if other computers are likely "
 "to submit jobs over the network via the \"BSD\" or \"LPR\" services, and "
 "these computers cannot be converted to use the IPP protocol that CUPS uses."
 msgstr ""
-"Denne pakka inneholder en tjener som kan ta imot utskriftsjobber som er i "
+"CUPS-pakka inneholder en tjener som kan ta imot utskriftsjobber som er i "
 "BSD-stil og sende dem over til CUPS. Du bør bare sette den opp dersom du har "
 "andre datamaskiner som sender utskrifter over nettverket via «BSD» eller "
 "«LPR»-tjenester, og disse maskinene ikke kan endres til å bruke IPP - "
@@ -47,7 +46,6 @@ msgstr "Vil du at CUPS skal skrive ut ukjente jobber som rå utskrift?"
 #. Type: boolean
 #. Description
 #: ../cupsys.templates:1001
-#, fuzzy
 msgid ""
 "The Internet Printing Protocol (IPP) enforces a MIME type for all print "
 "jobs. Since not all sources of print jobs can attach an appropriate type, "
@@ -56,22 +54,15 @@ msgid ""
 msgstr ""
 "Alle utskriftsjobber i IPP får en MIME-type. Siden ikke alle kilder som "
 "sender utskriftsjobber kan legge på en passende type, så blir mange jobber "
-"levert som MIME-typen application/octet-stream. Derfor forsøker CUPS å finne "
-"ut hva formatet er når den mottar en jobb med denne MIME-typen. Standard er "
-"at den avviser utskriftsjobben hvis den ikke kan gjette seg til den rette "
-"typen-"
+"levert som MIME-typen application/octet-stream og kan bli avvist hvis CUPS ikke kan gjette seg til den rette typen."
 
 #. Type: boolean
 #. Description
 #: ../cupsys.templates:1001
-#, fuzzy
 msgid ""
 "CUPS can handle all such jobs as \"raw\" jobs, which causes them to be sent "
 "directly to the printer without processing."
-msgstr ""
-"Det er mulig å få CUPS til å behandle alle ukjente jobber med denne MIME-"
-"typen som «rå» jobber, noe som gjør at de sendes direkte til skriveren uten "
-"behandling."
+msgstr "CUPS kan behandle alle slike jobber som «rå» utskrift, noe som gjør at de sendes direkte til skriveren uten behandling."
 
 #. Type: boolean
 #. Description
@@ -79,7 +70,7 @@ msgstr ""
 msgid ""
 "It is recommended to choose this option if the server will be accepting "
 "print jobs from Windows computers or Samba servers."
-msgstr ""
+msgstr "Hvis tjeneren kommer til å behandle utskriftsjobber fra Windows-maskiner eller Samba-tjenere anbefales det at dette slås på."
 
 #. Type: multiselect
 #. Choices
@@ -138,23 +129,20 @@ msgstr "Kommunikasjonsmotorer for skriver:"
 #. Type: multiselect
 #. Description
 #: ../cupsys.templates:2002
-#, fuzzy
-msgid ""
-"CUPS uses backend programs to communicate with the printer device or port."
+msgid "CUPS uses backend programs to communicate with the printer device or port."
 msgstr ""
-"CUPS bruker «motor»-programmer til å kommunisere med skriverenheten eller "
+"CUPS bruker bakgrunns-«motorer» til å kommunisere med skriverenheten eller "
 "porten."
 
 #. Type: multiselect
 #. Description
 #: ../cupsys.templates:2002
-#, fuzzy
 msgid ""
 "Unfortunately, some backend programs are likely to cause some trouble. For "
 "example, some PPC kernels crash with the parallel backend."
 msgstr ""
-"Dessverre lager noen motorer vanskeligheter. (Noen PPD-kjerner, for "
-"eksempel, krasjer med parallell-motoren)"
+"Dessverre lager noen motorer vanskeligheter. Noen PPD-kjerner, for "
+"eksempel, krasjer med parallell-motoren."
 
 #. Type: multiselect
 #. Description
@@ -166,13 +154,3 @@ msgstr ""
 "Velg motor-program som CUPS skal bruke. Standardvalget passer antakelig i de "
 "vanligste miljøene."
 
-#~ msgid ""
-#~ "If you will be accepting print jobs from Windows computers, you probably "
-#~ "want this option set, as Windows gives all IPP print jobs processed by a "
-#~ "local driver the MIME type application/octet-stream. Samba also submits "
-#~ "its print jobs this way."
-#~ msgstr ""
-#~ "Hvis du kommer til å ta imot utskriftsjobber fra Windows-maskiner, så bør "
-#~ "du nok slå på dette, siden Windows setter MIME-typen application/octet-"
-#~ "stream på alle IPP-jobber behandlet gjennom en lokal driver. Samba sender "
-#~ "også sine utskriftsjobber på den måten."

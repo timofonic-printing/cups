@@ -1,14 +1,14 @@
 # Italian (it) translation of debconf templates for cupsys
 # Copyright (C) 2006 Software in the Public Interest
 # This file is distributed under the same license as the cupsys package.
-# Luca Monducci <luca.mo@tiscali.it>, 2006.
+# Luca Monducci <luca.mo@tiscali.it>, 2006, 2007.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: cupsys 1.1.23 italian debconf templates\n"
+"Project-Id-Version: cupsys 1.2.7 italian debconf templates\n"
 "Report-Msgid-Bugs-To: pkg-cups-devel@lists.alioth.debian.org\n"
-"POT-Creation-Date: 2007-03-27 22:18+0900\n"
-"PO-Revision-Date: 2006-06-11 17:44+0200\n"
+"POT-Creation-Date: 2007-03-27 07:14+0200\n"
+"PO-Revision-Date: 2007-03-27 20:09+0200\n"
 "Last-Translator: Luca Monducci <luca.mo@tiscali.it>\n"
 "Language-Team: Italian <tp@lists.linux.it>\n"
 "MIME-Version: 1.0\n"
@@ -24,18 +24,17 @@ msgstr "Si vuole configurare il server di compatibilità con lpd di BSD?"
 #. Type: boolean
 #. Description
 #: ../cupsys-bsd.templates:1001
-#, fuzzy
 msgid ""
 "The CUPS package contains a server that can accept BSD-style print jobs and "
 "submit them to CUPS. It should only be set up if other computers are likely "
 "to submit jobs over the network via the \"BSD\" or \"LPR\" services, and "
 "these computers cannot be converted to use the IPP protocol that CUPS uses."
 msgstr ""
-"Questo pacchetto contiene un server che può accettare job di stampa in "
+"Il pacchetto CUPS contiene un server che può accettare job di stampa in "
 "formato BSD per poi girarli a CUPS. Questo server dovrebbe essere attivato "
-"solo se in rete ci sono altri computer che inviano job ai servizi \"BSD\" o "
-"\"LPR\" e che non possono essere aggiornati per usare il protocollo IPP, "
-"cioè quello usato da CUPS."
+"solo se in rete ci sono altri computer che potrebbero inviare job tramite i "
+"servizi \"BSD\" o \"LPR\" e che non possono essere configurati per usare il "
+"protocollo IPP, cioè quello usato da CUPS."
 
 #. Type: boolean
 #. Description
@@ -46,31 +45,26 @@ msgstr "Si vuole che CUPS stampi i job sconosciuti come job \"raw\"?"
 #. Type: boolean
 #. Description
 #: ../cupsys.templates:1001
-#, fuzzy
 msgid ""
 "The Internet Printing Protocol (IPP) enforces a MIME type for all print "
 "jobs. Since not all sources of print jobs can attach an appropriate type, "
 "many jobs get submitted as the MIME type application/octet-stream and could "
 "be rejected if CUPS cannot guess the job's format."
 msgstr ""
-"Con IPP tutti i job di stampa assumono un tipo MIME. Dato che non tutte le "
-"sorgenti dichiarano il tipo corretto, molti dei job inviati hanno tipo MIME "
-"application/octect-stream. Per questo motivo, quando CUPS riceve un job con "
-"quel tipo MIME, cerca di indovinarne il formato. Il comportamento "
-"predefinito nel caso che il riconoscimento del tipo non riesca è rifiutare "
-"il job."
+"Il protocollo IPP (Internet Printing Protocol) assegna un tipo MIME a tutti "
+"i job di stampa. Dato che non tutte le sorgenti dichiarano il tipo corretto, "
+"molti dei job inviati hanno tipo application/octect-stream e potrebbero "
+"essere rifiutati se CUPS non riesce a indovinarne il giusto formato del job."
 
 #. Type: boolean
 #. Description
 #: ../cupsys.templates:1001
-#, fuzzy
 msgid ""
 "CUPS can handle all such jobs as \"raw\" jobs, which causes them to be sent "
 "directly to the printer without processing."
 msgstr ""
-"È possibile forzare CUPS a trattare tutti i job con quel tipo MIME e che non "
-"riesce a riconoscere come job \"raw\", ciò comporta l'invio diretto alla "
-"stampante, senza ulteriori elaborazioni."
+"CUPS può trattare tutti questi job come job \"raw\", ciò comporta l'invio "
+"diretto alla stampante, senza ulteriori elaborazioni."
 
 #. Type: boolean
 #. Description
@@ -79,6 +73,8 @@ msgid ""
 "It is recommended to choose this option if the server will be accepting "
 "print jobs from Windows computers or Samba servers."
 msgstr ""
+"Si raccomanda di attivare questa opzione se il server deve accettare job di "
+"stampa da computer con Windows oppure da server Samba."
 
 #. Type: multiselect
 #. Choices
@@ -137,7 +133,6 @@ msgstr "Backend di comunicazione con la stampante:"
 #. Type: multiselect
 #. Description
 #: ../cupsys.templates:2002
-#, fuzzy
 msgid ""
 "CUPS uses backend programs to communicate with the printer device or port."
 msgstr ""
@@ -147,14 +142,13 @@ msgstr ""
 #. Type: multiselect
 #. Description
 #: ../cupsys.templates:2002
-#, fuzzy
 msgid ""
 "Unfortunately, some backend programs are likely to cause some trouble. For "
 "example, some PPC kernels crash with the parallel backend."
 msgstr ""
-"Sfortunatamente alcuni programmi di backend causano dei problemi (per "
-"esempio alcuni kernel per PPC si bloccano con il backend per la porta "
-"parallela)."
+"Sfortunatamente alcuni programmi di backend porebbero causare dei problemi. "
+"Per esempio alcuni kernel per PPC si bloccano con il backend per la porta "
+"parallela."
 
 #. Type: multiselect
 #. Description
@@ -165,78 +159,3 @@ msgid ""
 msgstr ""
 "Scegliere quale programma di backend deve usare CUPS. La scelta predefinita "
 "dovrebbe essere adatta per la maggioranza dei casi."
-
-#~ msgid ""
-#~ "If you will be accepting print jobs from Windows computers, you probably "
-#~ "want this option set, as Windows gives all IPP print jobs processed by a "
-#~ "local driver the MIME type application/octet-stream. Samba also submits "
-#~ "its print jobs this way."
-#~ msgstr ""
-#~ "Se si devono accettare job di stampa da computer con Windows, "
-#~ "probabilmente si dovrebbe attivare questa opzione, infatti il driver "
-#~ "locale di Windows assegna a tutti i job di stampa elaborati il tipo MIME "
-#~ "application/octet-stream. Anche Samba invia i propri job di stampa in "
-#~ "questo modo."
-
-#~ msgid "Port or/and host name where CUPS will listen to:"
-#~ msgstr "Porta e/o nome host su cui CUPS sarà in ascolto:"
-
-#~ msgid ""
-#~ "Please specify the port or the host name CUPS daemon will listen to. The "
-#~ "following formats are allowed:"
-#~ msgstr ""
-#~ "Specificare la porta oppure il nome host su cui CUPS si metterà in "
-#~ "ascolto. Sono accettati i seguenti formati:"
-
-#~ msgid ""
-#~ " - Port number (631);\n"
-#~ " - Host name   (debian.example.com);\n"
-#~ " - Host:Port   (debian.example.com:631);\n"
-#~ " - File domain socket (/var/run/cups/cups.sock)."
-#~ msgstr ""
-#~ " - Numero porta (631);\n"
-#~ " - Nome host    (debian.esempio.com);\n"
-#~ " - Host:Porta   (debian.esempio.com:631). - File socket di dominio (/var/"
-#~ "run/cups/cups.sock)."
-
-#~ msgid ""
-#~ "You can combine any of these by delimiting in a space-separated list."
-#~ msgstr ""
-#~ "Si possono combinare più voci come queste delimitandole con degli spazi."
-
-#~ msgid ""
-#~ "The default port 631 is reserved for the Internet Printing Protocol "
-#~ "(IPP). \"localhost:631\" is recommended to setup a standalone environment "
-#~ "for security reasons."
-#~ msgstr ""
-#~ "La porta predefinita 631 è la porta riservata per l'Internet Printing "
-#~ "Protocol (IPP). Per ragioni legate alla sicurezza, \"localhost:631\" è la "
-#~ "configurazione raccomandata per un sistema stand-alone."
-
-#~ msgid "Broadcast and/or listen for CUPS printer information on the network?"
-#~ msgstr "Diffondere e/o ascoltare informazioni sulle stampanti CUPS in rete?"
-
-#~ msgid ""
-#~ "CUPS daemon can broadcast printer information for clients on the network, "
-#~ "and detect printers on the network automatically."
-#~ msgstr ""
-#~ "Il demone CUPS può diffondere informazioni sulla stampante ai client in "
-#~ "rete e può rilevare automaticamente le stampanti in rete."
-
-#~ msgid ""
-#~ "If you choose this option, the CUPS daemon will periodically send UDP "
-#~ "broadcasts to detect printers."
-#~ msgstr ""
-#~ "Se si attiva questa funzione il demone CUPS invierà periodicamente un "
-#~ "pacchetto UDP in broadcast per rilevare le stampanti."
-
-#~ msgid "Incorrect value entered"
-#~ msgstr "Inserito un valore non corretto"
-
-#~ msgid "an error occurred while parsing the port number or the host name."
-#~ msgstr ""
-#~ "si è verificato un errore nell'analisi del numero della porta o del nome "
-#~ "host."
-
-#~ msgid "Please correct your input."
-#~ msgstr "Correggere il valore inserito."

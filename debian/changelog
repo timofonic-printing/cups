@@ -9,6 +9,8 @@ cupsys (1.2.7-5) UNRELEASED; urgency=low
     - Swedish (closes: #416356)
     - Catalan (closes: #416367)
     - Basque (closes: #416385)
+    - Norwegian (closes: #416401)
+    - Italian (closes: #416407)
 
  -- Kenshi Muto <kmuto@debian.org>  Tue, 27 Mar 2007 22:08:00 +0900
 
