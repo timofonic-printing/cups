@@ -12,7 +12,11 @@ cupsys (1.2.7-5) UNRELEASED; urgency=low
     - Norwegian (closes: #416401)
     - Italian (closes: #416407)
 
- -- Kenshi Muto <kmuto@debian.org>  Tue, 27 Mar 2007 22:08:00 +0900
+  [ Christian Perrier ]
+  * Debconf translation
+    - Czech (closes: #416939)
+
+ -- Christian Perrier <bubulle@debian.org>  Sat, 31 Mar 2007 18:50:37 +0200
 
 cupsys (1.2.7-4) unstable; urgency=high
 

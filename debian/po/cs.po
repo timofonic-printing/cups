@@ -15,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cupsys\n"
 "Report-Msgid-Bugs-To: pkg-cups-devel@lists.alioth.debian.org\n"
-"POT-Creation-Date: 2007-03-27 22:18+0900\n"
-"PO-Revision-Date: 2005-12-17 16:00+0100\n"
+"POT-Creation-Date: 2007-03-27 07:14+0200\n"
+"PO-Revision-Date: 2007-03-31 17:45+0200\n"
 "Last-Translator: Miroslav Kure <kurem@debian.cz>\n"
 "Language-Team: Czech <debian-l10n-czech@lists.debian.org>\n"
 "MIME-Version: 1.0\n"
@@ -32,17 +32,16 @@ msgstr "Chcete spustit server kompatibilní s BSD lpd?"
 #. Type: boolean
 #. Description
 #: ../cupsys-bsd.templates:1001
-#, fuzzy
 msgid ""
 "The CUPS package contains a server that can accept BSD-style print jobs and "
 "submit them to CUPS. It should only be set up if other computers are likely "
 "to submit jobs over the network via the \"BSD\" or \"LPR\" services, and "
 "these computers cannot be converted to use the IPP protocol that CUPS uses."
 msgstr ""
-"Tento balík obsahuje server, který umí přijímat tiskové úlohy ve stylu BSD a "
-"přeposílat je systému CUPS. Měli byste jej povolit pouze v případě, že máte "
-"na síti počítače, které posílají úlohy přes služby \"BSD\" nebo \"LPR\" a "
-"nedají se přemluvit, aby používaly protokol IPP."
+"Tento CUPS balík obsahuje server, který umí přijímat tiskové úlohy ve stylu "
+"BSD a přeposílat je systému CUPS. Měli byste jej povolit pouze v případě, že "
+"máte na síti počítače, které posílají úlohy přes služby \"BSD\" nebo \"LPR\" "
+"a nedají se přemluvit, aby používaly protokol IPP."
 
 #. Type: boolean
 #. Description
@@ -53,30 +52,28 @@ msgstr "Chcete, aby CUPS tisknul neznámé úlohy jako typ \"raw\"?"
 #. Type: boolean
 #. Description
 #: ../cupsys.templates:1001
-#, fuzzy
 msgid ""
 "The Internet Printing Protocol (IPP) enforces a MIME type for all print "
 "jobs. Since not all sources of print jobs can attach an appropriate type, "
 "many jobs get submitted as the MIME type application/octet-stream and could "
 "be rejected if CUPS cannot guess the job's format."
 msgstr ""
-"Všechny tiskové úlohy IPP mají přiřazen typ MIME, podle kterého CUPS pozná, "
-"v jakém formátu je úloha zaslána. Protože ne všechny zdroje tiskových úloh "
-"umí nastavit správný typ, je mnoho úloh zasíláno s MIME typem application/"
-"octet-stream a CUPS pak musí hádat, o jaký formát dat se jedná. Pokud CUPS "
-"formát neuhodne, implicitně úlohu odmítne."
+"Všechny tiskové úlohy IPP (Internet Printing Protocol) mají přiřazen typ "
+"MIME, podle kterého CUPS pozná, v jakém formátu je úloha zaslána. Protože ne "
+"všechny zdroje tiskových úloh umí nastavit správný typ, je mnoho úloh "
+"zasíláno s MIME typem application/octet-stream a CUPS pak musí hádat, o jaký "
+"formát dat se jedná. Pokud CUPS formát neuhodne, implicitně úlohu odmítne."
 
 #. Type: boolean
 #. Description
 #: ../cupsys.templates:1001
-#, fuzzy
 msgid ""
 "CUPS can handle all such jobs as \"raw\" jobs, which causes them to be sent "
 "directly to the printer without processing."
 msgstr ""
-"Zde můžete nastavit, aby CUPS považoval všechny nerozpoznané úlohy s tímto "
-"MIME typem jako úlohy typu \"raw\". Takové úlohy se nijak nezpracovávají a "
-"jsou odesílány rovnou na tiskárnu."
+"Zde můžete nastavit, aby CUPS považoval všechny nerozpoznané úlohy jako "
+"úlohy typu \"raw\". Takové úlohy se nijak nezpracovávají a jsou odesílány "
+"rovnou na tiskárnu."
 
 #. Type: boolean
 #. Description
@@ -85,6 +82,8 @@ msgid ""
 "It is recommended to choose this option if the server will be accepting "
 "print jobs from Windows computers or Samba servers."
 msgstr ""
+"Jestliže bude server akceptovat tiskové úlohy z Windows počítačů nebo ze "
+"Samba serverů, je doporučeno tuto možnost povolit."
 
 #. Type: multiselect
 #. Choices
@@ -143,21 +142,19 @@ msgstr "Ovladače pro komunikaci s tiskárnou:"
 #. Type: multiselect
 #. Description
 #: ../cupsys.templates:2002
-#, fuzzy
 msgid ""
 "CUPS uses backend programs to communicate with the printer device or port."
-msgstr "CUPS používá ovladač pro komunikaci s tiskárnou nebo jejím portem."
+msgstr "CUPS používá ovladače pro komunikaci s tiskárnou nebo jejím portem."
 
 #. Type: multiselect
 #. Description
 #: ../cupsys.templates:2002
-#, fuzzy
 msgid ""
 "Unfortunately, some backend programs are likely to cause some trouble. For "
 "example, some PPC kernels crash with the parallel backend."
 msgstr ""
-"Bohužel některé ovladače nejsou stabilní. (Například některá PPC jádra v "
-"kombinaci s paralelním ovladačem spadnou.)"
+"Bohužel, některé ovladače nejsou zcela stabilní. Například některá PPC jádra "
+"v kombinaci s paralelním ovladačem spadnou."
 
 #. Type: multiselect
 #. Description
@@ -190,7 +187,6 @@ msgstr ""
 #~ "Zadejte prosím port nebo jméno počítače, na kterém má daemon CUPS "
 #~ "naslouchat příchozím spojením. Povoleny jsou následující formáty:"
 
-#, fuzzy
 #~ msgid ""
 #~ " - Port number (631);\n"
 #~ " - Host name   (debian.example.com);\n"
@@ -199,7 +195,8 @@ msgstr ""
 #~ msgstr ""
 #~ " - Číslo portu    (631);\n"
 #~ " - Jméno počítače (debian.priklad.cz);\n"
-#~ " - Počítač:Port   (debian.priklad.cz:631)."
+#~ " - Počítač:Port   (debian.priklad.cz:631). - Socket         (/var/run/"
+#~ "cups/cups.sock)."
 
 #~ msgid ""
 #~ "You can combine any of these by delimiting in a space-separated list."
