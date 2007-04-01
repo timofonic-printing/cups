@@ -1,4 +1,4 @@
-# translation of de.po to German
+# translation of po-debconf template to German
 #
 #    Translators, if you are not familiar with the PO format, gettext
 #    documentation is worth reading, especially sections dedicated to
@@ -9,32 +9,32 @@
 #            /usr/share/doc/po-debconf/README-trans
 #         or http://www.debian.org/intl/l10n/po-debconf/README-trans#
 #    Developers do not need to manually edit POT or PO files.
-# Jens Nachtigall <nachtigall@web.de>, 2004, 2005.
 #
+# Jens Nachtigall <nachtigall@web.de>, 2004, 2005.
+# Matthias Julius <mdeb@julius-net.net>, 2007.
 msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: pkg-cups-devel@lists.alioth.debian.org\n"
-"POT-Creation-Date: 2007-03-27 22:18+0900\n"
-"PO-Revision-Date: 2005-12-17 20:58+0100\n"
-"Last-Translator: Jens Nachtigall <nachtigall@web.de>\n"
+"POT-Creation-Date: 2007-03-27 07:14+0200\n"
+"PO-Revision-Date: 2007-03-31 11:14-0400\n"
+"Last-Translator: Matthias Julius <mdeb@julius-net.net>\n"
 "Language-Team: German <debian-l10n-german@lists.debian.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.9.1\n"
+"X-Generator: KBabel 1.11.4\n"
 "Plural-Forms:  nplurals=2; plural=(n != 1);\n"
 
 #. Type: boolean
 #. Description
 #: ../cupsys-bsd.templates:1001
 msgid "Do you want to set up the BSD lpd compatibility server?"
-msgstr "Wollen Sie den BSD-lpd Kompatibilitäts-Server einsetzen?"
+msgstr "Möchten Sie den Kompatibilitäts-Server für BSD lpd einrichten?"
 
 #. Type: boolean
 #. Description
 #: ../cupsys-bsd.templates:1001
-#, fuzzy
 msgid ""
 "The CUPS package contains a server that can accept BSD-style print jobs and "
 "submit them to CUPS. It should only be set up if other computers are likely "
@@ -51,36 +51,33 @@ msgstr ""
 #. Description
 #: ../cupsys.templates:1001
 msgid "Do you want CUPS to print unknown jobs as raw jobs?"
-msgstr "Wollen Sie, dass CUPS unbekannte Druckaufträge unbearbeitet druckt?"
+msgstr ""
+"Möchten Sie, dass CUPS unbekannte Druckaufträge unbearbeitet (raw) druckt?"
 
 #. Type: boolean
 #. Description
 #: ../cupsys.templates:1001
-#, fuzzy
 msgid ""
 "The Internet Printing Protocol (IPP) enforces a MIME type for all print "
 "jobs. Since not all sources of print jobs can attach an appropriate type, "
 "many jobs get submitted as the MIME type application/octet-stream and could "
 "be rejected if CUPS cannot guess the job's format."
 msgstr ""
-"Bei IPP bekommen alle Druckaufträge einen MIME-Typen.  Da nicht jeder "
-"Erzeuger von Druckaufträgen den geeigneten Typen anhängen kann, werden viele "
-"Aufträge mit dem MIME-Typen »application/octet-stream« abgesendet.  Wenn "
-"CUPS einen Auftrag mit diesem MIME-Typen erhält, versucht CUPS deshalb das "
-"Datei-Format herauszufinden.  Die Standardeinstellung ist, den Auftrag "
-"abzulehnen, wenn es den richtigen Typen nicht herausfinden kann."
+"Das Internet Printing Protokoll (IPP) erfordert einen MIME-Typ für alle "
+"Druckaufträge. Da nicht jeder Erzeuger von Druckaufträgen den geeigneten Typ "
+"einfügen kann, werden viele Aufträge mit dem MIME-Typ »application/octet-"
+"stream« abgesendet. Diese Druckaufträge können abgewiesen werden, falls CUPS "
+"dessen Format nicht ermitteln kann."
 
 #. Type: boolean
 #. Description
 #: ../cupsys.templates:1001
-#, fuzzy
 msgid ""
 "CUPS can handle all such jobs as \"raw\" jobs, which causes them to be sent "
 "directly to the printer without processing."
 msgstr ""
-"Es ist möglich CUPS zu veranlassen alle unerkannten Aufträge mit diesem MIME-"
-"Typen als rohe (engl. »raw«) Aufträge zu behandeln. Das bedeutet diese "
-"Aufträge ohne Bearbeitung direkt an den Drucker zu senden."
+"CUPS kann all diese Aufträge als »rohe« (engl.: »raw«) Aufträge behandeln. "
+"Das bewirkt, dass sie ohne Bearbeitung direkt an den Drucker gesendet werden."
 
 #. Type: boolean
 #. Description
@@ -89,12 +86,14 @@ msgid ""
 "It is recommended to choose this option if the server will be accepting "
 "print jobs from Windows computers or Samba servers."
 msgstr ""
+"Es wird empfohlen, diese Option zu wählen, falls der Server Druckaufträge "
+"von Windows-Rechnern oder Samba-Servern akzeptieren wird."
 
 #. Type: multiselect
 #. Choices
 #: ../cupsys.templates:2001
 msgid "ipp"
-msgstr "ipp"
+msgstr "IPP"
 
 #. Type: multiselect
 #. Choices
@@ -112,31 +111,31 @@ msgstr "parallel"
 #. Choices
 #: ../cupsys.templates:2001
 msgid "scsi"
-msgstr "scsi"
+msgstr "SCSI"
 
 #. Type: multiselect
 #. Choices
 #: ../cupsys.templates:2001
 msgid "serial"
-msgstr "serial"
+msgstr "seriell"
 
 #. Type: multiselect
 #. Choices
 #: ../cupsys.templates:2001
 msgid "socket"
-msgstr "socket"
+msgstr "Socket"
 
 #. Type: multiselect
 #. Choices
 #: ../cupsys.templates:2001
 msgid "usb"
-msgstr "usb"
+msgstr "USB"
 
 #. Type: multiselect
 #. Choices
 #: ../cupsys.templates:2001
 msgid "snmp"
-msgstr "snmp"
+msgstr "SNMP"
 
 #. Type: multiselect
 #. Description
@@ -147,21 +146,20 @@ msgstr "Backends für die Kommunikation mit dem Drucker:"
 #. Type: multiselect
 #. Description
 #: ../cupsys.templates:2002
-#, fuzzy
 msgid ""
 "CUPS uses backend programs to communicate with the printer device or port."
-msgstr "CUPS verwendet Backend-Programme zur Kommunikation mit dem Drucker."
+msgstr ""
+"CUPS verwendet Backend-Programme zur Kommunikation mit dem Drucker oder Port."
 
 #. Type: multiselect
 #. Description
 #: ../cupsys.templates:2002
-#, fuzzy
 msgid ""
 "Unfortunately, some backend programs are likely to cause some trouble. For "
 "example, some PPC kernels crash with the parallel backend."
 msgstr ""
-"Leider verursachen manche Backend-Programme Probleme. (Zum Beispiel stürzen "
-"einige PPC-Kernel mit dem Parallel-Backend ab)"
+"Leider verursachen manche Backend-Programme Probleme. Zum Beispiel stürzen "
+"einige PPC-Kernel mit dem Parallel-Backend ab."
 
 #. Type: multiselect
 #. Description
@@ -170,84 +168,5 @@ msgid ""
 "Please choose the backend program to be used by CUPS. The default choice "
 "should fit the most common environments."
 msgstr ""
-"Bitte wählen Sie das Backend-Programm, das mit CUPS verwendet werden soll. "
-"Die Voreinstellung sollte normalerweise den meisten Umgebungen gerecht "
-"werden."
-
-#~ msgid ""
-#~ "If you will be accepting print jobs from Windows computers, you probably "
-#~ "want this option set, as Windows gives all IPP print jobs processed by a "
-#~ "local driver the MIME type application/octet-stream. Samba also submits "
-#~ "its print jobs this way."
-#~ msgstr ""
-#~ "Sollten Sie Druckaufträge von Windows-Rechnern entgegennehmen, ist es "
-#~ "ratsam diese Option zu setzen, da Windows allen IPP-Druckaufträgen, die "
-#~ "von einem lokalen Treiber verarbeitet werden, den MIME-Typen »application/"
-#~ "octet-stream« gibt. Samba übergibt seine Druckaufträge auf die gleiche "
-#~ "Art."
-
-#~ msgid "Port or/and host name where CUPS will listen to:"
-#~ msgstr "Port oder/und Host-Name auf dem CUPS lauschen soll:"
-
-#~ msgid ""
-#~ "Please specify the port or the host name CUPS daemon will listen to. The "
-#~ "following formats are allowed:"
-#~ msgstr ""
-#~ "Bitte geben Sie den Port oder Host-Namen an, auf dem der CUPS-Daemon "
-#~ "lauschen soll. Die folgenden Formate sind erlaubt:"
-
-#, fuzzy
-#~ msgid ""
-#~ " - Port number (631);\n"
-#~ " - Host name   (debian.example.com);\n"
-#~ " - Host:Port   (debian.example.com:631);\n"
-#~ " - File domain socket (/var/run/cups/cups.sock)."
-#~ msgstr ""
-#~ " - Port-Nummer (631);\n"
-#~ " - Host-Name   (debian.beispiel.de);\n"
-#~ " - Host:Port   (debian.beispiel.de:631)."
-
-#~ msgid ""
-#~ "You can combine any of these by delimiting in a space-separated list."
-#~ msgstr ""
-#~ "Sie können mehrere davon angeben, indem Sie die einzelnen Werte durch "
-#~ "Leerzeichen trennen."
-
-#~ msgid ""
-#~ "The default port 631 is reserved for the Internet Printing Protocol "
-#~ "(IPP). \"localhost:631\" is recommended to setup a standalone environment "
-#~ "for security reasons."
-#~ msgstr ""
-#~ "Der Standard-Port 631 ist für das Internet Printing Protocol (IPP) "
-#~ "reserviert. Für einen Einzelrechner ist aus Sicherheitsgründen "
-#~ "»localhost:631« empfohlen."
-
-#~ msgid "Broadcast and/or listen for CUPS printer information on the network?"
-#~ msgstr ""
-#~ "CUPS-Drucker-Informationen im Netzwerk aussenden und/oder diese empfangen?"
-
-#~ msgid ""
-#~ "CUPS daemon can broadcast printer information for clients on the network, "
-#~ "and detect printers on the network automatically."
-#~ msgstr ""
-#~ "Der CUPS-Daemon kann für Clients im Netzwerk Drucker-Informationen "
-#~ "aussenden. Dadurch können diese automatisch die im Netzwerk verfügbaren "
-#~ "Drucker finden."
-
-#~ msgid ""
-#~ "If you choose this option, the CUPS daemon will periodically send UDP "
-#~ "broadcasts to detect printers."
-#~ msgstr ""
-#~ "Wenn Sie hier zustimmen, dann wird der CUPS-Daemon periodisch UDP-"
-#~ "Broadcasts senden um im Netzwerk Drucker zu finden."
-
-#~ msgid "Incorrect value entered"
-#~ msgstr "Sie haben einen falschen Wert eingegeben"
-
-#~ msgid "an error occurred while parsing the port number or the host name."
-#~ msgstr ""
-#~ "Beim Einlesen der Port-Nummer oder des Host-Namens ist ein Fehler "
-#~ "aufgetreten."
-
-#~ msgid "Please correct your input."
-#~ msgstr "Bitte korrigieren Sie Ihre Eingabe."
+"Bitte wählen Sie das Backend-Programm zur Verwendung mit CUPS. Die "
+"Voreinstellung sollte den meisten Umgebungen gerecht werden."

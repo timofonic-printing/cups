@@ -15,6 +15,7 @@ cupsys (1.2.7-5) UNRELEASED; urgency=low
   [ Christian Perrier ]
   * Debconf translation
     - Czech (closes: #416939)
+    - German (closes: #416994)
 
  -- Christian Perrier <bubulle@debian.org>  Sat, 31 Mar 2007 18:50:37 +0200
 
