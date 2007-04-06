@@ -16,8 +16,12 @@ cupsys (1.2.7-5) UNRELEASED; urgency=low
   * Debconf translation
     - Czech (closes: #416939)
     - German (closes: #416994)
+    - Brazilian Portuguese (closes: #417249)
+    - French
+    - Malayalam. (closes: #418030)
+    - Russian. (closes: #417874)
 
- -- Christian Perrier <bubulle@debian.org>  Sat, 31 Mar 2007 18:50:37 +0200
+ -- Christian Perrier <bubulle@debian.org>  Mon, 02 Apr 2007 07:51:20 +0200
 
 cupsys (1.2.7-4) unstable; urgency=high
 

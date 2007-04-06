@@ -1,23 +1,14 @@
-#
-#    Translators, if you are not familiar with the PO format, gettext
-#    documentation is worth reading, especially sections dedicated to
-#    this format, e.g. by running:
-#         info -n '(gettext)PO Files'
-#         info -n '(gettext)Header Entry'
-#
-#    Some information specific to po-debconf are available at
-#            /usr/share/doc/po-debconf/README-trans
-#         or http://www.debian.org/intl/l10n/po-debconf/README-trans
-#
-#    Developers do not need to manually edit POT or PO files.
-#
+# Brazilian Portuguese translation of cupsys
+# This file is distributed under the same license as the aiccu package.
+# André Luis Lopes (andrelop) <andrelop@debian.org>, 2005-2006.
+# Felipe Augusto van de Wiel (faw) <faw@debian.org>, 2006-2007.
 msgid ""
 msgstr ""
 "Project-Id-Version: cupsys\n"
 "Report-Msgid-Bugs-To: pkg-cups-devel@lists.alioth.debian.org\n"
-"POT-Creation-Date: 2007-03-27 22:18+0900\n"
-"PO-Revision-Date: 2006-11-09 20:17-0200\n"
-"Last-Translator: Felipe Augusto van de Wiel (faw) <faw@cathedrallabs.org>\n"
+"POT-Creation-Date: 2007-03-27 07:14+0200\n"
+"PO-Revision-Date: 2007-04-01 22:46-0300\n"
+"Last-Translator: Felipe Augusto van de Wiel (faw) <faw@debian.org>\n"
 "Language-Team: l10n portuguese <debian-l10n-portuguese@lists.debian.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -33,17 +24,16 @@ msgstr "Você quer configurar o servidor de compatibilidade BSD lpd?"
 #. Type: boolean
 #. Description
 #: ../cupsys-bsd.templates:1001
-#, fuzzy
 msgid ""
 "The CUPS package contains a server that can accept BSD-style print jobs and "
 "submit them to CUPS. It should only be set up if other computers are likely "
 "to submit jobs over the network via the \"BSD\" or \"LPR\" services, and "
 "these computers cannot be converted to use the IPP protocol that CUPS uses."
 msgstr ""
-"Este pacote contém um servidor que pode aceitar trabalhos de impressão no "
+"O pacote CUPS contém um servidor que pode aceitar trabalhos de impressão no "
 "estilo BSD e enviá-los ao CUPS. Isto deverá ser configurado somente se você "
 "possui outros computadores enviando trabalhos de impressão pela rede via "
-"serviços \"BSD\" ou \"LPR\" e estes computadores não podem ser convertidos "
+"serviços \"BSD\" ou \"LPR\" e estes computadores não puderem ser convertidos "
 "para usar o protocolo IPP que o CUPS utiliza."
 
 #. Type: boolean
@@ -57,31 +47,28 @@ msgstr ""
 #. Type: boolean
 #. Description
 #: ../cupsys.templates:1001
-#, fuzzy
 msgid ""
 "The Internet Printing Protocol (IPP) enforces a MIME type for all print "
 "jobs. Since not all sources of print jobs can attach an appropriate type, "
 "many jobs get submitted as the MIME type application/octet-stream and could "
 "be rejected if CUPS cannot guess the job's format."
 msgstr ""
-"Todos os trabalhos de impressão em IPP possuem um tipo MIME. Uma vez que nem "
-"todas as fontes de trabalhos de impressão podem anexar um tipo apropriado, "
-"muitos trabalhos são submetidos com seu tipo MIME como appliction/octet-"
-"stream. Devido a isso, quando o CUPS recebe um trabalho com esse tipo MIME, "
-"o mesmo tenta adivinhar em qual formato o trabalho está. Por padrão, caso o "
-"CUPS não consiga adivinhar o tipo correto, o trabalho é rejeitado."
+"O Internet Printing Protocol (IPP - Protocolo de Impressão da Internet) "
+"força um tipo MIME para todos os trabalhos de impressão. Como nem todas as "
+"fontes de trabalhos de impressão podem anexar um tipo apropriado, muitos "
+"trabalhos são enviados como o tipo MIME application/octet-stream  e podem "
+"ser rejeitados se o CUPS não adivinhar o formato do trabalho."
 
 #. Type: boolean
 #. Description
 #: ../cupsys.templates:1001
-#, fuzzy
 msgid ""
 "CUPS can handle all such jobs as \"raw\" jobs, which causes them to be sent "
 "directly to the printer without processing."
 msgstr ""
-"É possível fazer com que o CUPS trate todos os trabalhos não reconhecidos "
-"com esse tipo MIME como trabalhos \"raw\", o que fará com que os mesmos "
-"sejam enviados diretamente para a impressora sem processamento prévio."
+"O CUPS pode manipular todos estes trabalhos como trabalhos \"raw\", o que "
+"faz com que eles sejam enviados diretamente para a impressora sem "
+"processamento."
 
 #. Type: boolean
 #. Description
@@ -90,6 +77,8 @@ msgid ""
 "It is recommended to choose this option if the server will be accepting "
 "print jobs from Windows computers or Samba servers."
 msgstr ""
+"É recomendado escolher esta opção se o servidor vai aceitar trabalhos de "
+"impressão de computadores Windows ou servidores Samba."
 
 #. Type: multiselect
 #. Choices
@@ -143,28 +132,27 @@ msgstr "snmp"
 #. Description
 #: ../cupsys.templates:2002
 msgid "Printer communication backends:"
-msgstr "Backends de comunicação com impressoras:"
+msgstr "\"Backends\" de comunicação com impressoras:"
 
 #. Type: multiselect
 #. Description
 #: ../cupsys.templates:2002
-#, fuzzy
 msgid ""
 "CUPS uses backend programs to communicate with the printer device or port."
 msgstr ""
-"O CUPS utiliza um programa backend para comunicação com o dispositivo de "
-"impressão ou com a porta de impressão."
+"O CUPS utiliza um programa \"backend\" para comunicação com o dispositivo ou "
+"porta de impressão."
 
 #. Type: multiselect
 #. Description
 #: ../cupsys.templates:2002
-#, fuzzy
 msgid ""
 "Unfortunately, some backend programs are likely to cause some trouble. For "
 "example, some PPC kernels crash with the parallel backend."
 msgstr ""
-"Infelizmenete, alguns programas backends causam alguns problemas. (Por "
-"exemplo, alguns kernels PowerPC travam com o backend paralelo)"
+"Infelizmente, alguns programas \"backend\" causam alguns problemas. Por "
+"exemplo, alguns núcleos (\"kernels\") PPC travam com o \"backend parallel"
+"\" (paralelo)."
 
 #. Type: multiselect
 #. Description
@@ -173,7 +161,7 @@ msgid ""
 "Please choose the backend program to be used by CUPS. The default choice "
 "should fit the most common environments."
 msgstr ""
-"Por favor, selecione o programa backend a ser usado pelo CUPS. A escolha "
+"Por favor, selecione o programa \"backend\" a ser usado pelo CUPS. A escolha "
 "padrão deve se encaixar na maiorias dos ambientes."
 
 #~ msgid ""

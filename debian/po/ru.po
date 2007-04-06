@@ -14,13 +14,14 @@
 #    Developers do not need to manually edit POT or PO files.
 # Yuri Kozlov <kozlov.y@gmail.com>, 2005.
 #
+# Translator: Yuri Kozlov <kozlov.y@gmail.com>"
 msgid ""
 msgstr ""
-"Project-Id-Version: cupsys_1.1.23-12_ru.po\n"
+"Project-Id-Version: cupsys_1.2.7-4_ru.po\n"
 "Report-Msgid-Bugs-To: pkg-cups-devel@lists.alioth.debian.org\n"
-"POT-Creation-Date: 2007-03-27 22:18+0900\n"
-"PO-Revision-Date: 2005-12-17 16:32+0300\n"
-"Last-Translator: Yuri Kozlov <kozlov.y@gmail.com>\n"
+"POT-Creation-Date: 2007-03-27 07:14+0200\n"
+"PO-Revision-Date: 2007-04-05 11:27+0300\n"
+"Last-Translator: Sergey Alyoshin <alyoshin.s@gmail.com>\n"
 "Language-Team: Russian <debian-l10n-russian@lists.debian.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -36,15 +37,14 @@ msgstr "Хотите установить сервер совместимост�
 #. Type: boolean
 #. Description
 #: ../cupsys-bsd.templates:1001
-#, fuzzy
 msgid ""
 "The CUPS package contains a server that can accept BSD-style print jobs and "
 "submit them to CUPS. It should only be set up if other computers are likely "
 "to submit jobs over the network via the \"BSD\" or \"LPR\" services, and "
 "these computers cannot be converted to use the IPP protocol that CUPS uses."
 msgstr ""
-"Этот пакет содержит сервер, который может принимать задания печати в стиле "
-"BSD и посылать их в CUPS. Его рекомендуется устанавливать только в том "
+"Этот пакет CUPS содержит сервер, который может принимать задания печати в "
+"стиле BSD и посылать их в CUPS. Его рекомендуется устанавливать только в том "
 "случае, если в сети есть другие компьютеры, которые отправляют задания по "
 "сети с помощью \"BSD\" или \"LPR\" сервисов, и эти компьютеры не могут "
 "работать с протоколом IPP, который используется в CUPS."
@@ -59,31 +59,26 @@ msgstr ""
 #. Type: boolean
 #. Description
 #: ../cupsys.templates:1001
-#, fuzzy
 msgid ""
 "The Internet Printing Protocol (IPP) enforces a MIME type for all print "
 "jobs. Since not all sources of print jobs can attach an appropriate type, "
 "many jobs get submitted as the MIME type application/octet-stream and could "
 "be rejected if CUPS cannot guess the job's format."
 msgstr ""
-"Все задания печати с помощью IPP имеют тип MIME. Так как не все источники "
-"заданий печати могут присоединять соответствующий тип, многие задания "
-"посылаются с MIME типом application/octet-stream. Из-за этого, когда CUPS "
-"принимает задание с таким MIME типом, он пытается определить формат "
-"полученных данных. По умолчанию, если тип определить не удаётся, задание "
-"отбрасывается."
+"Все задания печати с помощью интернет протокола печати (IPP) имеют тип MIME. "
+"Так как не все источники заданий печати могут назначать соответствующий тип, "
+"многие задания посылаются с MIME типом приложение/поток-октетов и могут быть "
+"отклонены, если CUPS не определит формат заданий."
 
 #. Type: boolean
 #. Description
 #: ../cupsys.templates:1001
-#, fuzzy
 msgid ""
 "CUPS can handle all such jobs as \"raw\" jobs, which causes them to be sent "
 "directly to the printer without processing."
 msgstr ""
-"Данная установка заставляет CUPS воспринимать нераспознанные задания с таким "
-"MIME типом как \"сырые\" задания, которые посылаются на принтер напрямую, "
-"без обработки."
+"CUPS может обслуживать все такие задания как \"необработанные\", что ведет к "
+"их посылке напрямую к устройству печати без обработки."
 
 #. Type: boolean
 #. Description
@@ -92,6 +87,8 @@ msgid ""
 "It is recommended to choose this option if the server will be accepting "
 "print jobs from Windows computers or Samba servers."
 msgstr ""
+"Рекомендуется выбрать этот параметр если сервер будет получать задания "
+"печати от компьютеров с Windows или от серверов Samba."
 
 #. Type: multiselect
 #. Choices
@@ -150,7 +147,6 @@ msgstr "Интерфейсные программы для связи с при�
 #. Type: multiselect
 #. Description
 #: ../cupsys.templates:2002
-#, fuzzy
 msgid ""
 "CUPS uses backend programs to communicate with the printer device or port."
 msgstr ""
@@ -160,13 +156,12 @@ msgstr ""
 #. Type: multiselect
 #. Description
 #: ../cupsys.templates:2002
-#, fuzzy
 msgid ""
 "Unfortunately, some backend programs are likely to cause some trouble. For "
 "example, some PPC kernels crash with the parallel backend."
 msgstr ""
 "К сожалению, некоторые интерфейсные программы могут вызывать проблемы. "
-"(Например, некоторые ядра PPC падают при использовании интерфейса parallel)"
+"Например, некоторые ядра PPC рушатся при использовании интерфейса parallel."
 
 #. Type: multiselect
 #. Description
@@ -175,7 +170,7 @@ msgid ""
 "Please choose the backend program to be used by CUPS. The default choice "
 "should fit the most common environments."
 msgstr ""
-"Выберите интерфейсные программу, которая будет использоваться CUPS. Выбор по "
+"Выберите интерфейсную программу, которая будет использоваться CUPS. Выбор по "
 "умолчанию должен работать с большинством оборудования."
 
 #~ msgid ""
