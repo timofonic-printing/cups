@@ -20,6 +20,7 @@ cupsys (1.2.7-5) UNRELEASED; urgency=low
     - French
     - Malayalam. (closes: #418030)
     - Russian. (closes: #417874)
+    - Dutch. (closes: #418135)
 
  -- Christian Perrier <bubulle@debian.org>  Mon, 02 Apr 2007 07:51:20 +0200
 

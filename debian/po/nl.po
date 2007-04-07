@@ -4,24 +4,25 @@
 #    this format, e.g. by running:
 #         info -n '(gettext)PO Files'
 #         info -n '(gettext)Header Entry'
-# 
+#
 #    Some information specific to po-debconf are available at
 #            /usr/share/doc/po-debconf/README-trans
 #         or http://www.debian.org/intl/l10n/po-debconf/README-trans
-# 
+#
 #    Developers do not need to manually edit POT or PO files.
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: cupsys 1.1.20candidate6\n"
 "Report-Msgid-Bugs-To: pkg-cups-devel@lists.alioth.debian.org\n"
-"POT-Creation-Date: 2007-03-27 22:18+0900\n"
-"PO-Revision-Date: 2006-05-29 17:10+0100\n"
-"Last-Translator: Tim Dijkstra <tim@famdijkstra.org>\n"
+"POT-Creation-Date: 2007-03-27 07:14+0200\n"
+"PO-Revision-Date: 2007-03-30 17:47+0100\n"
+"Last-Translator: Bart Cornelis <cobaco@skolelinux.no>\n"
 "Language-Team: Debian Dutch <debian-l10n-dutch@lists.debian.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=iso-8859-15\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Dutch\n"
 
 #. Type: boolean
 #. Description
@@ -33,18 +34,18 @@ msgstr ""
 #. Type: boolean
 #. Description
 #: ../cupsys-bsd.templates:1001
-#, fuzzy
 msgid ""
 "The CUPS package contains a server that can accept BSD-style print jobs and "
 "submit them to CUPS. It should only be set up if other computers are likely "
 "to submit jobs over the network via the \"BSD\" or \"LPR\" services, and "
 "these computers cannot be converted to use the IPP protocol that CUPS uses."
 msgstr ""
-"Dit pakket bevat een server die BSD-stijl afdrukopdrachten kan accepteren om "
-"ze daarna naar CUPS te sturen. De server dient alleen ingesteld te worden "
-"als er andere computers zijn die afdrukopdrachten over het netwerk sturen "
-"via \"BSD\"- of \"LPR\" -services én deze computers niet kunnen worden "
-"ingesteld om het IPP-protocol (gebruikt door CUPS) te gebruiken."
+"Het pakket 'cupsys-bsd' bevat een server die BSD-stijl afdrukopdrachten "
+"accepteert en naar CUPS doorstuurt. Deze server dient enkel ingesteld te "
+"worden als er andere computers zijn die afdrukopdrachten over het netwerk "
+"sturen via \"BSD\"- of \"LPR\"-diensten, EN deze computers niet kunnen "
+"worden ingesteld om het IPP-protocol te gebruiken (CUPS gebruikt dit "
+"protocol zelf ook)."
 
 #. Type: boolean
 #. Description
@@ -55,32 +56,28 @@ msgstr "Wilt u dat CUPS onbekende opdrachten onbewerkt naar de printer stuurt?"
 #. Type: boolean
 #. Description
 #: ../cupsys.templates:1001
-#, fuzzy
 msgid ""
 "The Internet Printing Protocol (IPP) enforces a MIME type for all print "
 "jobs. Since not all sources of print jobs can attach an appropriate type, "
 "many jobs get submitted as the MIME type application/octet-stream and could "
 "be rejected if CUPS cannot guess the job's format."
 msgstr ""
-"Alle afdrukopdrachten in IPP krijgen een MIME-type. Omdat niet alle bronnen "
-"van afdrukopdrachten een geschikt type aan de opdracht kunnen verbinden, "
-"worden veel opdrachten verstuurd als het MIME-type application/octet-stream. "
-"CUPS zal daarom als het een opdracht krijgt met dit MIME-type proberen te "
-"raden wat het bestandsformaat is. Standaard zal CUPS, als het niet is gelukt "
-"het formaat te raden, de opdracht afwijzen."
+"Het 'Internet Printing Protocol' (IPP) vereist dat alle printtaken een MIME-"
+"type hebben. Niet alle printtaken komen van een bron die in staat is om een "
+"geschikt MIME-type aan de printtaak te hangen, in zo'n geval worden ze "
+"aangeboden met het type application/octet-stream. Als CUPS niet in staat is "
+"om het correcte formaat van de taak te raden worden deze printtaak-aanvragen "
+"afgewezen."
 
 #. Type: boolean
 #. Description
 #: ../cupsys.templates:1001
-#, fuzzy
 msgid ""
 "CUPS can handle all such jobs as \"raw\" jobs, which causes them to be sent "
 "directly to the printer without processing."
 msgstr ""
-"Het is mogelijk om CUPS alle niet-herkende opdrachten met dit MIME-type te "
-"laten behandelen als onbewerkte opdrachten. Dit zorgt er voor dat de "
-"opdracht direct naar de printer wordt gestuurd zonder het verder te "
-"verwerken."
+"CUPS kan deze printtaken als 'raw'-taken afhandelen, wat inhoudt dat ze "
+"zonder verdere bewerking direct naar de printer gestuurd worden."
 
 #. Type: boolean
 #. Description
@@ -89,6 +86,8 @@ msgid ""
 "It is recommended to choose this option if the server will be accepting "
 "print jobs from Windows computers or Samba servers."
 msgstr ""
+"Deze optie is aan te raden wanneer deze server printtaken dient te "
+"aanvaarden van Windows-computers of Samba-servers."
 
 #. Type: multiselect
 #. Choices
@@ -147,23 +146,21 @@ msgstr "Backends voor printercommunicatie:"
 #. Type: multiselect
 #. Description
 #: ../cupsys.templates:2002
-#, fuzzy
 msgid ""
 "CUPS uses backend programs to communicate with the printer device or port."
 msgstr ""
-"CUPS gebruikt een backend-programma voor de communicatie met de printer of "
-"de printerpoort."
+"CUPS gebruikt backend-programma's voor de communicatie met de printer en de "
+"printerpoort."
 
 #. Type: multiselect
 #. Description
 #: ../cupsys.templates:2002
-#, fuzzy
 msgid ""
 "Unfortunately, some backend programs are likely to cause some trouble. For "
 "example, some PPC kernels crash with the parallel backend."
 msgstr ""
-"Helaas kunnen sommige backend-programma's problemen veroorzaken. (Bijv. "
-"sommige PPC-kernels kunnen vastlopen met de 'parallel'-backend."
+"Helaas kunnen sommige backend-programma's problemen veroorzaken. (Bv. "
+"sommige PPC-kernels kunnen vastlopen bij gebruik van het 'parallel'-backend.)"
 
 #. Type: multiselect
 #. Description
@@ -172,8 +169,8 @@ msgid ""
 "Please choose the backend program to be used by CUPS. The default choice "
 "should fit the most common environments."
 msgstr ""
-"Kies een backend-programma dat door CUPS moet worden gebruikt. De "
-"standaardkeuze zou voor de meest voorkomende omgevingen moeten voldoen."
+"Welk backend-programma wilt u CUPS laten gebruiken?. De standaardwaarde zou "
+"voor de meeste omgevingen moeten voldoen."
 
 #~ msgid ""
 #~ "If you will be accepting print jobs from Windows computers, you probably "
