@@ -1,3 +1,6 @@
+# These templates have been reviewed by debian-l10n-english
+# Please do not modify them without asking for a review
+
 Template: cupsys/raw-print
 Type: boolean
 Default: true
