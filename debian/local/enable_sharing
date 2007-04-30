@@ -50,7 +50,7 @@ esac
 if [ $1 = 0 ]; then
 	sed -ri "s/^[[:space:]]*(Port|Listen)[[:space:]]+631\\>/Listen 127.0.0.1:631/i" $CONF
 else
-	sed -ri "s/^[[:space:]]*Listen[[:space:]]+localhost:631\\>/Listen 631/i" $CONF
+	sed -ri "s/^[[:space:]]*Listen[[:space:]]+(127.0.0.1|localhost):631\\>/Listen 631/i" $CONF
 fi
 	
 

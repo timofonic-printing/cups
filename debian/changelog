@@ -62,8 +62,10 @@ cupsys (1.2.10-1) UNRELEASED; urgency=low
     required for Sarge->Etch upgrades.
   * debian/control: Change netbase dependency to update-inetd, since that
     lives in its own package now.
+  * debian/local/enable_sharing: Also match on 127.0.0.1 IP adresses in
+    addition to 'localhost'.
 
- -- Martin Pitt <mpitt@debian.org>  Mon, 30 Apr 2007 14:18:54 +0200
+ -- Martin Pitt <mpitt@debian.org>  Mon, 30 Apr 2007 14:21:08 +0200
 
 cupsys (1.2.7-4) unstable; urgency=high
 
