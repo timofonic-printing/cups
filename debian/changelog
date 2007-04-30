@@ -67,8 +67,13 @@ cupsys (1.2.10-1) UNRELEASED; urgency=low
   * debian/rules: Most of the clean:: rule is obsolete, only two files are
     left behind now. These two have been reported upstream in
     http://www.cups.org/str.php?L2366.
+  * debian/cupsys.templates: Activate SCSI, serial, and SNMP backends by
+    default. With these backends activated, many printers can be easily set up
+    with the printer setup tools.  Especially network printers get
+    auto-detected and the correct URI gets assigned to them (doing this
+    manually is a non-trivial task for most users).
 
- -- Martin Pitt <mpitt@debian.org>  Mon, 30 Apr 2007 14:24:10 +0200
+ -- Martin Pitt <mpitt@debian.org>  Mon, 30 Apr 2007 14:36:56 +0200
 
 cupsys (1.2.7-4) unstable; urgency=high
 
