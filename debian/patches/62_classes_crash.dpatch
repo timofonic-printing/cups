@@ -2,7 +2,7 @@
 ## 62_classes_crash.dpatch by Kenshi Muto <kmuto@debian.org>
 ##
 ## All lines beginning with `## DP:' are a description of the patch.
-## DP: No description.
+## DP: TODO: forward upstream, find details
 
 @DPATCH@
 diff -urNad cupsys-1.2.3~/scheduler/classes.c cupsys-1.2.3/scheduler/classes.c

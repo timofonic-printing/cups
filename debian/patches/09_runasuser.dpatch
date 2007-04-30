@@ -2,13 +2,17 @@
 ## 09_runasuser.dpatch by  <mpitt@debian.org>
 ##
 ## All lines beginning with `## DP:' are a description of the patch.
-## DP: No description.
+## DP: Provide a configuration switch --enable-privilege-dropping for running
+## DP: the scheduler as a normal system user. This confines security
+## DP: vulnerabilities to the scheduler itself rather than providing a
+## DP: remote root attack vector.
+## DP: Forwarded upstream: http://www.cups.org/str.php?L2370
 
 @DPATCH@
-diff -urNad cups-1.2~/config-scripts/cups-defaults.m4 cups-1.2/config-scripts/cups-defaults.m4
---- cups-1.2~/config-scripts/cups-defaults.m4	2006-04-25 12:17:52.000000000 +0200
-+++ cups-1.2/config-scripts/cups-defaults.m4	2006-04-25 12:18:56.000000000 +0200
-@@ -218,6 +218,17 @@
+diff -urNad cups-1.2-ubuntu~/config-scripts/cups-defaults.m4 cups-1.2-ubuntu/config-scripts/cups-defaults.m4
+--- cups-1.2-ubuntu~/config-scripts/cups-defaults.m4	2007-04-30 11:47:51.000000000 +0200
++++ cups-1.2-ubuntu/config-scripts/cups-defaults.m4	2007-04-30 11:47:55.000000000 +0200
+@@ -220,6 +220,17 @@
  AC_DEFINE_UNQUOTED(CUPS_DEFAULT_GROUP, "$CUPS_GROUP")
  AC_DEFINE_UNQUOTED(CUPS_DEFAULT_SYSTEM_GROUPS, "$CUPS_SYSTEM_GROUPS")
  
@@ -24,11 +28,11 @@ diff -urNad cups-1.2~/config-scripts/cups-defaults.m4 cups-1.2/config-scripts/cu
 +AC_SUBST(CUPS_DROP_PRIVILEGES)
 +
  dnl Default printcap file...
- AC_ARG_WITH(printcap, [  --with-printcap     set default printcap file],
+ AC_ARG_WITH(printcap, [  --with-printcap         set default printcap file],
  	default_printcap="$withval",
-diff -urNad cups-1.2~/config.h.in cups-1.2/config.h.in
---- cups-1.2~/config.h.in	2006-04-25 12:17:52.000000000 +0200
-+++ cups-1.2/config.h.in	2006-04-25 12:18:56.000000000 +0200
+diff -urNad cups-1.2-ubuntu~/config.h.in cups-1.2-ubuntu/config.h.in
+--- cups-1.2-ubuntu~/config.h.in	2007-04-30 11:47:51.000000000 +0200
++++ cups-1.2-ubuntu/config.h.in	2007-04-30 11:47:55.000000000 +0200
 @@ -41,6 +41,11 @@
  #define CUPS_DEFAULT_GROUP	"sys"
  #define CUPS_DEFAULT_SYSTEM_GROUPS	"sys root system"
@@ -41,9 +45,9 @@ diff -urNad cups-1.2~/config.h.in cups-1.2/config.h.in
  
  /*
   * Default file permissions...
-diff -urNad cups-1.2~/scheduler/cert.c cups-1.2/scheduler/cert.c
---- cups-1.2~/scheduler/cert.c	2006-04-25 12:17:52.000000000 +0200
-+++ cups-1.2/scheduler/cert.c	2006-04-25 12:18:56.000000000 +0200
+diff -urNad cups-1.2-ubuntu~/scheduler/cert.c cups-1.2-ubuntu/scheduler/cert.c
+--- cups-1.2-ubuntu~/scheduler/cert.c	2007-04-30 11:47:51.000000000 +0200
++++ cups-1.2-ubuntu/scheduler/cert.c	2007-04-30 11:47:55.000000000 +0200
 @@ -116,7 +116,7 @@
      * Root certificate...
      */
@@ -53,10 +57,10 @@ diff -urNad cups-1.2~/scheduler/cert.c cups-1.2/scheduler/cert.c
      fchown(fd, RunUser, SystemGroupIDs[0]);
  
      cupsdLogMessage(CUPSD_LOG_DEBUG2, "cupsdAddCert: NumSystemGroups=%d",
-diff -urNad cups-1.2~/scheduler/conf.c cups-1.2/scheduler/conf.c
---- cups-1.2~/scheduler/conf.c	2006-04-25 12:17:52.000000000 +0200
-+++ cups-1.2/scheduler/conf.c	2006-04-25 12:18:56.000000000 +0200
-@@ -460,7 +460,11 @@
+diff -urNad cups-1.2-ubuntu~/scheduler/conf.c cups-1.2-ubuntu/scheduler/conf.c
+--- cups-1.2-ubuntu~/scheduler/conf.c	2007-04-30 11:47:51.000000000 +0200
++++ cups-1.2-ubuntu/scheduler/conf.c	2007-04-30 11:47:55.000000000 +0200
+@@ -465,7 +465,11 @@
    if (!status)
      return (0);
  
@@ -67,11 +71,44 @@ diff -urNad cups-1.2~/scheduler/conf.c cups-1.2/scheduler/conf.c
 +#endif
  
   /*
-   * Use the default system group if none was supplied in cupsd.conf...
-diff -urNad cups-1.2~/scheduler/main.c cups-1.2/scheduler/main.c
---- cups-1.2~/scheduler/main.c	2006-04-25 12:17:52.000000000 +0200
-+++ cups-1.2/scheduler/main.c	2006-04-25 12:19:17.000000000 +0200
-@@ -56,6 +56,9 @@
+   * See if the ServerName is an IP address...
+diff -urNad cups-1.2-ubuntu~/scheduler/cups-polld.c cups-1.2-ubuntu/scheduler/cups-polld.c
+--- cups-1.2-ubuntu~/scheduler/cups-polld.c	2007-04-30 11:47:51.000000000 +0200
++++ cups-1.2-ubuntu/scheduler/cups-polld.c	2007-04-30 11:47:55.000000000 +0200
+@@ -34,6 +34,9 @@
+  * Include necessary headers...
+  */
+ 
++#include "config.h"
++#include <pwd.h>
++
+ #include <cups/http-private.h>
+ #include <cups/cups.h>
+ #include <stdlib.h>
+@@ -150,6 +153,19 @@
+   }
+ 
+  /*
++  * Drop our privileges to the cupsd scheduler user
++  */
++#if CUPS_DROP_PRIVILEGES == 1
++  struct passwd * pwd = getpwnam(CUPS_DEFAULT_USER);
++  if (!pwd) {
++    fprintf(stderr, "ERROR: could not get passwd data for user " CUPS_DEFAULT_USER "\n");
++    exit(1);
++  }
++  setgid(pwd->pw_gid);
++  setuid(pwd->pw_uid);
++#endif
++
++ /*
+   * Loop forever, asking for available printers and classes...
+   */
+ 
+diff -urNad cups-1.2-ubuntu~/scheduler/main.c cups-1.2-ubuntu/scheduler/main.c
+--- cups-1.2-ubuntu~/scheduler/main.c	2007-04-30 11:47:51.000000000 +0200
++++ cups-1.2-ubuntu/scheduler/main.c	2007-04-30 11:47:55.000000000 +0200
+@@ -58,6 +58,9 @@
  #include <sys/resource.h>
  #include <syslog.h>
  #include <grp.h>
@@ -81,7 +118,7 @@ diff -urNad cups-1.2~/scheduler/main.c cups-1.2/scheduler/main.c
  
  #ifdef HAVE_LAUNCH_H
  #  include <launch.h>
-@@ -515,6 +518,20 @@
+@@ -536,6 +539,20 @@
    cupsdStartSystemMonitor();
  #endif /* __APPLE__ */
  
@@ -102,7 +139,7 @@ diff -urNad cups-1.2~/scheduler/main.c cups-1.2/scheduler/main.c
   /*
    * Start any pending print jobs...
    */
-@@ -998,7 +1015,7 @@
+@@ -1037,7 +1054,7 @@
      */
  
      if ((current_time - RootCertTime) >= RootCertDuration && RootCertDuration &&
@@ -112,21 +149,21 @@ diff -urNad cups-1.2~/scheduler/main.c cups-1.2/scheduler/main.c
       /*
        * Update the root certificate...
 diff -urNad cups-1.2-ubuntu~/scheduler/process.c cups-1.2-ubuntu/scheduler/process.c
---- cups-1.2-ubuntu~/scheduler/process.c	2006-04-06 22:32:07.000000000 +0200
-+++ cups-1.2-ubuntu/scheduler/process.c	2006-04-24 19:16:09.000000000 +0200
-@@ -245,15 +245,6 @@
+--- cups-1.2-ubuntu~/scheduler/process.c	2007-04-30 11:47:51.000000000 +0200
++++ cups-1.2-ubuntu/scheduler/process.c	2007-04-30 11:48:06.000000000 +0200
+@@ -245,6 +245,7 @@
        if (setuid(User))
          exit(errno);
      }
--    else
--    {
--     /*
--      * Reset group membership to just the main one we belong to.
--      */
--
--      setgid(Group);
--      setgroups(1, &Group);
--    }
++#if CUPS_DROP_PRIVILEGES == 0
+     else
+     {
+      /*
+@@ -254,6 +255,7 @@
+       setgid(Group);
+       setgroups(1, &Group);
+     }
++#endif
  
     /*
      * Change umask to restrict permissions on created files...

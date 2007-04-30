@@ -2,7 +2,7 @@
 ## 06_disable_backend_setuid.dpatch by  <mpitt@debian.org>
 ##
 ## All lines beginning with `## DP:' are a description of the patch.
-## DP: No description.
+## DP: Forwarded upstream: http://www.cups.org/str.php?L2368
 
 @DPATCH@
 diff -urNad cupsys~/scheduler/cups-deviced.c cupsys/scheduler/cups-deviced.c
@@ -31,4 +31,4 @@ diff -urNad cupsys~/scheduler/cups-deviced.c cupsys/scheduler/cups-deviced.c
 -   /*
      * Run the backend with no arguments and collect the output...
      */
- 
+

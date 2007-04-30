@@ -1,4 +1,4 @@
-cupsys (1.2.7-5) UNRELEASED; urgency=low
+cupsys (1.2.10-1) UNRELEASED; urgency=low
 
   [ Kenshi Muto ]
   * Applied templates improvement patch contributed by
@@ -23,7 +23,40 @@ cupsys (1.2.7-5) UNRELEASED; urgency=low
     - Dutch. (closes: #418135)
     - Portuguese (closes: #418299)
 
- -- Christian Perrier <bubulle@debian.org>  Mon, 02 Apr 2007 07:51:20 +0200
+  [ Martin Pitt ]
+  * New upstream bugfix release.
+
+  Synchronize patches with Ubuntu and new upstream version 1.2.10:
+
+  * Drop patches which are fixed upstream:
+    00_00str2111.dpatch, 00_01str2137.dpatch, 00_02str2144.dpatch,
+    00_03str2106.dpatch, 00_04str2117.dpatch, 00_05str2133.dpatch,
+    00_06str2121.dpatch, 00_07str2123.dpatch, 00_08str2135.dpatch,
+    00_09str2198.dpatch, 03_clean.dpatch, 65_detect_http_shutdown.dpatch
+  * Remove a few obsolete patches:
+    08_cupsd.conf.conf.d.dpatch, 26_modprobe.dpatch, 48_stdlib.dpatch,
+    61_job_c_strangeloop.dpatch, 08_cupsd.conf.conf.d.dpatch,
+    64_driverfolder.dpatch.
+  * Add debian/patches/14_dont_force_ssl.dpatch: Do not require SSL for /admin
+    pages, since gnome-cups-manager (and most probably other GUI frontends)
+    does not support this.
+  * Add debian/patches/58_cupsd.conf-AllowLocal.dpatch: Allow access to local
+    ethernet by default. This just affects the ACL, for actually enabling
+    access cupsd needs to be switched to not only listen on localhost. With
+    that, this setting does not need to be configured in two different places.
+  * Add debian/patches/70_reactivate_recommended_driver.dpatch: Upstream CUPS
+    filters the "(recommended)" marking from the NickNames of the PPD files
+    when listing PPDs. These are an important orientation for the user and
+    they are also made use of by some printer setup tools. We need them at
+    least until a better solution for recommending drivers gets available.
+  * Add debian/patches/98_search_mime_files_in_usr_share.dpatch: Let CUPS also
+    search for *.types and *.convs files in /usr/share/cups/mime. This way
+    packages can provide *.types and *.convs files which do not get considered
+    as conffiles. (See https://launchpad.net/36532 for details).
+  * debian/patches/*.dpatch: Forwarded a lot of patches to upstream bug
+    tracker, add STR URLs to dpatch DP: headers.
+
+ -- Martin Pitt <mpitt@debian.org>  Mon, 30 Apr 2007 13:45:06 +0200
 
 cupsys (1.2.7-4) unstable; urgency=high
 

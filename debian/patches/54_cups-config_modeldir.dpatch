@@ -2,7 +2,7 @@
 ## 54_cups-config_modeldir.dpatch by  <martin.pitt@ubuntu.com>
 ##
 ## All lines beginning with `## DP:' are a description of the patch.
-## DP: No description.
+## DP: Forwarded upstream: http://www.cups.org/str.php?L2371
 
 @DPATCH@
 diff -urNad cups-1.2-ubuntu~/cups-config.in cups-1.2-ubuntu/cups-config.in
