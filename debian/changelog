@@ -72,8 +72,14 @@ cupsys (1.2.10-1) UNRELEASED; urgency=low
     with the printer setup tools.  Especially network printers get
     auto-detected and the correct URI gets assigned to them (doing this
     manually is a non-trivial task for most users).
+  * debian/cupsys.dirs: Add /usr/share/ppd/custom/, a place where lpadmins can
+    store additional PPDs (this functionality is e. g. provided in
+    gnome-cups-manager's "Custom driver..." file dialog).
+  * debian/cupsys.init.d: Give proper permissions to /usr/share/ppd/custom/:
+    root:lpadmin 3775. Drop the obsolete chmod/chowning of
+    /usr/share/cups/model.
 
- -- Martin Pitt <mpitt@debian.org>  Mon, 30 Apr 2007 14:36:56 +0200
+ -- Martin Pitt <mpitt@debian.org>  Mon, 30 Apr 2007 14:50:15 +0200
 
 cupsys (1.2.7-4) unstable; urgency=high
 

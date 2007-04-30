@@ -6,5 +6,6 @@ etc/cups/ssl
 usr/lib/cups/backend-available
 var/cache/cups/ppd
 usr/share/ppd/cups-included
+usr/share/ppd/custom
 usr/lib/cups/driver
 usr/local/share/ppd
