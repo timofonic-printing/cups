@@ -11,5 +11,5 @@
 	endscript
 	compress
 	notifempty
-	create 640 root lp
+	create 640 cupsys lpadmin
 }

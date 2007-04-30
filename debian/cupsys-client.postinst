@@ -27,7 +27,23 @@ case "$1" in
         if [ -z "`getent group lpadmin`" ]; then
             addgroup --system lpadmin
         fi
-	chown lp:lpadmin /usr/bin/lppasswd
+
+	# Set up cupsys user.
+	if [ -z "`getent passwd cupsys`" ]; then
+	    adduser --quiet --system --no-create-home --ingroup lpadmin cupsys
+	fi
+	
+	# necessary for access to local parallel and usb printers
+	adduser --quiet cupsys lp
+	# necessary for access to local serial printers
+	adduser --quiet cupsys dialout
+	# necessary for access to printer/scanner combo devices
+	if [ -z "`getent group scanner`" ]; then
+	    addgroup --system scanner
+	fi
+	adduser --quiet cupsys scanner
+
+	chown cupsys:lpadmin /usr/bin/lppasswd
 	chmod u+s /usr/bin/lppasswd
     ;;
 

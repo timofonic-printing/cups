@@ -18,7 +18,7 @@ include /usr/share/cdbs/1/rules/dpatch.mk
 
 unpatch: deapply-dpatches
 
-DEB_CONFIGURE_EXTRA_FLAGS := --with-optim=$(DEB_OPTFLAGS) --libdir=/usr/lib --mandir=/usr/share/man --with-docdir=/usr/share/cups/doc-root --enable-slp --enable-libpaper --enable-ssl --enable-gnutls --disable-openssl --enable-threads --enable-static --enable-dbus --disable-pdftops --disable-launchd --with-cups-user=lp --with-cups-group=lp --with-system-groups=lpadmin
+DEB_CONFIGURE_EXTRA_FLAGS := --with-optim=$(DEB_OPTFLAGS) --libdir=/usr/lib --mandir=/usr/share/man --with-docdir=/usr/share/cups/doc-root --enable-slp --enable-libpaper --enable-ssl --enable-gnutls --disable-openssl --enable-threads --enable-static --enable-dbus --disable-pdftops --disable-launchd --with-cups-user=cupsys --with-cups-group=lp --with-system-groups=lpadmin --enable-privilege-dropping
 DEB_MAKE_INSTALL_TARGET := install BUILDROOT=$(DEB_DESTDIR)
 DEB_INSTALL_CHANGELOGS_ALL := CHANGES.txt
 DEB_DH_STRIP_ARGS := --dbg-package=cupsys-dbg
@@ -31,6 +31,7 @@ common-install-prehook-impl::
 	(cd fonts && $(MAKE) install BUILDROOT=$(DEB_DESTDIR))
 $(patsubst %,install/%,$(DEB_ALL_PACKAGES)) :: install/%:
 	dh_movefiles -p$(cdbs_curpkg)
+
 binary-post-install/cupsys::
 	mv debian/cupsys/usr/lib/cups/backend/* debian/cupsys/usr/lib/cups/backend-available
 	install -o root -g root -m 644 doc/favicon.ico debian/cupsys/usr/share/cups/doc-root
@@ -41,6 +42,11 @@ binary-post-install/cupsys::
 	(install -m 755 -o root -g root $(DEB_DESTDIR)/../pdftops $(DEB_DESTDIR)/../cupsys/usr/lib/cups/filter/)
 	install -o root -g root -m 644 debian/cupsys.default debian/cupsys/etc/default/cupsys
 	install -m 755 debian/local/browsing_status debian/local/enable_browsing debian/local/sharing_status debian/local/enable_sharing $(DEB_DESTDIR)/../cupsys/usr/share/cups
+
+	# install lpd backend suid root so that it can bind to port <
+	# 1024 (required for RFC compliance)
+	chown root:lp debian/cupsys/usr/lib/cups/backend-available/lpd
+	chmod 4754 debian/cupsys/usr/lib/cups/backend-available/lpd
 
 	# Install PPDs into /usr/share/ppd/cups-included/<Manufacturer>, see
 	# http://wiki.debian.org/PpdFileStructureSpecification

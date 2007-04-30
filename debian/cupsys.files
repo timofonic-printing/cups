@@ -9,6 +9,7 @@ usr/lib/cups/monitor
 usr/lib/cups/daemon/cups-polld
 usr/lib/cups/daemon/cups-deviced
 usr/lib/cups/daemon/cups-driverd
+usr/lib/cups/daemon/cups-check-pam-auth
 usr/lib/cups/filter/gziptoany
 usr/lib/cups/filter/hpgltops
 usr/lib/cups/filter/imagetops

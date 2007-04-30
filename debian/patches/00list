@@ -5,6 +5,7 @@
 07_removecvstag.dpatch
 09_runasuser.dpatch
 09_runasuser_autoconf.dpatch
+10_external_pam_helper.dpatch
 11_pam.dpatch
 12_quiesce_ipp_logging.dpatch
 13_default_log_warn.dpatch

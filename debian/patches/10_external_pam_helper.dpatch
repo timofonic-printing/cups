@@ -1,0 +1,298 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## ubuntu-external-pam-helper.dpatch by  <martin.pitt@ubuntu.com>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: No description.
+
+@DPATCH@
+diff -urNad cups-1.2-ubuntu~/scheduler/Makefile cups-1.2-ubuntu/scheduler/Makefile
+--- cups-1.2-ubuntu~/scheduler/Makefile	2006-07-13 21:59:36.000000000 +0200
++++ cups-1.2-ubuntu/scheduler/Makefile	2006-07-26 17:50:33.000000000 +0200
+@@ -58,6 +58,7 @@
+ 		cups-driverd.o \
+ 		cups-lpd.o \
+ 		cups-polld.o \
++		cups-check-pam-auth.o \
+ 		testdirsvc.o \
+ 		testmime.o \
+ 		testspeed.o \
+@@ -68,6 +69,7 @@
+ 		cups-driverd \
+ 		cups-lpd \
+ 		cups-polld \
++		cups-check-pam-auth \
+ 		libmime.a \
+ 		testdirsvc \
+ 		testmime \
+@@ -116,6 +118,7 @@
+ 	$(INSTALL_BIN) cups-driverd $(SERVERBIN)/daemon
+ 	$(INSTALL_BIN) cups-lpd $(SERVERBIN)/daemon
+ 	$(INSTALL_BIN) cups-polld $(SERVERBIN)/daemon
++	$(INSTALL_BIN) cups-check-pam-auth $(SERVERBIN)/daemon
+ 	echo Creating $(SERVERBIN)/driver...
+ 	$(INSTALL_DIR) -m 755 $(SERVERBIN)/driver
+ 	echo Creating $(SERVERROOT)...
+@@ -161,6 +164,7 @@
+ 	$(RM) $(SERVERBIN)/daemon/cups-driverd
+ 	$(RM) $(SERVERBIN)/daemon/cups-lpd
+ 	$(RM) $(SERVERBIN)/daemon/cups-polld
++	$(RM) $(SERVERBIN)/daemon/cups-check-pam-auth
+ 	-$(RMDIR) $(STATEDIR)/certs
+ 	-$(RMDIR) $(STATEDIR)
+ 	-$(RMDIR) $(SERVERROOT)/ppd
+@@ -229,6 +233,13 @@
+ 	echo Linking $@...
+ 	$(CC) $(LDFLAGS) -o cups-polld cups-polld.o $(LIBS)
+ 
++#
++# Make the external PAM authentication helper, "cups-check-pam-auth".
++#
++
++cups-check-pam-auth:    cups-check-pam-auth.o
++	echo Linking $@
++	$(CC) $(LDFLAGS) -o $@ $< -lpam
+ 
+ #
+ # libmime.a
+diff -urNad cups-1.2-ubuntu~/scheduler/auth.c cups-1.2-ubuntu/scheduler/auth.c
+--- cups-1.2-ubuntu~/scheduler/auth.c	2006-07-26 17:40:24.000000000 +0200
++++ cups-1.2-ubuntu/scheduler/auth.c	2006-07-26 17:40:50.000000000 +0200
+@@ -300,6 +300,59 @@
+   memcpy(temp->mask.ip.netmask, netmask, sizeof(temp->mask.ip.netmask));
+ }
+ 
++/*
++ * 'cupsdCallPamAuthHelper()' - Call external PAM helper to check given
++ *                              credentials. 0 == auth ok, 1 == auth failed,
++ *                              other values: internal error
++ */
++int
++cupsdCallPamAuthHelper(const char* username, const char* password)
++{
++  const char* authhelper = "/usr/lib/cups/daemon/cups-check-pam-auth";
++
++  int inp[2];
++  pid_t pid;
++  int status;
++
++  if (pipe(inp) != 0) {
++    cupsdLogMessage(CUPSD_LOG_ERROR, 
++	    "cupsdCallPamAuthHelper: pipe() failed: %s\n", strerror(errno));
++    return 2;
++  }
++  pid = fork();
++  if (pid < 0) {
++    cupsdLogMessage(CUPSD_LOG_ERROR, 
++	    "cupsdCallPamAuthHelper: fork() failed: %s\n", strerror(errno));
++    return 2;
++  }
++
++  if (!pid) {
++    char * const envp[] = { NULL };
++
++    /* child: route inp[1] to stdin and execute pam helper */
++    close (inp[1]);
++    dup2 (inp[0], 0);
++    execle (authhelper, authhelper, NULL, envp);
++    cupsdLogMessage(CUPSD_LOG_ERROR, 
++	    "cupsdCallPamAuthHelper: execle() failed: %s\n", strerror(errno));
++    return 2;
++  }
++
++  close (inp[0]);
++
++  /* write username and password (including null terminators!) to helper */
++  write(inp[1], username, strlen(username)+1);
++  write(inp[1], password, strlen(password)+1);
++  close (inp[1]);
++
++  if (wait(&status) < 0 || !WIFEXITED (status)) {
++    cupsdLogMessage(CUPSD_LOG_ERROR, 
++	    "cupsdCallPamAuthHelper: Could not wait for authentication helper\n");
++    return 2;
++  }
++
++  return WEXITSTATUS(status);
++}
+ 
+ /*
+  * 'cupsdAuthorize()' - Validate any authorization credentials.
+@@ -467,6 +520,26 @@
+     {
+       case AUTH_BASIC :
+           {
++	    /* first, try whether the external PAM helper works */
++	    int pam_auth_result = cupsdCallPamAuthHelper(username, password);
++	    cupsdLogMessage(CUPSD_LOG_DEBUG, 
++		"cupsdCallPamAuthHelper: authentication helper returned with %i\n", 
++		pam_auth_result);
++	    if (pam_auth_result == 0)
++	      break; /* authentication succeeded */
++	    else if (pam_auth_result == 1) {
++	      /* authentication failed */
++	      cupsdLogMessage(CUPSD_LOG_ERROR,
++		  "cupsdAuthorize: PAM authentication helper: wrong credentials\n");
++	      return;
++	    } else {
++	      /* internal error when calling helper, fall back to standard
++	       * methods */
++	      cupsdLogMessage(CUPSD_LOG_ERROR,
++		  "cupsdAuthorize: PAM authentication helper failed with code %i\n", 
++		  pam_auth_result);
++	    }
++
+ #if HAVE_LIBPAM
+ 	   /*
+ 	    * Only use PAM to do authentication.  This supports MD5
+diff -urNad cups-1.2-ubuntu~/scheduler/cups-check-pam-auth.c cups-1.2-ubuntu/scheduler/cups-check-pam-auth.c
+--- cups-1.2-ubuntu~/scheduler/cups-check-pam-auth.c	1970-01-01 01:00:00.000000000 +0100
++++ cups-1.2-ubuntu/scheduler/cups-check-pam-auth.c	2006-07-26 17:41:35.000000000 +0200
+@@ -0,0 +1,148 @@
++/* setgid shadow PAM authentication helper for cupsd
++ * 
++ * This program expects 'username\0password\0' on stdin, verifies whether these
++ * are valid authentication credentials.
++ * Exit codes:
++ *  0: authentication succeeded
++ *  1: authentication failed
++ *  2: invalid input
++ * 
++ * (C) 2006 Canonical Ltd.
++ * Author: Martin Pitt <martin.pitt@ubuntu.com>
++ */
++
++#include <security/pam_appl.h>
++#include <unistd.h>
++#include <string.h>
++#include <stdlib.h>
++#include <stdio.h>
++#include <sys/mman.h> /* mlock() */
++
++/* stolen and adapted from cups' scheduler/auth.c */
++static int				/* O - Success or failure */
++pam_func(
++    int                      num_msg,	/* I - Number of messages */
++    const struct pam_message **msg,	/* I - Messages */
++    struct pam_response      **resp,	/* O - Responses */
++    void                     *appdata_ptr)
++					/* I - Pointer to connection */
++{
++  int			i;		/* Looping var */
++  struct pam_response	*replies;	/* Replies */
++  char	*userpwd;		/* Pointer to auth data */
++
++
++ /*
++  * Allocate memory for the responses...
++  */
++
++  if ((replies = malloc(sizeof(struct pam_response) * num_msg)) == NULL)
++    return (PAM_CONV_ERR);
++
++ /*
++  * Answer all of the messages...
++  */
++
++  userpwd = (char *)appdata_ptr;
++
++  for (i = 0; i < num_msg; i ++)
++  {
++    switch (msg[i]->msg_style)
++    {
++      case PAM_PROMPT_ECHO_ON:
++          replies[i].resp_retcode = PAM_SUCCESS;
++          replies[i].resp         = strdup(userpwd);
++          break;
++
++      case PAM_PROMPT_ECHO_OFF:
++          replies[i].resp_retcode = PAM_SUCCESS;
++          replies[i].resp         = strdup(userpwd + strlen(userpwd) + 1);
++	  mlock(replies[i].resp, strlen(replies[i].resp));
++          break;
++
++      case PAM_TEXT_INFO:
++      case PAM_ERROR_MSG:
++          replies[i].resp_retcode = PAM_SUCCESS;
++          replies[i].resp         = NULL;
++          break;
++
++      default:
++          free(replies);
++          return (PAM_CONV_ERR);
++    }
++  }
++
++ /*
++  * Return the responses back to PAM...
++  */
++
++  *resp = replies;
++
++  return (PAM_SUCCESS);
++}
++
++int main()
++{
++    char buffer[1000]; /* format: username <nul byte> <password> <nul byte> */
++    ssize_t size = 0, chunksize;
++    size_t len;
++    pam_handle_t *pamh;
++    struct pam_conv pamdata;
++    int auth;
++    char *p;
++    int offset;
++
++    // lock memory to prevent swapping out
++    if (mlock (buffer, sizeof (buffer)) != 0) {
++	perror("Could not mlock()");
++	return 2;
++    }
++
++    // read username and password from stdin
++    for(;;) {
++	chunksize = read (0, buffer+size, sizeof(buffer) - size);
++	if (chunksize < 0) {
++	    perror("Could not read from stdin");
++	    return 2;
++	}
++
++	size += chunksize;
++
++	/* check whether we have two NUL bytes in the input already */
++	p = memchr(buffer, 0, size);
++	if (p) {
++	    offset = (p - buffer) + 1; /* position of char after first 0 byte */
++	    if (offset < size && memchr(buffer+offset, 0, size-offset)) {
++		break;
++	    }
++	}
++    }
++
++    if (size >= (ssize_t) sizeof(buffer)-1) {
++	fputs("Input overflow, aborting\n", stderr);
++	return 2;
++    }
++
++    /* sanity checks */
++    len = strlen(buffer);
++    if (len <= 0 || len >= (size_t) size) {
++	fputs("Invalid user name\n", stderr);
++	return 2;
++    }
++    if (strlen(buffer + len + 1) <= 0) {
++	fputs("Invalid password\n", stderr);
++	return 2;
++    }
++
++    /* create PAM request */
++    pamdata.conv = pam_func;
++    pamdata.appdata_ptr = buffer;
++
++    /* ask PAM to authenticate */
++    auth = pam_start("cups", buffer, &pamdata, &pamh) == PAM_SUCCESS &&
++        pam_authenticate(pamh, PAM_SILENT) == PAM_SUCCESS &&
++        pam_acct_mgmt(pamh, PAM_SILENT) == PAM_SUCCESS;
++    pam_end(pamh, PAM_SUCCESS);
++
++    return auth ? 0 : 1;
++}

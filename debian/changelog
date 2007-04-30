@@ -78,8 +78,31 @@ cupsys (1.2.10-1) UNRELEASED; urgency=low
   * debian/cupsys.init.d: Give proper permissions to /usr/share/ppd/custom/:
     root:lpadmin 3775. Drop the obsolete chmod/chowning of
     /usr/share/cups/model.
+  * Run the backend as non-root system user to confine the impact of security
+    vulnerabilities:
+    - Add debian/patches/10_external_pam_helper.dpatch:
+      + Add a helper program 'cups-check-pam-auth' which performs PAM
+        authentication and returns the status as exit code.
+      + scheduler/auth.c, cupsdAuthorize(): Attempt to use
+        cups-check-pam-auth before trying native PAM.
+      + With this we do not need to put the cupsys user into the shadow group.
+    - debian/cupsys.files: Install PAM helper.
+    - debian/cupsys.postinst: Set permissions of PAM helper to cupsys:shadow
+      2754, alter permissions of some configuration files and directories to
+      work with non-root cupsd.
+    - debian/cupsys.postinst: Fix /var/cache/cups/ permissions for upgrades
+      which might have written cache files as root.
+    - debian/cupsys.logrotate: Save log files as cupsys:lpadmin.
+    - debian/cupsys.init.d: Disable 'reload'; change force-reload to restart,
+      since cupsd cannot reload as non-root.
+    - debian/cupsys.init.d: Set up proper permissions of log files.
+    - debian/rules: Enable --enable-privilege-dropping configure option.
+    - debian/rules: Install lpd backend suid root, so that it can bind to
+      ports < 1024 (really silly, but required for RFC compliance).
+    - debian/cupsys-client.postinst, debian/cupsys.postinst: Set up cupsys
+      system user.
 
- -- Martin Pitt <mpitt@debian.org>  Mon, 30 Apr 2007 14:50:15 +0200
+ -- Martin Pitt <mpitt@debian.org>  Mon, 30 Apr 2007 15:28:14 +0200
 
 cupsys (1.2.7-4) unstable; urgency=high
 

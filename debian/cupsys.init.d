@@ -37,7 +37,22 @@ case "$1" in
 	  modprobe -q lp || true
 	  modprobe -q ppdev || true
 	fi
+	chown cupsys:lp `dirname "$PIDFILE"`
+
+	# create the logs file since cupsd can't
+	for l in access_log page_log error_log; do
+	    [ -e /var/log/cups/$l ] || touch /var/log/cups/$l
+	    chmod 640 /var/log/cups/$l
+	    chown cupsys:lpadmin /var/log/cups/$l
+	done
+
 	start-stop-daemon --start --quiet --oknodo --pidfile "$PIDFILE" --exec $DAEMON
+
+	# Correct the permissions after starting the CUPS daemon
+	for l in access_log page_log error_log; do
+	    chmod 640 /var/log/cups/$l || true
+	    chown cupsys:lpadmin /var/log/cups/$l || true
+	done
 	log_end_msg $?
 	;;
   stop)
@@ -45,15 +60,15 @@ case "$1" in
 	start-stop-daemon --stop --quiet --retry 5 --oknodo --pidfile $PIDFILE --name $NAME
 	log_end_msg $?
 	;;
-  reload|force-reload)
-	log_begin_msg "Reloading $DESC: $NAME"
-	start-stop-daemon --stop --quiet --pidfile $PIDFILE --name $NAME --signal 1
-	log_end_msg $?
-	;;
-  restart)
+  restart|force-reload)
 	log_begin_msg "Restarting $DESC: $NAME"
 	if start-stop-daemon --stop --quiet --retry 5 --oknodo --pidfile $PIDFILE --name $NAME; then
 		start-stop-daemon --start --quiet --pidfile "$PIDFILE" --exec $DAEMON
+		# Correct the permissions after starting the CUPS daemon
+		for l in access_log page_log error_log; do
+		    chmod 640 /var/log/cups/$l || true
+		    chown cupsys:lpadmin /var/log/cups/$l || true
+		done
 	fi
 	log_end_msg $?
 	;;
