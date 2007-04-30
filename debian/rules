@@ -25,28 +25,7 @@ DEB_DH_STRIP_ARGS := --dbg-package=cupsys-dbg
 DEB_DH_FIXPERMS_ARGS := -Xusr/lib/cups/backend-available
 
 clean::
-	-rm core
-	-$(MAKE) clean
-	-rm man/*.gz man/*.z man/*.1 man/*.5 man/*.8 man/*.o man/mantohtml
-	-rm -f doc/help/man-*.html doc/help/standard.html doc/index.html
-	-rm -f conf/pam.std packaging/cups.list templates/edit-config.tmpl
-	-rm cups/libcups.so
-	-rm cups/libcups.a
-	-rm filter/libcupsimage.so
-	-rm filter/libcupsimage.a
-	-rm pdftops/libxpdf.a
-	-rm scheduler/testdirsvc scheduler/testdirsvc.o
-	-rm cups/testfile cups/testfile.o cups/http-addrlist.o
-	-rm backend/http backend/runloop.o backend/ieee1284.o
-	-rm systemv/disable systemv/enable systemv/reject
-	-rm cups-config cups.list conf/cupsd.conf conf/pam.conf
-	-rm config.log config.h config.cache config.status Makedefs cups.sh
-	-rmdir --ignore-fail-on-non-empty debian/patched
-	-rm -f man/client.conf.man man/cups-deviced.man man/cups-driverd.man man/cups-lpd.man man/cupsaddsmb.man man/cupsd.man man/cupsd.conf.man man/lpoptions.man templates/header.tmpl templates/edit-config.tmpl init/cups.sh init/cups-lpd
-	-for l in de es et ja pl sv; do \
-	  rm -f doc/$l/index.html; \
-	  rm -f templates/$l/header.tmpl templates/$l/edit-config.tmpl; \
-	done
+	rm -f man/client.conf.man packaging/cups.list
 
 common-install-prehook-impl::
 	(cd fonts && $(MAKE) install BUILDROOT=$(DEB_DESTDIR))

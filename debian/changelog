@@ -64,8 +64,11 @@ cupsys (1.2.10-1) UNRELEASED; urgency=low
     lives in its own package now.
   * debian/local/enable_sharing: Also match on 127.0.0.1 IP adresses in
     addition to 'localhost'.
+  * debian/rules: Most of the clean:: rule is obsolete, only two files are
+    left behind now. These two have been reported upstream in
+    http://www.cups.org/str.php?L2366.
 
- -- Martin Pitt <mpitt@debian.org>  Mon, 30 Apr 2007 14:21:08 +0200
+ -- Martin Pitt <mpitt@debian.org>  Mon, 30 Apr 2007 14:24:10 +0200
 
 cupsys (1.2.7-4) unstable; urgency=high
 
