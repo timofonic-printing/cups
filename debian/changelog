@@ -60,8 +60,10 @@ cupsys (1.2.10-1) UNRELEASED; urgency=low
 
   * debian/control: Drop transitional libcupsys2-gnutls10 package, it was only
     required for Sarge->Etch upgrades.
+  * debian/control: Change netbase dependency to update-inetd, since that
+    lives in its own package now.
 
- -- Martin Pitt <mpitt@debian.org>  Mon, 30 Apr 2007 14:16:59 +0200
+ -- Martin Pitt <mpitt@debian.org>  Mon, 30 Apr 2007 14:18:54 +0200
 
 cupsys (1.2.7-4) unstable; urgency=high
 
