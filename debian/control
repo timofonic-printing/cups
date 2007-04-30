@@ -89,23 +89,6 @@ Description: Common UNIX Printing System(tm) - client programs (SysV)
  Easy Software Products (www.easysw.com), and refer to the original
  source packages from which these packages are made.
 
-Package: libcupsys2-gnutls10
-Priority: optional
-Section: libs
-Architecture: all
-Depends: libcupsys2 (>= 1.1.23-12)
-Description: Common UNIX Printing System(tm) - dummy libs for transition
- The Common UNIX Printing System (or CUPS(tm)) is a printing system and 
- general replacement for lpd and the like.  It supports the Internet 
- Printing Protocol (IPP), and has its own filtering driver model for 
- handling various document types.
- .
- This package is for transition to libcupsys2.
- .
- The terms "Common UNIX Printing System" and "CUPS" are trademarks of
- Easy Software Products (www.easysw.com), and refer to the original
- source packages from which these packages are made.
-
 Package: libcupsys2-dev
 Priority: optional
 Section: libdevel

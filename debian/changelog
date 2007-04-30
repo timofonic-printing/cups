@@ -56,7 +56,12 @@ cupsys (1.2.10-1) UNRELEASED; urgency=low
   * debian/patches/*.dpatch: Forwarded a lot of patches to upstream bug
     tracker, add STR URLs to dpatch DP: headers.
 
- -- Martin Pitt <mpitt@debian.org>  Mon, 30 Apr 2007 13:45:06 +0200
+  Synchronize packaging with Ubuntu:
+
+  * debian/control: Drop transitional libcupsys2-gnutls10 package, it was only
+    required for Sarge->Etch upgrades.
+
+ -- Martin Pitt <mpitt@debian.org>  Mon, 30 Apr 2007 14:16:59 +0200
 
 cupsys (1.2.7-4) unstable; urgency=high
 
