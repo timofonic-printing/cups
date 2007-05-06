@@ -24,7 +24,7 @@ cupsys (1.2.10-1) UNRELEASED; urgency=low
     - Portuguese (closes: #418299)
 
   [ Martin Pitt ]
-  * New upstream bugfix release.
+  * New upstream bugfix release (closes: #421899).
 
   Synchronize patches with Ubuntu and new upstream version 1.2.10:
 
