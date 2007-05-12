@@ -210,7 +210,7 @@ EOF
 	# permission configuration
 	chown root:lp /etc/cups ; chmod 3755 /etc/cups
 	chown cupsys:root /etc/cups/cupsd.conf ; chmod 644 /etc/cups/cupsd.conf
-	chown root:lp /etc/cups/ppd ; chmod 755 /etc/cups/ppd
+	chown -R cupsys:lp /etc/cups/ppd ; chmod 755 /etc/cups/ppd
 	chown cupsys:shadow /usr/lib/cups/daemon/cups-check-pam-auth
 	chmod 2754 /usr/lib/cups/daemon/cups-check-pam-auth
 	if [ ! -d /var/run/cups/certs ]; then
