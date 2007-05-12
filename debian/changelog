@@ -1,4 +1,4 @@
-cupsys (1.2.10-1) UNRELEASED; urgency=low
+cupsys (1.2.11-1) UNRELEASED; urgency=low
 
   [ Kenshi Muto ]
   * Applied templates improvement patch contributed by
@@ -11,6 +11,8 @@ cupsys (1.2.10-1) UNRELEASED; urgency=low
     - Basque (closes: #416385)
     - Norwegian (closes: #416401)
     - Italian (closes: #416407)
+  * New upstream version 1.2.11:
+    - 56_dirsvc patch is merged.
 
   [ Christian Perrier ]
   * Debconf translation
