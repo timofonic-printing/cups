@@ -1,3 +1,13 @@
+cupsys (1.2.11-1) unstable; urgency=low
+
+  FIXME: pkg-cups team
+   describes about daemon owner is changed
+   describes about PAM?
+   describes about cups-pdf?
+  * 
+
+ -- Kenshi Muto <kmuto@debian.org>  Sat, 12 May 2007 14:23:13 +0900
+
 cupsys (1.2.1-3) unstable; urgency=low
 
   * The USB backend no longer supports the usb:/dev/foo
