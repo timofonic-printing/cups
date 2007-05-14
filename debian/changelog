@@ -1,4 +1,4 @@
-cupsys (1.2.11-1) UNRELEASED; urgency=low
+cupsys (1.2.11-1) unstable; urgency=low
 
   [ Kenshi Muto ]
   * Applied templates improvement patch contributed by
