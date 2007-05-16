@@ -1,3 +1,11 @@
+cupsys (1.2.11-2) UNRELEASED; urgency=low
+
+  * debian/rules: Latest cups installs the ipp backend with 0700 permissions,
+    which makes it inaccessible to both the cups daemon (Closes: #423972) and
+    unreadable for users (Closes: #415872)
+
+ -- Martin Pitt <mpitt@debian.org>  Wed, 16 May 2007 09:06:44 +0200
+
 cupsys (1.2.11-1) unstable; urgency=low
 
   [ Kenshi Muto ]

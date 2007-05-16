@@ -48,6 +48,9 @@ binary-post-install/cupsys::
 	chown root:lp debian/cupsys/usr/lib/cups/backend-available/lpd
 	chmod 4754 debian/cupsys/usr/lib/cups/backend-available/lpd
 
+	# upstream installs this as 0700 now which breaks as non-root
+	chmod 755 debian/cupsys/usr/lib/cups/backend-available/ipp
+
 	# Install PPDs into /usr/share/ppd/cups-included/<Manufacturer>, see
 	# http://wiki.debian.org/PpdFileStructureSpecification
 	for i in $(DEB_DESTDIR)/../cupsys/usr/share/cups/model/*.ppd; do \
