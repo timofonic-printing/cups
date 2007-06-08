@@ -1,3 +1,11 @@
+cupsys (1.2.11-3) UNRELEASED; urgency=medium
+
+  * debian/rules: Disable privilege dropping for now until we fixed the
+    backend invocation to become compatible to upstream's behaviour again.
+    This unbreaks third-party backends again for now. (Closes: #427559)
+
+ -- Martin Pitt <mpitt@debian.org>  Fri, 08 Jun 2007 11:15:12 +0200
+
 cupsys (1.2.11-2) unstable; urgency=low
 
   * debian/rules: Latest cups installs the ipp backend with 0700 permissions,
