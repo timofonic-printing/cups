@@ -1,4 +1,4 @@
-cupsys (1.2.11-3) UNRELEASED; urgency=medium
+cupsys (1.2.11-3) unstable; urgency=medium
 
   * debian/rules: Disable privilege dropping for now until we fixed the
     backend invocation to become compatible to upstream's behaviour again.
