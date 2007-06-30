@@ -3,6 +3,7 @@ cupsys (1.2.11-4) UNRELEASED; urgency=low
   * Debconf translation
     - Danish (Closes: #426772)
     - Vietnamese (Closes: #426822)
+    - Spanish (Closes: #430004)
 
  -- Kenshi Muto <kmuto@debian.org>  Sun, 17 Jun 2007 11:44:06 +0900
 
