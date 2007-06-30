@@ -1,5 +1,6 @@
 cupsys (1.2.11-4) UNRELEASED; urgency=low
 
+  * removed unnecessary dependency against patch package (Closes: #431069)
   * Debconf translation
     - Danish (Closes: #426772)
     - Vietnamese (Closes: #426822)
