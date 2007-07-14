@@ -6,6 +6,8 @@ cupsys (1.2.12-1) UNRELEASED; urgency=low
     - Danish (Closes: #426772)
     - Vietnamese (Closes: #426822)
     - Spanish (Closes: #430004)
+  * Disabled external_pam_helper due to #425944 and Ubuntu#112803.
+    (closes: #425944)
 
  -- Kenshi Muto <kmuto@debian.org>  Sat, 14 Jul 2007 14:56:24 +0900
 

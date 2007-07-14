@@ -5,26 +5,26 @@
 ## DP: No description.
 
 @DPATCH@
-diff -urNad cups-1.2-ubuntu~/scheduler/Makefile cups-1.2-ubuntu/scheduler/Makefile
---- cups-1.2-ubuntu~/scheduler/Makefile	2006-07-13 21:59:36.000000000 +0200
-+++ cups-1.2-ubuntu/scheduler/Makefile	2006-07-26 17:50:33.000000000 +0200
+diff -urNad cupsys-1.2.12~/scheduler/Makefile cupsys-1.2.12/scheduler/Makefile
+--- cupsys-1.2.12~/scheduler/Makefile	2006-09-12 03:30:09.000000000 +0900
++++ cupsys-1.2.12/scheduler/Makefile	2007-07-14 18:21:16.403132897 +0900
 @@ -58,6 +58,7 @@
  		cups-driverd.o \
  		cups-lpd.o \
  		cups-polld.o \
 +		cups-check-pam-auth.o \
  		testdirsvc.o \
+ 		testlpd.o \
  		testmime.o \
- 		testspeed.o \
-@@ -68,6 +69,7 @@
+@@ -70,6 +71,7 @@
  		cups-driverd \
  		cups-lpd \
  		cups-polld \
 +		cups-check-pam-auth \
  		libmime.a \
  		testdirsvc \
- 		testmime \
-@@ -116,6 +118,7 @@
+ 		testlpd \
+@@ -120,6 +122,7 @@
  	$(INSTALL_BIN) cups-driverd $(SERVERBIN)/daemon
  	$(INSTALL_BIN) cups-lpd $(SERVERBIN)/daemon
  	$(INSTALL_BIN) cups-polld $(SERVERBIN)/daemon
@@ -32,7 +32,7 @@ diff -urNad cups-1.2-ubuntu~/scheduler/Makefile cups-1.2-ubuntu/scheduler/Makefi
  	echo Creating $(SERVERBIN)/driver...
  	$(INSTALL_DIR) -m 755 $(SERVERBIN)/driver
  	echo Creating $(SERVERROOT)...
-@@ -161,6 +164,7 @@
+@@ -165,6 +168,7 @@
  	$(RM) $(SERVERBIN)/daemon/cups-driverd
  	$(RM) $(SERVERBIN)/daemon/cups-lpd
  	$(RM) $(SERVERBIN)/daemon/cups-polld
@@ -40,7 +40,7 @@ diff -urNad cups-1.2-ubuntu~/scheduler/Makefile cups-1.2-ubuntu/scheduler/Makefi
  	-$(RMDIR) $(STATEDIR)/certs
  	-$(RMDIR) $(STATEDIR)
  	-$(RMDIR) $(SERVERROOT)/ppd
-@@ -229,6 +233,13 @@
+@@ -233,6 +237,13 @@
  	echo Linking $@...
  	$(CC) $(LDFLAGS) -o cups-polld cups-polld.o $(LIBS)
  
@@ -54,9 +54,9 @@ diff -urNad cups-1.2-ubuntu~/scheduler/Makefile cups-1.2-ubuntu/scheduler/Makefi
  
  #
  # libmime.a
-diff -urNad cups-1.2-ubuntu~/scheduler/auth.c cups-1.2-ubuntu/scheduler/auth.c
---- cups-1.2-ubuntu~/scheduler/auth.c	2006-07-26 17:40:24.000000000 +0200
-+++ cups-1.2-ubuntu/scheduler/auth.c	2006-07-26 17:40:50.000000000 +0200
+diff -urNad cupsys-1.2.12~/scheduler/auth.c cupsys-1.2.12/scheduler/auth.c
+--- cupsys-1.2.12~/scheduler/auth.c	2006-09-12 22:58:39.000000000 +0900
++++ cupsys-1.2.12/scheduler/auth.c	2007-07-14 18:23:44.131238819 +0900
 @@ -300,6 +300,59 @@
    memcpy(temp->mask.ip.netmask, netmask, sizeof(temp->mask.ip.netmask));
  }
@@ -117,10 +117,11 @@ diff -urNad cups-1.2-ubuntu~/scheduler/auth.c cups-1.2-ubuntu/scheduler/auth.c
  
  /*
   * 'cupsdAuthorize()' - Validate any authorization credentials.
-@@ -467,6 +520,26 @@
+@@ -467,6 +520,28 @@
      {
        case AUTH_BASIC :
            {
++#if CUPS_DROP_PRIVILEGES == 1
 +	    /* first, try whether the external PAM helper works */
 +	    int pam_auth_result = cupsdCallPamAuthHelper(username, password);
 +	    cupsdLogMessage(CUPSD_LOG_DEBUG, 
@@ -140,13 +141,14 @@ diff -urNad cups-1.2-ubuntu~/scheduler/auth.c cups-1.2-ubuntu/scheduler/auth.c
 +		  "cupsdAuthorize: PAM authentication helper failed with code %i\n", 
 +		  pam_auth_result);
 +	    }
++#endif
 +
  #if HAVE_LIBPAM
  	   /*
  	    * Only use PAM to do authentication.  This supports MD5
-diff -urNad cups-1.2-ubuntu~/scheduler/cups-check-pam-auth.c cups-1.2-ubuntu/scheduler/cups-check-pam-auth.c
---- cups-1.2-ubuntu~/scheduler/cups-check-pam-auth.c	1970-01-01 01:00:00.000000000 +0100
-+++ cups-1.2-ubuntu/scheduler/cups-check-pam-auth.c	2006-07-26 17:41:35.000000000 +0200
+diff -urNad cupsys-1.2.12~/scheduler/cups-check-pam-auth.c cupsys-1.2.12/scheduler/cups-check-pam-auth.c
+--- cupsys-1.2.12~/scheduler/cups-check-pam-auth.c	1970-01-01 09:00:00.000000000 +0900
++++ cupsys-1.2.12/scheduler/cups-check-pam-auth.c	2007-07-14 18:21:16.403132897 +0900
 @@ -0,0 +1,148 @@
 +/* setgid shadow PAM authentication helper for cupsd
 + * 
