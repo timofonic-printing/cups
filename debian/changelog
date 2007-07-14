@@ -1,4 +1,4 @@
-cupsys (1.2.12-1) UNRELEASED; urgency=low
+cupsys (1.2.12-1) unstable; urgency=low
 
   * New upstream release
   * removed unnecessary dependency against patch package (Closes: #431069)
