@@ -17,7 +17,6 @@
 54_cups-config_modeldir.dpatch
 55_ppd_okidata_name.dpatch
 #56_dirsvc.dpatch
-57_cupsaddsmb.dpatch
 58_cupsd.conf-AllowLocal.dpatch
 60_device_uri.dpatch
 62_classes_crash.dpatch
