@@ -1,12 +1,13 @@
-cupsys (1.2.11-4) UNRELEASED; urgency=low
+cupsys (1.2.12-1) UNRELEASED; urgency=low
 
+  * New upstream release
   * removed unnecessary dependency against patch package (Closes: #431069)
   * Debconf translation
     - Danish (Closes: #426772)
     - Vietnamese (Closes: #426822)
     - Spanish (Closes: #430004)
 
- -- Kenshi Muto <kmuto@debian.org>  Sun, 17 Jun 2007 11:44:06 +0900
+ -- Kenshi Muto <kmuto@debian.org>  Sat, 14 Jul 2007 14:56:24 +0900
 
 cupsys (1.2.11-3) unstable; urgency=medium
 
