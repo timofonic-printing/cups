@@ -1,3 +1,16 @@
+cupsys (1.2.12-2) UNRELEASED; urgency=low
+
+  [ Kenshi Muto ]
+  * Added scripting directory to /usr/share/doc/cupsys/examples.
+    This directory contains the binding code from Java, Perl, and PHP
+    to CUPS.
+    Although we Debian CUPS team cannot afford to maintain them,
+    some of you may want them.
+
+  ** Well, is it time to separate cupsys and cupsys-bin? (#233339) **
+
+ -- Kenshi Muto <kmuto@debian.org>  Sun, 15 Jul 2007 23:39:33 +0900
+
 cupsys (1.2.12-1) unstable; urgency=low
 
   * New upstream release
