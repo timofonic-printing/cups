@@ -3,7 +3,7 @@ cupsys (1.2.12-2) UNRELEASED; urgency=low
   [ Kenshi Muto ]
   * Added scripting directory to /usr/share/doc/cupsys/examples.
     This directory contains the binding code from Java, Perl, and PHP
-    to CUPS.
+    to CUPS. (closes: #193076)
     Although we Debian CUPS team cannot afford to maintain them,
     some of you may want them.
   * Added 'Recommends: cupsys' to cupsys-bsd. (closes: #426521)
