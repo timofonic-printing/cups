@@ -74,8 +74,7 @@ Section: net
 Architecture: any
 Depends: ${shlibs:Depends}, adduser, cupsys-common
 Conflicts: lprng
-Recommends: cupsys-bsd
-Suggests: cupsys, kdeprint, gtklp, cupsys-pt, xpp
+Suggests: cupsys, kdeprint, gtklp, cupsys-pt, xpp, cupsys-bsd
 Replaces: cupsys (<= 1.1.18-3)
 Description: Common UNIX Printing System(tm) - client programs (SysV)
  The Common UNIX Printing System (or CUPS(tm)) is a printing system and 
@@ -136,6 +135,7 @@ Priority: extra
 Section: net
 Architecture: any
 Depends: ${shlibs:Depends}, cupsys-client (= ${Source-Version}), debconf, update-inetd, cupsys-common
+Recommends: cupsys
 Conflicts: lpr, lprng, manpages-fr (<< 0.9.5-1)
 Provides: lpr
 Replaces: lpr, cupsys (<= 1.1.15-2), manpages-fr (<< 0.9.5-1)
