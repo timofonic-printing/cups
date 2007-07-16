@@ -134,7 +134,7 @@ Package: cupsys-bsd
 Priority: extra
 Section: net
 Architecture: any
-Depends: ${shlibs:Depends}, cupsys-client (= ${Source-Version}), debconf, update-inetd, cupsys-common
+Depends: ${shlibs:Depends}, cupsys-client (= ${Source-Version}), debconf | debconf-2.0, update-inetd, cupsys-common
 Recommends: cupsys
 Conflicts: lpr, lprng, manpages-fr (<< 0.9.5-1)
 Provides: lpr

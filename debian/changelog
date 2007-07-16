@@ -11,6 +11,7 @@ cupsys (1.2.12-2) UNRELEASED; urgency=low
     cupsys-bsd.' because cupsys-bsd isn't so necessary for cupsys-client.
   * Fixed to use 'cupsys' instead of 'cups' for PAM on cups-check-pam-auth.
     (though Debian CUPS doesn't use this daemon) (closes: #425701)
+  * Added debconf-2.0 to the dependency of cupsys-bsd. (closes: #415684)
 
   ** Well, is it time to separate cupsys and cupsys-bin? (#233339) **
 
