@@ -291,7 +291,7 @@ diff -urNad cupsys-1.2.12~/scheduler/cups-check-pam-auth.c cupsys-1.2.12/schedul
 +    pamdata.appdata_ptr = buffer;
 +
 +    /* ask PAM to authenticate */
-+    auth = pam_start("cups", buffer, &pamdata, &pamh) == PAM_SUCCESS &&
++    auth = pam_start("cupsys", buffer, &pamdata, &pamh) == PAM_SUCCESS &&
 +        pam_authenticate(pamh, PAM_SILENT) == PAM_SUCCESS &&
 +        pam_acct_mgmt(pamh, PAM_SILENT) == PAM_SUCCESS;
 +    pam_end(pamh, PAM_SUCCESS);
