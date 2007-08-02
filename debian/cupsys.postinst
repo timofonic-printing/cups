@@ -45,16 +45,6 @@ case "$1" in
 	    deluser root lpadmin || true
 	fi
 
-	if [ -d /etc/cups/certs ]; then
-	    rm -rf /etc/cups/certs
-	fi
-	if [ -d /var/spool/cups/certs ]; then
-	    mv /var/spool/cups/certs/* /var/run/cups/certs || true
-	    rm -rf /var/spool/cups/certs
-	fi
-	if [ -d /var/lib/cups/certs ]; then
-	    rm -rf /va/lib/cups/certs
-	fi
 	if [ -L /usr/share/ppd/cups-transitional-dir ]; then
 	    rm -f /usr/share/ppd/cups-transitional-dir
 	fi
