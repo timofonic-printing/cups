@@ -1,6 +1,5 @@
 02_configure.dpatch
 04_freebsd.dpatch
-#05_avoidunknowngroup.dpatch
 07_removecvstag.dpatch
 11_pam.dpatch
 12_quiesce_ipp_logging.dpatch
