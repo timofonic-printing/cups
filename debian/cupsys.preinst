@@ -16,20 +16,6 @@ case "$1" in
     ;;
 
     upgrade)
-	if dpkg --compare-versions "$2" le 1.1.23-6; then
-	  [ -f /etc/cups/printers.conf ] && mv /etc/cups/printers.conf /etc/cups/printers.conf.save
-	  [ -f /etc/cups/classes.conf ] && mv /etc/cups/classes.conf /etc/cups/classes.conf.save
-	fi
-	if [ -e /var/lib/cups/conf -a ! -L /var/lib/cups/conf -a ! -e /etc/cups ]; then
-	    echo -n "Moving configuration files..."
-	    mkdir -p /etc/cups || true
-	    if [ `ls /var/lib/cups/conf | wc -l` -ne "     0" ]; then
-		cp -a /var/lib/cups/conf/* /etc/cups
-	    fi
-	    rm -rf /var/lib/cups/conf
-	    echo "done."
-	fi
-
 	if [ -e /var/lib/cups/ppd -a ! -L /var/lib/cups/ppd -a ! -e /etc/cups/ppd ]; then
 	    echo -n "Moving printer definition files..."
 	    mkdir -p /etc/cups/ppd || true
