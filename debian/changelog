@@ -15,6 +15,32 @@ cupsys (1.2.12-2) UNRELEASED; urgency=low
 
   ** Well, is it time to separate cupsys and cupsys-bin? (#233339) **
 
+  [ Martin Pitt ]
+  * Drop the derooting changes. It still has some regressions, and with
+    upstream not even acknowledging the need for improving cupsys' security we
+    will sit on this forever. This will be replaced by an AppArmor/SELinux
+    profiles in the future.
+    - Drop derooting related patches:
+      06_disable_backend_setuid.dpatch
+      10_external_pam_helper.dpatch
+      09_runasuser.dpatch
+      09_runasuser_autoconf.dpatch
+    - debian/cupsys{,-client}.postinst: Drop the 'cupsys' user setup and file
+      permission juggling.
+    - debian/rules:
+      + Drop --with-cups-user configure option.
+      + Do not modify the upstream default backend permissions.
+    - debian/cupsys.init.d: Do not touch log file permissions any more.
+    - debian/cupsys.files: Drop cups-check-pam-auth.
+    - debian/NEWS: Drop description of derooting changes.
+    - debian/control: Drop adduser dependency.
+   * debian/patches/44_fixconfdirperms.dpatch: Do not create
+     /var/run/cups/certs as lp:lpadmin, but as root:lpadmin, so that cupsd
+     does not need CAP_DAC_OVERRIDE. This will make it possible to create a
+     sensible AppArmor/SELinux profile.
+   * debian/cupsys.preinst: Fix file permissions on upgrades (owner cupsys ->
+     root).
+
  -- Kenshi Muto <kmuto@debian.org>  Sun, 15 Jul 2007 23:39:33 +0900
 
 cupsys (1.2.12-1) unstable; urgency=low

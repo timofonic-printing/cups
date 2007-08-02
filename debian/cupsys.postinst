@@ -45,20 +45,6 @@ case "$1" in
 	    deluser root lpadmin || true
 	fi
 
-	# Set up cupsys user.
-	if [ -z "`getent passwd cupsys`" ]; then
-	    adduser --quiet --system --no-create-home --ingroup lpadmin cupsys
-	fi
-	# necessary for access to local parallel and usb printers
-	adduser --quiet cupsys lp
-	# necessary for access to local serial printers
-	adduser --quiet cupsys dialout
-	# necessary for access to printer/scanner combo devices
-	if [ -z "`getent group scanner`" ]; then
-	    addgroup --system scanner
-	fi
-	adduser --quiet cupsys scanner
-
 	if [ -d /etc/cups/certs ]; then
 	    rm -rf /etc/cups/certs
 	fi
@@ -207,16 +193,6 @@ EOF
 	#  /bin/echo "Browsing off" > /etc/cups/cups.d/browse.conf
 	#fi
 
-	# permission configuration
-	chown root:lp /etc/cups ; chmod 3755 /etc/cups
-	chown cupsys:root /etc/cups/cupsd.conf ; chmod 644 /etc/cups/cupsd.conf
-	chown -R cupsys:lp /etc/cups/ppd ; chmod 755 /etc/cups/ppd
-	chown cupsys:shadow /usr/lib/cups/daemon/cups-check-pam-auth
-	chmod 2754 /usr/lib/cups/daemon/cups-check-pam-auth
-	if [ ! -d /var/run/cups/certs ]; then
-	  mkdir /var/run/cups/certs && chown cupsys:lpadmin /var/run/cups/certs \
-          && chmod 511 /var/run/cups/certs
-	fi
 	if [ -f /etc/cups/classes.conf ]; then
 	  chown root:lp /etc/cups/classes.conf ; chmod 600 /etc/cups/classes.conf
 	fi
@@ -231,11 +207,6 @@ EOF
 	  ln -s /opt/share/ppd /usr/share/ppd/2-third-party
 	fi
 
-	# fix permissions for upgrades which might have written cache files as
-	# root
-	if [ -d /var/cache/cups ]; then
-	    chown -R cupsys:lp /var/cache/cups || true
-	fi
     ;;
 
     abort-upgrade|abort-remove|abort-deconfigure)

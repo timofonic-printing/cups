@@ -1,20 +1,3 @@
-cupsys (1.2.11-1) unstable; urgency=low
-
-  * The cupsd server process now runs as a system user 'cupsys' instead of
-    root. This limits the potential impact of any vulnerability in cupsd or
-    one of its callouts to the printing configuration and jobs instead of
-    offering a wide open vector for root compromise. This change and the
-    upgrade should be transparent, thus this does not require any
-    configuration change.
-  * The groups of the cupsys system user ensures that cupsd can open parallel
-    and USB printer devices (lp), serial printers (dialout), and
-    printer/scanner combinations (scanner). For out-of-the box usage of the
-    Snakeoil SSL certificate it is also in the ssl-cert group.
-  * This version breaks the current cups-pdf package. A new version of
-    cups-pdf is prepared and will be uploaded soon.
-
- -- Martin Pitt <mpitt@debian.org>  Mon, 14 May 2007 09:18:48 +0200
-
 cupsys (1.2.1-3) unstable; urgency=low
 
   * The USB backend no longer supports the usb:/dev/foo
