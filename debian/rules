@@ -60,9 +60,6 @@ binary-post-install/cupsys::
 binary-post-install/libcupsimage2-dev::
 	rm -r debian/libcupsimage2-dev/usr/share/doc/libcupsimage2-dev
 	ln -s libcupsimage2 debian/libcupsimage2-dev/usr/share/doc/libcupsimage2-dev
-#binary-post-install/libcupsys2-gnutls10::
-#	rm -r debian/libcupsys2-gnutls10/usr/share/doc/libcupsys2-gnutls10
-#	ln -s libcupsys2 debian/libcupsys2-gnutls10/usr/share/doc/libcupsys2-gnutls10
 binary-post-install/cupsys-bsd::
 	rm -r debian/cupsys-bsd/usr/share/doc/cupsys-bsd
 	ln -s libcupsys2 debian/cupsys-bsd/usr/share/doc/cupsys-bsd

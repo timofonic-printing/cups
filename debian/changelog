@@ -40,8 +40,11 @@ cupsys (1.2.12-2) UNRELEASED; urgency=low
      sensible AppArmor/SELinux profile.
    * debian/cupsys.preinst: Fix file permissions on upgrades (owner cupsys ->
      root).
+   * debian/control, debian/rules: Remove references to libcupsys2-gnutls10,
+     since it's a transitional package in Etch and not relevant any more in
+     Lenny.
 
- -- Kenshi Muto <kmuto@debian.org>  Sun, 15 Jul 2007 23:39:33 +0900
+ -- Kenshi Muto <kmuto@debian.org>  Thu, 02 Aug 2007 14:47:20 +0200
 
 cupsys (1.2.12-1) unstable; urgency=low
 
