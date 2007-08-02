@@ -2,7 +2,7 @@
 ## 47_pid.dpatch by Kenshi Muto <kmuto@debian.org>
 ##
 ## All lines beginning with `## DP:' are a description of the patch.
-## DP: No description.
+## DP: Forwarded upstream: http://www.cups.org/str.php?L2465
 
 @DPATCH@
 diff -urNad cupsys-1.2.6~/scheduler/conf.c cupsys-1.2.6/scheduler/conf.c
