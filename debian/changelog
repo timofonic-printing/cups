@@ -49,6 +49,7 @@ cupsys (1.2.12-2) UNRELEASED; urgency=low
     - debian/control: Add ssl-cert dependency.
     - debian/cupsys.postinst: Symlink snakeoil SSL certificate if present, and
       there is none present yet.
+  * debian/control: Replace obsolete ${Source-Version} with ${binary:Version}.
 
   [ Till Kamppeter ]
   * Add debian/local/textonly.{ppd,filter}: Text-only printer driver from Red
@@ -56,7 +57,7 @@ cupsys (1.2.12-2) UNRELEASED; urgency=low
   * debian/rules: Install the D-Bus config file so that CUPS reports
     job progress to dbus clients (like sytem-config-printer).
 
- -- Martin Pitt <mpitt@debian.org>  Mon, 06 Aug 2007 15:24:18 +0200
+ -- Martin Pitt <mpitt@debian.org>  Mon, 06 Aug 2007 15:33:07 +0200
 
 cupsys (1.2.12-1) unstable; urgency=low
 

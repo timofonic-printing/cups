@@ -91,7 +91,7 @@ Package: libcupsys2-dev
 Priority: optional
 Section: libdevel
 Architecture: any
-Depends: libcupsys2 (= ${Source-Version}), libgnutls-dev
+Depends: libcupsys2 (= ${binary:Version}), libgnutls-dev
 Provides: libcupsys-dev
 Conflicts: libcupsys1-dev, libcupsys-dev, cupsys (<< 1.1.22-3)
 Replaces: libcupsys1-dev, libcupsys-dev, cupsys (<< 1.1.22-3)
@@ -112,7 +112,7 @@ Package: libcupsimage2-dev
 Priority: optional
 Section: libdevel
 Architecture: any
-Depends: libcupsimage2 (= ${Source-Version}), libcupsys2-dev (= ${Source-Version}), libpng-dev, libtiff4-dev, libjpeg62-dev, zlib1g-dev
+Depends: libcupsimage2 (= ${binary:Version}), libcupsys2-dev (= ${binary:Version}), libpng-dev, libtiff4-dev, libjpeg62-dev, zlib1g-dev
 Provides: libcupsimage-dev
 Conflicts: libcupsimage-dev
 Replaces: libcupsys1-dev, libcupsimage-dev, libcupsys2-dev (<= 1.1.18-2)
@@ -133,7 +133,7 @@ Package: cupsys-bsd
 Priority: extra
 Section: net
 Architecture: any
-Depends: ${shlibs:Depends}, cupsys-client (= ${Source-Version}), debconf | debconf-2.0, update-inetd, cupsys-common
+Depends: ${shlibs:Depends}, cupsys-client (= ${binary:Version}), debconf | debconf-2.0, update-inetd, cupsys-common
 Recommends: cupsys
 Conflicts: lpr, lprng, manpages-fr (<< 0.9.5-1)
 Provides: lpr
@@ -175,7 +175,7 @@ Package: cupsys-dbg
 Priority: extra
 Section: libdevel
 Architecture: any
-Depends: libcupsys2 (= ${Source-Version})
+Depends: cupsys (= ${binary:Version})
 Description: Common UNIX Printing System(tm) - debugging symbols
  The Common UNIX Printing System (or CUPS(tm)) is a printing system and 
  general replacement for lpd and the like.  It supports the Internet 
