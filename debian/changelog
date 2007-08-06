@@ -53,8 +53,10 @@ cupsys (1.2.12-2) UNRELEASED; urgency=low
   [ Till Kamppeter ]
   * Add debian/local/textonly.{ppd,filter}: Text-only printer driver from Red
     Hat. Install it in debian/rules.
+  * debian/rules: Install the D-Bus config file so that CUPS reports
+    job progress to dbus clients (like sytem-config-printer).
 
- -- Martin Pitt <mpitt@debian.org>  Mon, 06 Aug 2007 15:21:30 +0200
+ -- Martin Pitt <mpitt@debian.org>  Mon, 06 Aug 2007 15:24:18 +0200
 
 cupsys (1.2.12-1) unstable; urgency=low
 

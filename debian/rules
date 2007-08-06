@@ -57,6 +57,10 @@ binary-post-install/cupsys::
 	#ln -s ../cups/model $(DEB_DESTDIR)/../cupsys/usr/share/ppd/cups-transitional-dir
 	dh_usrlocal
 
+	# Install DBUS configuration file so that job progress is reported to
+	# the system-config-printer applet
+	install -D -m 644 packaging/cups-dbus.conf $(DEB_DESTDIR)/../cupsys/etc/dbus-1/system.d/cups.conf
+
 	# Install driver and PPD for text-only printers
 	install -D -m 644 debian/local/textonly.ppd $(DEB_DESTDIR)/../cupsys/usr/share/ppd/cups-included/textonly.ppd
 	install -D -m 755 debian/local/textonly.filter $(DEB_DESTDIR)/../cupsys/usr/lib/cups/filter/textonly
