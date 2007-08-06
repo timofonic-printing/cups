@@ -1,4 +1,4 @@
-cupsys (1.2.12-2) UNRELEASED; urgency=low
+cupsys (1.2.12-2) unstable; urgency=low
 
   [ Kenshi Muto ]
   * Added scripting directory to /usr/share/doc/cupsys/examples.
