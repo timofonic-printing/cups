@@ -13,8 +13,6 @@ cupsys (1.2.12-2) UNRELEASED; urgency=low
     (though Debian CUPS doesn't use this daemon) (closes: #425701)
   * Added debconf-2.0 to the dependency of cupsys-bsd. (closes: #415684)
 
-  ** Well, is it time to separate cupsys and cupsys-bin? (#233339) **
-
   [ Martin Pitt ]
   * Drop the derooting changes. It still has some regressions, and with
     upstream not even acknowledging the need for improving cupsys' security we
