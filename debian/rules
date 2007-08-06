@@ -65,6 +65,14 @@ binary-post-install/cupsys::
 	install -D -m 644 debian/local/textonly.ppd $(DEB_DESTDIR)/../cupsys/usr/share/ppd/cups-included/textonly.ppd
 	install -D -m 755 debian/local/textonly.filter $(DEB_DESTDIR)/../cupsys/usr/lib/cups/filter/textonly
 
+	# Helge Blischke's oopstops filter to work around bugs in
+	# OpenOffice.org's PostScript output from
+	# http://www.srz.de/Members/bla/cups/filter/oopstops
+	install -m 755 -o root -g root debian/local/oopstops.pl $(DEB_DESTDIR)/../cupsys/usr/lib/cups/filter/oopstops
+	install -d $(DEB_DESTDIR)/../cupsys/usr/share/cups/mime/
+	install -m 644 -o root -g root debian/local/oopstops.types $(DEB_DESTDIR)/../cupsys/usr/share/cups/mime/
+	install -m 644 -o root -g root debian/local/oopstops.convs $(DEB_DESTDIR)/../cupsys/usr/share/cups/mime/
+
 binary-post-install/libcupsimage2-dev::
 	rm -r debian/libcupsimage2-dev/usr/share/doc/libcupsimage2-dev
 	ln -s libcupsimage2 debian/libcupsimage2-dev/usr/share/doc/libcupsimage2-dev
