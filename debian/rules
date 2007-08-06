@@ -57,6 +57,10 @@ binary-post-install/cupsys::
 	#ln -s ../cups/model $(DEB_DESTDIR)/../cupsys/usr/share/ppd/cups-transitional-dir
 	dh_usrlocal
 
+	# Install driver and PPD for text-only printers
+	install -D -m 644 debian/local/textonly.ppd $(DEB_DESTDIR)/../cupsys/usr/share/ppd/cups-included/textonly.ppd
+	install -D -m 755 debian/local/textonly.filter $(DEB_DESTDIR)/../cupsys/usr/lib/cups/filter/textonly
+
 binary-post-install/libcupsimage2-dev::
 	rm -r debian/libcupsimage2-dev/usr/share/doc/libcupsimage2-dev
 	ln -s libcupsimage2 debian/libcupsimage2-dev/usr/share/doc/libcupsimage2-dev
