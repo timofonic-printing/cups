@@ -3,9 +3,13 @@ cupsys (1.2.12-3) UNRELEASED; urgency=low
   [ Martin-Éric Racine ]
   * Added presubj script to warn bug reporters to avoid filing Poppler
     or XPDF security issues, since we don't use that codebase; we call
-    external programs who do and that's where the bug should be filed.  
+    external programs who do and that's where the bug should be filed.
 
- -- Martin-Éric Racine <q-funk@iki.fi>  Wed,  8 Aug 2007 11:44:56 +0300
+  [ Martin Pitt ]
+  * cupsys.init.d: Remove stray chown'ing to 'cupsys' which does not exist any
+    more.'
+
+ -- Martin-Éric Racine <q-funk@iki.fi>  Wed, 08 Aug 2007 12:54:08 +0200
 
 cupsys (1.2.12-2) unstable; urgency=low
 

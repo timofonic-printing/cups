@@ -37,7 +37,6 @@ case "$1" in
 	  modprobe -q lp || true
 	  modprobe -q ppdev || true
 	fi
-	chown cupsys:lp `dirname "$PIDFILE"`
 
 	start-stop-daemon --start --quiet --oknodo --pidfile "$PIDFILE" --exec $DAEMON
 
