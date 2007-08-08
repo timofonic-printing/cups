@@ -7,7 +7,7 @@ cupsys (1.2.12-3) UNRELEASED; urgency=low
 
   [ Martin Pitt ]
   * cupsys.init.d: Remove stray chown'ing to 'cupsys' which does not exist any
-    more.'
+    more. (closes: #436662)
 
  -- Martin-Éric Racine <q-funk@iki.fi>  Wed, 08 Aug 2007 12:54:08 +0200
 
