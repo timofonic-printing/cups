@@ -1,4 +1,4 @@
-cupsys (1.2.12-3) UNRELEASED; urgency=low
+cupsys (1.2.12-3) unstable; urgency=low
 
   [ Martin-Éric Racine ]
   * Added presubj script to warn bug reporters to avoid filing Poppler
