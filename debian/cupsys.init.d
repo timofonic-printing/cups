@@ -32,8 +32,7 @@ case "$1" in
 
 	mkdir -p `dirname "$PIDFILE"`
 	if [ "$LOAD_LP_MODULE" = "yes" -a -f /usr/lib/cups/backend/parallel \
-             -a -f /proc/devices -a -f /proc/modules -a -x /sbin/modprobe \
-             -a -z "$(grep -e ' lp$' /proc/devices 2>/dev/null)" ]; then
+             -a -f /proc/devices -a -f /proc/modules -a -x /sbin/modprobe ]; then
 	  modprobe -q lp || true
 	  modprobe -q ppdev || true
 	fi
