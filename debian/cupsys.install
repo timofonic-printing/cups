@@ -1,1 +1,5 @@
-debian/presubj	usr/share/bug/cupsys
+debian/presubj	usr/share/bug/cupsys/
+debian/local/filters/* usr/lib/cups/filter/
+debian/local/*.ppd usr/share/ppd/cups-included/
+debian/local/*.types usr/share/cups/mime/
+debian/local/*.convs usr/share/cups/mime/

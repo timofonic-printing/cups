@@ -1,8 +1,11 @@
 cupsys (1.2.12-4) UNRELEASED; urgency=low
 
   * cupsys.logrotate: Fix last occurence of 'cupsys' user.
+  * Moved all Debian specific filters to debian/local/filters.
+  * Cleaned up debian/rules, moved some file installs to
+    debian/cupsys.install.
 
- -- Martin Pitt <mpitt@debian.org>  Fri, 10 Aug 2007 08:57:06 +0200
+ -- Martin Pitt <mpitt@debian.org>  Fri, 10 Aug 2007 09:27:09 +0200
 
 cupsys (1.2.12-3) unstable; urgency=low
 
