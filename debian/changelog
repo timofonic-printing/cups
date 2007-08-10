@@ -6,8 +6,11 @@ cupsys (1.2.12-4) UNRELEASED; urgency=low
     debian/cupsys.install.
   * Merge debian/cupsys.files into debian/cupsys.install and remove the
     former. Two different files are just too confusing.
+  * debian/local/filters/pdftops: Do not pass /etc/cups/pdftops.conf to
+    pdftops if it does not exist (poppler-utils does not have this file).
+    (https://launchpad.net/bugs/125300)
 
- -- Martin Pitt <mpitt@debian.org>  Fri, 10 Aug 2007 09:55:26 +0200
+ -- Martin Pitt <mpitt@debian.org>  Fri, 10 Aug 2007 18:03:55 +0200
 
 cupsys (1.2.12-3) unstable; urgency=low
 
