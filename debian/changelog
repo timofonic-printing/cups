@@ -1,3 +1,9 @@
+cupsys (1.2.12-4) UNRELEASED; urgency=low
+
+  * cupsys.logrotate: Fix last occurence of 'cupsys' user.
+
+ -- Martin Pitt <mpitt@debian.org>  Fri, 10 Aug 2007 08:57:06 +0200
+
 cupsys (1.2.12-3) unstable; urgency=low
 
   [ Martin-Éric Racine ]
