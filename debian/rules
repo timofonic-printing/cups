@@ -24,6 +24,7 @@ DEB_INSTALL_CHANGELOGS_ALL := CHANGES.txt
 DEB_DH_STRIP_ARGS := --dbg-package=cupsys-dbg
 DEB_DH_FIXPERMS_ARGS := -Xusr/lib/cups/backend-available
 DEB_DH_COMPRESS_ARGS := -Xusr/share/doc/cupsys/examples/scripting
+DEB_DH_INSTALL_SOURCEDIR := debian/tmp
 
 clean::
 	rm -f man/client.conf.man packaging/cups.list
@@ -34,9 +35,6 @@ $(patsubst %,install/%,$(DEB_ALL_PACKAGES)) :: install/%:
 	dh_movefiles -p$(cdbs_curpkg)
 
 binary-post-install/cupsys::
-	mv debian/cupsys/usr/lib/cups/backend/* debian/cupsys/usr/lib/cups/backend-available
-	(cd $(DEB_DESTDIR) && mv var/spool var/log $(DEB_DESTDIR)/../cupsys/var)
-	(cd $(DEB_DESTDIR) && mv etc/cups/interfaces etc/cups/ppd $(DEB_DESTDIR)/../cupsys/etc/cups)
 	(cd $(DEB_DESTDIR)/../cupsys/usr/share/doc/cupsys && ln -sf ../../cups/doc-root online-docs)
 	install -m 755 debian/local/browsing_status debian/local/enable_browsing debian/local/sharing_status debian/local/enable_sharing $(DEB_DESTDIR)/../cupsys/usr/share/cups
 

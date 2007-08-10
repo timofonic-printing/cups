@@ -4,8 +4,10 @@ cupsys (1.2.12-4) UNRELEASED; urgency=low
   * Moved all Debian specific filters to debian/local/filters.
   * Cleaned up debian/rules, moved some file installs to
     debian/cupsys.install.
+  * Merge debian/cupsys.files into debian/cupsys.install and remove the
+    former. Two different files are just too confusing.
 
- -- Martin Pitt <mpitt@debian.org>  Fri, 10 Aug 2007 09:27:09 +0200
+ -- Martin Pitt <mpitt@debian.org>  Fri, 10 Aug 2007 09:55:26 +0200
 
 cupsys (1.2.12-3) unstable; urgency=low
 
