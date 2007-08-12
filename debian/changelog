@@ -1,5 +1,6 @@
 cupsys (1.2.12-4) UNRELEASED; urgency=low
 
+  [ Martin Pitt ]
   * cupsys.logrotate: Fix last occurence of 'cupsys' user.
   * Moved all Debian specific filters to debian/local/filters.
   * Cleaned up debian/rules, moved some file installs to
@@ -9,6 +10,10 @@ cupsys (1.2.12-4) UNRELEASED; urgency=low
   * debian/local/filters/pdftops: Do not pass /etc/cups/pdftops.conf to
     pdftops if it does not exist (poppler-utils does not have this file).
     (https://launchpad.net/bugs/125300)
+
+  [ Martin-Éric Racine ]
+  * Corrected download URL in debian/copyright.
+  * Added debian/watch file using that URL.
 
  -- Martin Pitt <mpitt@debian.org>  Fri, 10 Aug 2007 18:03:55 +0200
 
