@@ -17,8 +17,10 @@ cupsys (1.2.12-4) UNRELEASED; urgency=low
   * Revised the Uploaders in debian/control:
     - Fixed the name for Masayuki Hatta.
     - Added Roger Leigh.
+  * Removed cupsys-driver-gimpprint alternative in debian/control;
+    superseded by cupsys-driver-gutenprint since Etch.
 
- -- Martin-Éric Racine <q-funk@iki.fi>  Sun, 12 Aug 2007 12:34:25 +0300
+ -- Martin-Éric Racine <q-funk@iki.fi>  Sun, 12 Aug 2007 13:36:30 +0300
 
 cupsys (1.2.12-3) unstable; urgency=low
 
