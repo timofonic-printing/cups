@@ -14,8 +14,11 @@ cupsys (1.2.12-4) UNRELEASED; urgency=low
   [ Martin-Éric Racine ]
   * Corrected download URL in debian/copyright.
   * Added debian/watch file using that URL.
+  * Revised the Uploaders in debian/control:
+    - Fixed the name for Masayuki Hatta.
+    - Added Roger Leigh.
 
- -- Martin Pitt <mpitt@debian.org>  Fri, 10 Aug 2007 18:03:55 +0200
+ -- Martin-Éric Racine <q-funk@iki.fi>  Sun, 12 Aug 2007 12:34:25 +0300
 
 cupsys (1.2.12-3) unstable; urgency=low
 
