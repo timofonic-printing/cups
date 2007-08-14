@@ -1,4 +1,3 @@
-02_configure.dpatch
 04_freebsd.dpatch
 07_removecvstag.dpatch
 11_pam.dpatch

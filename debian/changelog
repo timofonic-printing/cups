@@ -19,8 +19,10 @@ cupsys (1.3.0-1) UNRELEASED; urgency=low
 
   [ Martin Pitt ]
   * Bump library shlibs to >= 1.3.0.
+  * Drop 02_configure.dpatch, upstream configure does not set rpath any more
+    for prefix=/usr.
 
- -- Martin Pitt <mpitt@debian.org>  Tue, 14 Aug 2007 20:06:07 +0200
+ -- Martin Pitt <mpitt@debian.org>  Tue, 14 Aug 2007 20:29:51 +0200
 
 cupsys (1.2.12-4) unstable; urgency=low
 
