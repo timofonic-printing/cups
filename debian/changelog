@@ -27,8 +27,11 @@ cupsys (1.3.0-1) UNRELEASED; urgency=low
     00list anyway since then.
   * Drop 67_printcap.dpatch: /var/run/cups/printcap is now the implicit
     default upstream.
+  * debian/patches: Drop number prefixes from patches. The enumeration is not
+    useful at all any more since it both got inflated and is not sorted by any
+    category. With dpatch we also do not need number prefixes.
 
- -- Martin Pitt <mpitt@debian.org>  Tue, 14 Aug 2007 21:01:20 +0200
+ -- Martin Pitt <mpitt@debian.org>  Tue, 14 Aug 2007 21:10:50 +0200
 
 cupsys (1.2.12-4) unstable; urgency=low
 
