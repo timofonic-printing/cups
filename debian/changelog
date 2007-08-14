@@ -1,4 +1,4 @@
-cupsys (1.3.0-1) UNRELEASED; urgency=low
+cupsys (1.3.0-1) unstable; urgency=low
 
   [ Till Kamppeter ]
   * New upstream release (first release of 1.3.x generation)
