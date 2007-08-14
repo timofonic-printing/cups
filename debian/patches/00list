@@ -10,7 +10,6 @@
 58_cupsd.conf-AllowLocal.dpatch
 60_device_uri.dpatch
 62_classes_crash.dpatch
-67_printcap.dpatch
 70_reactivate_recommended_driver.dpatch
 90_include_krb5_h_in_job_h.dpatch
 98_search_mime_files_in_usr_share.dpatch
