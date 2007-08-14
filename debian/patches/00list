@@ -7,7 +7,6 @@
 19_cupsaccept.dpatch
 44_fixconfdirperms.dpatch
 47_pid.dpatch
-54_cups-config_modeldir.dpatch
 #56_dirsvc.dpatch
 58_cupsd.conf-AllowLocal.dpatch
 60_device_uri.dpatch
