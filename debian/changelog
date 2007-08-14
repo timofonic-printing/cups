@@ -23,8 +23,10 @@ cupsys (1.3.0-1) UNRELEASED; urgency=low
     for prefix=/usr.
   * Drop 54_cups-config_modeldir.dpatch, --modeldir was never actually used
     anywhere and not documented, and LSB prescribes /usr/share/ppd/ anyway.
+  * Drop 56_dirsvc.dpatch, which was fixed upstream long ago and disabled in
+    00list anyway since then.
 
- -- Martin Pitt <mpitt@debian.org>  Tue, 14 Aug 2007 20:40:28 +0200
+ -- Martin Pitt <mpitt@debian.org>  Tue, 14 Aug 2007 20:42:49 +0200
 
 cupsys (1.2.12-4) unstable; urgency=low
 
