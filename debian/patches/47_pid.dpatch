@@ -5,11 +5,11 @@
 ## DP: Forwarded upstream: http://www.cups.org/str.php?L2465
 
 @DPATCH@
-diff -urNad cupsys-1.2.6~/scheduler/conf.c cupsys-1.2.6/scheduler/conf.c
---- cupsys-1.2.6~/scheduler/conf.c	2006-11-15 09:52:47.000000000 +0900
-+++ cupsys-1.2.6/scheduler/conf.c	2006-11-15 09:52:47.000000000 +0900
-@@ -170,7 +170,8 @@
-   { "StateDir",			&StateDir,		CUPSD_VARTYPE_STRING },
+diff -urNad cupsys-1.3.0~rc2~/scheduler/conf.c cupsys-1.3.0~rc2/scheduler/conf.c
+--- cupsys-1.3.0~rc2~/scheduler/conf.c	2007-07-30 17:47:10.000000000 +0100
++++ cupsys-1.3.0~rc2/scheduler/conf.c	2007-08-01 13:23:12.000000000 +0100
+@@ -167,7 +167,8 @@
+ #endif /* HAVE_AUTHORIZATION_H */
    { "TempDir",			&TempDir,		CUPSD_VARTYPE_STRING },
    { "Timeout",			&Timeout,		CUPSD_VARTYPE_INTEGER },
 -  { "UseNetworkDefault",	&UseNetworkDefault,	CUPSD_VARTYPE_BOOLEAN }
@@ -18,18 +18,18 @@ diff -urNad cupsys-1.2.6~/scheduler/conf.c cupsys-1.2.6/scheduler/conf.c
  };
  #define NUM_VARS	(sizeof(variables) / sizeof(variables[0]))
  
-@@ -288,6 +289,7 @@
+@@ -413,6 +414,7 @@
    cupsdSetString(&RemoteRoot, "remroot");
    cupsdSetString(&ServerHeader, "CUPS/1.2");
    cupsdSetString(&StateDir, CUPS_STATEDIR);
 +  cupsdSetString(&PidFile, "/var/run/cups/cupsd.pid");
- 
-   if (!strcmp(CUPS_DEFAULT_PRINTCAP, "/etc/printers.conf"))
-     PrintcapFormat = PRINTCAP_SOLARIS;
-diff -urNad cupsys-1.2.6~/scheduler/conf.h cupsys-1.2.6/scheduler/conf.h
---- cupsys-1.2.6~/scheduler/conf.h	2006-06-27 03:34:20.000000000 +0900
-+++ cupsys-1.2.6/scheduler/conf.h	2006-11-15 09:52:47.000000000 +0900
-@@ -187,6 +187,7 @@
+ #ifdef HAVE_GSSAPI
+   cupsdSetString(&GSSServiceName, CUPS_DEFAULT_GSSSERVICENAME);
+ #endif /* HAVE_GSSAPI */
+diff -urNad cupsys-1.3.0~rc2~/scheduler/conf.h cupsys-1.3.0~rc2/scheduler/conf.h
+--- cupsys-1.3.0~rc2~/scheduler/conf.h	2007-07-11 22:46:42.000000000 +0100
++++ cupsys-1.3.0~rc2/scheduler/conf.h	2007-08-01 13:19:41.000000000 +0100
+@@ -186,6 +186,7 @@
  					/* Server key file */
  #  endif /* HAVE_LIBSSL || HAVE_GNUTLS */
  #endif /* HAVE_SSL */
@@ -37,10 +37,10 @@ diff -urNad cupsys-1.2.6~/scheduler/conf.h cupsys-1.2.6/scheduler/conf.h
  
  #ifdef HAVE_LAUNCHD
  VAR int			LaunchdTimeout		VALUE(DEFAULT_TIMEOUT);
-diff -urNad cupsys-1.2.6~/scheduler/main.c cupsys-1.2.6/scheduler/main.c
---- cupsys-1.2.6~/scheduler/main.c	2006-11-15 09:52:46.000000000 +0900
-+++ cupsys-1.2.6/scheduler/main.c	2006-11-15 09:54:01.000000000 +0900
-@@ -92,6 +92,8 @@
+diff -urNad cupsys-1.3.0~rc2~/scheduler/main.c cupsys-1.3.0~rc2/scheduler/main.c
+--- cupsys-1.3.0~rc2~/scheduler/main.c	2007-07-19 00:52:15.000000000 +0100
++++ cupsys-1.3.0~rc2/scheduler/main.c	2007-08-01 13:19:41.000000000 +0100
+@@ -89,6 +89,8 @@
  static void		sigterm_handler(int sig);
  static long		select_timeout(int fds);
  static void		usage(int status);
@@ -49,7 +49,7 @@ diff -urNad cupsys-1.2.6~/scheduler/main.c cupsys-1.2.6/scheduler/main.c
  
  
  /*
-@@ -506,6 +508,11 @@
+@@ -529,6 +531,11 @@
    }
  #endif /* __sgi */
  
@@ -61,9 +61,9 @@ diff -urNad cupsys-1.2.6~/scheduler/main.c cupsys-1.2.6/scheduler/main.c
   /*
    * Initialize authentication certificates...
    */
-@@ -1161,9 +1168,39 @@
-   free(input);
-   free(output);
+@@ -1009,9 +1016,39 @@
+ 
+   cupsdStopSelect();
  
 +  remove_pid();
 +

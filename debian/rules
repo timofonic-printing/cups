@@ -28,6 +28,7 @@ DEB_DH_INSTALL_SOURCEDIR := debian/tmp
 
 clean::
 	rm -f man/client.conf.man packaging/cups.list
+	rm -f conf/mime.convs conf/snmp.conf init/org.cups.cups-lpd.plist
 
 common-install-prehook-impl::
 	(cd fonts && $(MAKE) install BUILDROOT=$(DEB_DESTDIR))

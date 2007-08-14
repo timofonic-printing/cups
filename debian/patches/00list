@@ -8,14 +8,12 @@
 19_cupsaccept.dpatch
 44_fixconfdirperms.dpatch
 47_pid.dpatch
-53_usr_share_ppd_support.dpatch
 54_cups-config_modeldir.dpatch
-55_ppd_okidata_name.dpatch
 #56_dirsvc.dpatch
 58_cupsd.conf-AllowLocal.dpatch
 60_device_uri.dpatch
 62_classes_crash.dpatch
 67_printcap.dpatch
-68_edit-config.dpatch
 70_reactivate_recommended_driver.dpatch
+90_include_krb5_h_in_job_h.dpatch
 98_search_mime_files_in_usr_share.dpatch
