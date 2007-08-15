@@ -50,7 +50,7 @@ Package: cupsys
 Priority: optional
 Section: net
 Architecture: any
-Depends: ${shlibs:Depends}, debconf (>= 1.2.9) | debconf-2.0, poppler-utils | xpdf-utils, perl-modules, procps, gs-esp, lsb-base (>= 3), cupsys-common,  ssl-cert (>= 1.0.11)
+Depends: ${shlibs:Depends}, debconf (>= 1.2.9) | debconf-2.0, poppler-utils | xpdf-utils, perl-modules, procps, gs-esp, lsb-base (>= 3), cupsys-common,  ssl-cert (>= 1.0.11), adduser
 Replaces: cupsys-pstoraster
 Conflicts: cupsys-pstoraster (<< 2)
 Recommends: cupsys-client, cups-pdf, smbclient (>= 3.0.9), foomatic-filters
@@ -71,7 +71,7 @@ Package: cupsys-client
 Priority: optional
 Section: net
 Architecture: any
-Depends: ${shlibs:Depends}, cupsys-common
+Depends: ${shlibs:Depends}, cupsys-common, adduser
 Conflicts: lprng
 Suggests: cupsys, kdeprint, gtklp, cupsys-pt, xpp, cupsys-bsd
 Replaces: cupsys (<= 1.1.18-3)
