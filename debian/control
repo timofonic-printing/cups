@@ -91,7 +91,7 @@ Package: libcupsys2-dev
 Priority: optional
 Section: libdevel
 Architecture: any
-Depends: libcupsys2 (= ${binary:Version}), libgnutls-dev
+Depends: libcupsys2 (= ${binary:Version}), libgnutls-dev, libkrb5-dev
 Provides: libcupsys-dev
 Conflicts: libcupsys1-dev, libcupsys-dev, cupsys (<< 1.1.22-3)
 Replaces: libcupsys1-dev, libcupsys-dev, cupsys (<< 1.1.22-3)
