@@ -6,8 +6,10 @@ cupsys (1.3.0-3) UNRELEASED; urgency=low
   * debian/cupsys.preinst: Bump the version comparison for the file owner
     cleanup, since some log files were still left as owned by 'cupsys' until
     #437536 was fixed.
+  * debian/cupsys-common.files: Do not install the .po files, cups does not
+    use them at runtime. (closes: #438625)
 
- -- Martin Pitt <martin.pitt@ubuntu.com>  Mon, 20 Aug 2007 16:15:24 +0200
+ -- Martin Pitt <martin.pitt@ubuntu.com>  Mon, 20 Aug 2007 16:23:58 +0200
 
 cupsys (1.3.0-2) unstable; urgency=low
 
