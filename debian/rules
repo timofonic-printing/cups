@@ -30,11 +30,6 @@ clean::
 	rm -f man/client.conf.man packaging/cups.list
 	rm -f conf/mime.convs conf/snmp.conf init/org.cups.cups-lpd.plist
 
-common-configure-arch::
-	# configure's --localedir does not actually work, hack around
-	# it for now (http://www.cups.org/str.php?L2488)
-	sed -i '/CUPS_LOCALEDIR/ s_/usr/share/locale_/usr/share/cups/locale_' config.h
-
 common-install-prehook-impl::
 	(cd fonts && $(MAKE) install BUILDROOT=$(DEB_DESTDIR))
 $(patsubst %,install/%,$(DEB_ALL_PACKAGES)) :: install/%:
