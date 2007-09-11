@@ -6,8 +6,10 @@ cupsys (1.3.0-4) UNRELEASED; urgency=low
     configure option actually work (taken from upstream SVN, STR#2488)
   * debian/rules: Add --enable-gssapi to ensure that the package is built with
     Kerberos support.
+  * debian/rules: Use -Wl,--as-needed linker flag. This drops a few
+    unnecessary dependencies and should make checklib much happier.
 
- -- Martin Pitt <mpitt@debian.org>  Tue, 11 Sep 2007 21:14:52 +0200
+ -- Martin Pitt <mpitt@debian.org>  Tue, 11 Sep 2007 22:02:26 +0200
 
 cupsys (1.3.0-3) unstable; urgency=low
 

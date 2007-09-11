@@ -25,6 +25,7 @@ DEB_DH_STRIP_ARGS := --dbg-package=cupsys-dbg
 DEB_DH_FIXPERMS_ARGS := -Xusr/lib/cups/backend-available
 DEB_DH_COMPRESS_ARGS := -Xusr/share/doc/cupsys/examples/scripting
 DEB_DH_INSTALL_SOURCEDIR := debian/tmp
+LDFLAGS := -Wl,--as-needed
 
 clean::
 	rm -f man/client.conf.man packaging/cups.list
