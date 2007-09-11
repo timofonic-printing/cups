@@ -4,8 +4,10 @@ cupsys (1.3.0-4) UNRELEASED; urgency=low
     has its own crazy PO file parser.
   * Add debian/patches/str2488-fix-localedir.dpatch: Make the --localedir
     configure option actually work (taken from upstream SVN, STR#2488)
+  * debian/rules: Add --enable-gssapi to ensure that the package is built with
+    Kerberos support.
 
- -- Martin Pitt <mpitt@debian.org>  Thu, 23 Aug 2007 08:37:54 +0200
+ -- Martin Pitt <mpitt@debian.org>  Tue, 11 Sep 2007 21:14:52 +0200
 
 cupsys (1.3.0-3) unstable; urgency=low
 
