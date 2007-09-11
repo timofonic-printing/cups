@@ -1,4 +1,4 @@
-cupsys (1.3.0-4) UNRELEASED; urgency=low
+cupsys (1.3.0-4) unstable; urgency=low
 
   * Install PO files again, but this time under /usr/share/cups/locale. cups
     has its own crazy PO file parser.
