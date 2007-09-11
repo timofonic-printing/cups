@@ -1,0 +1,21 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## str2508-dont_kill_edit-config.tmpl.dpatch by  <mpitt@debian.org>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: Debian #441697, STR #2508
+
+@DPATCH@
+diff -urNad trunk~/Makefile trunk/Makefile
+--- trunk~/Makefile	2007-07-11 23:46:42.000000000 +0200
++++ trunk/Makefile	2007-09-11 22:22:39.000000000 +0200
+@@ -63,9 +63,8 @@
+ 	$(RM) man/cups-lpd.man man/cupsaddsmb.man man/cupsd.man
+ 	$(RM) man/cupsd.conf.man man/lpoptions.man
+ 	$(RM) packaging/cups.list
+-	$(RM) templates/edit-config.tmpl templates/header.tmpl
++	$(RM) templates/header.tmpl
+ 	-$(RM) doc/*/index.html
+-	-$(RM) templates/*/edit-config.tmpl
+ 	-$(RM) templates/*/header.tmpl
+ 	-$(RM) -r autom4te*.cache
+ 
