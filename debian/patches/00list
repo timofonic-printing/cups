@@ -1,6 +1,3 @@
-str2488-fix-localedir.dpatch
-str2505_localize.dpatch
-str2508-dont_kill_edit-config.tmpl.dpatch
 freebsd.dpatch
 removecvstag.dpatch
 pam.dpatch

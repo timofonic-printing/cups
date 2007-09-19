@@ -1,3 +1,12 @@
+cupsys (1.3.2-1) UNRELEASED; urgency=low
+
+  * New upstream bug fix release.
+    - Fixes web interface for many browsers. (STR#2472, Closes: #440589)
+  * Remove str2488-fix-localedir.dpatch, str2505_localize.dpatch,
+    str2508-dont_kill_edit-config.tmpl.dpatch: Fixed upstream.
+
+ -- Martin Pitt <mpitt@debian.org>  Tue, 18 Sep 2007 08:15:17 +0200
+
 cupsys (1.3.0-4) unstable; urgency=low
 
   * Install PO files again, but this time under /usr/share/cups/locale. cups
