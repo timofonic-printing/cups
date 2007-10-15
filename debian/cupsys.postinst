@@ -39,11 +39,6 @@ case "$1" in
 	if [ -z "`getent group lpadmin`" ]; then 
 	    addgroup --system lpadmin
 	fi
-	if [ -n "`getent group lpadmin | awk -F: '{ print $4 }' | awk -F, '{ for (i=1; i <= NF; i++ ) print $i }' |grep '^root$'`" ]; then
-	    # Bug#214746
-	    echo "Deleting root from lpadmin group. If you use NIS/LDAP, change this manually."
-	    deluser root lpadmin || true
-	fi
 
 	if [ -L /usr/share/ppd/cups-transitional-dir ]; then
 	    rm -f /usr/share/ppd/cups-transitional-dir
