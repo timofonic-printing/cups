@@ -31,7 +31,7 @@ case "$1" in
 	# Set documentation symlinks
 	if [ -d /usr/share/doc/cupsys ]; then
 	    if [ ! -e /usr/share/doc/cupsys-bsd ]; then
-		ln -sf cupsys /usr/share/doc/cupsys-bsd
+		ln -sf cupsys-common /usr/share/doc/cupsys-bsd
 	    fi
 	fi
 
