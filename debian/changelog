@@ -10,8 +10,10 @@ cupsys (1.3.4-2) UNRELEASED; urgency=low
     to Ubuntu and it doesn't hurt us.
   * debian/cupsys-bsd.postinst: Symlink cupsys-bsd's doc directory to
     cupsys-common's, not cupsys', since the latter is not a dependency.
+  * debian/control: Demote cups-pdf from Recommends: to Suggests: to match the
+    semantics (apt installs recommends by default now).
 
- -- Kenshi Muto <kmuto@debian.org>  Fri, 30 Nov 2007 17:17:28 +0100
+ -- Kenshi Muto <kmuto@debian.org>  Fri, 30 Nov 2007 17:30:39 +0100
 
 cupsys (1.3.4-1) unstable; urgency=high
 
