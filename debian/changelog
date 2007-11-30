@@ -14,6 +14,8 @@ cupsys (1.3.4-2) UNRELEASED; urgency=low
     semantics (apt installs recommends by default now).
   * debian/cupsys.init.d: Add LSB header, thanks to Petter Reinholdtsen!
     (closes: #337640)
+  * debian/rules: Configure with default printcap in /var/run/cups/.
+    (closes: #452446)
 
   [ Till Kamppeter ]
   * Add debian/local/backends/dnssd: Printer discovery backend for
@@ -29,7 +31,7 @@ cupsys (1.3.4-2) UNRELEASED; urgency=low
   * debian/postinst: Activate new backends (since Etch) by default on
     upgrades. This affects snmp, scsi, serial, and dnssd.
 
- -- Kenshi Muto <kmuto@debian.org>  Fri, 30 Nov 2007 18:34:11 +0100
+ -- Kenshi Muto <kmuto@debian.org>  Fri, 30 Nov 2007 18:39:20 +0100
 
 cupsys (1.3.4-1) unstable; urgency=high
 
