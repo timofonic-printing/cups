@@ -53,7 +53,7 @@ Architecture: any
 Depends: ${shlibs:Depends}, debconf (>= 1.2.9) | debconf-2.0, poppler-utils | xpdf-utils, perl-modules, procps, ghostscript, lsb-base (>= 3), cupsys-common,  ssl-cert (>= 1.0.11), adduser
 Replaces: cupsys-pstoraster
 Conflicts: cupsys-pstoraster (<< 2)
-Recommends: cupsys-client, smbclient (>= 3.0.9), foomatic-filters
+Recommends: cupsys-client, smbclient (>= 3.0.9), foomatic-filters, avahi-utils
 Suggests: cupsys-bsd, cupsys-driver-gutenprint, foomatic-filters-ppds, hplip, xpdf-korean | xpdf-japanese | xpdf-chinese-traditional | xpdf-chinese-simplified, cups-pdf
 Description: Common UNIX Printing System(tm) - server
  The Common UNIX Printing System (or CUPS(tm)) is a printing system and 

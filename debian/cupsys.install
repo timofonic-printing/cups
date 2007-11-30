@@ -34,6 +34,7 @@ usr/share/man/man8/cups-deviced.8.gz
 usr/share/man/man8/cups-driverd.8.gz
 usr/share/man/man8/cupsfilter.8.gz
 ../presubj usr/share/bug/cupsys/
+../local/backends/* usr/lib/cups/backend-available/
 ../local/filters/* usr/lib/cups/filter/
 ../local/*.ppd usr/share/ppd/cups-included/
 ../local/*.types usr/share/cups/mime/

@@ -27,6 +27,11 @@ DEB_DH_COMPRESS_ARGS := -Xusr/share/doc/cupsys/examples/scripting
 DEB_DH_INSTALL_SOURCEDIR := debian/tmp
 LDFLAGS := -Wl,--as-needed
 
+common-post-build-arch::
+	# Fix permissions of filters/backends installed from debian/local/
+	chmod 755 debian/local/filters/*
+	chmod 755 debian/local/backends/*
+
 clean::
 	rm -f man/client.conf.man packaging/cups.list
 	rm -f conf/mime.convs conf/snmp.conf init/org.cups.cups-lpd.plist
@@ -53,9 +58,6 @@ binary-post-install/cupsys::
 	# Install DBUS configuration file so that job progress is reported to
 	# the system-config-printer applet
 	install -D -m 644 packaging/cups-dbus.conf $(DEB_DESTDIR)/../cupsys/etc/dbus-1/system.d/cups.conf
-
-	# Fix permissions of filters installed from debian/local/
-	chmod 755 debian/cupsys/usr/lib/cups/filter/*
 
 binary-post-install/libcupsimage2-dev::
 	rm -r debian/libcupsimage2-dev/usr/share/doc/libcupsimage2-dev

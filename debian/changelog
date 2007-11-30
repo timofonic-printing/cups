@@ -13,6 +13,18 @@ cupsys (1.3.4-2) UNRELEASED; urgency=low
   * debian/control: Demote cups-pdf from Recommends: to Suggests: to match the
     semantics (apt installs recommends by default now).
 
+  [ Till Kamppeter ]
+  * Add debian/local/backends/dnssd: Printer discovery backend for
+    several cheaper printers, like the HP Color LaserJet 2600n, are not
+    discovered by the "snmp" backend.  In addition, this backend extracts more
+    info from the printers than the "snmp" backend, like for example available
+    page description languages.  This leads to better driver choices for
+    unknown printer models.
+  * debian/cupsys.install, debian/cupsys.{prerm,postinst,templates,rules}:
+    Install new backend.
+  * debian/control: Add Recommends: to avahi-utils; if it is installed, the
+    dnssd backend can actually work.
+
  -- Kenshi Muto <kmuto@debian.org>  Fri, 30 Nov 2007 17:30:39 +0100
 
 cupsys (1.3.4-1) unstable; urgency=high

@@ -19,7 +19,7 @@ set -e
 
 case "$1" in
     remove)
-	(cd /usr/lib/cups/backend && rm -f http ipp lpd parallel scsi serial socket usb snmp)
+	(cd /usr/lib/cups/backend && rm -f http ipp lpd parallel scsi serial socket usb snmp dnssd)
         if [ -L /usr/lib/cups/backend/smb ]; then
             rm -f /usr/lib/cups/backend/smb 2>/dev/null || true
         fi
