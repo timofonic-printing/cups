@@ -6,8 +6,10 @@ cupsys (1.3.4-2) UNRELEASED; urgency=low
   [ Martin Pitt ]
   * debian/control: Remove gs-esp alternative dependency, it's just
     "ghostscript" nowadays.
+  * debian/control: Slightly bump the C/R: for -common; it's a pointless delta
+    to Ubuntu and it doesn't hurt us.
 
- -- Kenshi Muto <kmuto@debian.org>  Fri, 30 Nov 2007 17:09:04 +0100
+ -- Kenshi Muto <kmuto@debian.org>  Fri, 30 Nov 2007 17:14:22 +0100
 
 cupsys (1.3.4-1) unstable; urgency=high
 
