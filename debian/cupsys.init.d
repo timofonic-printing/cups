@@ -1,4 +1,15 @@
 #! /bin/sh
+### BEGIN INIT INFO
+# Provides:          cupsys
+# Required-Start:    $syslog
+# Required-Stop:     $syslog
+# Should-Start:      $network
+# Should-Stop:       $network
+# X-Start-Before:    samba
+# X-Stop-After:      samba
+# Default-Start:     2 3 4 5
+# Default-Stop:      1
+### END INIT INFO
 
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 DAEMON=/usr/sbin/cupsd
