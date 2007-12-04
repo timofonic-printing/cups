@@ -45,8 +45,9 @@ my $avahicmd = "avahi-browse -k -t -v -r -a 2> /dev/null";
 
 # IPs which are for computers, consider their printer entries as queues
 # set up with the local printing system (CUPS, LPD, Windows/Samba SMB, ...)
-my @ipblacklist = ();
+my @computerips = ();
 my $output;
+my $hosts;
 my ($interface, $nettype, $ip, $host, $make, $model, $description, $cmd, $makemodel, $deviceid, $protocol, $port, $uriext, $uri);
 
 open (AVAHI, "$avahicmd |") or exit 0;
@@ -64,8 +65,8 @@ while (my $line = <AVAHI>) {
 	    $protocol = "socket";
 	} elsif ($protocolinfo =~ /_printer/) {
 	    $protocol = "lpd";
-	#} elsif ($protocolinfo =~ /_ipp/) {
-	#    $protocol = "ipp";
+	} elsif ($protocolinfo =~ /_ipp/) {
+	    $protocol = "ipp";
 	}
     } elsif ($line =~ /^\s*hostname\s*=\s*\[([^\]]+)\]\s*$/) {
 	$host = $1;
@@ -73,7 +74,7 @@ while (my $line = <AVAHI>) {
     } elsif ($line =~ /^\s*address\s*=\s*\[([^\]]+)\]\s*$/) {
 	$ip = $1;
 	if ($protocol eq "computer") {
-	    push (@ipblacklist, $ip);
+	    push (@computerips, $ip);
 	    $protocol = "";
 	}
     } elsif ($line =~ /^\s*port\s*=\s*\[([^\]]+)\]\s*$/) {
@@ -124,7 +125,7 @@ while (my $line = <AVAHI>) {
 	    $usb_DES ||= $product;
 	    if ($usb_MFG) {
 		$make = $usb_MFG;
-	    } elsif ($usb_DES =~ /^KONICA\s+MINOLTA\b/i) { 
+	    } elsif ($usb_DES =~ /^KONICA\s*MINOLTA\b/i) { 
 		$make = "KONICA MINOLTA";
 	    } elsif ($usb_DES) {
 		$usb_DES =~ /^\s*(\S*)\b/;
@@ -138,7 +139,11 @@ while (my $line = <AVAHI>) {
 	    $usb_CMD ||= $pdls;
 	    my $extra;
 	    if ($protocol eq "socket") {
-		$uri = "socket://$ip:$port";
+		if ($port eq "9100") {
+		    $uri = "socket://$ip";
+		} else {
+		    $uri = "socket://$ip:$port";
+		}
 		$extra = "Port $port";
 	    } elsif ($protocol eq "lpd") {
 		$uri = "lpd://$ip" . ($uriext ? "/$uriext" : "");
@@ -164,7 +169,8 @@ while (my $line = <AVAHI>) {
 		($usb_DES ? "DES:$usb_DES;" : "") .
 		($usb_CMD ? "CMD:$usb_CMD;" : "");
 	    $deviceid .= "CLS:PRINTER;" if $deviceid;
-	    $output->{$ip}{$protocol}{$extra} =
+	    $hosts->{$ip} = $hostname if ($hostname);
+	    $output->{$ip}{$protocol}{$uriext} =
 		"network $uri \"$makemodel\" \"$makemodel $ip ($extra)\" \"$deviceid\"\n";
 	    ($interface, $nettype, $ip, $host, $make, $model, $description, $cmd, $makemodel, $deviceid, $protocol, $port, $uriext, $uri) =
 		("", "", "", "", "", "", "", "", "", "", "", "", "", "");
@@ -172,31 +178,87 @@ while (my $line = <AVAHI>) {
     }
 }
 
+my $localqueues = {};
+my $queue = undef;
+if (open LPSTAT, "LC_ALL=C lpstat -l -p -v |") {
+    while (my $line = <LPSTAT>) {
+	chomp $line;
+	if ($line =~ /^printer\s+(\S+)/i) {
+	    $queue = $1;
+	    $localqueues->{$queue} = {};
+	} elsif ($queue) {
+	    if ($line =~ /^\s+Connection:\s+remote/i) {
+		$localqueues->{$queue}{remote} = 1;
+	    } elsif ($line =~ /^\s+Interface:\s+(\S+)/i) {
+		$localqueues->{$queue}{interface} = $1;
+	    } elsif ($line =~ /^device\s+for\s+(\S+)\s*:\s*(\S+)/i) {
+		$localqueues->{$1}{uri} = $2;
+	    }
+	}
+    }
+    close LPSTAT
+}
+
+my @localips = ();
+if (open IFCONFIG, "LC_ALL=C /sbin/ifconfig |") {
+    while (my $line = <IFCONFIG>) {
+	chomp $line;
+	if ($line =~ /^\s*inet\s+addr:\s*(\S+)/i) {
+	    push (@localips, $1);
+	}
+    }
+    close IFCONFIG;
+}
+
 foreach my $ip (keys(%{$output})) {
-    next if member($ip, @ipblacklist);
+    # Do not list print queues of the local machine
+    next if member($ip, @localips);
     if ($output->{$ip}{"socket"}) {
-	foreach my $extra (keys(%{$output->{$ip}{"socket"}})) {
-	    if (keys(%{$output->{$ip}{"socket"}}) = 1) {
-		$output->{$ip}{"socket"}{$extra} =~
+	foreach my $uriext (keys(%{$output->{$ip}{"socket"}})) {
+	    if (keys(%{$output->{$ip}{"socket"}}) == 1) {
+		$output->{$ip}{"socket"}{$uriext} =~
 		    s/^(\s*\S*\s*\S*\s*\"[^\"]*\"\s*\"[^\"\(]*?)\s*\([^\)]*\)\s*(\"\s*.*)$/$1$2/;
 	    }
-	    print $output->{$ip}{"socket"}{$extra};
+	    print $output->{$ip}{"socket"}{$uriext};
 	}
     } elsif ($output->{$ip}{"lpd"}) {
-	foreach my $extra (keys(%{$output->{$ip}{"lpd"}})) {
-	    if (keys(%{$output->{$ip}{"lpd"}}) = 1) {
-		$output->{$ip}{"lpd"}{$extra} =~
+	foreach my $uriext (keys(%{$output->{$ip}{"lpd"}})) {
+	    if (keys(%{$output->{$ip}{"lpd"}}) == 1) {
+		$output->{$ip}{"lpd"}{$uriext} =~
 		    s/^(\s*\S*\s*\S*\s*\"[^\"]*\"\s*\"[^\"\(]*?)\s*\([^\)]*\)\s*(\"\s*.*)$/$1$2/;
 	    }
-	    print $output->{$ip}{"lpd"}{$extra};
+	    print $output->{$ip}{"lpd"}{$uriext};
 	}
     } elsif ($output->{$ip}{"ipp"}) {
-	foreach my $extra (keys(%{$output->{$ip}{"ipp"}})) {
+	foreach my $uriext (keys(%{$output->{$ip}{"ipp"}})) {
+	    if ($uriext =~ /^(printers|classes)\/(\S+)$/) {
+		# Queue from a CUPS server. We should suppress it if it
+		# is a queue received via CUPS broadcast
+		$queue=$2;
+		if (defined($localqueues->{"$queue\@$ip"})) {
+		    $queue = "$queue\@$ip";
+		} elsif (defined($localqueues->{"$queue\@$hosts->{$ip}"})) {
+		    $queue = "$queue\@$hosts->{$ip}";
+		}
+		if (defined($localqueues->{$queue})) {
+		    if ($localqueues->{$queue}{remote} &&
+			($localqueues->{$queue}{uri} =~
+			 /^ipp:\/\/([^\/:]+)(:\d+|)\/(\S+)/)) {
+			my $host = $1;
+			my $ue = $3;
+			if ($host !~ /\d+\.\d+\.\d+\.\d+/) {
+			    $host =
+				join(".", unpack("C4", gethostbyname($host)));
+			}
+			next if ($host eq $ip) && ($ue eq $uriext);
+		    }
+		}
+	    }
 	    if (keys(%{$output->{$ip}{"ipp"}}) == 1) {
-		$output->{$ip}{"ipp"}{$extra} =~
+		$output->{$ip}{"ipp"}{$uriext} =~
 		    s/^(\s*\S*\s*\S*\s*\"[^\"]*\"\s*\"[^\"]*?)\s*\([^\)]*\)\s*(\"\s*.*)$/$1$2/;
 	    }
-	    print $output->{$ip}{"ipp"}{$extra};
+	    print $output->{$ip}{"ipp"}{$uriext};
 	}
     }
 }
