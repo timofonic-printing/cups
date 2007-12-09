@@ -3,7 +3,10 @@ cupsys (1.3.4-3) UNRELEASED; urgency=low
   [ Martin Pitt ]
   * debian/control: Bump Standards-Version to 3.7.3 (no changes necessary).
 
-  [ Till Kamppeter ] 
+  [ Till Kamppeter ]
+  * debian/patches/cups-stops-broadcasting-on-HUP-with-explicit-BrowseAddress.dpatch:
+    CUPS stopped broadcasting on a HUP signal when using a fixed
+    BrowseAddress (CUPS STR #2618, Ubuntu LP: #173470).
   * debian/local/backends/dnssd: Updated dnssd to support Mac OS X servers
     which broadcast their print queues only via DNS-SD and require clients
     to create raw IPP queues pointing to the server's queues manually.

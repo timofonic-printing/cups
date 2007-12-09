@@ -1,0 +1,28 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## cups-stops-broadcasting-on-HUP-with-explicit-BrowseAddress.dpatch by  <till.kamppeter@gmail.com>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: No description.
+
+@DPATCH@
+diff -urNad cupsys-1.3.4~/scheduler/dirsvc.c cupsys-1.3.4/scheduler/dirsvc.c
+--- cupsys-1.3.4~/scheduler/dirsvc.c	2007-10-02 00:11:47.000000000 +0100
++++ cupsys-1.3.4/scheduler/dirsvc.c	2007-12-09 23:50:31.000000000 +0000
+@@ -198,7 +198,7 @@
+   * Announce the deletion...
+   */
+ 
+-  if ((BrowseLocalProtocols & BROWSE_CUPS))
++  if ((BrowseLocalProtocols & BROWSE_CUPS) && BrowseSocket >= 0)
+   {
+     cups_ptype_t savedtype = p->type;	/* Saved printer type */
+ 
+@@ -862,7 +862,7 @@
+ 
+ 	p->browse_time = time(NULL);
+ 
+-	if (BrowseLocalProtocols & BROWSE_CUPS)
++	if ((BrowseLocalProtocols & BROWSE_CUPS) && BrowseSocket >= 0)
+           send_cups_browse(p);
+ 
+ #ifdef HAVE_LIBSLP
