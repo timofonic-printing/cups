@@ -4,9 +4,6 @@ cupsys (1.3.4-3) UNRELEASED; urgency=low
   * debian/control: Bump Standards-Version to 3.7.3 (no changes necessary).
 
   [ Till Kamppeter ]
-  * debian/control: Let the cupsys package recommend avahi-daemon, together
-    with this package CUPS does mDNS/DNS-SD broadcasts and so the shared 
-    printers get visible for Mac OS X clients.
   * debian/patches/cups-stops-broadcasting-on-HUP-with-explicit-BrowseAddress.dpatch:
     CUPS stopped broadcasting on a HUP signal when using a fixed
     BrowseAddress (CUPS STR #2618, Ubuntu LP: #173470).
