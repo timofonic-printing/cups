@@ -23,8 +23,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: cupsys 1.2.2-1\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-06-09 04:30+0200\n"
+"Report-Msgid-Bugs-To: Source: cupsys@packages.debian.org\n"
+"POT-Creation-Date: 2007-12-16 15:35+0900\n"
 "PO-Revision-Date: 2007-06-21 18:51+0200\n"
 "Last-Translator: Carlos Valdivia Yagüe <valyag@dat.etsit.upm.es>\n"
 "Language-Team: Debian L10n Spanish Team <debian-l10n-spanish@lists.debian."
@@ -47,7 +47,12 @@ msgid ""
 "submit them to CUPS. It should only be set up if other computers are likely "
 "to submit jobs over the network via the \"BSD\" or \"LPR\" services, and "
 "these computers cannot be converted to use the IPP protocol that CUPS uses."
-msgstr "Este paquete incluye un servidor que acepta trabajos de impresión al estilo BSD y se los envía a CUPS. Configúrelo únicamente en el caso de que haya otras máquinas que envíen trabajos de impresión mediante la red, usando los servicios \"BSD\" o \"LPR\" y no se puede hacer que estos utilice el protocolo IPP que utiliza CUPS."
+msgstr ""
+"Este paquete incluye un servidor que acepta trabajos de impresión al estilo "
+"BSD y se los envía a CUPS. Configúrelo únicamente en el caso de que haya "
+"otras máquinas que envíen trabajos de impresión mediante la red, usando los "
+"servicios \"BSD\" o \"LPR\" y no se puede hacer que estos utilice el "
+"protocolo IPP que utiliza CUPS."
 
 #. Type: boolean
 #. Description
@@ -63,7 +68,11 @@ msgid ""
 "jobs. Since not all sources of print jobs can attach an appropriate type, "
 "many jobs get submitted as the MIME type application/octet-stream and could "
 "be rejected if CUPS cannot guess the job's format."
-msgstr "En IPP todos los trabajos de impresión tienen un tipo MIME. Puesto que no todas las fuentes de trabajos de impresión asignan correctamente algún tipo MIME, muchos llegan con el tipo «application/octet-stream» y podrían rechazarse si CUPS no puede adivinar el formato del trabajo."
+msgstr ""
+"En IPP todos los trabajos de impresión tienen un tipo MIME. Puesto que no "
+"todas las fuentes de trabajos de impresión asignan correctamente algún tipo "
+"MIME, muchos llegan con el tipo «application/octet-stream» y podrían "
+"rechazarse si CUPS no puede adivinar el formato del trabajo."
 
 #. Type: boolean
 #. Description
@@ -71,7 +80,9 @@ msgstr "En IPP todos los trabajos de impresión tienen un tipo MIME. Puesto que n
 msgid ""
 "CUPS can handle all such jobs as \"raw\" jobs, which causes them to be sent "
 "directly to the printer without processing."
-msgstr "Es posible hacer que CUPS trate todos estos trabajos como trabajos «en crudo», con lo que se mandan directamente a la impresora sin procesar."
+msgstr ""
+"Es posible hacer que CUPS trate todos estos trabajos como trabajos «en "
+"crudo», con lo que se mandan directamente a la impresora sin procesar."
 
 #. Type: boolean
 #. Description
@@ -79,7 +90,9 @@ msgstr "Es posible hacer que CUPS trate todos estos trabajos como trabajos «en c
 msgid ""
 "It is recommended to choose this option if the server will be accepting "
 "print jobs from Windows computers or Samba servers."
-msgstr "Se recomienda que escoga esta opción si el servidor va a aceptar trabajos de impresión de ordenadores con Windows o servidores Samba."
+msgstr ""
+"Se recomienda que escoga esta opción si el servidor va a aceptar trabajos de "
+"impresión de ordenadores con Windows o servidores Samba."
 
 #. Type: multiselect
 #. Choices
@@ -130,6 +143,12 @@ msgid "snmp"
 msgstr "snmp"
 
 #. Type: multiselect
+#. Choices
+#: ../cupsys.templates:3001
+msgid "dnssd"
+msgstr "dnssd"
+
+#. Type: multiselect
 #. Description
 #: ../cupsys.templates:3002
 msgid "Printer communication backends:"
@@ -140,7 +159,9 @@ msgstr "Motores de comunicación con la impresora:"
 #: ../cupsys.templates:3002
 msgid ""
 "CUPS uses backend programs to communicate with the printer device or port."
-msgstr "CUPS utiliza diversos motores para comunicarse con el puerto o dispositivo de la impresora."
+msgstr ""
+"CUPS utiliza diversos motores para comunicarse con el puerto o dispositivo "
+"de la impresora."
 
 #. Type: multiselect
 #. Description
@@ -148,7 +169,10 @@ msgstr "CUPS utiliza diversos motores para comunicarse con el puerto o dispositi
 msgid ""
 "Unfortunately, some backend programs are likely to cause some trouble. For "
 "example, some PPC kernels crash with the parallel backend."
-msgstr "Desafortunadamente, ciertos motores pueden causar problemas. Por ejemplo, con el motor del puerto paralelo se producen algunas caídas del núcleo en la arquitectura PPC."
+msgstr ""
+"Desafortunadamente, ciertos motores pueden causar problemas. Por ejemplo, "
+"con el motor del puerto paralelo se producen algunas caídas del núcleo en la "
+"arquitectura PPC."
 
 #. Type: multiselect
 #. Description

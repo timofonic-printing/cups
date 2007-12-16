@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: cupsys 1.2.7 italian debconf templates\n"
-"Report-Msgid-Bugs-To: pkg-cups-devel@lists.alioth.debian.org\n"
-"POT-Creation-Date: 2007-03-27 07:14+0200\n"
+"Report-Msgid-Bugs-To: Source: cupsys@packages.debian.org\n"
+"POT-Creation-Date: 2007-12-16 15:35+0900\n"
 "PO-Revision-Date: 2007-03-27 20:09+0200\n"
 "Last-Translator: Luca Monducci <luca.mo@tiscali.it>\n"
 "Language-Team: Italian <tp@lists.linux.it>\n"
@@ -17,13 +17,13 @@ msgstr ""
 
 #. Type: boolean
 #. Description
-#: ../cupsys-bsd.templates:1001
+#: ../cupsys-bsd.templates:2001
 msgid "Do you want to set up the BSD lpd compatibility server?"
 msgstr "Si vuole configurare il server di compatibilità con lpd di BSD?"
 
 #. Type: boolean
 #. Description
-#: ../cupsys-bsd.templates:1001
+#: ../cupsys-bsd.templates:2001
 msgid ""
 "The CUPS package contains a server that can accept BSD-style print jobs and "
 "submit them to CUPS. It should only be set up if other computers are likely "
@@ -38,13 +38,13 @@ msgstr ""
 
 #. Type: boolean
 #. Description
-#: ../cupsys.templates:1001
+#: ../cupsys.templates:2001
 msgid "Do you want CUPS to print unknown jobs as raw jobs?"
 msgstr "Si vuole che CUPS stampi i job sconosciuti come job \"raw\"?"
 
 #. Type: boolean
 #. Description
-#: ../cupsys.templates:1001
+#: ../cupsys.templates:2001
 msgid ""
 "The Internet Printing Protocol (IPP) enforces a MIME type for all print "
 "jobs. Since not all sources of print jobs can attach an appropriate type, "
@@ -58,7 +58,7 @@ msgstr ""
 
 #. Type: boolean
 #. Description
-#: ../cupsys.templates:1001
+#: ../cupsys.templates:2001
 msgid ""
 "CUPS can handle all such jobs as \"raw\" jobs, which causes them to be sent "
 "directly to the printer without processing."
@@ -68,7 +68,7 @@ msgstr ""
 
 #. Type: boolean
 #. Description
-#: ../cupsys.templates:1001
+#: ../cupsys.templates:2001
 msgid ""
 "It is recommended to choose this option if the server will be accepting "
 "print jobs from Windows computers or Samba servers."
@@ -78,61 +78,67 @@ msgstr ""
 
 #. Type: multiselect
 #. Choices
-#: ../cupsys.templates:2001
+#: ../cupsys.templates:3001
 msgid "ipp"
 msgstr "ipp"
 
 #. Type: multiselect
 #. Choices
-#: ../cupsys.templates:2001
+#: ../cupsys.templates:3001
 msgid "lpd"
 msgstr "lpd"
 
 #. Type: multiselect
 #. Choices
-#: ../cupsys.templates:2001
+#: ../cupsys.templates:3001
 msgid "parallel"
 msgstr "parallela"
 
 #. Type: multiselect
 #. Choices
-#: ../cupsys.templates:2001
+#: ../cupsys.templates:3001
 msgid "scsi"
 msgstr "scsi"
 
 #. Type: multiselect
 #. Choices
-#: ../cupsys.templates:2001
+#: ../cupsys.templates:3001
 msgid "serial"
 msgstr "seriale"
 
 #. Type: multiselect
 #. Choices
-#: ../cupsys.templates:2001
+#: ../cupsys.templates:3001
 msgid "socket"
 msgstr "socket"
 
 #. Type: multiselect
 #. Choices
-#: ../cupsys.templates:2001
+#: ../cupsys.templates:3001
 msgid "usb"
 msgstr "usb"
 
 #. Type: multiselect
 #. Choices
-#: ../cupsys.templates:2001
+#: ../cupsys.templates:3001
 msgid "snmp"
 msgstr "snmp"
 
 #. Type: multiselect
+#. Choices
+#: ../cupsys.templates:3001
+msgid "dnssd"
+msgstr "dnssd"
+
+#. Type: multiselect
 #. Description
-#: ../cupsys.templates:2002
+#: ../cupsys.templates:3002
 msgid "Printer communication backends:"
 msgstr "Backend di comunicazione con la stampante:"
 
 #. Type: multiselect
 #. Description
-#: ../cupsys.templates:2002
+#: ../cupsys.templates:3002
 msgid ""
 "CUPS uses backend programs to communicate with the printer device or port."
 msgstr ""
@@ -141,7 +147,7 @@ msgstr ""
 
 #. Type: multiselect
 #. Description
-#: ../cupsys.templates:2002
+#: ../cupsys.templates:3002
 msgid ""
 "Unfortunately, some backend programs are likely to cause some trouble. For "
 "example, some PPC kernels crash with the parallel backend."
@@ -152,7 +158,7 @@ msgstr ""
 
 #. Type: multiselect
 #. Description
-#: ../cupsys.templates:2002
+#: ../cupsys.templates:3002
 msgid ""
 "Please choose the backend program to be used by CUPS. The default choice "
 "should fit the most common environments."
