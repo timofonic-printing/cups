@@ -19,7 +19,7 @@ cupsys (1.3.4-3) unstable; urgency=high
   * cupsys depends on "ghostscript | gs-esp", to ease testing transition and
     upgrades from etch (closes: #456455).
 
- -- Martin Pitt <mpitt@debian.org>  Tue, 04 Dec 2007 09:30:10 +0100
+ -- Kenshi Muto <kmuto@debian.org>  Mon, 17 Dec 2007 10:25:02 +0900
 
 cupsys (1.3.4-2) unstable; urgency=low
 
