@@ -1,4 +1,4 @@
-cupsys (1.3.4-3) UNRELEASED; urgency=low
+cupsys (1.3.4-3) unstable; urgency=high
 
   [ Martin Pitt ]
   * debian/control: Bump Standards-Version to 3.7.3 (no changes necessary).
@@ -17,7 +17,7 @@ cupsys (1.3.4-3) UNRELEASED; urgency=low
     - do update-debconfpo. Update all translations to use the msgstr 'dnssd'
       for msgid 'dnssd'.
   * cupsys depends on "ghostscript | gs-esp", to ease testing transition and
-    upgrades from etch (closes: #456455)
+    upgrades from etch (closes: #456455).
 
  -- Martin Pitt <mpitt@debian.org>  Tue, 04 Dec 2007 09:30:10 +0100
 
