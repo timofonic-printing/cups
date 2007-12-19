@@ -1,6 +1,9 @@
-cupsys (1.3.4-5) UNRELEASED; urgency=high
+cupsys (1.3.5-1) UNRELEASED; urgency=high
 
   [ Kenshi Muto]
+  * New upstream release
+    - cups-stops-broadcasting-on-HUP-with-explicit-BrowseAddress patch is
+      merged.
   * Update pdftops.pl to 1.20. It fixes overwriting arbitary files
     via symlink attack. (CVE-2007-6358, closes: #456960)
 
