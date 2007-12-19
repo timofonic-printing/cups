@@ -39,3 +39,5 @@ usr/share/man/man8/cupsfilter.8.gz
 ../local/*.ppd usr/share/ppd/cups-included/
 ../local/*.types usr/share/cups/mime/
 ../local/*.convs usr/share/cups/mime/
+../local/pdftops.conf etc/cups/
+../local/acroread.conf etc/cups/
