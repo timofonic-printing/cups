@@ -7,6 +7,12 @@ cupsys (1.3.5-1) UNRELEASED; urgency=high
   * Update pdftops.pl to 1.20. It fixes overwriting arbitary files
     via symlink attack. (CVE-2007-6358, closes: #456960)
 
+  [ Till Kamppeter ]
+  * debian/patches/fix_regression_reactivate_net_ifaces_changes_detection.dpatch :
+    Fix a regression in upstream code that has removed the network interface
+    update poll (CUPS STR #2631, LP: #177075). Thanks to Hugues Fournier
+    (hugues dot fournier at gmail dot com) for the patch.
+
  -- Kenshi Muto <kmuto@debian.org>  Wed, 19 Dec 2007 17:07:05 +0900
 
 cupsys (1.3.4-4) unstable; urgency=high

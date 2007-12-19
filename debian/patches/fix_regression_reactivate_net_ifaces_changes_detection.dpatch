@@ -1,0 +1,39 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## fix_regression_reactivate_net_ifaces_changes_detection.dpatch by Hugues Fournier <hugues.fournier@gmail.com>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: Forwarded and committed upstream: http://www.cups.org/str.php?L2631 (revision 7141 - pre 1.3.6)
+
+@DPATCH@
+diff -urNad cupsys-1.3.4~/scheduler/main.c cupsys-1.3.4/scheduler/main.c
+--- cupsys-1.3.4~/scheduler/main.c	2007-12-19 06:36:48.000000000 +0100
++++ cupsys-1.3.4/scheduler/main.c	2007-12-19 06:38:57.000000000 +0100
+@@ -148,6 +148,9 @@
+   cups_file_t		*fp;		/* Fake lpsched lock file */
+   struct stat		statbuf;	/* Needed for checking lpsched FIFO */
+ #endif /* __sgi */
++#ifndef __APPLE__
++  time_t		netif_time = 0;	/* Time since last network update */
++#endif /* __APPLE__ */
+ #if HAVE_LAUNCHD
+   int			launchd_idle_exit;
+ 					/* Idle exit on select timeout? */
+@@ -808,6 +811,18 @@
+ 
+     current_time = time(NULL);
+ 
++#ifndef __APPLE__
++   /*
++    * Update the network interfaces once a minute...
++    */
++
++    if ((current_time - netif_time) >= 60)
++    {
++      netif_time  = current_time;
++      NetIFUpdate = 1;
++    }
++#endif /* !__APPLE__ */
++
+ #if HAVE_LAUNCHD
+    /*
+     * If no other work was scheduled and we're being controlled by launchd

@@ -13,3 +13,4 @@ classes_crash.dpatch
 reactivate_recommended_driver.dpatch
 include_krb5_h_in_job_h.dpatch
 search_mime_files_in_usr_share.dpatch
+fix_regression_reactivate_net_ifaces_changes_detection.dpatch
