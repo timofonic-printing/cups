@@ -4,6 +4,8 @@ cupsys (1.3.5-1) UNRELEASED; urgency=high
   * New upstream release
     - cups-stops-broadcasting-on-HUP-with-explicit-BrowseAddress patch is
       merged.
+    - Fix that SNMP backend did not check for negative string lengths.
+      (CVE-2007-5849, closes: #457453).
   * Update pdftops.pl to 1.20. It fixes overwriting arbitary files
     via symlink attack. (CVE-2007-6358, closes: #456960)
 
