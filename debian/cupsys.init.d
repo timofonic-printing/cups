@@ -3,7 +3,7 @@
 # Provides:          cupsys
 # Required-Start:    $syslog
 # Required-Stop:     $syslog
-# Should-Start:      $network
+# Should-Start:      $network avahi
 # Should-Stop:       $network
 # X-Start-Before:    samba
 # X-Stop-After:      samba
