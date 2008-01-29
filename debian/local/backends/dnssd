@@ -30,16 +30,21 @@
 # chmod 755 /usr/lib/cups/backend/dnssd
 # killall -HUP cupsd (or "/etc/init.d/cups restart", CUPS 1.1.x only)
 # lpinfo -v (or use any printer setup tool)
+#
+# /usr/lib/cups/backend/dnssd <IP address>
+#    Shows only info for printer with given IP
 
-#use strict;
+use strict;
 
 $0 =~ m!^(.*)/([^/]+)\s*$!;
 my $progname = ($2 || $0 || "dnssd");
 my $progpath = ($1 || "/usr/lib/cups/backend");
 
-if ($ARGV[0]){
+if (@ARGV > 1) {
     die "This backend is only for printer discovery, not for actual printing.\n";
 }
+
+my $ipfilter = $ARGV[0] if $ARGV[0];
 
 my $avahicmd = "avahi-browse -k -t -v -r -a 2> /dev/null";
 
@@ -59,6 +64,7 @@ while (my $line = <AVAHI>) {
 	$nettype = $2;
 	my $itemname = $3;
 	my $protocolinfo = $4;
+	next if $nettype !~ /^IPv4$/i;
         if ($protocolinfo =~ /_workstation/) {
 	    $protocol = "computer";
 	} elsif ($protocolinfo =~ /_pdl-datastream/) {
@@ -81,7 +87,7 @@ while (my $line = <AVAHI>) {
 	$port = $1;
     } elsif ($line =~ /^\s*txt\s*=\s*\[(.+)\]\s*$/) {
 	my $info = $1;
-	if ($protocol) {
+	if ($protocol && (!defined($ipfilter) || ($ipfilter eq $ip))) {
 	    my ($ty, $product, $pdls, $usb_MFG, $usb_MDL, $usb_DES, $usb_CMD) = 
 		("", "", "", "", "", "", "");
 	    while ($info =~ s/^\s*\"([^\"]+)\"\s*//) {
@@ -169,7 +175,7 @@ while (my $line = <AVAHI>) {
 		($usb_DES ? "DES:$usb_DES;" : "") .
 		($usb_CMD ? "CMD:$usb_CMD;" : "");
 	    $deviceid .= "CLS:PRINTER;" if $deviceid;
-	    $hosts->{$ip} = $hostname if ($hostname);
+	    $hosts->{$ip} = $host if $host;
 	    $output->{$ip}{$protocol}{$uriext} =
 		"network $uri \"$makemodel\" \"$makemodel $ip ($extra)\" \"$deviceid\"\n";
 	    ($interface, $nettype, $ip, $host, $make, $model, $description, $cmd, $makemodel, $deviceid, $protocol, $port, $uriext, $uri) =
