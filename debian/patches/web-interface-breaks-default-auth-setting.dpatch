@@ -1,0 +1,48 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## web-interface-breaks-default-auth-setting.dpatch by  <till.kamppeter@gmail.com>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: No description.
+
+@DPATCH@
+diff -urNad cupsys-1.3.5~/cgi-bin/admin.c cupsys-1.3.5/cgi-bin/admin.c
+--- cupsys-1.3.5~/cgi-bin/admin.c	2007-11-30 08:00:59.000000000 +0100
++++ cupsys-1.3.5/cgi-bin/admin.c	2008-02-23 17:16:29.000000000 +0100
+@@ -1333,12 +1333,12 @@
+ 			*remote_printers,
+ 					/* REMOTE_PRINTERS value */
+ 			*share_printers,/* SHARE_PRINTERS value */
++			*user_cancel_any;
++					/* USER_CANCEL_ANY value */
+ #ifdef HAVE_GSSAPI
+-			*default_auth_type,
++    char		default_auth_type[255];
+ 					/* DefaultAuthType value */
+ #endif /* HAVE_GSSAPI */
+-			*user_cancel_any;
+-					/* USER_CANCEL_ANY value */
+ 
+ 
+    /*
+@@ -1373,13 +1373,16 @@
+     */
+ 
+     if (cgiGetVariable("KERBEROS"))
+-      default_auth_type = "Negotiate";
++      strlcpy(default_auth_type, "Negotiate", sizeof(default_auth_type));
+     else
+     {
+-      default_auth_type = cupsGetOption("DefaultAuthType", num_settings,
+-                                        settings);
+-      if (!strcasecmp(default_auth_type, "Negotiate"))
+-        default_auth_type = "Basic";
++      const char *val = cupsGetOption("DefaultAuthType", num_settings,
++                                      settings);
++
++      if (val && !strcasecmp(val, "Negotiate"))
++        strlcpy(default_auth_type, "Basic", sizeof(default_auth_type));
++      else
++        strlcpy(default_auth_type, val, sizeof(default_auth_type));
+     }
+ 
+     fprintf(stderr, "DEBUG: DefaultAuthType %s\n", default_auth_type);
