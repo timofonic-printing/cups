@@ -19,8 +19,10 @@ cupsys (1.3.6-1) UNRELEASED; urgency=low
     debian/packagename.lintian.
   * Add lintian overrides for unjustified/wontfix complaints about libcupsys2
     and cupsys.
+  * debian/cupsys.doc-base: Remove erroneous whitespace in the section
+    separator.
 
- -- Martin Pitt <mpitt@debian.org>  Tue, 26 Feb 2008 13:56:03 +0100
+ -- Martin Pitt <mpitt@debian.org>  Tue, 26 Feb 2008 13:58:54 +0100
 
 cupsys (1.3.5-2) unstable; urgency=low
 
