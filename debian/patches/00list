@@ -7,12 +7,9 @@ dont_force_ssl.dpatch
 cupsaccept.dpatch
 confdirperms.dpatch
 pidfile.dpatch
-cupsd.conf-AllowLocal.dpatch
 device_uri.dpatch
 classes_crash.dpatch
 reactivate_recommended_driver.dpatch
 include_krb5_h_in_job_h.dpatch
 search_mime_files_in_usr_share.dpatch
-fix_regression_reactivate_net_ifaces_changes_detection.dpatch
 pdftops-cups-1.4.dpatch
-web-interface-breaks-default-auth-setting.dpatch

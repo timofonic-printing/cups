@@ -1,188 +1,42 @@
 #! /bin/sh /usr/share/dpatch/dpatch-run
-## 98_search_mime_files_in_usr_share.dpatch by  <till.kamppeter@gmail.com>
+## search_mime_files_in_usr_share.dpatch by  <martin.pitt@ubuntu.com>
 ##
 ## All lines beginning with `## DP:' are a description of the patch.
-## DP: Forwarded upstream: http://www.cups.org/str.php?L2373
+## DP: http://www.cups.org/str.php?L2719
 
 @DPATCH@
-diff -urNad cupsys-1.2.8~/scheduler/conf.c cupsys-1.2.8/scheduler/conf.c
---- cupsys-1.2.8~/scheduler/conf.c	2007-03-14 12:22:15.000000000 +0000
-+++ cupsys-1.2.8/scheduler/conf.c	2007-03-14 12:22:16.000000000 +0000
-@@ -216,6 +216,7 @@
+diff -urNad trunk~/scheduler/conf.c trunk/scheduler/conf.c
+--- trunk~/scheduler/conf.c	2008-02-16 00:26:51.000000000 +0100
++++ trunk/scheduler/conf.c	2008-02-26 13:01:21.000000000 +0100
+@@ -341,6 +341,7 @@
    cups_file_t	*fp;			/* Configuration file */
    int		status;			/* Return status */
    char		temp[1024],		/* Temporary buffer */
-+                temp2[1024],            /* Another temporary buffer */
++		temp2[1024],		/* Temporary buffer */
  		*slash;			/* Directory separator */
    cups_lang_t	*language;		/* Language */
    struct passwd	*user;			/* Default user */
-@@ -973,19 +974,20 @@
+@@ -1092,11 +1093,22 @@
+ 
+    /*
+     * Read the MIME type and conversion database...
++    * Files are read from DataDir/mime by default, and can be overridden in
++    * ServerRoot.
      */
  
      snprintf(temp, sizeof(temp), "%s/filter", ServerBin);
-+    snprintf(temp2, sizeof(temp2), "%s/mime:%s", DataDir, ServerRoot);
  
 -    MimeDatabase = mimeLoad(ServerRoot, temp);
++    snprintf(temp2, sizeof(temp2), "%s/mime", DataDir);
 +    MimeDatabase = mimeLoad(temp2, temp);
++    if (!MimeDatabase)
++    {
++      cupsdLogMessage(CUPSD_LOG_EMERG,
++                      "Unable to load MIME database from \'%s\'!", temp2);
++      exit(errno);
++    }
++
++    MimeDatabase = mimeMerge(MimeDatabase, ServerRoot, temp);
  
      if (!MimeDatabase)
      {
-       cupsdLogMessage(CUPSD_LOG_EMERG,
--                      "Unable to load MIME database from \'%s\'!", ServerRoot);
-+                      "Unable to load MIME database from \'%s\'!", temp2);
-       exit(errno);
-     }
- 
-     cupsdLogMessage(CUPSD_LOG_INFO,
-                     "Loaded MIME database from \'%s\': %d types, %d filters...",
--                    ServerRoot, mimeNumTypes(MimeDatabase),
-+                    temp2, mimeNumTypes(MimeDatabase),
- 		    mimeNumFilters(MimeDatabase));
- 
-    /*
-diff -urNad cupsys-1.2.8~/scheduler/mime.c cupsys-1.2.8/scheduler/mime.c
---- cupsys-1.2.8~/scheduler/mime.c	2006-05-30 20:40:34.000000000 +0100
-+++ cupsys-1.2.8/scheduler/mime.c	2007-03-14 12:23:11.000000000 +0000
-@@ -217,9 +217,12 @@
- 
- mime_t *				/* O - Updated MIME database */
- mimeMerge(mime_t     *mime,		/* I - MIME database to add to */
--          const char *pathname,		/* I - Directory to load */
--          const char *filterpath)	/* I - Directory to load */
-+          const char *pathname,		/* I - Directory/ies to load */
-+          const char *filterpath)	/* I - Filter directory */
- {
-+  char          *paths,                 /* Pointers for parsing mime */
-+                *dirname,               /* directories */
-+                *colon;
-   cups_dir_t	*dir;			/* Directory */
-   cups_dentry_t	*dent;			/* Directory entry */
-   char		filename[1024];		/* Full filename of types/converts file */
-@@ -234,62 +237,88 @@
-   if (!pathname)
-     return (NULL);
- 
--  if ((dir = cupsDirOpen(pathname)) == NULL)
--    return (NULL);
-+  paths = strdup(pathname); /* copy path as we are writing into it */
-+  dirname = paths;
-+  colon = paths;
-+  while (colon != NULL) { /* Go through each of the colon-separated
-+			     directories */
-+    colon = strchr(dirname, ':');
-+    if (colon != NULL) *colon = '\0';
- 
-- /*
--  * If "mime" is NULL, make a new, blank database...
--  */
-+    if ((dir = cupsDirOpen(dirname)) != NULL) {
- 
--  if (!mime)
--    mime = mimeNew();
--  if (!mime)
--    return (NULL);
-+      /*
-+       * If "mime" is NULL, make a new, blank database...
-+       */
- 
-- /*
--  * Read all the .types files...
--  */
-+      if (!mime)
-+	mime = mimeNew();
-+      if (!mime)
-+	return (NULL);
- 
--  while ((dent = cupsDirRead(dir)) != NULL)
--  {
--    if (strlen(dent->filename) > 6 &&
--        !strcmp(dent->filename + strlen(dent->filename) - 6, ".types"))
--    {
--     /*
--      * Load a mime.types file...
--      */
-+      /*
-+       * Read all the .types files...
-+       */
- 
--      snprintf(filename, sizeof(filename), "%s/%s", pathname, dent->filename);
--      load_types(mime, filename);
-+      while ((dent = cupsDirRead(dir)) != NULL)
-+	{
-+	  if (strlen(dent->filename) > 6 &&
-+	      !strcmp(dent->filename + strlen(dent->filename) - 6, ".types"))
-+	    {
-+	      /*
-+	       * Load a mime.types file...
-+	       */
-+
-+	      snprintf(filename, sizeof(filename), "%s/%s", dirname, dent->filename);
-+	      load_types(mime, filename);
-+	    }
-+	}
-+
-+      cupsDirClose(dir);
-     }
-+    if (colon != NULL) dirname = colon + 1;
-   }
-+  free(paths); /* We need to copy the original path again for reading
-+		  the convs */
- 
--  cupsDirRewind(dir);
--
-- /*
--  * Read all the .convs files...
--  */
-+  /*
-+   * Read all the .convs files...
-+   */
- 
-   filtercache = cupsArrayNew((cups_array_func_t)compare_fcache, NULL);
- 
--  while ((dent = cupsDirRead(dir)) != NULL)
--  {
--    if (strlen(dent->filename) > 6 &&
--        !strcmp(dent->filename + strlen(dent->filename) - 6, ".convs"))
--    {
--     /*
--      * Load a mime.convs file...
--      */
-+  paths = strdup(pathname); /* copy path as we are writing into it */
-+  dirname = paths;
-+  colon = paths;
-+  while (colon != NULL) { /* Go through each of the colon-separated
-+			     directories */
-+    colon = strchr(dirname, ':');
-+    if (colon != NULL) *colon = '\0';
- 
--      snprintf(filename, sizeof(filename), "%s/%s", pathname, dent->filename);
--      load_convs(mime, filename, filterpath, filtercache);
-+    if ((dir = cupsDirOpen(dirname)) != NULL) {
-+
-+      while ((dent = cupsDirRead(dir)) != NULL)
-+	{
-+	  if (strlen(dent->filename) > 6 &&
-+	      !strcmp(dent->filename + strlen(dent->filename) - 6, ".convs"))
-+	    {
-+	      /*
-+	       * Load a mime.convs file...
-+	       */
-+
-+	      snprintf(filename, sizeof(filename), "%s/%s", dirname, dent->filename);
-+	      load_convs(mime, filename, filterpath, filtercache);
-+	    }
-+	}
-+
-+      cupsDirClose(dir);
-     }
-+    if (colon != NULL) dirname = colon + 1;
-   }
-+  free(paths);
- 
-   delete_fcache(filtercache);
- 
--  cupsDirClose(dir);
--
-   return (mime);
- }
- 
