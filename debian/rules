@@ -38,8 +38,13 @@ clean::
 
 common-install-prehook-impl::
 	(cd fonts && $(MAKE) install BUILDROOT=$(DEB_DESTDIR))
+
 $(patsubst %,install/%,$(DEB_ALL_PACKAGES)) :: install/%:
 	dh_movefiles -p$(cdbs_curpkg)
+
+	# install lintian overrides
+	L=debian/$(cdbs_curpkg).lintian; \
+	[ -e $$L ] && install -D -m 644 $$L debian/$(cdbs_curpkg)/usr/share/lintian/overrides/$(cdbs_curpkg) || true
 
 binary-post-install/cupsys::
 	(cd $(DEB_DESTDIR)/../cupsys/usr/share/doc/cupsys && ln -sf ../../cups/doc-root online-docs)
