@@ -9,6 +9,7 @@
 # X-Stop-After:      samba
 # Default-Start:     2 3 4 5
 # Default-Stop:      1
+# Short-Description: CUPS Printing spooler and server
 ### END INIT INFO
 
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
