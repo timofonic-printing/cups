@@ -1,0 +1,4 @@
+cupsys: executable-is-not-world-readable usr/lib/cups/backend-available/ipp 0700 != 0755
+cupsys: executable-is-not-world-readable usr/lib/cups/backend-available/lpd 0700 != 0755
+cupsys: package-contains-empty-directory usr/share/ppd/custom/
+cupsys: package-contains-empty-directory usr/lib/cups/backend/
