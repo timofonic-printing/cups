@@ -1,4 +1,4 @@
-cupsys (1.3.6-1) UNRELEASED; urgency=low
+cupsys (1.3.6-1) unstable; urgency=low
 
   * New upstream bugfix release.
   * Remove the following patches which are upstream now:
