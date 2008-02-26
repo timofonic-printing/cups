@@ -21,8 +21,10 @@ cupsys (1.3.6-1) UNRELEASED; urgency=low
     and cupsys.
   * debian/cupsys.doc-base: Remove erroneous whitespace in the section
     separator.
+  * debian/rules: Remove *.o and *.so files from PHP scripting examples
+    directory (it's /usr/share after all).
 
- -- Martin Pitt <mpitt@debian.org>  Tue, 26 Feb 2008 13:58:54 +0100
+ -- Martin Pitt <mpitt@debian.org>  Tue, 26 Feb 2008 14:06:23 +0100
 
 cupsys (1.3.5-2) unstable; urgency=low
 

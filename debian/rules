@@ -63,6 +63,9 @@ binary-post-install/cupsys::
 	# the system-config-printer applet
 	install -D -m 644 packaging/cups-dbus.conf $(DEB_DESTDIR)/../cupsys/etc/dbus-1/system.d/cups.conf
 
+	rm -f debian/$(cdbs_curpkg)/usr/share/doc/$(cdbs_curpkg)/examples/scripting/php/*.o
+	rm -f debian/$(cdbs_curpkg)/usr/share/doc/$(cdbs_curpkg)/examples/scripting/php/*.so
+
 binary-post-install/libcupsimage2-dev::
 	rm -r debian/libcupsimage2-dev/usr/share/doc/libcupsimage2-dev
 	ln -s libcupsimage2 debian/libcupsimage2-dev/usr/share/doc/libcupsimage2-dev
