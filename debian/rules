@@ -56,6 +56,7 @@ binary-post-install/cupsys::
 	  mkdir -p "$(DEB_DESTDIR)/../cupsys/usr/share/ppd/cups-included/$$m"; \
 	  mv $$i "$(DEB_DESTDIR)/../cupsys/usr/share/ppd/cups-included/$$m/"; \
 	done
+	rmdir $(DEB_DESTDIR)/../cupsys/usr/share/cups/model
 
 	dh_usrlocal
 
