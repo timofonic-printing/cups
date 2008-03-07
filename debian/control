@@ -140,9 +140,9 @@ Provides: lpr
 Replaces: lpr, cupsys (<= 1.1.15-2), manpages-fr (<< 0.9.5-1)
 Description: Common UNIX Printing System(tm) - BSD commands
  The Common UNIX Printing System (or CUPS(tm)) is a printing system and 
- general replacement for lpd and the like.  It supports the Internet 
- Printing Protocol (IPP), and has its own filtering driver model for 
- handling various document types.
+ general replacement for lpr, lpd and the like.  It supports the
+ Internet Printing Protocol (IPP), and has its own filtering driver
+ model for handling various document types.
  .
  This package provides the BSD commands for interacting with CUPS.  It
  is provided separately to allow CUPS to coexist with other printing
