@@ -1,0 +1,42 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## pbmprint.dpatch by  <mpitt@debian.org>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: Fix PBM printing: P1 was not handled at all, and P4 was inverted. (#313536)
+## DP: Forwarded to http://www.cups.org/str.php?L2746.
+
+@DPATCH@
+diff -urNad trunk~/filter/image-pnm.c trunk/filter/image-pnm.c
+--- trunk~/filter/image-pnm.c	2008-01-16 23:20:33.000000000 +0100
++++ trunk/filter/image-pnm.c	2008-03-07 22:28:48.000000000 +0100
+@@ -178,6 +178,18 @@
+     switch (format)
+     {
+       case 1 :
++          for (x = img->xsize, inptr = in; x > 0; x --, inptr ++) {
++              int c;
++	      do {
++		 c = fgetc(fp);
++	      } while (c != '1' && c != '0' && c != EOF);
++	      if (c == '1')
++                  *inptr = 0;
++	      else if (c == '0')
++		  *inptr = 255;
++	  }
++          break;
++
+       case 2 :
+           for (x = img->xsize, inptr = in; x > 0; x --, inptr ++)
+             if (fscanf(fp, "%d", &val) == 1)
+@@ -203,9 +215,9 @@
+                x --, inptr ++)
+           {
+             if (*outptr & bit)
+-              *inptr = 255;
+-            else
+               *inptr = 0;
++            else
++              *inptr = 255;
+ 
+             if (bit > 1)
+               bit >>= 1;
