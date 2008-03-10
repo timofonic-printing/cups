@@ -37,7 +37,10 @@ case "$1" in
 
         # fix 'cupsys' -> 'root' file owner mode transition
 	if dpkg --compare-versions "$2" lt-nl '1.3.0-3'; then
-            chown -R root /etc/cups /var/log/cups /var/run/cups /var/cache/cups /var/spool/cups
+	    if [ -d /var/run/cups ]; then
+		chown -R root /var/run/cups
+	    fi
+            chown -R root /etc/cups /var/log/cups /var/cache/cups /var/spool/cups
         fi
     ;;
 
