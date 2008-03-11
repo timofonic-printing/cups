@@ -9,8 +9,11 @@ cupsys (1.3.6-2) UNRELEASED; urgency=low
   * Add debian/patches/pbmprint.dpatch: Fix printing of PBM files, thanks to
     Eugeniy Meshcheryakov! (Closes: #313536)
   * debian/cupsys.preinst: Only chown /var/run/cups if it exists. (LP #156634)
+  * Move scripting examples from cupsys to libcupsys2-dev. No need to install
+    those 1.3 MB by default on every system, this is much more developer
+    oriented. Mention this in the package description.
 
- -- Martin Pitt <mpitt@debian.org>  Mon, 10 Mar 2008 18:06:17 +0100
+ -- Martin Pitt <mpitt@debian.org>  Tue, 11 Mar 2008 21:20:11 +0100
 
 cupsys (1.3.6-1) unstable; urgency=low
 

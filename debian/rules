@@ -23,7 +23,7 @@ DEB_MAKE_INSTALL_TARGET := install BUILDROOT=$(DEB_DESTDIR)
 DEB_INSTALL_CHANGELOGS_ALL := CHANGES.txt
 DEB_DH_STRIP_ARGS := --dbg-package=cupsys-dbg
 DEB_DH_FIXPERMS_ARGS := -Xusr/lib/cups/backend-available
-DEB_DH_COMPRESS_ARGS := -Xusr/share/doc/cupsys/examples/scripting
+DEB_DH_COMPRESS_ARGS := -Xusr/share/doc/libcupsys2-dev/examples/scripting
 DEB_DH_INSTALL_SOURCEDIR := debian/tmp
 LDFLAGS := -Wl,--as-needed
 
@@ -64,9 +64,6 @@ binary-post-install/cupsys::
 	# the system-config-printer applet
 	install -D -m 644 packaging/cups-dbus.conf $(DEB_DESTDIR)/../cupsys/etc/dbus-1/system.d/cups.conf
 
-	rm -f debian/$(cdbs_curpkg)/usr/share/doc/$(cdbs_curpkg)/examples/scripting/php/*.o
-	rm -f debian/$(cdbs_curpkg)/usr/share/doc/$(cdbs_curpkg)/examples/scripting/php/*.so
-
 binary-post-install/libcupsimage2-dev::
 	rm -r debian/libcupsimage2-dev/usr/share/doc/libcupsimage2-dev
 	ln -s libcupsimage2 debian/libcupsimage2-dev/usr/share/doc/libcupsimage2-dev
@@ -74,8 +71,8 @@ binary-post-install/cupsys-bsd::
 	rm -r debian/cupsys-bsd/usr/share/doc/cupsys-bsd
 	ln -s libcupsys2 debian/cupsys-bsd/usr/share/doc/cupsys-bsd
 binary-post-install/libcupsys2-dev::
-	rm -r debian/libcupsys2-dev/usr/share/doc/libcupsys2-dev
-	ln -s libcupsys2 debian/libcupsys2-dev/usr/share/doc/libcupsys2-dev
+	rm -f debian/$(cdbs_curpkg)/usr/share/doc/$(cdbs_curpkg)/examples/scripting/php/*.o
+	rm -f debian/$(cdbs_curpkg)/usr/share/doc/$(cdbs_curpkg)/examples/scripting/php/*.so
 binary-post-install/cupsys-client::
 	rm -r debian/cupsys-client/usr/share/doc/cupsys-client
 	ln -s libcupsys2 debian/cupsys-client/usr/share/doc/cupsys-client

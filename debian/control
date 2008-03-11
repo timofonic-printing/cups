@@ -102,7 +102,9 @@ Description: Common UNIX Printing System(tm) - development files
  handling various document types.
  .
  This package provides the files necessary for developing CUPS-aware
- applications and CUPS drivers.
+ applications and CUPS drivers, as well as examples how to communicate
+ with cupsys from different programming languages (Perl, Java, and
+ PHP).
  .
  The terms "Common UNIX Printing System" and "CUPS" are trademarks of
  Easy Software Products (www.easysw.com), and refer to the original
