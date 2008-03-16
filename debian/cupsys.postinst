@@ -144,6 +144,11 @@ EOF
         if dpkg --compare-versions "$2" lt-nl "1.3.6-2"; then
             rm -f /etc/rc0.d/K??cupsys /etc/rc6.d/K??cupsys
         fi
+
+        # Reload AppArmor profile if present
+        if [ -e /etc/apparmor.d/usr.sbin.cupsd ] && [ -x /etc/init.d/apparmor ]; then
+            invoke-rc.d apparmor force-reload || true
+        fi
     ;;
 
     abort-upgrade|abort-remove|abort-deconfigure)
