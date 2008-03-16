@@ -139,6 +139,11 @@ EOF
              ln -s /etc/ssl/certs/ssl-cert-snakeoil.pem /etc/cups/ssl/server.crt
              ln -s /etc/ssl/private/ssl-cert-snakeoil.key /etc/cups/ssl/server.key
         fi 
+
+        # Remove shutdown and reboot links; this init script does not need them.
+        if dpkg --compare-versions "$2" lt-nl "1.3.6-2"; then
+            rm -f /etc/rc0.d/K??cupsys /etc/rc6.d/K??cupsys
+        fi
     ;;
 
     abort-upgrade|abort-remove|abort-deconfigure)
