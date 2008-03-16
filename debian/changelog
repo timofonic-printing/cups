@@ -14,8 +14,13 @@ cupsys (1.3.6-2) UNRELEASED; urgency=low
     oriented. Mention this in the package description.
   * debian/rules: Explicitly build with -fno-stack-protector on arm and armel,
     since the compiler produces segfaulting binaries. Works around #469517.
+  * search_mime_files_in_usr_share.dpatch: Do not fatally fail if
+    DataDir/mime does not exist. This both makes much more sense (since
+    /etc/cups is the canonical dir which must exist, and /usr/share/cups/mime
+    is optional), and also unbreaks the test suite (which does not create this
+    directory by default).
 
- -- Martin Pitt <mpitt@debian.org>  Sun, 16 Mar 2008 14:18:22 +0100
+ -- Martin Pitt <mpitt@debian.org>  Sun, 16 Mar 2008 14:24:08 +0100
 
 cupsys (1.3.6-1) unstable; urgency=low
 
