@@ -15,3 +15,4 @@ search_mime_files_in_usr_share.dpatch
 pdftops-cups-1.4.dpatch
 pbmprint.dpatch
 testsuite-exit-code.dpatch
+ubuntu-disable-browsing.dpatch
