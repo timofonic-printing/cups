@@ -16,3 +16,4 @@ pdftops-cups-1.4.dpatch
 pbmprint.dpatch
 testsuite-exit-code.dpatch
 ubuntu-disable-browsing.dpatch
+ubuntu-default-error-policy-retry-job.dpatch

@@ -41,8 +41,12 @@ cupsys (1.3.6-2) UNRELEASED; urgency=low
     the cupsys profile and AppArmor itself are present.
   * Add debian/patches/ubuntu-disable-browsing.dpatch: Disable Browsing by
     default when building on Ubuntu.
+  * Add debian/patches/ubuntu-default-error-policy-retry-job.dpatch: Set
+    default job error policy to "Retry", since it is less confusing and a
+    better default on desktop machines. This is only applied when building on
+    Ubuntu.
 
- -- Martin Pitt <mpitt@debian.org>  Sun, 16 Mar 2008 22:15:07 +0100
+ -- Martin Pitt <mpitt@debian.org>  Sun, 16 Mar 2008 22:17:12 +0100
 
 cupsys (1.3.6-1) unstable; urgency=low
 
