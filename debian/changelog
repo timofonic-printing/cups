@@ -1,3 +1,10 @@
+cupsys (1.3.6-3) UNRELEASED; urgency=low
+
+  * debian/local/apparmor-profile: Allow cups-pdf to read files in ~/PDF/, so
+    that it can overwrite files. (LP: #161222)
+
+ -- Martin Pitt <mpitt@debian.org>  Wed, 19 Mar 2008 14:59:52 +0100
+
 cupsys (1.3.6-2) unstable; urgency=low
 
   * debian/rules: Configure with default log file permissions 0640.
