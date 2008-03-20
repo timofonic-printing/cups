@@ -17,3 +17,4 @@ pbmprint.dpatch
 testsuite-exit-code.dpatch
 ubuntu-disable-browsing.dpatch
 ubuntu-default-error-policy-retry-job.dpatch
+ppd-poll-with-client-conf.dpatch

@@ -1,0 +1,19 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## ppd-poll-with-client-conf.dpatch by  <till.kamppeter@gmail.com>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: No description.
+
+@DPATCH@
+diff -urNad cupsys-1.3.6~/cups/util.c cupsys-1.3.6/cups/util.c
+--- cupsys-1.3.6~/cups/util.c	2008-01-17 00:42:35.000000000 +0100
++++ cupsys-1.3.6/cups/util.c	2008-03-20 13:07:07.000000000 +0100
+@@ -810,7 +810,7 @@
+ 
+   if (!strcasecmp(http_hostname, hostname) && port == http_port)
+     http2 = http;
+-  else if ((http2 = httpConnectEncrypt(hostname, port,
++  else if ((http2 = httpConnectEncrypt(http_hostname, http_port,
+                                        cupsEncryption())) == NULL)
+   {
+     DEBUG_puts("Unable to connect to server!");
