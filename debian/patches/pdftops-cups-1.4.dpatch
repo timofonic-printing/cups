@@ -255,13 +255,13 @@ diff -urNad trunk~/filter/pdftops.c trunk/filter/pdftops.c
 +
 +      if (orientation & 1)
 +      {
-+	snprintf(pdfwidth, sizeof(pdfwidth), "%d", (int)(size->length));
-+	snprintf(pdfheight, sizeof(pdfheight), "%d", (int)(size->width));
++	snprintf(pdfwidth, sizeof(pdfwidth), "%.0f", size->length);
++	snprintf(pdfheight, sizeof(pdfheight), "%.0f", size->width);
 +      }
 +      else
 +      {
-+	snprintf(pdfwidth, sizeof(pdfwidth), "%d", (int)(size->width));
-+		 snprintf(pdfheight, sizeof(pdfheight), "%d", (int)(size->length));
++	snprintf(pdfwidth, sizeof(pdfwidth), "%.0f", size->width);
++	snprintf(pdfheight, sizeof(pdfheight), "%.0f", size->length);
 +      }
 +
 +      pdfargv[pdfargc++] = (char *)"-paperw";
