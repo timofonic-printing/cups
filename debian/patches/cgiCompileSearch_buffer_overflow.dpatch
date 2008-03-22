@@ -1,0 +1,22 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## cgiCompileSearch_buffer_overflow.dpatch by  <mpitt@debian.org>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: Fix buffer overflow in cgiCompileSearch() when using crafted search
+## DP: queries, when printer sharing is enabled. (CVE-2008-0047, STR #2729)
+
+@DPATCH@
+diff -urNad trunk~/cgi-bin/search.c trunk/cgi-bin/search.c
+--- trunk~/cgi-bin/search.c	2008-01-16 23:20:33.000000000 +0100
++++ trunk/cgi-bin/search.c	2008-03-22 12:33:49.000000000 +0100
+@@ -167,7 +167,9 @@
+       * string + RE overhead...
+       */
+ 
+-      wlen = (sptr - s) + 4 * wlen + 2 * strlen(prefix) + 4;
++      wlen = (sptr - s) + 2 * 4 * wlen + 2 * strlen(prefix) + 11;
++      if (lword)
++        wlen += strlen(lword);
+ 
+       if (wlen > slen)
+       {

@@ -10,8 +10,11 @@ cupsys (1.3.6-3) UNRELEASED; urgency=low
   [ Martin Pitt ]
   * debian/local/apparmor-profile: Allow cups-pdf to read files in ~/PDF/, so
     that it can overwrite files. (LP: #161222)
+  * Add cgiCompileSearch_buffer_overflow.dpatch: Fix buffer overflow in
+    cgiCompileSearch() using crafted search expressions. Exploitable if
+    printer sharing is enabled. (CVE-2008-0047, STR #2729, Closes: #472105)
 
- -- Martin Pitt <mpitt@debian.org>  Fri, 21 Mar 2008 14:59:52 +0100
+ -- Martin Pitt <mpitt@debian.org>  Sat, 22 Mar 2008 12:37:57 +0100
 
 cupsys (1.3.6-2) unstable; urgency=low
 

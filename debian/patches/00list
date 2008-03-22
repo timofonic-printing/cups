@@ -1,3 +1,4 @@
+cgiCompileSearch_buffer_overflow
 freebsd.dpatch
 removecvstag.dpatch
 pam.dpatch
