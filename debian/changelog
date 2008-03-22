@@ -1,4 +1,4 @@
-cupsys (1.3.6-3) UNRELEASED; urgency=low
+cupsys (1.3.6-3) unstable; urgency=high
 
   [ Till Kamppeter ]
   * pdftops-cups-1.4.dpatch: Updated to Mike Sweet's patch version from CUPS
@@ -8,6 +8,7 @@ cupsys (1.3.6-3) UNRELEASED; urgency=low
     from printers on that server (CUPS STRs #2731, #2763)
 
   [ Martin Pitt ]
+  * Urgency high due to security fix.
   * debian/local/apparmor-profile: Allow cups-pdf to read files in ~/PDF/, so
     that it can overwrite files. (LP: #161222)
   * Add cgiCompileSearch_buffer_overflow.dpatch: Fix buffer overflow in
