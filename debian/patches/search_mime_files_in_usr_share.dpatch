@@ -31,7 +31,7 @@ diff -urNad trunk~/scheduler/conf.c trunk/scheduler/conf.c
 +    MimeDatabase = mimeLoad(temp2, temp);
 +    if (!MimeDatabase)
 +    {
-+      cupsdLogMessage(CUPSD_LOG_ERROR,
++      cupsdLogMessage(CUPSD_LOG_WARN,
 +                      "Unable to load MIME database from \'%s\'!", temp2);
 +    }
 +

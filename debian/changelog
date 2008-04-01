@@ -7,8 +7,11 @@ cupsys (1.3.7-1) UNRELEASED; urgency=low
     - cgiCompileSearch_buffer_overflow.dpatch
     - testsuite-exit-code.dpatch
     - pbmprint.dpatch
+  * search_mime_files_in_usr_share.dpatch: Drop log message about missing
+    /usr/share/cups/mime/ from error to warning, since it is not really an
+    error, and causing the test suite to fail due to error log count mismatch.
 
- -- Martin Pitt <mpitt@debian.org>  Wed, 02 Apr 2008 00:42:25 +0200
+ -- Martin Pitt <mpitt@debian.org>  Wed, 02 Apr 2008 01:04:59 +0200
 
 cupsys (1.3.6-3) unstable; urgency=high
 
