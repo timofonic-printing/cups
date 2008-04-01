@@ -42,7 +42,6 @@ common-post-build-arch::
 clean::
 	rm -f man/client.conf.man packaging/cups.list
 	rm -f conf/mime.convs conf/snmp.conf init/org.cups.cups-lpd.plist
-	rm -f test/cups-str*.html
 
 common-install-prehook-impl::
 	(cd fonts && $(MAKE) install BUILDROOT=$(DEB_DESTDIR))
