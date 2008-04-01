@@ -9,7 +9,7 @@
 @DPATCH@
 diff -urNad trunk~/filter/Makefile trunk/filter/Makefile
 --- trunk~/filter/Makefile	2007-07-20 01:27:49.000000000 +0200
-+++ trunk/filter/Makefile	2008-03-16 20:18:42.000000000 +0100
++++ trunk/filter/Makefile	2008-04-02 00:52:41.000000000 +0200
 @@ -19,7 +19,7 @@
  
  
@@ -40,7 +40,7 @@ diff -urNad trunk~/filter/Makefile trunk/filter/Makefile
  # rastertolabel
 diff -urNad trunk~/filter/pdftops.c trunk/filter/pdftops.c
 --- trunk~/filter/pdftops.c	1970-01-01 01:00:00.000000000 +0100
-+++ trunk/filter/pdftops.c	2008-03-16 20:18:42.000000000 +0100
++++ trunk/filter/pdftops.c	2008-04-02 00:52:41.000000000 +0200
 @@ -0,0 +1,314 @@
 +/*
 + * "$Id$"
@@ -357,14 +357,14 @@ diff -urNad trunk~/filter/pdftops.c trunk/filter/pdftops.c
 + * End of "$Id$".
 + */
 diff -urNad trunk~/test/run-stp-tests.sh trunk/test/run-stp-tests.sh
---- trunk~/test/run-stp-tests.sh	2008-03-16 20:18:42.000000000 +0100
-+++ trunk/test/run-stp-tests.sh	2008-03-16 20:18:50.000000000 +0100
-@@ -238,7 +238,7 @@
- ln -s $root/filter/rastertoepson /tmp/cups-$user/bin/filter
- ln -s $root/filter/rastertohp /tmp/cups-$user/bin/filter
- ln -s $root/filter/texttops /tmp/cups-$user/bin/filter
--ln -s $root/pdftops/pdftops /tmp/cups-$user/bin/filter
-+ln -s $root/filter/pdftops /tmp/cups-$user/bin/filter
+--- trunk~/test/run-stp-tests.sh	2008-04-02 00:52:38.000000000 +0200
++++ trunk/test/run-stp-tests.sh	2008-04-02 00:53:23.000000000 +0200
+@@ -273,7 +273,7 @@
+ else
+ 	ln -s $root/filter/imagetops /tmp/cups-$user/bin/filter
+ 	ln -s $root/filter/imagetoraster /tmp/cups-$user/bin/filter
+-	ln -s $root/pdftops/pdftops /tmp/cups-$user/bin/filter
++	ln -s $root/filter/pdftops /tmp/cups-$user/bin/filter
+ fi
  
- ln -s $root/data/classified /tmp/cups-$user/share/banners
- ln -s $root/data/confidential /tmp/cups-$user/share/banners
+ #

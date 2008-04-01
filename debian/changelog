@@ -1,3 +1,15 @@
+cupsys (1.3.7-1) UNRELEASED; urgency=low
+
+  * New upstream bugfix/security update release. For a detailled list of
+    changes see http://www.cups.org/articles.php?L537.
+    - CUPS GIF image filter overflow [CVE-2008-1373, STR #2765].
+  * Drop patches which are now upstream:
+    - cgiCompileSearch_buffer_overflow.dpatch
+    - testsuite-exit-code.dpatch
+    - pbmprint.dpatch
+
+ -- Martin Pitt <mpitt@debian.org>  Wed, 02 Apr 2008 00:42:25 +0200
+
 cupsys (1.3.6-3) unstable; urgency=high
 
   [ Till Kamppeter ]

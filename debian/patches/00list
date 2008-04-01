@@ -1,4 +1,3 @@
-cgiCompileSearch_buffer_overflow
 freebsd.dpatch
 removecvstag.dpatch
 pam.dpatch
@@ -14,8 +13,6 @@ reactivate_recommended_driver.dpatch
 include_krb5_h_in_job_h.dpatch
 search_mime_files_in_usr_share.dpatch
 pdftops-cups-1.4.dpatch
-pbmprint.dpatch
-testsuite-exit-code.dpatch
+ppd-poll-with-client-conf.dpatch
 ubuntu-disable-browsing.dpatch
 ubuntu-default-error-policy-retry-job.dpatch
-ppd-poll-with-client-conf.dpatch
