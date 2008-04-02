@@ -1,0 +1,40 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## pdftops-wait-eintr.dpatch by  <mpitt@debian.org>
+##
+## DP: Handle EINTR in pdftops' wait() call.
+
+@DPATCH@
+diff -urNad trunk~/filter/pdftops.c trunk/filter/pdftops.c
+--- trunk~/filter/pdftops.c	2008-04-02 02:54:45.000000000 +0200
++++ trunk/filter/pdftops.c	2008-04-02 02:54:59.000000000 +0200
+@@ -28,6 +28,7 @@
+ #include <cups/i18n.h>
+ #include <signal.h>
+ #include <sys/wait.h>
++#include <errno.h>
+ 
+ 
+ /*
+@@ -62,6 +63,7 @@
+   char		*pdfargv[100],		/* Arguments for pdftops */
+ 		pdfwidth[255],		/* Paper width */
+ 		pdfheight[255];		/* Paper height */
++  pid_t		child;			/* wait() result */
+ #if defined(HAVE_SIGACTION) && !defined(HAVE_SIGSET)
+   struct sigaction action;		/* Actions for POSIX signals */
+ #endif /* HAVE_SIGACTION && !HAVE_SIGSET */
+@@ -260,8 +262,13 @@
+    /*
+     * Parent comes here...
+     */
++ 
++    do
++    {
++      child = wait(&pdfstatus);
++    } while (child < 0 && errno == EINTR);
+ 
+-    if (wait(&pdfstatus) != pdfpid)
++    if (child != pdfpid)
+     {
+       kill(pdfpid, SIGTERM);
+       pdfstatus = 1;
