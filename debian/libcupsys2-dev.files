@@ -12,5 +12,4 @@ usr/include/cups/language.h
 usr/include/cups/ppd.h
 usr/include/cups/transcode.h
 usr/include/cups/adminutil.h
-usr/include/cups/i18n.h
 usr/share/man/man1/cups-config.1.gz

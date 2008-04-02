@@ -16,8 +16,10 @@ cupsys (1.3.7-1) UNRELEASED; urgency=low
     are written to /tmp now.
   * Add pdftops-wait-eintr.dpatch: Handle EINTR in pdftops' wait() call.
     (Caught by test suite.)
+  * debian/libcupsys2-dev.files: Drop i18n.h, it's an internal interface and
+    not installed by upstream any more.
 
- -- Martin Pitt <mpitt@debian.org>  Wed, 02 Apr 2008 03:02:10 +0200
+ -- Martin Pitt <mpitt@debian.org>  Wed, 02 Apr 2008 10:38:25 +0200
 
 cupsys (1.3.6-3) unstable; urgency=high
 
