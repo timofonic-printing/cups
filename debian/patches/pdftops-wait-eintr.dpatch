@@ -2,6 +2,7 @@
 ## pdftops-wait-eintr.dpatch by  <mpitt@debian.org>
 ##
 ## DP: Handle EINTR in pdftops' wait() call.
+## DP: Forwarded upstream to http://www.cups.org/str.php?L2780.
 
 @DPATCH@
 diff -urNad trunk~/filter/pdftops.c trunk/filter/pdftops.c
