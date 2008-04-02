@@ -1,5 +1,6 @@
-cupsys (1.3.7-1) UNRELEASED; urgency=low
+cupsys (1.3.7-1) unstable; urgency=medium
 
+  * Urgency medium due to security fix.
   * New upstream bugfix/security update release. For a detailled list of
     changes see http://www.cups.org/articles.php?L537.
     - CUPS GIF image filter overflow [CVE-2008-1373, STR #2765].
