@@ -3,8 +3,15 @@ Priority: optional
 Section: net
 Maintainer: Debian CUPS Maintainers <pkg-cups-devel@lists.alioth.debian.org>
 Standards-Version: 3.7.3
-Build-Depends: libpam0g-dev, libtiff4-dev, libjpeg62-dev, zlib1g-dev, libpng12-dev, libslp-dev, libgnutls-dev, libpaper-dev, libldap2-dev, debhelper (>= 5.0), po-debconf, cdbs (>= 0.4.27), sharutils, dpatch (>= 1.11), libdbus-1-dev, libkrb5-dev | heimdal-dev, libavahi-compat-libdnssd-dev, poppler-utils | xpdf-utils
-Uploaders: Kenshi Muto <kmuto@debian.org>, Martin Pitt <mpitt@debian.org>, Roger Leigh <rleigh@debian.org>, Martin-Éric Racine <q-funk@iki.fi>, Masayuki Hatta (mhatta) <mhatta@debian.org>, Jeff Licquia <licquia@debian.org>
+Build-Depends: libpam0g-dev, libtiff4-dev, libjpeg62-dev, zlib1g-dev,
+ libpng12-dev, libslp-dev, libgnutls-dev, libpaper-dev, libldap2-dev,
+ debhelper (>= 5.0), po-debconf, cdbs (>= 0.4.27), sharutils, 
+ dpatch (>= 1.11), libdbus-1-dev, libkrb5-dev | heimdal-dev,
+ libavahi-compat-libdnssd-dev, poppler-utils | xpdf-utils, lsb-release 
+Uploaders: Kenshi Muto <kmuto@debian.org>, 
+ Martin Pitt <mpitt@debian.org>, Roger Leigh <rleigh@debian.org>, 
+ Martin-Éric Racine <q-funk@iki.fi>, Masayuki Hatta (mhatta) <mhatta@debian.org>,
+ Jeff Licquia <licquia@debian.org>
 Vcs-Svn: svn://svn.debian.org/svn/pkg-cups/cupsys/trunk
 Vcs-Browser: http://svn.debian.org/wsvn/pkg-cups/cupsys/trunk
 
@@ -52,11 +59,16 @@ Package: cupsys
 Priority: optional
 Section: net
 Architecture: any
-Depends: ${shlibs:Depends}, debconf (>= 1.2.9) | debconf-2.0, poppler-utils | xpdf-utils, perl-modules, procps, ghostscript | gs-esp, lsb-base (>= 3), cupsys-common,  ssl-cert (>= 1.0.11), adduser
+Depends: ${shlibs:Depends}, debconf (>= 1.2.9) | debconf-2.0,
+ poppler-utils | xpdf-utils, perl-modules, procps, 
+ ghostscript | gs-esp, lsb-base (>= 3), cupsys-common,  
+ ssl-cert (>= 1.0.11), adduser
 Replaces: cupsys-pstoraster
 Conflicts: cupsys-pstoraster (<< 2)
 Recommends: cupsys-client, smbclient (>= 3.0.9), foomatic-filters, avahi-utils
-Suggests: cupsys-bsd, cupsys-driver-gutenprint, foomatic-filters-ppds, hplip, xpdf-korean | xpdf-japanese | xpdf-chinese-traditional | xpdf-chinese-simplified, cups-pdf
+Suggests: cupsys-bsd, cupsys-driver-gutenprint, foomatic-filters-ppds,
+ hplip, xpdf-korean | xpdf-japanese | xpdf-chinese-traditional | xpdf-chinese-simplified, 
+ cups-pdf
 Description: Common UNIX Printing System(tm) - server
  The Common UNIX Printing System (or CUPS(tm)) is a printing system and 
  general replacement for lpd and the like.  It supports the Internet 
@@ -116,7 +128,8 @@ Package: libcupsimage2-dev
 Priority: optional
 Section: libdevel
 Architecture: any
-Depends: libcupsimage2 (= ${binary:Version}), libcupsys2-dev (= ${binary:Version}), libpng-dev, libtiff4-dev, libjpeg62-dev, zlib1g-dev
+Depends: libcupsimage2 (= ${binary:Version}), libcupsys2-dev (= ${binary:Version}), 
+ libpng-dev, libtiff4-dev, libjpeg62-dev, zlib1g-dev
 Provides: libcupsimage-dev
 Conflicts: libcupsimage-dev
 Replaces: libcupsys1-dev, libcupsimage-dev, libcupsys2-dev (<= 1.1.18-2)
@@ -137,7 +150,8 @@ Package: cupsys-bsd
 Priority: extra
 Section: net
 Architecture: any
-Depends: ${shlibs:Depends}, cupsys-client (= ${binary:Version}), debconf | debconf-2.0, update-inetd, cupsys-common
+Depends: ${shlibs:Depends}, cupsys-client (= ${binary:Version}),
+ debconf | debconf-2.0, update-inetd, cupsys-common
 Recommends: cupsys
 Conflicts: lpr, lprng, manpages-fr (<< 0.9.5-1)
 Provides: lpr
