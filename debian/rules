@@ -31,7 +31,11 @@ DEB_DH_STRIP_ARGS := --dbg-package=cupsys-dbg
 DEB_DH_FIXPERMS_ARGS := -Xusr/lib/cups/backend-available
 DEB_DH_COMPRESS_ARGS := -Xusr/share/doc/libcupsys2-dev/examples/scripting
 DEB_DH_INSTALL_SOURCEDIR := debian/tmp
+ifneq ($(findstring $(DEB_BUILD_ARCH), arm m68k),)
+DEB_MAKE_CHECK_TARGET := check || true
+else
 DEB_MAKE_CHECK_TARGET := check
+endif
 LDFLAGS := -Wl,--as-needed
 
 common-post-build-arch::
