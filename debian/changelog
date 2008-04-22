@@ -1,4 +1,4 @@
-cupsys (1.3.7-4) UNRELEASED; urgency=low
+cupsys (1.3.7-4) unstable; urgency=high
 
   * debian/rules: Do not fail the build when the test suite fails on m68k and
     arm. It is currently unclear why these tests fail on these architectures,
