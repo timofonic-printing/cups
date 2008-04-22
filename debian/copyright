@@ -5,7 +5,7 @@ It was downloaded from:
 	ftp://ftp.easysw.com/pub/cups/
 
 Upstream Authors: Easy Software Products <cups-info@cups.org>
-                  Michael Sweet <mike@easysw.com>
+                  Michael Sweet <msweet@apple.com>
 
 Copyright:
 
@@ -14,13 +14,11 @@ look in /usr/share/common-licenses, files GPL and LGPL-2.]
 
                 Common UNIX Printing System License Agreement
 
-                Copyright 1997-2002 by Easy Software Products
-                        44141 AIRPORT VIEW DR STE 204
-                     HOLLYWOOD, MARYLAND 20636-3111 USA
+                        Copyright 2007 by Apple Inc.
+			     1 Infinite Loop
+			  Cupertino, CA 95014 USA
 
-                           Voice: +1.301.373.9600
-                          Email: cups-info@cups.org
-                          WWW: http://www.cups.org
+                         WWW: http://www.cups.org/
 
 
 INTRODUCTION
@@ -31,12 +29,12 @@ General Public License ("LGPL"), Version 2, with exceptions for
 Apple operating systems and the OpenSSL toolkit. A copy of the
 exceptions and licenses follow this introduction.
 
-The GNU LGPL applies to the CUPS API library, located in the
-"cups" subdirectory of the CUPS source distribution and in the
-"cups" include directory and library files in the binary
-distributions. The GNU GPL applies to the remainder of the CUPS
-distribution, including the "pdftops" filter which is based upon
-Xpdf and the CUPS imaging library.
+The GNU LGPL applies to the CUPS and CUPS Imaging libraries
+located in the "cups" and "filter" subdirectories of the CUPS
+source distribution and in the "cups" include directory and
+library files in the binary distributions. The GNU GPL applies to
+the remainder of the CUPS distribution, including the "pdftops"
+filter which is based upon Xpdf.
 
 For those not familiar with the GNU GPL, the license basically
 allows you to:
@@ -46,28 +44,25 @@ allows you to:
      binary form.
    - Sell verbatim copies of the software for a media fee, or
      sell support for the software.
-   - Distribute or sell printer drivers and filters that use
-     CUPS so long as source code is made available under the
-     GPL.
 
 What this license *does not* allow you to do is make changes or
 add features to CUPS and then sell a binary distribution without
-source code. You must provide source for any new drivers,
-changes, or additions to the software, and all code must be
-provided under the GPL or LGPL as appropriate. The only
-exceptions to this are the portions of the CUPS software covered
-by the Apple operating system license exceptions outlined later
-in this license agreement.
+source code. You must provide source for any changes or additions
+to the software, and all code must be provided under the GPL or
+LGPL as appropriate. The only exceptions to this are the portions
+of the CUPS software covered by the Apple operating system
+license exceptions outlined later in this license agreement.
 
 The GNU LGPL relaxes the "link-to" restriction, allowing you to
-develop applications that use the CUPS API library under other
-licenses and/or conditions as appropriate for your application.
+develop applications that use the CUPS and CUPS Imaging libraries
+under other licenses and/or conditions as appropriate for your
+application, driver, or filter.
 
 
 LICENSE EXCEPTIONS
 
-In addition, as the copyright holder of CUPS, Easy Software
-Products grants the following special exceptions:
+In addition, as the copyright holder of CUPS, Apple Inc. grants
+the following special exceptions:
 
      1. Apple Operating System Development License Exception;
 
@@ -110,46 +105,88 @@ Products grants the following special exceptions:
 
      2. OpenSSL Toolkit License Exception;
 
-	a. Easy Software Products explicitly allows the
-	   compilation and distribution of the CUPS software
-	   with the OpenSSL Toolkit.
+	a. Apple Inc. explicitly allows the compilation and
+	   distribution of the CUPS software with the OpenSSL
+	   Toolkit.
 
 No developer is required to provide these exceptions in a
 derived work.
 
 
+KERBEROS SUPPORT CODE
+
+The Kerberos support code ("KSC") is copyright 2006 by Jelmer
+Vernooij and is provided 'as-is', without any express or implied
+warranty.  In no event will the author or Apple Inc. be held
+liable for any damages arising from the use of the KSC.
+
+Sources files containing KSC have the following text at the top
+of each source file:
+
+     This file contains Kerberos support code, copyright 2006 by
+     Jelmer Vernooij.
+
+The KSC copyright and license apply only to Kerberos-related
+feature code in CUPS.  Such code is typically conditionally
+compiled based on the present of the HAVE_GSSAPI preprocessor
+definition.
+
+Permission is granted to anyone to use the KSC for any purpose,
+including commercial applications, and to alter it and
+redistribute it freely, subject to the following restrictions:
+
+     1. The origin of the KSC must not be misrepresented; you
+	must not claim that you wrote the original software. If
+	you use the KSC in a product, an acknowledgment in the
+	product documentation would be appreciated but is not
+	required.
+
+     2. Altered source versions must be plainly marked as such,
+	and must not be misrepresented as being the original
+	software.
+
+     3. This notice may not be removed or altered from any source
+	distribution. 
+
+
 TRADEMARKS
 
-Easy Software Products has trademarked the Common UNIX Printing
-System, CUPS, and CUPS logo. These names and logos may be used
-freely in any direct port or binary distribution of CUPS. Please
-contract Easy Software Products for written permission to use
-them in derivative products. Our intention is to protect the
-value of these trademarks and ensure that any derivative product
-meets the same high-quality standards as the original.
+Apple Inc. has trademarked the Common UNIX Printing System, CUPS,
+and CUPS logo. You may use these names and logos in any direct port
+or binary distribution of CUPS. Please contact Apple Inc. for written
+permission to use them in derivative products. Our intention is to
+protect the value of these trademarks and ensure that any derivative
+product meets the same high-quality standards as the original.
 
+=======================================================================
 
-BINARY DISTRIBUTION RIGHTS
+INCLUDED THIRD-PARTY CODE
 
-Easy Software Products also sells rights to the CUPS source code
-under a binary distribution license for vendors that are unable
-to release source code for their drivers, additions, and
-modifications to CUPS under the GNU GPL and LGPL. For
-information please contact us at the address shown above.
+The Common UNIX Printing System source contains a "pdftops" filter
+that is based on the Xpdf software which is
 
-The Common UNIX Printing System provides a "pdftops" filter that
-is based on the Xpdf software. For binary distribution licensing
-of this software, please contact:
+  Copyright 1996-2003 Glyph & Cog, LLC.
+  Copyright 1985-2001 Adobe Systems Inc.
+
+For binary distribution licensing of this software, please contact:
 
      Derek B. Noonburg
      Email: derekn@foolabs.com
      WWW: http://www.foolabs.com/xpdf/
 
+Please note that the Debian cups package does not build/ship/use this
+code (see debian/patches/pdftops-cups-1.4.dpatch).
 
-SUPPORT
+---
+data/*.txt is Copyright (c) 1991-1999 Unicode, Inc.
 
-Easy Software Products sells software support for CUPS as well
-as a commercial printing product based on CUPS called ESP Print
-Pro. You can find out more at our web site:
+----
+cups/md5.* is Copyright (C) 1999 Aladdin Enterprises.
 
-     http://www.easysw.com/
+----
+fonts/Courier* is Copyright 1999 by (URW)++ Design & Development
+fonts/Vera.ttf is Copyright (c) 2003 by Bitstream, Inc.
+
+----
+scripting/java/src/com/easysw/cups/Base64Coder.java is Copyright 2003:
+Christian d'Heureuse, Inventec Informatik AG, Switzerland
