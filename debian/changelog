@@ -1,4 +1,4 @@
-cupsys (1.3.7-3) UNRELEASED; urgency=low
+cupsys (1.3.7-3) unstable; urgency=low
 
   * debian/copyright: Update to current reality. (Closes: #474176)
   * Drop usage of dh_movefiles, rename the remaining debian/*.files to
