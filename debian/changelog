@@ -5,7 +5,7 @@ cupsys (1.3.7-3) UNRELEASED; urgency=low
     debian/*.install. This also brings back the lost
     /usr/lib/cups/daemon/cups-lpd.
   * debian/libcupsimage2-dev.install: Add cups/i18n.h from upstream (not
-    installed by upstream Makefiles any more). (LP: #474922)
+    installed by upstream Makefiles any more). (Closes: #474922)
   * debian/rules: Drop lintian magic, current debhelper (dh_lintian) and cdbs
     support that now. Rename .lintian -> .lintian-overrides for this.
   * debian/cupsys.doc-base: Fix section.
