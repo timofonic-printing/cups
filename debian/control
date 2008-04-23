@@ -63,8 +63,8 @@ Depends: ${shlibs:Depends}, debconf (>= 1.2.9) | debconf-2.0,
  poppler-utils | xpdf-utils, perl-modules, procps, 
  ghostscript | gs-esp, lsb-base (>= 3), cupsys-common,  
  ssl-cert (>= 1.0.11), adduser
-Replaces: cupsys-pstoraster
-Conflicts: cupsys-pstoraster (<< 2)
+Replaces: cupsys-pstoraster, cupsys-bsd (<< 1.3.7-5)
+Conflicts: cupsys-pstoraster (<< 2), cupsys-bsd (<< 1.3.7-5)
 Recommends: cupsys-client, smbclient (>= 3.0.9), foomatic-filters, avahi-utils
 Suggests: cupsys-bsd, cupsys-driver-gutenprint, foomatic-filters-ppds,
  hplip, xpdf-korean | xpdf-japanese | xpdf-chinese-traditional | xpdf-chinese-simplified, 
