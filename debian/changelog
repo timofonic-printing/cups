@@ -1,3 +1,10 @@
+cupsys (1.3.7-6) UNRELEASED; urgency=low
+
+  * debian/cupsys.install: Install oopstops.{convs,types} in /etc/cups, they
+    do not work in /usr/share/cups/mime (loaded too early). (Closes: #474109)
+
+ -- Martin Pitt <mpitt@debian.org>  Wed, 30 Apr 2008 00:12:37 +0200
+
 cupsys (1.3.7-5) unstable; urgency=low
 
   * debian/cupsys-bsd.install: Remove daemon/cups-lpd. It really does not
