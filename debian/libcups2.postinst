@@ -1,5 +1,5 @@
 #! /bin/sh
-# postinst script for cupsys
+# postinst script for cups
 #
 # see: dh_installdeb(1)
 
@@ -24,22 +24,15 @@ set -e
 
 case "$1" in
     configure)
-        if [ -z "`getent group lpadmin`" ]; then
-            addgroup --system lpadmin
-        fi
-
-	chown root:lpadmin /usr/bin/lppasswd
-	chmod u+s /usr/bin/lppasswd
-    ;;
+        ;;
 
     abort-upgrade|abort-remove|abort-deconfigure)
-
-    ;;
+        ;;
 
     *)
         echo "postinst called with unknown argument \`$1'" >&2
         exit 0
-    ;;
+        ;;
 esac
 
 # dh_installdeb will replace this with shell code automatically

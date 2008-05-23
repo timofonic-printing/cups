@@ -1,4 +1,4 @@
-cupsys for Debian
+cups for Debian
 ----------------------
 
 If you found a problem, please read HOWTO_BUGREPORT.txt and report me
@@ -46,7 +46,7 @@ So, CUPS setting puts serial and SCSI off from backend by default. And
 if you use PPC, parallel backend is off also.
 
 If you want to use these backends, you can configure by using
-'dpkg-reconfigure cupsys'.
+'dpkg-reconfigure cups'.
 
 SSL Support
 -----------
@@ -57,7 +57,7 @@ to use, even though the CUPS license itself allows this.  A competing
 library, GNU TLS, has an OpenSSL compatibility layer that could work
 with these packages, but the compatibility library is licensed under
 the GNU GPL, which could conflict with the license of certain programs
-that support CUPS.  Therefore, the cupsys packages as shipped do not
+that support CUPS.  Therefore, the cups packages as shipped do not
 support SSL.
 
 It is possible to build the packages yourself with SSL support.  You
@@ -74,7 +74,7 @@ licenses of any of the software you distribute.
 Important Security Notes
 ------------------------
 
- - By default, cupsys is configured to only allow connections to
+ - By default, cups is configured to only allow connections to
    printers from localhost, effectively disabling network printing.
    The previous default was to allow anyone to connect to printers
    from any location.  You can change these defaults by editing
@@ -114,7 +114,7 @@ will support your printer better than the generic drivers that ship
 with CUPS.  I try to keep the package Suggestions current regarding
 popular CUPS driver packages; to see this list, run this command:
 
-  apt-cache show cupsys | grep Suggests
+  apt-cache show cups | grep Suggests
 
 PostScript printers often ship with PPD files supplied by the printer
 manufacturer.  Any valid PPD for a PostScript printer is a valid CUPS
@@ -136,7 +136,7 @@ command-line client programs, the BSD client and server compatibility
 programs, and the library and development packages.
 
 The CUPS BSD commands and cups-lpd daemon are separated into their own
-package (cupsys-bsd); the hope is to make it possible to run CUPS and
+package (cups-bsd); the hope is to make it possible to run CUPS and
 some other BSD-style printing system (such as lpr) side-by-side for
 testing purposes.  If you encounter any trouble doing this, file a
 bug.  It's known that CUPS conflicts with LPRng, since LPRng provides
@@ -148,20 +148,20 @@ depend on the proper packages.  If your package is CUPS-specific, you
 should name it so it can be easily identified as a CUPS package, with
 names such as:
 
-  cupsys-driver-foo	(for a driver for Foo printers)
-  cupsys-backend-bar	(for a backend to print to Bar printers)
-  cupsys-client-baz	(for a client module to hook Baz into CUPS)
+  cups-driver-foo	(for a driver for Foo printers)
+  cups-backend-bar	(for a backend to print to Bar printers)
+  cups-client-baz	(for a client module to hook Baz into CUPS)
 
 If you feel your driver/backend/client/whatever package is popular
 enough that most CUPS users would be interested in it, please file a
-wishlist bug against cupsys requesting that it be added to the
-Suggests line for cupsys.
+wishlist bug against cups requesting that it be added to the
+Suggests line for cups.
 
 Other Add-Ons
 -------------
 
 I'm also collecting add-ons - filters, backends, etc. - and putting
-them in the "examples" directory with the rest of the cupsys package
+them in the "examples" directory with the rest of the cups package
 documentation files.  Check there for some interesting filters and
 backends.
 
@@ -202,10 +202,10 @@ be done by adding the following information to Samba's smb.conf
   lprm command = /usr/bin/cancel %p-%j
   print command = /usr/bin/lp -d%p -oraw %s ; /bin/rm -f %s
 
-This method will require installation of the cupsys-client package.
+This method will require installation of the cups-client package.
 
 For more tips on integration with Samba, check out the man page for
-cupsaddsmb, which is part of the cupsys-client package.
+cupsaddsmb, which is part of the cups-client package.
 
 Miscellaneous Tips
 ------------------

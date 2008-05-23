@@ -22,12 +22,12 @@
 #
 # This script has several advantages (some involving security and privacy) over
 # the script of the same name by Decklin Foster dated 2002 and (on the present
-# date) distributed with the Debian cupsys package in
-# /usr/share/doc/cupsys/examples/filters/dvipipetops.
+# date) distributed with the Debian cups package in
+# /usr/share/doc/cups/examples/filters/dvipipetops.
 #
 # This script...
 #
-#   - works with Debian cupsys version 1.1.20final+cvs20040330-1.
+#   - works with Debian cups version 1.1.20final+cvs20040330-1.
 #   - uses the -R option to dvips for greater security.
 #   - creates a temporary file only when necessary.
 #   - is more aggressive about cleaning up its temporary file.
@@ -69,7 +69,7 @@ CUPS_DVIPS=/usr/bin/dvips
 CUPS_DVIPS_OPTS=""
 
 # Load configuration from default file.
-. /etc/default/cupsys
+. /etc/default/cups
 
 ## I do not expect you to want to change anything below here,
 ## except possibly to (dis)include the debugging statements.

@@ -1,6 +1,6 @@
 #! /bin/sh
 ### BEGIN INIT INFO
-# Provides:          cupsys
+# Provides:          cups
 # Required-Start:    $syslog
 # Required-Stop:     $syslog
 # Should-Start:      $network avahi
@@ -24,8 +24,8 @@ test -f $DAEMON || exit 0
 
 set -e
 
-if [ -r /etc/default/cupsys ]; then
-  . /etc/default/cupsys
+if [ -r /etc/default/cups ]; then
+  . /etc/default/cups
 fi
 
 . /lib/lsb/init-functions

@@ -1,7 +1,6 @@
 CVE-2008-1722.dpatch
 freebsd.dpatch
 removecvstag.dpatch
-pam.dpatch
 quiesce_ipp_logging.dpatch
 default_log_warn.dpatch
 dont_force_ssl.dpatch

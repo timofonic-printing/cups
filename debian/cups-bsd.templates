@@ -1,7 +1,7 @@
 # These templates have been reviewed by debian-l10n-english
 # Please do not modify them without asking for a review
 
-Template: cupsys-bsd/setuplpd
+Template: cups-bsd/setuplpd
 Type: boolean
 Default: false
 _Description: Do you want to set up the BSD lpd compatibility server?

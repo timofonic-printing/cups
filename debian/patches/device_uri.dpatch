@@ -5,9 +5,9 @@
 ## DP: No description.
 
 @DPATCH@
-diff -urNad cupsys-1.2.1~/cgi-bin/admin.c cupsys-1.2.1/cgi-bin/admin.c
---- cupsys-1.2.1~/cgi-bin/admin.c	2006-07-19 04:25:44.000000000 +0000
-+++ cupsys-1.2.1/cgi-bin/admin.c	2006-07-19 04:27:50.000000000 +0000
+diff -urNad cups-1.2.1~/cgi-bin/admin.c cups-1.2.1/cgi-bin/admin.c
+--- cups-1.2.1~/cgi-bin/admin.c	2006-07-19 04:25:44.000000000 +0000
++++ cups-1.2.1/cgi-bin/admin.c	2006-07-19 04:27:50.000000000 +0000
 @@ -691,7 +691,7 @@
        * Set the current device URI for the form to the old one...
        */

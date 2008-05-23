@@ -5,9 +5,9 @@
 ## DP: No description.
 
 @DPATCH@
-diff -urNad cupsys-1.3.0~rc2~/scheduler/cups-driverd.c cupsys-1.3.0~rc2/scheduler/cups-driverd.c
---- cupsys-1.3.0~rc2~/scheduler/cups-driverd.c	2007-07-11 22:46:42.000000000 +0100
-+++ cupsys-1.3.0~rc2/scheduler/cups-driverd.c	2007-08-01 15:23:01.000000000 +0100
+diff -urNad cups-1.3.0~rc2~/scheduler/cups-driverd.c cups-1.3.0~rc2/scheduler/cups-driverd.c
+--- cups-1.3.0~rc2~/scheduler/cups-driverd.c	2007-07-11 22:46:42.000000000 +0100
++++ cups-1.3.0~rc2/scheduler/cups-driverd.c	2007-08-01 15:23:01.000000000 +0100
 @@ -180,7 +180,6 @@
  	int        type)		/* I - Driver type */
  {

@@ -4,4 +4,4 @@ To use the dvipipetops filter:
 - add the contents of dvipipetops.types to /etc/cups/mime.types
 - uncompress dvipipetops, give it exec permissions and put it in
   /usr/lib/cups/filter
-- restart cups with /etc/init.d/cupsys restart
+- restart cups with /etc/init.d/cups restart

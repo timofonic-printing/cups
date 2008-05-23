@@ -1,5 +1,5 @@
 #! /bin/sh
-# preinst script for cupsys
+# preinst script for cups
 #
 # see: dh_installdeb(1)
 
@@ -10,6 +10,23 @@ set -e
 #        * <new-preinst> `install' <old-version>
 #        * <new-preinst> `upgrade' <old-version>
 #        * <old-preinst> `abort-upgrade' <new-version>
+
+mv_conffile() {
+  OLD="$1"
+  NEW="$2"
+  PKGNAME="cupsys"
+  if [ -e "$OLD" ]; then
+      md5sum=$(md5sum "$OLD" | sed -e 's/ .*//')
+      old_md5sum=$(dpkg-query -W -f='${Conffiles}' $PKGNAME | sed -n -e "\\' $OLD'{s/ obsolete$//;s/.* //p}")
+      if [ "$md5sum" = "$old_md5sum" ]; then
+          echo "Removing obsolete unchanged $OLD..." >&2
+          rm -f "$OLD"
+      else
+          echo "Moving customized $OLD to new location $NEW..." >&2
+          mv -f "$OLD" "$NEW"
+      fi
+  fi
+}
 
 case "$1" in
     install)
@@ -41,6 +58,14 @@ case "$1" in
 		chown -R root /var/run/cups
 	    fi
             chown -R root /etc/cups /var/log/cups /var/cache/cups /var/spool/cups
+        fi
+
+        # cupsys -> cups package/file rename
+	if dpkg --compare-versions "$2" le '1.3.7-6'; then
+            mv_conffile /etc/default/cupsys /etc/default/cups
+            mv_conffile /etc/init.d/cupsys /etc/init.d/cups
+            mv_conffile /etc/pam.d/cupsys /etc/pam.d/cups
+            mv_conffile /etc/logrotate.d/cupsys /etc/logrotate.d/cups
         fi
     ;;
 

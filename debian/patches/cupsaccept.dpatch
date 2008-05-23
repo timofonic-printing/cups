@@ -5,9 +5,9 @@
 ## DP: No description.
 
 @DPATCH@
-diff -urNad cupsys-1.1.99.b1.r4748~/systemv/accept.c cupsys-1.1.99.b1.r4748/systemv/accept.c
---- cupsys-1.1.99.b1.r4748~/systemv/accept.c	2005-02-18 02:18:11.000000000 +0000
-+++ cupsys-1.1.99.b1.r4748/systemv/accept.c	2005-10-05 12:14:39.401595086 +0000
+diff -urNad cups-1.1.99.b1.r4748~/systemv/accept.c cups-1.1.99.b1.r4748/systemv/accept.c
+--- cups-1.1.99.b1.r4748~/systemv/accept.c	2005-02-18 02:18:11.000000000 +0000
++++ cups-1.1.99.b1.r4748/systemv/accept.c	2005-10-05 12:14:39.401595086 +0000
 @@ -67,6 +67,9 @@
    else
      command = argv[0];

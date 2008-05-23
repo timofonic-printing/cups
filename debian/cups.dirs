@@ -1,5 +1,5 @@
 var/run/cups
-usr/share/doc/cupsys
+usr/share/doc/cups
 usr/share/cups/drivers
 etc/default
 etc/cups/ssl

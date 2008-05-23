@@ -27,9 +27,9 @@ DEB_CONFIGURE_EXTRA_FLAGS := --with-optim=$(DEB_OPTFLAGS) --libdir=/usr/lib --ma
 DEB_MAKE_INSTALL_TARGET := install BUILDROOT=$(DEB_DESTDIR)
 DEB_INSTALL_CHANGELOGS_ALL := CHANGES.txt
 DEB_DH_INSTALLINIT_ARGS := -u'start 20 2 3 4 5 . stop 80 1 .'
-DEB_DH_STRIP_ARGS := --dbg-package=cupsys-dbg
+DEB_DH_STRIP_ARGS := --dbg-package=cups-dbg
 DEB_DH_FIXPERMS_ARGS := -Xusr/lib/cups/backend-available
-DEB_DH_COMPRESS_ARGS := -Xusr/share/doc/libcupsys2-dev/examples/scripting
+DEB_DH_COMPRESS_ARGS := -Xusr/share/doc/libcups2-dev/examples/scripting
 DEB_DH_INSTALL_SOURCEDIR := debian/tmp
 ifneq ($(findstring $(DEB_BUILD_ARCH), arm m68k),)
 DEB_MAKE_CHECK_TARGET := check || true
@@ -50,23 +50,23 @@ clean::
 common-install-prehook-impl::
 	(cd fonts && $(MAKE) install BUILDROOT=$(DEB_DESTDIR))
 
-binary-post-install/cupsys::
-	(cd $(DEB_DESTDIR)/../cupsys/usr/share/doc/cupsys && ln -sf ../../cups/doc-root online-docs)
+binary-post-install/cups::
+	(cd $(DEB_DESTDIR)/../cups/usr/share/doc/cups && ln -sf ../../cups/doc-root online-docs)
 
 	# Install PPDs into /usr/share/ppd/cups-included/<Manufacturer>, see
 	# http://wiki.debian.org/PpdFileStructureSpecification
-	for i in $(DEB_DESTDIR)/../cupsys/usr/share/cups/model/*.ppd; do \
+	for i in $(DEB_DESTDIR)/../cups/usr/share/cups/model/*.ppd; do \
 	  m=$$(sed -n -e '/^\*Manufacturer:/s/.*"\([^"]*\)".*/\1/p' $$i); \
-	  mkdir -p "$(DEB_DESTDIR)/../cupsys/usr/share/ppd/cups-included/$$m"; \
-	  mv $$i "$(DEB_DESTDIR)/../cupsys/usr/share/ppd/cups-included/$$m/"; \
+	  mkdir -p "$(DEB_DESTDIR)/../cups/usr/share/ppd/cups-included/$$m"; \
+	  mv $$i "$(DEB_DESTDIR)/../cups/usr/share/ppd/cups-included/$$m/"; \
 	done
-	rmdir $(DEB_DESTDIR)/../cupsys/usr/share/cups/model
+	rmdir $(DEB_DESTDIR)/../cups/usr/share/cups/model
 
 	dh_usrlocal
 
 	# Install DBUS configuration file so that job progress is reported to
 	# the system-config-printer applet
-	install -D -m 644 packaging/cups-dbus.conf $(DEB_DESTDIR)/../cupsys/etc/dbus-1/system.d/cups.conf
+	install -D -m 644 packaging/cups-dbus.conf $(DEB_DESTDIR)/../cups/etc/dbus-1/system.d/cups.conf
 
 	# install AppArmor profile on Ubuntu
 	if [ "`lsb_release -is 2>/dev/null`" = "Ubuntu" ]; then \
@@ -76,12 +76,12 @@ binary-post-install/cupsys::
 binary-post-install/libcupsimage2-dev::
 	rm -r debian/libcupsimage2-dev/usr/share/doc/libcupsimage2-dev
 	ln -s libcupsimage2 debian/libcupsimage2-dev/usr/share/doc/libcupsimage2-dev
-binary-post-install/cupsys-bsd::
-	rm -r debian/cupsys-bsd/usr/share/doc/cupsys-bsd
-	ln -s libcupsys2 debian/cupsys-bsd/usr/share/doc/cupsys-bsd
-binary-post-install/libcupsys2-dev::
+binary-post-install/cups-bsd::
+	rm -r debian/cups-bsd/usr/share/doc/cups-bsd
+	ln -s libcups2 debian/cups-bsd/usr/share/doc/cups-bsd
+binary-post-install/libcups2-dev::
 	rm -f debian/$(cdbs_curpkg)/usr/share/doc/$(cdbs_curpkg)/examples/scripting/php/*.o
 	rm -f debian/$(cdbs_curpkg)/usr/share/doc/$(cdbs_curpkg)/examples/scripting/php/*.so
-binary-post-install/cupsys-client::
-	rm -r debian/cupsys-client/usr/share/doc/cupsys-client
-	ln -s libcupsys2 debian/cupsys-client/usr/share/doc/cupsys-client
+binary-post-install/cups-client::
+	rm -r debian/cups-client/usr/share/doc/cups-client
+	ln -s libcups2 debian/cups-client/usr/share/doc/cups-client

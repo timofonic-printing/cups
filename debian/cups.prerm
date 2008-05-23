@@ -1,5 +1,5 @@
 #! /bin/sh
-# prerm script for cupsys
+# prerm script for cups
 #
 # see: dh_installdeb(1)
 

@@ -1,5 +1,5 @@
 #! /bin/sh
-# postrm script for cupsys-bsd
+# postrm script for cups-bsd
 #
 # see: dh_installdeb(1)
 

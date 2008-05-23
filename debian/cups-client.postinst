@@ -1,5 +1,5 @@
 #! /bin/sh
-# postinst script for cupsys
+# postinst script for cups
 #
 # see: dh_installdeb(1)
 
@@ -22,42 +22,14 @@ set -e
 #     installation fails and the `postinst' is called with `abort-upgrade',
 #     `abort-remove' or `abort-deconfigure'.
 
-# Debconf
-. /usr/share/debconf/confmodule
-
 case "$1" in
     configure)
+        if [ -z "`getent group lpadmin`" ]; then
+            addgroup --system lpadmin
+        fi
 
-	# Set documentation symlinks
-	if [ -d /usr/share/doc/cupsys ]; then
-	    if [ ! -e /usr/share/doc/cupsys-bsd ]; then
-		ln -sf cupsys-common /usr/share/doc/cupsys-bsd
-	    fi
-	fi
-
-	# Add cups-lpd to inetd.conf
-	db_get cupsys-bsd/setuplpd
-	if [ "$RET" = "true" ]; then
-	    update-inetd --add 'printer stream tcp nowait lp /usr/lib/cups/daemon/cups-lpd cups-lpd'
-	fi
-
-	# Manage printcap file and associated symlinks
-	if [ -e /etc/cups/cupsd.conf ]; then
-	    if [ -e /etc/printcap.cups ]; then
-		rm -f /etc/printcap.cups
-	    fi
-	    if [ -L /etc/printcap -a ! -e /etc/printcap ]; then
-		rm -f /etc/printcap
-	    fi
-
-	    printcap_file=`egrep '^Printcap ' /etc/cups/cupsd.conf | awk '{print $2}'`
-	    if [ "$printcap_file" != "" ]; then
-		touch $printcap_file 2>/dev/null || true
-		if [ ! -e /etc/printcap -a -e $printcap_file ]; then
-		    ln -s $printcap_file /etc/printcap
-		fi
-	    fi
-	fi
+	chown root:lpadmin /usr/bin/lppasswd
+	chmod u+s /usr/bin/lppasswd
     ;;
 
     abort-upgrade|abort-remove|abort-deconfigure)

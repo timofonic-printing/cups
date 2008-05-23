@@ -1,5 +1,5 @@
 #! /bin/sh
-# prerm script for cupsys-bsd
+# prerm script for cups-bsd
 #
 # see: dh_installdeb(1)
 
@@ -22,7 +22,7 @@ fi
 case "$1" in
     remove|upgrade|deconfigure)
 	# Remove documentation links
-	rm -rf /usr/share/doc/cupsys-bsd
+	rm -rf /usr/share/doc/cups-bsd
 
 	# Disable inetd entry
 	update-inetd --pattern cups-lpd --disable printer

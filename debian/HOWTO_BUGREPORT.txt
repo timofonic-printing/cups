@@ -8,7 +8,7 @@ For making clear your printing problem, I need some information.
    parallel, serial, lpd, ipp, http, socket, smb).
 3. Please attach your /etc/cups/printers.conf (only about problematic printer)
 4. Set LogLeveld as "debug" in your /etc/cups/cupsd.conf and reload by
-   /etc/init.d/cupsys reload. After you do something causes a problem,
+   /etc/init.d/cups reload. After you do something causes a problem,
    please attach gzippped your /var/log/cups/error_log.
 5. Please attach gzipped PPD file in /etc/cups/ppd/.
 

@@ -1,2 +1,2 @@
-[type: gettext/rfc822deb] cupsys-bsd.templates
-[type: gettext/rfc822deb] cupsys.templates
+[type: gettext/rfc822deb] cups-bsd.templates
+[type: gettext/rfc822deb] cups.templates
