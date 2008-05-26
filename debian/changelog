@@ -1,4 +1,4 @@
-cups (1.3.7-6) UNRELEASED; urgency=low
+cups (1.3.7-6) unstable; urgency=low
 
   * Rename the package to cups. This is the proper upstream name. Upstream has
     made it clear that the usual distro patches are not a trademark violation.
