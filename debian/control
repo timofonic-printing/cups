@@ -256,3 +256,13 @@ Description: Common UNIX Printing System (transitional package)
  This is a dummy package to ease transition to new package name.
   .
   It can be safely removed from your system.
+
+Package: libcupsys2-dev
+Priority: extra
+Section: oldlibs
+Architecture: all
+Depends: libcups2-dev
+Description: Common UNIX Printing System (transitional package)
+ This is a dummy package to ease transition to new package name.
+  .
+  It can be safely removed from your system.
