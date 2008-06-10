@@ -227,6 +227,16 @@ Description: Common UNIX Printing System (transitional package)
   .
   It can be safely removed from your system.
 
+Package: cupsys-common
+Priority: extra
+Section: oldlibs
+Architecture: all
+Depends: cups-common
+Description: Common UNIX Printing System (transitional package)
+ This is a dummy package to ease transition to new package name.
+  .
+  It can be safely removed from your system.
+
 Package: cupsys-bsd
 Priority: extra
 Section: oldlibs
