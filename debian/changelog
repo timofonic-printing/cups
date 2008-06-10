@@ -1,8 +1,11 @@
 cups (1.3.7-7) UNRELEASED; urgency=low
 
   * Provide transitional cupsys-common package, to ease apt-get dist-upgrade.
+  * debian/cups.preinst: Run conffile transition for "install" as well, not
+    just for "upgrade" (brown paperback for this thinko!), and also remove the
+    old rc.d symlinks for cupsys. (Closes: #485514)
 
- -- Martin Pitt <mpitt@debian.org>  Tue, 10 Jun 2008 16:05:55 +0200
+ -- Martin Pitt <mpitt@debian.org>  Tue, 10 Jun 2008 16:21:02 +0200
 
 cups (1.3.7-6) unstable; urgency=low
 
