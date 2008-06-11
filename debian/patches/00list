@@ -1,4 +1,10 @@
+# patches taken from upstream SVN:
+empty_option_value_crash.dpatch
 CVE-2008-1722.dpatch
+pdftops-cups-1.4.dpatch
+pdftops-dont_fail_on_cancel.dpatch
+
+# Debian patches
 freebsd.dpatch
 removecvstag.dpatch
 quiesce_ipp_logging.dpatch
@@ -12,8 +18,8 @@ classes_crash.dpatch
 reactivate_recommended_driver.dpatch
 include_krb5_h_in_job_h.dpatch
 search_mime_files_in_usr_share.dpatch
-pdftops-cups-1.4.dpatch
-pdftops-dont_fail_on_cancel.dpatch
 ppd-poll-with-client-conf.dpatch
+
+# Ubuntu patches
 ubuntu-disable-browsing.dpatch
 ubuntu-default-error-policy-retry-job.dpatch
