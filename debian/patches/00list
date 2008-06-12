@@ -12,6 +12,7 @@ glibc2.8_build.dpatch
 pidfile.dpatch
 ppd-poll-with-client-conf.dpatch
 HostNameLookups_values.dpatch
+manpage-typos.dpatch
 
 # Debian patches
 removecvstag.dpatch
