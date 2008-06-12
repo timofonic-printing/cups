@@ -11,6 +11,7 @@ freebsd.dpatch
 glibc2.8_build.dpatch
 pidfile.dpatch
 ppd-poll-with-client-conf.dpatch
+HostNameLookups_values.dpatch
 
 # Debian patches
 removecvstag.dpatch

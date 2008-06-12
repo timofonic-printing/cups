@@ -5,8 +5,10 @@ cups (1.3.7-8) UNRELEASED; urgency=low
     without a value. (Closes: #250848)
   * Add glibc2.8_build.dpatch: Fix building with glibc 2.8.
   * debian/patches/00list: Sort patches by upstream status.
+  * Add HostNameLookups_values.dpatch: Make possible values of HostNameLookups
+    consistent to manpage and to other options in cupsd.conf. (Closes: #379014)
 
- -- Martin Pitt <mpitt@debian.org>  Thu, 12 Jun 2008 19:13:39 +0200
+ -- Martin Pitt <mpitt@debian.org>  Thu, 12 Jun 2008 19:36:53 +0200
 
 cups (1.3.7-7) unstable; urgency=low
 
