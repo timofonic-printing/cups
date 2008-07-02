@@ -20,7 +20,7 @@ DESC="Common Unix Printing System"
 
 unset TMPDIR
 
-test -f $DAEMON || exit 0
+test -x $DAEMON || exit 0
 
 if [ -r /etc/default/cups ]; then
   . /etc/default/cups
