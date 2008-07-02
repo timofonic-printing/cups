@@ -13,6 +13,8 @@ pidfile.dpatch
 ppd-poll-with-client-conf.dpatch
 HostNameLookups_values.dpatch
 manpage-typos.dpatch
+# no answer yet, po4a might not be appropriate
+manpage-translations.dpatch
 
 # Debian patches
 removecvstag.dpatch
