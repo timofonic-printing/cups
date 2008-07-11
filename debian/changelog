@@ -1,9 +1,15 @@
 cups (1.3.7-9) UNRELEASED; urgency=low
 
+  [ Martin Pitt ]
   * Update Turkish debconf translations, thanks Mert Dirik!
     (Closes: #489408)
 
- -- Martin Pitt <mpitt@debian.org>  Mon, 07 Jul 2008 09:53:27 +0200
+  [ Till Kamppeter ]
+  * Updated "Suggests:" for the "cups" package, replacing obsolete
+    foomatic-filters-ppds by foomatic-db and foomatic-db-engine.
+    (Closes: #286127)
+
+ -- Martin Pitt <mpitt@debian.org>  Fri, 11 Jul 2008 09:49:08 +0200
 
 cups (1.3.7-8) unstable; urgency=medium
 
