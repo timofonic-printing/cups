@@ -1,4 +1,4 @@
-cups (1.3.8-1) UNRELEASED; urgency=low
+cups (1.3.8-1) unstable; urgency=low
 
   * New upstream release: some 20 bug fixes, no new features (see
     http://www.cups.org/articles.php?L562 for details).
