@@ -4,7 +4,7 @@ cups (1.3.8-2) UNRELEASED; urgency=low
   * debian/local/filters/imagetopdf/, debian/local/filters/pdftopdf/,
     debian/local/filters/pdftoopvp/, debian/local/filters/pdftoraster/,
     debian/local/pstopdf.convs, debian/rules, debian/control, debian/copyright,
-    debian/cups.install, debian/patches/pdftopdf-libpoppler3-api.dpatch:
+    debian/patches/pdftopdf-libpoppler3-api.dpatch:
     Introduced the first bunch of infrastructure for using PDF as standard
     print job format. Added CUPS filters imagetopdf, pstopdf, pdftopdf,
     pdftoopvp, pdftoraster, added build dependency on libpoppler-dev, as the
