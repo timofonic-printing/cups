@@ -1,0 +1,57 @@
+1. HOW TO BUILD AND INSTALL PDFTORASTER
+
+"pdftoraster" depends on cups and poppler library. Install these libraries
+before building and installing "pdftoraster".
+And follow the step below;
+
+$ autoreconf --install
+$ ./configure --prefix=/usr --sysconfdir=/etc
+$ make
+$ su -c "make install"
+
+Note:
+  This program requires CUPS version 1.2 or higher. If the CUPS version on
+  your system is older than 1.2, before running configure command, download
+  the CUPS source tree which version is 1.2 or higher, and extract and build
+  it. Then, add "--with-cups-build=<cupsbuild>" option when running
+  the configure command.
+
+Note:
+Some Linux distributions (ex. Fedora 7) don't install poppler headers
+needed to build "pdftoraster".
+In such case, you have to download the poppler source tree which is appropriate
+for your system.
+
+After downloading and extracting the poppler source tree, change the current
+directory to <popplersrc> where the top directory of poppler source tree is
+ <popplersrc>, and follow the step below;
+
+ $ ./configure --prefix=/usr --sysconfdir=/etc
+
+ After making the build configuration, change the current directory to the
+ top directory of "pdftoraster" source tree, and follow the steps below;
+ (<popplersrc> must be the full path)
+
+ $ autoreconf --install
+ $ ./configure --prefix=/usr --sysconfdir=/etc --with-poppler-source=<popplersrc>
+ $ make
+ $ su -c "make install"
+
+
+2. INSTALLED FILES
+
+"pdftoraster" works as a CUPS filter, and is installed into the CUPS filters
+directory. "cups-config" command helps you know the CUPS server binary
+directory that CUPS filters are installed in, and CUPS server root directory
+that CUPS configuration files are installed in.
+
+Installed files are as follows;
+
+(1) pdftoraster
+CUPS PDF filter which converts a PDF file or data stream given by upper
+CUPS filters or applications to CUPS raster. This program is installed into
+the "filter" directory under the CUPS server binary directory. 
+
+(2) pdftoraster.convs
+Filter definition file for "pdftoraster" filter.
+This file is installed into the CUPS server root directory. 

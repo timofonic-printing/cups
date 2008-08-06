@@ -1,0 +1,94 @@
+Sorry, only in Japanese.
+
+  pdftopdfは、popplerとCUPSに依存しています。
+popplerとCUPSをインストールしてください。
+この際、設定ファイルを正しく設定する必要があります。
+フォント埋め込みを行う場合には、特にフォント関係の設定に気を付けて下さい。
+設定の方法については、popplerのドキュ
+メントを見て下さい。ただし、rcファイルは、最初にCUPSのサーバディレクトリの
+pdftopdf.confを見ます。このファイルがない場合に、他のpopplerの設定ファイルを
+探します。
+フォントの設定については、popplerでは、fontconfigを使用しています。
+注意:
+  日本語のフォントでMSP-Minchoなど名前にPが付いている
+フォント(プロポーショナルフォント)と、MS-MinchoなどPが付いていない
+フォントの区別には注意して下さい。前者が指定されているのに、
+後者を使用したり、その逆の場合、記号等の配置がおかしくなります。
+
+○　作成とインストールの方法
+
+  pdftopdfを作成するには、popplerとCUPSの開発用パッケージが必要になります。
+あらかじめインストールしておいてください。
+
+  pdftopdfのソースディレクトリに行き、以下を実行します。
+
+autoreconf --install
+./configure --prefix=/usr --sysconfdir=/etc
+make
+su -c "make install"
+
+注意:
+  Fedora 7など必要なヘッダファイルが、インストールされない
+Linuxディストリビューションがあります。その場合は、popplerのソースツリーが必
+要となります。 システムと同じバージョンのpopplerのソースツリーを、取得
+し展開して下さい。展開したpopplerのソースツリーのトップディレクトリ名を
+<popplersrc>と
+します。popplerは、configureを実行しておく必要があります。
+<popplersrc>の下に移動して、以下を実行しておきます。
+./configure --prefix=/usr --syscondfir=/etc
+
+次に、pdftopdfのソースディレクトリに行き、以下を実行します。
+<popplersrc>は、フルパスで指定して下さい。
+
+autoreconf --install
+./configure --prefix=/usr --sysconfdir=/etc  --with-poppler-source=<popplersrc>
+make
+su -c "make install"
+
+○ インストールされるファイル
+
+pdftopdfは、CUPSのフィルタとして動作するため、
+CUPSのインストールディレクトリにインストールされます。
+CUPSのインストールディレクトリは、cups-configコマンドで、表示されます。
+ディレクトリのひとつは、バイナリファイルがインストールされる
+サーババイナリディレクトリで
+cups-config --serverbin
+により表示されます。
+もうひとつは、設定ファイルがインストールされるサーバルートディレクトリで
+cups-config --serverroot
+で表示されます。
+
+以下にインストールされるファイルを挙げます。
+
+(1) pdftopdf
+
+pdftopdfの本体の実行ファイルで、サーババイナリディレクトリの下
+のfilterディレクトリの下にインストールされます。
+
+(2) pdf.types
+
+CUPSが認識するタイプ名を指定するファイルで、CUPSに存在するmime.typesファ
+イルに追加する型名を指定しています。追加する型名は、
+application/vnd.cups-pdfで、CUPSが内部で使用するPDF形式です。
+CUPS1.2以降では、mime.typesに存在します。
+ファイルの形式の詳細等は、CUPSのドキュメントを見て下さい。
+
+サーバルートディレクトリにインストールされます。
+
+(3) pdftopdf.convs
+
+型の変換に使用するフィルタプログラムを指定するファイルで、CUPSに存在す
+るmime.convsに追加するものです。
+ファイルの形式の詳細等は、CUPSのドキュメントを見て下さい。
+
+サーバルートディレクトリにインストールされます。
+
+(4) pdf2pdf
+
+pdftopdfをCUPS外から使用できるコマンドにしたものです。バイナリのディ
+レクトリにインストールされます。
+
+(5) pdf2pdf.1
+
+pdf2pdfのマニュアルです。マニュアルのディレクトリにインストールされま
+す。

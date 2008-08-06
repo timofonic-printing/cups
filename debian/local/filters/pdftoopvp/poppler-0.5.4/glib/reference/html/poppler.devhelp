@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE book PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "">
+<book xmlns="http://www.devhelp.net/book" title="Poppler Reference Manual" link="index.html" author="" name="poppler">
+  <chapters>
+    <sub name="Poppler" link="ch01.html">
+      <sub name="poppler" link="poppler-poppler.html"/>
+      <sub name="PopplerDocument" link="poppler-poppler-document.html"/>
+      <sub name="PopplerPage" link="poppler-poppler-page.html"/>
+      <sub name="poppler-action" link="poppler-poppler-action.html"/>
+      <sub name="poppler-enums" link="poppler-poppler-enums.html"/>
+    </sub>
+  </chapters>
+  <functions>
+    <function name="poppler_error_quark ()" link="poppler-poppler.html#poppler-error-quark"/>
+    <function name="POPPLER_ERROR" link="poppler-poppler.html#POPPLER-ERROR:CAPS"/>
+    <function name="enum PopplerError" link="poppler-poppler.html#PopplerError"/>
+    <function name="enum PopplerOrientation" link="poppler-poppler.html#PopplerOrientation"/>
+    <function name="PopplerDocument" link="poppler-poppler.html#PopplerDocument-struct"/>
+    <function name="PopplerIndexIter" link="poppler-poppler.html#PopplerIndexIter"/>
+    <function name="PopplerFontsIter" link="poppler-poppler.html#PopplerFontsIter"/>
+    <function name="PopplerRectangle" link="poppler-poppler.html#PopplerRectangle"/>
+    <function name="PopplerLinkMapping" link="poppler-poppler.html#PopplerLinkMapping"/>
+    <function name="PopplerPage" link="poppler-poppler.html#PopplerPage-struct"/>
+    <function name="PopplerFontInfo" link="poppler-poppler.html#PopplerFontInfo"/>
+    <function name="PopplerPSFile" link="poppler-poppler.html#PopplerPSFile"/>
+    <function name="enum PopplerBackend" link="poppler-poppler.html#PopplerBackend"/>
+    <function name="poppler_get_backend ()" link="poppler-poppler.html#poppler-get-backend"/>
+    <function name="poppler_get_version ()" link="poppler-poppler.html#poppler-get-version"/>
+    <function name="The &quot;author&quot; property" link="poppler-poppler.html#PopplerDocument--author"/>
+    <function name="The &quot;creation-date&quot; property" link="poppler-poppler.html#PopplerDocument--creation-date"/>
+    <function name="The &quot;creator&quot; property" link="poppler-poppler.html#PopplerDocument--creator"/>
+    <function name="The &quot;format&quot; property" link="poppler-poppler.html#PopplerDocument--format"/>
+    <function name="The &quot;keywords&quot; property" link="poppler-poppler.html#PopplerDocument--keywords"/>
+    <function name="The &quot;linearized&quot; property" link="poppler-poppler.html#PopplerDocument--linearized"/>
+    <function name="The &quot;mod-date&quot; property" link="poppler-poppler.html#PopplerDocument--mod-date"/>
+    <function name="The &quot;page-layout&quot; property" link="poppler-poppler.html#PopplerDocument--page-layout"/>
+    <function name="The &quot;page-mode&quot; property" link="poppler-poppler.html#PopplerDocument--page-mode"/>
+    <function name="The &quot;permissions&quot; property" link="poppler-poppler.html#PopplerDocument--permissions"/>
+    <function name="The &quot;producer&quot; property" link="poppler-poppler.html#PopplerDocument--producer"/>
+    <function name="The &quot;subject&quot; property" link="poppler-poppler.html#PopplerDocument--subject"/>
+    <function name="The &quot;title&quot; property" link="poppler-poppler.html#PopplerDocument--title"/>
+    <function name="The &quot;viewer-preferences&quot; property" link="poppler-poppler.html#PopplerDocument--viewer-preferences"/>
+    <function name="The &quot;label&quot; property" link="poppler-poppler.html#PopplerPage--label"/>
+    <function name="enum PopplerPageLayout" link="poppler-poppler-document.html#PopplerPageLayout"/>
+    <function name="enum PopplerPageMode" link="poppler-poppler-document.html#PopplerPageMode"/>
+    <function name="enum PopplerFontType" link="poppler-poppler-document.html#PopplerFontType"/>
+    <function name="enum PopplerViewerPreferences" link="poppler-poppler-document.html#PopplerViewerPreferences"/>
+    <function name="enum PopplerPermissions" link="poppler-poppler-document.html#PopplerPermissions"/>
+    <function name="poppler_document_new_from_file ()" link="poppler-poppler-document.html#poppler-document-new-from-file"/>
+    <function name="poppler_document_save ()" link="poppler-poppler-document.html#poppler-document-save"/>
+    <function name="poppler_document_get_n_pages ()" link="poppler-poppler-document.html#poppler-document-get-n-pages"/>
+    <function name="poppler_document_get_page ()" link="poppler-poppler-document.html#poppler-document-get-page"/>
+    <function name="poppler_document_get_page_by_label ()" link="poppler-poppler-document.html#poppler-document-get-page-by-label"/>
+    <function name="poppler_index_iter_get_type ()" link="poppler-poppler-document.html#poppler-index-iter-get-type"/>
+    <function name="poppler_index_iter_new ()" link="poppler-poppler-document.html#poppler-index-iter-new"/>
+    <function name="poppler_index_iter_copy ()" link="poppler-poppler-document.html#poppler-index-iter-copy"/>
+    <function name="poppler_index_iter_free ()" link="poppler-poppler-document.html#poppler-index-iter-free"/>
+    <function name="poppler_index_iter_get_child ()" link="poppler-poppler-document.html#poppler-index-iter-get-child"/>
+    <function name="poppler_index_iter_is_open ()" link="poppler-poppler-document.html#poppler-index-iter-is-open"/>
+    <function name="poppler_index_iter_get_action ()" link="poppler-poppler-document.html#poppler-index-iter-get-action"/>
+    <function name="poppler_index_iter_next ()" link="poppler-poppler-document.html#poppler-index-iter-next"/>
+    <function name="poppler_font_info_new ()" link="poppler-poppler-document.html#poppler-font-info-new"/>
+    <function name="poppler_font_info_scan ()" link="poppler-poppler-document.html#poppler-font-info-scan"/>
+    <function name="poppler_font_info_free ()" link="poppler-poppler-document.html#poppler-font-info-free"/>
+    <function name="poppler_fonts_iter_get_type ()" link="poppler-poppler-document.html#poppler-fonts-iter-get-type"/>
+    <function name="poppler_fonts_iter_copy ()" link="poppler-poppler-document.html#poppler-fonts-iter-copy"/>
+    <function name="poppler_fonts_iter_free ()" link="poppler-poppler-document.html#poppler-fonts-iter-free"/>
+    <function name="poppler_fonts_iter_get_name ()" link="poppler-poppler-document.html#poppler-fonts-iter-get-name"/>
+    <function name="poppler_fonts_iter_get_full_name ()" link="poppler-poppler-document.html#poppler-fonts-iter-get-full-name"/>
+    <function name="poppler_fonts_iter_get_font_type ()" link="poppler-poppler-document.html#poppler-fonts-iter-get-font-type"/>
+    <function name="poppler_fonts_iter_is_embedded ()" link="poppler-poppler-document.html#poppler-fonts-iter-is-embedded"/>
+    <function name="poppler_fonts_iter_is_subset ()" link="poppler-poppler-document.html#poppler-fonts-iter-is-subset"/>
+    <function name="poppler_fonts_iter_next ()" link="poppler-poppler-document.html#poppler-fonts-iter-next"/>
+    <function name="poppler_ps_file_new ()" link="poppler-poppler-document.html#poppler-ps-file-new"/>
+    <function name="poppler_ps_file_set_paper_size ()" link="poppler-poppler-document.html#poppler-ps-file-set-paper-size"/>
+    <function name="poppler_ps_file_set_duplex ()" link="poppler-poppler-document.html#poppler-ps-file-set-duplex"/>
+    <function name="poppler_ps_file_free ()" link="poppler-poppler-document.html#poppler-ps-file-free"/>
+    <function name="poppler_page_render_to_pixbuf ()" link="poppler-poppler-page.html#poppler-page-render-to-pixbuf"/>
+    <function name="poppler_page_get_size ()" link="poppler-poppler-page.html#poppler-page-get-size"/>
+    <function name="poppler_page_get_index ()" link="poppler-poppler-page.html#poppler-page-get-index"/>
+    <function name="poppler_page_get_thumbnail ()" link="poppler-poppler-page.html#poppler-page-get-thumbnail"/>
+    <function name="poppler_page_get_thumbnail_size ()" link="poppler-poppler-page.html#poppler-page-get-thumbnail-size"/>
+    <function name="poppler_page_find_text ()" link="poppler-poppler-page.html#poppler-page-find-text"/>
+    <function name="poppler_page_render_to_ps ()" link="poppler-poppler-page.html#poppler-page-render-to-ps"/>
+    <function name="poppler_page_get_text ()" link="poppler-poppler-page.html#poppler-page-get-text"/>
+    <function name="poppler_page_get_link_mapping ()" link="poppler-poppler-page.html#poppler-page-get-link-mapping"/>
+    <function name="poppler_page_free_link_mapping ()" link="poppler-poppler-page.html#poppler-page-free-link-mapping"/>
+    <function name="poppler_page_get_selection_region ()" link="poppler-poppler-page.html#poppler-page-get-selection-region"/>
+    <function name="poppler_page_render_selection ()" link="poppler-poppler-page.html#poppler-page-render-selection"/>
+    <function name="POPPLER_TYPE_RECTANGLE" link="poppler-poppler-page.html#POPPLER-TYPE-RECTANGLE:CAPS"/>
+    <function name="PopplerRectangle" link="poppler-poppler-page.html#PopplerRectangle"/>
+    <function name="poppler_rectangle_get_type ()" link="poppler-poppler-page.html#poppler-rectangle-get-type"/>
+    <function name="poppler_rectangle_new ()" link="poppler-poppler-page.html#poppler-rectangle-new"/>
+    <function name="poppler_rectangle_copy ()" link="poppler-poppler-page.html#poppler-rectangle-copy"/>
+    <function name="poppler_rectangle_free ()" link="poppler-poppler-page.html#poppler-rectangle-free"/>
+    <function name="POPPLER_TYPE_LINK_MAPPING" link="poppler-poppler-page.html#POPPLER-TYPE-LINK-MAPPING:CAPS"/>
+    <function name="PopplerLinkMapping" link="poppler-poppler-page.html#PopplerLinkMapping"/>
+    <function name="poppler_link_mapping_get_type ()" link="poppler-poppler-page.html#poppler-link-mapping-get-type"/>
+    <function name="poppler_link_mapping_new ()" link="poppler-poppler-page.html#poppler-link-mapping-new"/>
+    <function name="poppler_link_mapping_copy ()" link="poppler-poppler-page.html#poppler-link-mapping-copy"/>
+    <function name="poppler_link_mapping_free ()" link="poppler-poppler-page.html#poppler-link-mapping-free"/>
+    <function name="enum PopplerActionType" link="poppler-poppler-action.html#PopplerActionType"/>
+    <function name="enum PopplerDestType" link="poppler-poppler-action.html#PopplerDestType"/>
+    <function name="PopplerActionAny" link="poppler-poppler-action.html#PopplerActionAny"/>
+    <function name="PopplerActionGotoDest" link="poppler-poppler-action.html#PopplerActionGotoDest"/>
+    <function name="PopplerActionGotoRemote" link="poppler-poppler-action.html#PopplerActionGotoRemote"/>
+    <function name="PopplerActionLaunch" link="poppler-poppler-action.html#PopplerActionLaunch"/>
+    <function name="PopplerActionUri" link="poppler-poppler-action.html#PopplerActionUri"/>
+    <function name="PopplerActionNamed" link="poppler-poppler-action.html#PopplerActionNamed"/>
+    <function name="PopplerActionMovie" link="poppler-poppler-action.html#PopplerActionMovie"/>
+    <function name="PopplerDest" link="poppler-poppler-action.html#PopplerDest"/>
+    <function name="union PopplerAction" link="poppler-poppler-action.html#PopplerAction"/>
+    <function name="POPPLER_TYPE_ACTION" link="poppler-poppler-action.html#POPPLER-TYPE-ACTION:CAPS"/>
+    <function name="POPPLER_ACTION()" link="poppler-poppler-action.html#POPPLER-ACTION:CAPS"/>
+    <function name="poppler_action_get_type ()" link="poppler-poppler-action.html#poppler-action-get-type"/>
+    <function name="poppler_action_free ()" link="poppler-poppler-action.html#poppler-action-free"/>
+    <function name="poppler_action_copy ()" link="poppler-poppler-action.html#poppler-action-copy"/>
+    <function name="POPPLER_TYPE_ACTION_TYPE" link="poppler-poppler-enums.html#POPPLER-TYPE-ACTION-TYPE:CAPS"/>
+    <function name="poppler_action_type_get_type ()" link="poppler-poppler-enums.html#poppler-action-type-get-type"/>
+    <function name="POPPLER_TYPE_DEST_TYPE" link="poppler-poppler-enums.html#POPPLER-TYPE-DEST-TYPE:CAPS"/>
+    <function name="poppler_dest_type_get_type ()" link="poppler-poppler-enums.html#poppler-dest-type-get-type"/>
+    <function name="POPPLER_TYPE_PAGE_LAYOUT" link="poppler-poppler-enums.html#POPPLER-TYPE-PAGE-LAYOUT:CAPS"/>
+    <function name="poppler_page_layout_get_type ()" link="poppler-poppler-enums.html#poppler-page-layout-get-type"/>
+    <function name="POPPLER_TYPE_PAGE_MODE" link="poppler-poppler-enums.html#POPPLER-TYPE-PAGE-MODE:CAPS"/>
+    <function name="poppler_page_mode_get_type ()" link="poppler-poppler-enums.html#poppler-page-mode-get-type"/>
+    <function name="POPPLER_TYPE_FONT_TYPE" link="poppler-poppler-enums.html#POPPLER-TYPE-FONT-TYPE:CAPS"/>
+    <function name="poppler_font_type_get_type ()" link="poppler-poppler-enums.html#poppler-font-type-get-type"/>
+    <function name="POPPLER_TYPE_VIEWER_PREFERENCES" link="poppler-poppler-enums.html#POPPLER-TYPE-VIEWER-PREFERENCES:CAPS"/>
+    <function name="poppler_viewer_preferences_get_type ()" link="poppler-poppler-enums.html#poppler-viewer-preferences-get-type"/>
+    <function name="POPPLER_TYPE_PERMISSIONS" link="poppler-poppler-enums.html#POPPLER-TYPE-PERMISSIONS:CAPS"/>
+    <function name="poppler_permissions_get_type ()" link="poppler-poppler-enums.html#poppler-permissions-get-type"/>
+    <function name="POPPLER_TYPE_ERROR" link="poppler-poppler-enums.html#POPPLER-TYPE-ERROR:CAPS"/>
+    <function name="poppler_error_get_type ()" link="poppler-poppler-enums.html#poppler-error-get-type"/>
+    <function name="POPPLER_TYPE_ORIENTATION" link="poppler-poppler-enums.html#POPPLER-TYPE-ORIENTATION:CAPS"/>
+    <function name="poppler_orientation_get_type ()" link="poppler-poppler-enums.html#poppler-orientation-get-type"/>
+    <function name="POPPLER_TYPE_BACKEND" link="poppler-poppler-enums.html#POPPLER-TYPE-BACKEND:CAPS"/>
+    <function name="poppler_backend_get_type ()" link="poppler-poppler-enums.html#poppler-backend-get-type"/>
+  </functions>
+</book>

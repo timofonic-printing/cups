@@ -1,0 +1,34 @@
+1. HOW TO BUILD AND INSTALL IMAGETOPDF
+
+Follow the step below;
+
+$ autoreconf --install
+$ ./configure --prefix=/usr --sysconfdir=/etc
+$ make
+$ su -c "make install"
+
+2. INSTALLED FILES
+
+"imagetopdf" works as a CUPS filter, and is installed into the CUPS filters
+directory. "cups-config" command helps you know the CUPS server binary
+directory that CUPS filters are installed in, and CUPS server root directory
+that CUPS configuration files are installed in.
+
+Installed files are as follows;
+
+(1) imagetopdf
+CUPS PDF filter which converts a image file or data stream given by upper
+CUPS filters or applications to a PDF data stream for printing. This
+program is installed into the "filter" directory under the CUPS server
+binary directory.
+
+(2) imagetopdf.types
+MIME definition file for "imagetopdf" filter.
+This file includes "image/x-xbitmap" and "image/x-xpixmap" that CUPS 
+understands them for X Window bitmap handling. This file is installed
+into the CUPS server root directory. 
+
+(3) imagetopdf.convs
+Filter definition file for "imagetopdf" filter.
+This file is installed into the CUPS server root directory. 
+

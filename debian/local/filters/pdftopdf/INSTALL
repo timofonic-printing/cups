@@ -1,0 +1,65 @@
+1. HOW TO BUILD AND INSTALL PDFTOPDF
+
+"pdftopdf" depends on cups and poppler library. Install these libraries
+before building and installing "pdftopdf".
+And follow the step below;
+
+$ autoreconf --install
+$ ./configure --prefix=/usr --sysconfdir=/etc
+$ make
+$ su -c "make install"
+
+
+NOTE:
+Some Linux distributions (ex. Fedora 7) don't install poppler headers
+needed to build "pdftopdf".
+In such case, you have to download the poppler source tree which is appropriate
+for your system. 
+
+After downloading and extracting the poppler source tree, change the current
+directory to <popplersrc> where the top directory of poppler source tree is
+ <popplersrc>, and follow the step below;
+
+$ ./configure --prefix=/usr --sysconfdir=/etc
+
+After making the build configuration, change the current directory to the
+top directory of "pdftopdf" source tree, and follow the steps below;
+(<popplersrc> must be the full path)
+
+$ autoreconf --install
+$ ./configure --prefix=/usr --sysconfdir=/etc --with-poppler-source=<popplersrc>
+$ make
+$ su -c "make install"
+
+2. INSTALLED FILES
+
+"pdftopdf" works as a CUPS filter, and is installed into the CUPS filters
+directory. "cups-config" command helps you know the CUPS server binary
+directory that CUPS filters are installed in, and CUPS server root directory
+that CUPS configuration files are installed in.
+
+Installed files are as follows;
+
+(1) pdftopdf
+CUPS PDF filter which converts a PDF file or data stream given by upper
+CUPS filters or applications to a PDF data stream for printing. This program is
+installed into the "filter" directory under the CUPS server binary directory. 
+
+(2) pdf.types
+MIME definition file for "pdftopdf" filter.
+This file includes "application/vnd.cups-pdf" which defines the CUPS internal
+type for PDF handling. This file is installed into the CUPS server root
+directory.
+
+(3) pdftopdf.convs
+Filter definition file for "pdftopdf" filter.
+This file is installed into the CUPS server root directory. 
+
+(4) pdf2pdf
+User command file to use the "pdftopdf" filter.
+This program is installed into the user's command directory.
+
+(5) pdf2pdf.1
+Manual file for the "pdf2pdf" command.
+This file is installed into the manual directory.
+
