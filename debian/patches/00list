@@ -9,6 +9,7 @@ freebsd.dpatch
 # patches sent upstream
 pidfile.dpatch
 ppd-poll-with-client-conf.dpatch
+pdftopdf-libpoppler3-api.dpatch
 # no answer yet, po4a might not be appropriate
 manpage-translations.dpatch
 

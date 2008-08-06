@@ -42,6 +42,9 @@ common-configure-impl::
 	# Prepare building of extra filters for PDF printing workflow
 	export CFLAGS="$CFLAGS -I`pwd`"
 	export LDFLAGS="$LDFLAGS -L`pwd`/cups/"
+	# We have removed README.jp from all source trees, as it caused
+	# packaging problems. So do not try to install these files.
+	(cd debian/local/filters; perl -p -i -e 's/README.jp//g' */Makefile*)
 	(cd debian/local/filters/pdftoopvp/poppler-0.5.4;./configure --prefix=/usr --sysconfdir=/etc --disable-cairo-output --disable-poppler-glib --disable-poppler-qt --disable-poppler-qt4 --disable-gtk-test --disable-utils)
 	(cd debian/local/filters/imagetopdf;autoreconf --install;./configure --prefix=/usr --sysconfdir=/etc)
 	(cd debian/local/filters/pdftopdf;autoreconf --install;./configure --prefix=/usr --sysconfdir=/etc)
@@ -107,9 +110,9 @@ binary-post-install/cups::
 	# so consider the PPDs as programming examples
 	install -m 0644 pdftoopvp/ppd/* $(DEB_DESTDIR)/../cups/usr/share/doc/cups/pdftoopvp/examples
 	install -m 0644 pdftoopvp/poppler-0.5.4/README.opvp $(DEB_DESTDIR)/../cups/usr/share/doc/cups/pdftoopvp/
-	install -m 0644 pdftoopvp/poppler-0.5.4/README.opvp.jp $(DEB_DESTDIR)/../cups/usr/share/doc/cups/pdftoopvp/
 	# Move file detection and conversion rules to /usr/share/cups/mime/ so
 	# that the package manager does not consider them conffiles
+	install -d $(DEB_DESTDIR)/../cups/usr/share/cups/mime
 	( cd $(DEB_DESTDIR)/../cups/etc/cups; mv imagetopdf.* pdftopdf.* pdftoraster.* pdf.* $(DEB_DESTDIR)/../cups/usr/share/cups/mime/ )
 	# Simple Ghostscript-based PostScript-to-PDF filter
 	install -m 0755 filters/pstopdf $(DEB_DESTDIR)/../cups/usr/lib/cups/filter
