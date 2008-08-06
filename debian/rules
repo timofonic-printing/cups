@@ -45,7 +45,6 @@ common-configure-impl::
 	# We have removed README.jp from all source trees, as it caused
 	# packaging problems. So do not try to install these files.
 	(cd debian/local/filters; perl -p -i -e 's/README.jp//g' */Makefile*)
-	(cd debian/local/filters/pdftoopvp/poppler-0.5.4;./configure --prefix=/usr --sysconfdir=/etc --disable-cairo-output --disable-poppler-glib --disable-poppler-qt --disable-poppler-qt4 --disable-gtk-test --disable-utils)
 	(cd debian/local/filters/imagetopdf;autoreconf --install;./configure --prefix=/usr --sysconfdir=/etc)
 	(cd debian/local/filters/pdftopdf;autoreconf --install;./configure --prefix=/usr --sysconfdir=/etc)
 	(cd debian/local/filters/pdftoraster;autoreconf --install;./configure --prefix=/usr --sysconfdir=/etc)
@@ -57,7 +56,6 @@ common-post-build-arch::
 	# Build extra filters for PDF printing workflow
 	export CFLAGS="$CFLAGS -I`pwd`"
 	export LDFLAGS="$LDFLAGS -L`pwd`/cups/"
-	(cd debian/local/filters/pdftoopvp/poppler-0.5.4;$(MAKE))
 	(cd debian/local/filters/imagetopdf;$(MAKE) imagetopdf_CFLAGS="")
 	(cd debian/local/filters/pdftopdf;$(MAKE))
 	(cd debian/local/filters/pdftoraster;$(MAKE))
@@ -66,7 +64,6 @@ clean::
 	rm -f man/client.conf.man packaging/cups.list
 	rm -f conf/mime.convs conf/snmp.conf init/org.cups.cups-lpd.plist
 	# Clean source trees of extra filters for PDF printing workflow
-	-(cd debian/local/filters/pdftoopvp/poppler-0.5.4;$(MAKE) distclean)
 	-(cd debian/local/filters/imagetopdf;$(MAKE) distclean)
 	-(cd debian/local/filters/pdftopdf;$(MAKE) distclean)
 	-(cd debian/local/filters/pdftoraster;$(MAKE) distclean)
@@ -98,18 +95,12 @@ binary-post-install/cups::
 	fi
 
 	# Install extra filters for PDF printing workflow
-	(cd debian/local/filters/pdftoopvp/poppler-0.5.4/pdftoopvp;make install DESTDIR=$(DEB_DESTDIR))
 	(cd debian/local/filters/imagetopdf;make install DESTDIR=$(DEB_DESTDIR))
 	(cd debian/local/filters/pdftopdf;make install DESTDIR=$(DEB_DESTDIR))
 	(cd debian/local/filters/pdftoraster;make install DESTDIR=$(DEB_DESTDIR))
 	mv $(DEB_DESTDIR)/usr/share/doc/imagetopdf $(DEB_DESTDIR)/../cups/usr/share/doc/cups
 	mv $(DEB_DESTDIR)/usr/share/doc/pdftopdf $(DEB_DESTDIR)/../cups/usr/share/doc/cups
 	mv $(DEB_DESTDIR)/usr/share/doc/pdftoraster $(DEB_DESTDIR)/../cups/usr/share/doc/cups
-	install -d $(DEB_DESTDIR)/../cups/usr/share/doc/cups/pdftoopvp/examples
-	# The drivers, partially closed-source do not ship with the distro,
-	# so consider the PPDs as programming examples
-	install -m 0644 pdftoopvp/ppd/* $(DEB_DESTDIR)/../cups/usr/share/doc/cups/pdftoopvp/examples
-	install -m 0644 pdftoopvp/poppler-0.5.4/README.opvp $(DEB_DESTDIR)/../cups/usr/share/doc/cups/pdftoopvp/
 	# Move file detection and conversion rules to /usr/share/cups/mime/ so
 	# that the package manager does not consider them conffiles
 	install -d $(DEB_DESTDIR)/../cups/usr/share/cups/mime
