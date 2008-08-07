@@ -16,6 +16,15 @@ cups (1.3.8-2) UNRELEASED; urgency=low
     accepted in the debian/ directory as they are binary files. In addition,
     pdftopdf needs a patch because of a small change in the Poppler API
     (debian/patches/pdftopdf-libpoppler3-api.dpatch).
+  * debian/patches/search_mime_files_in_usr_share.dpatch: Replaced by the
+    changes which were done for this purpose in CUPS 1.4. In addition to
+    the introduction of /usr/share/cups/mime for installing file detection and
+    conversion rules as non-conffiles it also changes the reading order to
+    all *.types files and the all *.convs files (instead of all in
+    /usr/share/cups/mime and then all in /etc/cups). This way
+    /usr/share/cups/mime can contain conversion rules based on file types
+    defined by files in /etc/cups (CUPS STR #2719, CUPS SVN revs #7670 and 
+    #7694).
     
   [ Martin Pitt ]
   * Add missing CVE and more verbose descriptions to security fixes to 1.3.6-1

@@ -208,7 +208,7 @@ imagetopdf:
 
 /*
  * Image file to PDF filter for the Common UNIX Printing System (CUPS).
- * developped by BBR Inc. 2006-2007
+ * developed by BBR Inc. 2006-2007
 
  * This is based on imagetops.c
  * imagetops.c copyright notice is follows
