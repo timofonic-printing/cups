@@ -3,7 +3,8 @@ etc/cups/cupsd.conf
 etc/cups/cupsd.conf.default
 etc/cups/snmp.conf
 etc/cups/ppd
-etc/cups/mime.*
+etc/cups/*.convs
+etc/cups/*.types
 usr/lib/cups/backend/* usr/lib/cups/backend-available
 usr/lib/cups/cgi-bin
 usr/lib/cups/monitor

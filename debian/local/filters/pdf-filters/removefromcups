@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Silently exit if the changes are already removed
+[ ! -f $1/filter/imagetopdf.c ] && exit 0
+
 # Remove files
 rm -f $1/filter/imagetopdf.c
 rm -f $1/filter/pdftoraster.cxx

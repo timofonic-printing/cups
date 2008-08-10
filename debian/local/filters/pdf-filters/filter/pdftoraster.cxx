@@ -39,7 +39,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #include <stdarg.h>
 #include "Error.h"
 #include "GlobalParams.h"
-#include <cups/raster.h>
+#include "raster.h"
 #include <splash/SplashTypes.h>
 #include <splash/SplashBitmap.h>
 

@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Silently exit if the changes are already applied
+[ -f $1/filter/imagetopdf.c ] && exit 0
+
 # Copy files
 cp filter/imagetopdf.c $1/filter/
 cp filter/pdftoraster.cxx $1/filter/
@@ -12,6 +15,7 @@ cp config-scripts/cups-pdf-filters.m4 $1/config-scripts/
 
 # Copy directories
 cp -r pdftopdf $1
+
 cd $1
 
 # Edit configure script
