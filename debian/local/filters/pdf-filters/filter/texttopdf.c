@@ -737,16 +737,16 @@ WriteProlog(const char *title,		/* I - Title of job */
   else // {{{ Standard ASCII
   {
    /*
-    * Standard ASCII output just uses Courier, Courier-Bold, and
-    * possibly Courier-Oblique.
+    * Standard ASCII output just uses FreeMono, FreeMono-Bold, and
+    * possibly FreeMono-Oblique.
     */
 
     NumFonts = 1;
 
-    Fonts[0][ATTR_NORMAL]     = font_load(datadir,"Courier");
-    Fonts[0][ATTR_BOLD]       = font_load(datadir,"Courier-Bold");
-    Fonts[0][ATTR_ITALIC]     = font_load(datadir,"Courier-Oblique");
-    Fonts[0][ATTR_BOLDITALIC] = font_load(datadir,"Courier-BoldOblique");
+    Fonts[0][ATTR_NORMAL]     = font_load(datadir,"FreeMono.ttf");
+    Fonts[0][ATTR_BOLD]       = font_load(datadir,"FreeMonoBold.ttf");
+    Fonts[0][ATTR_ITALIC]     = font_load(datadir,"FreeMonoOblique.ttf");
+    Fonts[0][ATTR_BOLDITALIC] = font_load(datadir,"FreeMonoBoldOblique.ttf");
 
     Widths[0]     = 1;
     Directions[0] = 1;
