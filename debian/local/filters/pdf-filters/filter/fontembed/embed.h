@@ -14,8 +14,8 @@ typedef enum { EMB_OUTPUT_T1,    // original type1
                EMB_OUTPUT_SFNT   // OpenType (cff or glyf)
                } EMB_OUTPUT_FORMAT;
 typedef enum { EMB_DEST_NATIVE,  // just subsetting/conversion
-//  TODO       EMB_DEST_PS, 
-               EMB_DEST_PDF16
+               EMB_DEST_PS, 
+               EMB_DEST_PDF16  // TODO? PDF13
                } EMB_DESTINATION;
 
 typedef enum { EMB_RIGHT_FULL=0, EMB_RIGHT_NONE=0x02,

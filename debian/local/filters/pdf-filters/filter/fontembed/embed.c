@@ -13,6 +13,7 @@ EMB_RIGHT_TYPE emb_otf_get_rights(OTF_FILE *otf);
 const char *emb_otf_get_fontname(OTF_FILE *otf);
 EMB_PDF_FONTWIDTHS *emb_otf_get_pdf_widths(OTF_FILE *otf,const unsigned short *encoding,int len,const BITSET glyphs);
 EMB_PDF_FONTWIDTHS *emb_otf_get_pdf_cidwidths(OTF_FILE *otf,const BITSET glyph);
+int emb_otf_ps(OTF_FILE *otf,unsigned short *encoding,int len,unsigned short *to_unicode,OUTPUT_FN output,void *context);
 
 void emb_otf_get_pdf_fontdescr(OTF_FILE *otf,EMB_PDF_FONTDESCR *ret);
 
@@ -145,6 +146,23 @@ EMB_PARAMS *emb_new(FONTFILE *font,EMB_DESTINATION dest,EMB_CONSTRAINTS mode) //
 int emb_embed(EMB_PARAMS *emb,OUTPUT_FN output,void *context) // {{{
 {
   assert(emb);
+
+  if (emb->outtype==EMB_DEST_PS) {
+    int ret=0;
+    const char *fontname=emb_otf_get_fontname(emb->font->sfnt); // TODO!!
+    (*output)("%%BeginFont: ",13,context);
+    (*output)(fontname,strlen(fontname),context);
+    (*output)("\n",1,context);
+    if (emb->intype==EMB_INPUT_TTF) {
+      // do Type42
+      ret=emb_otf_ps(emb->font->sfnt,NULL,4,NULL,output,context); // TODO?
+    } else {
+      assert(0);
+      ret=-1;
+    }
+    (*output)("%%EndFont\n",10,context);
+    return ret;
+  }
 
   if (emb->intype==EMB_INPUT_TTF) {
     assert(emb->font->sfnt);

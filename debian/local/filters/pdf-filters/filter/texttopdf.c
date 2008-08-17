@@ -524,6 +524,7 @@ WriteProlog(const char *title,		/* I - Title of job */
             if (k==num_fonts) {  // not found
 	      fonts[num_fonts] = Fonts[NumFonts][i] = font_load(datadir,valptr);
               if (!fonts[num_fonts]) { // font missing/corrupt, replace by first
+                fprintf(stderr,"WARNING: Ignored bad font \"%s\"\n",valptr);
                 break;
               }
               fontnames[num_fonts++] = strdup(valptr);
@@ -706,10 +707,19 @@ WriteProlog(const char *title,		/* I - Title of job */
 
             if (k==num_fonts) {  // not found
 	      fonts[num_fonts] = Fonts[NumFonts][i] = font_load(datadir,valptr);
+              if (!fonts[num_fonts]) { // font missing/corrupt, replace by first
+                fprintf(stderr,"WARNING: Ignored bad font \"%s\"\n",valptr);
+                break;
+              }
               fontnames[num_fonts++] = strdup(valptr);
             }
           }
 	}
+
+        /* ignore complete range, when the first font is not available */
+        if (i==0) {
+          continue;
+        }
 
        /*
 	* Fill in remaining fonts as needed...
@@ -755,9 +765,18 @@ WriteProlog(const char *title,		/* I - Title of job */
     NumFonts = 1;
 
     Fonts[0][ATTR_NORMAL]     = font_load(datadir,"Courier");
+    if (!Fonts[0][ATTR_NORMAL]) {
+      fprintf(stderr, _("ERROR: No usable font available\n"));
+      exit(1);
+    }
     Fonts[0][ATTR_BOLD]       = font_load(datadir,"Courier-Bold");
     Fonts[0][ATTR_ITALIC]     = font_load(datadir,"Courier-Oblique");
     Fonts[0][ATTR_BOLDITALIC] = font_load(datadir,"Courier-BoldOblique");
+    for (j = 1; j < 4; j ++) {
+      if (!Fonts[0][j]) {
+        Fonts[0][j]=Fonts[0][0];
+      }
+    }
 
     Widths[0]     = 1;
     Directions[0] = 1;
@@ -773,6 +792,11 @@ WriteProlog(const char *title,		/* I - Title of job */
     }
   }
   // }}}
+
+  if (NumFonts==0) {
+    fprintf(stderr, _("ERROR: No usable font available\n"));
+    exit(1);
+  }
 
   FontScaleX=120.0 / CharsPerInch;
   FontScaleY=68.0 / LinesPerInch;
