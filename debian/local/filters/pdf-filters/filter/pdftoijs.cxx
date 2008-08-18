@@ -117,9 +117,9 @@ void parse_colorspace(const char *str)
 
 std::string str_trim(const char *str,int len) 
 {
-  int start=strspn(str," ");
+  int start=strspn(str," \r\n\t");
   for (len--;len>=0;len--) {
-    if (str[len]!=' ') {
+    if (!strchr(" \r\n\t",str[len])) {
       break;
     }
   }
@@ -127,7 +127,7 @@ std::string str_trim(const char *str,int len)
   if (start>=len) {
     return std::string();
   }
-  return std::string(str,len);
+  return std::string(str+start,len-start);
 }
 
 /* parse  key=value */
