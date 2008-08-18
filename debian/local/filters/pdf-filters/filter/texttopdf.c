@@ -34,11 +34,6 @@
 #include <assert.h>
 #include "fontembed/sfnt.h"
 
-// TODO:
-struct _FONTFILE { // TODO
-  OTF_FILE *sfnt;
-  int fobj; // TODO
-};
 EMB_PARAMS *font_load(const char *datadir,const char *font);
 
 static int bits_used(BITSET bits,int len) // {{{
@@ -65,16 +60,25 @@ EMB_PARAMS *font_load(const char *datadir,const char *font)
     // TODO: try /usr/share/fonts/*/*/%s.ttf
     return NULL;
   }
-  struct _FONTFILE *ff=malloc(sizeof(struct _FONTFILE));
+  FONTFILE *ff=fontfile_open_sfnt(otf);
   assert(ff);
-  ff->sfnt=otf; // TODO
-  ff->fobj=0; // TODO
   EMB_PARAMS *emb=emb_new(ff,
                           EMB_DEST_PDF16,
                           EMB_C_FORCE_MULTIBYTE|
                           EMB_C_TAKE_FONTFILE);
   assert(emb);
   assert(emb->plan&EMB_A_MULTIBYTE);
+  return emb;
+}
+
+EMB_PARAMS *font_std(const char *name)
+{
+  FONTFILE *ff=fontfile_open_std(name);
+  assert(ff);
+  EMB_PARAMS *emb=emb_new(ff,
+                          EMB_DEST_PDF16,
+                          EMB_C_TAKE_FONTFILE);
+  assert(emb);
   return emb;
 }
 
@@ -764,19 +768,10 @@ WriteProlog(const char *title,		/* I - Title of job */
 
     NumFonts = 1;
 
-    Fonts[0][ATTR_NORMAL]     = font_load(datadir,"Courier");
-    if (!Fonts[0][ATTR_NORMAL]) {
-      fprintf(stderr, _("ERROR: No usable font available\n"));
-      exit(1);
-    }
-    Fonts[0][ATTR_BOLD]       = font_load(datadir,"Courier-Bold");
-    Fonts[0][ATTR_ITALIC]     = font_load(datadir,"Courier-Oblique");
-    Fonts[0][ATTR_BOLDITALIC] = font_load(datadir,"Courier-BoldOblique");
-    for (j = 1; j < 4; j ++) {
-      if (!Fonts[0][j]) {
-        Fonts[0][j]=Fonts[0][0];
-      }
-    }
+    Fonts[0][ATTR_NORMAL]     = font_std("Courier");
+    Fonts[0][ATTR_BOLD]       = font_std("Courier-Bold");
+    Fonts[0][ATTR_ITALIC]     = font_std("Courier-Oblique");
+    Fonts[0][ATTR_BOLDITALIC] = font_std("Courier-BoldOblique");
 
     Widths[0]     = 1;
     Directions[0] = 1;
@@ -1088,8 +1083,13 @@ static void write_font_str(float x,float y,int fontid, lchar_t *str, int len)
     EMB_PARAMS *emb=Fonts[lastfont][fontid];
     OTF_FILE *otf=emb->font->sfnt;
 
-    pdfOut_printf(pdf,"  %.3f Tz\n",
-                      FontScaleX*600.0/(otf_get_width(otf,0)*1000.0/otf->unitsPerEm)*100.0/FontScaleY); // TODO?
+    if (otf) { // TODO?
+      pdfOut_printf(pdf,"  %.3f Tz\n",
+                        FontScaleX*600.0/(otf_get_width(otf,0)*1000.0/otf->unitsPerEm)*100.0/FontScaleY); // TODO?
+    } else {
+      pdfOut_printf(pdf,"  %.3f Tz\n",
+                        FontScaleX*100.0/FontScaleY); // TODO?
+    }
 
     pdfOut_printf(pdf,"  /%s%02x %.3f Tf <",
                       names[fontid],lastfont,FontScaleY);
@@ -1101,17 +1101,21 @@ static void write_font_str(float x,float y,int fontid, lchar_t *str, int len)
       } else {
         ch=Chars[str->ch];
       }
-      const unsigned short gid=otf_from_unicode(otf,ch);
 
       font = Codes[ch];
       if (lastfont != font) {
         assert(0); // should never happen; TODO
         break;
       }
-      pdfOut_printf(pdf,"%04x", gid);
- 
-      if (emb->subset) {
-        bit_set(emb->subset,gid);
+      if (otf) { // TODO 
+        const unsigned short gid=otf_from_unicode(otf,ch);
+        pdfOut_printf(pdf,"%04x", gid);
+
+        if (emb->subset) {
+          bit_set(emb->subset,gid);
+        }
+      } else { // std 14 font with 7-bit us-ascii uses single byte encoding, TODO
+        pdfOut_printf(pdf,"%02x",ch);
       }
 
       len --;

@@ -125,3 +125,4 @@ texttopdf:	texttopdf.o textcommon.o common.o pdfutils.o fontembed/libfontembed.a
 EOF
 perl -p -i -e 's/^(\s*DIRS\s*=.*\s+filter\s+)/$1pdftopdf /' Makefile
 perl -p -i -e 's/^(\s*LIBS\s*=.*$)/$1\nPOPPLER_LIBS\t=\t\@POPPLER_LIBS\@ \$(LIBS)/' Makedefs.in
+perl -p -i -e 's/^(\s*ALL_CFLAGS\s*=\s*)/$1-Ifontembed /' Makedefs.in
