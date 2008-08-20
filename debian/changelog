@@ -24,15 +24,14 @@ cups (1.3.8-6) UNRELEASED; urgency=low
     debian/local/filters/pdf-filters/removefromcups,
     debian/local/filters/pdf-filters/README,
     debian/control, debian/rules: Added pdftoijs filter.
-  * debian/local/adobereader.types, debian/local/adobereader.convs,
-    debian/rules:
-    Added rules to handle PostScript files which Adobe Reader
-    generates from encrypted PDF files. These PostScript files contain
-    PostScript code which stops Ghostscript with an error when one
-    tries to convert them back to
-    (now unencrypted) PDF. As a temporary workaround (until we get a
-    better solution from Adobe) we run these files to the old
-    PostScript workflow (pstops filter) now.
+
+  [ Johan Kiviniemi ]
+
+  * debian/filters/pstopdf:
+    - Adobe Reader generates DRM-infested PostScript from encrypted PDF files.
+      This PostScript contains code which stops Ghostscript with an error when
+      one tries to convert it to (now unencrypted) PDF. Change the filter to
+      normalize such PostScript using ps2ps before conversion.
 
  -- Till Kamppeter <tkamppeter@gmail.com>  Mon, 18 Aug 2008 13:11:36 +0200
 
