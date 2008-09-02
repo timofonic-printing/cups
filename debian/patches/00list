@@ -5,6 +5,7 @@ pdftops-dont_fail_on_cancel.dpatch
 
 # patches accepted and committed upstream
 freebsd.dpatch
+cupsfilter-path-typo.dpatch
 
 # patches sent upstream
 pidfile.dpatch
@@ -24,7 +25,6 @@ classes_crash.dpatch
 reactivate_recommended_driver.dpatch
 include_krb5_h_in_job_h.dpatch
 search_mime_files_in_usr_share.dpatch
-cupsfilter-path-typo.dpatch
 pjl-display-ready-message.dpatch
 
 # Ubuntu patches
