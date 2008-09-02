@@ -75,9 +75,10 @@ binary-post-install/cups::
 	# the system-config-printer applet
 	install -D -m 644 packaging/cups-dbus.conf $(DEB_DESTDIR)/../cups/etc/dbus-1/system.d/cups.conf
 
-	# Install AppArmor profile on Ubuntu
+	# Install AppArmor and ufw profile on Ubuntu
 	if [ "`lsb_release -is 2>/dev/null`" = "Ubuntu" ]; then \
 	   install -D -m 644 debian/local/apparmor-profile debian/$(cdbs_curpkg)/etc/apparmor.d/usr.sbin.cupsd; \
+	   install -D -m 644 debian/local/cups.ufw.profile debian/$(cdbs_curpkg)/etc/ufw/applications.d/cups; \
 	fi
 
 	# Install documentation of the PDF CUPS filters
