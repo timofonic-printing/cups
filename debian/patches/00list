@@ -7,6 +7,7 @@ pdftops-dont_fail_on_cancel.dpatch
 # patches accepted and committed upstream
 freebsd.dpatch
 cupsfilter-path-typo.dpatch
+pjl-display-ready-message.dpatch
 
 # patches sent upstream
 pidfile.dpatch
@@ -25,7 +26,6 @@ device_uri.dpatch
 classes_crash.dpatch
 reactivate_recommended_driver.dpatch
 include_krb5_h_in_job_h.dpatch
-pjl-display-ready-message.dpatch
 
 # Ubuntu patches
 ubuntu-disable-browsing.dpatch
