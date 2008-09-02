@@ -38,8 +38,10 @@ cups (1.3.8-6) UNRELEASED; urgency=low
     (Closes: #495598)
   * debian/patches/: Update the status of patches, add some upstream
     references, update status in 00list.
+  * Drop obsolete include_krb5_h_in_job_h.dpatch, package builds fine in
+    current unstable.
 
- -- Martin Pitt <mpitt@debian.org>  Tue, 02 Sep 2008 09:27:06 +0200
+ -- Martin Pitt <mpitt@debian.org>  Tue, 02 Sep 2008 10:35:33 +0200
 
 cups (1.3.8-5) experimental; urgency=low
 

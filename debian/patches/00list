@@ -18,7 +18,6 @@ manpage-translations.dpatch
 
 # patches which should go upstream
 classes_crash.dpatch
-include_krb5_h_in_job_h.dpatch
 
 # Debian patches
 quiesce_ipp_logging.dpatch
