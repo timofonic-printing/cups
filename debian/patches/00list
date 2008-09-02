@@ -1,5 +1,6 @@
 # patches taken from upstream SVN:
 manpage-typos.dpatch
+search_mime_files_in_usr_share.dpatch
 pdftops-cups-1.4.dpatch
 pdftops-dont_fail_on_cancel.dpatch
 
@@ -24,7 +25,6 @@ device_uri.dpatch
 classes_crash.dpatch
 reactivate_recommended_driver.dpatch
 include_krb5_h_in_job_h.dpatch
-search_mime_files_in_usr_share.dpatch
 pjl-display-ready-message.dpatch
 
 # Ubuntu patches
