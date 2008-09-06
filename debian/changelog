@@ -11,8 +11,9 @@ cups (1.3.8-8) UNRELEASED; urgency=low
   * debian/control: Drop the "It can be safely removed from your system" from
     the old package names, since that is untrue until the transition is
     actually complete. (Closes: #489246)
+  * debian/control: Bump Standards-Version (no actual changes necessary).
 
- -- Martin Pitt <mpitt@debian.org>  Sat, 06 Sep 2008 12:51:53 +0200
+ -- Martin Pitt <mpitt@debian.org>  Sat, 06 Sep 2008 13:21:33 +0200
 
 cups (1.3.8-7) experimental; urgency=low
 
