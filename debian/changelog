@@ -8,8 +8,11 @@ cups (1.3.8-8) UNRELEASED; urgency=low
     when being issued in a child process without stderr. (Closes: #497492)
   * confdirperms.dpatch, manpage-translations.dpatch: Revert note that Debian
     doesn't install lppasswd suid root, since we do. (Closes: #478280)
+  * debian/control: Drop the "It can be safely removed from your system" from
+    the old package names, since that is untrue until the transition is
+    actually complete. (Closes: #489246)
 
- -- Martin Pitt <mpitt@debian.org>  Sat, 06 Sep 2008 12:23:35 +0200
+ -- Martin Pitt <mpitt@debian.org>  Sat, 06 Sep 2008 12:51:53 +0200
 
 cups (1.3.8-7) experimental; urgency=low
 
