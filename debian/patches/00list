@@ -18,7 +18,6 @@ manpage-translations.dpatch
 quiesce-bonjour-warning.dpatch
 
 # patches which should go upstream
-classes_crash.dpatch
 device_uri.dpatch
 reactivate_recommended_driver.dpatch
 
