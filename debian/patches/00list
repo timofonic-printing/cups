@@ -23,7 +23,6 @@ device_uri.dpatch
 reactivate_recommended_driver.dpatch
 
 # Debian patches
-quiesce_ipp_logging.dpatch
 default_log_warn.dpatch
 confdirperms.dpatch
 

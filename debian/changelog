@@ -15,8 +15,11 @@ cups (1.3.8-8) UNRELEASED; urgency=low
   * Remove classes_crash.dpatch, it has been fixed upstream a while ago.
   * cupsaccept.dpatch: Rewrite to be consistent with current upstream code,
     and send it upstream.
+  * Drop quiesce_ipp_logging.dpatch: It was only necessary for the polling
+    from gnome-cups-icon, but fortunately gnome-cups-manager has been removed
+    now.
 
- -- Martin Pitt <mpitt@debian.org>  Sat, 06 Sep 2008 14:01:35 +0200
+ -- Martin Pitt <mpitt@debian.org>  Sat, 06 Sep 2008 14:49:12 +0200
 
 cups (1.3.8-7) experimental; urgency=low
 
