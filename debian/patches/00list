@@ -22,7 +22,6 @@ classes_crash.dpatch
 # Debian patches
 quiesce_ipp_logging.dpatch
 default_log_warn.dpatch
-dont_force_ssl.dpatch
 cupsaccept.dpatch
 confdirperms.dpatch
 device_uri.dpatch
