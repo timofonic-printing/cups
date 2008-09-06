@@ -6,8 +6,8 @@
 
 @DPATCH@
 diff -urNad trunk~/man/Makefile trunk/man/Makefile
---- trunk~/man/Makefile	2007-07-13 03:01:14.000000000 +0200
-+++ trunk/man/Makefile	2008-07-23 08:51:46.000000000 +0200
+--- trunk~/man/Makefile	2008-09-06 12:20:53.000000000 +0200
++++ trunk/man/Makefile	2008-09-06 12:22:44.000000000 +0200
 @@ -62,7 +62,12 @@
  # Make everything...
  #
@@ -52,7 +52,7 @@ diff -urNad trunk~/man/Makefile trunk/man/Makefile
  #
 diff -urNad trunk~/man/Makefile.l10n trunk/man/Makefile.l10n
 --- trunk~/man/Makefile.l10n	1970-01-01 01:00:00.000000000 +0100
-+++ trunk/man/Makefile.l10n	2008-07-23 08:51:46.000000000 +0200
++++ trunk/man/Makefile.l10n	2008-09-06 12:22:44.000000000 +0200
 @@ -0,0 +1,209 @@
 +#
 +# "$Id: $"
@@ -265,7 +265,7 @@ diff -urNad trunk~/man/Makefile.l10n trunk/man/Makefile.l10n
 +#
 diff -urNad trunk~/man/fr/Makefile trunk/man/fr/Makefile
 --- trunk~/man/fr/Makefile	1970-01-01 01:00:00.000000000 +0100
-+++ trunk/man/fr/Makefile	2008-07-23 08:51:46.000000000 +0200
++++ trunk/man/fr/Makefile	2008-09-06 12:22:44.000000000 +0200
 @@ -0,0 +1,13 @@
 +#
 +# "$Id: $"
@@ -282,7 +282,7 @@ diff -urNad trunk~/man/fr/Makefile trunk/man/fr/Makefile
 +#
 diff -urNad trunk~/man/po4a/cups.cfg trunk/man/po4a/cups.cfg
 --- trunk~/man/po4a/cups.cfg	1970-01-01 01:00:00.000000000 +0100
-+++ trunk/man/po4a/cups.cfg	2008-07-23 08:51:46.000000000 +0200
++++ trunk/man/po4a/cups.cfg	2008-09-06 12:22:44.000000000 +0200
 @@ -0,0 +1,39 @@
 +[po4a_paths] po4a/po/cups.pot fr:po4a/po/fr.po
 +
@@ -325,8 +325,8 @@ diff -urNad trunk~/man/po4a/cups.cfg trunk/man/po4a/cups.cfg
 +
 diff -urNad trunk~/man/po4a/po/fr.po trunk/man/po4a/po/fr.po
 --- trunk~/man/po4a/po/fr.po	1970-01-01 01:00:00.000000000 +0100
-+++ trunk/man/po4a/po/fr.po	2008-07-23 08:53:21.000000000 +0200
-@@ -0,0 +1,8409 @@
++++ trunk/man/po4a/po/fr.po	2008-09-06 12:23:07.000000000 +0200
+@@ -0,0 +1,8407 @@
 +# Translation of the cups manpages into French.
 +#
 +# Original translations from:
@@ -7461,15 +7461,13 @@ diff -urNad trunk~/man/po4a/po/fr.po trunk/man/po4a/po/fr.po
 +"been made to make it secure against exploits that could grant super-user "
 +"privileges to unprivileged users, paranoid system administrators may wish to "
 +"disable or change the ownership of the program to an unprivileged account.  "
-+"(So Debian installs I<lppasswd> command with setuid to lp)"
 +msgstr ""
 +"La commande B<lppasswd> est installée avec le bit setuid activé. Toutes les "
 +"précautions ont été prises pour empêcher les failles permettant l'accès aux "
 +"privilèges du super-utilisateur par un utilisateur non privilégié. "
 +"Cependant, certains administrateurs systèmes paranoïaques peuvent vouloir "
 +"désactiver ce programme ou en modifier le propriétaire en un utilisateur non "
-+"privilégié (c'est la raison pour laquelle le propriétaire de B<lppasswd> sur "
-+"les systèmes Debian est lp)."
++"privilégié."
 +
 +# type: Plain text
 +#: lppasswd.man:56
