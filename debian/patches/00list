@@ -20,7 +20,6 @@ cupsaccept.dpatch
 dont-chown-symlinked-ssl.dpatch
 
 # patches which should go upstream
-device_uri.dpatch
 reactivate_recommended_driver.dpatch
 
 # Debian patches

@@ -22,8 +22,9 @@ cups (1.3.8-8) UNRELEASED; urgency=low
     running cups as system user. Remove the SSL certificate bits as well,
     rewrite it to be upstream compatible, split it out to
     dont-chown-symlinked-ssl.dpatch, reported it upstream.
+  * Remove device_uri.dpatch, does not seem to be necessary any more.
 
- -- Martin Pitt <mpitt@debian.org>  Sat, 06 Sep 2008 14:59:30 +0200
+ -- Martin Pitt <mpitt@debian.org>  Sat, 06 Sep 2008 15:47:20 +0200
 
 cups (1.3.8-7) experimental; urgency=low
 
