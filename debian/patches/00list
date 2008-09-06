@@ -19,14 +19,14 @@ quiesce-bonjour-warning.dpatch
 
 # patches which should go upstream
 classes_crash.dpatch
+device_uri.dpatch
+reactivate_recommended_driver.dpatch
 
 # Debian patches
 quiesce_ipp_logging.dpatch
 default_log_warn.dpatch
 cupsaccept.dpatch
 confdirperms.dpatch
-device_uri.dpatch
-reactivate_recommended_driver.dpatch
 
 # Ubuntu patches
 ubuntu-disable-browsing.dpatch
