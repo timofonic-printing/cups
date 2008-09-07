@@ -1,3 +1,10 @@
+cups (1.3.8-10) UNRELEASED; urgency=low
+
+  * rootbackends-worldreadable.dpatch: Do not run backends as root if they are
+    group or world writable (this is by and large a paranoia fix, though).
+
+ -- Martin Pitt <mpitt@debian.org>  Sun, 07 Sep 2008 09:57:28 +0200
+
 cups (1.3.8-9) experimental; urgency=low
 
   * Previous upload had some cruft in the diff.gz which caused some changed
