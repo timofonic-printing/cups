@@ -5,13 +5,14 @@ cups (1.3.8-10) UNRELEASED; urgency=low
     group or world writable (this is by and large a paranoia fix, though).
   * dont-chown-symlinked-ssl.dpatch: Replace patch with the upstream committed
     version, which is more general.
+  * debian/control: Package development moved to bzr, update Vcs- tags.
 
   [ Johan Kiviniemi ]
   * debian/filters/pstopdf: Apply PPD settings (resolution, page size, page
     margins) to the conversion (LP: #263049).
   * debian/control: cups Depends: bc (for margin calculation).
 
- -- Martin Pitt <mpitt@debian.org>  Mon, 08 Sep 2008 09:26:06 +0200
+ -- Martin Pitt <mpitt@debian.org>  Wed, 10 Sep 2008 10:39:01 +0200
 
 cups (1.3.8-9) experimental; urgency=low
 
