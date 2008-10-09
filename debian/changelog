@@ -1,3 +1,11 @@
+cups (1.3.8-14) UNRELEASED; urgency=low
+
+  * Add admin-fr-translation.dpatch: Update the French admin.tmpl, to have the
+    missing "Find new printer" button and the "Subscriptions" section. Thanks
+    to Yves-Alexis Perez! (Closes: #475270)
+
+ -- Martin Pitt <mpitt@debian.org>  Thu, 09 Oct 2008 10:28:43 +0200
+
 cups (1.3.8-13) experimental; urgency=low
 
   [ Till Kamppeter ]
