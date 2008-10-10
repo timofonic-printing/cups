@@ -15,8 +15,13 @@ cups (1.3.9-1) UNRELEASED; urgency=low
     - cupsfilter-path-typo.dpatch
     - pjl-display-ready-message.dpatch
     - dont-chown-symlinked-ssl.dpatch
+  * Add hpgl-regression.dpatch: Revert the SP_select_pen() enumeration change
+    introduced in STR #2911, because it changes the color mapping (e. g. "SP1"
+    would now select a white pen instead of a black one, and "SP0" would not
+    be valid at all any more). Also fix a remaining off-by-one loop. (STR
+    #2966)
 
- -- Martin Pitt <mpitt@debian.org>  Fri, 10 Oct 2008 10:00:34 +0200
+ -- Martin Pitt <mpitt@debian.org>  Fri, 10 Oct 2008 10:58:34 +0200
 
 cups (1.3.8-13) experimental; urgency=low
 
