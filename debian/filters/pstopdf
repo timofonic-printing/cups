@@ -60,14 +60,14 @@ echo "DEBUG: Page size: $pagesize" >&2
 
 width=
 height=
-tl_x=
-tl_y=
-br_x=
-br_y=
+bl_x=
+bl_y=
+tr_x=
+tr_y=
 if test -n "$pagesize" && test -e "$PPD"; then
   eval "$(sed -nre 's|^\*PaperDimension\s+'"$pagesize"'/[^:]+:\s+"(\S+)\s+(\S+)".*|width="\1"; height="\2"|p' "$PPD")"
 
-  eval "$(sed -nre 's|^\*ImageableArea\s+'"$pagesize"'/[^:]+:\s+"(\S+)\s+(\S+)\s+(\S+)\s+(\S+)".*|tl_x="\1"; tl_y="\2"; br_x="\3"; br_y="\4"|p' "$PPD")"
+  eval "$(sed -nre 's|^\*ImageableArea\s+'"$pagesize"'/[^:]+:\s+"(\S+)\s+(\S+)\s+(\S+)\s+(\S+)".*|bl_x="\1"; bl_y="\2"; tr_x="\3"; tr_y="\4"|p' "$PPD")"
 fi
 echo "DEBUG: Width: $width, height: $height, absolute margins: $tl_x, $tl_y, $br_x, $br_y" >&2
 
@@ -76,12 +76,12 @@ margin_b=
 margin_r=
 margin_t=
 if test -n "$width" && test -n "$height" && \
-   test -n "$tl_x" && test -n "$tl_y" && \
-   test -n "$br_x" && test -n "$br_y"; then
-  margin_l="$tl_x"
-  margin_b="$(printf "scale=8; (%s)-(%s)\n" "$height" "$br_y" | bc)"
-  margin_r="$(printf "scale=8; (%s)-(%s)\n" "$width" "$br_x" | bc)"
-  margin_t="$tl_y"
+   test -n "$bl_x" && test -n "$bl_y" && \
+   test -n "$tr_x" && test -n "$tr_y"; then
+  margin_l="$bl_x"
+  margin_b="$bl_y"
+  margin_r="$(printf "scale=8; (%s)-(%s)\n" "$width" "$tr_x" | bc)"
+  margin_t="$(printf "scale=8; (%s)-(%s)\n" "$height" "$tr_y" | bc)"
 fi
 echo "DEBUG: Relative margins: $margin_l, $margin_b, $margin_r, $margin_t" >&2
 
