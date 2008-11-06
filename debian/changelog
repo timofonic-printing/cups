@@ -7,7 +7,7 @@ cups (1.3.9-3) UNRELEASED; urgency=low
     to PDF in the next step. Fixed also the sed magic so that the paper size
     and the margins get really read from the PPD and fixed the calculation of
     the top and bottom margins, they were exchanged. Fixes LP: #289759,
-    LP: #292690, LP: #282186. Possible fix for LP: #293883.
+    LP: #292690, LP: #282186. Possible fix for LP #293883.
 
   [ Martin Pitt ]
   * debian/local/apparmor-profile: Allow dnssd backend to create various less
