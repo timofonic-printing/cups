@@ -50,7 +50,7 @@ case "$1" in
 		rm -f /etc/printcap
 	    fi
 
-	    printcap_file=`egrep '^Printcap ' /etc/cups/cupsd.conf | awk '{print $2}'`
+	    printcap_file=`egrep '^Printcap ' /etc/cups/cupsd.conf | awk '{print $2}' | tail -n 1`
 	    if [ -z "$printcap_file" ]; then
 		printcap_file=/var/run/cups/printcap
 	    fi
