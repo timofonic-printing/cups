@@ -1,3 +1,12 @@
+cups (1.3.9-7) UNRELEASED; urgency=low
+
+  [ Till Kamppeter ]
+  * debian/filters/pstopdf: Do not supply the margins from the PPD to the
+    ps2pdf process, as this breaks full-bleed printing and is also disturbs 
+    the printing if PPDs have too conservative margin definitions.
+
+ -- Till Kamppeter <till.kamppeter@gmail.com>  Thu, 20 Nov 2008 20:56:55 +0100
+
 cups (1.3.9-6) experimental; urgency=low
 
   [ Till Kamppeter ]
