@@ -1,16 +1,14 @@
-cups (1.3.9-8) UNRELEASED; urgency=low
+cups (1.3.9-8) experimental; urgency=low
 
-  [ Till Kamppeter ]
   * debian/local/filters/pdf-filters/pdftopdf/P2POutputStream.cxx,
     debian/local/filters/pdf-filters/pdftopdf/P2POutputStream.h: Removed
     an endianess dependency from the pdftopdf filter, so that it also
     works on non-PC platforms like PowerPC (LP: #271350).
-
   * debian/filters/pstopdf: Do not supply the margins from the PPD to the
     ps2pdf process, as this breaks full-bleed printing and is also disturbs 
     the printing if PPDs have too conservative margin definitions (LP: #282186).
 
- -- Till Kamppeter <till.kamppeter@gmail.com>  Sun, 23 Nov 2008 22:04:55 +0100
+ -- Till Kamppeter <till.kamppeter@gmail.com>  Wed, 26 Nov 2008 15:14:57 +0100
 
 cups (1.3.9-7) experimental; urgency=low
 
