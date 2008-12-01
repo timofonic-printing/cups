@@ -11,7 +11,9 @@ cups (1.3.9-8) experimental; urgency=low
   * debian/local/filters/pdf-filters/pdftopdf/P2POutputStream.cxx,
     debian/local/filters/pdf-filters/pdftopdf/P2POutputStream.h: Removed
     an endianess dependency from the pdftopdf filter, so that it also
-    works on non-PC platforms like PowerPC (LP: #271350).
+    works on non-PC platforms like PowerPC (LP: #271350). This also fixes the
+    filter on mipsel and makes the test suite, and thus the build, succeed
+    again. (Closes: #500305)
   * debian/filters/pstopdf: Do not supply the margins from the PPD to the
     ps2pdf process, as this breaks full-bleed printing and is also disturbs 
     the printing if PPDs have too conservative margin definitions (LP: #282186).
