@@ -1,3 +1,11 @@
+cups (1.3.9-12) UNRELEASED; urgency=low
+
+  * debian/cups.postinst: Let the PPD files of the existing print queues get
+    automatically updated after each installation of this package (if they
+    use PPDs of this package).
+
+ -- Till Kamppeter <till.kamppeter@gmail.com>  Thu, 15 Jan 2008 22:25:55 +0100
+
 cups (1.3.9-11) experimental; urgency=low
 
   * debian/local/filters/cpdftocps: Fixed the fix for the number of copies.
