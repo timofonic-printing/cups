@@ -676,7 +676,6 @@ int main(int argc, char *argv[]) {
      * This is for compatibility with pdftops filter.
      */
     p2pdoc->autoRotate(&mediaBox);
-    p2pdoc->position(&mediaBox,0,0);
   }
 
   p2pdoc->setMediaBox(&mediaBox);
