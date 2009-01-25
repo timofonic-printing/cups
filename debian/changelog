@@ -19,7 +19,11 @@ cups (1.3.9-12) UNRELEASED; urgency=low
       being reached in scheduler/{ipp.c,subscriptions.c}
     - CVE-2008-5183
 
- -- Till Kamppeter <till.kamppeter@gmail.com>  Mon, 10 Jan 2008 13:19:55 +0100
+  [ Martin Pitt ]
+  * pidfile.dpatch: Adapt to changes from MaxSubscriptions fix from
+    above.
+
+ -- Till Kamppeter <till.kamppeter@gmail.com>  Sun, 25 Jan 2009 12:04:33 +0100
 
 cups (1.3.9-11) experimental; urgency=low
 
