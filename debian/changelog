@@ -5,8 +5,15 @@ cups (1.3.9-13) UNRELEASED; urgency=low
     PDF output with a newline (LP: #303691). Do not impose the page size from
     the PPD file to all pages if no page size is supplied by the command line.
     This prevented from automatic papewr tray switching to the correct paper
-    sizes when a multiple-page-size document is printed (partial fix for\
+    sizes when a multiple-page-size document is printed (partial fix for
     LP: #310575).
+
+  * debian/patches/pdftops-cups-1.4.dpatch: Updated from CUPS 1.4 SVN. Contains
+    fixes for multiple-page-size document printing (partial fix for
+    LP: #310575).
+
+  * debian/patches/pdftops-dont_fail_on_cancel.dpatch: Removed, should be
+    fixed in the new upstream version of pdftops.
 
  -- Till Kamppeter <till.kamppeter@gmail.com>  Mon, 26 Jan 2009 17:27:44 +0100
 
