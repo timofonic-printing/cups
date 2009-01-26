@@ -67,6 +67,7 @@ namespace {
   GBool deviceCollate = gFalse;
   GBool deviceReverse = gFalse;
   GBool autoRotate = gTrue;
+  GBool forcePageSize = gFalse;
 };
 
 void CDECL myErrorFun(int pos, char *msg, va_list args)
@@ -103,6 +104,7 @@ void emitJCLOptions(FILE *fp, int copies)
   char buf[1024];
   ppd_attr_t *attr;
   int pdftoopvp = 0;
+  int datawritten = 0;
 
   if (ppd == 0) return;
   if ((attr = ppdFindAttr(ppd,"pdftopdfJCLBegin",NULL)) != NULL) {
@@ -114,6 +116,7 @@ void emitJCLOptions(FILE *fp, int copies)
 	    continue;
 	}
 	fputc(attr->value[i],fp);
+	datawritten = 1;
     }
   }
          
@@ -123,8 +126,10 @@ void emitJCLOptions(FILE *fp, int copies)
   } else {
     if ((attr = ppdFindAttr(ppd,"pdftopdfJCLCopies",buf)) != NULL) {
       fputs(attr->value,fp);
+      datawritten = 1;
     } else if (pdftoopvp) {
       fprintf(fp,"Copies=%d;",copies);
+      datawritten = 1;
     }
   }
   for (section = (int)PPD_ORDER_ANY;
@@ -137,14 +142,16 @@ void emitJCLOptions(FILE *fp, int copies)
         ((ppd_option_t *)(choices[i]->option))->keyword);
       if ((attr = ppdFindAttr(ppd,buf,choices[i]->choice)) != NULL) {
 	fputs(attr->value,fp);
+	datawritten = 1;
       } else if (pdftoopvp) {
 	fprintf(fp,"%s=%s;",
 	  ((ppd_option_t *)(choices[i]->option))->keyword,
 	  choices[i]->choice);
+	datawritten = 1;
       }
     }
   }
-  fputc('\n',fp);
+  if (datawritten) fputc('\n',fp);
 }
 
 void parseOpts(int argc, char **argv)
@@ -184,6 +191,12 @@ void parseOpts(int argc, char **argv)
     pageBottom = pagesize->bottom;
     pageLeft = pagesize->left;
     pageRight = pagesize->right;
+    if (cupsGetOption("media",num_options,options)
+	|| cupsGetOption("media-col",num_options,options)
+	|| cupsGetOption("PageRegion",num_options,options)
+	|| cupsGetOption("PageSize",num_options,options)) {
+      forcePageSize = gTrue;
+    }
   }
   if ((val = cupsGetOption("landscape",num_options,options)) != 0) {
     if (strcasecmp(val, "no") != 0 && strcasecmp(val, "off") != 0 &&
@@ -678,9 +691,11 @@ int main(int argc, char *argv[]) {
     p2pdoc->autoRotate(&mediaBox);
   }
 
-  /* set all pages's mediaBox to the target page size */
-  if (orientation != 0
-     || naturalScaling != 1.0 || fitplot || numberUp != 1 || position) {
+  /* set all pages's mediaBox to the target page size, but only if a page
+   * size is given on the command line or an option which influences the
+   * printout size is used */
+  if (forcePageSize || orientation != 0 ||
+      naturalScaling != 1.0 || fitplot || numberUp != 1 || position) {
     p2pdoc->setMediaBox(&mediaBox);
   }
 
