@@ -1,6 +1,9 @@
 cups (1.3.9-13) UNRELEASED; urgency=low
 
   [ Till Kamppeter ]
+  * debian/filters/pstopdf: Only apply paper size if a paper size setting is
+    explicitly done via the command line.
+
   * debian/local/filters/cpdftocps: Only the last digit of the number of
     copies was used (LP: #309314).
 
