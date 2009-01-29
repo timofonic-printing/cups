@@ -62,9 +62,9 @@ margin_l=
 margin_b=
 margin_r=
 margin_t=
-# Apply a paper size to the conversion process only if it is supplied on
-# the command line
-if echo "$5" | egrep -q '\b(PageSize|PageRegion|media|media-col)\b'; then
+# Apply a paper size to the conversion process only if the "fitplot" or
+# "fit-to-page" option is supplied
+if echo "$5" | egrep -q '\b(fitplot|fit-to-page)\b'; then
     pagesize=
     eval "$(printf "%s" "$5" | sed -nre 's/.*(^|\s)(media|PageSize)=(\S+).*/pagesize="${pagesize:-\3}"/p')"
     if test -e "$PPD"; then

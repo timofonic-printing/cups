@@ -184,6 +184,11 @@ void parseOpts(int argc, char **argv)
     P2PDoc::options.copies = atoi(choice->choice);
   }
   if (P2PDoc::options.copies == 0) P2PDoc::options.copies = 1;
+  if ((val = cupsGetOption("fitplot", num_options, options)) == NULL)
+    val = cupsGetOption("fit-to-page", num_options, options);
+  if (val && strcasecmp(val, "no") && strcasecmp(val, "off") &&
+      strcasecmp(val, "false"))
+    fitplot = gTrue;
   if ((pagesize = ppdPageSize(ppd,0)) != 0) {
     pageWidth = pagesize->width;
     pageLength = pagesize->length;
@@ -191,12 +196,7 @@ void parseOpts(int argc, char **argv)
     pageBottom = pagesize->bottom;
     pageLeft = pagesize->left;
     pageRight = pagesize->right;
-    if (cupsGetOption("media",num_options,options)
-	|| cupsGetOption("media-col",num_options,options)
-	|| cupsGetOption("PageRegion",num_options,options)
-	|| cupsGetOption("PageSize",num_options,options)) {
-      forcePageSize = gTrue;
-    }
+    forcePageSize = fitplot;
   }
   if ((val = cupsGetOption("landscape",num_options,options)) != 0) {
     if (strcasecmp(val, "no") != 0 && strcasecmp(val, "off") != 0 &&
@@ -316,11 +316,6 @@ void parseOpts(int argc, char **argv)
       }
   }
 
-  if ((val = cupsGetOption("fitplot",num_options,options)) != 0 &&
-      (!strcasecmp(val, "true") || !strcasecmp(val, "on") ||
-       !strcasecmp(val, "yes"))) {
-    fitplot = gTrue;
-  }
   if ((val = cupsGetOption("number-up",num_options,options)) != 0) {
     switch (intval = atoi(val)) {
       case 1 :
@@ -464,7 +459,7 @@ void parseOpts(int argc, char **argv)
   if ((val = cupsGetOption("scaling",num_options,options)) != 0) {
     scaling = atoi(val) * 0.01;
     fitplot = gTrue;
-  } else if (cupsGetOption("fitplot",num_options,options)) {
+  } else if (fitplot) {
     scaling = 1.0;
   }
   if ((val = cupsGetOption("natural-scaling",num_options,options)) != 0) {
