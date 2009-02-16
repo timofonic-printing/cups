@@ -10,7 +10,7 @@ Build-Depends: libpam0g-dev, libtiff4-dev, libjpeg62-dev, zlib1g-dev,
  dpatch (>= 1.11), libdbus-1-dev, libkrb5-dev | heimdal-dev,
  libavahi-compat-libdnssd-dev, libpoppler-dev, poppler-utils | xpdf-utils,
  lsb-release, po4a (>= 0.31), autotools-dev, autoconf, automake, libtool,
- libijs-dev, hardening-wrapper
+ libijs-dev, ghostscript, hardening-wrapper
 Uploaders: Kenshi Muto <kmuto@debian.org>, 
  Martin Pitt <mpitt@debian.org>, Roger Leigh <rleigh@debian.org>, 
  Martin-Éric Racine <q-funk@iki.fi>, Masayuki Hatta (mhatta) <mhatta@debian.org>,
