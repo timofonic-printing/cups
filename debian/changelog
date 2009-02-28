@@ -6,8 +6,10 @@ cups (1.3.9-15) UNRELEASED; urgency=low
   * debian/rules: Move init script priority to 50, so that cups starts later
     in the boot sequence. There is no reason why it should start so early
     (before e. g. gdm). Do the transition on upgrades in debian/cups.postinst.
+  * debian/control: Promote ttf-freefont from Recommends to Depends, since the
+    PDF filter chain needs it. (Closes: #516335)
 
- -- Martin Pitt <mpitt@debian.org>  Fri, 27 Feb 2009 09:16:01 +0100
+ -- Martin Pitt <mpitt@debian.org>  Sat, 28 Feb 2009 15:13:44 +0100
 
 cups (1.3.9-14) unstable; urgency=low
 
