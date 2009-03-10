@@ -118,7 +118,9 @@
 
   # Kerberos authentication
   /etc/krb5.conf r,
-  /etc/cups/krb5.keytab rw,
+  /etc/krb5.keytab rk,
+  /etc/cups/krb5.keytab rwk,
+  /tmp/krb5cc* k,
 }
 
 # separate profile since this needs to write into /home
