@@ -9,6 +9,8 @@ cups (1.3.9-16) UNRELEASED; urgency=low
     allowed by default. It does not provide any D-BUS service right now. Also
     remove the obsolete file on upgrades in debian/cups.preinst.
     (Closes: #510634, LP: #318742)
+  * Add logfiles_adm_readable.dpatch: Make log files readable by group "adm".
+    (LP: #345953)
 
  -- Martin Pitt <mpitt@debian.org>  Thu, 19 Mar 2009 11:20:14 +0100
 
