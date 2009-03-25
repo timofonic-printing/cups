@@ -4,7 +4,7 @@ cups (1.3.9-16) UNRELEASED; urgency=low
   * debian/local/filters/pdf-filters/pdftopdf/P2PResources.cxx: Fixed
     corruption of output when generating mmultiple copies of EOG or GIMP
     output files (LP: #345183).
-  * debian/ghostscript.postinst: Silenced non-fatal error messages when
+  * debian/cups.postinst: Silenced non-fatal error messages when
     post-instyall script updates PPDs and there are PPDs not belonging to
     a CUPS queue in /etc/cups/ppd/ (LP: #345866).
 
