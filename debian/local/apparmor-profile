@@ -44,6 +44,7 @@
   /bin/dash ixr,
   /bin/hostname ixr,
   /dev/lp* rw,
+  deny /dev/tty rw,  # silence noise
   /dev/ttyS* rw,
   /dev/usb/lp* rw,
   /dev/parport* rw,
@@ -115,6 +116,7 @@
 
   # Kerberos authentication
   /etc/krb5.conf r,
+  deny /etc/krb5.conf w,
   /etc/krb5.keytab rk,
   /etc/cups/krb5.keytab rwk,
   /tmp/krb5cc* k,

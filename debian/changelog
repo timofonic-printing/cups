@@ -21,6 +21,9 @@ cups (1.3.9-16) UNRELEASED; urgency=low
   * Add logfiles_adm_readable.dpatch: Make log files readable by group "adm".
     (LP: #345953)
   * debian/changelog: Fix cruft at the end of file.
+  * debian/local/apparmor-profile: Explicitly deny access to /dev/tty and
+    writing access to /etc/krb5.conf, so that accesses to them do not create
+    log spewage. (LP: #348556)
 
  -- Martin Pitt <mpitt@debian.org>  Thu, 19 Mar 2009 11:20:14 +0100
 
