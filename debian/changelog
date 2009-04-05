@@ -1,5 +1,12 @@
 cups (1.3.9-17) UNRELEASED; urgency=low
 
+  [ Till Kamppeter ]
+  * debian/filters/pstopdf: Added "-dDoNumCopies" to the "ps2pdf" call in
+    the pstopdf CUPS filter, so that Ghostscript takes into account
+    /#copies and /NumCopies when converting incoming PostScript to PDF
+    (Ghostscript upstream bug #690355, LP: #320391).
+
+  [ Martin Pitt ]
   * debian/control: Update section of cups-dbg to "debug".
 
  -- Martin Pitt <mpitt@debian.org>  Sat, 28 Mar 2009 12:12:03 +0100
