@@ -1,4 +1,4 @@
-cups (1.3.9-17) UNRELEASED; urgency=low
+cups (1.3.9-17) unstable; urgency=low
 
   [ Till Kamppeter ]
   * debian/filters/pstopdf: Added "-dDoNumCopies" to the "ps2pdf" call in
@@ -9,7 +9,7 @@ cups (1.3.9-17) UNRELEASED; urgency=low
   [ Martin Pitt ]
   * debian/control: Update section of cups-dbg to "debug".
 
- -- Martin Pitt <mpitt@debian.org>  Sat, 28 Mar 2009 12:12:03 +0100
+ -- Martin Pitt <mpitt@debian.org>  Sun, 05 Apr 2009 18:04:33 -0700
 
 cups (1.3.9-16) unstable; urgency=low
 
