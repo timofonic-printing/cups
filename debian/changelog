@@ -1,5 +1,8 @@
 cups (1.3.9-18) UNRELEASED; urgency=low
 
+  * debian/filters/pstopdf: Added support for custom page sizes to the
+    pstopdf CUPS filter.
+
   * debian/filters/pstopdf: Call Ghostscript with the default paper size
     (from PPD or from CUPS filter command line) on its command line. Some
     applications generate PostScript without PageSize requests.

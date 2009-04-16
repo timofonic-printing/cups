@@ -63,17 +63,55 @@ margin_b=
 margin_r=
 margin_t=
 pagesize=
+unit=
+customw=
+customh=
 eval "$(printf "%s" "$5" | sed -nre 's/.*(^|\s)(media|PageSize)=(\S+).*/pagesize="${pagesize:-\3}"/p')"
 if test -e "$PPD"; then
     eval "$(sed -nre 's/^\*DefaultPageSize:\s+(\S+).*/pagesize="${pagesize:-\1}"/p' "$PPD")"
 fi
 echo "DEBUG: Page size: $pagesize" >&2
 
-if test -n "$pagesize" && test -e "$PPD"; then
+eval "$(printf "%s" "$pagesize" | sed -nre 's/^Custom\.([0-9\.]+)x([0-9\.]+)(\S*)$/customw="\1"; customh="\2"; unit="\3"/p')"
+
+if test -n "$customw" && test -n "$customh"; then
+    echo "DEBUG: Custom page size: $customw x $customh $unit" >&2
+
+    if test "$unit" = "in"; then
+	width="$(printf "scale=0; (%s)*(72.0)/(1.00)\n" "$customw" | bc)" 
+	height="$(printf "scale=0; (%s)*(72.0)/(1.00)\n" "$customh" | bc)"
+    elif test "$unit" = "cm"; then
+	width="$(printf "scale=0; (%s)*(72.0)/(2.54)\n" "$customw" | bc)" 
+	height="$(printf "scale=0; (%s)*(72.0)/(2.54)\n" "$customh" | bc)"
+    elif test "$unit" = "mm"; then
+	width="$(printf "scale=0; (%s)*(72.0)/(25.4)\n" "$customw" | bc)" 
+	height="$(printf "scale=0; (%s)*(72.0)/(25.4)\n" "$customh" | bc)"
+    else
+	width="$(printf "scale=0; (%s)/(1.00)\n" "$customw" | bc)" 
+	height="$(printf "scale=0; (%s)/(1.00)\n" "$customh" | bc)"
+    fi
+
+    if test -e "$PPD"; then
+	eval "$(sed -nre 's|^\*HWMargins:\s*(\S+)\s+(\S+)\s+(\S+)\s+(\S+)\s*|bl_x="\1"; bl_y="\2"; tr_x="\3"; tr_y="\4"|p' "$PPD")"
+
+	if test -n "$tr_x"; then
+	    tr_x="$(printf "scale=8; (%s)-(%s)\n" "$width" "$tr_x" | bc)"
+	fi
+	if test -n "$tr_y"; then
+	    tr_y="$(printf "scale=8; (%s)-(%s)\n" "$height" "$tr_y" | bc)"
+	fi
+    fi
+elif test -n "$pagesize" && test -e "$PPD"; then
     eval "$(sed -nre 's|^\*PaperDimension\s+'"$pagesize"'/[^:]+:\s+"(\S+)\s+(\S+)".*|width="\1"; height="\2"|p' "$PPD")"
 
     eval "$(sed -nre 's|^\*ImageableArea\s+'"$pagesize"'/[^:]+:\s+"(\S+)\s+(\S+)\s+(\S+)\s+(\S+)".*|bl_x="\1"; bl_y="\2"; tr_x="\3"; tr_y="\4"|p' "$PPD")"
 fi
+
+test -n "$bl_x" || bl_x=0
+test -n "$bl_y" || bl_y=0
+test -n "$tr_x" || tr_x=$width
+test -n "$tr_y" || tr_y=$height
+
 echo "DEBUG: Width: $width, height: $height, absolute margins: $bl_x, $bl_y, $tr_x, $tr_y" >&2
 
 if test -n "$width" && test -n "$height" && \
