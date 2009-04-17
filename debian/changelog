@@ -1,4 +1,4 @@
-cups (1.3.10-1) UNRELEASED; urgency=medium
+cups (1.3.10-1) unstable; urgency=medium
 
   [ Martin Pitt ]
   * New upstream security/bug fix release:
@@ -27,7 +27,7 @@ cups (1.3.10-1) UNRELEASED; urgency=medium
     to page sizes requested by the document (in contrary to Poppler).
     Fixes LP: #357732).
 
- -- Till Kamppeter <till.kamppeter@gmail.com>  Thu, 16 Apr 2009 16:34:55 +0200
+ -- Martin Pitt <mpitt@debian.org>  Fri, 17 Apr 2009 11:53:48 +0200
 
 cups (1.3.9-17) unstable; urgency=low
 
