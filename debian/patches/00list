@@ -25,6 +25,7 @@ testsuite-increase-wait-timeout.dpatch
 logfiles_adm_readable.dpatch
 default_log_warn.dpatch
 confdirperms.dpatch
+use-ps2write-ghostscript-device-for-pdftops-filter.dpatch
 
 # Ubuntu patches
 ubuntu-disable-browsing.dpatch
