@@ -1,11 +1,4 @@
 etc/cups/ssl
-etc/default
 usr/lib/cups/backend
-usr/lib/cups/backend-available
-usr/lib/cups/driver
 usr/local/share/ppd
-usr/share/cups/drivers
-usr/share/doc/cups
-usr/share/ppd/cups-included
 usr/share/ppd/custom
-var/cache/cups/ppd
