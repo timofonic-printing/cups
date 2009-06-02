@@ -1,5 +1,9 @@
 cups (1.3.10-3) UNRELEASED; urgency=low
 
+  * debian/control: Moved dependency on cups-client to Depends:, as
+    cups-client is needed by the post-install script for the update of the
+    PPDs of existing print queues.
+
   * debian/cups.postinst: Case-insensitive check for model names when updating
     PPDs of already existing print queues.
 

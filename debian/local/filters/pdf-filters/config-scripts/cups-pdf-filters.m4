@@ -24,6 +24,33 @@ AC_CHECK_LIB(poppler,main,
 )
 AC_SUBST(POPPLER_LIBS)
 
+dnl Check for freetype headers
+FREETYPE_LIBS=
+FREETYPE_CFLAGS=
+
+PKG_CHECK_MODULES(FREETYPE, freetype2,
+                  [freetype_pkgconfig=yes], [freetype_pkgconfig=no])
+
+if test "x$freetype_pkgconfig" = "xyes"; then
+
+  AC_DEFINE(HAVE_FREETYPE_H, 1, [Have FreeType2 include files])
+
+else
+
+  AC_PATH_PROG(FREETYPE_CONFIG, freetype-config, no)
+  if test "x$FREETYPE_CONFIG" != "xno" ; then
+
+    FREETYPE_CFLAGS=`$FREETYPE_CONFIG --cflags`
+    FREETYPE_LIBS=`$FREETYPE_CONFIG --libs`
+    AC_DEFINE(HAVE_FREETYPE_H, 1, [Have FreeType2 include files])
+
+  fi
+
+fi
+
+AC_SUBST(FREETYPE_CFLAGS)
+AC_SUBST(FREETYPE_LIBS)
+
 dnl check if GlobalParams::GlobalParams has a argument
 if grep "GlobalParams(char \*cfgFileName)" $POPPLER_SRCDIR/poppler/GlobalParams.h >/dev/null ;then
     AC_DEFINE([GLOBALPARAMS_HAS_A_ARG],,[GlobalParams::GlobalParams has a argument.])
@@ -56,6 +83,19 @@ if grep "mapToUnicode(.*Unicode[ ][ ]*\*u" $POPPLER_SRCDIR/poppler/CharCodeToUni
     AC_DEFINE([OLD_MAPTOUNICODE],,[Old CharCodeToUnicode::mapToUnicode])
 fi
 
+dnl check new GfxFontType
+if grep "fontType1C0T" $POPPLER_SRCDIR/poppler/GfxFont.h >/dev/null ;then
+    AC_DEFINE([HAVE_NEW_GFX_FONTTYPE],,[have new GfxFontType])
+fi
+
+dnl check if cms is available
+if grep "setDisplayProfileName" $POPPLER_SRCDIR/poppler/GfxState.h >/dev/null ;then
+    AC_DEFINE([USE_CMS],,[cms is available])
+    POPPLER_LIBS="$POPPLER_LIBS -llcms"
+fi
+
+AC_DEFINE_DIR(POPPLER_DATADIR, "{datarootdir}/poppler", [Poppler data dir])
+
 dnl Switch back to C.
 AC_LANG(C)
 
@@ -65,3 +105,46 @@ AC_CHECK_LIB(ijs,main,
   [ echo "*** ijs library not found. ***";exit ]
 )
 AC_SUBST(IJS_LIBS)
+
+dnl Test whether pdftoopvp should use the system's zlib
+AC_ARG_ENABLE([zlib],
+  [AS_HELP_STRING([--enable-zlib],[Build with zlib])],
+  [],[enable_zlib="no"])
+if test x$enable_zlib = xyes; then
+  AC_CHECK_LIB([z], [inflate],,
+               AC_MSG_ERROR("*** zlib library not found ***"))
+  AC_CHECK_HEADERS([zlib.h],,
+                   AC_MSG_ERROR("*** zlib headers not found ***"))
+elif test x$enable_zlib = xtry; then
+  AC_CHECK_LIB([z], [inflate],
+               [enable_zlib="yes"],
+               [enable_zlib="no"])
+  AC_CHECK_HEADERS([zlib.h],,
+                   [enable_zlib="no"])
+fi
+
+if test x$enable_zlib = xyes; then
+  ZLIB_LIBS="-lz"
+  AC_SUBST(ZLIB_LIBS)
+  AC_DEFINE(ENABLE_ZLIB)
+fi
+
+AM_CONDITIONAL(BUILD_ZLIB, test x$enable_zlib = xyes)
+AH_TEMPLATE([ENABLE_ZLIB],
+            [Use zlib instead of builtin zlib decoder.])
+
+dnl Test whether pdftoopvp should use the system's libjpeg
+AC_ARG_ENABLE(libjpeg,
+              AC_HELP_STRING([--disable-libjpeg],
+                             [Don't build against libjpeg.]),
+              enable_libjpeg=$enableval,
+              enable_libjpeg="try")
+if test x$enable_libjpeg != xno; then
+  POPPLER_FIND_JPEG
+fi
+
+AM_CONDITIONAL(BUILD_LIBJPEG, test x$enable_libjpeg = xyes)
+AH_TEMPLATE([ENABLE_LIBJPEG],
+            [Use libjpeg instead of builtin jpeg decoder.])
+
+PKG_CHECK_MODULES(FONTCONFIG, fontconfig >= 2.0.0)

@@ -9,7 +9,6 @@ cp filter/pdftoijs.cxx $1/filter/
 cp filter/texttopdf.c $1/filter/
 cp filter/pdfutils.h $1/filter/
 cp filter/pdfutils.c $1/filter/
-cp -r filter/fontembed $1/filter/
 cp filter/test_pdf1.c $1/filter/
 cp filter/test_pdf2.c $1/filter/
 cp conf/imagetopdf.convs $1/conf/
@@ -22,7 +21,9 @@ cp data/pdf.utf-8.simple $1/data/
 cp config-scripts/cups-pdf-filters.m4 $1/config-scripts/
 
 # Copy directories
+cp -r filter/fontembed $1/filter/
 cp -r pdftopdf $1
+cp -r pdftoopvp $1
 
 cd $1
 
@@ -33,6 +34,39 @@ cp config.h.in config.h.in.pdf-filters
 perl -p -i -e 's/(sinclude\(config-scripts\/cups-defaults\.m4\))/$1\nsinclude(config-scripts\/cups-pdf-filters.m4)/' configure.in
 autoconf
 perl -p -i -e 's:(\#endif\s*\/\*\s*\!_CUPS_CONFIG_H_\s*\*\/):
+
+/* CUPS Version is 1.1 */
+\#undef CUPS_1_1
+
+/* Use libjpeg instead of builtin jpeg decoder. */
+\#undef ENABLE_LIBJPEG
+
+/* Use zlib instead of builtin zlib decoder. */
+\#undef ENABLE_ZLIB
+
+/* Have FreeType2 include files */
+\#undef HAVE_FREETYPE_H
+
+/* Define to 1 if you have the <inttypes.h> header file. */
+\#undef HAVE_INTTYPES_H
+
+/* Define to 1 if you have the "cups" library (-lcups). */
+\#define HAVE_LIBCUPS 1
+
+/* Define to 1 if you have the <memory.h> header file. */
+\#undef HAVE_MEMORY_H
+
+/* have new GfxFontType */
+\#undef HAVE_NEW_GFX_FONTTYPE
+
+/* Define to 1 if you have the "popen" function. */
+\#undef HAVE_POPEN
+
+
+/* Define to 1 if you have the <stdint.h> header file. */
+\#undef HAVE_STDINT_H
+
+
 
 /* Define to 1 if you have the <dirent.h> header file, and it defines "DIR".
    */
@@ -74,6 +108,7 @@ perl -p -i -e 's:(\#endif\s*\/\*\s*\!_CUPS_CONFIG_H_\s*\*\/):
 \#undef OLD_MAPTOUNICODE
 
 \n$1:' config.h.in
+autoheader
 
 # Edit Makefiles
 cp conf/Makefile conf/Makefile.pdf-filters
