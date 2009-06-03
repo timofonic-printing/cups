@@ -102,9 +102,9 @@ if test -n "$customw" && test -n "$customh"; then
 	fi
     fi
 elif test -n "$pagesize" && test -e "$PPD"; then
-    eval "$(sed -nre 's|^\*PaperDimension\s+'"$pagesize"'/[^:]+:\s*"(\S+)\s+(\S+)".*|width="\1"; height="\2"|p' "$PPD")"
+    eval "$(sed -nre 's|^\*PaperDimension\s+'"$pagesize"'(/[^:]+\|):\s*"(\S+)\s+(\S+)".*|width="\2"; height="\3"|p' "$PPD")"
 
-    eval "$(sed -nre 's|^\*ImageableArea\s+'"$pagesize"'/[^:]+:\s*"(\S+)\s+(\S+)\s+(\S+)\s+(\S+)".*|bl_x="\1"; bl_y="\2"; tr_x="\3"; tr_y="\4"|p' "$PPD")"
+    eval "$(sed -nre 's|^\*ImageableArea\s+'"$pagesize"'(/[^:]+\|):\s*"(\S+)\s+(\S+)\s+(\S+)\s+(\S+)".*|bl_x="\2"; bl_y="\3"; tr_x="\4"; tr_y="\5"|p' "$PPD")"
 fi
 
 test -n "$bl_x" || bl_x=0
