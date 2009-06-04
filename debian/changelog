@@ -1,5 +1,8 @@
 cups (1.3.10-3) UNRELEASED; urgency=low
 
+  * debian/local/filters/pdf-filters/pdftopdf/P2PObject.h,
+    debian/local/filters/pdf-filters/pdftopdf/P2POutput.cxx: Fixed infinite
+    loop which occured for some PDF files (LP: #382880).
   * debian/filters/pstopdf: Make it also correctly working if PaperDimension
     and ImageableArea entries in the PPD have no translation strings. Thanks
     to Koji Otani to find the bug.
@@ -19,7 +22,7 @@ cups (1.3.10-3) UNRELEASED; urgency=low
   * debian/cups.postinst: Case-insensitive check for model names when updating
     PPDs of already existing print queues.
 
- -- Till Kamppeter <till.kamppeter@gmail.com>  Wed,  3 Jun 2009 00:00:00 +0200
+ -- Till Kamppeter <till.kamppeter@gmail.com>  Wed,  4 Jun 2009 17:15:00 +0200
 
 cups (1.3.10-2) unstable; urgency=low
 
