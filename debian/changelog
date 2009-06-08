@@ -27,6 +27,8 @@ cups (1.3.10-3) UNRELEASED; urgency=low
   * Add gnutls-pkgconfig.dpatch: Use "pkg-config gnutls" instead of deprecated
     libgnutls-config. (Closes: #529903)
   * Bump Standards-Version to 3.8.1 (no changes necessary).
+  * debian/control: Point Vcs-Browser: to bzr.d.o. loggerhead, and use http://
+    URL for Vcs-Bzr.
 
  -- Till Kamppeter <till.kamppeter@gmail.com>  Wed,  4 Jun 2009 17:15:00 +0200
 
