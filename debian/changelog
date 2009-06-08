@@ -1,5 +1,6 @@
 cups (1.3.10-3) UNRELEASED; urgency=low
 
+  [ Till Kamppeter ]
   * debian/local/filters/pdf-filters/pdftopdf/P2PObject.h,
     debian/local/filters/pdf-filters/pdftopdf/P2POutput.cxx: Fixed infinite
     loop which occured for some PDF files (LP: #382880).
@@ -21,6 +22,10 @@ cups (1.3.10-3) UNRELEASED; urgency=low
     PPDs of existing print queues.
   * debian/cups.postinst: Case-insensitive check for model names when updating
     PPDs of already existing print queues.
+
+  [ Martin Pitt ]
+  * Add gnutls-pkgconfig.dpatch: Use "pkg-config gnutls" instead of deprecated
+    libgnutls-config. (Closes: #529903)
 
  -- Till Kamppeter <till.kamppeter@gmail.com>  Wed,  4 Jun 2009 17:15:00 +0200
 
