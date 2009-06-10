@@ -21,6 +21,7 @@ rootbackends-worldreadable.dpatch
 drop_unnecessary_dependencies.dpatch
 reactivate_recommended_driver.dpatch
 testsuite-increase-wait-timeout.dpatch
+poppler-based-pdftops-fixes.dpatch
 
 # Debian patches
 logfiles_adm_readable.dpatch

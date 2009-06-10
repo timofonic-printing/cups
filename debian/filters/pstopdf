@@ -52,6 +52,23 @@ if test -e "$PPD"; then
 fi
 echo "DEBUG: Resolution: $resolution" >&2
 
+if test -n "$resolution"; then
+  # If the resolution is not symmetric, use the lower of the two,
+  # Ghostscript developers recommend to use square resolutions for the
+  # pdfwrite and ps2write output devices.
+  # See http://bugs.ghostscript.com/show_bug.cgi?id=690504
+  xres=
+  yres=
+  eval "$(printf "%s" "$resolution" | sed -nre 's/.*(^|\s)([0-9]+)x([0-9]+).*/xres="\2"; yres="\3"/p')"
+  if test -n "$xres" && test -n "$yres"; then
+    if [ "$xres" -lt "$yres" ]; then
+      resolution=$xres
+    else
+      resolution=$yres
+    fi
+  fi
+fi
+
 width=
 height=
 bl_x=
