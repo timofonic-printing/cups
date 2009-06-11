@@ -49,6 +49,10 @@ cups (1.3.10-3) UNRELEASED; urgency=low
   * debian/control: Drop ghostscript build dependency again, pdftops filter
     uses poppler again. Also Drop alternative xpdf-utils build dependency,
     since configure now checks for poppler's pdftops capabilities.
+  * debian/control, debian/rules: Do a build-time check if pdftops supports
+    -origpagesizes, and dynamically set the poppler-utils dependency. This is
+    a hack until https://bugs.freedesktop.org/show_bug.cgi?id=19777 makes it
+    into Debian.
 
  -- Till Kamppeter <till.kamppeter@gmail.com>  Wed,  4 Jun 2009 17:15:00 +0200
 
