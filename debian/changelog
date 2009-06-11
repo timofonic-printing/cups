@@ -46,6 +46,9 @@ cups (1.3.10-3) UNRELEASED; urgency=low
   * Bump Standards-Version to 3.8.1 (no changes necessary).
   * debian/control: Point Vcs-Browser: to bzr.d.o. loggerhead, and use http://
     URL for Vcs-Bzr.
+  * debian/control: Drop ghostscript build dependency again, pdftops filter
+    uses poppler again. Also Drop alternative xpdf-utils build dependency,
+    since configure now checks for poppler's pdftops capabilities.
 
  -- Till Kamppeter <till.kamppeter@gmail.com>  Wed,  4 Jun 2009 17:15:00 +0200
 
