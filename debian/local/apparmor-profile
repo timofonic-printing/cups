@@ -140,6 +140,9 @@
   capability setgid,
   capability setuid,
 
+  # unfortunate, but required for when $HOME is 700
+  capability dac_override,
+
   /bin/dash ixr,
   /bin/bash ixr,
   /etc/papersize r,
