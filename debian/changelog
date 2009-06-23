@@ -1,3 +1,12 @@
+cups (1.3.10-6) UNRELEASED; urgency=low
+
+  [ Stéphane Graber ]
+  * Add printer-filtering.dpatch: Add support for printer filtering.
+    With this patch, when the PRINTER_LIST environment variable is defined
+    only the printers (comma separated) in it will be displayed.
+
+ -- Martin Pitt <mpitt@debian.org>  Fri, 19 Jun 2009 10:47:14 -0400
+
 cups (1.3.10-5) unstable; urgency=low
 
   * debian/patches/read-embedded-options-from-incoming-postscript-and-add-to-ipp-attrs.dpatch:

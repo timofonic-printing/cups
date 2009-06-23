@@ -29,6 +29,7 @@ logfiles_adm_readable.dpatch
 default_log_warn.dpatch
 confdirperms.dpatch
 #use-ps2write-ghostscript-device-for-pdftops-filter.dpatch
+printer-filtering.dpatch
 
 # Ubuntu patches
 ubuntu-disable-browsing.dpatch
