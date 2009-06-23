@@ -1,5 +1,12 @@
 cups (1.3.10-6) UNRELEASED; urgency=low
 
+  [ Till Kamppeter ]
+  * debian/patches/read-embedded-options-from-incoming-postscript-and-add-to-ipp-attrs.dpatch:
+    Make CUPS read the number of copies out of Windows print jobs reliably by
+    also considering lines like "%%BeginNonPPDFeature: NumCopies 2". Thanks
+    to Dan Sheridan from Adelard (djs at adelard dot com) for this improvement
+    of the patch.
+
   [ Stéphane Graber ]
   * Add printer-filtering.dpatch: Add support for printer filtering.
     With this patch, when the PRINTER_LIST environment variable is defined
