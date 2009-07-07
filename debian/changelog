@@ -1,6 +1,9 @@
 cups (1.3.10-6) UNRELEASED; urgency=low
 
   [ Till Kamppeter ]
+  * debian/local/filters/textonly: Adding a final form feed to the job (via
+    PPD option) did not work (LP: #396673).
+
   * debian/local/filters/pdf-filters/filter/imagetopdf.c: imagetopdf proceeded
     the PDF output with a blank line. This made some filters misbehave.
 
