@@ -10,7 +10,7 @@ Build-Depends: libpam0g-dev, libtiff4-dev, libjpeg62-dev, zlib1g-dev,
  libavahi-compat-libdnssd-dev, libpoppler-dev (>= 0.10.0),
  poppler-utils, lsb-release, po4a (>= 0.31), autotools-dev, autoconf, automake,
  libtool, libijs-dev, hardening-wrapper, liblcms1-dev, libfreetype6-dev,
- libfontconfig1-dev, pkg-config
+ libfontconfig1-dev, pkg-config, libusb-dev
 Uploaders: Kenshi Muto <kmuto@debian.org>, 
  Martin Pitt <mpitt@debian.org>, Roger Leigh <rleigh@debian.org>, 
  Martin-Éric Racine <q-funk@iki.fi>, Masayuki Hatta (mhatta) <mhatta@debian.org>,
@@ -66,8 +66,7 @@ Depends: ${shlibs:Depends}, ${misc:Depends}, debconf (>= 1.2.9) | debconf-2.0,
  ghostscript, lsb-base (>= 3), cups-common, cups-client,
  ssl-cert (>= 1.0.11), adduser, bc, ttf-freefont
 Recommends: foomatic-filters (>= 4.0), 
- cups-driver-gutenprint, avahi-utils,
- ghostscript-cups
+ cups-driver-gutenprint, ghostscript-cups
 Suggests: cups-bsd, foomatic-db-engine, foomatic-db,
  hplip, xpdf-korean | xpdf-japanese | xpdf-chinese-traditional | xpdf-chinese-simplified, 
  cups-pdf, smbclient (>= 3.0.9)

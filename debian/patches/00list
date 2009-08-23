@@ -1,11 +1,6 @@
-# patches backported from upstream SVN trunk for 1.4:
-freebsd.dpatch
-manpage-typos.dpatch
-search_mime_files_in_usr_share.dpatch
-cupsaccept.dpatch
-gnutls-pkgconfig.dpatch
+# patches backported from upstream SVN trunk for 1.5:
 
-# patches accepted and committed upstream for next 1.3:
+# patches accepted and committed upstream for next 1.4:
 
 # patches sent upstream
 removecvstag.dpatch
@@ -19,7 +14,6 @@ rootbackends-worldreadable.dpatch
 # patches which should go upstream
 drop_unnecessary_dependencies.dpatch
 reactivate_recommended_driver.dpatch
-testsuite-increase-wait-timeout.dpatch
 poppler-based-pdftops-fixes.dpatch
 read-embedded-options-from-incoming-postscript-and-add-to-ipp-attrs.dpatch
 
