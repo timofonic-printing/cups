@@ -1,5 +1,7 @@
 cups (1.4.0~svn8773-1) UNRELEASED; urgency=low
 
+  * Everything except the handling of the now integrated CUPS DDK is done.
+
   * New upstream release.
     [ Changes listed explicitly here as they are not yet available on
       www.cups.org ]
@@ -191,8 +193,9 @@ cups (1.4.0~svn8773-1) UNRELEASED; urgency=low
     debian/patches/confdirperms.dpatch,
     debian/patches/printer-filtering.dpatch,
     debian/patches/ubuntu-disable-browsing.dpatch: Regenerated.
-  * debian/local/backends/dnssd, debian/control, debian/cups.install: "dnssd"
-    backend removed, DNS-SD discovery backend is now provided upstream.
+  * debian/local/backends/dnssd, debian/control, debian/cups.install,
+    debian/rules: "dnssd" backend removed, DNS-SD discovery backend is now
+    provided upstream.
   * debian/patches/dns-sd-check-typo.dpatch: Fixed typo in upstream code to
     check for the availability of dns_sd.h.
   * debian/patches/dnssd-avahi.dpatch: Added avahi support for the "dnssd" CUPS
@@ -214,7 +217,12 @@ cups (1.4.0~svn8773-1) UNRELEASED; urgency=low
     can get defined if CUPS is 1.4.x or newer.
   * debian/local/filters/pdf-filters/pdftoopvp/Makefile,
     debian/local/filters/pdf-filters/pdftopdf/Makefile: Added missing
-    "unittests" targets to the Makefiles of the PDF filters.
+    "unittests", "install-data", "install-headers", "install-libs",
+    "install-exec", "libs", "apihelp", and "framedhelp" targets to the
+    Makefiles of the PDF filters.
+  * debian/cups.postinst: Do not create the /usr/share/ppd/1-local-admin
+    and /usr/share/ppd/2-third-party links. They are not needed with current
+    CUPS and they also break the test procedure during package build.
 
  -- Till Kamppeter <till.kamppeter@gmail.com>  Sun, 23 Aug 2009 13:30:33 +0200
 

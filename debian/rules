@@ -52,7 +52,7 @@ post-patches::
 common-post-build-arch::
 	# Fix permissions of filters/backends installed from debian/local/
 	chmod 755 debian/local/filters/*
-	chmod 755 debian/local/backends/*
+	#chmod 755 debian/local/backends/*
 
 cleanbuilddir::
 	rm -f man/client.conf.man packaging/cups.list
