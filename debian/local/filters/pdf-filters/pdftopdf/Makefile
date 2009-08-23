@@ -92,6 +92,17 @@ pdftopdf:	pdftopdf.o $(LIBOBJS) ../cups/$(LIBCUPS)
 
 include Dependencies
 
+#
+# Dependencies...
+#
+
+include Dependencies
+
+#
+# Make unit tests...
+#
+
+unittests:
 
 #
 # End of "$Id: Makefile 6649 2007-07-11 21:46:42Z till $".

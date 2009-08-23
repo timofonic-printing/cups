@@ -193,10 +193,29 @@ cups (1.4.0~svn8773-1) UNRELEASED; urgency=low
     debian/patches/ubuntu-disable-browsing.dpatch: Regenerated.
   * debian/local/backends/dnssd, debian/control, debian/cups.install: "dnssd"
     backend removed, DNS-SD discovery backend is now provided upstream.
+  * debian/patches/dns-sd-check-typo.dpatch: Fixed typo in upstream code to
+    check for the availability of dns_sd.h.
+  * debian/patches/dnssd-avahi.dpatch: Added avahi support for the "dnssd" CUPS
+    backend (patch from Fedora). CUPS' DNS-SD support does not build with the
+    libdns_sd of avahi.
+  * debian/patches/show-compile-command-lines.dpatch: Show compiler command
+    lines in the output of the "make" process.
   * debian/control: Added libusb-dev to the build dependencies, the new USB
     printer backend uses libusb and not any more the usblp kernel module.
+  * debian/control: Added libavahi-common-dev and libavahi-client-dev to
+    the build dependencies, for the avahi patch for the DNS-SD support.
   * debian/rules: Added "--enable-libusb" to the ./configure command line.
-  
+  * debian/rules: Added "--enable-avahi" to the ./configure command line.
+  * debian/rules: Call autoconf, as we have an SVN snapshot currently.
+  * debian/local/filters/pdf-filters/addtocups,
+    debian/local/filters/pdf-filters/config-scripts/cups-pdf-filters.m4,
+    debian/local/filters/pdf-filters/filter/texttopdf.c: Let ./configure
+    script check the CUPS version so that in texttopdf.c a missing variable
+    can get defined if CUPS is 1.4.x or newer.
+  * debian/local/filters/pdf-filters/pdftoopvp/Makefile,
+    debian/local/filters/pdf-filters/pdftopdf/Makefile: Added missing
+    "unittests" targets to the Makefiles of the PDF filters.
+
  -- Till Kamppeter <till.kamppeter@gmail.com>  Sun, 23 Aug 2009 13:30:33 +0200
 
 cups (1.3.11-2) unstable; urgency=low

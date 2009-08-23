@@ -84,6 +84,11 @@ pdftoopvp:	pdftoopvp.o $(LIBOBJS) ../cups/$(LIBCUPS) oprs/liboprs.a
 
 include Dependencies
 
+#
+# Make unit tests...
+#
+
+unittests:
 
 #
 # End of "$Id: Makefile 6649 2007-07-11 21:46:42Z till $".

@@ -10,6 +10,8 @@ ppd-poll-with-client-conf.dpatch
 manpage-translations.dpatch
 quiesce-bonjour-warning.dpatch
 rootbackends-worldreadable.dpatch
+dns-sd-check-typo.dpatch
+dnssd-avahi.dpatch
 
 # patches which should go upstream
 drop_unnecessary_dependencies.dpatch
@@ -23,6 +25,7 @@ default_log_settings.dpatch
 confdirperms.dpatch
 #use-ps2write-ghostscript-device-for-pdftops-filter.dpatch
 printer-filtering.dpatch
+show-compile-command-lines.dpatch
 
 # Ubuntu patches
 ubuntu-disable-browsing.dpatch
