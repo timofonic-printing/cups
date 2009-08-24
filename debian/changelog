@@ -223,6 +223,11 @@ cups (1.4.0~svn8773-1) UNRELEASED; urgency=low
   * debian/cups.postinst: Do not create the /usr/share/ppd/1-local-admin
     and /usr/share/ppd/2-third-party links. They are not needed with current
     CUPS and they also break the test procedure during package build.
+  * debian/cups.install, debian/cups-client.install: Commented out lines
+    for missing translated man pages.
+  * debian/cups.install: Updated for new CUPS version.
+  * debian/rules: Updated individual file installation and adaptation steps
+    for the new CUPS version.
 
  -- Till Kamppeter <till.kamppeter@gmail.com>  Sun, 23 Aug 2009 13:30:33 +0200
 
