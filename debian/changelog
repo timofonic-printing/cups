@@ -207,9 +207,33 @@ cups (1.4.0~svn8773-1) UNRELEASED; urgency=low
     printer backend uses libusb and not any more the usblp kernel module.
   * debian/control: Added libavahi-common-dev and libavahi-client-dev to
     the build dependencies, for the avahi patch for the DNS-SD support.
+  * debian/control: Added new packages for the new shared libraries and also
+    cups-ppdc for the PPD manipulation utilities of the former CUPS DDk. Added
+    transitional package for CUPS DDK. Added Conflicts:/Replaces: as cupsddk
+    is replaced by cups-ppdc and the files of cupsddk-drivers go into the
+    main cups package.
   * debian/rules: Added "--enable-libusb" to the ./configure command line.
   * debian/rules: Added "--enable-avahi" to the ./configure command line.
   * debian/rules: Call autoconf, as we have an SVN snapshot currently.
+  * debian/rules: Updated individual file installation and adaptation steps
+    for the new CUPS version.
+  * debian/libcups2-dev.install: Added new header file versioning.h.
+  * debian/libcupscgi1-dev.install, debian/libcupscgi1.install,
+    debian/libcupsdriver1-dev.install, debian/libcupsdriver1.install,
+    debian/libcupsmime1-dev.install, debian/libcupsmime1.install,
+    debian/libcupsppdc1-dev.install, debian/libcupsppdc1.install: Added install
+    file lists for newly added libraries.
+  * debian/cups-ppdc.install: File list for new cups-ppdc package. This package
+    holds the PPD file manipulation tools which were in CUPS DDK formerly.
+  * debian/cups-common.install, debian/cups.install: Updated for new CUPS
+    version.
+  * debian/cups.install, debian/cups-client.install, debian/cups-ppdc.install:
+    Commented out lines for missing translated man pages.
+  * debian/cups.postinst: Do not create the /usr/share/ppd/1-local-admin
+    and /usr/share/ppd/2-third-party links. They are not needed with current
+    CUPS and they also break the test procedure during package build.
+  * debian/libcups2.postinst, debian/libcupsimage2.postinst: Removed no-op
+    maintainer scripts.
   * debian/local/filters/pdf-filters/addtocups,
     debian/local/filters/pdf-filters/config-scripts/cups-pdf-filters.m4,
     debian/local/filters/pdf-filters/filter/texttopdf.c: Let ./configure
@@ -220,14 +244,6 @@ cups (1.4.0~svn8773-1) UNRELEASED; urgency=low
     "unittests", "install-data", "install-headers", "install-libs",
     "install-exec", "libs", "apihelp", and "framedhelp" targets to the
     Makefiles of the PDF filters.
-  * debian/cups.postinst: Do not create the /usr/share/ppd/1-local-admin
-    and /usr/share/ppd/2-third-party links. They are not needed with current
-    CUPS and they also break the test procedure during package build.
-  * debian/cups.install, debian/cups-client.install: Commented out lines
-    for missing translated man pages.
-  * debian/cups.install: Updated for new CUPS version.
-  * debian/rules: Updated individual file installation and adaptation steps
-    for the new CUPS version.
 
  -- Till Kamppeter <till.kamppeter@gmail.com>  Sun, 23 Aug 2009 13:30:33 +0200
 
