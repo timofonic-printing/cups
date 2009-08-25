@@ -251,6 +251,9 @@ cups (1.4.0~svn8773-1) UNRELEASED; urgency=low
     API. (This uses pkg-config --atleast-version in the dpatch script header.)
   * ubuntu-disable-browsing.dpatch: Restore Ubuntu check.
   * dnssd-avahi.dpatch: Add upstream bug link.
+  * dnssd-avahi.dpatch: Do not error out of the dnssd backend if system D-Bus
+    is not running. This unbreaks the test suite when running in a build
+    environment.
 
  -- Till Kamppeter <till.kamppeter@gmail.com>  Sun, 23 Aug 2009 13:30:33 +0200
 

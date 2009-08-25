@@ -247,8 +247,8 @@ diff -urNad cups-1.4.0~svn8773~/backend/dnssd.c cups-1.4.0~svn8773/backend/dnssd
 +			     0, avahi_client_callback, NULL, &error);
 +  if (!client)
 +  {
-+    perror ("ERROR: Unable to create avahi client");
-+    return (1);
++    perror ("DEBUG: Unable to create avahi client");
++    return (0);
 +  }
 +
 +  avahi_service_browser_new (client, AVAHI_IF_UNSPEC,
