@@ -1,6 +1,6 @@
 cups (1.4.0~svn8773-1) UNRELEASED; urgency=low
 
-  * New upstream release.
+  * New upstream prerelease snapshot.
     [ Changes listed explicitly here as they are not yet available on
       www.cups.org ]
     1. accept and reject; the accept and reject commands have been
