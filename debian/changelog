@@ -16,7 +16,7 @@ cups (1.4.0~svn8773-1) UNRELEASED; urgency=low
     4. cupstestdsc; the cupstestdsc utility has been improved to better
        detect problems with PostScript print files.
     5. cupstestppd; the cupstestppd utility has been improved to test new
-       PPD keywords and better detect impossible contraints.
+       PPD keywords and better detect impossible constraints.
     6. lpadmin; the lpadmin command now supports options to hold and
        release new jobs on a printer or all printers.
     7. lpoptions; the lpoptions command now describes custom options and
