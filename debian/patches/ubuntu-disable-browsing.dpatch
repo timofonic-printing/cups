@@ -1,10 +1,13 @@
-#! /bin/sh /usr/share/dpatch/dpatch-run
-## ubuntu-disable-browsing.dpatch by  <till.kamppeter@gmail.com>
+#! /bin/sh -e
+## ubuntu-disable-browsing.dpatch by Martin Pitt <martin.pitt@ubuntu.com>
 ##
 ## All lines beginning with `## DP:' are a description of the patch.
 ## DP: Disable Browsing by default on Ubuntu (not sanctioned yet by
 ## DP: https://wiki.ubuntu.com/DefaultNetworkServices). This is only applied
 ## DP: when building on Ubuntu.
+
+[ "`lsb_release -is 2>/dev/null`" = "Ubuntu" ] || { echo -n '(ignored)' >&2; exit 0; }
+. /usr/share/dpatch/dpatch-run
 
 @DPATCH@
 diff -urNad cups-1.4.0~svn8773~/conf/cupsd.conf.in cups-1.4.0~svn8773/conf/cupsd.conf.in
