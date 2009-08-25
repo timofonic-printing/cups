@@ -250,6 +250,7 @@ cups (1.4.0~svn8773-1) UNRELEASED; urgency=low
     build against a poppler older than 0.11, since pdftoopvp needs that new
     API. (This uses pkg-config --atleast-version in the dpatch script header.)
   * ubuntu-disable-browsing.dpatch: Restore Ubuntu check.
+  * dnssd-avahi.dpatch: Add upstream bug link.
 
  -- Till Kamppeter <till.kamppeter@gmail.com>  Sun, 23 Aug 2009 13:30:33 +0200
 

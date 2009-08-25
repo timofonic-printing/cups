@@ -2,7 +2,7 @@
 ## dnssd-avahi.dpatch by  <till.kamppeter@gmail.com>
 ##
 ## All lines beginning with `## DP:' are a description of the patch.
-## DP: No description.
+## DP: http://www.cups.org/str.php?L3066
 
 @DPATCH@
 diff -urNad cups-1.4.0~svn8773~/backend/dnssd.c cups-1.4.0~svn8773/backend/dnssd.c
