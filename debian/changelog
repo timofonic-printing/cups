@@ -248,6 +248,9 @@ cups (1.4.0~svn8773-1) UNRELEASED; urgency=low
   [ Martin Pitt ]
   * debian/cups.install, debian/local/filters/pdf-filters/addtocups: Enable
     pdftoopvp filter.
+  * Add disable-pdftoopvp-with-old-poppler.dpatch: Disable pdftoopvp if we
+    build against a poppler older than 0.11, since pdftoopvp needs that new
+    API. (This uses pkg-config --atleast-version in the dpatch script header.)
 
  -- Till Kamppeter <till.kamppeter@gmail.com>  Sun, 23 Aug 2009 13:30:33 +0200
 
