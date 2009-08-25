@@ -1,7 +1,5 @@
 cups (1.4.0~svn8773-1) UNRELEASED; urgency=low
 
-  * Everything except the handling of the now integrated CUPS DDK is done.
-
   * New upstream release.
     [ Changes listed explicitly here as they are not yet available on
       www.cups.org ]
