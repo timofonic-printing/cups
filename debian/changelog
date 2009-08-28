@@ -1,3 +1,10 @@
+cups (1.4.0~svn8773-2) UNRELEASED; urgency=low
+
+  * debian/control: Let the cups package only suggest cups-ppdc and not
+    recommend it, as cups-ppdc is only interesting for developers.
+	
+ -- Till Kamppeter <till.kamppeter@gmail.com>  Fri, 28 Aug 2009 21:54:33 +0200
+
 cups (1.4.0~svn8773-1) experimental; urgency=low
 
   * New upstream prerelease snapshot.
