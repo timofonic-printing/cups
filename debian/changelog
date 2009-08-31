@@ -2,6 +2,8 @@ cups (1.4.0-2) UNRELEASED; urgency=low
 
   * Add debian/blacklist-cups.conf: Blacklist the usblp module, it's obsolete.
     CUPS uses libusb directly now. (LP: #420015, part 1)
+  * debian/local/apparmor-profile: Allow cupsd to access /dev/bus/usb/.
+    (LP: #420015, part 1)
 
  -- Martin Pitt <martin.pitt@ubuntu.com>  Mon, 31 Aug 2009 16:44:49 +0200
 
