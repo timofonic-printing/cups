@@ -3,7 +3,7 @@ cups (1.4.0-2) UNRELEASED; urgency=low
   * Add debian/blacklist-cups.conf: Blacklist the usblp module, it's obsolete.
     CUPS uses libusb directly now. (LP: #420015, part 1)
   * debian/local/apparmor-profile: Allow cupsd to access /dev/bus/usb/.
-    (LP: #420015, part 1)
+    (LP: #420015, part 2)
   * debian/rules: Make the usb backend run as root, since /dev/bus/usb/* are
     root:root, and cups does not use the usblp kernel module any more.
     (LP: #420015, part 3)
