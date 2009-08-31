@@ -1,4 +1,4 @@
-cups (1.4.0-2) UNRELEASED; urgency=low
+cups (1.4.0-2) experimental; urgency=low
 
   * Add debian/blacklist-cups.conf: Blacklist the usblp module, it's obsolete.
     CUPS uses libusb directly now. (LP: #420015, part 1)
@@ -9,7 +9,7 @@ cups (1.4.0-2) UNRELEASED; urgency=low
     (LP: #420015, part 3)
   * disable-pdftoopvp-with-old-poppler.dpatch: Update.
 
- -- Martin Pitt <mpitt@debian.org>  Mon, 31 Aug 2009 16:44:49 +0200
+ -- Martin Pitt <mpitt@debian.org>  Mon, 31 Aug 2009 17:34:48 +0200
 
 cups (1.4.0-1) experimental; urgency=low
 
