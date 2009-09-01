@@ -1,4 +1,4 @@
-cups (1.4.0-3) UNRELEASED; urgency=low
+cups (1.4.0-3) experimental; urgency=low
 
   [ Till Kamppeter ]
   * debian/patches/usb-backend-infinite-loop-on-end-of-job.dpatch: Fixed
@@ -12,7 +12,7 @@ cups (1.4.0-3) UNRELEASED; urgency=low
   * disable-pdftoopvp-with-old-poppler.dpatch: Revert above change when
     building with poppler 0.10.x.
 
- -- Till Kamppeter <till.kamppeter@gmail.com>  Mon, 31 Aug 2009 20:23:33 +0200
+ -- Martin Pitt <mpitt@debian.org>  Tue, 01 Sep 2009 09:44:33 +0200
 
 cups (1.4.0-2) experimental; urgency=low
 
