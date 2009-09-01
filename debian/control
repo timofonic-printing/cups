@@ -384,62 +384,6 @@ Description: Common UNIX Printing System(tm) - debugging symbols
  Easy Software Products (www.easysw.com), and refer to the original
  source packages from which these packages are made.
 
-Package: cupsys
-Priority: extra
-Section: oldlibs
-Architecture: all
-Depends: ${misc:Depends}, cups
-Description: Common UNIX Printing System (transitional package)
- This is a dummy package to ease transition to new package name.
-
-Package: cupsys-client
-Priority: extra
-Section: oldlibs
-Architecture: all
-Depends: ${misc:Depends}, cups-client
-Description: Common UNIX Printing System (transitional package)
- This is a dummy package to ease transition to new package name.
-
-Package: cupsys-common
-Priority: extra
-Section: oldlibs
-Architecture: all
-Depends: ${misc:Depends}, cups-common
-Description: Common UNIX Printing System (transitional package)
- This is a dummy package to ease transition to new package name.
-
-Package: cupsys-bsd
-Priority: extra
-Section: oldlibs
-Architecture: all
-Depends: ${misc:Depends}, cups-bsd
-Description: Common UNIX Printing System (transitional package)
- This is a dummy package to ease transition to new package name.
-
-Package: cupsys-dbg
-Priority: extra
-Section: oldlibs
-Architecture: all
-Depends: ${misc:Depends}, cups-dbg (>= ${binary:Version})
-Description: Common UNIX Printing System (transitional package)
- This is a dummy package to ease transition to new package name.
-
-Package: libcupsys2
-Priority: extra
-Section: oldlibs
-Architecture: all
-Depends: ${misc:Depends}, libcups2
-Description: Common UNIX Printing System (transitional package)
- This is a dummy package to ease transition to new package name.
-
-Package: libcupsys2-dev
-Priority: extra
-Section: oldlibs
-Architecture: all
-Depends: ${misc:Depends}, libcups2-dev
-Description: Common UNIX Printing System (transitional package)
- This is a dummy package to ease transition to new package name.
-
 Package: cupsddk
 Priority: extra
 Section: oldlibs

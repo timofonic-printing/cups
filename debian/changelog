@@ -1,3 +1,9 @@
+cups (1.4.0-4) UNRELEASED; urgency=low
+
+  * debian/control: Drop the transitional cupsys packages.
+
+ -- Martin Pitt <mpitt@debian.org>  Tue, 01 Sep 2009 13:16:15 +0200
+
 cups (1.4.0-3) experimental; urgency=low
 
   [ Till Kamppeter ]
