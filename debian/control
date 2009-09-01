@@ -9,7 +9,7 @@ Build-Depends: libpam0g-dev, libtiff4-dev, libjpeg62-dev, zlib1g-dev,
  dpatch (>= 1.11), libdbus-1-dev, libkrb5-dev | heimdal-dev,
  libavahi-compat-libdnssd-dev, libavahi-common-dev, libavahi-client-dev,
  libpoppler-dev (>= 0.10.0), pkg-config,
- poppler-utils, lsb-release, po4a (>= 0.31), 
+ poppler-utils, lsb-release, po4a (>= 0.31), autotools-dev, autoconf, automake, 
  libtool, libijs-dev, hardening-wrapper, liblcms1-dev, libfreetype6-dev,
  libfontconfig1-dev, pkg-config, libusb-dev
 Uploaders: Kenshi Muto <kmuto@debian.org>, 

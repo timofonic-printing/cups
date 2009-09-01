@@ -3,8 +3,8 @@ cups (1.4.0-4) UNRELEASED; urgency=low
   * debian/control: Drop the transitional cupsys packages.
   * printer-filtering.dpatch: Fix sometimes overzealous filtering, thanks to
     Stéphane Graber!
-  * debian/control, debian/rules: Drop autoconfiscation on build again, we
-    have a proper upstream release.
+  * debian/rules: Drop autoconf call on build again, we have a proper upstream
+    release.
 
  -- Martin Pitt <mpitt@debian.org>  Tue, 01 Sep 2009 13:16:15 +0200
 
