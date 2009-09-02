@@ -48,6 +48,7 @@
   /dev/ttyS* rw,
   /dev/usb/lp* rw,
   /dev/bus/usb r,
+  /dev/bus/usb/ r,
   /dev/bus/usb/** rw,
   /dev/parport* rw,
   /etc/cups/ rw,
