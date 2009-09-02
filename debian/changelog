@@ -1,6 +1,8 @@
 cups (1.4.0-4) UNRELEASED; urgency=low
 
   [ Till Kamppeter ]
+  * debian/patches/usb-backend-infinite-loop-on-end-of-job.dpatch: Fixed the
+    patch so that the usb backend really terminates after a job (LP: #420797).
   * debian/local/apparmor-profile: cupsd needs also to be allowed to read
     the /dev/bus/usb/ directory, given with the "/" in the end. This should
     finally fix LP: #420015.
