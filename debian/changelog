@@ -18,6 +18,8 @@ cups (1.4.0-4) UNRELEASED; urgency=low
     /etc/cups/client.conf, and asking for passwords. Thanks to Martin-Éric
     Racine for tracking this down and the solution! (Closes: #543468)
   * debian/control: Bump Standards-Version to 3.8.3 (no changes).
+  * debian/cups.postinst: Use signal names instead of numbers for trap.
+    Quiesces a lintian bashism warning.
 
  -- Martin Pitt <mpitt@debian.org>  Tue, 01 Sep 2009 13:16:15 +0200
 
