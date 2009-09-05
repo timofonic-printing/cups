@@ -26,6 +26,9 @@ cups (1.4.0-4) UNRELEASED; urgency=low
   * debian/local/filters/pdf-filters/pdftoopvp/Makefile: Don't install font
     configuration file as executable.
   * debian/cups.lintian-overrides: Update for currently installed backends.
+  * debian/control: Re-add transitional cupsys packages (except the
+    libraries), they are still needed for upgrades from Ubuntu 8.04. Add the
+    "You can safely remove after upgrade" note to their description.
 
  -- Martin Pitt <mpitt@debian.org>  Tue, 01 Sep 2009 13:16:15 +0200
 
