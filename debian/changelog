@@ -13,6 +13,10 @@ cups (1.4.0-4) UNRELEASED; urgency=low
     Stéphane Graber!
   * debian/rules: Drop autoconf call on build again, we have a proper upstream
     release.
+  * debian/cups.postinst, debian/cups.init.d: Call lpstat, lpadmin, and
+    cupsctl with "-h localhost" to avoid querying network printers set up in
+    /etc/cups/client.conf, and asking for passwords. Thanks to Martin-Éric
+    Racine for tracking this down and the solution! (Closes: #543468)
 
  -- Martin Pitt <mpitt@debian.org>  Tue, 01 Sep 2009 13:16:15 +0200
 
