@@ -1,4 +1,6 @@
-cups (1.4.0-4) UNRELEASED; urgency=low
+cups (1.4.0-4) unstable; urgency=low
+
+  Upload 1.4 to unstable.
 
   [ Till Kamppeter ]
   * debian/patches/usb-backend-infinite-loop-on-end-of-job.dpatch: Fixed the
@@ -30,7 +32,7 @@ cups (1.4.0-4) UNRELEASED; urgency=low
     libraries), they are still needed for upgrades from Ubuntu 8.04. Add the
     "You can safely remove after upgrade" note to their description.
 
- -- Martin Pitt <mpitt@debian.org>  Tue, 01 Sep 2009 13:16:15 +0200
+ -- Martin Pitt <mpitt@debian.org>  Sat, 05 Sep 2009 15:31:07 +0200
 
 cups (1.4.0-3) experimental; urgency=low
 
