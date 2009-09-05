@@ -23,6 +23,8 @@ cups (1.4.0-4) UNRELEASED; urgency=low
   * Add debian/README.source.
   * debian/local/filters/pdf-filters/filter/fontembed/Makefile: Build
     libfontembed with -fPIC to also work on HPPA. (Closes: #543973)
+  * debian/local/filters/pdf-filters/pdftoopvp/Makefile: Don't install font
+    configuration file as executable.
 
  -- Martin Pitt <mpitt@debian.org>  Tue, 01 Sep 2009 13:16:15 +0200
 
