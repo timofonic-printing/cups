@@ -1,3 +1,10 @@
+cups (1.4.0-6) UNRELEASED; urgency=low
+
+  * debian/cups.preinst: Add cleanup of obsolete symlinks in /usr/share/ppd/.
+    Drop cleanup from debian/cups.prerm. (Closes: #545298)
+
+ -- Martin Pitt <mpitt@debian.org>  Sun, 06 Sep 2009 13:51:41 +0200
+
 cups (1.4.0-5) unstable; urgency=low
 
   * Drop shlibs files and add symbols files for all libraries, to avoid too
