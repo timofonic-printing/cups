@@ -1,3 +1,10 @@
+cups (1.4.0-5) UNRELEASED; urgency=low
+
+  * Drop shlibs files and add symbols files for all libraries, to avoid too
+    weak dependencies. (Closes: #545244)
+
+ -- Martin Pitt <mpitt@debian.org>  Sun, 06 Sep 2009 12:00:49 +0200
+
 cups (1.4.0-4) unstable; urgency=low
 
   Upload 1.4 to unstable.
