@@ -1,5 +1,10 @@
-cups (1.4.0-6) UNRELEASED; urgency=low
+cups (1.4.1-1) UNRELEASED; urgency=low
 
+  * New upstream bug fix release.
+  * Drop patches accepted  upstream:
+    - ppdc-locale-formatting.dpatch
+    - usb-backend-infinite-loop-on-end-of-job.dpatch
+    - dns-sd-check-typo.dpatch
   * debian/cups.preinst: Add cleanup of obsolete symlinks in /usr/share/ppd/.
     Drop cleanup from debian/cups.prerm. (Closes: #545298)
 
