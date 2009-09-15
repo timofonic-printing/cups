@@ -1,4 +1,4 @@
-cups (1.4.1-1) UNRELEASED; urgency=low
+cups (1.4.1-1) unstable; urgency=low
 
   [ Till Kamppeter ]
   * debian/cups.postinst: Fixed "lpstat -r" check for the auto update of
@@ -24,7 +24,7 @@ cups (1.4.1-1) UNRELEASED; urgency=low
     backend so that it only reports devices once avahi resolution has
     completed.  This makes it report Device IDs.
 
- -- Martin Pitt <mpitt@debian.org>  Sun, 06 Sep 2009 13:51:41 +0200
+ -- Martin Pitt <mpitt@debian.org>  Tue, 15 Sep 2009 11:30:07 +0200
 
 cups (1.4.0-5) unstable; urgency=low
 
