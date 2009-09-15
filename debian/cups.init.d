@@ -47,9 +47,10 @@ set_ripcache() {
 }
 
 coldplug_usb_printers() {
-    udevadm trigger --subsystem-match=usb \
-                    --attr-match=bInterfaceClass=07 \
-                    --attr-match=bInterfaceSubClass=01
+    for printer in `udevadm trigger --verbose --dry-run --subsystem-match=usb \
+	    --attr-match=bInterfaceClass=07 --attr-match=bInterfaceSubClass=01`; do
+	/lib/udev/udev-configure-printer add "${printer#/sys}"
+    done
 }
 
 case "$1" in
