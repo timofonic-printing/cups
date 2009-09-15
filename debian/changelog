@@ -7,6 +7,8 @@ cups (1.4.1-1) UNRELEASED; urgency=low
     - dns-sd-check-typo.dpatch
   * debian/cups.preinst: Add cleanup of obsolete symlinks in /usr/share/ppd/.
     Drop cleanup from debian/cups.prerm. (Closes: #545298)
+  * debian/control: Add udev dependency, since the init script calls udevadm.
+    (LP: #429880)
 
  -- Martin Pitt <mpitt@debian.org>  Sun, 06 Sep 2009 13:51:41 +0200
 
