@@ -1,5 +1,13 @@
 cups (1.4.1-1) UNRELEASED; urgency=low
 
+  [ Till Kamppeter ]
+  * debian/cups.postinst: Fixed "lpstat -r" check for the auto update of
+    PPDs of existing queues. "lpstat -r" exits always with status 0, we must
+    check the actual output.
+  * debian/cups.postinst: Updated PPD auto update, so that it works with the
+    new CUPS sample driver PPDs which are dynamically generated now.
+
+  [ Martin Pitt ]
   * New upstream bug fix release.
   * Drop patches accepted  upstream:
     - ppdc-locale-formatting.dpatch
