@@ -12,6 +12,9 @@ cups (1.4.1-1) UNRELEASED; urgency=low
   * debian/cups.postinst, debian/cups.init.d: Call client tools with 
     "-h /var/run/cups/cups.sock" instead of "-h localhost", just in case the
     server isn't configured to listen on a TCP port.
+  * dnssd-avahi.dpatch: Update to latest Fedora version, which fixes the dnssd
+    backend so that it only reports devices once avahi resolution has
+    completed.  This makes it report Device IDs.
 
  -- Martin Pitt <mpitt@debian.org>  Sun, 06 Sep 2009 13:51:41 +0200
 
