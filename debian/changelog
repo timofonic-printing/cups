@@ -1,5 +1,11 @@
 cups (1.4.1-2) UNRELEASED; urgency=low
 
+  [ Till Kamppeter ]
+  * debian/local/filters/cpdftocps: Double-sided printing did not work on
+    PostScript printers when the "sides" command line option for "lp"/"lpr"
+    was used (LP: #411392).
+
+  [ Martin Pitt ]
   * debian/cups.init.d: Don't actually re-trigger udev events for printer
     coldplugging, since according to Scott James Remnant this slows down boot
     and kills kittens. Instead, just call it with --dry-run and manually call
