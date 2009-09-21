@@ -1,0 +1,22 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## maintain-default-option-settings.dpatch by  <till.kamppeter@gmail.com>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: No description.
+
+@DPATCH@
+diff -urNad cups-1.4.1~/scheduler/ipp.c cups-1.4.1/scheduler/ipp.c
+--- cups-1.4.1~/scheduler/ipp.c	2009-08-29 08:05:14.000000000 +0200
++++ cups-1.4.1/scheduler/ipp.c	2009-09-21 13:15:20.000000000 +0200
+@@ -8470,7 +8470,10 @@
+   * Read the option name...
+   */
+ 
+-  for (line += 8, olen --; isalnum(*line & 255); line ++)
++  for (line += 8, olen --;
++       isprint(*line & 255) && (*line & 255) != ' ' && (*line & 255) != '/' && 
++	 (*line & 255) != ':';
++       line ++)
+     if (olen > 0)
+     {
+       *option++ = *line;

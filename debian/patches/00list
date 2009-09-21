@@ -11,6 +11,7 @@ manpage-translations.dpatch
 quiesce-bonjour-warning.dpatch
 rootbackends-worldreadable.dpatch
 dnssd-avahi.dpatch
+maintain-default-option-settings.dpatch
 
 # patches which should go upstream
 drop_unnecessary_dependencies.dpatch

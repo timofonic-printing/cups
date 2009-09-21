@@ -4,6 +4,11 @@ cups (1.4.1-2) UNRELEASED; urgency=low
   * debian/local/filters/cpdftocps: Double-sided printing did not work on
     PostScript printers when the "sides" command line option for "lp"/"lpr"
     was used (LP: #411392).
+  * debian/patches/maintain-default-option-settings.dpatch: For options with
+    an underscore (or any other allowed non-alphanumeric character) in their
+    names the default settings were not conserved when the PPD got replaced
+    ("lpadmin -p ... -m ...", system-config-printer, automatic PPD update
+    for existing print queues). Fixes LP: #432902.
 
   [ Martin Pitt ]
   * debian/cups.init.d: Don't actually re-trigger udev events for printer
