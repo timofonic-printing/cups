@@ -1,6 +1,7 @@
 # patches backported from upstream SVN trunk for 1.5:
 
 # patches accepted and committed upstream for next 1.4:
+maintain-default-option-settings.dpatch
 
 # patches sent upstream
 removecvstag.dpatch
@@ -11,7 +12,6 @@ manpage-translations.dpatch
 quiesce-bonjour-warning.dpatch
 rootbackends-worldreadable.dpatch
 dnssd-avahi.dpatch
-maintain-default-option-settings.dpatch
 
 # patches which should go upstream
 drop_unnecessary_dependencies.dpatch
