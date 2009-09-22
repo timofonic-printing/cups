@@ -8,7 +8,7 @@ cups (1.4.1-2) UNRELEASED; urgency=low
     an underscore (or any other allowed non-alphanumeric character) in their
     names the default settings were not conserved when the PPD got replaced
     ("lpadmin -p ... -m ...", system-config-printer, automatic PPD update
-    for existing print queues). Fixes LP: #432902.
+    for existing print queues). Fixes LP: #432902 and CUPS STR #3340.
 
   [ Martin Pitt ]
   * debian/cups.init.d: Don't actually re-trigger udev events for printer
