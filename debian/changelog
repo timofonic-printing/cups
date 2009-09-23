@@ -21,6 +21,9 @@ cups (1.4.1-2) UNRELEASED; urgency=low
   * debian/cups.init.d: Drop "cupsctl RIPCache" setting. It changes our
     conffile (causing dpkg prompts on upgrade), and overwrites the admin's
     setting without warning.
+  * Add dynamic-default-ripcache-size.dpatch: Replace above functionality by
+    setting the internal default value of RIPCache to MemTotal/4, if not given
+    in the configuration file.
   * debian/rules: Do not let the usb backend run as root in Ubuntu any more,
     since that has a recent enough udev. Still keep it for Debian.
 

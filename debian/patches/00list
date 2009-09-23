@@ -18,6 +18,7 @@ drop_unnecessary_dependencies.dpatch
 reactivate_recommended_driver.dpatch
 poppler-based-pdftops-fixes.dpatch
 read-embedded-options-from-incoming-postscript-and-add-to-ipp-attrs.dpatch
+dynamic-default-ripcache-size.dpatch
 
 # Debian patches
 logfiles_adm_readable.dpatch
