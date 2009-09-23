@@ -26,6 +26,10 @@ cups (1.4.1-2) UNRELEASED; urgency=low
     in the configuration file.
   * debian/rules: Do not let the usb backend run as root in Ubuntu any more,
     since that has a recent enough udev. Still keep it for Debian.
+ 
+  [ Martin-Éric Racine ]
+  * Add manual-section-for-drv.dpatch: Fix incorrect man section 7 -> 1 as
+    reported by Lintian.
 
  -- Martin Pitt <mpitt@debian.org>  Tue, 15 Sep 2009 17:14:10 +0200
 
