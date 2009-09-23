@@ -18,6 +18,9 @@ cups (1.4.1-2) UNRELEASED; urgency=low
   * debian/cups.init.d: Only run udevadm if udev and the callout are actually
     available. Drop udev dependency to a suggests. This unbreaks cups on
     platforms which do not have udev, such as kfreebsd. (Closes: #546922)
+  * debian/cups.init.d: Drop "cupsctl RIPCache" setting. It changes our
+    conffile (causing dpkg prompts on upgrade), and overwrites the admin's
+    setting without warning.
 
  -- Martin Pitt <mpitt@debian.org>  Tue, 15 Sep 2009 17:14:10 +0200
 
