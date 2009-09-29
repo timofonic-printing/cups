@@ -1,3 +1,10 @@
+cups (1.4.1-4) UNRELEASED; urgency=low
+
+  * debian/rules: Make the USB backend run as root again, udev rules do not
+    cover all printers. (LP: #420015)
+
+ -- Martin Pitt <martin.pitt@ubuntu.com>  Tue, 29 Sep 2009 20:19:57 +0200
+
 cups (1.4.1-3) unstable; urgency=low
 
   * Add disable-pie-mipsen.dpatch: Disable PIE on mipsen, its binutils
