@@ -1,6 +1,7 @@
 cups (1.4.1-5) UNRELEASED; urgency=low
 
   * usb-backend-both-usblp-and-libusb.dpatch: Add upstream link.
+  * Drop: disable-pie-mipsen.dpatch: Didn't help to fix the mipsen segfault.
 
  -- Martin Pitt <mpitt@debian.org>  Wed, 30 Sep 2009 15:40:26 +0200
 

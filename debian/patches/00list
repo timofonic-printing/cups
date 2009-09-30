@@ -30,7 +30,6 @@ confdirperms.dpatch
 printer-filtering.dpatch
 show-compile-command-lines.dpatch
 disable-pdftoopvp-with-old-poppler.dpatch
-disable-pie-mipsen.dpatch
 
 # Ubuntu patches
 ubuntu-disable-browsing.dpatch
