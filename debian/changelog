@@ -11,6 +11,8 @@ cups (1.4.1-4) UNRELEASED; urgency=low
   [ Martin Pitt ]
   * debian/rules: Make the USB backend run as root again, udev rules do not
     cover all printers. (LP: #420015)
+  * Drop debian/blacklist-cups.conf, and remove it on upgrade. With Till's fix
+    from above this is not necessary any more.
 
  -- Martin Pitt <martin.pitt@ubuntu.com>  Tue, 29 Sep 2009 20:19:57 +0200
 
