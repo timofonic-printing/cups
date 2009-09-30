@@ -1,8 +1,7 @@
 #! /bin/sh /usr/share/dpatch/dpatch-run
 ## usb-backend-both-usblp-and-libusb.dpatch by  <till.kamppeter@gmail.com>
 ##
-## All lines beginning with `## DP:' are a description of the patch.
-## DP: No description.
+## DP: http://www.cups.org/str.php?L3357
 
 @DPATCH@
 diff -urNad cups-1.4.1~/backend/Makefile cups-1.4.1/backend/Makefile
