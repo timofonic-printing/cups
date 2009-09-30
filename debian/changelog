@@ -1,4 +1,4 @@
-cups (1.4.1-4) UNRELEASED; urgency=low
+cups (1.4.1-4) unstable; urgency=low
 
   [ Till Kamppeter ]
   * debian/patches/usb-backend-both-usblp-and-libusb.dpatch: Make the USB
@@ -14,7 +14,7 @@ cups (1.4.1-4) UNRELEASED; urgency=low
   * Drop debian/blacklist-cups.conf, and remove it on upgrade. With Till's fix
     from above this is not necessary any more.
 
- -- Martin Pitt <martin.pitt@ubuntu.com>  Tue, 29 Sep 2009 20:19:57 +0200
+ -- Martin Pitt <mpitt@debian.org>  Wed, 30 Sep 2009 15:17:53 +0200
 
 cups (1.4.1-3) unstable; urgency=low
 
