@@ -6,7 +6,7 @@ cups (1.4.1-4) UNRELEASED; urgency=low
     module. Make it also printing via libusb if the URI for the queue was
     generated via usblp and vice versa. This should solve most USB printing
     problems which occured on the transition to CUPS 1.4.x (LP: #420015,
-    LP: #436495).
+    LP: #436495; Closes: #546558, #545288, #545453).
 
   [ Martin Pitt ]
   * debian/rules: Make the USB backend run as root again, udev rules do not
