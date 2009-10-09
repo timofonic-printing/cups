@@ -162,6 +162,13 @@ esac
 #DEBHELPER#
 
 if [ "$1" = configure ]; then
+    # Clear cache if we upgrade to 1.4.x
+    if dpkg --compare-versions "$2" lt-nl "1.4.1-5"; then
+	invoke-rc.d cups stop
+	rm /var/cache/cups/* 2> /dev/null || :
+	invoke-rc.d cups start
+    fi
+
     # Manage printcap file and associated symlinks
     if [ -e /etc/cups/cupsd.conf ]; then
 	if [ -e /etc/printcap.cups ]; then
