@@ -31,6 +31,7 @@ confdirperms.dpatch
 printer-filtering.dpatch
 show-compile-command-lines.dpatch
 disable-pdftoopvp-with-old-poppler.dpatch
+ppdc-dynamic-linking.dpatch
 
 # Ubuntu patches
 ubuntu-disable-browsing.dpatch
