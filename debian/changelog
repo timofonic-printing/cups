@@ -1,3 +1,10 @@
+cups (1.4.1-6) UNRELEASED; urgency=low
+
+  * debian/cups.init.d: Make cold-plugging of USB printers also correctly
+    work if the usblp kernel module is loaded.
+
+ -- Till Kamppeter <till.kamppeter@gmail.com>  Tue, 13 Oct 2009 22:52:33 +0200
+
 cups (1.4.1-5) unstable; urgency=low
 
   [ Till Kamppeter ]
