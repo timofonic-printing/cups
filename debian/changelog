@@ -1,5 +1,7 @@
 cups (1.4.1-6) UNRELEASED; urgency=low
 
+  * debian/local/filters/cpdftocps: Fixed turning off duplex via command line
+    (http://bugs.linux-foundation.org/show_bug.cgi?id=397).
   * debian/patches/usb-backend-both-usblp-and-libusb.dpatch: Fixed a bug
     of modifying the URI of the current print queue when comparing it with
     discovered URIs. Made the USB backend also compatible with URIS generated
