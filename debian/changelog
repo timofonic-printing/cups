@@ -1,5 +1,6 @@
 cups (1.4.1-6) UNRELEASED; urgency=low
 
+  [ Till Kamppeter ]
   * debian/local/filters/cpdftocps: Fixed turning off duplex via command line
     (http://bugs.linux-foundation.org/show_bug.cgi?id=397).
   * debian/patches/usb-backend-both-usblp-and-libusb.dpatch: Fixed a bug
@@ -9,6 +10,11 @@ cups (1.4.1-6) UNRELEASED; urgency=low
     (LP: #450513).
   * debian/cups.init.d: Make cold-plugging of USB printers also correctly
     work if the usblp kernel module is loaded.
+
+  [ Martin Pitt ]
+  * debian/control: Drop trademark stuff from package descriptions. No other
+    package does that, and it's uninteresting here. The current ones with
+    "easysw" were out of date, too. (Closes: #552781)
 
  -- Till Kamppeter <till.kamppeter@gmail.com>  Tue, 13 Oct 2009 22:52:33 +0200
 
