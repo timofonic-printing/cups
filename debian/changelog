@@ -28,6 +28,9 @@ cups (1.4.2-1) UNRELEASED; urgency=low
   * Now that poppler 0.12 is in Debian, drop
     disable-pdftoopvp-with-old-poppler.dpatch and bump libpoppler-dev build
     dependency.
+  * poppler now ships fofi include files, which fixes the build.
+    (Closes: #552818, #552223); rebuilding against new poppler ABI fixes
+    uninstallability (Closes: #552456)
 
  -- Till Kamppeter <till.kamppeter@gmail.com>  Tue, 13 Oct 2009 22:52:33 +0200
 
