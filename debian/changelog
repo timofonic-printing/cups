@@ -1,6 +1,9 @@
 cups (1.4.1-6) UNRELEASED; urgency=low
 
   [ Till Kamppeter ]
+  * debian/patches/log-debug-history-nearly-unlimited.dpatch: Made automatic
+    debug logging of failed jobs (without need of "LogLevel debug") practically
+    unlimited by raising the default limit from 200 to 99999 lines.
   * debian/local/filters/pdf-filters/pdftopdf/pdftopdf.cxx: pdftopdf did
     note collate for printers when they have "Collate" and 
     "cupsManualCopies:True" in the PPD. Thanks to Koji Otani from BBR Japan 
