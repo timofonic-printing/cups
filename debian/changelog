@@ -1,6 +1,10 @@
 cups (1.4.1-6) UNRELEASED; urgency=low
 
   [ Till Kamppeter ]
+  * debian/local/filters/pdf-filters/pdftopdf/pdftopdf.cxx: pdftopdf did
+    note collate for printers when they have "Collate" and 
+    "cupsManualCopies:True" in the PPD. Thanks to Koji Otani from BBR Japan 
+    for the fix.
   * debian/local/filters/cpdftocps: Fixed turning off duplex via command line
     (http://bugs.linux-foundation.org/show_bug.cgi?id=397).
   * debian/patches/usb-backend-both-usblp-and-libusb.dpatch: Fixed a bug
