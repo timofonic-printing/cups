@@ -29,7 +29,6 @@ confdirperms.dpatch
 #use-ps2write-ghostscript-device-for-pdftops-filter.dpatch
 printer-filtering.dpatch
 show-compile-command-lines.dpatch
-disable-pdftoopvp-with-old-poppler.dpatch
 ppdc-dynamic-linking.dpatch
 
 # Ubuntu patches

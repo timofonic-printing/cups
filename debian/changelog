@@ -25,6 +25,9 @@ cups (1.4.2-1) UNRELEASED; urgency=low
   * debian/control: Drop trademark stuff from package descriptions. No other
     package does that, and it's uninteresting here. The current ones with
     "easysw" were out of date, too. (Closes: #552781)
+  * Now that poppler 0.12 is in Debian, drop
+    disable-pdftoopvp-with-old-poppler.dpatch and bump libpoppler-dev build
+    dependency.
 
  -- Till Kamppeter <till.kamppeter@gmail.com>  Tue, 13 Oct 2009 22:52:33 +0200
 
