@@ -1,4 +1,4 @@
-cups (1.4.2-1) UNRELEASED; urgency=low
+cups (1.4.2-1) unstable; urgency=low
 
   [ Till Kamppeter ]
   * debian/patches/log-debug-history-nearly-unlimited.dpatch: Made automatic
@@ -35,7 +35,7 @@ cups (1.4.2-1) UNRELEASED; urgency=low
     (Closes: #552818, #552223); rebuilding against new poppler ABI fixes
     uninstallability (Closes: #552456)
 
- -- Till Kamppeter <till.kamppeter@gmail.com>  Tue, 13 Oct 2009 22:52:33 +0200
+ -- Martin Pitt <mpitt@debian.org>  Thu, 12 Nov 2009 15:03:41 +0100
 
 cups (1.4.1-5) unstable; urgency=low
 
