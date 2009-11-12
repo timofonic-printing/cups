@@ -1,4 +1,4 @@
-cups (1.4.1-6) UNRELEASED; urgency=low
+cups (1.4.2-1) UNRELEASED; urgency=low
 
   [ Till Kamppeter ]
   * debian/patches/log-debug-history-nearly-unlimited.dpatch: Made automatic
@@ -19,9 +19,21 @@ cups (1.4.1-6) UNRELEASED; urgency=low
     work if the usblp kernel module is loaded.
 
   [ Martin Pitt ]
+  * New upstream security/bug fix release:
+    - The CUPS web interface was vulnerable to several XSS and HTTP
+      header/body attacks via attribute injection (STR #3367, STR #3401,
+      CVE-2009-2820; Closes: #555666)
+  * Drop maintain-default-option-settings.dpatch, applied upstream.
+  * Update patches to new upstream version.
   * debian/control: Drop trademark stuff from package descriptions. No other
     package does that, and it's uninteresting here. The current ones with
     "easysw" were out of date, too. (Closes: #552781)
+  * Now that poppler 0.12 is in Debian, drop
+    disable-pdftoopvp-with-old-poppler.dpatch and bump libpoppler-dev build
+    dependency.
+  * poppler now ships fofi include files, which fixes the build.
+    (Closes: #552818, #552223); rebuilding against new poppler ABI fixes
+    uninstallability (Closes: #552456)
 
  -- Till Kamppeter <till.kamppeter@gmail.com>  Tue, 13 Oct 2009 22:52:33 +0200
 
