@@ -1,4 +1,4 @@
-cups (1.4.1-6) UNRELEASED; urgency=low
+cups (1.4.2-1) UNRELEASED; urgency=low
 
   [ Till Kamppeter ]
   * debian/local/filters/pdf-filters/pdftopdf/pdftopdf.cxx: pdftopdf did
@@ -16,6 +16,12 @@ cups (1.4.1-6) UNRELEASED; urgency=low
     work if the usblp kernel module is loaded.
 
   [ Martin Pitt ]
+  * New upstream security/bug fix release:
+    - The CUPS web interface was vulnerable to several XSS and HTTP
+      header/body attacks via attribute injection (STR #3367, STR #3401,
+      CVE-2009-2820; Closes: #555666)
+  * Drop maintain-default-option-settings.dpatch, applied upstream.
+  * Update patches to new upstream version.
   * debian/control: Drop trademark stuff from package descriptions. No other
     package does that, and it's uninteresting here. The current ones with
     "easysw" were out of date, too. (Closes: #552781)
