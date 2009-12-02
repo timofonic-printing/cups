@@ -1,3 +1,12 @@
+cups (1.4.2-4) UNRELEASED; urgency=low
+
+  * pdftopdf, pdftoopvp: Revert patch to build against new upstream 0.12.2
+    poppler ABI, since it was reverted in poppler's -2 package. Tighten build
+    dependency and conflict to any libpoppler5 < 0.12.2-2 now.
+    (Closes: #558906, #559038, #559094)
+
+ -- Martin Pitt <mpitt@debian.org>  Wed, 02 Dec 2009 09:29:35 +0100
+
 cups (1.4.2-3) unstable; urgency=low
 
   * pdftopdf, pdftoopvp: Patch to build with poppler 0.12.2, which broke ABI
