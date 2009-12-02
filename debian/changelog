@@ -1,5 +1,7 @@
-cups (1.4.2-4) UNRELEASED; urgency=low
+cups (1.4.2-4) unstable; urgency=high
 
+  * High urgency, since this fixes a security issue and should not block the
+    already messy poppler transition any further.
   * pdftopdf, pdftoopvp: Revert patch to build against new upstream 0.12.2
     poppler ABI, since it was reverted in poppler's -2 package. Tighten build
     dependency and conflict to any libpoppler5 < 0.12.2-2 now.
@@ -7,7 +9,7 @@ cups (1.4.2-4) UNRELEASED; urgency=low
   * Add select_use_after_free.dpatch: Fix use-after-free segfault, causing a
     remote DoS. (STR #3200, CVE-2009-3553, Closes: #557740)
 
- -- Martin Pitt <mpitt@debian.org>  Wed, 02 Dec 2009 09:29:35 +0100
+ -- Martin Pitt <mpitt@debian.org>  Wed, 02 Dec 2009 09:39:28 +0100
 
 cups (1.4.2-3) unstable; urgency=low
 
