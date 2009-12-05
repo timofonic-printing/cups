@@ -1,3 +1,17 @@
+cups (1.4.2-4) unstable; urgency=low
+
+  * debian/local/filters/pdf-filters/addtocups,
+    debian/local/filters/pdf-filters/config-scripts/cups-pdf-filters.m4,
+    debian/local/filters/pdf-filters/pdftoopvp/Makefile,
+    debian/local/filters/pdf-filters/pdftopdf/P2PGfx.cxx,
+    debian/local/filters/pdf-filters/pdftopdf/P2PPattern.cxx: Replaced
+    Jonathan Guthrie's patch on pdftopdf and pdftoopvp by the official
+    upstream patch from Koji Otani. This patch compiles with both the old
+    and the new Poppler, but it runs only with the Poppler with which it got 
+    compiled.
+
+ -- Till Kamppeter <till.kamppeter@gmail.com>  Sat,  5 Dec 2009 19:43:33 +0100
+
 cups (1.4.2-3) unstable; urgency=low
 
   * pdftopdf, pdftoopvp: Patch to build with poppler 0.12.2, which broke ABI
