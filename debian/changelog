@@ -1,4 +1,4 @@
-cups (1.4.2-5) UNRELEASED; urgency=low
+cups (1.4.2-5) unstable; urgency=low
 
   * debian/local/filters/pdf-filters/addtocups,
     debian/local/filters/pdf-filters/config-scripts/cups-pdf-filters.m4,
@@ -14,7 +14,7 @@ cups (1.4.2-5) UNRELEASED; urgency=low
     version of Poppler 0.12.2 and Debian where the ABI changes got reverted
     by a Debian-only patch.
 
- -- Till Kamppeter <till.kamppeter@gmail.com>  Wed,  9 Dec 2009 11:01:33 +0100
+ -- Till Kamppeter <till.kamppeter@gmail.com>  Wed, 09 Dec 2009 15:04:39 +0100
 
 cups (1.4.2-4) unstable; urgency=high
 
