@@ -1,3 +1,10 @@
+cups (1.4.2-7) UNRELEASED; urgency=low
+
+  * manpage-translations.dpatch: Update to German manpage translations, thanks
+    Helge Kreutzmann! (Closes: #502908)
+
+ -- Martin Pitt <mpitt@debian.org>  Wed, 30 Dec 2009 10:00:16 +0100
+
 cups (1.4.2-6) unstable; urgency=medium
 
   [ Till Kamppeter ]
