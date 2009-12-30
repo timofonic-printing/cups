@@ -11,7 +11,7 @@ cups (1.4.2-6) unstable; urgency=medium
   * debian/rules: Have a failed test suite fail the build on Ubuntu again,
     buildds were fixed. (LP: #447919)
 
- -- Martin Pitt <martin.pitt@ubuntu.com>  Mon, 21 Dec 2009 10:19:44 +0100
+ -- Martin Pitt <mpitt@debian.org>  Mon, 21 Dec 2009 10:19:44 +0100
 
 cups (1.4.2-5) unstable; urgency=low
 
