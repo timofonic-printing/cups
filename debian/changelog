@@ -1,5 +1,18 @@
 cups (1.4.2-7) UNRELEASED; urgency=low
 
+  [ Till Kamppeter ]
+  * debian/local/filters/pdf-filters/pdftopdf/P2PDoc.cxx,
+    debian/local/filters/pdf-filters/pdftopdf/P2PGfx.cxx,
+    debian/local/filters/pdf-filters/pdftopdf/P2PGfx.h,
+    debian/local/filters/pdf-filters/pdftopdf/P2PObject.h,
+    debian/local/filters/pdf-filters/pdftopdf/P2POutput.cxx: Upstream
+    fix from Koji Otani for the following: (1) Fixed some memory leak;
+    (2) pdftopdf now delays fetching a referenced object until when it is
+    written to the output. This fixes memory hogging with N-up output
+    (N pages per sheet). The fix is mainly done by (2). This fixes
+    LP: #508731.
+
+  [ Martin Pitt ]
   * manpage-translations.dpatch: Update to German manpage translations, thanks
     Helge Kreutzmann! (Closes: #502908)
   * debian/cups.postinst: Do not symlink snakeoil SSL certificate if
