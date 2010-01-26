@@ -1,6 +1,9 @@
 cups (1.4.2-7) UNRELEASED; urgency=low
 
   [ Till Kamppeter ]
+  * debian/local/filters/pdf-filters/filter/texttopdf.c: Workaround for
+    bug in ttf-freefont which messed up the output of the texttopdf filter.
+    Thanks to Hin-Tak Leung and Steve White to find this solution (LP: #447961).
   * debian/local/filters/pdf-filters/pdftopdf/P2PDoc.cxx,
     debian/local/filters/pdf-filters/pdftopdf/P2PGfx.cxx,
     debian/local/filters/pdf-filters/pdftopdf/P2PGfx.h,
