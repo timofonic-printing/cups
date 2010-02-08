@@ -1,3 +1,12 @@
+cups (1.4.2-8) UNRELEASED; urgency=low
+
+  * dynamic-default-ripcache-size.dpatch: Fixed the copy of thr new function
+    cupsdDefaultRIPCacheSize() which goes into the cupsfilter utility. It did
+    not return its result and made cupsfilter segfaulting independent of the
+    input (LP: #442283).
+
+ -- Till Kamppeter <till.kamppeter@gmail.com>  Mon,  8 Feb 2010 20:20:39 +0100
+
 cups (1.4.2-7) unstable; urgency=low
 
   [ Till Kamppeter ]
