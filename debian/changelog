@@ -1,4 +1,4 @@
-cups (1.4.2-8) UNRELEASED; urgency=low
+cups (1.4.2-8) unstable; urgency=low
 
   [ Till Kamppeter ]
   * dynamic-default-ripcache-size.dpatch: Fixed the copy of thr new function
@@ -13,7 +13,7 @@ cups (1.4.2-8) UNRELEASED; urgency=low
     to a bug in ttf-freefont. This has been worked around in texttopdf itself
     in the previous upload (see LP #447961). (Closes: #519643)
 
- -- Till Kamppeter <till.kamppeter@gmail.com>  Mon,  8 Feb 2010 20:20:39 +0100
+ -- Till Kamppeter <till.kamppeter@gmail.com>  Thu, 11 Feb 2010 14:26:33 +0100
 
 cups (1.4.2-7) unstable; urgency=low
 
