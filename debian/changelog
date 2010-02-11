@@ -1,9 +1,14 @@
 cups (1.4.2-8) UNRELEASED; urgency=low
 
+  [ Till Kamppeter ]
   * dynamic-default-ripcache-size.dpatch: Fixed the copy of thr new function
     cupsdDefaultRIPCacheSize() which goes into the cupsfilter utility. It did
     not return its result and made cupsfilter segfaulting independent of the
     input (LP: #442283).
+
+  [ Martin Pitt ]
+  * debian/control: Update libjpeg62-dev build/binary dependency to
+    libjpeg8-dev | libjpeg-dev. (Closes: #569230)
 
  -- Till Kamppeter <till.kamppeter@gmail.com>  Mon,  8 Feb 2010 20:20:39 +0100
 
