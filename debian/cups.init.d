@@ -1,8 +1,8 @@
 #! /bin/sh
 ### BEGIN INIT INFO
 # Provides:          cups
-# Required-Start:    $syslog
-# Required-Stop:     $syslog
+# Required-Start:    $syslog $remote_fs
+# Required-Stop:     $syslog $remote_fs
 # Should-Start:      $network avahi
 # Should-Stop:       $network
 # X-Start-Before:    samba

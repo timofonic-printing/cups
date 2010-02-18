@@ -6,6 +6,7 @@ cups (1.4.2-9) UNRELEASED; urgency=low
     to needlessly run udev-configure-printer for all USB devices.
   * Bump Standards-Version to 3.8.4 (no changes necesssary).
   * debian/libcupscgi1.symbols: Add new symbol from 1.4.2.
+  * debian/cups.init.d: Add missing $remote_fs dependency.
 
  -- Martin Pitt <mpitt@debian.org>  Thu, 18 Feb 2010 14:41:48 +0100
 
