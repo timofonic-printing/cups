@@ -1,3 +1,10 @@
+cups (1.4.2-9) UNRELEASED; urgency=low
+
+  * debian/control: Build depend on virtual libjpeg-dev package only.
+    (Closes: #570381)
+
+ -- Martin Pitt <mpitt@debian.org>  Thu, 18 Feb 2010 14:41:48 +0100
+
 cups (1.4.2-8) unstable; urgency=low
 
   [ Till Kamppeter ]
