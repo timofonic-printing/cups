@@ -4,6 +4,7 @@ cups (1.4.2-9) UNRELEASED; urgency=low
     (Closes: #570381)
   * debian/cups.init.d: Fix syntax error which caused coldplug_usb_printers()
     to needlessly run udev-configure-printer for all USB devices.
+  * Bump Standards-Version to 3.8.4 (no changes necesssary).
 
  -- Martin Pitt <mpitt@debian.org>  Thu, 18 Feb 2010 14:41:48 +0100
 
