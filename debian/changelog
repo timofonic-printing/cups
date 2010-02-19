@@ -1,3 +1,11 @@
+cups (1.4.2-10) UNRELEASED; urgency=low
+
+  * Add no-conffile-timestamp.dpatch: Disable time stamps in conffiles, to
+    avoid ever-changing files in /etc. Thanks Joey Hess!
+    (Rejected upstream, STR#3067; Closes: #549673)
+
+ -- Martin Pitt <mpitt@debian.org>  Fri, 19 Feb 2010 23:57:22 +0100
+
 cups (1.4.2-9) unstable; urgency=low
 
   * debian/control: Build depend on virtual libjpeg-dev package only.
