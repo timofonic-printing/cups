@@ -4,7 +4,7 @@ cups (1.4.2-10) UNRELEASED; urgency=low
     avoid ever-changing files in /etc. Thanks Joey Hess!
     (Rejected upstream, STR#3067; Closes: #549673)
   * CVE-2010-0393.dpatch: Replace with patch from upstream, and tag
-    header.
+    header. (Closes: #572940)
 
  -- Martin Pitt <mpitt@debian.org>  Fri, 19 Feb 2010 23:57:22 +0100
 
