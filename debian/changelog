@@ -1,5 +1,11 @@
 cups (1.4.2-10) UNRELEASED; urgency=low
 
+  [ Till Kamppeter ]
+  * debian/local/filters/pdf-filters/pdftopdf/P2PDoc.cxx: Output of the
+    pdftopdf filter was not completely complying with the Adobe specs for PDF.
+    Thanks to Duncan Lock for the patch (LP: #544636).
+
+  [ Martin Pitt ]
   * Add no-conffile-timestamp.dpatch: Disable time stamps in conffiles, to
     avoid ever-changing files in /etc. Thanks Joey Hess!
     (Rejected upstream, STR#3067; Closes: #549673)
