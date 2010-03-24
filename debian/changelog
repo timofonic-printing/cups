@@ -3,8 +3,8 @@ cups (1.4.2-10) unstable; urgency=low
   [ Till Kamppeter ]
   * debian/local/filters/pdf-filters/pdftopdf/P2PDoc.cxx: Output of the
     pdftopdf filter was not completely complying with the Adobe specs for PDF.
-    Thanks to Duncan Lock for finding and reporting the bug and supplying a
-    fix (LP: #544636).
+    Thanks to Duncan Lock for finding and reporting the bug and Johann Felix
+    Soden for creating the patch to fix it (LP: #544636).
 
   [ Martin Pitt ]
   * Add no-conffile-timestamp.dpatch: Disable time stamps in conffiles, to
