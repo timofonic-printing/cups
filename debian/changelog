@@ -1,8 +1,13 @@
 cups (1.4.2-11) UNRELEASED; urgency=low
 
+  [ Till Kamppeter ]
   * debian/filters/pstopdf: Use "-dUseCIEColor" for the Ghostscript call in the
     pstopdf filter, to eliminate the warning "Set UseCIEColor for
     UseDeviceIndependentColor to work properly.".
+
+  [ Martin Pitt ]
+  * select_use_after_free.dpatch: Add additional fix by Tim Waugh and Vincent
+    Danen for CVE-2010-0302, and update tag header. (Closes: #572940)
 
  -- Till Kamppeter <till.kamppeter@gmail.com>  Fri,  2 Apr 2010 18:28:33 +0200
 
