@@ -1,4 +1,4 @@
-cups (1.4.2-11) UNRELEASED; urgency=low
+cups (1.4.3-1) UNRELEASED; urgency=low
 
   [ Till Kamppeter ]
   * debian/filters/pstopdf: Use "-dUseCIEColor" for the Ghostscript call in the
@@ -6,6 +6,10 @@ cups (1.4.2-11) UNRELEASED; urgency=low
     UseDeviceIndependentColor to work properly.".
 
   [ Martin Pitt ]
+  * New upstream bug fix release. See http://www.cups.org/articles.php?L594
+    for details.
+  * Drop CVE-2010-0393.dpatch, upstream now.
+  * Update usb-backend-both-usblp-and-libusb.dpatch for new version.
   * select_use_after_free.dpatch: Add additional fix by Tim Waugh and Vincent
     Danen for CVE-2010-0302, and update tag header. (Closes: #572940)
 
