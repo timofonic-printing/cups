@@ -1,4 +1,4 @@
-cups (1.4.3-1) UNRELEASED; urgency=low
+cups (1.4.3-1) unstable; urgency=low
 
   [ Till Kamppeter ]
   * debian/filters/pstopdf: Use "-dUseCIEColor" for the Ghostscript call in the
@@ -13,7 +13,7 @@ cups (1.4.3-1) UNRELEASED; urgency=low
   * select_use_after_free.dpatch: Add additional fix by Tim Waugh and Vincent
     Danen for CVE-2010-0302, and update tag header. (Closes: #572940)
 
- -- Till Kamppeter <till.kamppeter@gmail.com>  Fri,  2 Apr 2010 18:28:33 +0200
+ -- Martin Pitt <mpitt@debian.org>  Fri, 09 Apr 2010 16:19:16 +0200
 
 cups (1.4.2-10) unstable; urgency=low
 
