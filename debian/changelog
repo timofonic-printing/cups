@@ -1,3 +1,13 @@
+cups (1.4.3-2) UNRELEASED; urgency=low
+
+  * debian/patches/cups-deviced-allow-device-ids-with-newline.dpatch: Some
+    printers have broken device IDs with newline characters inside. These
+    break the cups-deviced printer discovery mechanism and so the printers
+    get ignored. This patch allows newline characters in device IDs
+    (LP: #468701).
+
+ -- Till Kamppeter <till.kamppeter@gmail.com>  Sat,  1 May 2010 20:52:33 +0200
+
 cups (1.4.3-1) unstable; urgency=low
 
   [ Till Kamppeter ]
