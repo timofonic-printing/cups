@@ -1,5 +1,6 @@
 cups (1.4.3-2) UNRELEASED; urgency=low
 
+  [ Till Kamppeter ]
   * debian/filters/pstopdf: Fixed the problem of the UseCIEColor warning of
     Ghostscript correctly. The file format converter should not do any kind
     of color correction but simply pass the colors through (LP: #578181).
@@ -8,6 +9,11 @@ cups (1.4.3-2) UNRELEASED; urgency=low
     break the cups-deviced printer discovery mechanism and so the printers
     get ignored. This patch allows newline characters in device IDs
     (LP: #468701).
+
+  [ Martin Pitt ]
+  * Add support-gzipped-charmaps.dpatch: Support gzipped charset → UTF8 maps;
+    they compress very well and take a lot of space.
+  * debian/rules: Compress /usr/share/cups/charmaps/*.txt in cups-common.
 
  -- Till Kamppeter <till.kamppeter@gmail.com>  Sat,  1 May 2010 20:52:33 +0200
 
