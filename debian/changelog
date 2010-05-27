@@ -1,6 +1,8 @@
 cups (1.4.3-2) UNRELEASED; urgency=low
 
   [ Till Kamppeter ]
+  * debian/cups.init.d: When loading kernel modules for the parallel port
+    load also the "parport_pc" module (LP: #369850).
   * debian/filters/pstopdf: Fixed the problem of the UseCIEColor warning of
     Ghostscript correctly. The file format converter should not do any kind
     of color correction but simply pass the colors through (LP: #578181).
