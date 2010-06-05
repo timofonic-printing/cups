@@ -16,6 +16,8 @@ cups (1.4.3-2) UNRELEASED; urgency=low
   * Add support-gzipped-charmaps.dpatch: Support gzipped charset → UTF8 maps;
     they compress very well and take a lot of space.
   * debian/rules: Compress /usr/share/cups/charmaps/*.txt in cups-common.
+  * debian/local/filters/pdf-filters/*: Reenable call of setErrorFunction() on
+    armel, now that poppler on arm has been fixed (see #575262)
 
  -- Till Kamppeter <till.kamppeter@gmail.com>  Sat,  1 May 2010 20:52:33 +0200
 
