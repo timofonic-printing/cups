@@ -31,6 +31,7 @@ cups (1.4.4-1) UNRELEASED; urgency=medium
   * debian/rules: Compress /usr/share/cups/charmaps/*.txt in cups-common.
   * debian/local/filters/pdf-filters/*: Reenable call of setErrorFunction() on
     armel, now that poppler on arm has been fixed (see #575262)
+  * debian/cups.postinst: Drop some obsolete transition code.
 
  -- Till Kamppeter <till.kamppeter@gmail.com>  Sat,  1 May 2010 20:52:33 +0200
 
