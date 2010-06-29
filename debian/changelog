@@ -1,4 +1,4 @@
-cups (1.4.4-1) UNRELEASED; urgency=medium
+cups (1.4.4-1) unstable; urgency=medium
 
   [ Till Kamppeter ]
   * debian/cups.init.d: When loading kernel modules for the parallel port
@@ -39,7 +39,7 @@ cups (1.4.4-1) UNRELEASED; urgency=medium
     remaining provides/conflicts/replaces on them. All packages in sid are now
     transitioned to the new package names, and Lenny already had them.
 
- -- Till Kamppeter <till.kamppeter@gmail.com>  Sat,  1 May 2010 20:52:33 +0200
+ -- Martin Pitt <mpitt@debian.org>  Tue, 29 Jun 2010 19:03:39 +0200
 
 cups (1.4.3-1) unstable; urgency=low
 
