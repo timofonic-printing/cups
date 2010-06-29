@@ -155,6 +155,11 @@ EOF
 	    ln -s $printcap_file /etc/printcap
 	fi
     fi
+
+    # Clean up after some broken cups-pdf versions
+    if dpkg --compare-versions "$2" lt-nl "1.4.4-1"; then
+	chmod 755 /usr/lib/cups/backend /usr/lib/cups/backend-available
+    fi
 fi
 
 #DEBHELPER#
