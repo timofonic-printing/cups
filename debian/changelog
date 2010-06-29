@@ -24,6 +24,8 @@ cups (1.4.4-1) UNRELEASED; urgency=medium
       [STR #3577, CVE-2010-1748]
   * Drop select_use_after_free.dpatch: Applied upstream.
   * do-not-broadcast-with-hostnames.dpatch: Update to apply to new version.
+  * debian/libcups2.symbols, debian/libcupscgi1.symbols: Update for new
+    version.
   * Add support-gzipped-charmaps.dpatch: Support gzipped charset → UTF8 maps;
     they compress very well and take a lot of space.
   * debian/rules: Compress /usr/share/cups/charmaps/*.txt in cups-common.
