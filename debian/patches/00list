@@ -11,7 +11,6 @@ quiesce-bonjour-warning.dpatch
 rootbackends-worldreadable.dpatch
 dnssd-avahi.dpatch
 usb-backend-both-usblp-and-libusb.dpatch
-select_use_after_free.dpatch
 
 # patches which should go upstream
 removecvstag.dpatch

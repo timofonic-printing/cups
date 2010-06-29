@@ -1,4 +1,4 @@
-cups (1.4.3-2) UNRELEASED; urgency=low
+cups (1.4.4-1) UNRELEASED; urgency=medium
 
   [ Till Kamppeter ]
   * debian/cups.init.d: When loading kernel modules for the parallel port
@@ -13,6 +13,17 @@ cups (1.4.3-2) UNRELEASED; urgency=low
     (LP: #468701).
 
   [ Martin Pitt ]
+  * New upstream bug fix/security release. Therefore "medium" urgency.
+    - CUPS could overwrite files as root in directories owned or writable by
+      non-root users. [STR #3510, CVE-2010-2431]
+    - The web interface now includes additional CSRF protection.
+      [STR #3498, CVE-2010-0540] 
+    - The texttops filter did not check the results of allocations.
+      [STR #3516, CVE-2010-0542]
+    - The web admin interface could disclose the contents of memory.
+      [STR #3577, CVE-2010-1748]
+  * Drop select_use_after_free.dpatch: Applied upstream.
+  * do-not-broadcast-with-hostnames.dpatch: Update to apply to new version.
   * Add support-gzipped-charmaps.dpatch: Support gzipped charset → UTF8 maps;
     they compress very well and take a lot of space.
   * debian/rules: Compress /usr/share/cups/charmaps/*.txt in cups-common.
