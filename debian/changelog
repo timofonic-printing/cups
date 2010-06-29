@@ -35,6 +35,9 @@ cups (1.4.4-1) UNRELEASED; urgency=medium
   * debian/cups.postinst: Some versions of cups-pdf (and perhaps other
     packages) changed the permissions of /usr/lib/cups/backend. Fix that
     during upgrade. (Closes: #582942)
+  * debian/control: Drop all the transitional cupsys* packages and the
+    remaining provides/conflicts/replaces on them. All packages in sid are now
+    transitioned to the new package names, and Lenny already had them.
 
  -- Till Kamppeter <till.kamppeter@gmail.com>  Sat,  1 May 2010 20:52:33 +0200
 
