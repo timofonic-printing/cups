@@ -1,3 +1,12 @@
+cups (1.4.4-2) UNRELEASED; urgency=medium
+
+  * debian/local/filters/cpdftocps: The PostScript level from the PPD file
+    was not used, but always the default value "2" instead. This made Xerox
+    color laser printers crash on some files. Thanks to Roel van Os for the
+    patch (LP: #600972).
+
+ -- Till Kamppeter <till.kamppeter@gmail.com>  Fri,  2 Jul 2010 13:34:33 +0200
+
 cups (1.4.4-1) unstable; urgency=medium
 
   [ Till Kamppeter ]
@@ -17,7 +26,7 @@ cups (1.4.4-1) unstable; urgency=medium
     - CUPS could overwrite files as root in directories owned or writable by
       non-root users. [STR #3510, CVE-2010-2431]
     - The web interface now includes additional CSRF protection.
-      [STR #3498, CVE-2010-0540] 
+      [STR #3498, CVE-2010-0540]
     - The texttops filter did not check the results of allocations.
       [STR #3516, CVE-2010-0542]
     - The web admin interface could disclose the contents of memory.
