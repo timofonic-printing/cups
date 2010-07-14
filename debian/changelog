@@ -1,5 +1,9 @@
 cups (1.4.4-2) UNRELEASED; urgency=medium
 
+  * debian/local/filters/pdf-filters/filter/fontembed/bitset.h,
+    debian/local/filters/pdf-filters/filter/fontembed/sfnt.c,
+    debian/local/filters/pdf-filters/filter/texttopdf.c: Fixed bug with
+    subsetting certain composite chars (LP: #605479).
   * debian/local/acroread.conf, debian/local/pdftops.conf, debian/cups.install:
     Removed /etc/cups/acroread.conf and /etc/cups/pdftops.conf. These two files
     were used by the alternative pdftops filter from Helge Blischke. As we
