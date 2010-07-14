@@ -1,5 +1,10 @@
 cups (1.4.4-2) UNRELEASED; urgency=medium
 
+  * debian/local/acroread.conf, debian/local/pdftops.conf, debian/cups.install:
+    Removed /etc/cups/acroread.conf and /etc/cups/pdftops.conf. These two files
+    were used by the alternative pdftops filter from Helge Blischke. As we
+    switched back to the original pdftops filter these files are not needed any
+    more (LP: #605564).
   * debian/local/filters/cpdftocps: The PostScript level from the PPD file
     was not used, but always the default value "2" instead. This made Xerox
     color laser printers crash on some files. Thanks to Roel van Os for the
