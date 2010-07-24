@@ -1,5 +1,6 @@
 cups (1.4.4-2) UNRELEASED; urgency=low
 
+  [ Till Kamppeter ]
   * debian/local/filters/pdf-filters/filter/fontembed/bitset.h,
     debian/local/filters/pdf-filters/filter/fontembed/sfnt.c,
     debian/local/filters/pdf-filters/filter/texttopdf.c: Fixed bug with
@@ -13,6 +14,10 @@ cups (1.4.4-2) UNRELEASED; urgency=low
     was not used, but always the default value "2" instead. This made Xerox
     color laser printers crash on some files. Thanks to Roel van Os for the
     patch (LP: #600972).
+
+  [ Martin Pitt ]
+  * debian/control: Reintroduce the libcupsys2{-dev} Provides:, since some
+    third-party printer drivers still depend on them. (LP: #433311)
 
  -- Till Kamppeter <till.kamppeter@gmail.com>  Fri,  2 Jul 2010 13:34:33 +0200
 
