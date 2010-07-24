@@ -18,6 +18,7 @@ cups (1.4.4-2) UNRELEASED; urgency=low
   [ Martin Pitt ]
   * debian/control: Reintroduce the libcupsys2{-dev} Provides:, since some
     third-party printer drivers still depend on them. (LP: #433311)
+  * debian/control: Have libcups2 break older cups versions. (Closes: #588643)
 
  -- Till Kamppeter <till.kamppeter@gmail.com>  Fri,  2 Jul 2010 13:34:33 +0200
 
