@@ -1,3 +1,11 @@
+cups (1.4.4-3) UNRELEASED; urgency=low
+
+  [ Jamie Strandboge ]
+  * debian/cups.post{inst,rm}: update for local include file
+  * debian/local/apparmor-profile: add local include file
+
+ -- Martin Pitt <mpitt@debian.org>  Wed, 11 Aug 2010 09:55:34 +0200
+
 cups (1.4.4-2) unstable; urgency=low
 
   [ Till Kamppeter ]
