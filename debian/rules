@@ -32,6 +32,8 @@ else
 DEB_MAKE_CHECK_TARGET := check
 endif
 LDFLAGS := -Wl,--as-needed
+DPKG_GENSYMBOLS_CHECK_LEVEL=4
+export DPKG_GENSYMBOLS_CHECK_LEVEL
 
 post-patches::
 	# Add source code of extra filters for PDF printing workflow
