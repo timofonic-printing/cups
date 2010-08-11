@@ -4,6 +4,11 @@ cups (1.4.4-3) UNRELEASED; urgency=low
   * debian/cups.post{inst,rm}: update for local include file
   * debian/local/apparmor-profile: add local include file
 
+  [ Martin Pitt ]
+  * debian/rules: Stop building with --enable-threads, since currenu GnuTLS
+    does not work with threads. This brings back the lost SSL/TLS support.
+    (Closes: #588234, #591509)
+
  -- Martin Pitt <mpitt@debian.org>  Wed, 11 Aug 2010 09:55:34 +0200
 
 cups (1.4.4-2) unstable; urgency=low
