@@ -48,8 +48,10 @@ libcups.so.2 libcups2 #MINVER#
  (optional)_httpAddrPort@Base 1.4.0
  (optional)_httpCreate@Base 1.4.0
  (optional)_httpEncodeURI@Base 1.4.0
+ _httpReadGNUTLS@Base 1.4.4-3
  (optional)_httpResolveURI@Base 1.4.0
  (optional)_httpWait@Base 1.4.0
+ _httpWriteGNUTLS@Base 1.4.4-3
  (optional)_ippAddAttr@Base 1.4.0
  (optional)_ippFindOption@Base 1.4.0
  (optional)_ippFreeAttr@Base 1.4.0
