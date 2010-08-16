@@ -1,3 +1,10 @@
+cups (1.4.4-4) UNRELEASED; urgency=low
+
+  * debian/control: Drop perl-modules dependency. The only script that uses
+    perl is oopstops, which uses IO::Handle, and this is in perl-base.
+
+ -- Martin Pitt <mpitt@debian.org>  Mon, 16 Aug 2010 07:51:31 +0200
+
 cups (1.4.4-3) unstable; urgency=low
 
   [ Jamie Strandboge ]
