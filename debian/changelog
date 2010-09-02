@@ -8,7 +8,7 @@ cups (1.4.4-3ubuntu1) maverick; urgency=low
     system's RAM by a patch defaulting RIP_MAX_CACHE to "auto" only in
     Ubuntu as there we have a Ghostscript version which managers its
     needed memory size automatically. In non-Ubuntu distributions we stay
-    with the 1/4 of system RAM patch.
+    with the 1/4 of system RAM patch. See also LP: #628030.
 
   [ Martin Pitt ]
   * debian/control: Drop perl-modules dependency. The only script that uses
