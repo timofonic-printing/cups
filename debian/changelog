@@ -1,3 +1,14 @@
+cups (1.4.4-4) UNRELEASED; urgency=low
+
+  * debian/patches/non-ubuntu-dynamic-default-ripcache-size.dpatch,
+    debian/patches/ubuntu-default-ripcache-size-auto.dpatch,
+    debian/patches/default-ripcache-size-auto.dpatch: Let RIP_MAX_CACHE
+    default to "auto" in Ubuntu AND Debian. Debian's Ghostscript also
+    has the patch for automatic memory management for the CUPS Raster
+    output device.
+
+ -- Till Kamppeter <till.kamppeter@gmail.com>  Fri,  3 Sep 2010 21:54:33 +0200
+
 cups (1.4.4-3ubuntu1) maverick; urgency=low
 
   [ Till Kamppeter ]
@@ -6,7 +17,7 @@ cups (1.4.4-3ubuntu1) maverick; urgency=low
     debian/patches/ubuntu-default-ripcache-size-auto.dpatch:
     Replaced patch for letting CUPS default RIP_MAX_CACHE to 1/4 of the
     system's RAM by a patch defaulting RIP_MAX_CACHE to "auto" only in
-    Ubuntu as there we have a Ghostscript version which managers its
+    Ubuntu as there we have a Ghostscript version which manages its
     needed memory size automatically. In non-Ubuntu distributions we stay
     with the 1/4 of system RAM patch. See also LP: #628030.
 
