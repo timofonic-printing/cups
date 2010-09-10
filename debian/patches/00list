@@ -23,6 +23,7 @@ read-embedded-options-from-incoming-postscript-and-add-to-ipp-attrs.dpatch
 do-not-broadcast-with-hostnames.dpatch
 cups-deviced-allow-device-ids-with-newline
 default-ripcache-size-auto.dpatch
+cups-snmp-oids-device-id-hp-ricoh.dpatch
 
 # Debian patches
 logfiles_adm_readable.dpatch

@@ -1,5 +1,13 @@
-cups (1.4.4-4) UNRELEASED; urgency=low
+cups (1.4.4-3ubuntu2) maverick; urgency=low
 
+  * debian/patches/cups-snmp-oids-device-id-hp-ricoh.dpatch: Let the "snmp"
+    backend also use the manufacturer-specific MIBs of HP and Ricoh to
+    obtain the device IDs of network-connected printers. This way we get more
+    reliable information about make and model and in addition the supported
+    page description languages, which allow to identify whether an optional
+    PostScript add-on is installed or for an unsupported printer which
+    generic PPD is the best choice (requested by Ricoh, thanks to Tim Waugh
+    from Red Hat to create the patch).
   * debian/patches/non-ubuntu-dynamic-default-ripcache-size.dpatch,
     debian/patches/ubuntu-default-ripcache-size-auto.dpatch,
     debian/patches/default-ripcache-size-auto.dpatch: Let RIP_MAX_CACHE
@@ -7,7 +15,7 @@ cups (1.4.4-4) UNRELEASED; urgency=low
     has the patch for automatic memory management for the CUPS Raster
     output device.
 
- -- Till Kamppeter <till.kamppeter@gmail.com>  Fri,  3 Sep 2010 21:54:33 +0200
+ -- Till Kamppeter <till.kamppeter@gmail.com>  Fri, 10 Sep 2010 21:03:33 +0200
 
 cups (1.4.4-3ubuntu1) maverick; urgency=low
 
