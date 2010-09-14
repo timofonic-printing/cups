@@ -17,6 +17,8 @@ cups (1.4.4-4) UNRELEASED; urgency=low
   [ Martin Pitt ]
   * debian/control: Drop perl-modules dependency. The only script that uses
     perl is oopstops, which uses IO::Handle, and this is in perl-base.
+  * debian/control, debian/rules, ubuntu-*.dpatch: Replace lsb_release call
+    with dpkg-vendor, and drop lsb-release build dependency.
 
  -- Till Kamppeter <till.kamppeter@gmail.com>  Thu,  2 Sep 2010 20:03:33 +0200
 

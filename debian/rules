@@ -70,11 +70,12 @@ binary-post-install/cups::
 	dh_usrlocal
 
 	# Install AppArmor, ufw profile, and Apport hook on Ubuntu
-	if [ "`lsb_release -is 2>/dev/null`" = "Ubuntu" ]; then \
+	if dpkg-vendor --is ubuntu; then \
 	   install -D -m 644 debian/local/apparmor-profile debian/$(cdbs_curpkg)/etc/apparmor.d/usr.sbin.cupsd; \
 	   install -D -m 644 debian/local/cups.ufw.profile debian/$(cdbs_curpkg)/etc/ufw/applications.d/cups; \
 	   install -D -m 644 debian/local/apport-hook.py debian/$(cdbs_curpkg)/usr/share/apport/package-hooks/source_cups.py; \
 	fi
+
 	# Make the usb backend run as root, since /dev/bus/usb/* are
 	# root:root in udev < 147, and cups does not use the usblp kernel
 	# module any more; udev 147 makes most of those printers accessible to
