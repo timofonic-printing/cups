@@ -26,6 +26,7 @@ cups (1.4.4-4) UNRELEASED; urgency=low
       Ubuntu.
     - debian/cups.preinst: Remove old init script on upgrades when running on
       Ubuntu.
+  * debian/cups.preinst: Remove some obsolete transitional code.
 
  -- Till Kamppeter <till.kamppeter@gmail.com>  Thu,  2 Sep 2010 20:03:33 +0200
 
