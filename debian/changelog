@@ -19,6 +19,13 @@ cups (1.4.4-4) UNRELEASED; urgency=low
     perl is oopstops, which uses IO::Handle, and this is in perl-base.
   * debian/control, debian/rules, ubuntu-*.dpatch: Replace lsb_release call
     with dpkg-vendor, and drop lsb-release build dependency.
+  * Upstartify for Ubuntu:
+    - Add debian/cups.upstart: Upstart script, which now causes Samba to wait
+      for cups to start.
+    - debian/rules: Call dh_installinit with --upstart-only when building on
+      Ubuntu.
+    - debian/cups.preinst: Remove old init script on upgrades when running on
+      Ubuntu.
 
  -- Till Kamppeter <till.kamppeter@gmail.com>  Thu,  2 Sep 2010 20:03:33 +0200
 
