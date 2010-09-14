@@ -27,6 +27,8 @@ cups (1.4.4-4) UNRELEASED; urgency=low
     - debian/cups.preinst: Remove old init script on upgrades when running on
       Ubuntu.
   * debian/cups.preinst: Remove some obsolete transitional code.
+  * debian/cups.init.d, debian/cups.postinst: Move custom PPD directory setup
+    from init script into postinst. No need to do that on every boot.
 
  -- Till Kamppeter <till.kamppeter@gmail.com>  Thu,  2 Sep 2010 20:03:33 +0200
 
