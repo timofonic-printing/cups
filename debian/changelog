@@ -19,8 +19,9 @@ cups (1.4.4-4) UNRELEASED; urgency=low
   * debian/control, debian/rules, ubuntu-*.dpatch: Replace lsb_release call
     with dpkg-vendor, and drop lsb-release build dependency.
   * Upstartify for Ubuntu:
-    - Add debian/cups.upstart: Upstart script, which now causes Samba to wait
-      for cups to start.
+    - Add ubuntu-upstart.dpatch: Add debian/cups.upstart script, which now
+      causes Samba to wait for cups to start. Don't have it in debian/ by
+      default, since dh_installinit unconditionally prefers it over .init.
     - debian/rules: Call dh_installinit with --upstart-only when building on
       Ubuntu.
     - debian/cups.preinst: Remove old init script on upgrades when running on
