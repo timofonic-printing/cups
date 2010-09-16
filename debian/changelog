@@ -1,4 +1,4 @@
-cups (1.4.4-4) UNRELEASED; urgency=low
+cups (1.4.4-4) unstable; urgency=low
 
   [ Till Kamppeter ]
   * default-ripcache-size-auto.dpatch: Replaced patch for letting CUPS default
@@ -30,7 +30,7 @@ cups (1.4.4-4) UNRELEASED; urgency=low
   * debian/cups.init.d, debian/cups.postinst: Move custom PPD directory setup
     from init script into postinst. No need to do that on every boot.
 
- -- Till Kamppeter <till.kamppeter@gmail.com>  Thu,  2 Sep 2010 20:03:33 +0200
+ -- Martin Pitt <mpitt@debian.org>  Tue, 14 Sep 2010 18:49:39 +0200
 
 cups (1.4.4-3) unstable; urgency=low
 
