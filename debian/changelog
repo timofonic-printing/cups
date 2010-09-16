@@ -4,6 +4,8 @@ cups (1.4.4-5) UNRELEASED; urgency=low
   * ubuntu-upstart.dpatch: Drop the dependency "on starting smbd", it causes
     samba to hang on package upgrades or manual restarts. There doesn't seem
     to be a good way to express this dependency right now. (LP: #639768)
+    Instead, send a SIGHUP to smbd if it is running, which causes it to reload
+    printers.
 
   [ Till Kamppeter ]
   * pstops-based-workflow-only-for-printing-ps-on-a-ps-printer.dpatch:
