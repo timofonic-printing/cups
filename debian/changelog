@@ -4,6 +4,7 @@ cups (1.4.4-6ubuntu1) UNRELEASED; urgency=low
     conditions with init scripts which expect cups tools to work right after
     restarting it. This fixes a regression from the upstartification.
     Patch cherrypicked from packaging trunk. (LP: #647369)
+  * debian/control: Update Vcs-Bzr: for Maverick branch.
 
  -- Martin Pitt <martin.pitt@ubuntu.com>  Mon, 27 Sep 2010 17:46:14 +0200
 
