@@ -1,3 +1,13 @@
+cups (1.4.4-7) UNRELEASED; urgency=low
+
+  * debian/local/filters/pdf-filters/pdftopdf/parseargs.c,
+    debian/local/filters/pdf-filters/pdftopdf/parseargs.cxx,
+    debian/local/filters/pdf-filters/pdftopdf/parseargs.h,
+    debian/local/filters/pdf-filters/pdftopdf/Makefile: Made pdftopdf
+    building with Poppler 0.15.x. Thanks to Koji Otani for this patch.
+
+ -- Till Kamppeter <till.kamppeter@gmail.com>  Mon, 27 Sep 2010 16:39:33 +0200
+
 cups (1.4.4-6) unstable; urgency=low
 
   * debian/cups.preinst: Go back to using lsb-release, since dpkg-vendor is

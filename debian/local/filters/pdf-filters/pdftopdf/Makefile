@@ -64,7 +64,7 @@ clean:
 #
 
 depend:
-	makedepend -Y -I.. -fDependencies $(OBJS:.o=.cxx) parseargs.c >/dev/null 2>&1
+	makedepend -Y -I.. -fDependencies $(OBJS:.o=.cxx) >/dev/null 2>&1
 
 
 #
