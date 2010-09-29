@@ -11,6 +11,8 @@ cups (1.4.4-7) UNRELEASED; urgency=low
   * ubuntu-upstart.dpatch: Wait until daemon is ready, to avoid race
     conditions with init scripts which expect cups tools to work right after
     restarting it. (LP: #647369)
+  * ubuntu-upstart.dpatch: If D-BUS is not available, start on runlevels 2 to
+    5, so that this also works in server environments. (LP: #650893)
 
  -- Till Kamppeter <till.kamppeter@gmail.com>  Mon, 27 Sep 2010 16:39:33 +0200
 
