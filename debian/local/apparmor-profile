@@ -99,6 +99,7 @@
   /usr/lib/cups/filter/* Uxr, 
   /usr/lib/cups/driver/* Uxr,
   /usr/local/share/** r,
+  /usr/local/lib/cups/** rix,
   /usr/share/** r,
   /var/cache/cups/ rw,
   /var/cache/cups/** rwk,
