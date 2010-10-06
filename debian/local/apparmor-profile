@@ -98,7 +98,7 @@
   # and there are a lot of third-party drivers which we cannot predict
   /usr/lib/cups/filter/* Uxr, 
   /usr/lib/cups/driver/* Uxr,
-  /usr/local/share/** r,
+  /usr/local/** r,
   /usr/local/lib/cups/** rix,
   /usr/share/** r,
   /var/cache/cups/ rw,

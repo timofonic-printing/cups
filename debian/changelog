@@ -15,6 +15,8 @@ cups (1.4.4-7) UNRELEASED; urgency=low
     5, so that this also works in server environments. (LP: #650893)
   * debian/local/apparmor-profile: Allow access to /usr/local/lib/cups/**.
     (LP: #160092)
+  * debian/local/apparmor-profile: Allow reading /usr/local/**, in case
+    third-party printer drivers need auxiliary files.
 
  -- Till Kamppeter <till.kamppeter@gmail.com>  Mon, 27 Sep 2010 16:39:33 +0200
 
