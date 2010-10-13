@@ -105,6 +105,7 @@
   /var/cache/cups/** rwk,
   /var/log/cups/ rw,
   /var/log/cups/* rw,
+  /var/run/** rm,
   /var/run/avahi-daemon/socket rw,
   /var/run/cups/ rw,
   /var/run/cups/** rw,

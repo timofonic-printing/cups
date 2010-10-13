@@ -17,6 +17,7 @@ cups (1.4.4-7) UNRELEASED; urgency=low
     (LP: #160092)
   * debian/local/apparmor-profile: Allow reading /usr/local/**, in case
     third-party printer drivers need auxiliary files.
+  * debian/local/apparmor-profile: Allow reading /var/run/**. (LP: #659961)
 
  -- Till Kamppeter <till.kamppeter@gmail.com>  Mon, 27 Sep 2010 16:39:33 +0200
 
