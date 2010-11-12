@@ -26,6 +26,9 @@ cups (1.4.4-7) UNRELEASED; urgency=low
     (LP: #672438)
   * debian/local/filters/pdf-filters/addtocups: Link pdftoijs with $(CXX),
     since it's a C++ program. Fixes FTBFS with gcc 4.5.
+  * debian/local/filters/pdf-filters/pdftopdf/Makefile: Explicitly pdftopdf
+    with -lz. gcc 4.5 does not automatically link to transitive library
+    dependencies any more.
   
   [ Marc Deslauriers ]
   * Add CVE-2010-2941.dpatch: Fix denial of service and possible code execution
