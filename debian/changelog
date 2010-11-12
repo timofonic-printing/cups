@@ -24,6 +24,8 @@ cups (1.4.4-7) UNRELEASED; urgency=low
   * ubuntu-upstart.dpatch: Time out after 5 seconds when the local socket
     doesn't get created. Apparently a lot of users disable it in cupsd.conf.
     (LP: #672438)
+  * debian/local/filters/pdf-filters/addtocups: Link pdftoijs with $(CXX),
+    since it's a C++ program. Fixes FTBFS with gcc 4.5.
   
   [ Marc Deslauriers ]
   * Add CVE-2010-2941.dpatch: Fix denial of service and possible code execution
