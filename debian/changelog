@@ -1,4 +1,4 @@
-cups (1.4.4-7) UNRELEASED; urgency=low
+cups (1.4.4-7) unstable; urgency=low
 
   [ Till Kamppeter ]
   * debian/local/filters/pdf-filters/pdftopdf/parseargs.c,
@@ -37,7 +37,7 @@ cups (1.4.4-7) UNRELEASED; urgency=low
     via invalid free. Skip over and reserve unused tags in cups/ipp.{c,h}.
     [CVE-2010-2941]
 
- -- Till Kamppeter <till.kamppeter@gmail.com>  Mon, 27 Sep 2010 16:39:33 +0200
+ -- Martin Pitt <mpitt@debian.org>  Fri, 12 Nov 2010 11:07:33 +0100
 
 cups (1.4.4-6) unstable; urgency=low
 
