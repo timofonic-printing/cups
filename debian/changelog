@@ -21,6 +21,9 @@ cups (1.4.4-7) UNRELEASED; urgency=low
   * debian/local/apparmor-profile: Allow reading /usr/local/**, in case
     third-party printer drivers need auxiliary files.
   * debian/local/apparmor-profile: Allow reading /var/run/**. (LP: #659961)
+  * ubuntu-upstart.dpatch: Time out after 5 seconds when the local socket
+    doesn't get created. Apparently a lot of users disable it in cupsd.conf.
+    (LP: #672438)
   
   [ Marc Deslauriers ]
   * Add CVE-2010-2941.dpatch: Fix denial of service and possible code execution
