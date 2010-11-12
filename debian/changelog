@@ -6,6 +6,9 @@ cups (1.4.4-7) UNRELEASED; urgency=low
     debian/local/filters/pdf-filters/pdftopdf/parseargs.h,
     debian/local/filters/pdf-filters/pdftopdf/Makefile: Made pdftopdf
     building with Poppler 0.15.x. Thanks to Koji Otani for this patch.
+  * debian/control: Added dependency on "cups-ppdc" package to the "cups"
+    package, so that the PPDs of the drivers which come with CUPS get built
+    (LP: #485383).
 
   [ Martin Pitt ]
   * ubuntu-upstart.dpatch: Wait until daemon is ready, to avoid race
