@@ -29,6 +29,8 @@ cups (1.4.4-7) UNRELEASED; urgency=low
   * debian/local/filters/pdf-filters/pdftopdf/Makefile: Explicitly pdftopdf
     with -lz. gcc 4.5 does not automatically link to transitive library
     dependencies any more.
+  * drop_unnecessary_dependencies.dpatch: Drop hunk for reduced krb5/gssapi
+    linkage. With gcc 4.5, we now need -lkrb5.
   
   [ Marc Deslauriers ]
   * Add CVE-2010-2941.dpatch: Fix denial of service and possible code execution
