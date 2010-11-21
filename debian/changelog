@@ -3,6 +3,8 @@ cups (1.4.4-8) UNRELEASED; urgency=low
   * debian/control: Drop xpdf-* CJK suggests, they got removed from squeeze.
     (Closes: #603467)
   * debian/control: Clean up obsolete suggests.
+  * Update Catalan debconf translations, thanks Jordi Mallach!
+    (Closes: #601138)
 
  -- Martin Pitt <mpitt@debian.org>  Mon, 15 Nov 2010 18:29:07 +0100
 
