@@ -1,5 +1,9 @@
-cups (1.4.4-8) UNRELEASED; urgency=low
+cups (1.4.5-1) UNRELEASED; urgency=low
 
+  * New upstream bug fix/security release. The security issue
+    (CVE-2010-2941) was already fixed by a backported patch in the previous
+    upload.
+  * Drop CVE-2010-2941.dpatch, upstream now.
   * debian/control: Drop xpdf-* CJK suggests, they got removed from squeeze.
     (Closes: #603467)
   * debian/control: Clean up obsolete suggests.
@@ -45,7 +49,7 @@ cups (1.4.4-7) unstable; urgency=low
   [ Marc Deslauriers ]
   * Add CVE-2010-2941.dpatch: Fix denial of service and possible code execution
     via invalid free. Skip over and reserve unused tags in cups/ipp.{c,h}.
-    [CVE-2010-2941]
+    [CVE-2010-2941] (Closes: #603344)
 
  -- Martin Pitt <mpitt@debian.org>  Fri, 12 Nov 2010 11:07:33 +0100
 
