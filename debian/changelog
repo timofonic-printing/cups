@@ -5,6 +5,7 @@ cups (1.4.5-1) UNRELEASED; urgency=low
     upload.
   * Drop CVE-2010-2941.dpatch, upstream now.
   * Drop manual-section-for-drv.dpatch, obsolete with new upstream version.
+  * dnssd-avahi.dpatch: Unfuzz for new upstream version.
   * debian/control: Drop xpdf-* CJK suggests, they got removed from squeeze.
     (Closes: #603467)
   * debian/control: Clean up obsolete suggests.
