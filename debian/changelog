@@ -1,5 +1,6 @@
 cups (1.4.5-1) UNRELEASED; urgency=low
 
+  [ Martin Pitt ]
   * New upstream bug fix/security release. The security issue
     (CVE-2010-2941) was already fixed by a backported patch in the previous
     upload.
@@ -12,6 +13,19 @@ cups (1.4.5-1) UNRELEASED; urgency=low
   * Update Catalan debconf translations, thanks Jordi Mallach!
     (Closes: #601138)
   * debian/cups-ppdc.install: Drop drv manpage, doesn't exist any more.
+
+  [ Till Kamppeter ]
+  * debian/local/filters/pdf-filters/pdftopdf/P2PForm.cxx,
+    debian/local/filters/pdf-filters/pdftopdf/P2PForm.h,
+    debian/local/filters/pdf-filters/pdftopdf/Makefile,
+    debian/local/filters/pdf-filters/pdftopdf/P2PMatrix.h,
+    debian/local/filters/pdf-filters/pdftopdf/P2PPage.cxx,
+    debian/local/filters/pdf-filters/pdftopdf/P2PPage.h,
+    debian/local/filters/pdf-filters/pdftopdf/P2PResources.cxx,
+    debian/local/filters/pdf-filters/pdftopdf/P2PResources.h: Make
+    pdftopdf working with PDF files which use "Form" without "Resource"
+    dictionary. Thanks to Koji Otani for this patch and to Nicola
+    Ruggero for reporting the problem and sending sample files.
 
  -- Martin Pitt <mpitt@debian.org>  Mon, 15 Nov 2010 18:29:07 +0100
 
