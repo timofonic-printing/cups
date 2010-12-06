@@ -1,4 +1,4 @@
-cups (1.4.5-1) UNRELEASED; urgency=low
+cups (1.4.5-1) unstable; urgency=low
 
   [ Martin Pitt ]
   * New upstream bug fix/security release. The security issue
@@ -27,7 +27,7 @@ cups (1.4.5-1) UNRELEASED; urgency=low
     dictionary. Thanks to Koji Otani for this patch and to Nicola
     Ruggero for reporting the problem and sending sample files.
 
- -- Martin Pitt <mpitt@debian.org>  Mon, 15 Nov 2010 18:29:07 +0100
+ -- Martin Pitt <mpitt@debian.org>  Mon, 06 Dec 2010 19:40:56 +0100
 
 cups (1.4.4-7) unstable; urgency=low
 
