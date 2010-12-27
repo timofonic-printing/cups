@@ -1,4 +1,4 @@
-cups (1.4.5-2) UNRELEASED; urgency=low
+cups (1.4.5-1ubuntu1) natty; urgency=low
 
   [ Till Kamppeter ]
   * debian/patches/cups-avahi.dpatch: Added patch from Tim Waugh from Red Hat
