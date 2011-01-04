@@ -35,6 +35,9 @@ cups (1.4.5-2) UNRELEASED; urgency=low
     silence noise. This is presumably an extra control channel for some USB
     printers, but cupsd can't use it anyway. (LP: #692892)
 
+  [ Kees Cook ]
+  * ubuntu-upstart.dpatch: Use AppArmor profile loading helper. (LP: #690040)
+
  -- Till Kamppeter <till.kamppeter@gmail.com>  Sun, 26 Dec 2010 18:07:33 +0100
 
 cups (1.4.5-1) unstable; urgency=low
