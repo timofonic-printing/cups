@@ -34,6 +34,9 @@ cups (1.4.5-2) UNRELEASED; urgency=low
   * debian/local/apparmor-profile: Explicitly deny access to ttyUSB* to
     silence noise. This is presumably an extra control channel for some USB
     printers, but cupsd can't use it anyway. (LP: #692892)
+  * ubuntu-upstart.dpatch: Drop reloading of Samba. It didn't work in some
+    cases, and is better fixed in samba's upstart script (start cups in its
+    pre-start).
 
   [ Kees Cook ]
   * ubuntu-upstart.dpatch: Use AppArmor profile loading helper. (LP: #690040)
