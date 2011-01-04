@@ -1,55 +1,4 @@
-cups (1.4.5-1ubuntu4) natty; urgency=low
-
-  * debian/patches/configure-default-browse-protocols.dpatch: Fixed handling
-    of "--with-local_protocols=..." and "--with-remote_protocols=..." on the
-    command line of "./configure". Now (quoted) values with spaces, like
-    "CUPS dnssd" are treated correctly.
-  * debian/patches/cups-avahi.dpatch: Register printers for Avahi-based
-    DNS-SD broadcasting only if browsing is turned on and DNS-SD is one
-    of the "BrowseLocalProtocols" in cupsd.conf.
-  * debian/patches/cups-avahi.dpatch: Added NULL checks to the compare
-    function dnssdComparePrinters() to sort the DNSSDPrinters array.
-
- -- Till Kamppeter <till.kamppeter@gmail.com>  Wed, 29 Dec 2010 22:41:33 +0100
-
-cups (1.4.5-1ubuntu3) natty; urgency=low
-
-  * debian/rules: Added "--with-local_protocols='CUPS dnssd'
-    --with-remote_protocols='CUPS dnssd'" to the command line of "./configure".
-    This adds support for DNS-SD-based browsing and broadcasting by default.
-  * debian/control: Removed the build and run-time dependencies on
-    avahi-daemon again. With the fixes on the cups-avahi.dpatch CUPS
-    works also without running Avahi daemon now. Put avahi-daemon only
-    into Recommends: for the "cups" package, as DNS-SD broadcasting
-    makes CUPS working together with Mac OS X.
-  * debian/patches/ubuntu-upstart.dpatch: Removed any interaction between CUPS
-    and avahi-daemon, as the improved cups-avahi.dpatch lets CUPS automatically
-    connect with avahi-daemon as soon as it gets started.
-  * debian/patches/cups-avahi.dpatch: Fixed several segfaults by adding missing
-    initializations and NULL checks, made Avahi client stopping and restarting
-    when the Avahi daemon disappears and reappears, to make CUPS running
-    independently on the Avahi daemon but with DNS-SD services while the Avahi
-    daemon is running.
-
- -- Till Kamppeter <till.kamppeter@gmail.com>  Wed, 29 Dec 2010 18:37:33 +0100
-
-cups (1.4.5-1ubuntu2) natty; urgency=low
-
-  * debian/control: Added dependency on avahi-daemon to the "cups" package
-    as the CUPS daemon now only starts if avahi-daemon is running. Also
-    build-depend on avahi-daemon so that the test suite can run the CUPS
-    daemon.
-  * debian/patches/ubuntu-upstart.dpatch: Let CUPS daemon start wait for the
-    avahi-daemon to be running.
-  * debian/patches/cups-avahi.dpatch: Make the "dnssd" CUPS backend not
-    error out if the system D-Bus is not running. This unbreaks the test
-    suite when running in a build environment (see Martin Pitt's changes
-    in the 1.4.0~svn8773-1 upload).
-  * debian/patches/cups-avahi.dpatch: Added upstream bug link.
-
- -- Till Kamppeter <till.kamppeter@gmail.com>  Mon, 27 Dec 2010 10:28:33 +0100
-
-cups (1.4.5-1ubuntu1) natty; urgency=low
+cups (1.4.5-2) UNRELEASED; urgency=low
 
   [ Till Kamppeter ]
   * debian/patches/cups-avahi.dpatch: Added patch from Tim Waugh from Red Hat
@@ -60,6 +9,13 @@ cups (1.4.5-1ubuntu1) natty; urgency=low
     cups-avahi.dpatch.
   * debian/patches/quiesce-bonjour-warning.dpatch: Removed, not needed any
     more with the new cups-avahi.dpatch.
+  * debian/rules: Added "--with-local_protocols='CUPS dnssd'
+    --with-remote_protocols='CUPS dnssd'" to the command line of "./configure".
+    This adds support for DNS-SD-based browsing and broadcasting by default.
+  * debian/patches/configure-default-browse-protocols.dpatch: Fixed handling
+    of "--with-local_protocols=..." and "--with-remote_protocols=..." on the
+    command line of "./configure". Now (quoted) values with spaces, like
+    "CUPS dnssd" are treated correctly.
   * debian/patches/usb-backend-no-segfault-on-bad-device-id.dpatch: Assure
     that the device ID string read from a USB device can never be a mess: Try
     other byte order for device ID string length also if length is too small,
