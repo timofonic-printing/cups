@@ -1,3 +1,10 @@
+cups (1.4.5-3) UNRELEASED; urgency=low
+
+  * debian/patches/ubuntu-upstart.dpatch: Don't ignore failures from
+    apparmor-profile-load.
+
+ -- Martin Pitt <mpitt@debian.org>  Tue, 04 Jan 2011 18:57:45 +0100
+
 cups (1.4.5-2) unstable; urgency=low
 
   [ Till Kamppeter ]
