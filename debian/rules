@@ -10,6 +10,8 @@
 #export DH_VERBOSE=1
 
 export DEB_BUILD_HARDENING=1
+# http://www.cups.org/str.php?L3765
+export LC_MESSAGES=C
 
 include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/class/autotools.mk

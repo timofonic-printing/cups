@@ -37,6 +37,9 @@ cups (1.4.5-2) UNRELEASED; urgency=low
   * ubuntu-upstart.dpatch: Drop reloading of Samba. It didn't work in some
     cases, and is better fixed in samba's upstart script (start cups in its
     pre-start).
+  * debian/rules: Set LC_MESSAGES=C to avoid breaking the test suite in
+    non-English locales. This is a temporary fix until it is resolved upstream
+    (see http://www.cups.org/str.php?L3765).
 
   [ Kees Cook ]
   * ubuntu-upstart.dpatch: Use AppArmor profile loading helper. (LP: #690040)
