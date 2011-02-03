@@ -1,9 +1,14 @@
 cups (1.4.5-3) UNRELEASED; urgency=low
 
+  [ Till Kamppeter ]
+  * debian/patches/cups-avahi.dpatch: Updated to fix assertion failure
+    (LP: #707592, Red Hat bug #672143).
+
+  [ Martin Pitt ]
   * debian/patches/ubuntu-upstart.dpatch: Don't ignore failures from
     apparmor-profile-load.
 
- -- Martin Pitt <mpitt@debian.org>  Tue, 04 Jan 2011 18:57:45 +0100
+ -- Martin Pitt <mpitt@debian.org>  Thu, 03 Feb 2011 19:37:45 +0100
 
 cups (1.4.5-2) unstable; urgency=low
 
