@@ -5,6 +5,7 @@ cups (1.4.5-3) UNRELEASED; urgency=low
 
   [ Till Kamppeter ]
   * debian/local/filters/pdf-filters/filter/pdftoraster.cxx,
+    debian/local/filters/pdf-filters/conf/pdftoraster.convs,
     debian/local/filters/pdf-filters/README,
     debian/local/filters/pdf-filters/addtocups
     debian/local/filters/pdf-filters/conf/HP-PhotoSmart_Pro_B8300-hpijs-pdftoijs.ppd,

@@ -17,6 +17,7 @@ rm -f $1/conf/imagetopdf.types
 rm -f $1/conf/pdftopdf.convs
 rm -f $1/conf/pdf.types
 rm -f $1/conf/texttopdf.convs
+rm -f $1/conf/pdftoraster.convs
 rm -f $1/data/pdf.utf-8.heavy
 rm -f $1/data/pdf.utf-8.simple
 rm -f $1/config-scripts/cups-pdf-filters.m4

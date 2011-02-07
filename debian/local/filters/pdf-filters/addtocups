@@ -17,6 +17,7 @@ cp conf/imagetopdf.types $1/conf/
 cp conf/pdftopdf.convs $1/conf/
 cp conf/pdf.types $1/conf/
 cp conf/texttopdf.convs $1/conf/
+cp conf/pdftoraster.convs $1/conf/
 cp data/pdf.utf-8.heavy $1/data/
 cp data/pdf.utf-8.simple $1/data/
 cp config-scripts/cups-pdf-filters.m4 $1/config-scripts/
@@ -141,7 +142,7 @@ cp filter/Makefile filter/Makefile.pdf-filters
 cp data/Makefile data/Makefile.pdf-filters
 cp Makefile Makefile.pdf-filters
 cp Makedefs.in Makedefs.in.pdf-filters
-perl -p -i -e 's/^(\s*REPLACE\s*=.*)$/$1 imagetopdf.convs imagetopdf.types pdftopdf.convs pdf.types texttopdf.convs/' conf/Makefile
+perl -p -i -e 's/^(\s*REPLACE\s*=.*)$/$1 imagetopdf.convs imagetopdf.types pdftopdf.convs pdf.types texttopdf.convs pdftoraster.convs/' conf/Makefile
 perl -p -i -e 's/^(\s*FILTERS\s*=\s+)/$1imagetopdf pdftoijs texttopdf pdftoraster /' filter/Makefile
 perl -p -i -e 's/^(\s*OBJS\s*=\s+)/$1imagetopdf.o pdftoijs.o texttopdf.o pdfutils.o pdftoraster.o /' filter/Makefile
 perl -p -i -e 's/^(\s*CHARSETS\s*=\s+)/$1pdf.utf-8.heavy pdf.utf-8.simple /' data/Makefile
