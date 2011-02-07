@@ -1,9 +1,11 @@
 cups (1.4.5-3) UNRELEASED; urgency=low
 
-  * IMPORTANT: This state of the cups package builds but does not install
-    (pdftoraster conflicts with ghostscript package). DO NOT UPLOAD.
-
   [ Till Kamppeter ]
+  * debian/rules: Do not remove the /usr/share/cups/model/ directory, some
+    manufacturer-supplied printer drivers (like from Brother) still use it.
+  * debian/rules: Remove a cost factor change for pstops. It is not used any
+    more and overridden by
+    pstops-based-workflow-only-for-printing-ps-on-a-ps-printer.dpatch
   * debian/local/filters/pdf-filters/filter/pdftoraster.cxx,
     debian/local/filters/pdf-filters/conf/pdftoraster.convs,
     debian/local/filters/pdf-filters/README,
@@ -16,6 +18,10 @@ cups (1.4.5-3) UNRELEASED; urgency=low
        than the Ghostscript-based filter (LP: #668800).
      o Cleaned up the sample PPD file for pdftoijs (does not go into the
        Debian/Ubuntu package of CUPS).
+  * debian/rules: Rename the newly added Poppler-based pdftoraster filter
+    to pdftoraster-poppler to not conflict with Ghostscript's pdftoraster
+    and lower its cost factor so that it is prioritized against Ghostscript's
+    filter.
   * debian/patches/cups-avahi.dpatch: Updated to fix assertion failure
     (LP: #707592, Red Hat bug #672143).
 
