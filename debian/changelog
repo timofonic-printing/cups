@@ -1,4 +1,4 @@
-cups (1.4.5-3) UNRELEASED; urgency=low
+cups (1.4.5-3) unstable; urgency=low
 
   [ Till Kamppeter ]
   * debian/rules: Do not remove the /usr/share/cups/model/ directory, some
@@ -29,7 +29,7 @@ cups (1.4.5-3) UNRELEASED; urgency=low
   * debian/patches/ubuntu-upstart.dpatch: Don't ignore failures from
     apparmor-profile-load.
 
- -- Martin Pitt <mpitt@debian.org>  Thu, 03 Feb 2011 19:37:45 +0100
+ -- Martin Pitt <mpitt@debian.org>  Tue, 08 Feb 2011 10:46:25 +0100
 
 cups (1.4.5-2) unstable; urgency=low
 
