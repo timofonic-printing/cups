@@ -1,6 +1,9 @@
-cups (1.4.6-1) unstable; urgency=low
+cups (1.4.6-1) UNRELEASED; urgency=low
 
   * New upstream release.
+
+  [ Martin Pitt ]
+  * ppdc-dynamic-linking.dpatch: Update to new upstream version.
 
   [ Martin-Éric Racine ]
   * Updated my contact info in debian/control.
