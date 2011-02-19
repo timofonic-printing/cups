@@ -1,4 +1,4 @@
-cups (1.4.6-1) UNRELEASED; urgency=low
+cups (1.4.6-1) unstable; urgency=low
 
   * New upstream release.
 
@@ -10,7 +10,7 @@ cups (1.4.6-1) UNRELEASED; urgency=low
   [ Martin-Éric Racine ]
   * Updated my contact info in debian/control.
 
- -- Martin-Éric Racine <martin-eric.racine@iki.fi>  Sat, 19 Feb 2011 16:35:34 +0200
+ -- Martin Pitt <mpitt@debian.org>  Sat, 19 Feb 2011 22:41:08 +0100
 
 cups (1.4.5-3) unstable; urgency=low
 
