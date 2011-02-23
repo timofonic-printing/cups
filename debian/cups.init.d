@@ -8,7 +8,7 @@
 # X-Start-Before:    samba
 # X-Stop-After:      samba
 # Default-Start:     2 3 4 5
-# Default-Stop:      1
+# Default-Stop:      0 1 6
 # Short-Description: CUPS Printing spooler and server
 ### END INIT INFO
 

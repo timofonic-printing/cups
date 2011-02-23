@@ -1,3 +1,9 @@
+cups (1.4.6-2) unstable; urgency=low
+
+  * Lintian: add missing levels 0 and 6 to the init script.
+
+ -- Martin-Éric Racine <martin-eric.racine@iki.fi>  Wed, 23 Feb 2011 14:04:21 +0200
+
 cups (1.4.6-1) unstable; urgency=low
 
   * New upstream release.
