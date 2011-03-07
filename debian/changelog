@@ -6,7 +6,6 @@ cups (1.4.6-2) UNRELEASED; urgency=low
 
   [ Martin-Éric Racine ]
   * Added Recommends:smbclient to cups-client (Closes: #616015).
-  * Lintian: added missing levels 0 and 6 to the init script.
 
  -- Martin-Éric Racine <martin-eric.racine@iki.fi>  Mon, 07 Mar 2011 12:57:07 +0200
 
