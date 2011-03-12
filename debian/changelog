@@ -1,5 +1,9 @@
 cups (1.4.6-2) UNRELEASED; urgency=low
 
+  [ Till Kamppeter ]
+  * debian/printer.schema: Added missing "printerType" attribute. Thanks to
+    Mario Fetka for the hint (LP: #724980).
+
   [ Martin Pitt ]
   * ubuntu-upstart.dpatch: Fix start failure if apparmor-profile-load doesn't
     exist. Thanks Zach! (LP: #728592)
