@@ -1,3 +1,9 @@
+cups (1.4.6-3multiarch1) natty; urgency=low
+
+  * Build for multiarch.
+
+ -- Steve Langasek <steve.langasek@ubuntu.com>  Thu, 24 Mar 2011 22:31:16 -0700
+
 cups (1.4.6-3) unstable; urgency=low
 
   [ Till Kamppeter ]
