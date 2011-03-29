@@ -1,3 +1,14 @@
+cups (1.4.6-4) UNRELEASED; urgency=low
+
+  * debian/rules: Convert cups.png (CUPS logo for test page) to RGBA, as the
+    original 8-bit-per-pixel color map format leads to a crash in libpng. This
+    prevents the CUPS test page and the banner pages from printing
+    (LP: #710881).
+  * debian/control: Add ImageMagick to the build dependencies, as it is
+    needed for the CUPS logo image conversion.
+
+ -- Till Kamppeter <till.kamppeter@gmail.com>  Tue, 29 Mar 2011 11:48:33 +0200
+
 cups (1.4.6-3) unstable; urgency=low
 
   [ Till Kamppeter ]
