@@ -1,3 +1,9 @@
+cups (1.4.6-4multiarch2) natty; urgency=low
+
+  * No-change rebuild to pick up a build for armel
+
+ -- Steve Langasek <steve.langasek@ubuntu.com>  Mon, 11 Apr 2011 12:48:18 -0700
+
 cups (1.4.6-4multiarch1) natty; urgency=low
 
   * Merge from natty.
