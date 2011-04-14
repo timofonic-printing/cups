@@ -1,3 +1,11 @@
+cups (1.4.6-5) UNRELEASED; urgency=low
+
+  * debian/local/apparmor-profile: Add cap_dac_read_search for cups-pdf. This
+    circumvents the sandboxing even more, but with cups-pdf's architecture
+    there is no way around it. (LP: #295536)
+
+ -- Martin Pitt <mpitt@debian.org>  Thu, 14 Apr 2011 12:31:02 +0200
+
 cups (1.4.6-4) unstable; urgency=low
 
   * debian/patches/fix-broken-ipv6-uris.dpatch: When accessing the web
