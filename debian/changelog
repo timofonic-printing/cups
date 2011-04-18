@@ -4,8 +4,8 @@ cups (1.4.6-5) UNRELEASED; urgency=low
   * debian/patches/cups-avahi.dpatch: Updated the patch to add Avahi support
     to the newest state of the art from
     http://twaugh.fedorapeople.org/cups-avahi/ (upstream of the patch),
-    in the hope to fix CUPS crashers like LP: #759031, LP: #754567,
-    LP: #711875, LP: #751770.
+    in the hope to fix CUPS crashers like LP #759031, #754567, #711875,
+    #751770.
 
   [ Martin Pitt ]
   * debian/local/apparmor-profile: Add cap_dac_read_search for cups-pdf. This
