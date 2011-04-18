@@ -1,4 +1,4 @@
-cups (1.4.6-5) UNRELEASED; urgency=low
+cups (1.4.6-5) unstable; urgency=low
 
   [ Till Kamppeter ]
   * debian/patches/cups-avahi.dpatch: Updated the patch to add Avahi support
@@ -12,7 +12,7 @@ cups (1.4.6-5) UNRELEASED; urgency=low
     circumvents the sandboxing even more, but with cups-pdf's architecture
     there is no way around it. (LP: #295536)
 
- -- Martin Pitt <mpitt@debian.org>  Thu, 14 Apr 2011 12:31:02 +0200
+ -- Martin Pitt <mpitt@debian.org>  Mon, 18 Apr 2011 19:22:20 +0200
 
 cups (1.4.6-4) unstable; urgency=low
 
