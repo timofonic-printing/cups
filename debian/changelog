@@ -1,3 +1,25 @@
+cups (1.4.6-5multiarch1) natty; urgency=low
+
+  * Merge from natty.
+
+ -- Steve Langasek <steve.langasek@ubuntu.com>  Tue, 19 Apr 2011 16:24:08 -0700
+
+cups (1.4.6-5) unstable; urgency=low
+
+  [ Till Kamppeter ]
+  * debian/patches/cups-avahi.dpatch: Updated the patch to add Avahi support
+    to the newest state of the art from
+    http://twaugh.fedorapeople.org/cups-avahi/ (upstream of the patch),
+    in the hope to fix CUPS crashers like LP #759031, #754567, #711875,
+    #751770.
+
+  [ Martin Pitt ]
+  * debian/local/apparmor-profile: Add cap_dac_read_search for cups-pdf. This
+    circumvents the sandboxing even more, but with cups-pdf's architecture
+    there is no way around it. (LP: #295536)
+
+ -- Martin Pitt <mpitt@debian.org>  Mon, 18 Apr 2011 19:22:20 +0200
+
 cups (1.4.6-4multiarch2) natty; urgency=low
 
   * No-change rebuild to pick up a build for armel
@@ -25,7 +47,7 @@ cups (1.4.6-4) unstable; urgency=low
   * debian/control: Add ImageMagick to the build dependencies, as it is
     needed for the CUPS logo image conversion.
 
- -- Till Kamppeter <till.kamppeter@gmail.com>  Tue, 29 Mar 2011 11:48:33 +0200
+ -- Till Kamppeter <till.kamppeter@gmail.com>  Fri, 01 Apr 2011 11:06:02 +0200
 
 cups (1.4.6-3multiarch1) natty; urgency=low
 
