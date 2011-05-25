@@ -1,4 +1,4 @@
-cups (1.4.6-6) UNRELEASED; urgency=low
+cups (1.4.6-6) unstable; urgency=low
 
   [ Till Kamppeter ]
   * debian/filters/pstopdf: Let pstopdf determine the page size via
@@ -19,7 +19,7 @@ cups (1.4.6-6) UNRELEASED; urgency=low
     pkgstripfiles. (LP: #710881)
   * Bump Standards-Version to 3.9.2 (no changes necessary).
 
- -- Martin Pitt <mpitt@debian.org>  Tue, 19 Apr 2011 21:31:16 +0200
+ -- Martin Pitt <mpitt@debian.org>  Wed, 25 May 2011 07:03:55 +0200
 
 cups (1.4.6-5) unstable; urgency=low
 
