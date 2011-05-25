@@ -17,6 +17,7 @@ cups (1.4.6-6) UNRELEASED; urgency=low
     pkgbinarymangler, so it does not affect Debian builds at all and also this
     cannot be circumvented that way. Instead, blacklist this package from
     pkgstripfiles. (LP: #710881)
+  * Bump Standards-Version to 3.9.2 (no changes necessary).
 
  -- Martin Pitt <mpitt@debian.org>  Tue, 19 Apr 2011 21:31:16 +0200
 
