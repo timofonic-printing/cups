@@ -1,3 +1,12 @@
+cups (1.4.6-7) UNRELEASED; urgency=low
+
+  * debian/local/pstopdf.convs, debian/local/pstopdf.types: Do not apply
+    the PDF printing workflow to PostScript input coming from the Adobe
+    Reader. If this PostScript comes from an encrypted (DRM) PDF, it cannot
+    be converted to PDF again by Ghostscript (LP: #782309).
+
+  -- Till Kamppeter <till.kamppeter@gmail.com>  Mon, 30 May 2011 23:59:59 +0200
+
 cups (1.4.6-6) unstable; urgency=low
 
   [ Till Kamppeter ]
