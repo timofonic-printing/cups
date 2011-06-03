@@ -1,5 +1,10 @@
 cups (1.4.6-7) UNRELEASED; urgency=low
 
+  * debian/patches/cups-avahi.dpatch: In contrary to the libdns_sd API the
+    Avahi API requires port numbers in host order and not in network order.
+    This made the Avahi-based DNS-SD broadcasting of CUPS advertizing wronmg
+    port numbers. Updated the Avahi patch to fix it. Thanks to Tim Waugh
+    from Red Hat on confirming this (LP: #792309).
   * debian/local/filters/pdf-filters/pdftopdf/P2PResources.cxx: Fixed
     memory leak in pdftopdf filter which made the filter taking up several
     gigabytes when processing certain PDF files. Thanks to upstream
