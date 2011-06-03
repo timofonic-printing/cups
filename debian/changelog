@@ -1,5 +1,9 @@
 cups (1.4.6-7) UNRELEASED; urgency=low
 
+  * debian/local/filters/pdf-filters/pdftopdf/P2PResources.cxx: Fixed
+    memory leak in pdftopdf filter which made the filter taking up several
+    gigabytes when processing certain PDF files. Thanks to upstream
+    author Koji Otani for the quick fix (LP: #790378).
   * debian/local/pstopdf.convs, debian/local/pstopdf.types: Do not apply
     the PDF printing workflow to PostScript input coming from the Adobe
     Reader. If this PostScript comes from an encrypted (DRM) PDF, it cannot
