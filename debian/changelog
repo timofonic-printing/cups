@@ -1,5 +1,8 @@
 cups (1.4.6-7) UNRELEASED; urgency=low
 
+  * debian/patches/cups-avahi.dpatch: Updated Avahi patch so that it does
+    not generate too long service names which Avahi does not accept. Printers
+    did not get advertized via DNS-SD then. (LP: #793265).
   * debian/patches/cups-avahi.dpatch: Updated Avahi patch to add the text
     field entry "URF=none" so that mDNS/Bonjour-advertized printers are
     recognized by AirPrint clients (iPhone/iPad with iOS 4.2 or newer).
