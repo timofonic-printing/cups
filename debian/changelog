@@ -5,6 +5,8 @@ cups (1.4.6-8) UNRELEASED; urgency=low
     debian/local/blacklist-cups-usblp.patch and install it into
     /etc/modprobe.d/; that way, we don't require kernels to disable usblp, and
     allow other spoolers than cups to work.
+  * debian/cups.postinst: rmmod usblp on upgrades from earlier versions or
+    fresh installs, to make above change effective without reboots as well.
 
  -- Martin Pitt <mpitt@debian.org>  Wed, 08 Jun 2011 10:25:46 +0200
 
