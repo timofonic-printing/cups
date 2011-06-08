@@ -1,5 +1,11 @@
 cups (1.4.6-8) UNRELEASED; urgency=low
 
+  [ Till Kamppeter ]
+  * debian/patches/cups-deviced-allow-device-ids-with-newline.dpatch: Fixed
+    segfault happening sometimes when a device with a newline in its device
+    ID is found.
+
+  [ Martin Pitt ]
   * Drop usb-backend-both-usblp-and-libusb.dpatch. It's causing crashes, and
     upstream does not want it either. Instead, add a blacklist file
     debian/local/blacklist-cups-usblp.patch and install it into
