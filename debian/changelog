@@ -1,3 +1,13 @@
+cups (1.4.6-8) UNRELEASED; urgency=low
+
+  * Drop usb-backend-both-usblp-and-libusb.dpatch. It's causing crashes, and
+    upstream does not want it either. Instead, add a blacklist file
+    debian/local/blacklist-cups-usblp.patch and install it into
+    /etc/modprobe.d/; that way, we don't require kernels to disable usblp, and
+    allow other spoolers than cups to work.
+
+ -- Martin Pitt <mpitt@debian.org>  Wed, 08 Jun 2011 10:25:46 +0200
+
 cups (1.4.6-7) unstable; urgency=low
 
   * debian/patches/cups-avahi.dpatch: Updated Avahi patch so that it does

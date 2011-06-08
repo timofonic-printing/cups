@@ -10,7 +10,6 @@ ppd-poll-with-client-conf.dpatch
 manpage-translations.dpatch
 rootbackends-worldreadable.dpatch
 cups-avahi.dpatch
-usb-backend-both-usblp-and-libusb.dpatch
 
 # patches which should go upstream
 removecvstag.dpatch
