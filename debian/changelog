@@ -1,4 +1,4 @@
-cups (1.4.6-8) UNRELEASED; urgency=low
+cups (1.4.6-8) unstable; urgency=low
 
   [ Till Kamppeter ]
   * debian/patches/usb-backend-accept-old-usblp-uris.dpatch: Let the
@@ -20,7 +20,7 @@ cups (1.4.6-8) UNRELEASED; urgency=low
   * debian/cups.postinst: rmmod usblp on upgrades from earlier versions or
     fresh installs, to make above change effective without reboots as well.
 
- -- Martin Pitt <mpitt@debian.org>  Wed, 08 Jun 2011 10:25:46 +0200
+ -- Martin Pitt <mpitt@debian.org>  Fri, 10 Jun 2011 11:35:33 +0200
 
 cups (1.4.6-7) unstable; urgency=low
 
