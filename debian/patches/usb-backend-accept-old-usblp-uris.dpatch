@@ -7,7 +7,7 @@
 @DPATCH@
 diff -urNad '--exclude=CVS' '--exclude=.svn' '--exclude=.git' '--exclude=.arch' '--exclude=.hg' '--exclude=_darcs' '--exclude=.bzr' cups-1.4.6~/backend/usb-libusb.c cups-1.4.6/backend/usb-libusb.c
 --- cups-1.4.6~/backend/usb-libusb.c	2010-08-13 03:34:04.000000000 +0200
-+++ cups-1.4.6/backend/usb-libusb.c	2011-06-14 21:25:37.972333490 +0200
++++ cups-1.4.6/backend/usb-libusb.c	2011-06-15 01:29:16.881551293 +0200
 @@ -505,6 +505,7 @@
  		*mdl,			/* Model */
  		*des,			/* Description */
@@ -33,7 +33,7 @@ diff -urNad '--exclude=CVS' '--exclude=.svn' '--exclude=.git' '--exclude=.arch' 
   /*
    * Generate the device URI from the manufacturer, model, serial number,
    * and interface number...
-@@ -734,7 +745,83 @@
+@@ -734,7 +745,87 @@
           const char    *device_id,	/* I - IEEE-1284 device ID */
           const void    *data)		/* I - User data (make, model, S/N) */
  {
@@ -67,30 +67,34 @@ diff -urNad '--exclude=CVS' '--exclude=.svn' '--exclude=.git' '--exclude=.arch' 
 +  * Similarly, strip "?serial=NNN...NNN" as needed.
 +  */
 +
-+  if ((requested_ptr = strstr(requested_uri, "interface=")) == NULL &&
-+      (detected_ptr = strstr(detected_uri, "interface=")) != NULL)
++  if ((requested_ptr = strstr(requested_uri, "?interface=")) == NULL)
++    requested_ptr = strstr(requested_uri, "&interface=");
++  if ((detected_ptr = strstr(detected_uri, "?interface=")) == NULL)
++    detected_ptr = strstr(detected_uri, "&interface=");
++
++  if (!requested_ptr && detected_ptr)
 +  {
 +   /*
-+    * Strip "?interface=nnn" from the detected printer.
++    * Strip "[?&]interface=nnn" from the detected printer.
 +    */
 +
-+    *(detected_ptr - 1) = '\0';
++    *detected_ptr = '\0';
 +  }
 +  else if (requested_ptr && !detected_ptr)
 +  {
 +   /*
-+    * Strip "?interface=nnn" from the requested printer.
++    * Strip "[?&]interface=nnn" from the requested printer.
 +    */
 +
-+    *(requested_ptr - 1) = '\0';
++    *requested_ptr = '\0';
 +  }
 +
 +  if ((requested_ptr = strstr(requested_uri, "?serial=?")) != NULL)
 +  {
 +   /*
-+    * Strip "?serial=?" from the requested printer. This is a special
++    * Strip "?serial=?" from the requested printer.  This is a special
 +    * case, as "?serial=?" means no serial number and not the serial
-+    * number '?'. This is not covered by the checks below!
++    * number '?'.  This is not covered by the checks below...
 +    */
 +
 +    *requested_ptr = '\0';
