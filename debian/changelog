@@ -1,4 +1,4 @@
-cups (1.4.6-9) UNRELEASED; urgency=low
+cups (1.4.6-9) unstable; urgency=low
 
   [ Till Kamppeter ]
   * debian/patches/usb-backend-accept-old-usblp-uris.dpatch: Fixed bugs in
@@ -11,7 +11,7 @@ cups (1.4.6-9) UNRELEASED; urgency=low
   [ Martin Pitt ]
   * debian/cups.postinst: Quiesce errors from rmmod. (Closes: #630109)
 
- -- Martin Pitt <mpitt@debian.org>  Sat, 11 Jun 2011 12:22:32 +0200
+ -- Martin Pitt <mpitt@debian.org>  Wed, 15 Jun 2011 06:39:52 +0200
 
 cups (1.4.6-8) unstable; urgency=low
 
