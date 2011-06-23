@@ -1,3 +1,9 @@
+cups (1.4.6-11) UNRELEASED; urgency=low
+
+  * Build for multiarch. (Closes: #631425)
+
+ -- Steve Langasek <vorlon@debian.org>  Thu, 23 Jun 2011 11:05:08 -0700
+
 cups (1.4.6-10) unstable; urgency=low
 
   * debian/patches/cups-avahi.dpatch: Updated Avahi patch so that it
