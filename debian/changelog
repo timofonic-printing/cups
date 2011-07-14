@@ -15,6 +15,9 @@ cups (1.4.6-12) UNRELEASED; urgency=low
     that again during clean. This is a slightly easier workaround for a
     nonexisting "dh_installinit --sysvinit-only" option than the previous
     creation of the upstart file with an ubuntu specific dpatch.
+  * debian/patches/, debian/rules, debian/control, debian/source/format: Move
+    to source format "3.0 (quilt)" and convert our dpatches to quilt patches.
+    Drop dpatch build dependency.
 
  -- Till Kamppeter <till.kamppeter@gmail.com>  Sat,  9 Jul 2011 16:18:11 +0200
 

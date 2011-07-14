@@ -1,0 +1,50 @@
+Author: till.kamppeter@gmail.com
+
+Index: cups-1.4.6/scheduler/client.c
+===================================================================
+--- cups-1.4.6.orig/scheduler/client.c	2011-07-14 13:02:25.169772425 +0200
++++ cups-1.4.6/scheduler/client.c	2011-07-14 13:02:44.329772752 +0200
+@@ -428,7 +428,7 @@
+     {
+       if (httpAddrLocalhost(&temp))
+         strlcpy(con->servername, "localhost", sizeof(con->servername));
+-      else if (HostNameLookups || RemotePort)
++      else if (HostNameLookups)
+         httpAddrLookup(&temp, con->servername, sizeof(con->servername));
+       else
+         httpAddrString(&temp, con->servername, sizeof(con->servername));
+@@ -441,7 +441,7 @@
+     {
+       if (httpAddrLocalhost(&temp))
+         strlcpy(con->servername, "localhost", sizeof(con->servername));
+-      else if (HostNameLookups || RemotePort)
++      else if (HostNameLookups)
+         httpAddrLookup(&temp, con->servername, sizeof(con->servername));
+       else
+         httpAddrString(&temp, con->servername, sizeof(con->servername));
+Index: cups-1.4.6/scheduler/conf.c
+===================================================================
+--- cups-1.4.6.orig/scheduler/conf.c	2011-07-14 13:02:07.039772116 +0200
++++ cups-1.4.6/scheduler/conf.c	2011-07-14 13:02:44.329772752 +0200
+@@ -746,7 +746,7 @@
+     cupsdAddAlias(ServerAlias, temp);
+     cupsdLogMessage(CUPSD_LOG_DEBUG, "Added auto ServerAlias %s", temp);
+ 
+-    if (HostNameLookups || RemotePort)
++    if (HostNameLookups)
+     {
+       struct hostent	*host;		/* Host entry to get FQDN */
+ 
+Index: cups-1.4.6/scheduler/network.c
+===================================================================
+--- cups-1.4.6.orig/scheduler/network.c	2011-07-14 13:02:00.649772010 +0200
++++ cups-1.4.6/scheduler/network.c	2011-07-14 13:02:44.329772752 +0200
+@@ -157,7 +157,7 @@
+ #ifdef __APPLE__
+     if (HostNameLookups)
+ #else
+-    if (HostNameLookups || RemotePort)
++    if (HostNameLookups)
+ #endif /* __APPLE__ */
+       httpAddrLookup((http_addr_t *)(addr->ifa_addr), hostname,
+                      sizeof(hostname));
