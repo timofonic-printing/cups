@@ -1,4 +1,4 @@
-cups (1.4.7-1) UNRELEASED; urgency=low
+cups (1.4.7-1) unstable; urgency=low
 
   * New upstream version.
 
@@ -25,7 +25,7 @@ cups (1.4.7-1) UNRELEASED; urgency=low
   * Move Ubuntu specific patches to debian/patches/ubuntu. In debian/rules,
     apply them when building on Ubuntu. Add "patch" build dependency.
 
- -- Till Kamppeter <till.kamppeter@gmail.com>  Sat,  9 Jul 2011 16:18:11 +0200
+ -- Martin Pitt <mpitt@debian.org>  Thu, 14 Jul 2011 15:02:36 +0200
 
 cups (1.4.6-11) unstable; urgency=low
 
