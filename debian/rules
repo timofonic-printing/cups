@@ -49,11 +49,27 @@ post-patches::
 	touch pdftopdf/Dependencies
 	touch pdftoopvp/Dependencies
 	touch pdftoopvp/oprs/Dependencies
+	set -e; if dpkg-vendor --is ubuntu && ! [ -e debian/patches/ubuntu/stamp-applied ]; then \
+	    echo '---- Applying Ubuntu specific patches'; \
+	    for p in debian/patches/ubuntu/*; do \
+	        patch -p1 --no-backup-if-mismatch < $$p; \
+	    done; \
+	    touch debian/patches/ubuntu/stamp-applied; \
+	fi
 
 common-post-build-arch::
 	# Fix permissions of filters/backends installed from debian/local/
 	chmod 755 debian/local/filters/*
 	#chmod 755 debian/local/backends/*
+
+clean::
+	if [ -e debian/patches/ubuntu/stamp-applied ]; then \
+	    echo '---- Unapplying Ubuntu specific patches'; \
+	    for p in debian/patches/ubuntu/*; do \
+	        patch -Rp1 --no-backup-if-mismatch < $$p; \
+	    done; \
+	    rm debian/patches/ubuntu/stamp-applied; \
+	fi
 
 cleanbuilddir::
 	rm -f man/client.conf.man packaging/cups.list

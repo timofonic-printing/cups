@@ -37,7 +37,3 @@ ppdc-dynamic-linking.patch
 log-debug-history-nearly-unlimited.patch
 support-gzipped-charmaps.patch
 pstops-based-workflow-only-for-printing-ps-on-a-ps-printer.patch
-
-# Ubuntu patches
-ubuntu-disable-browsing.patch
-ubuntu-default-error-policy-retry-job.patch

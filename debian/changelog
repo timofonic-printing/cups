@@ -18,6 +18,8 @@ cups (1.4.6-12) UNRELEASED; urgency=low
   * debian/patches/, debian/rules, debian/control, debian/source/format: Move
     to source format "3.0 (quilt)" and convert our dpatches to quilt patches.
     Drop dpatch build dependency.
+  * Move Ubuntu specific patches to debian/patches/ubuntu. In debian/rules,
+    apply them when building on Ubuntu. Add "patch" build dependency.
 
  -- Till Kamppeter <till.kamppeter@gmail.com>  Sat,  9 Jul 2011 16:18:11 +0200
 
