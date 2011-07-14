@@ -1,8 +1,10 @@
 Author: till.kamppeter@gmail.com
 Bug: http://www.cups.org/str.php?L3860
 
---- cups-1.4.6~/backend/usb-libusb.c	2010-08-13 03:34:04.000000000 +0200
-+++ cups-1.4.6/backend/usb-libusb.c	2011-06-15 01:29:16.881551293 +0200
+Index: cups-1.4.7/backend/usb-libusb.c
+===================================================================
+--- cups-1.4.7.orig/backend/usb-libusb.c	2011-07-14 13:29:28.909800023 +0200
++++ cups-1.4.7/backend/usb-libusb.c	2011-07-14 13:29:31.209800061 +0200
 @@ -505,6 +505,7 @@
  		*mdl,			/* Model */
  		*des,			/* Description */
@@ -28,7 +30,7 @@ Bug: http://www.cups.org/str.php?L3860
   /*
    * Generate the device URI from the manufacturer, model, serial number,
    * and interface number...
-@@ -734,7 +745,87 @@
+@@ -736,7 +747,87 @@
           const char    *device_id,	/* I - IEEE-1284 device ID */
           const void    *data)		/* I - User data (make, model, S/N) */
  {

@@ -1,10 +1,10 @@
 Author: till.kamppeter@gmail.com
 
-Index: cups-1.4.6/scheduler/ipp.c
+Index: cups-1.4.7/scheduler/ipp.c
 ===================================================================
---- cups-1.4.6.orig/scheduler/ipp.c	2011-07-14 13:02:25.179772426 +0200
-+++ cups-1.4.6/scheduler/ipp.c	2011-07-14 13:02:40.269772683 +0200
-@@ -8948,6 +8948,11 @@
+--- cups-1.4.7.orig/scheduler/ipp.c	2011-07-14 13:28:57.829799494 +0200
++++ cups-1.4.7/scheduler/ipp.c	2011-07-14 13:29:10.219799703 +0200
+@@ -8966,6 +8966,11 @@
    ipp_attribute_t	*attr,		/* Current attribute */
  			*attr2,		/* Job attribute */
  			*prev2;		/* Previous job attribute */
@@ -16,7 +16,7 @@ Index: cups-1.4.6/scheduler/ipp.c
  
  
   /*
-@@ -9009,6 +9014,85 @@
+@@ -9027,6 +9032,85 @@
    }
  
   /*

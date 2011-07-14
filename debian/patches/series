@@ -3,7 +3,6 @@ usb-backend-no-segfault-on-bad-device-id.patch
 usb-backend-accept-old-usblp-uris.patch
 
 # patches accepted and committed upstream for next 1.4:
-fix-broken-ipv6-uris.patch
 
 # patches sent upstream
 pidfile.patch

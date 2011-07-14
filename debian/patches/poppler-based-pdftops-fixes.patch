@@ -1,9 +1,9 @@
 Author: till.kamppeter@gmail.com
 
-Index: cups-1.4.6/config-scripts/cups-pdf.m4
+Index: cups-1.4.7/config-scripts/cups-pdf.m4
 ===================================================================
---- cups-1.4.6.orig/config-scripts/cups-pdf.m4	2011-07-14 13:02:00.789772013 +0200
-+++ cups-1.4.6/config-scripts/cups-pdf.m4	2011-07-14 13:02:37.139772631 +0200
+--- cups-1.4.7.orig/config-scripts/cups-pdf.m4	2011-07-14 13:28:49.049799342 +0200
++++ cups-1.4.7/config-scripts/cups-pdf.m4	2011-07-14 13:29:05.239799617 +0200
 @@ -79,6 +79,12 @@
  	;;
  esac
@@ -17,11 +17,11 @@ Index: cups-1.4.6/config-scripts/cups-pdf.m4
  AC_DEFINE_UNQUOTED(CUPS_PDFTOPS, "$CUPS_PDFTOPS")
  AC_DEFINE_UNQUOTED(CUPS_GHOSTSCRIPT, "$CUPS_GHOSTSCRIPT")
  AC_SUBST(PDFTOPS)
-Index: cups-1.4.6/config.h.in
+Index: cups-1.4.7/config.h.in
 ===================================================================
---- cups-1.4.6.orig/config.h.in	2011-07-14 13:02:25.079772425 +0200
-+++ cups-1.4.6/config.h.in	2011-07-14 13:02:37.139772631 +0200
-@@ -475,6 +475,7 @@
+--- cups-1.4.7.orig/config.h.in	2011-07-14 13:28:57.809799491 +0200
++++ cups-1.4.7/config.h.in	2011-07-14 13:29:05.239799617 +0200
+@@ -476,6 +476,7 @@
   */
  
  #undef HAVE_PDFTOPS
@@ -29,10 +29,10 @@ Index: cups-1.4.6/config.h.in
  #define CUPS_PDFTOPS	"/usr/bin/pdftops"
  
  
-Index: cups-1.4.6/filter/pdftops.c
+Index: cups-1.4.7/filter/pdftops.c
 ===================================================================
---- cups-1.4.6.orig/filter/pdftops.c	2011-07-14 13:02:00.809772010 +0200
-+++ cups-1.4.6/filter/pdftops.c	2011-07-14 13:02:37.149772630 +0200
+--- cups-1.4.7.orig/filter/pdftops.c	2011-07-14 13:28:49.069799345 +0200
++++ cups-1.4.7/filter/pdftops.c	2011-07-14 13:29:05.239799617 +0200
 @@ -302,7 +302,9 @@
      }
      else

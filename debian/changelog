@@ -1,4 +1,6 @@
-cups (1.4.6-12) UNRELEASED; urgency=low
+cups (1.4.7-1) UNRELEASED; urgency=low
+
+  * New upstream version.
 
   [ Till Kamppeter ]
   * debian/patches/ubuntu-upstart.dpatch: Updated the patch to add support
@@ -9,6 +11,8 @@ cups (1.4.6-12) UNRELEASED; urgency=low
     udev-configure-printer.
 
   [ Martin Pitt ]
+  * Update patches for new upstream release.
+  * Drop fix-broken-ipv6-uris.patch, applied upstream.
   * debian/local/apparmor-profile: /var/run → /run transition. (LP: #810270)
   * Drop debian/patches/ubuntu-upstart.dpatch and move the upstart script to
     debian/local/cups.upstart. In debian/rules, copy it to debian/, and remove

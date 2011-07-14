@@ -3,10 +3,10 @@ Author: Martin Pitt <mpitt@debian.org>
 Bug: http://www.cups.org/str.php?L2935
 Bug-Debian: http://bugs.debian.org/410171
 
-Index: cups-1.4.6/backend/Makefile
+Index: cups-1.4.7/backend/Makefile
 ===================================================================
---- cups-1.4.6.orig/backend/Makefile	2011-07-14 13:02:02.659772042 +0200
-+++ cups-1.4.6/backend/Makefile	2011-07-14 13:02:19.609772333 +0200
+--- cups-1.4.7.orig/backend/Makefile	2011-07-14 13:29:28.499800014 +0200
++++ cups-1.4.7/backend/Makefile	2011-07-14 13:29:36.089800143 +0200
 @@ -84,7 +84,7 @@
  install-exec:
  	$(INSTALL_DIR) -m 755 $(SERVERBIN)/backend
@@ -16,10 +16,10 @@ Index: cups-1.4.6/backend/Makefile
  	done
  	for file in $(UBACKENDS); do \
  		$(INSTALL_BIN) $$file $(SERVERBIN)/backend; \
-Index: cups-1.4.6/scheduler/cups-deviced.c
+Index: cups-1.4.7/scheduler/cups-deviced.c
 ===================================================================
---- cups-1.4.6.orig/scheduler/cups-deviced.c	2011-07-14 13:02:02.689772045 +0200
-+++ cups-1.4.6/scheduler/cups-deviced.c	2011-07-14 13:02:19.609772333 +0200
+--- cups-1.4.7.orig/scheduler/cups-deviced.c	2011-07-14 13:29:28.539800013 +0200
++++ cups-1.4.7/scheduler/cups-deviced.c	2011-07-14 13:29:36.089800143 +0200
 @@ -282,7 +282,7 @@
      */
  
@@ -29,11 +29,11 @@ Index: cups-1.4.6/scheduler/cups-deviced.c
    }
  
    cupsDirClose(dir);
-Index: cups-1.4.6/scheduler/job.c
+Index: cups-1.4.7/scheduler/job.c
 ===================================================================
---- cups-1.4.6.orig/scheduler/job.c	2011-07-14 13:02:02.679772044 +0200
-+++ cups-1.4.6/scheduler/job.c	2011-07-14 13:02:19.609772333 +0200
-@@ -1091,7 +1091,7 @@
+--- cups-1.4.7.orig/scheduler/job.c	2011-07-14 13:29:28.519800016 +0200
++++ cups-1.4.7/scheduler/job.c	2011-07-14 13:29:36.089800143 +0200
+@@ -1088,7 +1088,7 @@
        else if (stat(command, &backinfo))
  	backroot = 0;
        else
