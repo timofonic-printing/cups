@@ -64,9 +64,16 @@ cleanbuilddir::
 	[ ! -f Makedefs ] || make distclean
 	# Remove source code of extra filters for PDF printing workflow
 	( cd debian/local/filters/pdf-filters/; sh ./removefromcups ../../../.. )
+	rm -f debian/*.upstart # master copy is in debian/local
 
 common-install-prehook-impl::
 	(cd fonts && $(MAKE) install BUILDROOT=$(DEB_DESTDIR))
+
+	# Use upstart script on Ubuntu; we need to hide it away for Debian
+	# builds, as dh_installinit does not have a --sysvinit-only
+	if dpkg-vendor --is ubuntu; then \
+	    cp debian/local/*.upstart debian; \
+	fi
 
 binary-post-install/cups::
 	(cd $(DEB_DESTDIR)/../cups/usr/share/doc/cups && ln -sf ../../cups/doc-root online-docs)

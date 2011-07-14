@@ -10,6 +10,11 @@ cups (1.4.6-12) UNRELEASED; urgency=low
 
   [ Martin Pitt ]
   * debian/local/apparmor-profile: /var/run → /run transition. (LP: #810270)
+  * Drop debian/patches/ubuntu-upstart.dpatch and move the upstart script to
+    debian/local/cups.upstart. In debian/rules, copy it to debian/, and remove
+    that again during clean. This is a slightly easier workaround for a
+    nonexisting "dh_installinit --sysvinit-only" option than the previous
+    creation of the upstart file with an ubuntu specific dpatch.
 
  -- Till Kamppeter <till.kamppeter@gmail.com>  Sat,  9 Jul 2011 16:18:11 +0200
 
