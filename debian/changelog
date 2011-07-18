@@ -5,8 +5,8 @@ cups (1.4.7-2) UNRELEASED; urgency=low
     for upgrades (LP: #810687)
 
   [ Martin Pitt ]
-  * debian/local/apparmor-profile: Allow cupsd to write /run/samba.
-    (LP: #812035)
+  * debian/local/apparmor-profile: Explicitly deny cupsd to write /run/samba,
+    to avoid dmesg errors. (LP: #812035)
 
  -- Jamie Strandboge <jamie@ubuntu.com>  Thu, 14 Jul 2011 14:48:31 -0500
 
