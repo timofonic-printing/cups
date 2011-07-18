@@ -104,6 +104,8 @@
   /usr/share/** r,
   /{,var/}run/** rm,
   /{,var/}run/avahi-daemon/socket rw,
+  /{,var/}run/samba/ rw,
+  /{,var/}run/samba/** rw,
   /{,var/}run/cups/ rw,
   /{,var/}run/cups/** rw,
   /var/cache/cups/ rw,
