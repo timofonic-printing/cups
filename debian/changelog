@@ -17,7 +17,8 @@ cups (1.4.7-2) UNRELEASED; urgency=low
     Change the cost factor to make Ghostscript's filter being preferred.
   * debian/control: Let the "cups" package require at least version 9.02
     of Ghostscript, as this version does not ship a filter named pdftoraster
-    any more.
+    any more. Added Replaces/Breaks on older Ghostscript versions
+    (ghostscript-cups binary package) for smooth updating.
 
   [ Jamie Strandboge ]
   * debian/local/apparmor-profile: we need to allow both /var/run and /run
