@@ -1,3 +1,12 @@
+cups (1.4.8-3) UNRELEASED; urgency=low
+
+  * Add Serbian (Cyrillic) debconf translations, thanks Zlatan Todoric.
+    (Closes: #635105)
+  * Add Serbian (Latin) debconf translations, thanks Zlatan Todoric.
+    (Closes: #635108)
+
+ -- Martin Pitt <mpitt@debian.org>  Thu, 04 Aug 2011 17:35:26 +0200
+
 cups (1.4.8-2) unstable; urgency=low
 
   * debian/control: Unbreak Maintainer: field. (Closes: #636574)
