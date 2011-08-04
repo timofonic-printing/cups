@@ -50,7 +50,7 @@ cups (1.4.7-1) unstable; urgency=low
   * debian/patches/ubuntu-upstart.dpatch: Updated the patch to add support
     to the new device enumeration functionality of udev-configure-printer.
     This way we do not need to retrigger the printers. Retriggering is only
-    needed if udev rules change. A fallback to the old bahavior is provided
+    needed if udev rules change. A fallback to the old behavior is provided
     so that this CUPS package continues to work with older versions of
     udev-configure-printer.
 
