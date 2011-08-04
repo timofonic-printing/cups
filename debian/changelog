@@ -1,4 +1,4 @@
-cups (1.4.8-1) UNRELEASED; urgency=low
+cups (1.4.8-1) unstable; urgency=low
 
   [ Till Kamppeter ]
   * debian/filters/pstopdf: Added "-dNOINTERPOLATE" to the Ghostscript command
@@ -34,7 +34,7 @@ cups (1.4.8-1) UNRELEASED; urgency=low
     current Debian version.
   * debian/control: Add missing ghostscript build dependency.
 
- -- Jamie Strandboge <jamie@ubuntu.com>  Thu, 14 Jul 2011 14:48:31 -0500
+ -- Martin Pitt <mpitt@debian.org>  Thu, 04 Aug 2011 09:35:35 +0200
 
 cups (1.4.7-1) unstable; urgency=low
 
