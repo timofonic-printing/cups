@@ -1,5 +1,6 @@
-cups (1.5.0-0ubuntu1) UNRELEASED; urgency=low
+cups (1.5.0-1) UNRELEASED; urgency=low
 
+  [ Till Kamppeter ]
   * New upstream release
   * debian/patches/usb-backend-no-segfault-on-bad-device-id.patch,
     debian/patches/usb-backend-accept-old-usblp-uris.patch,
@@ -62,16 +63,13 @@ cups (1.5.0-0ubuntu1) UNRELEASED; urgency=low
     debian/cups.templates, debian/local/apparmor-profile: The "scsi"
     CUPS backend got dropped upstream, removed its treatment from these files.
 
- -- Till Kamppeter <till.kamppeter@gmail.com>  Thu,  4 Aug 2011 12:06:27 +0200
-
-cups (1.4.8-3) UNRELEASED; urgency=low
-
+  [ Martin Pitt ]
   * Add Serbian (Cyrillic) debconf translations, thanks Zlatan Todoric.
     (Closes: #635105)
   * Add Serbian (Latin) debconf translations, thanks Zlatan Todoric.
     (Closes: #635108)
 
- -- Martin Pitt <mpitt@debian.org>  Thu, 04 Aug 2011 17:35:26 +0200
+ -- Till Kamppeter <till.kamppeter@gmail.com>  Thu,  4 Aug 2011 12:06:27 +0200
 
 cups (1.4.8-2) unstable; urgency=low
 
