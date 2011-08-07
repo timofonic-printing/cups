@@ -1,4 +1,4 @@
-cups (1.5.0-1) UNRELEASED; urgency=low
+cups (1.5.0-1) experimental; urgency=low
 
   [ Till Kamppeter ]
   * New upstream release
@@ -71,7 +71,7 @@ cups (1.5.0-1) UNRELEASED; urgency=low
   * debian/local/apparmor-profile: Allow access to serial printers on USB
     adapters. (LP: #677432)
 
- -- Till Kamppeter <till.kamppeter@gmail.com>  Thu,  4 Aug 2011 12:06:27 +0200
+ -- Martin Pitt <mpitt@debian.org>  Sun, 07 Aug 2011 12:53:12 +0200
 
 cups (1.4.8-2) unstable; urgency=low
 
