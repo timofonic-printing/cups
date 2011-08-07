@@ -68,6 +68,8 @@ cups (1.5.0-1) UNRELEASED; urgency=low
     (Closes: #635105)
   * Add Serbian (Latin) debconf translations, thanks Zlatan Todoric.
     (Closes: #635108)
+  * debian/local/apparmor-profile: Allow access to serial printers on USB
+    adapters. (LP: #677432)
 
  -- Till Kamppeter <till.kamppeter@gmail.com>  Thu,  4 Aug 2011 12:06:27 +0200
 
