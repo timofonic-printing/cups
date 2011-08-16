@@ -1,4 +1,4 @@
-cups (1.5.0-2) UNRELEASED; urgency=low
+cups (1.5.0-2) unstable; urgency=low
 
   [ Didier Raboud ]
   * Add a dpkg trigger to update the queues' PPDs on (cooperative) driver
@@ -30,7 +30,7 @@ cups (1.5.0-2) UNRELEASED; urgency=low
     on the pdftopdf filter from the upstream author Koji Otani. This fixes
     especially LP: #780935.
 
- -- Till Kamppeter <till.kamppeter@gmail.com>  Tue, 16 Aug 2011 16:21:11 +0200
+ -- Till Kamppeter <till.kamppeter@gmail.com>  Tue, 16 Aug 2011 17:30:37 +0200
 
 cups (1.5.0-1) experimental; urgency=low
 
