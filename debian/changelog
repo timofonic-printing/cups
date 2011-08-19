@@ -1,3 +1,10 @@
+cups (1.5.0-5) UNRELEASED; urgency=low
+
+  * debian/control: Added myself to Uploaders: to avoid Lintian warnings about
+    unlogged NMUs.
+
+ -- Till Kamppeter <till.kamppeter@gmail.com>  Fri, 19 Aug 2011 14:33:18 +0200
+
 cups (1.5.0-4) unstable; urgency=low
 
   * debian/cups.postinst: Another fix for the PPD updater: Let the PPD updater
