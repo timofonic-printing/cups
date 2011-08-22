@@ -1,4 +1,4 @@
-cups (1.5.0-5) UNRELEASED; urgency=low
+cups (1.5.0-5) unstable; urgency=low
 
   [ Till Kamppeter ]
   * debian/cups.postinst: When executing the trigger on *.ppd-updater files of
@@ -15,7 +15,7 @@ cups (1.5.0-5) UNRELEASED; urgency=low
   * debian/control: Bump Breaks: cups version for libcups2, as cupsd seems to
     use internal private symbols from this library. (Closes: #638462)
 
- -- Till Kamppeter <till.kamppeter@gmail.com>  Fri, 19 Aug 2011 14:33:18 +0200
+ -- Till Kamppeter <till.kamppeter@gmail.com>  Mon, 22 Aug 2011 12:13:43 +0200
 
 cups (1.5.0-4) unstable; urgency=low
 
