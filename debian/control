@@ -27,7 +27,7 @@ Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Suggests: cups-common
 Provides: libcupsys2
-Breaks: cups (<< 1.4.4)
+Breaks: cups (<< 1.5.0)
 Pre-Depends: ${misc:Pre-Depends}
 Multi-Arch: same
 Description: Common UNIX Printing System(tm) - Core library
