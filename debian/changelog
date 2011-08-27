@@ -1,11 +1,15 @@
 cups (1.5.0-6) UNRELEASED; urgency=low
 
+  [ Martin Pitt ]
   * debian/cups-client.install: Do not install the jpg/pdf/ps ipptool test
     files. They are quite large, and not used anywhere by cups itself.
   * debian/libcups2.symbols, debian/libcupsmime1.symbols: Drop revisions from
     new symbols of 1.5.0.
 
- -- Martin Pitt <mpitt@debian.org>  Thu, 25 Aug 2011 10:08:47 +0200
+  [ Martin-Éric Racine ]
+  * Added execution of debconf-updatepo within the clean target in debian/rules.
+
+ -- Martin-Éric Racine <martin-eric.racine@iki.fi>  Sat, 27 Aug 2011 23:45:11 +0300
 
 cups (1.5.0-5) unstable; urgency=low
 
