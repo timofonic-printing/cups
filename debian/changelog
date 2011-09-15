@@ -1,6 +1,5 @@
 cups (1.5.0-6) UNRELEASED; urgency=low
 
-  [ Martin Pitt ]
   * debian/cups-client.install: Do not install the jpg/pdf/ps ipptool test
     files. They are quite large, and not used anywhere by cups itself.
   * debian/libcups2.symbols, debian/libcupsmime1.symbols: Drop revisions from
@@ -10,9 +9,6 @@ cups (1.5.0-6) UNRELEASED; urgency=low
   * debian/control: Force libcups2 (>= 1.5) dependency on libcupsmime1, as it
     uses private symbols from libcups2. (Closes: #641182)
   * debian/libcupsmime1.symbols: Drop Debian revision suffix.
-
-  [ Martin-Éric Racine ]
-  * Added execution of debconf-updatepo within the clean target in debian/rules.
 
  -- Martin-Éric Racine <martin-eric.racine@iki.fi>  Sat, 27 Aug 2011 23:45:11 +0300
 
