@@ -5,6 +5,8 @@ cups (1.5.0-6) UNRELEASED; urgency=low
     files. They are quite large, and not used anywhere by cups itself.
   * debian/libcups2.symbols, debian/libcupsmime1.symbols: Drop revisions from
     new symbols of 1.5.0.
+  * debian/local/apparmor-profile: Some third-party filters install themselves
+    into a subdirectory of /usr/lib/cups/filter, adjust rule. (See LP #160092)
 
   [ Martin-Éric Racine ]
   * Added execution of debconf-updatepo within the clean target in debian/rules.
