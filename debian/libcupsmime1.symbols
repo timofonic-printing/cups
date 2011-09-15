@@ -7,7 +7,7 @@ libcupsmime.so.1 libcupsmime1 #MINVER#
  mimeDeleteFilter@Base 1.4.0
  mimeDeleteType@Base 1.4.0
  mimeFileType@Base 1.4.0
- mimeFilter2@Base 1.5.0-0ubuntu1
+ mimeFilter2@Base 1.5.0
  mimeFilter@Base 1.4.0
  mimeFilterLookup@Base 1.4.0
  mimeFirstFilter@Base 1.4.0
