@@ -9,6 +9,7 @@ cups (1.5.0-6) UNRELEASED; urgency=low
   * debian/control: Force libcups2 (>= 1.5) dependency on libcupsmime1, as it
     uses private symbols from libcups2. (Closes: #641182)
   * debian/libcupsmime1.symbols: Drop Debian revision suffix.
+  * Update debconf translations (debconf-updatepo).
 
  -- Martin-Éric Racine <martin-eric.racine@iki.fi>  Sat, 27 Aug 2011 23:45:11 +0300
 
