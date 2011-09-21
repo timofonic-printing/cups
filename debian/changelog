@@ -4,6 +4,10 @@ cups (1.5.0-7) UNRELEASED; urgency=low
     to 3 seconds. Tweak the respawn count and limit to be longer than the
     socket poll time, so that a continuously failing cupsd process will not
     cause an eternal respawn loop. (LP: #854490)
+  * debian/control: Have libcupsmime1 break pre-1.5 versions of cups as well,
+    so that we avoid having a configured "cups" packae with an upgraded, but
+    unconfigured libcupsmime1 package. This takes care of LP: #854490 during
+    upgrades.
 
  -- Martin Pitt <mpitt@debian.org>  Wed, 21 Sep 2011 07:42:03 +0200
 
