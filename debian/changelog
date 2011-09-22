@@ -1,4 +1,4 @@
-cups (1.5.0-7) UNRELEASED; urgency=low
+cups (1.5.0-7) unstable; urgency=low
 
   [ Till Kamppeter ]
   * debian/patches/dnssd-reg-array-linear-search.patch: Let the array of
@@ -20,7 +20,7 @@ cups (1.5.0-7) UNRELEASED; urgency=low
   * debian/rules: Configure with --enable-debug, to stop the upstream build
     system stripping all our binaries. This fixes the cups-dbg package.
 
- -- Martin Pitt <mpitt@debian.org>  Wed, 21 Sep 2011 07:42:03 +0200
+ -- Martin Pitt <mpitt@debian.org>  Thu, 22 Sep 2011 19:57:54 +0200
 
 cups (1.5.0-6) unstable; urgency=low
 
