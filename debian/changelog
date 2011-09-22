@@ -8,6 +8,8 @@ cups (1.5.0-7) UNRELEASED; urgency=low
     so that we avoid having a configured "cups" packae with an upgraded, but
     unconfigured libcupsmime1 package. This takes care of LP: #854490 during
     upgrades.
+  * debian/rules: Configure with --enable-debug, to stop the upstream build
+    system stripping all our binaries. This fixes the cups-dbg package.
 
  -- Martin Pitt <mpitt@debian.org>  Wed, 21 Sep 2011 07:42:03 +0200
 
