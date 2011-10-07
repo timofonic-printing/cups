@@ -1,5 +1,11 @@
 cups (1.5.0-9) UNRELEASED; urgency=low
 
+  [ Till Kamppeter ]
+  * debian/patches/cups-avahi.patch: Updated patch from upstream (Red Hat)
+    to fix crashes of the CUPS daemon when using the timeout function call
+    functionality (LP: #860691, LP: #860498).
+
+  [ Martin Pitt ]
   * debian/local/apparmor-profile: Also allow cups to map libraries under
     /usr/local/. (LP: #860765)
 
