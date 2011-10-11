@@ -1,6 +1,11 @@
 cups (1.5.0-9) UNRELEASED; urgency=low
 
   [ Till Kamppeter ]
+  * debian/patches/do-not-suppress-inputslot-setting-with-empty-ap-d-inputslot.patch:
+    CUPS adds the option setting "AP_D_InputSlot=" to every job. This overrides
+    the InputSlot option and so the InputSlot setting and even the default
+    setting for InputSlot in the PPD get never used, rendering InputSlot
+    useless (LP: #872527).
   * debian/patches/cups-avahi.patch: Updated patch from upstream (Red Hat)
     to fix crashes of the CUPS daemon when using the timeout function call
     functionality (LP: #860691, LP: #860498).
