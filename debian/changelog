@@ -13,6 +13,8 @@ cups (1.5.0-9) UNRELEASED; urgency=low
   [ Martin Pitt ]
   * debian/local/apparmor-profile: Also allow cups to map libraries under
     /usr/local/. (LP: #860765)
+  * cups-avahi.patch: Make sure to guard against retrying the Avahi connection
+    whilst already doing so. Thanks to Tim Waugh for the patch! (LP: #877967)
 
   [ Michael Vogt ]
   * debian/control: Add Conflicts/Replaces: libcupsys2 to ensure that the apt
