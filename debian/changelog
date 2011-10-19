@@ -1,4 +1,4 @@
-cups (1.5.0-9) UNRELEASED; urgency=low
+cups (1.5.0-9) unstable; urgency=low
 
   [ Till Kamppeter ]
   * debian/patches/do-not-suppress-inputslot-setting-with-empty-ap-d-inputslot.patch:
@@ -21,7 +21,7 @@ cups (1.5.0-9) UNRELEASED; urgency=low
     resolver can calculate the upgrade in a multiarch scenario where a old
     libcupsys2 package is installed (LP: #874835)
 
- -- Martin Pitt <mpitt@debian.org>  Thu, 29 Sep 2011 08:47:14 +0200
+ -- Martin Pitt <mpitt@debian.org>  Wed, 19 Oct 2011 14:57:50 +0200
 
 cups (1.5.0-8) unstable; urgency=medium
 
