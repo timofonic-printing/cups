@@ -14,6 +14,11 @@ cups (1.5.0-9) UNRELEASED; urgency=low
   * debian/local/apparmor-profile: Also allow cups to map libraries under
     /usr/local/. (LP: #860765)
 
+  [ Michael Vogt ]
+  * debian/control: Add Conflicts/Replaces: libcupsys2 to ensure that the apt
+    resolver can calculate the upgrade in a multiarch scenario where a old
+    libcupsys2 package is installed (LP: #874835)
+
  -- Martin Pitt <mpitt@debian.org>  Thu, 29 Sep 2011 08:47:14 +0200
 
 cups (1.5.0-8) unstable; urgency=medium
