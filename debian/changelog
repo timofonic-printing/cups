@@ -1,5 +1,9 @@
 cups (1.5.0-10) UNRELEASED; urgency=low
 
+  * debian/cups.postinst: Allow PPD updater trigger files in
+    /usr/share/cups/ppd-updaters/ also be named <driver>.ppd-updater
+    and not only simply <driver>. This makes it easier to provide these
+    files in the printer driver packages.
   * debian/patches/usb-backend-reset-printer-before-printing.patch: When
     using the "usb" CUPS backend, reset the printer before each job as
     otherwise on some printers subsequent jobs will come out as garbage
