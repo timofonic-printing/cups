@@ -1,4 +1,4 @@
-cups (1.5.0-10) UNRELEASED; urgency=low
+cups (1.5.0-10) unstable; urgency=low
 
   * debian/cups.postinst: Allow PPD updater trigger files in
     /usr/share/cups/ppd-updaters/ also be named <driver>.ppd-updater
@@ -9,7 +9,7 @@ cups (1.5.0-10) UNRELEASED; urgency=low
     otherwise on some printers subsequent jobs will come out as garbage
     (LP: #872483).
 
- -- Till Kamppeter <till.kamppeter@gmail.com>  Thu, 20 Oct 2011 12:27:43 +0200
+ -- Till Kamppeter <till.kamppeter@gmail.com>  Fri, 21 Oct 2011 06:26:41 +0200
 
 cups (1.5.0-9) unstable; urgency=low
 
