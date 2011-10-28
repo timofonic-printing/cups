@@ -1,5 +1,6 @@
 cups (1.5.0-11) UNRELEASED; urgency=low
 
+  [ Till Kamppeter ]
   * debian/cups.postinst: Allow PPD updater trigger files in
     /usr/share/cups/ppd-updaters/ also be named
     printer-driver-<driver>.ppd-updater and not only <driver> or
@@ -7,7 +8,10 @@ cups (1.5.0-11) UNRELEASED; urgency=low
     files in the printer driver packages when we rename all binary packages
     of printer drivers to "printer-driver-<driver>".
 
- -- Till Kamppeter <till.kamppeter@gmail.com>  Fri, 21 Oct 2011 11:43:41 +0200
+  [ Martin-Éric Racine ]
+  * debian/control: Added the Homepage field.
+
+ -- Martin-Éric Racine <martin-eric.racine@iki.fi>  Fri, 28 Oct 2011 12:28:37 +0300
 
 cups (1.5.0-10) unstable; urgency=low
 
