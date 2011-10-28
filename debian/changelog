@@ -9,9 +9,11 @@ cups (1.5.0-11) UNRELEASED; urgency=low
     of printer drivers to "printer-driver-<driver>".
 
   [ Martin-Éric Racine ]
-  * debian/control: Added the Homepage field.
+  * debian/control: 
+    + Added the Homepage field.
+    + Cleaned up duplicate Build-Depends.
 
- -- Martin-Éric Racine <martin-eric.racine@iki.fi>  Fri, 28 Oct 2011 12:28:37 +0300
+ -- Martin-Éric Racine <martin-eric.racine@iki.fi>  Fri, 28 Oct 2011 13:06:56 +0300
 
 cups (1.5.0-10) unstable; urgency=low
 
