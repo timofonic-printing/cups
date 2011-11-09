@@ -18,7 +18,7 @@ Build-Depends:
  libavahi-client-dev, libavahi-common-dev, libavahi-compat-libdnssd-dev, 
  libdbus-1-dev, libfontconfig1-dev, libfreetype6-dev, libgnutls-dev, 
  libijs-dev, libjpeg-dev, liblcms1-dev, libldap2-dev, 
- libkrb5-dev | heimdal-dev,
+ libkrb5-dev,
  libpam0g-dev, libpaper-dev, libpng12-dev, libpoppler-dev (>= 0.12.2-2), 
  libslp-dev, libtiff4-dev, libtool, libusb-dev, 
  patch, pkg-config, po4a (>= 0.31~), po-debconf, poppler-utils, 
