@@ -300,7 +300,7 @@ Description: Common UNIX Printing System(tm) - common files
 
 Package: cups-ppdc
 Priority: optional
-Section: net
+Section: utils
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}, cups-common
 Conflicts: cupsddk (<< 1.4.0)
