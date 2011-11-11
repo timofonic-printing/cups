@@ -11,6 +11,8 @@ cups (1.5.0-11) UNRELEASED; urgency=low
     coming out as garbage or not at all (CUPS STR #3965, LP: #872483).
   * debian/patches/usb-backend-reset-printer-before-printing.patch: Removed,
     as we are using the less invasive approach of CUPS STR #3965 now.
+    This also removes the Linux specific #include, causing FTBFS on non-Linux
+    platforms. (Closes: #647666)
   * debian/cups.postinst: Allow PPD updater trigger files in
     /usr/share/cups/ppd-updaters/ also be named
     printer-driver-<driver>.ppd-updater and not only <driver> or
