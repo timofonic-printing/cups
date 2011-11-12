@@ -5,8 +5,10 @@ cups (1.5.0-12) unstable; urgency=low
   * Fixed: Lintian: W: spelling-error-in-changelog: lenght length.
   * Fixed: Lintian: I: conflicts-with-version: cupsddk-drivers (<< 1.4.0).
   * Fixed: Lintian: I: conflicts-with-version: cupsddk (<< 1.4.0).
+  * Fixed: Lintian: W: init.d-script-possible-missing-stop: etc/init.d/cups 0 6
+    Stopping at 0 and 6 is not essential, but since Lintian insists...
 
- -- Martin-Éric Racine <martin-eric.racine@iki.fi>  Sat, 12 Nov 2011 14:30:21 +0200
+ -- Martin-Éric Racine <martin-eric.racine@iki.fi>  Sat, 12 Nov 2011 14:34:52 +0200
 
 cups (1.5.0-11) unstable; urgency=low
 
