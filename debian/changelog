@@ -1,7 +1,7 @@
 cups (1.5.0-12) unstable; urgency=low
 
   * debian/control: cups-ppdc: move from net/optional to utils/optional
-    to match the repository override's correct assumption. 
+      to match the repository override's correct assumption.
   * Fixed: Lintian: W: spelling-error-in-changelog: lenght length.
   * Fixed: Lintian: I: conflicts-with-version: cupsddk-drivers (<< 1.4.0).
   * Fixed: Lintian: I: conflicts-with-version: cupsddk (<< 1.4.0).
@@ -9,8 +9,9 @@ cups (1.5.0-12) unstable; urgency=low
     Stopping at 0 and 6 is not essential, but since Lintian insists...
   * Fixed: Lintian: W: symbols-file-contains-debian-revision: 1.5.0-0ubuntu1
     (-0ubuntu1 version removed): _mimeError@Base and mimeNew@Base.
+  * debian/rules: clean:: added 'rm -fr .bzr-builddeb' to sanitize always.
 
- -- Martin-Éric Racine <martin-eric.racine@iki.fi>  Sat, 12 Nov 2011 14:47:10 +0200
+ -- Martin-Éric Racine <martin-eric.racine@iki.fi>  Sat, 12 Nov 2011 15:08:16 +0200
 
 cups (1.5.0-11) unstable; urgency=low
 

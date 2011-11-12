@@ -71,6 +71,7 @@ clean::
 	    done; \
 	    rm debian/patches/ubuntu/stamp-applied; \
 	fi
+	rm -fr .bzr-builddeb
 
 cleanbuilddir::
 	rm -f man/client.conf.man packaging/cups.list
