@@ -302,7 +302,7 @@ Priority: optional
 Section: utils
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}, cups-common
-Conflicts: cupsddk (<< 1.4.0)
+Breaks: cupsddk (<< 1.4.0)
 Replaces: cupsddk (<< 1.4.0)
 Provides: cupsddk
 Description: Common UNIX Printing System(tm) - PPD manipulation utilities
