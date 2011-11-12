@@ -11,7 +11,7 @@ cups (1.5.0-11) unstable; urgency=low
   * debian/patches/usb-backend-gracefully-fail-on-more-cases-of-bad-device-id.patch:
     When reading out the device ID check also for too short lengths of the
     device ID and also in this case try to change the byte order of the length
-    bytes and fail if the device ID lenght is still too short (LP: #887094).
+    bytes and fail if the device ID length is still too short (LP: #887094).
   * debian/patches/usb-backend-skip-set-configuration-set-interface.patch:
     Avoid unneeded SET_CONFIGURATION and SET_INTERFACE requests after the
     printer has already been configured. This often leads to subsequent jobs
