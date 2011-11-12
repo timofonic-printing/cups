@@ -7,11 +7,10 @@ cups (1.5.0-12) unstable; urgency=low
   * Fixed: Lintian: I: conflicts-with-version: cupsddk (<< 1.4.0).
   * Fixed: Lintian: W: init.d-script-possible-missing-stop: etc/init.d/cups 0 6
     Stopping at 0 and 6 is not essential, but since Lintian insists...
-  * Fixed: Lintian: W: symbols-file-contains-debian-revision: 
-    + _mimeError@Base
-    + mimeNew@Base
+  * Fixed: Lintian: W: symbols-file-contains-debian-revision: 1.5.0-0ubuntu1
+    (-0ubuntu1 version removed): _mimeError@Base and mimeNew@Base.
 
- -- Martin-Éric Racine <martin-eric.racine@iki.fi>  Sat, 12 Nov 2011 14:45:08 +0200
+ -- Martin-Éric Racine <martin-eric.racine@iki.fi>  Sat, 12 Nov 2011 14:47:10 +0200
 
 cups (1.5.0-11) unstable; urgency=low
 
