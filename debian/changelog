@@ -2,9 +2,10 @@ cups (1.5.0-12) unstable; urgency=low
 
   * debian/control: cups-ppdc: move from net/optional to utils/optional
     to match the repository override's correct assumption. 
-  * Fixed: Lintian: I: conflicts-with-version: cupsddk-drivers (<< 1.4.0)
+  * Fixed: Lintian: I: conflicts-with-version: cupsddk-drivers (<< 1.4.0).
+  * Fixed: Lintian: W: spelling-error-in-changelog: lenght length.
 
- -- Martin-Éric Racine <martin-eric.racine@iki.fi>  Sat, 12 Nov 2011 14:27:25 +0200
+ -- Martin-Éric Racine <martin-eric.racine@iki.fi>  Sat, 12 Nov 2011 14:28:41 +0200
 
 cups (1.5.0-11) unstable; urgency=low
 
