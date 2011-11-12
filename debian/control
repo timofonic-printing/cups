@@ -142,9 +142,8 @@ Recommends: avahi-daemon, colord, foomatic-filters (>= 4.0),
 Suggests: cups-bsd, foomatic-db-compressed-ppds | foomatic-db,
  hplip, cups-pdf, udev, smbclient
 Replaces: cupsddk-drivers (<< 1.4.0), ghostscript-cups (<< 9.02~)
-Conflicts: cupsddk-drivers (<< 1.4.0)
 Provides: cupsddk-drivers
-Breaks: foomatic-filters (<< 4.0), ghostscript-cups (<< 9.02~)
+Breaks: cupsddk-drivers (<< 1.4.0), foomatic-filters (<< 4.0), ghostscript-cups (<< 9.02~)
 Description: Common UNIX Printing System(tm) - server
  The Common UNIX Printing System (or CUPS(tm)) is a printing system and 
  general replacement for lpd and the like.  It supports the Internet 
