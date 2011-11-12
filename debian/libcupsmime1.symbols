@@ -1,5 +1,5 @@
 libcupsmime.so.1 libcupsmime1 #MINVER#
- _mimeError@Base 1.5.0-0ubuntu1
+ _mimeError@Base 1.5.0
  mimeAddFilter@Base 1.4.0
  mimeAddType@Base 1.4.0
  mimeAddTypeRule@Base 1.4.0
