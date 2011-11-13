@@ -1,4 +1,4 @@
-cups (1.5.0-12) UNRELEASED; urgency=low
+cups (1.5.0-12) unstable; urgency=low
 
   [ Martin-Éric Racine ]
   * debian/control: cups-ppdc: move from net/optional to utils/optional
@@ -16,7 +16,7 @@ cups (1.5.0-12) UNRELEASED; urgency=low
   * debian/cups.lintian-overrides: Quiesce "possible-missing-stop" warning, we
     quite deliberately do not run the init script on levels 0 and 6.
 
- -- Martin-Éric Racine <martin-eric.racine@iki.fi>  Sun, 13 Nov 2011 14:04:35 +0200
+ -- Martin Pitt <mpitt@debian.org>  Sun, 13 Nov 2011 14:39:22 +0100
 
 cups (1.5.0-11) unstable; urgency=low
 
