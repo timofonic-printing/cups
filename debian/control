@@ -174,7 +174,7 @@ Priority: optional
 Section: libdevel
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}, libcups2 (= ${binary:Version}), 
- libgnutls-dev, libkrb5-dev | heimdal-dev
+ libgnutls-dev, libkrb5-dev
 Provides: libcupsys2-dev
 Description: Common UNIX Printing System(tm) - Development files CUPS library
  The Common UNIX Printing System (or CUPS(tm)) is a printing system and 
