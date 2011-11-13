@@ -1,3 +1,16 @@
+cups (1.5.0-12) UNRELEASED; urgency=low
+
+  * debian/control: cups-ppdc: move from net/optional to utils/optional
+    to match the repository override's correct assumption.
+  * Fixed: Lintian: W: spelling-error-in-changelog: lenght length.
+  * Fixed: Lintian: I: conflicts-with-version: cupsddk-drivers (<< 1.4.0).
+  * Fixed: Lintian: I: conflicts-with-version: cupsddk (<< 1.4.0).
+  * Fixed: Lintian: W: symbols-file-contains-debian-revision: 1.5.0-0ubuntu1
+    (-0ubuntu1 version removed): _mimeError@Base and mimeNew@Base.
+  * Removed |libheimdal-dev from libcups2-dev Depends. (Closes: #648105)
+
+ -- Martin-Éric Racine <martin-eric.racine@iki.fi>  Sun, 13 Nov 2011 14:04:35 +0200
+
 cups (1.5.0-11) unstable; urgency=low
 
   [ Till Kamppeter ]
