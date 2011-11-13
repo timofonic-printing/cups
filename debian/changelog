@@ -1,4 +1,4 @@
-cups (1.5.0-11) UNRELEASED; urgency=low
+cups (1.5.0-11) unstable; urgency=low
 
   [ Till Kamppeter ]
   * debian/patches/usb-backend-gracefully-fail-on-more-cases-of-bad-device-id.patch:
