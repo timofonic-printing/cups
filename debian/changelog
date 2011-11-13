@@ -13,6 +13,8 @@ cups (1.5.0-12) UNRELEASED; urgency=low
   [ Martin Pitt ]
   * Add debian/source/options: Ignore .bzr-builddeb/, for developers who use
     bzr, but not bzr-buildpackage.
+  * debian/cups.lintian-overrides: Quiesce "possible-missing-stop" warning, we
+    quite deliberately do not run the init script on levels 0 and 6.
 
  -- Martin-Éric Racine <martin-eric.racine@iki.fi>  Sun, 13 Nov 2011 14:04:35 +0200
 
