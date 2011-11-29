@@ -1,8 +1,16 @@
 cups (1.5.0-13) UNRELEASED; urgency=low
 
+  [ Till Kamppeter ]
+  * debian/local/filters/cpdftocps: The cpdftocps filter (used for PostScript
+    printers and for drivers with PPDs which are not PDF-aware) did not
+    recognize the duplex setting correctly, making duplex not working on
+    many common printers (LP: #897723).
+  * debian/local/filters/cpdftocps: Cleaned up the header comments.
+
+  [ Martin-Éric Racine ]
   * [cups.postrm]: purge /etc/cups/ssl/server.[crt|key] and /etc/cups/ssl.
 
- -- Martin-Éric Racine <martin-eric.racine@iki.fi>  Tue, 29 Nov 2011 16:27:20 +0200
+ -- Till Kamppeter <till.kamppeter@gmail.com>  Tue, 29 Nov 2011 17:43:41 +0100
 
 cups (1.5.0-12) unstable; urgency=low
 
