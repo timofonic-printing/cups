@@ -1,3 +1,9 @@
+cups (1.5.0-13) UNRELEASED; urgency=low
+
+  * [cups.postrm]: purge /etc/cups/ssl/server.[crt|key] and /etc/cups/ssl.
+
+ -- Martin-Éric Racine <martin-eric.racine@iki.fi>  Tue, 29 Nov 2011 16:27:20 +0200
+
 cups (1.5.0-12) unstable; urgency=low
 
   [ Martin-Éric Racine ]
