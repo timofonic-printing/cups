@@ -5,7 +5,7 @@ cups (1.5.0-14) UNRELEASED; urgency=low
     "Link" class which is gone in poppler 0.18.
   * Add debian/patches/ubuntu/poppler-0.18.patch: Port SplashFontEngine()
     constructor call to poppler 0.18 API. Keep it as Ubuntu patch until Debian
-    gets poppler 0.18, too.
+    gets poppler 0.18, too. (Closes: #645507)
 
  -- Martin Pitt <mpitt@debian.org>  Tue, 06 Dec 2011 14:47:49 +0100
 
