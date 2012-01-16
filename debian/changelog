@@ -1,4 +1,4 @@
-cups (1.5.0-14) UNRELEASED; urgency=low
+cups (1.5.0-14) unstable; urgency=low
 
   [ Till Kamppeter ]
   * debian/patches/usb-backend-libusb-1.0.patch: Migrated the "usb" CUPS
@@ -16,7 +16,7 @@ cups (1.5.0-14) UNRELEASED; urgency=low
     constructor call to poppler 0.18 API. Keep it as Ubuntu patch until Debian
     gets poppler 0.18, too. (Closes: #645507)
 
- -- Martin Pitt <mpitt@debian.org>  Tue, 06 Dec 2011 14:47:49 +0100
+ -- Martin Pitt <mpitt@debian.org>  Mon, 16 Jan 2012 10:51:53 +0100
 
 cups (1.5.0-13) unstable; urgency=low
 
