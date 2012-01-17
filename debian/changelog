@@ -1,3 +1,13 @@
+cups (1.5.0-15) UNRELEASED; urgency=low
+
+  * debian/patches/usb-backend-libusb-1.0.patch: Updated the patch to correctly
+    generate the make/model string if no device ID could be found. Before,
+    arbitrary memory content was picked up, not only giving an ugly listing
+    of the ID-less printer in printer setup tools but also a being a potential
+    crash bug.
+
+ -- Till Kamppeter <till.kamppeter@gmail.com>  Tue, 17 Jan 2012 11:06:41 +0100
+
 cups (1.5.0-14) unstable; urgency=low
 
   [ Till Kamppeter ]
