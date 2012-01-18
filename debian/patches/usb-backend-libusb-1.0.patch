@@ -1,3 +1,7 @@
+Description: Migration of the libusb-based "usb" backend to libusb 1.0.x
+Bug: http://www.cups.org/str.php?L3477
+Author: Till Kamppeter
+
 --- a/Makedefs.in
 +++ b/Makedefs.in
 @@ -93,6 +93,8 @@
