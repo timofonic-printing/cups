@@ -1,4 +1,4 @@
-cups (1.5.0-15) UNRELEASED; urgency=low
+cups (1.5.0-15) unstable; urgency=low
 
   * debian/patches/execute-commandtops-commands.patch: When sending maintenance
     command files to PostScript printers the commands got printed as plain text
@@ -17,7 +17,7 @@ cups (1.5.0-15) UNRELEASED; urgency=low
     of the ID-less printer in printer setup tools but also a being a potential
     crash bug.
 
- -- Till Kamppeter <till.kamppeter@gmail.com>  Tue, 17 Jan 2012 11:06:41 +0100
+ -- Till Kamppeter <till.kamppeter@gmail.com>  Fri, 20 Jan 2012 10:02:27 +0100
 
 cups (1.5.0-14) unstable; urgency=low
 
