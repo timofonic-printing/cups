@@ -88,7 +88,7 @@ EOF
     list=`echo $SELECTED | sed -e 's/, /,/g' | sed -e 's/scsi,*//g' | sed -e 's/parallel,*//g' | sed -e 's/serial,*//g'`
     save_IFS=$IFS
     IFS=,
-    (cd /usr/lib/cups/backend && rm -f http ipp lpd parallel serial socket usb snmp dnssd)
+    (cd /usr/lib/cups/backend && rm -f http ipp lpd socket usb snmp dnssd)
     for module in $list; do
       ln /usr/lib/cups/backend-available/$module /usr/lib/cups/backend/$module
       if [ "$module" = "ipp" ]; then
