@@ -5,11 +5,11 @@ cups (1.5.0-16) UNRELEASED; urgency=low
     debian/local/oopstops.types, debian/local/postscript.ppd,
     debian/local/pstopdf.convs, debian/local/pstopdf.types,
     debian/local/text.convs, debian/local/textonly.ppd, debian/cups.install,
-    debian/cups-common.links, debian/rules: Removed all add-on filters and
-    backends which now get hosted by OpenPrinting in the OpenPrinting CUPS
-    filters package (Debian package "cups-filters"). Also removed some
-    obsolete or redundant filters/backends/PPDs: mailto, oopstops, dvipipetops,
-    samba-to-ps, postscript.ppd, pdf.ppd.
+    debian/cups-common.links, debian/cups.links, debian/rules: Removed all
+    add-on filters and backends which now get hosted by OpenPrinting in the
+    OpenPrinting CUPS filters package (Debian package "cups-filters"). Also
+    removed some obsolete or redundant filters/backends/PPDs: mailto, oopstops,
+    dvipipetops, samba-to-ps, postscript.ppd, pdf.ppd.
   * debian/rules: Removed filters, backends, and MIME conversion rules from
     upstream CUPS which have now moved to the cups-filters package.
   * debian/rules: Do not apply the PDF filters add-on package any more as
@@ -20,6 +20,7 @@ cups (1.5.0-16) UNRELEASED; urgency=low
     that the moved filters and backends stay available.
   * debian/control: Do not build-depend on liblcms1-dev any more. We do not
     have the PDF filters in this package any more.
+  * debian/control: Do not depend on ttf-freefont any more.
   * debian/cups.lintian-overrides: Removed entries for serial and parallel
     backends.
   * debian/cups.postinst, debian/cups.prerm, debian/cups.templates,
