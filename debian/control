@@ -9,8 +9,7 @@ Uploaders:
  Roger Leigh <rleigh@debian.org>, 
  Jeff Licquia <licquia@debian.org>,
  Kenshi Muto <kmuto@debian.org>, 
- Martin Pitt <mpitt@debian.org>, 
- Martin-Éric Racine <martin-eric.racine@iki.fi>
+ Martin Pitt <mpitt@debian.org>
 Build-Depends: 
  autoconf, automake, autotools-dev,
  cdbs (>= 0.4.93~), debhelper (>= 8.1.3~), 
