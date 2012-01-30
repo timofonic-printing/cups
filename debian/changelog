@@ -40,6 +40,7 @@ cups (1.5.0-16) UNRELEASED; urgency=low
     upstream.
   * manpage-translations.patch: Update German translations, thanks Helge
     Kreutzmann. (Closes: #630217)
+  * Add Polish debconf translations, thanks Michał Kułach. (Closes: #657670)
 
  -- Till Kamppeter <till.kamppeter@gmail.com>  Fri, 27 Jan 2012 22:39:27 +0100
 
