@@ -1,5 +1,6 @@
 cups (1.5.0-16) UNRELEASED; urgency=low
 
+  [ Till Kamppeter ]
   * debian/filters/, debian/local/backends/, debian/local/filters/,
     debian/local/cpdftocps.convs, debian/local/oopstops.convs,
     debian/local/oopstops.types, debian/local/postscript.ppd,
@@ -27,6 +28,10 @@ cups (1.5.0-16) UNRELEASED; urgency=low
     Updated debconf for the removal of the parallel and serial backends.
   * debian/patches/ubuntu/poppler-0.18.patch: Removed, as the CUPS package
     does not contain the PDF filters any more.
+
+  [ Martin Pitt ]
+  * debian/rules: Stop setting LC_MESSAGES, this was fixed upstream in the
+    test suite a while ago.
 
  -- Till Kamppeter <till.kamppeter@gmail.com>  Fri, 27 Jan 2012 22:39:27 +0100
 

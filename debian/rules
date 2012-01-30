@@ -10,8 +10,6 @@
 #export DH_VERBOSE=1
 
 export DEB_BUILD_HARDENING=1
-# http://www.cups.org/str.php?L3765
-export LC_MESSAGES=C
 
 # work around libpng crash on our test PNGs with 8 bit colormaps (LP #710881)
 export NO_PNG_PKG_MANGLE=1
