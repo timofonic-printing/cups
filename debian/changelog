@@ -38,6 +38,8 @@ cups (1.5.0-16) UNRELEASED; urgency=low
   * Drop debian/docs: Redundant with debian/cups.docs.
   * Drop debian/patches/pdftops-testsuite.patch: Not applied, and fixed
     upstream.
+  * manpage-translations.patch: Update German translations, thanks Helge
+    Kreutzmann. (Closes: #630217)
 
  -- Till Kamppeter <till.kamppeter@gmail.com>  Fri, 27 Jan 2012 22:39:27 +0100
 
