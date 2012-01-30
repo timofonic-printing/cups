@@ -1,4 +1,4 @@
-cups (1.5.0-16) UNRELEASED; urgency=low
+cups (1.5.0-16) unstable; urgency=low
 
   [ Till Kamppeter ]
   * debian/filters/, debian/local/backends/, debian/local/filters/,
@@ -44,7 +44,7 @@ cups (1.5.0-16) UNRELEASED; urgency=low
   * debian/local/apparmor-profile: Allow cups-pdf to read /var/spool/cups.
     (LP: #923538)
 
- -- Till Kamppeter <till.kamppeter@gmail.com>  Fri, 27 Jan 2012 22:39:27 +0100
+ -- Martin Pitt <mpitt@debian.org>  Mon, 30 Jan 2012 08:35:28 +0100
 
 cups (1.5.0-15) unstable; urgency=low
 
