@@ -33,6 +33,8 @@ cups (1.5.0-16) UNRELEASED; urgency=low
   * debian/rules: Stop setting LC_MESSAGES, this was fixed upstream in the
     test suite a while ago.
   * Drop debian/dirs: Unnecessary.
+  * Drop debian/suid: Not used anywhere, and the time when cups shipped suid
+    backends is long gone.
 
  -- Till Kamppeter <till.kamppeter@gmail.com>  Fri, 27 Jan 2012 22:39:27 +0100
 
