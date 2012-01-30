@@ -35,6 +35,7 @@ cups (1.5.0-16) UNRELEASED; urgency=low
   * Drop debian/dirs: Unnecessary.
   * Drop debian/suid: Not used anywhere, and the time when cups shipped suid
     backends is long gone.
+  * Drop debian/docs: Redundant with debian/cups.docs.
 
  -- Till Kamppeter <till.kamppeter@gmail.com>  Fri, 27 Jan 2012 22:39:27 +0100
 
