@@ -8,6 +8,9 @@ cups (1.5.0-17) UNRELEASED; urgency=low
     Pino Toscano. (Closes: #658237)
   * Drop do-not-emit-ps-level-3-with-poppler.patch, filter is now built by
     the cups-filters package.
+  * debian/control, debian/rules: libusb-1.0 is not available on hurd. Drop
+    build dependency on hurd and build with --disable-libusb there. Thanks
+    Pino Toscano for the patch. (Closes: #658236)
 
  -- Martin-Éric Racine <martin-eric.racine@iki.fi>  Sat, 28 Jan 2012 17:00:40 +0200
 
