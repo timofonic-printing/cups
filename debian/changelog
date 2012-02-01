@@ -6,6 +6,8 @@ cups (1.5.0-17) UNRELEASED; urgency=low
   [ Martin Pitt ]
   * debian/control: Drop now obsolete poppler-dev build dependency, thanks
     Pino Toscano. (Closes: #658237)
+  * Drop do-not-emit-ps-level-3-with-poppler.patch, filter is now built by
+    the cups-filters package.
 
  -- Martin-Éric Racine <martin-eric.racine@iki.fi>  Sat, 28 Jan 2012 17:00:40 +0200
 

@@ -24,7 +24,6 @@ removecvstag.patch
 no-conffile-timestamp.patch
 drop_unnecessary_dependencies.patch
 reactivate_recommended_driver.patch
-do-not-emit-ps-level-3-with-poppler.patch
 read-embedded-options-from-incoming-postscript-and-add-to-ipp-attrs.patch
 do-not-broadcast-with-hostnames.patch
 cups-deviced-allow-device-ids-with-newline.patch
