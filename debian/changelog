@@ -3,6 +3,10 @@ cups (1.5.0-17) UNRELEASED; urgency=low
   [ Martin-Éric Racine ]
   * Removed myself from Uploaders. 
 
+  [ Martin Pitt ]
+  * debian/control: Drop now obsolete poppler-dev build dependency, thanks
+    Pino Toscano. (Closes: #658237)
+
  -- Martin-Éric Racine <martin-eric.racine@iki.fi>  Sat, 28 Jan 2012 17:00:40 +0200
 
 cups (1.5.0-16) unstable; urgency=low
