@@ -4,7 +4,7 @@ Bug-Debian: http://bugs.debian.org/438067
 
 --- a/Makedefs.in
 +++ b/Makedefs.in
-@@ -145,7 +145,7 @@
+@@ -147,7 +147,7 @@
  DBUS_NOTIFIERLIBS =	@DBUS_NOTIFIERLIBS@
  DNSSD_BACKEND	=	@DNSSD_BACKEND@
  DSOFLAGS	=	-L../cups @DSOFLAGS@
@@ -13,7 +13,7 @@ Bug-Debian: http://bugs.debian.org/438067
  DNSSDLIBS	=	@DNSSDLIBS@
  FONTS		=	@FONTS@
  IMGLIBS		=	@IMGLIBS@
-@@ -155,9 +155,9 @@
+@@ -157,9 +157,9 @@
  			-L../scheduler @LDARCHFLAGS@ \
  			@LDFLAGS@ @RELROFLAGS@ @PIEFLAGS@ $(OPTIM)
  LEGACY_BACKENDS	=	@LEGACY_BACKENDS@
@@ -67,7 +67,7 @@ Bug-Debian: http://bugs.debian.org/438067
  	echo Creating $@...
  	$(DSO) $(DSOFLAGS) -Wl,-bexport:libcups_s.exp -o libcups_s.o \
  		$(LIBOBJS) $(LIBGSSAPI) $(SSLLIBS) $(DNSSDLIBS) \
--		$(COMMONLIBS) $(LIBZ) -lm
+-		$(COMMONLIBS) $(LIBZ)
 +		-lpthread $(LIBZ)
  	$(RM) $@
  	$(AR) $(ARFLAGS) $@ libcups_s.o
