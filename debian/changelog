@@ -17,9 +17,11 @@ cups (1.5.2-1) UNRELEASED; urgency=low
     for the current backend (LP: #879625, LP: #881843, CUPS STR #3985,
     CUPS STR #3986, CUPS STR #3988, thanks to Robert Bradley, robert dot
     bradley1 at gmail dot com, for the patches).
+  * debian/patches/drop_unnecessary_dependencies.patch: Updated patch to
+    add "-lm" to the linker command line, libcups uses the "fmod()" function
+    now.
   * debian/patches/cups-avahi.patch,
     debian/patches/usb-backend-libusb-1.0.patch,
-    debian/patches/drop_unnecessary_dependencies.patch,
     debian/patches/printer-filtering.patch:
     Manually regenerated to adapt to upstream changes.
   * debian/patches/pidfile.patch,
