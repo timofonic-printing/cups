@@ -1,3 +1,15 @@
+cups (1.5.2-4) UNRELEASED; urgency=low
+
+  * debian/local/blacklist-cups-usblp.conf, debian/cups.install: Removed
+    the blacklisting of the "usblp" kernel module. The new libusb-1.0.x-
+    based "usb" backend automatically disconnects the module from the
+    printer with which it communicates and reconnects it afterwards. This
+    way we can keep the module available for third-party drivers but let
+    the CUPS backend use the more modern libusb method, especially
+    providing bi-di access for all printers (CUPS STR #3626).
+
+ -- Till Kamppeter <till.kamppeter@gmail.com>  Mon, 13 Feb 2012 11:08:57 +0100
+
 cups (1.5.2-3) unstable; urgency=low
 
   * debian/patches/usb-backend-backchannel-support.patch: Added backchannel
