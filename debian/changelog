@@ -1,4 +1,4 @@
-cups (1.5.2-4) UNRELEASED; urgency=low
+cups (1.5.2-4) unstable; urgency=low
 
   [ Till Kamppeter ]
   * debian/local/blacklist-cups-usblp.conf, debian/cups.install: Removed
@@ -15,7 +15,7 @@ cups (1.5.2-4) UNRELEASED; urgency=low
   * debian/cups.{pre,post}inst: Remove upgrade transitions for versions prior
     to Debian Squeeze/Ubuntu 10.04 LTS.
 
- -- Till Kamppeter <till.kamppeter@gmail.com>  Mon, 13 Feb 2012 11:08:57 +0100
+ -- Till Kamppeter <till.kamppeter@gmail.com>  Thu, 16 Feb 2012 11:28:36 +0100
 
 cups (1.5.2-3) unstable; urgency=low
 
