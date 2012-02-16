@@ -12,6 +12,8 @@ cups (1.5.2-4) UNRELEASED; urgency=low
   [ Martin Pitt ]
   * Clean up /etc/modprobe.d/blacklist-cups-usblp.conf conffile on upgrade,
     using dpkg-maintscript-helper. Add necessary dpkg pre-depends for this.
+  * debian/cups.{pre,post}inst: Remove upgrade transitions for versions prior
+    to Debian Squeeze/Ubuntu 10.04 LTS.
 
  -- Till Kamppeter <till.kamppeter@gmail.com>  Mon, 13 Feb 2012 11:08:57 +0100
 
