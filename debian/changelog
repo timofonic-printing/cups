@@ -1,5 +1,6 @@
 cups (1.5.2-4) UNRELEASED; urgency=low
 
+  [ Till Kamppeter ]
   * debian/local/blacklist-cups-usblp.conf, debian/cups.install: Removed
     the blacklisting of the "usblp" kernel module. The new libusb-1.0.x-
     based "usb" backend automatically disconnects the module from the
@@ -7,6 +8,10 @@ cups (1.5.2-4) UNRELEASED; urgency=low
     way we can keep the module available for third-party drivers but let
     the CUPS backend use the more modern libusb method, especially
     providing bi-di access for all printers (CUPS STR #3626).
+
+  [ Martin Pitt ]
+  * Clean up /etc/modprobe.d/blacklist-cups-usblp.conf conffile on upgrade,
+    using dpkg-maintscript-helper. Add necessary dpkg pre-depends for this.
 
  -- Till Kamppeter <till.kamppeter@gmail.com>  Mon, 13 Feb 2012 11:08:57 +0100
 

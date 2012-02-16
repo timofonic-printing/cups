@@ -22,6 +22,8 @@ set -e
 #     installation fails and the `postinst' is called with `abort-upgrade',
 #     `abort-remove' or `abort-deconfigure'.
 
+dpkg-maintscript-helper rm_conffile /etc/modprobe.d/blacklist-cups-usblp.conf 1.5.2-3  -- "$@"
+
 # Debconf
 . /usr/share/debconf/confmodule
 
