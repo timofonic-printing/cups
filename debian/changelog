@@ -1,4 +1,4 @@
-cups (1.5.2-6) unstable; urgency=low
+cups (1.5.2-6) UNRELEASED; urgency=low
 
   * debian/cups.postinst: Run "triggered" code porion of cups postinstall
     script also when configuring cups ("configure") so that when cups
