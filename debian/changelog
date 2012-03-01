@@ -12,6 +12,9 @@ cups (1.5.2-6) UNRELEASED; urgency=low
   * debian/control: Wrap dependencies.
   * debian/control, debian/rules: Move from hardening-wrapper to using
     dpkg-buildflags. Bump dpkg-dev build dependency to (>= 1.16.1~) for this.
+  * Add tests-ignore-colord-warnings.patch: Ignore warnings from colord in the
+    tests, as they change the expected number of warnings.
+  * debian/rules: Have package fail to build on test failures again.
 
  -- Till Kamppeter <till.kamppeter@gmail.com>  TUe, 28 Feb 2012 17:43:01 +0100
 
