@@ -15,6 +15,7 @@ export NO_PNG_PKG_MANGLE=1
 #export DEB_BUILD_MAINT_OPTIONS=hardening
 DPKG_EXPORT_BUILDFLAGS=1
 include /usr/share/dpkg/buildflags.mk
+LDFLAGS+= -Wl,--as-needed
 
 include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/class/autotools.mk
@@ -45,7 +46,6 @@ else
 # Test suite deactivated as colord changes number of warnings in error_log.
 DEB_MAKE_CHECK_TARGET := check || true
 endif
-LDFLAGS+= -Wl,--as-needed
 DPKG_GENSYMBOLS_CHECK_LEVEL=4
 export DPKG_GENSYMBOLS_CHECK_LEVEL
 
