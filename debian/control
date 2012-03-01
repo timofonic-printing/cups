@@ -13,7 +13,7 @@ Uploaders:
 Build-Depends: 
  cdbs (>= 0.4.93~),
  debhelper (>= 8.1.3~),
- hardening-wrapper, 
+ dpkg-dev (>= 1.16.1~),
  patch,
  autoconf, 
  automake, 
