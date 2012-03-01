@@ -1,11 +1,15 @@
 cups (1.5.2-6) UNRELEASED; urgency=low
 
+  [ Till Kamppeter ]
   * debian/cups.postinst: Run "triggered" code porion of cups postinstall
     script also when configuring cups ("configure") so that when cups
     and a printer driver package (which triggers cups to update the PPD files
     of existing print queues) get updated together the PPD update for sure
     happens also if the driver's trigger action is not executed due to cups
     also being updated (LP: #932882).
+
+  [ Martin Pitt ]
+  * debian/control: Wrap dependencies.
 
  -- Till Kamppeter <till.kamppeter@gmail.com>  TUe, 28 Feb 2012 17:43:01 +0100
 
