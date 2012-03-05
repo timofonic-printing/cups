@@ -22,6 +22,9 @@ cups (1.5.2-6) UNRELEASED; urgency=low
     libpng12-dev. (Closes: #662294)
   * debian/control: Prefer building against libtiff5-dev if available, falling
     back to libtiff-dev.
+  * Add tests-ignore-usb-crash.patch: Ignore "[cups-deviced] PID 17962 (usb)
+    crashed on signal 11!" errors in the log during the test suite. This seems
+    to regularly happen on Debian/Ubuntu buildds.
 
  -- Till Kamppeter <till.kamppeter@gmail.com>  TUe, 28 Feb 2012 17:43:01 +0100
 

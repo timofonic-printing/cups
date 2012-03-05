@@ -47,3 +47,4 @@ log-debug-history-nearly-unlimited.patch
 pstops-based-workflow-only-for-printing-ps-on-a-ps-printer.patch
 dnssd-reg-array-linear-search.patch
 tests-ignore-colord-warnings.patch
+tests-ignore-usb-crash.patch
