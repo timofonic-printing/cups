@@ -1,4 +1,4 @@
-cups (1.5.2-6) UNRELEASED; urgency=low
+cups (1.5.2-6) unstable; urgency=low
 
   [ Till Kamppeter ]
   * debian/cups.postinst: Run "triggered" code porion of cups postinstall
@@ -27,7 +27,7 @@ cups (1.5.2-6) UNRELEASED; urgency=low
     crashed on signal 11!" errors in the log during the test suite. This seems
     to regularly happen on Debian/Ubuntu buildds.
 
- -- Martin Pitt <mpitt@debian.org>  Mon, 05 Mar 2012 08:01:50 +0100
+ -- Martin Pitt <mpitt@debian.org>  Mon, 05 Mar 2012 08:05:41 +0100
 
 cups (1.5.2-5) unstable; urgency=low
 
