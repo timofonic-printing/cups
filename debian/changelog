@@ -12,8 +12,9 @@ cups (1.5.2-6) UNRELEASED; urgency=low
   * debian/control: Wrap dependencies.
   * debian/control, debian/rules: Move from hardening-wrapper to using
     dpkg-buildflags. Bump dpkg-dev build dependency to (>= 1.16.1~) for this.
-  * Add tests-ignore-colord-warnings.patch: Ignore warnings from colord in the
-    tests, as they change the expected number of warnings.
+  * Add tests-ignore-warnings.patch: Ignore warnings from colord and Avahi in
+    the tests, as they change the expected number of warnings. These services
+    are not running in a buildd environment.
   * debian/rules: Have package fail to build on test failures again.
   * debian/copyright: Convert to copyright format 1.0, and update to current
     license/copyrights.
@@ -26,7 +27,7 @@ cups (1.5.2-6) UNRELEASED; urgency=low
     crashed on signal 11!" errors in the log during the test suite. This seems
     to regularly happen on Debian/Ubuntu buildds.
 
- -- Till Kamppeter <till.kamppeter@gmail.com>  TUe, 28 Feb 2012 17:43:01 +0100
+ -- Martin Pitt <mpitt@debian.org>  Mon, 05 Mar 2012 08:01:50 +0100
 
 cups (1.5.2-5) unstable; urgency=low
 
