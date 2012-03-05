@@ -20,6 +20,8 @@ cups (1.5.2-6) UNRELEASED; urgency=low
   * debian/control: Bump Standards-Version to 3.9.3.
   * debian/control: Build against libpng-dev, with an alternative to the older
     libpng12-dev. (Closes: #662294)
+  * debian/control: Prefer building against libtiff5-dev if available, falling
+    back to libtiff-dev.
 
  -- Till Kamppeter <till.kamppeter@gmail.com>  TUe, 28 Feb 2012 17:43:01 +0100
 
