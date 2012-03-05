@@ -34,7 +34,7 @@ Build-Depends:
  libkrb5-dev,
  libpam0g-dev,
  libpaper-dev,
- libpng12-dev, 
+ libpng-dev | libpng12-dev, 
  libslp-dev,
  libtiff4-dev,
  libusb-1.0-0-dev [!hurd-any], 

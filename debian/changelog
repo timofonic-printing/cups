@@ -18,6 +18,8 @@ cups (1.5.2-6) UNRELEASED; urgency=low
   * debian/copyright: Convert to copyright format 1.0, and update to current
     license/copyrights.
   * debian/control: Bump Standards-Version to 3.9.3.
+  * debian/control: Build against libpng-dev, with an alternative to the older
+    libpng12-dev. (Closes: #662294)
 
  -- Till Kamppeter <till.kamppeter@gmail.com>  TUe, 28 Feb 2012 17:43:01 +0100
 
