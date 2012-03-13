@@ -2,6 +2,9 @@ cups (1.5.2-7) UNRELEASED; urgency=low
 
   * Add fix-empty-translations.patch: Do not translate msgids to empty
     strings. Backported from upstream SVN. (LP: #953321)
+  * Add test-i18n-nonlinux.patch: Do not run the CUPS_EUC_JP test case on
+    BSD/Hurd either, as glibc's iconv behavior is different than what the test
+    expects. (Closes: #662996)
 
  -- Martin Pitt <mpitt@debian.org>  Tue, 13 Mar 2012 10:12:59 +0100
 
