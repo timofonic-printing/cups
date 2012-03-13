@@ -1,6 +1,5 @@
-# patches backported from upstream SVN trunk for 1.6:
-
-# patches accepted and committed upstream for next 1.5:
+# patches accepted and committed upstream:
+fix-empty-translations.patch
 
 # patches sent upstream
 pidfile.patch
