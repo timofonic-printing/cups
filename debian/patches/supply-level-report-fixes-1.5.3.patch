@@ -1,0 +1,221 @@
+--- a/backend/snmp-supplies.c
++++ b/backend/snmp-supplies.c
+@@ -1,9 +1,9 @@
+ /*
+- * "$Id: snmp-supplies.c 10064 2011-10-07 21:41:07Z mike $"
++ * "$Id: snmp-supplies.c 10262 2012-02-12 05:48:09Z mike $"
+  *
+  *   SNMP supplies functions for CUPS.
+  *
+- *   Copyright 2008-2011 by Apple Inc.
++ *   Copyright 2008-2012 by Apple Inc.
+  *
+  *   These coded instructions, statements, and computer programs are the
+  *   property of Apple Inc. and are protected by Federal copyright
+@@ -408,7 +408,7 @@
+ 		cachefilename[1024],	/* Cache filename */
+ 		description[CUPS_SNMP_MAX_STRING],
+ 					/* Device description string */
+-		value[CUPS_MAX_SUPPLIES * (CUPS_SNMP_MAX_STRING * 2 + 3)],
++		value[CUPS_MAX_SUPPLIES * (CUPS_SNMP_MAX_STRING * 4 + 3)],
+ 					/* Value string */
+ 		*ptr,			/* Pointer into value string */
+ 		*name_ptr;		/* Pointer into name string */
+@@ -659,7 +659,8 @@
+   fprintf(stderr, "ATTR: marker-colors=%s\n", value);
+ 
+  /*
+-  * Output the marker-names attribute...
++  * Output the marker-names attribute (the double quoting is necessary to deal
++  * with embedded quotes and commas in the marker names...)
+   */
+ 
+   for (i = 0, ptr = value; i < num_supplies; i ++)
+@@ -667,15 +668,21 @@
+     if (i)
+       *ptr++ = ',';
+ 
++    *ptr++ = '\'';
+     *ptr++ = '\"';
+     for (name_ptr = supplies[i].name; *name_ptr;)
+     {
+-      if (*name_ptr == '\\' || *name_ptr == '\"')
++      if (*name_ptr == '\\' || *name_ptr == '\"' || *name_ptr == '\'')
++      {
++        *ptr++ = '\\';
++        *ptr++ = '\\';
+         *ptr++ = '\\';
++      }
+ 
+       *ptr++ = *name_ptr++;
+     }
+     *ptr++ = '\"';
++    *ptr++ = '\'';
+   }
+ 
+   *ptr = '\0';
+@@ -712,16 +719,33 @@
+                 void        *data)	/* I - User data (unused) */
+ {
+   int	i, j, k;			/* Looping vars */
+-  static const char * const colors[8][2] =
++  static const char * const colors[][2] =
+   {					/* Standard color names */
+-    { "black",   "#000000" },
+-    { "blue",    "#0000FF" },
+-    { "cyan",    "#00FFFF" },
+-    { "green",   "#00FF00" },
+-    { "magenta", "#FF00FF" },
+-    { "red",     "#FF0000" },
+-    { "white",   "#FFFFFF" },
+-    { "yellow",  "#FFFF00" }
++    { "black",         "#000000" },
++    { "blue",          "#0000FF" },
++    { "brown",         "#A52A2A" },
++    { "cyan",          "#00FFFF" },
++    { "dark-gray",     "#404040" },
++    { "dark gray",     "#404040" },
++    { "dark-yellow",   "#FFCC00" },
++    { "dark yellow",   "#FFCC00" },
++    { "gold",          "#FFD700" },
++    { "gray",          "#808080" },
++    { "green",         "#00FF00" },
++    { "light-black",   "#606060" },
++    { "light black",   "#606060" },
++    { "light-cyan",    "#E0FFFF" },
++    { "light cyan",    "#E0FFFF" },
++    { "light-gray",    "#D3D3D3" },
++    { "light gray",    "#D3D3D3" },
++    { "light-magenta", "#FF77FF" },
++    { "light magenta", "#FF77FF" },
++    { "magenta",       "#FF00FF" },
++    { "orange",        "#FFA500" },
++    { "red",           "#FF0000" },
++    { "silver",        "#C0C0C0" },
++    { "white",         "#FFFFFF" },
++    { "yellow",        "#FFFF00" }
+   };
+ 
+ 
+@@ -743,7 +767,8 @@
+       if (supplies[j].colorant == i)
+       {
+ 	for (k = 0; k < (int)(sizeof(colors) / sizeof(colors[0])); k ++)
+-	  if (!strcmp(colors[k][0], (char *)packet->object_value.string.bytes))
++	  if (!_cups_strcasecmp(colors[k][0],
++	                        (char *)packet->object_value.string.bytes))
+ 	  {
+ 	    strcpy(supplies[j].color, colors[k][1]);
+ 	    break;
+@@ -834,7 +859,6 @@
+           {
+ 	    char	*src, *dst;	/* Pointers into strings */
+ 
+-
+            /*
+ 	    * Loop safe because both the object_value and supplies char arrays
+ 	    * are CUPS_SNMP_MAX_STRING elements long.
+@@ -982,5 +1006,5 @@
+ 
+ 
+ /*
+- * End of "$Id: snmp-supplies.c 10064 2011-10-07 21:41:07Z mike $".
++ * End of "$Id: snmp-supplies.c 10262 2012-02-12 05:48:09Z mike $".
+  */
+--- a/scheduler/printers.c
++++ b/scheduler/printers.c
+@@ -1,9 +1,9 @@
+ /*
+- * "$Id: printers.c 10001 2011-09-14 22:38:58Z mike $"
++ * "$Id: printers.c 10295 2012-02-15 23:21:06Z mike $"
+  *
+  *   Printer routines for the CUPS scheduler.
+  *
+- *   Copyright 2007-2011 by Apple Inc.
++ *   Copyright 2007-2012 by Apple Inc.
+  *   Copyright 1997-2007 by Easy Software Products, all rights reserved.
+  *
+  *   These coded instructions, statements, and computer programs are the
+@@ -1981,7 +1981,9 @@
+   ipp_attribute_t	*attr;		/* Attribute */
+   int			i,		/* Looping var */
+ 			count;		/* Number of values */
+-  char			*ptr;		/* Pointer into value */
++  char			*ptr,		/* Pointer into value */
++			*start,		/* Start of value */
++			quote;		/* Quote character */
+   ipp_tag_t		value_tag;	/* Value tag for this attribute */
+ 
+ 
+@@ -1999,9 +2001,21 @@
+   * Count the number of values...
+   */
+ 
+-  for (count = 1, ptr = value;
+-       (ptr = strchr(ptr, ',')) != NULL;
+-       ptr ++, count ++);
++  for (count = 1, quote = '\0', ptr = value;
++       *ptr;
++       ptr ++)
++  {
++    if (*ptr == quote)
++      quote = '\0';
++    else if (quote)
++      continue;
++    else if (*ptr == '\\' && ptr[1])
++      ptr ++;
++    else if (*ptr == '\'' || *ptr == '\"')
++      quote = *ptr;
++    else if (*ptr == ',')
++      count ++;
++  }
+ 
+  /*
+   * Then add or update the attribute as needed...
+@@ -2085,15 +2099,33 @@
+       return;
+     }
+ 
+-    for (i = 0; i < count; i ++)
++    for (i = 0, quote = '\0', ptr = value; i < count; i ++)
+     {
+-      if ((ptr = strchr(value, ',')) != NULL)
+-        *ptr++ = '\0';
++      for (start = ptr; *ptr; ptr ++)
++      {
++	if (*ptr == quote)
++	  *ptr = quote = '\0';
++	else if (quote)
++	  continue;
++	else if (*ptr == '\\' && ptr[1])
++	  _cups_strcpy(ptr, ptr + 1);
++	else if (*ptr == '\'' || *ptr == '\"')
++	{
++	  quote = *ptr;
+ 
+-      attr->values[i].string.text = _cupsStrAlloc(value);
++	  if (ptr == start)
++	    start ++;
++	  else
++	    _cups_strcpy(ptr, ptr + 1);
++	}
++	else if (*ptr == ',')
++	{
++	  *ptr++ = '\0';
++	  break;
++	}
++      }
+ 
+-      if (ptr)
+-        value = ptr;
++      attr->values[i].string.text = _cupsStrAlloc(start);
+     }
+   }
+ }
+@@ -5496,5 +5528,5 @@
+ 
+ 
+ /*
+- * End of "$Id: printers.c 10001 2011-09-14 22:38:58Z mike $".
++ * End of "$Id: printers.c 10295 2012-02-15 23:21:06Z mike $".
+  */

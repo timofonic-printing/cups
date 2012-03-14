@@ -1,3 +1,26 @@
+cups (1.5.2-8) UNRELEASED; urgency=low
+
+  * debian/patches/ipp-fixes-1.5.3.patch: Updated IPP backend to the state of
+    the upcoming CUPS 1.5.3, fixing most of the known problems with printing
+    to IPP printers or servers.
+  * debian/patches/ipp-backend-fails-to-trigger-authentication-prompts.patch,
+    debian/patches/ipp-backend-http-1.0-fallback-fix.patch,
+    debian/patches/ipp-backend-missing-document-type.patch: Removed old
+    patches for the IPP backend.
+  * debian/patches/supply-level-report-fixes-1.5.3.patch: Updated SNMP-based
+    supply-level reporting to the state of the upcoming CUPS 1.5.3.
+  * debian/patches/add-status-reports-for-full-waste-trays-and-cleaner-unit-eol.patch,
+    debian/patches/fix-status-reports-when-supply-levels-grow.patch,
+    debian/patches/fix-supply-level-computation-for-percent-supply-unit.patch,
+    debian/patches/fix-supply-levels-for-enumerated-prtmarkersupplieslevel.patch,
+    debian/patches/match-marker-colorants-which-use-non-standard-string.patch,
+    debian/patches/truncate-marker-supply-names-at-comma.patch: Removed old
+    patches for SNMP-based supply level reporting.
+  * debian/patches/colord-support.patch, debian/patches/cups-avahi.patch:
+    Refreshed using quilt.
+
+ -- Till Kamppeter <till.kamppeter@gmail.com>  Wed, 14 Mar 2012 13:22:36 +0100
+
 cups (1.5.2-7) unstable; urgency=low
 
   * Add fix-empty-translations.patch: Do not translate msgids to empty
