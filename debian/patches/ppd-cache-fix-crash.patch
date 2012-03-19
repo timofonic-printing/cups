@@ -1,0 +1,11 @@
+--- a/cups/ppd-cache.c
++++ b/cups/ppd-cache.c
+@@ -755,6 +755,8 @@
+ 
+     pwg_media      = _pwgMediaForSize(_PWG_FROMPTS(ppd_size->width),
+                                       _PWG_FROMPTS(ppd_size->length));
++    if (pwg_media == NULL)
++      continue;
+     new_width      = pwg_media->width;
+     new_length     = pwg_media->length;
+     new_left       = _PWG_FROMPTS(ppd_size->left);

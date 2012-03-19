@@ -19,6 +19,7 @@ add-status-reports-for-full-waste-trays-and-cleaner-unit-eol.patch
 match-marker-colorants-which-use-non-standard-string.patch
 truncate-marker-supply-names-at-comma.patch
 commandtops-make-robust-against-broken-postscript.patch
+ppd-cache-fix-crash.patch
 
 # patches which should go upstream
 airprint-support.patch
