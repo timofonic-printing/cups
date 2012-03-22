@@ -1,12 +1,13 @@
 cups (1.5.2-9) UNRELEASED; urgency=low
 
+  * debian/patches/commandtops-make-robust-against-broken-postscript.patch:
+    Updated patch to the upstream state of commandtops.
   * debian/patches/ppd-cache-fix-crash.patch: Added NULL check to fix crash
     of cupsd on corrupted data in /var/cache/cups/ (LP: #957023, CUPS STR
     #4049).
-
   * debian/patches/cups-avahi.patch: Refreshed with quilt.
 
- -- Till Kamppeter <till.kamppeter@gmail.com>  Mon, 19 Mar 2012 10:01:01 +0100
+ -- Till Kamppeter <till.kamppeter@gmail.com>  Thu, 22 Mar 2012 01:07:01 +0100
 
 cups (1.5.2-8) unstable; urgency=low
 
