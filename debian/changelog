@@ -1,5 +1,8 @@
 cups (1.5.2-9) UNRELEASED; urgency=low
 
+  * debian/control: In the Recommends: section of the "cups" binary package
+    replaced "cups-driver-gutenprint" by "printer-driver-gutenprint" to
+    reflect the new name (LP: #966217).
   * debian/patches/cups-polld-reconnect.patch: The CUPS polling daemon did not
     reinitialize its connection to the remote server on errors in all cases
     (LP: #965124, CUPS STR #4031, Red Hat bug #799595).
