@@ -1,5 +1,6 @@
 cups (1.5.2-9) UNRELEASED; urgency=low
 
+  [ Till Kamppeter ]
   * debian/control: In the Recommends: section of the "cups" binary package
     replaced "cups-driver-gutenprint" by "printer-driver-gutenprint" to
     reflect the new name (LP: #966217).
@@ -12,6 +13,10 @@ cups (1.5.2-9) UNRELEASED; urgency=low
     of cupsd on corrupted data in /var/cache/cups/ (LP: #957023, CUPS STR
     #4049).
   * debian/patches/cups-avahi.patch: Refreshed with quilt.
+
+  [ Martin Pitt ]
+  * debian/cups.postinst: Don't fall over if /etc/apparmor.d/local exists and
+    is not a directory. (LP: #962226)
 
  -- Till Kamppeter <till.kamppeter@gmail.com>  Thu, 22 Mar 2012 01:07:01 +0100
 
