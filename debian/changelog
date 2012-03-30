@@ -1,4 +1,4 @@
-cups (1.5.2-9) UNRELEASED; urgency=low
+cups (1.5.2-9) unstable; urgency=low
 
   [ Till Kamppeter ]
   * debian/control: In the Recommends: section of the "cups" binary package
@@ -18,7 +18,7 @@ cups (1.5.2-9) UNRELEASED; urgency=low
   * debian/cups.postinst: Don't fall over if /etc/apparmor.d/local exists and
     is not a directory. (LP: #962226)
 
- -- Till Kamppeter <till.kamppeter@gmail.com>  Thu, 22 Mar 2012 01:07:01 +0100
+ -- Martin Pitt <mpitt@debian.org>  Fri, 30 Mar 2012 08:44:35 +0200
 
 cups (1.5.2-8) unstable; urgency=low
 
