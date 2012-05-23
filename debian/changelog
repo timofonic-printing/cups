@@ -1,4 +1,4 @@
-cups (1.5.3-1) UNRELEASED; urgency=low
+cups (1.5.3-1) unstable; urgency=low
 
   [ Till Kamppeter ]
   * New upstream release
@@ -68,7 +68,7 @@ cups (1.5.3-1) UNRELEASED; urgency=low
     /etc/modprobe.d/blacklist-cups-usblp.conf conffile, as this file is
     reintroduced now.
 
- -- Martin Pitt <mpitt@debian.org>  Mon, 14 May 2012 15:25:39 +0200
+ -- Martin Pitt <mpitt@debian.org>  Wed, 23 May 2012 14:31:36 +0200
 
 cups (1.5.2-11) unstable; urgency=low
 
