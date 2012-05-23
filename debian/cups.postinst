@@ -171,6 +171,10 @@ EOM
 	    ln -s $printcap_file /etc/printcap
 	fi
     fi
+
+    if dpkg --compare-versions "$2" lt "1.5.3"; then
+	rmmod usblp || :
+    fi
 fi
 
 #DEBHELPER#
