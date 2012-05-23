@@ -63,6 +63,11 @@ cups (1.5.3-1) UNRELEASED; urgency=low
   * debian/control: Support multi-arch: Mark cups, cups-client, cups-bsd,
     cups-common and cups-ppdc as foreign. (Closes: #672879)
 
+  [ Martin Pitt ]
+  * debian/cups.{preinst,postinst,postrm}: Drop the removal of obsolete
+    /etc/modprobe.d/blacklist-cups-usblp.conf conffile, as this file is
+    reintroduced now.
+
  -- Martin Pitt <mpitt@debian.org>  Mon, 14 May 2012 15:25:39 +0200
 
 cups (1.5.2-11) unstable; urgency=low
