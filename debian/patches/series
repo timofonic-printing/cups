@@ -13,6 +13,7 @@ cups-avahi.patch
 colord-support.patch
 
 # patches which should go upstream
+install-sh-remove-bashism.patch
 airprint-support.patch
 removecvstag.patch
 no-conffile-timestamp.patch

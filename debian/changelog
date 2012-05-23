@@ -4,7 +4,7 @@ cups (1.5.3-1) UNRELEASED; urgency=low
   * New upstream release
      - Numerous fixes on IPP (LP: #945028, LP: #973270, LP: #990734,
        LP: #992468, LP: #992982, LP: #1000172, LP: #1000758)
-     - USB backend based on the maintained libusb 1.0.x with support for 
+     - USB backend based on the maintained libusb 1.0.x with support for
        bi-directional communication
      - Fixes on SNMP-based supply level reporting
      - PostScript prtinter auto-configuration reliable now
@@ -49,6 +49,7 @@ cups (1.5.3-1) UNRELEASED; urgency=low
     and re-attaching the usblp kernel module is always done correctly
     (LP: #902535, LP: #959676, LP: #960666, LP: #987485,
     LP: #995111, LP: #997040, LP: #1000253, LP: #1001028).
+  * debian/patches/install-sh-remove-bashism.patch: Removed bashism.
   * debian/local/blacklist-cups-usblp.conf, debian/cups.postinst,
     debian/cups.install: Blacklist the "usblp" kernel module again. We have
     now a full-featured USB backend based on the maintained libusb 1.0.x
