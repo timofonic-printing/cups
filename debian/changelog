@@ -1,3 +1,10 @@
+cups (1.5.3-2) UNRELEASED; urgency=low
+
+  * debian/libcupsppdc1.symbols: add two optional symbols which are only
+    emitted on armel and armhf architectures.
+
+ -- Andy Whitcroft <apw@canonical.com>  Wed, 06 Jun 2012 10:55:50 +0100
+
 cups (1.5.3-1) unstable; urgency=low
 
   [ Till Kamppeter ]
