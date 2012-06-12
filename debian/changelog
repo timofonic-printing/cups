@@ -1,7 +1,12 @@
 cups (1.5.3-2) UNRELEASED; urgency=low
 
+  [ Martin Pitt ]
   * debian/local/apparmor-profile: Allow cups-pdf to read /proc/*/auxv; it's
     harmless information. (LP: #1009367)
+
+  [ Andy Whitcroft ]
+  * debian/libcupsppdc1.symbols: add two optional symbols which are only
+    emitted on armel and armhf architectures.
 
  -- Martin Pitt <mpitt@debian.org>  Wed, 06 Jun 2012 17:48:17 +0200
 
