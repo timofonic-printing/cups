@@ -1,5 +1,9 @@
 cups (1.5.3-2.4) UNRELEASED; urgency=low
 
+  [ Till Kamppeter ]
+  * Correctly install language-private.h as /usr/include/cups/i18n.h,
+    .install file entries cannot rename files (LP: #1013470).
+
   [ Martin Pitt ]
   * Tighten cups' and cups-client's dependency to libcups2 to current binary
     version. They use private symbols from the libraries which the automatic
