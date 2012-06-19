@@ -8,6 +8,10 @@ cups (1.5.3-2) UNRELEASED; urgency=low
   [ Martin Pitt ]
   * debian/local/apparmor-profile: Allow cups-pdf to read /proc/*/auxv; it's
     harmless information. (LP: #1009367)
+  * debian/control: Tighten cups' and cups-client's dependency to libcups2 to
+    current binary version. They use private symbols from the libraries which
+    the automatic dependencies from the .symbols files don't cover.
+    (Closes: #668662, #677180)
 
   [ Andy Whitcroft ]
   * debian/libcupsppdc1.symbols: add two optional symbols which are only
