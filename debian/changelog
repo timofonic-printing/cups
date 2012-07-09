@@ -1,4 +1,4 @@
-cups (1.5.3-3) unstable; urgency=low
+cups (1.5.3-3) experimental; urgency=low
 
   * debian/patches/usb-backend-further-enhancements.patch: Added latest
     development work on the libusb-based USB backend:
