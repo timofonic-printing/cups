@@ -10,6 +10,9 @@ cups (1.5.3-4) UNRELEASED; urgency=low
   * debian/control: Have cups strictly depend on the same binary version of
     libcups2, to avoid crashes when later libcups2 versions remove private
     symbols. (Closes: #668662)
+  * Add snmp-dont-stop-without-ipv6.patch: snmp: do not die if there is no
+    IPv6 support available. Patch backported from upstream trunk, thanks to
+    Pino Toscano! (first half of #680604)
 
  -- Till Kamppeter <till.kamppeter@gmail.com>  Tue, 10 Jul 2012 16:28:01 +0200
 
