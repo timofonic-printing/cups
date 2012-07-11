@@ -1,9 +1,15 @@
-cups (1.5.3-4) unreleased; urgency=low
+cups (1.5.3-4) UNRELEASED; urgency=low
 
+  [ Till Kamppeter ]
   * debian/patches/usb-backend-further-enhancements.patch: USB backend: Do
     a printer reset after each job, this makes the Prolific USB -> Parallel
     adapter finally work (LP: #987485) and makes it unnecessary to blacklist
     the usblp kernel module for some printers (LP: #997040).
+
+  [ Martin Pitt ]
+  * debian/control: Have cups strictly depend on the same binary version of
+    libcups2, to avoid crashes when later libcups2 versions remove private
+    symbols. (Closes: #668662)
 
  -- Till Kamppeter <till.kamppeter@gmail.com>  Tue, 10 Jul 2012 16:28:01 +0200
 
