@@ -1,13 +1,9 @@
 cups (1.5.3-4) unreleased; urgency=low
 
-  [ Till Kamppeter ]
   * debian/patches/usb-backend-further-enhancements.patch: USB backend: Do
     a printer reset after each job, this makes the Prolific USB -> Parallel
     adapter finally work (LP: #987485) and makes it unnecessary to blacklist
     the usblp kernel module for some printers (LP: #997040).
-
-  [ Serge Hallyn ]
-  * build-deps: switch from libtiff-dev to libtiff5-dev | libtiff-dev
 
  -- Till Kamppeter <till.kamppeter@gmail.com>  Tue, 10 Jul 2012 16:28:01 +0200
 
