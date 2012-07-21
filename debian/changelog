@@ -11,6 +11,8 @@ cups (1.5.3-2.4) UNRELEASED; urgency=low
     (Closes: #668662, #677180)
   * manpage-translations.patch: Update German manpage translations, thanks
     Helge Kreutzmann! (Closes: #670042)
+  * manpage-translations.patch: Update French manpage translations, thanks
+    Julien Patriarca! (Closes: #670224)
 
   [ Didier Raboud ]
   * Backport upstream quirks for the libusb backend (Closes: #690982).
