@@ -4,6 +4,8 @@ cups (1.5.3-5) UNRELEASED; urgency=low
     Helge Kreutzmann! (Closes: #670042)
   * manpage-translations.patch: Update French manpage translations, thanks
     Julien Patriarca! (Closes: #670224)
+  * debian/README.Debian: Explain how to enable cups-lpd, thanks Vincent
+    McIntyre. (Closes: #508941)
 
  -- Martin Pitt <mpitt@debian.org>  Sat, 21 Jul 2012 17:21:33 +0200
 
