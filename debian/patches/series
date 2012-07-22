@@ -4,10 +4,11 @@ install-sh-remove-bashism.patch
 usb-backend-busy-loop-fix.patch
 usb-backend-detach-usblp-earlier-crash-guards.patch
 usb-backend-initialize-usblp-attached-state.patch
+usb-backend-further-enhancements.patch
 snmp-dont-stop-without-ipv6.patch
+lpq-does-not-show-user-name-and-job-title.patch
 
 # patches sent upstream
-usb-backend-further-enhancements.patch
 pidfile.patch
 ppd-poll-with-client-conf.patch
 # no answer yet, po4a might not be appropriate
