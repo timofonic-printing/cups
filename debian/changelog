@@ -1,6 +1,9 @@
 cups (1.5.3-5) UNRELEASED; urgency=low
 
   [ Till Kamppeter ]
+  * debian/patches/cups-lpd-fix-printing-documents-with-multiple-copies.patch:
+    Fixed printing of multiple copies via cups-lpd (LP: #1027804, CUPS STR
+    #4118).
   * debian/patches/lpq-does-not-show-user-name-and-job-title.patch: Make the
     "lpq" command correctly display user name and job title (LP: #904093,
     CUPS STR #4135).

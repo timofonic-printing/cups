@@ -7,6 +7,7 @@ usb-backend-initialize-usblp-attached-state.patch
 usb-backend-further-enhancements.patch
 snmp-dont-stop-without-ipv6.patch
 lpq-does-not-show-user-name-and-job-title.patch
+cups-lpd-fix-printing-documents-with-multiple-copies.patch
 
 # patches sent upstream
 pidfile.patch
