@@ -2,26 +2,30 @@ Description: Add-on to cups-avahi.patch to support Apple AirPrint (printing from
 Author: Till Kamppeter <till.kamppeter@gmail.com>
 Bug: https://bugs.launchpad.net/bugs/711779
 
---- a/scheduler/conf.c
-+++ b/scheduler/conf.c
-@@ -652,7 +652,7 @@
+Index: cups-1.6.0/scheduler/conf.c
+===================================================================
+--- cups-1.6.0.orig/scheduler/conf.c	2012-07-27 16:55:12.000000000 +0200
++++ cups-1.6.0/scheduler/conf.c	2012-07-27 17:15:59.550185245 +0200
+@@ -738,7 +738,7 @@
    DefaultShared            = CUPS_DEFAULT_DEFAULT_SHARED;
  
- #if defined(HAVE_DNSSD) || defined(HAVE_AVAHI)
--  cupsdSetString(&DNSSDRegType, "_ipp._tcp,_cups");
-+  cupsdSetString(&DNSSDRegType, "_ipp._tcp,_cups,_universal");
+ #ifdef HAVE_DNSSD
+-  cupsdSetString(&DNSSDSubTypes, "_cups,_print");
++  cupsdSetString(&DNSSDSubTypes, "_cups,_print,_universal");
  #endif /* HAVE_DNSSD */
  
    cupsdSetString(&LPDConfigFile, CUPS_DEFAULT_LPD_CONFIG_FILE);
---- a/scheduler/dirsvc.c
-+++ b/scheduler/dirsvc.c
-@@ -2522,6 +2522,9 @@
-   keyvalue[i  ][0] = "pdl";
-   keyvalue[i++][1] = p->pdl ? p->pdl : "application/postscript";
+Index: cups-1.6.0/scheduler/dirsvc.c
+===================================================================
+--- cups-1.6.0.orig/scheduler/dirsvc.c	2012-05-18 04:25:18.000000000 +0200
++++ cups-1.6.0/scheduler/dirsvc.c	2012-07-27 17:18:49.966182963 +0200
+@@ -606,6 +606,9 @@
+     keyvalue[count  ][0] = "pdl";
+     keyvalue[count++][1] = p->pdl ? p->pdl : "application/postscript";
  
-+  keyvalue[i  ][0] = "URF";
-+  keyvalue[i++][1] = "none";
++    keyvalue[count  ][0] = "URF";
++    keyvalue[count++][1] = "none";
 +
-   if (get_auth_info_required(p, air_str, sizeof(air_str)))
-   {
-     keyvalue[i  ][0] = "air";
+     if (get_auth_info_required(p, air_str, sizeof(air_str)))
+     {
+       keyvalue[count  ][0] = "air";

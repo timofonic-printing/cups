@@ -1,13 +1,43 @@
-cups (1.5.3-5) UNRELEASED; urgency=low
+cups (1.6.0-1) UNRELEASED; urgency=low
 
   [ Till Kamppeter ]
-  * debian/patches/cups-lpd-fix-printing-documents-with-multiple-copies.patch:
-    Fixed printing of multiple copies via cups-lpd (LP: #1027804, CUPS STR
-    #4118).
-  * debian/patches/lpq-does-not-show-user-name-and-job-title.patch: Make the
-    "lpq" command correctly display user name and job title (LP: #904093,
-    CUPS STR #4135).
-  * debian/patches/snmp-dont-stop-without-ipv6.patch: Refreshed with quilt.
+  * New upstream release
+     - Avahi-based Bonjour/DNS-SD/mDNS support
+     - ICC-based color management with colord
+     - IPP-Everywhere support
+     - Fixes: LP: #904093, LP: #1027804
+  * debian/patches/ipp-backend-cups-1.5.4-fixes.patch,
+    debian/patches/install-sh-remove-bashism.patch,
+    debian/patches/usb-backend-busy-loop-fix.patch,
+    debian/patches/usb-backend-detach-usblp-earlier-crash-guards.patch,
+    debian/patches/usb-backend-initialize-usblp-attached-state.patch,
+    debian/patches/usb-backend-further-enhancements.patch,
+    debian/patches/snmp-dont-stop-without-ipv6.patch,
+    debian/patches/cups-avahi.patch,
+    debian/patches/colord-support.patch: Removed, included upstream.
+  * debian/patches/dnssd-reg-array-linear-search.patch: Removed, not applicable
+    any more.
+  * debian/patches/pidfile.patch,
+    debian/patches/airprint-support.patch,
+    debian/patches/no-conffile-timestamp.patch,
+    debian/patches/drop_unnecessary_dependencies.patch,
+    debian/patches/configure-default-browse-protocols.patch
+    debian/patches/add-ipp-backend-of-cups-1.4.patch
+    debian/patches/printer-filtering.patch,
+    debian/patches/show-compile-command-lines.patch,
+    debian/patches/pstops-based-workflow-only-for-printing-ps-on-a-ps-printer.patch,
+    debian/patches/tests-ignore-usb-crash.patch: Manually regenerated to adapt to upstream
+    changes.
+  * debian/patches/debian/patches/ppd-poll-with-client-conf.patch,
+    debian/patches/manpage-translations.patch,
+    debian/patches/rootbackends-worldreadable.patch,
+    debian/patches/reactivate_recommended_driver.patch,
+    debian/patches/read-embedded-options-from-incoming-postscript-and-add-to-ipp-attrs.patch,
+    debian/patches/do-not-broadcast-with-hostnames.patch,
+    debian/patches/confdirperms.patch,
+    debian/patches/log-debug-history-nearly-unlimited.patch,
+    debian/patches/tests-ignore-warnings.patch,
+    debian/patches/tests-slow-lpstat.patch: Refreshed with quilt.
 
   [ Martin Pitt ]
   * manpage-translations.patch: Update German manpage translations, thanks

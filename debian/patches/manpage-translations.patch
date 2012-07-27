@@ -2,10 +2,10 @@ Description: po4a infrastructure and translations for manpages.
 Author: Nicolas François <nicolas.francois@centraliens.net>, Helge Kreutzmann <debian@helgefjell.de>
 Bug-Debian: http://bugs.debian.org/478597
 
-Index: cups-1.5.3/man/Makefile
+Index: cups-1.6.0/man/Makefile
 ===================================================================
---- cups-1.5.3.orig/man/Makefile	2010-06-22 23:21:37.000000000 +0200
-+++ cups-1.5.3/man/Makefile	2012-07-21 17:23:49.068857214 +0200
+--- cups-1.6.0.orig/man/Makefile	2012-05-25 05:11:46.000000000 +0200
++++ cups-1.6.0/man/Makefile	2012-07-27 17:04:05.390194815 +0200
 @@ -66,12 +66,18 @@
  		lpmove.$(MAN8EXT) \
  		lpc.$(MAN8EXT)
@@ -26,7 +26,7 @@ Index: cups-1.5.3/man/Makefile
  
  
  #
-@@ -107,6 +113,11 @@
+@@ -111,6 +117,11 @@
  	for file in $(MAN8); do \
  		$(RM) ../doc/help/man-`basename $$file .$(MAN8EXT)`.html; \
  	done
@@ -38,7 +38,7 @@ Index: cups-1.5.3/man/Makefile
  
  
  #
-@@ -154,6 +165,7 @@
+@@ -158,6 +169,7 @@
  	done
  	$(RM) $(AMANDIR)/man$(MAN8DIR)/cupsdisable.$(MAN8EXT)
  	$(LN) cupsenable.$(MAN8EXT) $(AMANDIR)/man$(MAN8DIR)/cupsdisable.$(MAN8EXT)
@@ -46,7 +46,7 @@ Index: cups-1.5.3/man/Makefile
  
  
  #
-@@ -202,6 +214,7 @@
+@@ -206,6 +218,7 @@
  	$(RM) $(AMANDIR)/man$(MAN8DIR)/reject.$(MAN8EXT)
  	$(RM) $(AMANDIR)/man$(MAN8DIR)/cupsdisable.$(MAN8EXT)
  	-$(RMDIR) $(AMANDIR)/man$(MAN8DIR)
@@ -54,10 +54,10 @@ Index: cups-1.5.3/man/Makefile
  
  
  #
-Index: cups-1.5.3/man/Makefile.l10n
+Index: cups-1.6.0/man/Makefile.l10n
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
-+++ cups-1.5.3/man/Makefile.l10n	2012-07-21 17:23:49.072857215 +0200
++++ cups-1.6.0/man/Makefile.l10n	2012-07-27 17:04:05.390194815 +0200
 @@ -0,0 +1,209 @@
 +#
 +# "$Id: $"
@@ -268,10 +268,10 @@ Index: cups-1.5.3/man/Makefile.l10n
 +#
 +# End of "$Id: $".
 +#
-Index: cups-1.5.3/man/de/Makefile
+Index: cups-1.6.0/man/de/Makefile
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
-+++ cups-1.5.3/man/de/Makefile	2012-07-21 17:23:49.072857215 +0200
++++ cups-1.6.0/man/de/Makefile	2012-07-27 17:04:05.390194815 +0200
 @@ -0,0 +1,13 @@
 +#
 +# "$Id: $"
@@ -286,10 +286,10 @@ Index: cups-1.5.3/man/de/Makefile
 +#
 +# End of "$Id: $".
 +#
-Index: cups-1.5.3/man/fr/Makefile
+Index: cups-1.6.0/man/fr/Makefile
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
-+++ cups-1.5.3/man/fr/Makefile	2012-07-21 17:23:49.072857215 +0200
++++ cups-1.6.0/man/fr/Makefile	2012-07-27 17:04:05.390194815 +0200
 @@ -0,0 +1,13 @@
 +#
 +# "$Id: $"
@@ -304,10 +304,10 @@ Index: cups-1.5.3/man/fr/Makefile
 +#
 +# End of "$Id: $".
 +#
-Index: cups-1.5.3/man/po4a/cups.cfg
+Index: cups-1.6.0/man/po4a/cups.cfg
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
-+++ cups-1.5.3/man/po4a/cups.cfg	2012-07-21 17:23:49.072857215 +0200
++++ cups-1.6.0/man/po4a/cups.cfg	2012-07-27 17:04:05.390194815 +0200
 @@ -0,0 +1,40 @@
 +[po4a_langs] fr de
 +[po4a_paths] po4a/po/cups.pot $lang:po4a/po/$lang.po
@@ -349,10 +349,10 @@ Index: cups-1.5.3/man/po4a/cups.cfg
 +[type: man] printers.conf.man	$lang:$lang/printers.conf.man
 +[type: man] subscriptions.conf.man	$lang:$lang/subscriptions.conf.man
 +
-Index: cups-1.5.3/man/po4a/po/de.po
+Index: cups-1.6.0/man/po4a/po/de.po
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
-+++ cups-1.5.3/man/po4a/po/de.po	2012-07-21 17:23:49.092857216 +0200
++++ cups-1.6.0/man/po4a/po/de.po	2012-07-27 17:04:05.398194816 +0200
 @@ -0,0 +1,10507 @@
 +# Translation of cups man pages to German
 +# Copyright (C) Helge Kreutzmann <debian@helgefjell.de>, 2008-2012
@@ -10861,10 +10861,10 @@ Index: cups-1.5.3/man/po4a/po/de.po
 +# type: TH
 +#~ msgid "2 March 2009"
 +#~ msgstr "2. März 2009"
-Index: cups-1.5.3/man/po4a/po/fr.po
+Index: cups-1.6.0/man/po4a/po/fr.po
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
-+++ cups-1.5.3/man/po4a/po/fr.po	2012-07-21 17:23:40.788856899 +0200
++++ cups-1.6.0/man/po4a/po/fr.po	2012-07-27 17:04:05.406194813 +0200
 @@ -0,0 +1,11200 @@
 +# Translation of the cups manpages into French.
 +#
