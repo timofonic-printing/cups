@@ -1,6 +1,15 @@
-cups (1.5.3-2) UNRELEASED; urgency=low
+cups (1.5.3-2+wheezy0) UNRELEASED; urgency=low
 
+  [ Didier Raboud ]
   * Revert all 1.5.3-2 changes.
+
+  [ Till Kamppeter ]
+  * debian/patches/add-ipp-backend-of-cups-1.4.patch, debian/cups.config,
+    debian/cups.lintian-overrides, debian/cups.postinst, debian/cups.prerm,
+    debian/cups.templates: Add the IPP backend of CUPS 1.4.x to the current
+    CUPS package as independent backend "ipp14". Some devices (like the
+    LiveBox 2) do not work with the current IPP backend (LP: #945028,
+    LP: #973270, LP: #990734, LP: #992468, LP: #992982).
 
  -- Didier Raboud <odyx@debian.org>  Thu, 02 Aug 2012 09:31:43 +0200
 
