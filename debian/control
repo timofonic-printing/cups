@@ -152,7 +152,7 @@ Package: cups
 Priority: optional
 Section: net
 Architecture: any
-Pre-Depends: dpkg (>= 1.15.7.2)
+Pre-Depends: ${misc:Pre-Depends}
 Depends: ${shlibs:Depends},
  ${misc:Depends},
  debconf (>= 1.2.9) | debconf-2.0,

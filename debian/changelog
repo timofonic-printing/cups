@@ -51,6 +51,9 @@ cups (1.5.3-2+wheezy0) UNRELEASED; urgency=low
      - Some extra debug messages.
      - Added a missing libusb_free_config_descriptor().
     This patch is submitted upstream as CUPS STR #4128.
+  * debian/local/blacklist-cups-usblp.conf, debian/cups.maintscript,
+    debian/cups.install, debian/control: Lift the usblp blacklist, not
+    needed anymore with the above fixes (Closes: #630556, #635041).
 
  -- Didier Raboud <odyx@debian.org>  Thu, 02 Aug 2012 09:31:43 +0200
 
