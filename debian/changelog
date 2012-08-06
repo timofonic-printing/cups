@@ -1,4 +1,4 @@
-cups (1.6.0-1) UNRELEASED; urgency=low
+cups (1.6.1-1) UNRELEASED; urgency=low
 
   [ Till Kamppeter ]
   * New upstream release
@@ -8,9 +8,7 @@ cups (1.6.0-1) UNRELEASED; urgency=low
      - Moved filters not needed by Mac OS to cups-filters project at
        OpenPrinting.
      - Moved API of libcupsdrivers (driver.h) and of part of libcupsimage
-       (image.h) to cups-filters. Packages usng these must build-depend
-       on libcupsfilter-dev now and not libcupsdrivers1-dev and
-       libcupsimage2-dev any more.
+       (image.h) to cups-filters.
      - cups-polld removed
      - Fixes: LP: #904093, LP: #1027804
   * debian/patches/ipp-backend-cups-1.5.4-fixes.patch,
@@ -45,7 +43,21 @@ cups (1.6.0-1) UNRELEASED; urgency=low
     debian/patches/log-debug-history-nearly-unlimited.patch,
     debian/patches/tests-ignore-warnings.patch,
     debian/patches/tests-slow-lpstat.patch: Refreshed with quilt.
-  * debian/cups.install: Removed al references to the discontinued cups-polld.
+  * debian/patches/airprint-support.patch: Fixes in the conditionals to make
+    AirPrint work with the new upstream Avahi support.
+  * debian/patches/usb-backend-reset-after-job-only-for-specific-devices.patch:
+    Let the USB backend only send a clean-up reset after the job if it is
+    really needed (LP: #1032456).
+  * debian/patches/cupsd-conf-remove-obsolete-browse-directives.patch:
+    Removed obsolete "BrowseOrder" and "BrowseAllow" lines from cupsd.conf.
+  * debian/patches/printers-c-recognize-remote-cups-queue-via-dnssd-uri.patch,
+    Treat raw queues pointing to a CUPS server as remote queues (using PPD on
+    server) also if they have a "dnssd://..." URI.
+  * debian/patches/avahi-not-considered-at-some-dnssd-conditionals.patch: At
+    some points Avahi was not considered in conditionals for DNS-SD. This
+    broke most of the printer sharing functionality.
+  * debian/patches/ubuntu/ubuntu-disable-browsing.patch: Updated.
+  * debian/cups.install: Removed all references to the discontinued cups-polld.
   * debian/rules: Removed lines for deletion of filters, fonts and glyphs which
     have moved to cups-filters and also the line for commenting out conversion
     rules.
@@ -60,6 +72,10 @@ cups (1.6.0-1) UNRELEASED; urgency=low
     this subdirectory does not exist any more in CUPS 1.6.x.
   * debian/libcups2.symbols, debian/libcupsimage2.symbols: Refreshed using the
     diff of the dpkg-gensymbols output during build.
+  * debian/rules: Removed "--with-remote_protocols='CUPS dnssd'" from the
+    ./configure command line and removed the "CUPS" from
+    "--with-local_protocols='CUPS dnssd'". These settings are not supported
+    any more in CUPS 1.6.x.
   * debian/patches/series, debian/cups-bsd.install, debian/cups-client.install,
     debian/cups.install, debian/libcups2-dev.install: Commented out man page
     translation patch, it needs to be updated to CUPS 1.6.0 by the appropriate

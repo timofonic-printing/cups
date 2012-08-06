@@ -2,23 +2,35 @@ Description: Add-on to cups-avahi.patch to support Apple AirPrint (printing from
 Author: Till Kamppeter <till.kamppeter@gmail.com>
 Bug: https://bugs.launchpad.net/bugs/711779
 
-Index: cups-1.6.0/scheduler/conf.c
-===================================================================
---- cups-1.6.0.orig/scheduler/conf.c	2012-07-27 16:55:12.000000000 +0200
-+++ cups-1.6.0/scheduler/conf.c	2012-07-27 17:15:59.550185245 +0200
-@@ -738,7 +738,7 @@
+--- a/scheduler/conf.c
++++ b/scheduler/conf.c
+@@ -89,9 +89,9 @@
+ {
+   { "AccessLog",		&AccessLog,		CUPSD_VARTYPE_STRING },
+   { "AutoPurgeJobs", 		&JobAutoPurge,		CUPSD_VARTYPE_BOOLEAN },
+-#ifdef HAVE_DNSSD
++#if defined(HAVE_DNSSD) || defined(HAVE_AVAHI)
+   { "BrowseDNSSDSubTypes",	&DNSSDSubTypes,		CUPSD_VARTYPE_STRING },
+-#endif /* HAVE_DNSSD */
++#endif /* HAVE_DNSSD || HAVE_AVAHI */
+   { "BrowseWebIF",		&BrowseWebIF,		CUPSD_VARTYPE_BOOLEAN },
+   { "Browsing",			&Browsing,		CUPSD_VARTYPE_BOOLEAN },
+   { "CacheDir",			&CacheDir,		CUPSD_VARTYPE_STRING },
+@@ -737,9 +737,9 @@
+   Browsing                 = CUPS_DEFAULT_BROWSING;
    DefaultShared            = CUPS_DEFAULT_DEFAULT_SHARED;
  
- #ifdef HAVE_DNSSD
+-#ifdef HAVE_DNSSD
 -  cupsdSetString(&DNSSDSubTypes, "_cups,_print");
+-#endif /* HAVE_DNSSD */
++#if defined(HAVE_DNSSD) || defined(HAVE_AVAHI)
 +  cupsdSetString(&DNSSDSubTypes, "_cups,_print,_universal");
- #endif /* HAVE_DNSSD */
++#endif /* HAVE_DNSSD || HAVE_AVAHI */
  
    cupsdSetString(&LPDConfigFile, CUPS_DEFAULT_LPD_CONFIG_FILE);
-Index: cups-1.6.0/scheduler/dirsvc.c
-===================================================================
---- cups-1.6.0.orig/scheduler/dirsvc.c	2012-05-18 04:25:18.000000000 +0200
-+++ cups-1.6.0/scheduler/dirsvc.c	2012-07-27 17:18:49.966182963 +0200
+   cupsdSetString(&SMBConfigFile, CUPS_DEFAULT_SMB_CONFIG_FILE);
+--- a/scheduler/dirsvc.c
++++ b/scheduler/dirsvc.c
 @@ -606,6 +606,9 @@
      keyvalue[count  ][0] = "pdl";
      keyvalue[count++][1] = p->pdl ? p->pdl : "application/postscript";
