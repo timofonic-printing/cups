@@ -47,7 +47,8 @@ cups (1.6.1-1) UNRELEASED; urgency=low
     AirPrint work with the new upstream Avahi support.
   * debian/patches/usb-backend-reset-after-job-only-for-specific-devices.patch:
     Let the USB backend only send a clean-up reset after the job if it is
-    really needed (LP: #1032456).
+    really needed (LP: #1032456), force-uni-directional access for Canon
+    Pixma iP4200 (CUPS STR #4155) and iP4300 (LP: #1032385).
   * debian/patches/cupsd-conf-remove-obsolete-browse-directives.patch:
     Removed obsolete "BrowseOrder" and "BrowseAllow" lines from cupsd.conf.
   * debian/patches/printers-c-recognize-remote-cups-queue-via-dnssd-uri.patch,
