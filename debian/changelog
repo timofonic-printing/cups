@@ -1,5 +1,8 @@
 cups (1.6.1-1) UNRELEASED; urgency=low
 
+  [ Marc Deslauriers ]
+  * debian/local/apport-hook.py: Also attach AppArmor information and logs.
+
   [ Jamie Strandboge ]
   * debian/local/apparmor-profile: deny capability block_suspend. It is noisy
     and doesn't seem to actually be needed. This can be revisited if it turns
