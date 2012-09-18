@@ -38,3 +38,4 @@ tests-ignore-warnings.patch
 tests-ignore-usb-crash.patch
 test-i18n-nonlinux.patch
 tests-slow-lpstat.patch
+tests-fix-ppdLocalize-on-unclean-env.patch

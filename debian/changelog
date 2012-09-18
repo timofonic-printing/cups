@@ -108,6 +108,8 @@ cups (1.6.1-1) UNRELEASED; urgency=low
     (Closes: #683754)
   * Update all debconf translations to cope with the ipp14 addition and
     parallel and serial removals.
+  * Add patch to force C locale when testing the (non-)localized PPD
+    content fetch.
 
  -- Martin Pitt <mpitt@debian.org>  Sun, 22 Jul 2012 20:28:33 +0200
 
