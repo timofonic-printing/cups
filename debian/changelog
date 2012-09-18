@@ -7,6 +7,8 @@ cups (1.5.3-2+wheezy0) unstable; urgency=low
     (Closes: #683754)
   * Update all debconf translations to cope with the ipp14 addition and
     parallel and serial removals.
+  * Add patch to force C locale when testing the (non-)localized PPD
+    content fetch.
 
   [ Till Kamppeter ]
   * debian/patches/add-ipp-backend-of-cups-1.4.patch, debian/cups.config,
