@@ -106,6 +106,8 @@ cups (1.6.1-1) UNRELEASED; urgency=low
   [ Didier Raboud ]
   * Make sure obsolete backends are removed on configure.
     (Closes: #683754)
+  * Update all debconf translations to cope with the ipp14 addition and
+    parallel and serial removals.
 
  -- Martin Pitt <mpitt@debian.org>  Sun, 22 Jul 2012 20:28:33 +0200
 
