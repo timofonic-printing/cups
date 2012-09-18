@@ -5,6 +5,8 @@ cups (1.5.3-2+wheezy0) unstable; urgency=low
   * Cherry-pick changes targetted at Wheezy.
   * Make sure obsolete backends are removed on configure.
     (Closes: #683754)
+  * Update all debconf translations to cope with the ipp14 addition and
+    parallel and serial removals.
 
   [ Till Kamppeter ]
   * debian/patches/add-ipp-backend-of-cups-1.4.patch, debian/cups.config,
