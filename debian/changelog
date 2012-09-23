@@ -116,6 +116,14 @@ cups (1.6.1-1) UNRELEASED; urgency=low
   * debian/README.Debian: Explain how to enable cups-lpd, thanks Vincent
     McIntyre. (Closes: #508941)
 
+  [ Didier Raboud ]
+  * Make sure obsolete backends are removed on configure.
+    (Closes: #683754)
+  * Update all debconf translations to cope with the ipp14 addition and
+    parallel and serial removals.
+  * Add patch to force C locale when testing the (non-)localized PPD
+    content fetch.
+
  -- Martin Pitt <mpitt@debian.org>  Sun, 22 Jul 2012 20:28:33 +0200
 
 cups (1.5.3-4) experimental; urgency=low
