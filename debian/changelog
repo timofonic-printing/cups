@@ -52,7 +52,8 @@ cups (1.6.1-1) UNRELEASED; urgency=low
     debian/patches/tests-ignore-warnings.patch,
     debian/patches/tests-slow-lpstat.patch: Refreshed with quilt.
   * debian/patches/airprint-support.patch: Fixes in the conditionals to make
-    AirPrint work with the new upstream Avahi support.
+    AirPrint work with the new upstream Avahi support, support for iOS 6
+    clients.
   * debian/patches/network-backends-snmp-queries-optional.patch: SNMP queries
     by network backends can get suppressed now by adding "?snmp=false" to the
     end of the URI. SBNP queries to Bonjour-shared CUPS queue will get
@@ -62,9 +63,10 @@ cups (1.6.1-1) UNRELEASED; urgency=low
     really needed (LP: #1032456), force-uni-directional access for Canon
     Pixma iP4200 (CUPS STR #4155) and iP4300 (LP: #1032385).
   * debian/patches/usb-backend-more-quirk-rules.patch: Added more quirk rules
-    which are not yet committed upstream: Canon MP510 (LP: #1050009),
-    MP550 (CUPS STR #4155), Brother HL-1430 (LP: #1038695), Oki Okipage 14ex
-    (LP: #872483), Oki B410d (LP: #872483), all Zebra printers (LP: #1001028).
+    which are not yet committed upstream: Canon MP500 (LP: #1032456), MP510
+    (LP: #1050009), MP550 (CUPS STR #4155), MP560 (CUPS STR #4155), Brother
+    HL-1430 (LP: #1038695), Oki Okipage 14ex (LP: #872483), Oki B410d
+    (LP: #872483), all Zebra printers (LP: #1001028).
   * debian/patches/cupsd-conf-remove-obsolete-browse-directives.patch:
     Removed obsolete "BrowseOrder" and "BrowseAllow" lines from cupsd.conf.
   * debian/patches/get-ppd-file-for-statically-configured-bonjour-shared-queues.patch:
