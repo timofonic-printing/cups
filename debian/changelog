@@ -50,7 +50,9 @@ cups (1.6.1-1) UNRELEASED; urgency=low
     debian/patches/confdirperms.patch,
     debian/patches/log-debug-history-nearly-unlimited.patch,
     debian/patches/tests-ignore-warnings.patch,
-    debian/patches/tests-slow-lpstat.patch: Refreshed with quilt.
+    debian/patches/tests-slow-lpstat.patch,
+    debian/patches/tests-fix-ppdLocalize-on-unclean-env.patch: Refreshed with
+    quilt.
   * debian/patches/airprint-support.patch: Fixes in the conditionals to make
     AirPrint work with the new upstream Avahi support, support for iOS 6
     clients.
@@ -81,6 +83,15 @@ cups (1.6.1-1) UNRELEASED; urgency=low
   * debian/patches/avahi-not-considered-at-some-dnssd-conditionals.patch: At
     some points Avahi was not considered in conditionals for DNS-SD. This
     broke most of the printer sharing functionality.
+  * debian/patches/filter-out-all-control-characters-from-the-1284-device-id.patch:
+    Do not only filter newline characters out of device IDs but any
+    non-printable character (CUPS STR #4124).
+  * debian/patches/ipp-backend-did-not-specify-the-compression-used.patch:
+    The IPP backend did not specify the compression used (CUPS STR #4181).
+  * debian/patches/work-around-some-broken-ipp-printers.patch: Work around
+    some broken IPP printers (CUPS STR #4190). Also catch late authentication
+    issues so the backend doesn't just spin on a print request that will never
+    succeed.
   * debian/patches/ubuntu/ubuntu-disable-browsing.patch: Updated.
   * debian/cups.install: Removed all references to the discontinued cups-polld.
   * debian/rules: Removed lines for deletion of filters, fonts and glyphs which
