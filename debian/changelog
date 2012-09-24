@@ -55,7 +55,7 @@ cups (1.6.1-1) UNRELEASED; urgency=low
     quilt.
   * debian/patches/airprint-support.patch: Fixes in the conditionals to make
     AirPrint work with the new upstream Avahi support, support for iOS 6
-    clients.
+    clients (LP: #1054495).
   * debian/patches/network-backends-snmp-queries-optional.patch: SNMP queries
     by network backends can get suppressed now by adding "?snmp=false" to the
     end of the URI. SBNP queries to Bonjour-shared CUPS queue will get
