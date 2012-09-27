@@ -112,6 +112,11 @@ cups (1.6.1-1) UNRELEASED; urgency=low
     ./configure command line and removed the "CUPS" from
     "--with-local_protocols='CUPS dnssd'". These settings are not supported
     any more in CUPS 1.6.x.
+  * debian/cups.postinst: Clean /etc/cups/cupsd.conf from all keywords and
+    settings which got obsolete with the dropping CUPS Broadcasting/Browsing
+    in CUPS 1.6.x: BrowsePoll, BrowseAllow, BrowseDeny, BrowseOrder, and
+    BrowseRemoteProtocols lines get removed and the "cups" argument gets
+    removed from the BrowseLocalProtocols line (LP: #1052897).
   * debian/patches/series, debian/cups-bsd.install, debian/cups-client.install,
     debian/cups.install, debian/libcups2-dev.install: Commented out man page
     translation patch, it needs to be updated to CUPS 1.6.0 by the appropriate
