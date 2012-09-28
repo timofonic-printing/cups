@@ -133,7 +133,7 @@ cups (1.6.1-1) UNRELEASED; urgency=low
     McIntyre. (Closes: #508941)
 
   [ Didier Raboud ]
-  * Make sure obsolete backends are removed on configure.
+  * Make sure unowned obsolete backends are removed on configure.
     (Closes: #683754)
   * Update all debconf translations to cope with the ipp14 addition and
     parallel and serial removals.
