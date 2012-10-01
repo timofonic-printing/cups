@@ -50,15 +50,17 @@ cups (1.6.1-1) UNRELEASED; urgency=low
     debian/patches/confdirperms.patch,
     debian/patches/log-debug-history-nearly-unlimited.patch,
     debian/patches/tests-ignore-warnings.patch,
+    debian/patches/tests-ignore-usb-crash.patch,
     debian/patches/tests-slow-lpstat.patch,
-    debian/patches/tests-fix-ppdLocalize-on-unclean-env.patch: Refreshed with
+    debian/patches/tests-fix-ppdLocalize-on-unclean-env.patch,
+    debian/patches/pidfile.patch,: Refreshed with
     quilt.
   * debian/patches/airprint-support.patch: Fixes in the conditionals to make
     AirPrint work with the new upstream Avahi support, support for iOS 6
     clients (LP: #1054495).
   * debian/patches/network-backends-snmp-queries-optional.patch: SNMP queries
     by network backends can get suppressed now by adding "?snmp=false" to the
-    end of the URI. SBNP queries to Bonjour-shared CUPS queue will get
+    end of the URI. SNMP queries to Bonjour-shared CUPS queue will get
     suppressed by default.
   * debian/patches/usb-backend-reset-after-job-only-for-specific-devices.patch:
     Let the USB backend only send a clean-up reset after the job if it is
@@ -83,6 +85,12 @@ cups (1.6.1-1) UNRELEASED; urgency=low
   * debian/patches/avahi-not-considered-at-some-dnssd-conditionals.patch: At
     some points Avahi was not considered in conditionals for DNS-SD. This
     broke most of the printer sharing functionality.
+  * debian/patches/prevent-crash-due-to-null-host-name-or-fqdn-from-avahi.patch:
+    Prevent crash due to NULL host name or FQDN from Avahi (CUPS STR #4183,
+    CUPS STR #4180, LP: #1046982, LP: #1034045).
+  * debian/patches/fix-crash-on-shutdown-caused-by-broken-avahi-config.patch:
+    Fix crash on shutdown caused by broken Avahi config (CUPS STR #4192,
+    LP: #1036974).
   * debian/patches/filter-out-all-control-characters-from-the-1284-device-id.patch:
     Do not only filter newline characters out of device IDs but any
     non-printable character (CUPS STR #4124).
@@ -92,6 +100,11 @@ cups (1.6.1-1) UNRELEASED; urgency=low
     some broken IPP printers (CUPS STR #4190). Also catch late authentication
     issues so the backend doesn't just spin on a print request that will never
     succeed.
+  * debian/patches/ipp-backend-abort-the-outer-loop-if-we-get-a-failure-from-send-document.patch,
+    debian/patches/ipp-backend-could-get-stuck-in-an-endless-loop-on-certain-network-errors.patch:
+    Prevent IPP backend from falling into an infinite loop in certain
+    situations (CUPS STR #4194).
+  * debian/patches/fix-make-check.patch: Fix "make check".
   * debian/patches/ubuntu/ubuntu-disable-browsing.patch: Updated.
   * debian/cups.install: Removed all references to the discontinued cups-polld.
   * debian/rules: Removed lines for deletion of filters, fonts and glyphs which

@@ -1,11 +1,9 @@
 Description: Ignore "[cups-deviced] PID 17962 (usb) crashed on signal 11!" errors in the log during the test suite. This seems to regularly happen on Debian/Ubuntu buildds.
 Author: Martin Pitt <mpitt@debian.org>
 
-Index: cups-1.6.0/test/run-stp-tests.sh
-===================================================================
---- cups-1.6.0.orig/test/run-stp-tests.sh	2012-07-27 18:52:28.000000000 +0200
-+++ cups-1.6.0/test/run-stp-tests.sh	2012-07-27 18:55:31.162105242 +0200
-@@ -815,7 +815,7 @@
+--- a/test/run-stp-tests.sh
++++ b/test/run-stp-tests.sh
+@@ -820,7 +820,7 @@
  fi
  
  # Error log messages
