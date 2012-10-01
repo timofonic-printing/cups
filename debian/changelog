@@ -53,8 +53,7 @@ cups (1.6.1-1) UNRELEASED; urgency=low
     debian/patches/tests-ignore-usb-crash.patch,
     debian/patches/tests-slow-lpstat.patch,
     debian/patches/tests-fix-ppdLocalize-on-unclean-env.patch,
-    debian/patches/pidfile.patch,: Refreshed with
-    quilt.
+    debian/patches/pidfile.patch: Refreshed with quilt.
   * debian/patches/airprint-support.patch: Fixes in the conditionals to make
     AirPrint work with the new upstream Avahi support, support for iOS 6
     clients (LP: #1054495).
