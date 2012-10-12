@@ -160,6 +160,8 @@ cups (1.6.1-1) UNRELEASED; urgency=low
     parallel and serial removals.
   * Add patch to force C locale when testing the (non-)localized PPD
     content fetch.
+  * Update tests-slow-lpstat.patch to wait on remaining jobs before each
+    test. This should fix the slow architectures' FTBFS.
 
  -- Martin Pitt <mpitt@debian.org>  Sun, 22 Jul 2012 20:28:33 +0200
 
