@@ -42,7 +42,9 @@ Build-Depends:
  po-debconf,
  poppler-utils, 
  sharutils,
- zlib1g-dev
+ zlib1g-dev,
+# Needed for running the tests, not for the build
+ cups-filters
 Homepage: http://www.cups.org
 Vcs-Bzr: http://bzr.debian.org/pkg-cups/cups/debian-trunk/
 Vcs-Browser: http://bzr.debian.org/loggerhead/pkg-cups/cups/debian-trunk/
