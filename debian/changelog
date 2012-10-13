@@ -161,8 +161,9 @@ cups (1.6.1-1) UNRELEASED; urgency=low
   * Add patch to force C locale when testing the (non-)localized PPD
     content fetch.
   * Re-order patches to put the tests-fixing ones earlier.
-  * Update tests-slow-lpstat.patch to wait on remaining jobs before each
-    test. This should fix the slow architectures' FTBFS.
+  * Rename tests-slow-lpstat.patch to
+    tests-wait-on-unfinished-jobs-everytime.patch : wait on remaining
+    jobs before each test. This fix the too slow architectures' FTBFS.
   * When modprobe'ing usblp, respect the blacklist. Thanks to Julien
     Cristau for noticing!
   * Use cups-filters' filters, type declarations and conversions in the
