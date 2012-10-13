@@ -163,6 +163,8 @@ cups (1.6.1-1) UNRELEASED; urgency=low
   * Re-order patches to put the tests-fixing ones earlier.
   * Update tests-slow-lpstat.patch to wait on remaining jobs before each
     test. This should fix the slow architectures' FTBFS.
+  * When modprobe'ing usblp, respect the blacklist. Thanks to Julien
+    Cristau for noticing!
 
  -- Martin Pitt <mpitt@debian.org>  Sun, 22 Jul 2012 20:28:33 +0200
 
