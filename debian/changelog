@@ -165,8 +165,10 @@ cups (1.6.1-1) UNRELEASED; urgency=low
     test. This should fix the slow architectures' FTBFS.
   * When modprobe'ing usblp, respect the blacklist. Thanks to Julien
     Cristau for noticing!
+  * Use cups-filters' filters, type declarations and conversions in the
+    tests. Add cups-filters' Build-Depend.
 
- -- Martin Pitt <mpitt@debian.org>  Sun, 22 Jul 2012 20:28:33 +0200
+ -- Didier Raboud <odyx@debian.org>  Sat, 13 Oct 2012 11:00:28 +0200
 
 cups (1.5.3-4) experimental; urgency=low
 

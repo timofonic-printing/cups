@@ -42,6 +42,7 @@ tests-ignore-usb-crash.patch
 test-i18n-nonlinux.patch
 tests-slow-lpstat.patch
 tests-fix-ppdLocalize-on-unclean-env.patch
+tests-use-cupsfilters.patch
 
 # Debian patches
 add-ipp-backend-of-cups-1.4.patch
