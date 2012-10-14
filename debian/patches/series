@@ -43,7 +43,6 @@ test-i18n-nonlinux.patch
 tests-wait-on-unfinished-jobs-everytime.patch
 tests-fix-ppdLocalize-on-unclean-env.patch
 tests-use-cupsfilters.patch
-tests-fix-maxsubscriptions.patch
 
 # Debian patches
 add-ipp-backend-of-cups-1.4.patch

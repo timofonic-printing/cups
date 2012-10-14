@@ -1,8 +1,8 @@
-Description: Use cups-filter's filters, type declarations and conversions.
- This fixes the tests that need those.
+Description: Use cups-filter's filters, type declarations, conversions
+ and libraries. This fixes the tests that need those.
 Origin: vendor
 Author: Didier Raboud <odyx@debian.org>
-Last-Update: 2012-10-13
+Last-Update: 2012-10-14
 --- a/test/run-stp-tests.sh
 +++ b/test/run-stp-tests.sh
 @@ -373,6 +373,30 @@
@@ -36,3 +36,12 @@ Last-Update: 2012-10-13
  fi
  
  #
+@@ -488,6 +512,8 @@
+ if test `uname` = SunOS -a -r /usr/lib/libCrun.so.1; then
+ 	LD_PRELOAD="/usr/lib/libCrun.so.1:$LD_PRELOAD"
+ fi
++# Add cups-filters'
++LD_PRELOAD="/usr/lib/$(dpkg-architecture -qDEB_HOST_MULTIARCH)/libcupsfilters.so.1:$LD_PRELOAD"
+ export LD_PRELOAD
+ 
+ if test "x$DYLD_LIBRARY_PATH" = x; then
