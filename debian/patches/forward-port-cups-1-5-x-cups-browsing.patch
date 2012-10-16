@@ -3235,7 +3235,7 @@ Bug-Ubuntu: https://bugs.launchpad.net/bugs/1061063
  #if defined(HAVE_DNSSD) || defined(HAVE_AVAHI)
    if (removeit && (BrowseLocalProtocols & BROWSE_DNSSD) && DNSSDMaster)
      dnssdDeregisterPrinter(p, 1);
-@@ -144,1367 +184,3531 @@
+@@ -144,1368 +184,3532 @@
  
  
  /*
@@ -5818,6 +5818,7 @@ Bug-Ubuntu: https://bugs.launchpad.net/bugs/1061063
 -      TXTRecordSetValue(&txt, keyvalue[i][0], (uint8_t)len, keyvalue[i][1]);
 -  }
 +#  else /* HAVE_AVAHI */
++  avahi_threaded_poll_stop(DNSSDMaster);
 +  avahi_client_free(DNSSDClient);
 +  DNSSDClient = NULL;
  
@@ -6397,16 +6398,13 @@ Bug-Ubuntu: https://bugs.launchpad.net/bugs/1061063
 -#  endif /* HAVE_DNSSD */
 +    cupsdLogMessage(CUPSD_LOG_DEBUG, "process_browse_data: %s not found...",
 +                    name);
- 
++
 +    if ((p = cupsdFindDest(shortname)) == NULL)
 +    {
 +     /*
 +      * Short name doesn't exist, use it for this shared queue.
 +      */
  
--/*
-- * 'dnssdRegisterInstance()' - Register an instance of a printer service.
-- */
 +      cupsdLogMessage(CUPSD_LOG_DEBUG2, "process_browse_data: %s not found...",
 +		      shortname);
 +      strlcpy(name, shortname, sizeof(name));
@@ -6416,6 +6414,22 @@ Bug-Ubuntu: https://bugs.launchpad.net/bugs/1061063
 +     /*
 +      * Short name exists...
 +      */
+ 
+-/*
+- * 'dnssdRegisterInstance()' - Register an instance of a printer service.
+- */
++      cupsdLogMessage(CUPSD_LOG_DEBUG2,
++                      "process_browse_data: %s found, type=%x, hostname=%s...",
++		      shortname, p->type, p->hostname ? p->hostname : "(nil)");
++
++      if (p->type & CUPS_PRINTER_IMPLICIT)
++        p = NULL;			/* Don't replace implicit classes */
++      else if (p->hostname && _cups_strcasecmp(p->hostname, host))
++      {
++       /*
++	* Short name exists but is for a different host.  If this is a remote
++	* queue, rename it and use the long name...
++	*/
  
 -static int				/* O - 1 on success, 0 on failure */
 -dnssdRegisterInstance(
@@ -6431,19 +6445,6 @@ Bug-Ubuntu: https://bugs.launchpad.net/bugs/1061063
 -  char	temp[256],			/* Temporary string */
 -	*ptr;				/* Pointer into string */
 -  int	error;				/* Any error */
-+      cupsdLogMessage(CUPSD_LOG_DEBUG2,
-+                      "process_browse_data: %s found, type=%x, hostname=%s...",
-+		      shortname, p->type, p->hostname ? p->hostname : "(nil)");
-+
-+      if (p->type & CUPS_PRINTER_IMPLICIT)
-+        p = NULL;			/* Don't replace implicit classes */
-+      else if (p->hostname && _cups_strcasecmp(p->hostname, host))
-+      {
-+       /*
-+	* Short name exists but is for a different host.  If this is a remote
-+	* queue, rename it and use the long name...
-+	*/
- 
 +	if (p->type & CUPS_PRINTER_REMOTE)
 +	{
 +	  cupsdLogMessage(CUPSD_LOG_DEBUG,
@@ -6462,13 +6463,12 @@ Bug-Ubuntu: https://bugs.launchpad.net/bugs/1061063
 +			is_class ? "Class" : "Printer", p->name);
 +	}
  
--  cupsdLogMessage(CUPSD_LOG_DEBUG,
--		  "Registering \"%s\" with DNS-SD type \"%s\".", name, type);
 +       /*
 +        * Force creation with long name...
 +	*/
  
--  if (p && !srv)
+-  cupsdLogMessage(CUPSD_LOG_DEBUG,
+-		  "Registering \"%s\" with DNS-SD type \"%s\".", name, type);
 +	p = NULL;
 +      }
 +    }
@@ -6477,7 +6477,8 @@ Bug-Ubuntu: https://bugs.launchpad.net/bugs/1061063
 +    cupsdLogMessage(CUPSD_LOG_DEBUG2,
 +		    "process_browse_data: %s found, type=%x, hostname=%s...",
 +		    name, p->type, p->hostname ? p->hostname : "(nil)");
-+
+ 
+-  if (p && !srv)
 +  if (!p)
    {
     /*
@@ -7032,15 +7033,7 @@ Bug-Ubuntu: https://bugs.launchpad.net/bugs/1061063
 +	* front of the name, unless we have explicitly disabled
 +	* the "ImplicitAnyClasses"...
 +	*/
- 
--    cupsdSetString(&p->reg_name, name);
--    cupsArrayAdd(DNSSDPrinters, p);
--  }
--  else
--  {
--   /*
--    * Registration failed for this printer...
--    */
++
 +        if (ImplicitAnyClasses && len < (sizeof(name) - 4))
 +	{
 +	 /*
@@ -7065,9 +7058,23 @@ Bug-Ubuntu: https://bugs.launchpad.net/bugs/1061063
 +	}
 +      }
  
--    dnssdDeregisterInstance(&p->ipp_srv);
+-    cupsdSetString(&p->reg_name, name);
+-    cupsArrayAdd(DNSSDPrinters, p);
 +      first = p;
 +    }
++
++    cupsArrayRestore(Printers);
+   }
+-  else
+-  {
+-   /*
+-    * Registration failed for this printer...
+-    */
+ 
+-    dnssdDeregisterInstance(&p->ipp_srv);
++ /*
++  * Update the last printer class as needed...
++  */
  
 -#  ifdef HAVE_DNSSD
 -#    ifdef HAVE_SSL
@@ -7075,13 +7082,7 @@ Bug-Ubuntu: https://bugs.launchpad.net/bugs/1061063
 -#    endif /* HAVE_SSL */
 -    dnssdDeregisterInstance(&p->printer_srv);
 -#  endif /* HAVE_DNSSD */
-+    cupsArrayRestore(Printers);
-   }
-+
-+ /*
-+  * Update the last printer class as needed...
-+  */
-+
+-  }
 +  if (pclass && update)
 +    cupsdSetPrinterAttrs(pclass);
  }
@@ -7163,6 +7164,7 @@ Bug-Ubuntu: https://bugs.launchpad.net/bugs/1061063
 +    air[0] = '\0';
  
 -#  else /* HAVE_AVAHI */
+-  avahi_threaded_poll_stop(DNSSDMaster);
 -  avahi_client_free(DNSSDClient);
 -  DNSSDClient = NULL;
 + /*
@@ -7682,7 +7684,7 @@ Bug-Ubuntu: https://bugs.launchpad.net/bugs/1061063
  
  
  /*
-@@ -1604,6 +3808,41 @@
+@@ -1605,6 +3809,41 @@
  }
  
  

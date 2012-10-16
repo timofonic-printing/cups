@@ -18,6 +18,7 @@ ipp-backend-did-not-send-cancel-request-to-printers-when-a-job-was-canceled-and-
 fix-make-check.patch
 
 # patches sent upstream
+cupsd-no-crash-on-avahi-threaded-poll-shutdown.patch
 get-ppd-file-for-statically-configured-ipp-shared-queues.patch
 pidfile.patch
 ppd-poll-with-client-conf.patch

@@ -86,13 +86,17 @@ cups (1.6.1-1) UNRELEASED; urgency=low
     broke most of the printer sharing functionality.
   * debian/patches/prevent-crash-due-to-null-host-name-or-fqdn-from-avahi.patch:
     Prevent crash due to NULL host name or FQDN from Avahi (CUPS STR #4183,
-    CUPS STR #4180, LP: #1046982, LP: #1034045).
+    LP: #1046982, LP: #1034045).
   * debian/patches/fix-crash-on-shutdown-caused-by-broken-avahi-config.patch:
     Fix crash on shutdown caused by broken Avahi config (CUPS STR #4192,
     LP: #1036974).
   * debian/patches/fix-another-spot-where-avahi-crashes-cupsd-because-it-does-not-handle-null-values-from-its-own-apis.patch:
     Fix another spot where Avahi crashes cupsd because it does not handle NULL
     values returned by its own APIs (CUPS STR #4200, LP: #1041013).
+  * debian/patches/cupsd-no-crash-on-avahi-threaded-poll-shutdown.patch:
+    Fixed crash which sometimes happens on shutdown of the CUPS daemom,
+    caused by a wrong shutdown sequence for shutting down the Avahi threaded
+    poll (CUPS STR #4213, CUPS STR #4180, LP: #1034045).
   * debian/patches/filter-out-all-control-characters-from-the-1284-device-id.patch:
     Do not only filter newline characters out of device IDs but any
     non-printable character (CUPS STR #4124).
