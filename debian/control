@@ -47,8 +47,8 @@ Build-Depends:
  cups-filters,
  libcupsfilters-dev
 Homepage: http://www.cups.org
-Vcs-Bzr: http://bzr.debian.org/pkg-cups/cups/debian-trunk/
-Vcs-Browser: http://bzr.debian.org/loggerhead/pkg-cups/cups/debian-trunk/
+Vcs-Git: git://anonscm.debian.org/pkg-cups/cups.git
+Vcs-Browser: http://anonscm.debian.org/gitweb/?p=pkg-cups/cups.git;a=summary
 
 Package: libcups2
 Priority: optional
