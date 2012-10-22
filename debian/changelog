@@ -183,7 +183,10 @@ cups (1.6.1-1) UNRELEASED; urgency=low
     libraries in the tests. Add cups-filters' and libcupsfilters1-dev
     Build-Depends.
   * Convert packaging repository to Git, change VCS-* fields accordingly.
-  * Add myself as uploader.
+  * Uploaders:
+    - Add myself.
+    - Remove Kenshi Muto <kmuto@debian.org> with his agreement and with
+      great thanks for his past work!
 
  -- Didier Raboud <odyx@debian.org>  Sun, 14 Oct 2012 21:52:35 +0200
 
