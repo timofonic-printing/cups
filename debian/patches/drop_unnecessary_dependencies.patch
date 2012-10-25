@@ -2,10 +2,8 @@ Description: Do not link libcups.so and libcupsimage.so against unnecessary libr
 Author: Martin Pitt <mpitt@debian.org>
 Bug-Debian: http://bugs.debian.org/438067
 
-Index: cups-1.6.0/Makedefs.in
-===================================================================
---- cups-1.6.0.orig/Makedefs.in	2012-05-23 01:58:31.000000000 +0200
-+++ cups-1.6.0/Makedefs.in	2012-07-27 17:40:53.150165232 +0200
+--- a/Makedefs.in
++++ b/Makedefs.in
 @@ -136,15 +136,15 @@
  DBUS_NOTIFIERLIBS =	@DBUS_NOTIFIERLIBS@
  DNSSD_BACKEND	=	@DNSSD_BACKEND@
@@ -25,10 +23,8 @@ Index: cups-1.6.0/Makedefs.in
  OPTIM		=	@OPTIM@
  OPTIONS		=
  PAMLIBS		=	@PAMLIBS@
-Index: cups-1.6.0/cups/Makefile
-===================================================================
---- cups-1.6.0.orig/cups/Makefile	2012-06-25 17:46:35.000000000 +0200
-+++ cups-1.6.0/cups/Makefile	2012-07-27 17:36:41.690168603 +0200
+--- a/cups/Makefile
++++ b/cups/Makefile
 @@ -287,7 +287,7 @@
  libcups.so.2 libcups.sl.2:	$(LIBOBJS)
  	echo Linking $@...
