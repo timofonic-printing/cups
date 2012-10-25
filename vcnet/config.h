@@ -1,9 +1,9 @@
 /*
- * "$Id: config.h 9793 2011-05-20 03:49:49Z mike $"
+ * "$Id: config.h 10466 2012-05-15 14:21:57Z mike $"
  *
  *   Configuration file for CUPS on Windows.
  *
- *   Copyright 2007-2011 by Apple Inc.
+ *   Copyright 2007-2012 by Apple Inc.
  *   Copyright 1997-2007 by Easy Software Products.
  *
  *   These coded instructions, statements, and computer programs are the
@@ -86,8 +86,8 @@
  * Version of software...
  */
 
-#define CUPS_SVERSION "CUPS v1.5.0"
-#define CUPS_MINIMAL "CUPS/1.5.0"
+#define CUPS_SVERSION "CUPS v1.5.3"
+#define CUPS_MINIMAL "CUPS/1.5.3"
 
 
 /*
@@ -784,5 +784,5 @@
 #endif /* !_CUPS_CONFIG_H_ */
 
 /*
- * End of "$Id: config.h 9793 2011-05-20 03:49:49Z mike $".
+ * End of "$Id: config.h 10466 2012-05-15 14:21:57Z mike $".
  */

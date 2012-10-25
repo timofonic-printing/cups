@@ -40,12 +40,12 @@
 
 Summary: CUPS
 Name: cups
-Version: 1.5.3
+Version: 1.5.4
 Release: 1
 Epoch: 1
 License: GPL
 Group: System Environment/Daemons
-Source: http://ftp.easysw.com/pub/cups/1.5.3/cups-1.5.3-source.tar.bz2
+Source: http://ftp.easysw.com/pub/cups/1.5.4/cups-1.5.4-source.tar.bz2
 Url: http://www.cups.org
 Packager: Anonymous <anonymous@foo.com>
 Vendor: Apple Inc.

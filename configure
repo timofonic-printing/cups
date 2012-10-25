@@ -2587,7 +2587,7 @@ esac
 ac_config_headers="$ac_config_headers config.h"
 
 
-CUPS_VERSION=1.5.3
+CUPS_VERSION=1.5.4
 CUPS_REVISION=
 #if test -z "$CUPS_REVISION" -a -d .svn; then
 #	CUPS_REVISION="-r`svnversion . | awk -F: '{print $NF}' | sed -e '1,$s/[[a-zA-Z]]*//g'`"
@@ -9683,7 +9683,8 @@ fi
         if test $have_ssl = 0 -a "x$enable_openssl" != "xno"; then
 	ac_fn_c_check_header_mongrel "$LINENO" "openssl/ssl.h" "ac_cv_header_openssl_ssl_h" "$ac_includes_default"
 if test "x$ac_cv_header_openssl_ssl_h" = xyes; then :
-  	    	    SAVELIBS="$LIBS"
+
+	    	    	    SAVELIBS="$LIBS"
 
 
 	    for libcrypto in \
@@ -9739,16 +9740,24 @@ fi
 
 
 		if test "x${SSLLIBS}" != "x"; then
-		    LIBS="$SAVELIBS $SSLLIBS"
-		    ac_fn_c_check_func "$LINENO" "SSL_set_tlsext_host_name" "ac_cv_func_SSL_set_tlsext_host_name"
-if test "x$ac_cv_func_SSL_set_tlsext_host_name" = xyes; then :
-  $as_echo "#define HAVE_SSL_SET_TLSEXT_HOST_NAME 1" >>confdefs.h
-
-fi
-
 		    break
 		fi
 	    done
+
+	    if test "x${SSLLIBS}" != "x"; then
+		LIBS="$SAVELIBS $SSLLIBS"
+		for ac_func in SSL_set_tlsext_host_name
+do :
+  ac_fn_c_check_func "$LINENO" "SSL_set_tlsext_host_name" "ac_cv_func_SSL_set_tlsext_host_name"
+if test "x$ac_cv_func_SSL_set_tlsext_host_name" = xyes; then :
+  cat >>confdefs.h <<_ACEOF
+#define HAVE_SSL_SET_TLSEXT_HOST_NAME 1
+_ACEOF
+
+fi
+done
+
+	    fi
 
 	    LIBS="$SAVELIBS"
 fi

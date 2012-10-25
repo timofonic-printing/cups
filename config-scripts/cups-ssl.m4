@@ -1,5 +1,5 @@
 dnl
-dnl "$Id: cups-ssl.m4 10371 2012-03-21 04:45:48Z mike $"
+dnl "$Id: cups-ssl.m4 10481 2012-05-18 18:02:10Z mike $"
 dnl
 dnl   OpenSSL/GNUTLS stuff for CUPS.
 dnl
@@ -124,7 +124,7 @@ if test x$enable_ssl != xno; then
 
     dnl Check for the OpenSSL library last...
     if test $have_ssl = 0 -a "x$enable_openssl" != "xno"; then
-	AC_CHECK_HEADER(openssl/ssl.h,
+	AC_CHECK_HEADER(openssl/ssl.h,[
 	    dnl Save the current libraries so the crypto stuff isn't always
 	    dnl included...
 	    SAVELIBS="$LIBS"
@@ -149,14 +149,16 @@ if test x$enable_ssl != xno; then
 		    $libcrypto)
 
 		if test "x${SSLLIBS}" != "x"; then
-		    LIBS="$SAVELIBS $SSLLIBS"
-		    AC_CHECK_FUNC(SSL_set_tlsext_host_name,
-			AC_DEFINE(HAVE_SSL_SET_TLSEXT_HOST_NAME))
 		    break
 		fi
 	    done
 
-	    LIBS="$SAVELIBS")
+	    if test "x${SSLLIBS}" != "x"; then
+		LIBS="$SAVELIBS $SSLLIBS"
+		AC_CHECK_FUNCS(SSL_set_tlsext_host_name)
+	    fi
+
+	    LIBS="$SAVELIBS"])
     fi
 fi
 
@@ -177,5 +179,5 @@ EXPORT_SSLLIBS="$SSLLIBS"
 AC_SUBST(EXPORT_SSLLIBS)
 
 dnl
-dnl End of "$Id: cups-ssl.m4 10371 2012-03-21 04:45:48Z mike $".
+dnl End of "$Id: cups-ssl.m4 10481 2012-05-18 18:02:10Z mike $".
 dnl

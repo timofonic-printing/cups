@@ -1,5 +1,5 @@
 /*
- * "$Id: util.c 10262 2012-02-12 05:48:09Z mike $"
+ * "$Id: util.c 10483 2012-05-18 19:55:58Z mike $"
  *
  *   Printing utilities for CUPS.
  *
@@ -248,7 +248,8 @@ cupsCreateJob(
   if (title)
     ippAddString(request, IPP_TAG_OPERATION, IPP_TAG_NAME, "job-name", NULL,
                  title);
-  cupsEncodeOptions(request, num_options, options);
+  cupsEncodeOptions2(request, num_options, options, IPP_TAG_JOB);
+  cupsEncodeOptions2(request, num_options, options, IPP_TAG_SUBSCRIPTION);
 
  /*
   * Send the request and get the job-id...
@@ -1807,5 +1808,5 @@ cups_get_printer_uri(
 
 
 /*
- * End of "$Id: util.c 10262 2012-02-12 05:48:09Z mike $".
+ * End of "$Id: util.c 10483 2012-05-18 19:55:58Z mike $".
  */
