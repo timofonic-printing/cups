@@ -1,5 +1,5 @@
 .\"
-.\" "$Id: cupsfilter.man 10526 2012-06-20 16:16:25Z mike $"
+.\" "$Id: cupsfilter.man 10525 2012-06-20 15:59:17Z mike $"
 .\"
 .\"   cupsfilter man page for CUPS.
 .\"
@@ -105,5 +105,5 @@ http://localhost:631/help
 .SH COPYRIGHT
 Copyright 2007-2012 by Apple Inc.
 .\"
-.\" End of "$Id: cupsfilter.man 10526 2012-06-20 16:16:25Z mike $".
+.\" End of "$Id: cupsfilter.man 10525 2012-06-20 15:59:17Z mike $".
 .\"

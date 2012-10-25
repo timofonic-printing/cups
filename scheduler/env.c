@@ -1,5 +1,5 @@
 /*
- * "$Id: env.c 10486 2012-05-18 20:21:41Z mike $"
+ * "$Id: env.c 10485 2012-05-18 20:17:41Z mike $"
  *
  *   Environment management routines for the CUPS scheduler.
  *
@@ -269,5 +269,5 @@ find_env(const char *name)		/* I - Variable name */
 
 
 /*
- * End of "$Id: env.c 10486 2012-05-18 20:21:41Z mike $".
+ * End of "$Id: env.c 10485 2012-05-18 20:17:41Z mike $".
  */

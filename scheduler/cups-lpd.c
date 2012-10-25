@@ -1,5 +1,5 @@
 /*
- * "$Id: cups-lpd.c 10526 2012-06-20 16:16:25Z mike $"
+ * "$Id: cups-lpd.c 10524 2012-06-20 15:13:33Z mike $"
  *
  *   Line Printer Daemon interface for CUPS.
  *
@@ -1622,5 +1622,5 @@ smart_gets(char *s,			/* I - Pointer to line buffer */
 
 
 /*
- * End of "$Id: cups-lpd.c 10526 2012-06-20 16:16:25Z mike $".
+ * End of "$Id: cups-lpd.c 10524 2012-06-20 15:13:33Z mike $".
  */

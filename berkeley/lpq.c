@@ -1,5 +1,5 @@
 /*
- * "$Id: lpq.c 10545 2012-07-16 17:16:46Z mike $"
+ * "$Id: lpq.c 10540 2012-07-16 16:50:32Z mike $"
  *
  *   "lpq" command for CUPS.
  *
@@ -39,7 +39,7 @@ static http_t	*connect_server(const char *, http_t *);
 static int	show_jobs(const char *, http_t *, const char *,
 		          const char *, const int, const int);
 static void	show_printer(const char *, http_t *, const char *);
-static void	usage(void);
+static void	usage(void) __attribute__((noreturn));
 
 
 /*
@@ -678,5 +678,5 @@ usage(void)
 
 
 /*
- * End of "$Id: lpq.c 10545 2012-07-16 17:16:46Z mike $".
+ * End of "$Id: lpq.c 10540 2012-07-16 16:50:32Z mike $".
  */

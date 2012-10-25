@@ -1,5 +1,5 @@
 /*
- * "$Id: usb-libusb.c 10545 2012-07-16 17:16:46Z mike $"
+ * "$Id: usb-libusb.c 10543 2012-07-16 17:10:55Z mike $"
  *
  *   LIBUSB interface code for CUPS.
  *
@@ -13,7 +13,7 @@
  *
  * Contents:
  *
-﻿ *   list_devices()	  - List the available printers.
+ *   list_devices()	  - List the available printers.
  *   print_device()	  - Print a file to a USB device.
  *   close_device()	  - Close the connection to the USB printer.
  *   find_device()	  - Find or enumerate USB printers.
@@ -1144,7 +1144,7 @@ make_device_uri(
   if ((sern = cupsGetOption("SERIALNUMBER", num_values, values)) == NULL)
     if ((sern = cupsGetOption("SERN", num_values, values)) == NULL)
       if ((sern = cupsGetOption("SN", num_values, values)) == NULL &&
-	  ((libusb_get_device_descriptor (printer->device, &devdesc) >= 0) &&
+	  ((libusb_get_device_descriptor(printer->device, &devdesc) >= 0) &&
 	   devdesc.iSerialNumber))
       {
        /*
@@ -1881,6 +1881,6 @@ static void soft_reset(void)
 
 
 /*
- * End of "$Id: usb-libusb.c 10545 2012-07-16 17:16:46Z mike $".
+ * End of "$Id: usb-libusb.c 10543 2012-07-16 17:10:55Z mike $".
  */
 
