@@ -5,7 +5,7 @@ Author: Didier Raboud <odyx@debian.org>
 Last-Update: 2012-10-14
 --- a/test/run-stp-tests.sh
 +++ b/test/run-stp-tests.sh
-@@ -373,6 +373,30 @@
+@@ -373,6 +373,26 @@
  		ln -s /usr/share/cups/data/psglyphs $root/data
  	fi
  	ln -s /usr/share/cups/fonts /tmp/cups-$user/share
@@ -20,23 +20,19 @@ Last-Update: 2012-10-14
 +	ln -s /usr/lib/cups/filter/commandtoescpx /tmp/cups-$user/bin/filter
 +	ln -s /usr/lib/cups/filter/commandtopclx /tmp/cups-$user/bin/filter
 +	ln -s /usr/lib/cups/filter/imagetopdf /tmp/cups-$user/bin/filter
-+	ln -s /usr/lib/cups/filter/imagetops /tmp/cups-$user/bin/filter
-+	ln -s /usr/lib/cups/filter/imagetoraster /tmp/cups-$user/bin/filter
 +	ln -s /usr/lib/cups/filter/pdftoijs /tmp/cups-$user/bin/filter
 +	ln -s /usr/lib/cups/filter/pdftoopvp /tmp/cups-$user/bin/filter
 +	ln -s /usr/lib/cups/filter/pdftopdf /tmp/cups-$user/bin/filter
-+	ln -s /usr/lib/cups/filter/pdftops /tmp/cups-$user/bin/filter
 +	ln -s /usr/lib/cups/filter/pdftoraster /tmp/cups-$user/bin/filter
 +	ln -s /usr/lib/cups/filter/pstopdf /tmp/cups-$user/bin/filter
 +	ln -s /usr/lib/cups/filter/rastertoescpx /tmp/cups-$user/bin/filter
 +	ln -s /usr/lib/cups/filter/rastertopclx /tmp/cups-$user/bin/filter
 +	ln -s /usr/lib/cups/filter/textonly /tmp/cups-$user/bin/filter
 +	ln -s /usr/lib/cups/filter/texttopdf /tmp/cups-$user/bin/filter
-+	ln -s /usr/lib/cups/filter/texttops /tmp/cups-$user/bin/filter
  fi
  
  #
-@@ -488,6 +512,8 @@
+@@ -488,6 +508,8 @@
  if test `uname` = SunOS -a -r /usr/lib/libCrun.so.1; then
  	LD_PRELOAD="/usr/lib/libCrun.so.1:$LD_PRELOAD"
  fi
