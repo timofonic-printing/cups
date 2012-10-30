@@ -1,19 +1,10 @@
 #!/usr/bin/make -f
-# -*- makefile -*-
-# Sample debian/rules that uses debhelper.
-# GNU copyright 1997 to 1999 by Joey Hess.
-#
-# Modified to make a template file for a multi-binary package with separated
-# build-arch and build-indep targets  by Bill Allombert 2001
-
-# Uncomment this to turn on verbose mode.
-#export DH_VERBOSE=1
 
 # work around libpng crash on our test PNGs with 8 bit colormaps (LP #710881)
 export NO_PNG_PKG_MANGLE=1
 
 %:
-	dh $@ --dbg-package=cups-dbg
+	dh $@
 
 # Enabling PIE globally doesn't work, but ./configure already enables PIE
 # where necessary.
@@ -122,13 +113,8 @@ override_dh_install:
 	# Ensure that we don't ship anything in /var/run
 	rm -rf debian/cups/var/run
 
-	# PPD directories
-	#mkdir -p "$(DEB_DESTDIR)/../cups/usr/share/ppd/cups-included/"
-
 	# PPD-updating triggers directory
 	mkdir -p "debian/cups/usr/share/cups/ppd-updaters/"
-
-	#dh_usrlocal
 
 	# Install AppArmor, ufw profile, and Apport hook on Ubuntu
 	if dpkg-vendor --is ubuntu; then \
@@ -147,18 +133,13 @@ override_dh_install:
 	cp cups/language-private.h debian/libcups2-dev/usr/include/cups/i18n.h
 
 override_dh_installdocs:
-	dh_installdocs
+	dh_installdocs -plibcupsimage2-dev --link-doc=libcupsimage2
+	dh_installdocs -pcups-bsd --link-doc=libcups2
+	dh_installdocs -pcups-client --link-doc=libcups2
+	dh_installdocs --remaining-packages
 
-	(cd debian/cups/usr/share/doc/cups && ln -sf ../../cups/doc-root online-docs)
-	#binary-post-install/libcupsimage2-dev::
-	rm -r debian/libcupsimage2-dev/usr/share/doc/libcupsimage2-dev
-	ln -s libcupsimage2 debian/libcupsimage2-dev/usr/share/doc/libcupsimage2-dev
-	#binary-post-install/cups-bsd::
-	rm -r debian/cups-bsd/usr/share/doc/cups-bsd
-	ln -s libcups2 debian/cups-bsd/usr/share/doc/cups-bsd
-	#binary-post-install/libcups2-dev::
 	rm -f debian/libcups2-dev/usr/share/doc/libcups2-dev/examples/scripting/php/*.o
 	rm -f debian/libcups2-dev/usr/share/doc/libcups2-dev/examples/scripting/php/*.so
-	#binary-post-install/cups-client::
-	rm -r debian/cups-client/usr/share/doc/cups-client
-	ln -s libcups2 debian/cups-client/usr/share/doc/cups-client
+
+override_dh_strip:
+	dh_strip --dbg-package=cups-dbg
