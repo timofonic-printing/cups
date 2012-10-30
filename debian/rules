@@ -1,57 +1,40 @@
 #!/usr/bin/make -f
 
+derives_from_ubuntu := $(shell (dpkg-vendor --derives-from Ubuntu && echo "yes") || echo "no")
+
 # work around libpng crash on our test PNGs with 8 bit colormaps (LP #710881)
 export NO_PNG_PKG_MANGLE=1
-
-%:
-	dh $@
 
 # Enabling PIE globally doesn't work, but ./configure already enables PIE
 # where necessary.
 export DEB_BUILD_MAINT_OPTIONS = hardening=+all,-pie
-LDFLAGS+= -Wl,--as-needed
+export DEB_LDFLAGS_MAINT_APPEND = -Wl,--as-needed
+
 # The build system uses only DSOFLAGS but not LDFLAGS to build some libraries.
 # Add LDFLAGS to enable (hardening) build flags.
-export DSOFLAGS = $(LDFLAGS)
+export DSOFLAGS = $(shell dpkg-buildflags --get LDFLAGS)
+
+DEB_HOST_ARCH_OS := $(shell dpkg-architecture -qDEB_HOST_ARCH_OS)
+
+%:
+	dh $@
 
 ifeq ($(DEB_HOST_ARCH_OS),hurd)
-DEB_CONFIGURE_EXTRA_FLAGS += --disable-libusb
+CONFIG_LIBUSB=--disable-libusb
 else
-DEB_CONFIGURE_EXTRA_FLAGS += --enable-libusb
+CONFIG_LIBUSB=--enable-libusb
 endif
-
-override_dh_auto_install:
-	dh_auto_install -- install BUILDROOT=$(shell pwd)/debian/tmp
-
-override_dh_installchangelogs:
-	dh_installchangelogs CHANGES.txt
-
-ifeq ($(shell dpkg-vendor --query vendor), Ubuntu)
-DEB_DH_INSTALLINIT_ARGS := --upstart-only
-else
-DEB_DH_INSTALLINIT_ARGS := -u'start 50 2 3 4 5 . stop 80 1 .'
-endif
-
-override_dh_installinit:
-	dh_installinit $(DEB_DH_INSTALLINIT_ARGS)
-
-override_dh_fixperms:
-	dh_fixperms -Xusr/lib/cups/backend-available
-
-override_dh_auto_test:
-	make check
-
-override_dh_makeshlibs:
-	dh_makeshlibs -- -c4
 
 override_dh_auto_configure:
-	set -e; if dpkg-vendor --is ubuntu && ! [ -e debian/patches/ubuntu/stamp-applied ]; then \
+ifeq ($(derives_from_ubuntu),yes)
+	set -e; if ! [ -e debian/patches/ubuntu/stamp-applied ]; then \
 	    echo '---- Applying Ubuntu specific patches'; \
 	    for p in debian/patches/ubuntu/*; do \
 	        patch -p1 --no-backup-if-mismatch < $$p; \
 	    done; \
 	    touch debian/patches/ubuntu/stamp-applied; \
 	fi
+endif
 	# Rebuild ./configure to get build system patches working
 	aclocal
 	autoconf
@@ -78,7 +61,61 @@ override_dh_auto_configure:
 		--with-log-file-perm=0640 \
 		--with-local_protocols='CUPS dnssd' \
 		--with-remote_protocols='CUPS dnssd' \
-		$(DEB_CONFIGURE_EXTRA_FLAGS)
+		$(CONFIG_LIBUSB)
+
+override_dh_auto_install:
+	dh_auto_install -- install BUILDROOT=$(shell pwd)/debian/tmp
+
+override_dh_install:
+ifeq ($(derives_from_ubuntu),yes)
+	# Use upstart script on Ubuntu; we need to hide it away for Debian
+	# builds, as dh_installinit does not have a --sysvinit-only
+	cp debian/local/*.upstart debian
+endif
+	dh_install
+
+	# Remove all files which get replaced by the ones in the cups-filters
+	# package
+	rm -rf debian/cups/usr/share/cups/banners
+	rm debian/cups/usr/share/cups/data/testprint
+
+	# Ensure that we don't ship anything in /var/run
+	rm -rf debian/cups/var/run
+
+	# Install AppArmor, ufw profile, and Apport hook on Ubuntu
+ifeq ($(derives_from_ubuntu),yes)
+	install -D -m 644 debian/local/apparmor-profile debian/cups/etc/apparmor.d/usr.sbin.cupsd
+	install -D -m 644 debian/local/cups.ufw.profile debian/cups/etc/ufw/applications.d/cups
+	install -D -m 644 debian/local/apport-hook.py debian/cups/usr/share/apport/package-hooks/source_cups.py
+endif
+
+	# Make the usb backend run as root, since /dev/bus/usb/* are
+	# root:root in udev < 147, and cups does not use the usblp kernel
+	# module any more; udev 147 makes most of those printers accessible to
+	# lp, but apparently not all of them
+	chmod go-x debian/cups/usr/lib/cups/backend-available/usb
+
+	# debian/libcups2-dev.install entry cannot rename files on-the-fly
+	cp cups/language-private.h debian/libcups2-dev/usr/include/cups/i18n.h
+
+override_dh_installchangelogs:
+	dh_installchangelogs CHANGES.txt
+
+override_dh_installinit:
+ifeq ($(derives_from_ubuntu),yes)
+	dh_installinit --upstart-only
+else
+	dh_installinit -u'start 50 2 3 4 5 . stop 80 1 .'
+endif
+
+override_dh_fixperms:
+	dh_fixperms -Xusr/lib/cups/backend-available
+
+override_dh_auto_test:
+	make check
+
+override_dh_makeshlibs:
+	dh_makeshlibs -- -c4
 
 override_dh_clean:
 	dh_clean
@@ -96,41 +133,6 @@ override_dh_auto_clean:
 	rm -f conf/mime.convs conf/snmp.conf init/org.cups.cups-lpd.plist
 	[ ! -f Makedefs ] || make distclean
 	rm -f debian/*.upstart # master copy is in debian/local
-
-override_dh_install:
-	# Use upstart script on Ubuntu; we need to hide it away for Debian
-	# builds, as dh_installinit does not have a --sysvinit-only
-	if dpkg-vendor --is ubuntu; then \
-	    cp debian/local/*.upstart debian; \
-	fi
-	dh_install
-
-	# Remove all files which get replaced by the ones in the cups-filters
-	# package
-	rm -rf debian/cups/usr/share/cups/banners
-	rm debian/cups/usr/share/cups/data/testprint
-
-	# Ensure that we don't ship anything in /var/run
-	rm -rf debian/cups/var/run
-
-	# PPD-updating triggers directory
-	mkdir -p "debian/cups/usr/share/cups/ppd-updaters/"
-
-	# Install AppArmor, ufw profile, and Apport hook on Ubuntu
-	if dpkg-vendor --is ubuntu; then \
-	   install -D -m 644 debian/local/apparmor-profile debian/cups/etc/apparmor.d/usr.sbin.cupsd; \
-	   install -D -m 644 debian/local/cups.ufw.profile debian/cups/etc/ufw/applications.d/cups; \
-	   install -D -m 644 debian/local/apport-hook.py debian/cups/usr/share/apport/package-hooks/source_cups.py; \
-	fi
-
-	# Make the usb backend run as root, since /dev/bus/usb/* are
-	# root:root in udev < 147, and cups does not use the usblp kernel
-	# module any more; udev 147 makes most of those printers accessible to
-	# lp, but apparently not all of them
-	chmod go-x debian/cups/usr/lib/cups/backend-available/usb; \
-
-	# debian/libcups2-dev.install entry cannot rename files on-the-fly
-	cp cups/language-private.h debian/libcups2-dev/usr/include/cups/i18n.h
 
 override_dh_installdocs:
 	dh_installdocs -plibcupsimage2-dev --link-doc=libcupsimage2
