@@ -54,5 +54,6 @@ printer-filtering.patch
 show-compile-command-lines.patch
 ppdc-dynamic-linking.patch
 log-debug-history-nearly-unlimited.patch
-pstops-based-workflow-only-for-printing-ps-on-a-ps-printer.patch
+# Disabled in 1.6.1-1 as it breaks the tests. It addresses #593338
+# pstops-based-workflow-only-for-printing-ps-on-a-ps-printer.patch
 forward-port-cups-1-5-x-cups-browsing.patch

@@ -151,8 +151,6 @@ cups (1.6.1-1) UNRELEASED; urgency=low
     this subdirectory does not exist any more in CUPS 1.6.x.
   * debian/libcups2.symbols, debian/libcupsimage2.symbols: Refreshed using the
     diff of the dpkg-gensymbols output during build.
-  * debian/rules: Deactivated failure of the package build on test suite
-    failure, (temporarily, for development cycle).
 
   [ Martin Pitt ]
   * manpage-translations.patch: Update German manpage translations, thanks
@@ -192,6 +190,8 @@ cups (1.6.1-1) UNRELEASED; urgency=low
   * Enable manpage translations by installing them from debian/rules
     when they exist. This allows to be more robust against non-complete
     translations.
+  * Disable pstops-based-workflow-only-for-printing-ps-on-a-ps-printer.patch,
+    as it breaks the build tests in 1.6.1. Re-opens #593338.
 
  -- Didier Raboud <odyx@debian.org>  Sun, 14 Oct 2012 21:52:35 +0200
 
