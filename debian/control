@@ -54,9 +54,6 @@ Section: libs
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Suggests: cups-common
-Provides: libcupsys2
-Conflicts: libcupsys2
-Replaces: libcupsys2
 Breaks: cups (<< 1.5.0)
 Pre-Depends: ${misc:Pre-Depends}
 Multi-Arch: same
@@ -194,7 +191,6 @@ Depends: ${shlibs:Depends}, ${misc:Depends},
  libcups2 (= ${binary:Version}), 
  libgnutls-dev,
  libkrb5-dev
-Provides: libcupsys2-dev
 Description: Common UNIX Printing System(tm) - Development files CUPS library
  The Common UNIX Printing System (or CUPS(tm)) is a printing system and 
  general replacement for lpd and the like.  It supports the Internet 
