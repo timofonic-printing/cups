@@ -200,8 +200,8 @@ cups (1.6.1-1) UNRELEASED; urgency=low
     scripts.
   * Drop redundant Priority and Section values in debian/control.
   * Convert packaging to debhelper 9; drop cdbs Build-Depends.
-  * Drop all relationships to libcupsys2{,-dev} as it got removed before
-    Lenny.
+  * Drop all relationships to libcupsys2{,-dev} and cupsddk-drivers as
+    they got removed before Lenny.
 
  -- Didier Raboud <odyx@debian.org>  Sun, 14 Oct 2012 21:52:35 +0200
 

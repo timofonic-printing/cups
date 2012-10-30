@@ -155,9 +155,8 @@ Suggests: cups-bsd,
  cups-pdf,
  udev,
  smbclient
-Replaces: cupsddk-drivers (<< 1.4.0), ghostscript-cups (<< 9.02~)
-Provides: cupsddk-drivers
-Breaks: cupsddk-drivers (<< 1.4.0), foomatic-filters (<< 4.0), ghostscript-cups (<< 9.02~)
+Replaces: ghostscript-cups (<< 9.02~)
+Breaks: foomatic-filters (<< 4.0), ghostscript-cups (<< 9.02~)
 Multi-Arch: foreign
 Description: Common UNIX Printing System(tm) - server
  The Common UNIX Printing System (or CUPS(tm)) is a printing system and 
@@ -304,9 +303,6 @@ Package: cups-ppdc
 Section: utils
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}, cups-common
-Breaks: cupsddk (<< 1.4.0)
-Replaces: cupsddk (<< 1.4.0)
-Provides: cupsddk
 Multi-Arch: foreign
 Description: Common UNIX Printing System(tm) - PPD manipulation utilities
  The Common UNIX Printing System (or CUPS(tm)) is a printing system and 
