@@ -1,14 +1,5 @@
 cups (1.6.1-1) UNRELEASED; urgency=low
 
-  [ Marc Deslauriers ]
-  * debian/local/apport-hook.py: Also attach AppArmor information and logs.
-
-  [ Jamie Strandboge ]
-  * debian/local/apparmor-profile: deny capability block_suspend. It is noisy
-    and doesn't seem to actually be needed. This can be revisited if it turns
-    out it is needed. (LP: #1031583)
-
-  [ Till Kamppeter ]
   * New upstream release
      - Avahi-based Bonjour/DNS-SD/mDNS support
      - ICC-based color management with colord
@@ -18,7 +9,17 @@ cups (1.6.1-1) UNRELEASED; urgency=low
      - Moved API of libcupsdrivers (driver.h) and of part of libcupsimage
        (image.h) to cups-filters.
      - cups-polld removed
-     - Fixes: LP: #904093, LP: #1027804
+     - Fixes: LP: #904093, LP: #1027804, Closes: #690522
+
+  [ Marc Deslauriers ]
+  * debian/local/apport-hook.py: Also attach AppArmor information and logs.
+
+  [ Jamie Strandboge ]
+  * debian/local/apparmor-profile: deny capability block_suspend. It is noisy
+    and doesn't seem to actually be needed. This can be revisited if it turns
+    out it is needed. (LP: #1031583)
+
+  [ Till Kamppeter ]
   * debian/patches/ipp-backend-cups-1.5.4-fixes.patch,
     debian/patches/install-sh-remove-bashism.patch,
     debian/patches/usb-backend-busy-loop-fix.patch,
