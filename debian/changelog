@@ -191,6 +191,8 @@ cups (1.6.1-1) UNRELEASED; urgency=low
       great thanks for his past work!
   * Put under Debian Printing Team umbrella.
   * Drop cupsddk transitional package, was transitional in Squeeze.
+  * Make libcupsimage2 depend on libcupsfilters1 as functions (and
+    exported symbols) moved there.
 
  -- Didier Raboud <odyx@debian.org>  Sun, 14 Oct 2012 21:52:35 +0200
 
