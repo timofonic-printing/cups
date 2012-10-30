@@ -193,6 +193,8 @@ cups (1.6.1-1) UNRELEASED; urgency=low
     non-complete translations.
   * Disable pstops-based-workflow-only-for-printing-ps-on-a-ps-printer.patch,
     as it breaks the build tests in 1.6.1. Re-opens #593338.
+  * Remove the obsolete etc/cups/pdftops.conf and etc/cups/acroread.conf
+    using cups.maintscript. (Closes: #645442)
 
  -- Didier Raboud <odyx@debian.org>  Sun, 14 Oct 2012 21:52:35 +0200
 
