@@ -23,7 +23,7 @@ get-ppd-file-for-statically-configured-ipp-shared-queues.patch
 pidfile.patch
 ppd-poll-with-client-conf.patch
 # no answer yet, po4a might not be appropriate
-#manpage-translations.patch
+manpage-translations.patch
 rootbackends-worldreadable.patch
 
 # patches which should go upstream
