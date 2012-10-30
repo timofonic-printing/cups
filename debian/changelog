@@ -183,7 +183,7 @@ cups (1.6.1-1) UNRELEASED; urgency=low
     libraries in the tests. Add cups-filters' and libcupsfilters1-dev
     Build-Depends.
   * Convert packaging repository to Git, change VCS-* fields accordingly.
-  * Merge releases targetted at wheezy.
+  * Merge releases targeted at wheezy.
   * Refresh all patches using "quilt -p ab".
   * Uploaders:
     - Add myself.
