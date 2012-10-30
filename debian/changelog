@@ -189,8 +189,8 @@ cups (1.6.1-1) UNRELEASED; urgency=low
   * Make libcupsimage2 depend on libcupsfilters1 as functions (and
     exported symbols) moved there.
   * Enable manpage translations by installing them from debian/rules
-    when they exist. This allows to be more robust against non-complete
-    translations.
+    when they exist. This allows the build to be more robust against
+    non-complete translations.
   * Disable pstops-based-workflow-only-for-printing-ps-on-a-ps-printer.patch,
     as it breaks the build tests in 1.6.1. Re-opens #593338.
 
