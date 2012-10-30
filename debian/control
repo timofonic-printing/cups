@@ -50,7 +50,6 @@ Vcs-Git: git://anonscm.debian.org/pkg-cups/cups.git
 Vcs-Browser: http://anonscm.debian.org/gitweb/?p=pkg-cups/cups.git;a=summary
 
 Package: libcups2
-Priority: optional
 Section: libs
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
@@ -70,7 +69,6 @@ Description: Common UNIX Printing System(tm) - Core library
  This package provides the base shared libraries for CUPS.
 
 Package: libcupsimage2
-Priority: optional
 Section: libs
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}, libcupsfilters1 (>= 1.0~b1)
@@ -86,7 +84,6 @@ Description: Common UNIX Printing System(tm) - Raster image library
  raster format.
 
 Package: libcupscgi1
-Priority: optional
 Section: libs
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
@@ -102,7 +99,6 @@ Description: Common UNIX Printing System(tm) - CGI library
  CUPS web interface
 
 Package: libcupsmime1
-Priority: optional
 Section: libs
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
@@ -119,7 +115,6 @@ Description: Common UNIX Printing System(tm) - MIME library
  file conversion filter chain building.
 
 Package: libcupsppdc1
-Priority: optional
 Section: libs
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
@@ -135,8 +130,6 @@ Description: Common UNIX Printing System(tm) - PPD manipulation library
  manipulating PPD files.
 
 Package: cups
-Priority: optional
-Section: net
 Architecture: any
 Pre-Depends: ${misc:Pre-Depends}
 Depends: ${shlibs:Depends},
@@ -178,8 +171,6 @@ Description: Common UNIX Printing System(tm) - server
  This package provides the CUPS scheduler/daemon and related files.
 
 Package: cups-client
-Priority: optional
-Section: net
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}, 
  cups-common (>= ${source:Upstream-Version}),
@@ -197,7 +188,6 @@ Description: Common UNIX Printing System(tm) - client programs (SysV)
  This package provides the System V style print client programs.
 
 Package: libcups2-dev
-Priority: optional
 Section: libdevel
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends},
@@ -217,7 +207,6 @@ Description: Common UNIX Printing System(tm) - Development files CUPS library
  PHP).
 
 Package: libcupsimage2-dev
-Priority: optional
 Section: libdevel
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}, 
@@ -237,7 +226,6 @@ Description: Common UNIX Printing System(tm) - Development files CUPS image libr
  that use the CUPS raster image format.
 
 Package: libcupscgi1-dev
-Priority: optional
 Section: libdevel
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}, libcupscgi1 (= ${binary:Version}),
@@ -252,7 +240,6 @@ Description: Common UNIX Printing System(tm) - Development files for CGI library
  for the CUPS web interface using libcupscgi.
 
 Package: libcupsmime1-dev
-Priority: optional
 Section: libdevel
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends},
@@ -268,7 +255,6 @@ Description: Common UNIX Printing System(tm) - Development files MIME library
  using libcupsmime.
 
 Package: libcupsppdc1-dev
-Priority: optional
 Section: libdevel
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends},
@@ -285,7 +271,6 @@ Description: Common UNIX Printing System(tm) - Development files PPD library
 
 Package: cups-bsd
 Priority: extra
-Section: net
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}, 
  cups-client (= ${binary:Version}),
@@ -308,8 +293,6 @@ Description: Common UNIX Printing System(tm) - BSD commands
  systems (to a small degree).
 
 Package: cups-common
-Priority: optional
-Section: net
 Architecture: all
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Multi-Arch: foreign
@@ -322,7 +305,6 @@ Description: Common UNIX Printing System(tm) - common files
  This package provides common files for CUPS server and client packages.
 
 Package: cups-ppdc
-Priority: optional
 Section: utils
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}, cups-common
