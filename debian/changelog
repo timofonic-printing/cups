@@ -174,8 +174,8 @@ cups (1.6.1-1) UNRELEASED; urgency=low
     jobs before each test. This fix the too slow architectures' FTBFS.
   * When modprobe'ing usblp, respect the blacklist. Thanks to Julien
     Cristau for noticing!
-  * Use cups-filters' filters, type declarations, conversions and
-    libraries in the tests. Add cups-filters' and libcupsfilters1-dev
+  * Use cups-filters' filters, type declarations, conversions, libraries
+    and banners in the tests. Add cups-filters' and libcupsfilters1-dev
     Build-Depends, with a version bigger than 1.0.24-3~ (to pull bc in).
   * Convert packaging repository to Git, change VCS-* fields accordingly,
     update debian/README.source.
