@@ -43,8 +43,8 @@ Build-Depends:
  sharutils,
  zlib1g-dev,
 # Needed for running the tests, not for the build
- cups-filters,
- libcupsfilters-dev
+ cups-filters (>= 1.0.24-3~),
+ libcupsfilters-dev (>= 1.0.24-3~)
 Homepage: http://www.cups.org
 Vcs-Git: git://anonscm.debian.org/pkg-cups/cups.git
 Vcs-Browser: http://anonscm.debian.org/gitweb/?p=pkg-cups/cups.git;a=summary
@@ -142,7 +142,7 @@ Depends: ${shlibs:Depends},
  adduser,
  bc,
  cups-ppdc,
- cups-filters
+ cups-filters (>= 1.0.24-3~)
 Recommends: avahi-daemon,
  colord,
  foomatic-filters (>= 4.0), 

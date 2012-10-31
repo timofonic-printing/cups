@@ -176,7 +176,7 @@ cups (1.6.1-1) UNRELEASED; urgency=low
     Cristau for noticing!
   * Use cups-filters' filters, type declarations, conversions and
     libraries in the tests. Add cups-filters' and libcupsfilters1-dev
-    Build-Depends.
+    Build-Depends, with a version bigger than 1.0.24-3~ (to pull bc in).
   * Convert packaging repository to Git, change VCS-* fields accordingly,
     update debian/README.source.
   * Merge releases targeted at wheezy.
