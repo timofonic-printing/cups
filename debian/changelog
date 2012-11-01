@@ -202,6 +202,8 @@ cups (1.6.1-1) UNRELEASED; urgency=low
   * Convert packaging to debhelper 9; drop cdbs Build-Depends.
   * Drop all relationships to libcupsys2{,-dev} and cupsddk-drivers as
     they got removed before Lenny.
+  * In tests-ignore-usb-crash.patch, also ignore "[cups-deviced] PID *
+    (dnssd) stopped with status 1" errors.
 
  -- Didier Raboud <odyx@debian.org>  Sun, 14 Oct 2012 21:52:35 +0200
 
