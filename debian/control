@@ -98,7 +98,8 @@ Description: Common UNIX Printing System(tm) - CGI library
 Package: libcupsmime1
 Section: libs
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}
+Depends: ${shlibs:Depends}, ${misc:Depends},
+ libcups2 (= ${binary:Version}),
 Breaks: cups (<< 1.5.0)
 Pre-Depends: ${misc:Pre-Depends}
 Multi-Arch: same
@@ -138,6 +139,7 @@ Depends: ${shlibs:Depends},
  lsb-base (>= 3),
  cups-common (>= ${source:Upstream-Version}), 
  cups-client (>= ${binary:Version}),
+ libcups2 (= ${binary:Version}),
  ssl-cert (>= 1.0.11),
  adduser,
  bc,
@@ -170,6 +172,7 @@ Package: cups-client
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}, 
  cups-common (>= ${source:Upstream-Version}),
+ libcups2 (= ${binary:Version}),
  adduser
 Recommends: smbclient
 Suggests: cups, xpp, cups-bsd

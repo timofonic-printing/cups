@@ -204,6 +204,7 @@ cups (1.6.1-1) UNRELEASED; urgency=low
     they got removed before Lenny.
   * In tests-ignore-usb-crash.patch, also ignore "[cups-deviced] PID *
     (dnssd) stopped with status 1" errors.
+  * Make sure internal libraries relationships are tight enough.
 
  -- Didier Raboud <odyx@debian.org>  Sun, 14 Oct 2012 21:52:35 +0200
 
