@@ -14,6 +14,7 @@ cups-avahi.patch
 colord-support.patch
 cups-dbus-utf8.patch
 cups-ipp-send-cancel-request.patch
+cups-workaround-broken-1284-DeviceID-newline-instead-of-semicolon.patch
 
 # patches which should go upstream
 install-sh-remove-bashism.patch
