@@ -12,6 +12,7 @@ manpage-translations.patch
 rootbackends-worldreadable.patch
 cups-avahi.patch
 colord-support.patch
+cups-dbus-utf8.patch
 
 # patches which should go upstream
 install-sh-remove-bashism.patch
