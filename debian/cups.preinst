@@ -1,0 +1,29 @@
+#! /bin/sh
+set -e
+
+case "$1" in
+    install)
+    ;;
+
+    upgrade)
+        if dpkg --compare-versions "$2" lt-nl "1.6.0" && [ ! -r /etc/cups/cupsd.conf.pre16-bkp ] && [ -r /etc/cups/cupsd.conf ] ; then
+	    cp /etc/cups/cupsd.conf /etc/cups/cupsd.conf.pre16-bkp
+            # Try to reduce the upgrading diff by dropping standard values that moved or disappeared
+	    sed -e '/^# Administrator user group.../d' \
+                -e '/^SystemGroup lpadmin/d' \
+                -i /etc/cups/cupsd.conf
+        fi
+    ;;
+
+    abort-upgrade)
+    ;;
+
+    *)
+        echo "preinst called with unknown argument \`$1'" >&2
+        exit 0
+    ;;
+esac
+
+#DEBHELPER#
+
+exit 0
