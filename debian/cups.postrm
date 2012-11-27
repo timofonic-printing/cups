@@ -23,6 +23,17 @@ set -e
 
 case "$1" in
     purge)
+	for ext in .ucf-new .ucf-old .ucf-dist ""; do
+		rm -f "/etc/cups/cupsd.conf$ext"
+	done
+
+	if [ -x "`which ucf 2>/dev/null`" ]; then
+		ucf --purge "/etc/cups/cupsd.conf"
+	fi
+	if [ -x "`which ucfr 2>/dev/null`" ]; then
+		ucfr --purge cups "/etc/cups/cupsd.conf"
+	fi
+
 	rm -rf /var/lib/cups
 	rm -rf /var/log/cups
 	rm -rf /var/run/cups

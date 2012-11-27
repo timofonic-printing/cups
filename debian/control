@@ -144,6 +144,7 @@ Depends: ${shlibs:Depends},
  ssl-cert (>= 1.0.11),
  adduser,
  bc,
+ ucf,
  cups-ppdc,
  cups-filters (>= 1.0.24-3~)
 Recommends: avahi-daemon,
