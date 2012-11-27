@@ -205,6 +205,9 @@ cups (1.6.1-1) UNRELEASED; urgency=low
   * In tests-ignore-usb-crash.patch, also ignore "[cups-deviced] PID *
     (dnssd) stopped with status 1" errors.
   * Make sure internal libraries relationships are tight enough.
+  * Fix STR#4223 "lpadmin to root privilege escalation" by importing
+    upstream r10710 and r10713 cups 1.6 backports.
+    Fixes CVE-2012-5519, Closes: #692791.
 
  -- Didier Raboud <odyx@debian.org>  Sun, 14 Oct 2012 21:52:35 +0200
 

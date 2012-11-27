@@ -16,6 +16,8 @@ ipp-backend-abort-the-outer-loop-if-we-get-a-failure-from-send-document.patch
 ipp-backend-could-get-stuck-in-an-endless-loop-on-certain-network-errors.patch
 ipp-backend-did-not-send-cancel-request-to-printers-when-a-job-was-canceled-and-printer-did-not-support-create-job.patch
 fix-make-check.patch
+1.6-r10710-Mirror-changes-for-STR-4223.patch
+1.6-r10713-Mirror-fixes-from-trunk-STR-4223.patch
 
 # patches sent upstream
 cupsd-no-crash-on-avahi-threaded-poll-shutdown.patch
