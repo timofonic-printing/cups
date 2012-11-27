@@ -4,9 +4,9 @@ Bug: https://bugs.launchpad.net/bugs/711779
 
 --- a/scheduler/conf.c
 +++ b/scheduler/conf.c
-@@ -89,9 +89,9 @@
+@@ -88,9 +88,9 @@
+ static const cupsd_var_t	cupsd_vars[] =
  {
-   { "AccessLog",		&AccessLog,		CUPSD_VARTYPE_STRING },
    { "AutoPurgeJobs", 		&JobAutoPurge,		CUPSD_VARTYPE_BOOLEAN },
 -#ifdef HAVE_DNSSD
 +#if defined(HAVE_DNSSD) || defined(HAVE_AVAHI)
@@ -15,8 +15,8 @@ Bug: https://bugs.launchpad.net/bugs/711779
 +#endif /* HAVE_DNSSD || HAVE_AVAHI */
    { "BrowseWebIF",		&BrowseWebIF,		CUPSD_VARTYPE_BOOLEAN },
    { "Browsing",			&Browsing,		CUPSD_VARTYPE_BOOLEAN },
-   { "CacheDir",			&CacheDir,		CUPSD_VARTYPE_STRING },
-@@ -737,9 +737,9 @@
+   { "Classification",		&Classification,	CUPSD_VARTYPE_STRING },
+@@ -745,9 +745,9 @@
    Browsing                 = CUPS_DEFAULT_BROWSING;
    DefaultShared            = CUPS_DEFAULT_DEFAULT_SHARED;
  

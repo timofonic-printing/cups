@@ -1,20 +1,22 @@
 Description: Add support for creating pid files.
-Author: Maritn Pitt <mpitt@debian.org>
+Author: Martin Pitt <mpitt@debian.org>
 Bug: http://www.cups.org/str.php?L2465
+
+Last-Update: 2012-11-27
 
 --- a/scheduler/conf.c
 +++ b/scheduler/conf.c
-@@ -175,7 +175,8 @@
+@@ -177,7 +177,8 @@
+ #ifdef HAVE_AUTHORIZATION_H
+   { "SystemGroupAuthKey",	&SystemGroupAuthKey,	CUPSD_VARTYPE_STRING },
  #endif /* HAVE_AUTHORIZATION_H */
-   { "TempDir",			&TempDir,		CUPSD_VARTYPE_PATHNAME },
-   { "Timeout",			&Timeout,		CUPSD_VARTYPE_TIME },
--  { "WebInterface",		&WebInterface,		CUPSD_VARTYPE_BOOLEAN }
-+  { "WebInterface",		&WebInterface,		CUPSD_VARTYPE_BOOLEAN },
+-  { "TempDir",			&TempDir,		CUPSD_VARTYPE_PATHNAME }
++  { "TempDir",			&TempDir,		CUPSD_VARTYPE_PATHNAME },
 +  { "PidFile",			&PidFile,		CUPSD_VARTYPE_STRING }
  };
- #define NUM_VARS	(sizeof(variables) / sizeof(variables[0]))
  
-@@ -586,6 +587,7 @@
+ static int		default_auth_type = CUPSD_AUTH_AUTO;
+@@ -594,6 +595,7 @@
    cupsdSetStringf(&ServerHeader, "CUPS/%d.%d", CUPS_VERSION_MAJOR,
                    CUPS_VERSION_MINOR);
    cupsdSetString(&StateDir, CUPS_STATEDIR);
@@ -24,7 +26,7 @@ Bug: http://www.cups.org/str.php?L2465
      PrintcapFormat = PRINTCAP_SOLARIS;
 --- a/scheduler/conf.h
 +++ b/scheduler/conf.h
-@@ -242,6 +242,8 @@
+@@ -244,6 +244,8 @@
  VAR int			SSLOptions		VALUE(CUPSD_SSL_NONE);
  					/* SSL/TLS options */
  #endif /* HAVE_SSL */
@@ -44,7 +46,7 @@ Bug: http://www.cups.org/str.php?L2465
  
  
  /*
-@@ -587,6 +589,11 @@
+@@ -641,6 +643,11 @@
    }
  #endif /* __sgi */
  
@@ -56,7 +58,7 @@ Bug: http://www.cups.org/str.php?L2465
   /*
    * Initialize authentication certificates...
    */
-@@ -1145,10 +1152,41 @@
+@@ -1199,10 +1206,41 @@
  
    cupsdStopSelect();
  
@@ -100,11 +102,11 @@ Bug: http://www.cups.org/str.php?L2465
   */
 --- a/test/run-stp-tests.sh
 +++ b/test/run-stp-tests.sh
-@@ -405,6 +405,7 @@
+@@ -420,6 +420,7 @@
  DocumentRoot $root/doc
  RequestRoot /tmp/cups-$user/spool
  TempDir /tmp/cups-$user/spool/temp
 +PidFile /tmp/cups-$user/cupsd.pid
- MaxSubscriptions 3
- MaxLogSize 0
  AccessLog /tmp/cups-$user/log/access_log
+ ErrorLog /tmp/cups-$user/log/error_log
+ PageLog /tmp/cups-$user/log/page_log

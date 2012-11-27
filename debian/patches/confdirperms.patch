@@ -3,7 +3,7 @@ Author: Martin Pitt <mpitt@debian.org>
 
 --- a/scheduler/conf.c
 +++ b/scheduler/conf.c
-@@ -1070,8 +1070,10 @@
+@@ -1104,8 +1104,10 @@
  			     Group, 1, 1) < 0 ||
         cupsdCheckPermissions(ServerRoot, "ssl", 0700, RunUser,
  			     Group, 1, 0) < 0 ||

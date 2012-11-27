@@ -2,6 +2,8 @@ Description: Forward-port CUPS 1.5.x CUPS Broadcasting/Browsing
 Author: Till Kamppeter <till.kamppeter@gmail.com>
 Bug-Ubuntu: https://bugs.launchpad.net/bugs/1061063
 
+Last-Update: 2012-11-27
+
 --- a/config.h.in
 +++ b/config.h.in
 @@ -62,8 +62,12 @@
@@ -302,7 +304,7 @@ Bug-Ubuntu: https://bugs.launchpad.net/bugs/1061063
    _cupsLangPuts(stdout, _("  --[no-]user-cancel-any  Allow/prevent users to "
 --- a/doc/help/ref-cupsd-conf.html.in
 +++ b/doc/help/ref-cupsd-conf.html.in
-@@ -341,6 +341,156 @@
+@@ -265,6 +265,156 @@
  default setting is <CODE>No</CODE>.</P>
  
  
@@ -459,7 +461,7 @@ Bug-Ubuntu: https://bugs.launchpad.net/bugs/1061063
  <H2 CLASS="title"><SPAN CLASS="info">CUPS 1.2/OS X 10.5</SPAN><A NAME="BrowseLocalProtocols">BrowseLocalProtocols</A></H2>
  
  <H3>Examples</H3>
-@@ -348,7 +498,9 @@
+@@ -272,7 +422,9 @@
  <PRE CLASS="command">
  BrowseLocalProtocols all
  BrowseLocalProtocols none
@@ -469,7 +471,7 @@ Bug-Ubuntu: https://bugs.launchpad.net/bugs/1061063
  </PRE>
  
  <H3>Description</H3>
-@@ -359,6 +511,215 @@
+@@ -283,6 +435,215 @@
  with spaces. The default is "<CODE>@CUPS_BROWSE_LOCAL_PROTOCOLS@</CODE>".</P>
  
  
@@ -685,7 +687,7 @@ Bug-Ubuntu: https://bugs.launchpad.net/bugs/1061063
  <H2 CLASS="title"><A NAME="BrowseWebIF">BrowseWebIF</A></H2>
  
  <H3>Examples</H3>
-@@ -387,9 +748,24 @@
+@@ -311,9 +672,24 @@
  <H3>Description</H3>
  
  <P>The <CODE>Browsing</CODE> directive controls whether or not
@@ -711,7 +713,7 @@ Bug-Ubuntu: https://bugs.launchpad.net/bugs/1061063
  
  <H2 CLASS="title"><SPAN CLASS="info">CUPS 1.1.7</SPAN><A NAME="Classification">Classification</A></H2>
  
-@@ -940,6 +1316,25 @@
+@@ -864,6 +1240,25 @@
  <P>The <CODE>GSSServiceName</CODE> directive sets the Kerberos service name to use. The default is <CODE>@CUPS_DEFAULT_GSSSERVICE_NAME@</CODE> for compatibility with Microsoft Windows.</P>
  
  
@@ -737,7 +739,7 @@ Bug-Ubuntu: https://bugs.launchpad.net/bugs/1061063
  <H2 CLASS="title"><A NAME="HostNameLookups">HostNameLookups</A></H2>
  
  <H3>Examples</H3>
-@@ -966,6 +1361,25 @@
+@@ -890,6 +1285,25 @@
  required.</P>
  
  
@@ -765,7 +767,7 @@ Bug-Ubuntu: https://bugs.launchpad.net/bugs/1061063
  <H3>Examples</H3>
 --- a/man/cupsd.conf.man.in
 +++ b/man/cupsd.conf.man.in
-@@ -94,9 +94,101 @@
+@@ -77,9 +77,101 @@
  Specifies whether to purge job history data automatically when
  it is no longer required for quotas.
  .TP 5
@@ -869,7 +871,7 @@ Bug-Ubuntu: https://bugs.launchpad.net/bugs/1061063
  .TP 5
  BrowseWebIF Yes
  .TP 5
-@@ -255,6 +347,12 @@
+@@ -194,6 +286,12 @@
  Specifies the service name when using Kerberos authentication. The default
  service name is "@CUPS_DEFAULT_GSSSERVICENAME@".
  .TP 5
@@ -882,7 +884,7 @@ Bug-Ubuntu: https://bugs.launchpad.net/bugs/1061063
  HostNameLookups On
  .TP 5
  HostNameLookups Off
-@@ -263,6 +361,21 @@
+@@ -202,6 +300,21 @@
  .br
  Specifies whether or not to do reverse lookups on client addresses.
  .TP 5
@@ -1728,7 +1730,7 @@ Bug-Ubuntu: https://bugs.launchpad.net/bugs/1061063
 + */
 --- a/scheduler/conf.c
 +++ b/scheduler/conf.c
-@@ -92,6 +92,12 @@
+@@ -91,6 +91,12 @@
  #if defined(HAVE_DNSSD) || defined(HAVE_AVAHI)
    { "BrowseDNSSDSubTypes",	&DNSSDSubTypes,		CUPSD_VARTYPE_STRING },
  #endif /* HAVE_DNSSD || HAVE_AVAHI */
@@ -1740,8 +1742,8 @@ Bug-Ubuntu: https://bugs.launchpad.net/bugs/1061063
 +  { "BrowseTimeout",		&BrowseTimeout,		CUPSD_VARTYPE_INTEGER },
    { "BrowseWebIF",		&BrowseWebIF,		CUPSD_VARTYPE_BOOLEAN },
    { "Browsing",			&Browsing,		CUPSD_VARTYPE_BOOLEAN },
-   { "CacheDir",			&CacheDir,		CUPSD_VARTYPE_STRING },
-@@ -115,6 +121,9 @@
+   { "Classification",		&Classification,	CUPSD_VARTYPE_STRING },
+@@ -107,6 +113,9 @@
  #ifdef HAVE_GSSAPI
    { "GSSServiceName",		&GSSServiceName,	CUPSD_VARTYPE_STRING },
  #endif /* HAVE_GSSAPI */
@@ -1751,15 +1753,15 @@ Bug-Ubuntu: https://bugs.launchpad.net/bugs/1061063
    { "JobKillDelay",		&JobKillDelay,		CUPSD_VARTYPE_TIME },
    { "JobRetryLimit",		&JobRetryLimit,		CUPSD_VARTYPE_INTEGER },
    { "JobRetryInterval",		&JobRetryInterval,	CUPSD_VARTYPE_TIME },
-@@ -175,6 +184,7 @@
- #endif /* HAVE_AUTHORIZATION_H */
-   { "TempDir",			&TempDir,		CUPSD_VARTYPE_PATHNAME },
+@@ -147,6 +156,7 @@
+   { "ServerName",		&ServerName,		CUPSD_VARTYPE_STRING },
+   { "StrictConformance",	&StrictConformance,	CUPSD_VARTYPE_BOOLEAN },
    { "Timeout",			&Timeout,		CUPSD_VARTYPE_TIME },
-+  { "UseNetworkDefault",	&UseNetworkDefault,	CUPSD_VARTYPE_BOOLEAN },
-   { "WebInterface",		&WebInterface,		CUPSD_VARTYPE_BOOLEAN },
-   { "PidFile",			&PidFile,		CUPSD_VARTYPE_STRING }
++  { "UseNetworkDefault",        &UseNetworkDefault,     CUPSD_VARTYPE_BOOLEAN },
+   { "WebInterface",		&WebInterface,		CUPSD_VARTYPE_BOOLEAN }
  };
-@@ -555,6 +565,31 @@
+ static const cupsd_var_t	cupsfiles_vars[] =
+@@ -563,6 +573,31 @@
  
    cupsdDeleteAllLocations();
  
@@ -1791,7 +1793,7 @@ Bug-Ubuntu: https://bugs.launchpad.net/bugs/1061063
    cupsdDeleteAllListeners();
  
    old_remote_port = RemotePort;
-@@ -713,6 +748,9 @@
+@@ -721,6 +756,9 @@
    FilterLimit              = 0;
    FilterNice               = 0;
    HostNameLookups          = FALSE;
@@ -1801,7 +1803,7 @@ Bug-Ubuntu: https://bugs.launchpad.net/bugs/1061063
    KeepAlive                = TRUE;
    KeepAliveTimeout         = DEFAULT_KEEPALIVE;
    ListenBackLog            = SOMAXCONN;
-@@ -732,7 +770,12 @@
+@@ -740,7 +778,12 @@
    Timeout                  = DEFAULT_TIMEOUT;
    WebInterface             = CUPS_DEFAULT_WEBIF;
  
@@ -1814,7 +1816,7 @@ Bug-Ubuntu: https://bugs.launchpad.net/bugs/1061063
    BrowseWebIF              = FALSE;
    Browsing                 = CUPS_DEFAULT_BROWSING;
    DefaultShared            = CUPS_DEFAULT_DEFAULT_SHARED;
-@@ -744,6 +787,9 @@
+@@ -752,6 +795,9 @@
    cupsdSetString(&LPDConfigFile, CUPS_DEFAULT_LPD_CONFIG_FILE);
    cupsdSetString(&SMBConfigFile, CUPS_DEFAULT_SMB_CONFIG_FILE);
  
@@ -1824,7 +1826,7 @@ Bug-Ubuntu: https://bugs.launchpad.net/bugs/1061063
    cupsdSetString(&ErrorPolicy, "stop-printer");
  
    JobHistory          = DEFAULT_HISTORY;
-@@ -910,6 +956,12 @@
+@@ -944,6 +990,12 @@
    }
  
   /*
@@ -1837,7 +1839,7 @@ Bug-Ubuntu: https://bugs.launchpad.net/bugs/1061063
    * Open the system log for cupsd if necessary...
    */
  
-@@ -1229,6 +1281,24 @@
+@@ -1263,6 +1315,24 @@
                    MaxClientsPerHost);
  
   /*
@@ -1862,7 +1864,7 @@ Bug-Ubuntu: https://bugs.launchpad.net/bugs/1061063
    * Update the default policy, as needed...
    */
  
-@@ -1532,6 +1602,7 @@
+@@ -1566,6 +1636,7 @@
  
      cupsdLoadAllPrinters();
      cupsdLoadAllClasses();
@@ -1870,7 +1872,7 @@ Bug-Ubuntu: https://bugs.launchpad.net/bugs/1061063
  
      cupsdCreateCommonData();
  
-@@ -2534,9 +2605,11 @@
+@@ -2568,9 +2639,11 @@
      * Add the protocol to the bitmask...
      */
  
@@ -1885,26 +1887,25 @@ Bug-Ubuntu: https://bugs.launchpad.net/bugs/1061063
        protocols |= BROWSE_DNSSD;
      else if (!_cups_strcasecmp(valstart, "all"))
        protocols |= BROWSE_ALL;
-@@ -2566,12 +2639,18 @@
+@@ -2831,11 +2904,17 @@
  					/* Line from file */
  			temp[HTTP_MAX_BUFFER],
  					/* Temporary buffer for value */
-+			*ptr,		/* Pointer into line/temp */
++                        *ptr,           /* Pointer into line/temp */
  			*value,		/* Pointer to value */
  			*valueptr;	/* Pointer into value */
    int			valuelen;	/* Length of value */
-   cupsd_var_t const	*var;		/* Current variable */
    http_addrlist_t	*addrlist,	/* Address list */
  			*addr;		/* Current address */
-+  unsigned		ip[4],		/* Address value */
-+			mask[4];	/* Netmask value */
-+  cupsd_dirsvc_relay_t	*relay;		/* Relay data */
-+  cupsd_dirsvc_poll_t	*pollp;		/* Polling data */
-+  cupsd_location_t	*location;	/* Browse location */
++  unsigned              ip[4],          /* Address value */
++                        mask[4];        /* Netmask value */
++  cupsd_dirsvc_relay_t  *relay;         /* Relay data */
++  cupsd_dirsvc_poll_t   *pollp;         /* Polling data */
++  cupsd_location_t      *location;      /* Browse location */
    cups_file_t		*incfile;	/* Include file */
    char			incname[1024];	/* Include filename */
-   struct group		*group;		/* Group */
-@@ -2755,12 +2834,117 @@
+ 
+@@ -3016,12 +3095,117 @@
  
        httpAddrFreeList(addrlist);
      }
@@ -2023,7 +2024,7 @@ Bug-Ubuntu: https://bugs.launchpad.net/bugs/1061063
        */
  
        int protocols = parse_protocols(value);
-@@ -2773,7 +2957,367 @@
+@@ -3034,7 +3218,367 @@
          break;
        }
  
@@ -2390,7 +2391,7 @@ Bug-Ubuntu: https://bugs.launchpad.net/bugs/1061063
 +      cupsdLogMessage(CUPSD_LOG_INFO, "Polling %s:%d", pollp->hostname,
 +	              pollp->port);
      }
-     else if (!_cups_strcasecmp(line, "default_auth_type") && value)
+     else if (!_cups_strcasecmp(line, "DefaultAuthType") && value)
      {
 --- a/scheduler/sysman.c
 +++ b/scheduler/sysman.c
@@ -7840,7 +7841,7 @@ Bug-Ubuntu: https://bugs.launchpad.net/bugs/1061063
  			senddoc_time,	/* Send-Document time */
  			expire_time,	/* Subscription expire time */
  			report_time,	/* Malloc/client/job report time */
-@@ -656,6 +657,7 @@
+@@ -710,6 +711,7 @@
    */
  
    current_time  = time(NULL);
@@ -7848,7 +7849,7 @@ Bug-Ubuntu: https://bugs.launchpad.net/bugs/1061063
    event_time    = current_time;
    expire_time   = current_time;
    fds           = 1;
-@@ -771,9 +773,11 @@
+@@ -825,9 +827,11 @@
      * inactivity...
      */
  
@@ -7862,7 +7863,7 @@ Bug-Ubuntu: https://bugs.launchpad.net/bugs/1061063
      {
        timeout		= LaunchdTimeout;
        launchd_idle_exit = 1;
-@@ -815,6 +819,8 @@
+@@ -869,6 +873,8 @@
  	   i ++, lis = (cupsd_listener_t *)cupsArrayNext(Listeners))
          cupsdLogMessage(CUPSD_LOG_EMERG, "Listeners[%d] = %d", i, lis->fd);
  
@@ -7871,7 +7872,7 @@ Bug-Ubuntu: https://bugs.launchpad.net/bugs/1061063
        cupsdLogMessage(CUPSD_LOG_EMERG, "CGIPipes[0] = %d", CGIPipes[0]);
  
  #ifdef __APPLE__
-@@ -915,6 +921,16 @@
+@@ -969,6 +975,16 @@
        expire_time = current_time;
      }
  
@@ -7888,7 +7889,7 @@ Bug-Ubuntu: https://bugs.launchpad.net/bugs/1061063
  #ifndef HAVE_AUTHORIZATION_H
     /*
      * Update the root certificate once every 5 minutes if we have client
-@@ -1013,6 +1029,8 @@
+@@ -1067,6 +1083,8 @@
                        cupsArrayCount(ActiveJobs));
        cupsdLogMessage(CUPSD_LOG_DEBUG, "Report: printers=%d",
                        cupsArrayCount(Printers));
@@ -7897,7 +7898,7 @@ Bug-Ubuntu: https://bugs.launchpad.net/bugs/1061063
  
        string_count = _cupsStrStatistics(&alloc_bytes, &total_bytes);
        cupsdLogMessage(CUPSD_LOG_DEBUG,
-@@ -1523,8 +1541,10 @@
+@@ -1577,8 +1595,10 @@
    * shared printers to advertise...
    */
  
@@ -7910,7 +7911,7 @@ Bug-Ubuntu: https://bugs.launchpad.net/bugs/1061063
    {
      cupsdLogMessage(CUPSD_LOG_DEBUG,
                      "Creating launchd keepalive file \"" CUPS_KEEPALIVE
-@@ -1806,6 +1826,7 @@
+@@ -1860,6 +1880,7 @@
    long			timeout;	/* Timeout for select */
    time_t		now;		/* Current time */
    cupsd_client_t	*con;		/* Client information */
@@ -7918,7 +7919,7 @@ Bug-Ubuntu: https://bugs.launchpad.net/bugs/1061063
    cupsd_job_t		*job;		/* Job information */
    cupsd_subscription_t	*sub;		/* Subscription information */
    const char		*why;		/* Debugging aid */
-@@ -1883,6 +1904,38 @@
+@@ -1937,6 +1958,38 @@
      }
  
   /*
@@ -8118,7 +8119,7 @@ Bug-Ubuntu: https://bugs.launchpad.net/bugs/1061063
  #
 --- a/scheduler/conf.h
 +++ b/scheduler/conf.h
-@@ -195,6 +195,12 @@
+@@ -197,6 +197,12 @@
  					/* Support the Keep-Alive option? */
  			KeepAliveTimeout	VALUE(DEFAULT_KEEPALIVE),
  					/* Timeout between requests */

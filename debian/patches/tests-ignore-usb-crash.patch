@@ -9,7 +9,7 @@ Last-Update: 2012-11-01
 
 --- a/test/run-stp-tests.sh
 +++ b/test/run-stp-tests.sh
-@@ -820,7 +820,7 @@
+@@ -823,7 +823,7 @@
  fi
  
  # Error log messages

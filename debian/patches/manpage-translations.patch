@@ -4,7 +4,7 @@ Bug-Debian: http://bugs.debian.org/478597
 
 --- a/man/Makefile
 +++ b/man/Makefile
-@@ -66,12 +66,18 @@
+@@ -67,12 +67,18 @@
  		lpmove.$(MAN8EXT) \
  		lpc.$(MAN8EXT)
  
@@ -24,7 +24,7 @@ Bug-Debian: http://bugs.debian.org/478597
  
  
  #
-@@ -111,6 +117,11 @@
+@@ -112,6 +118,11 @@
  	for file in $(MAN8); do \
  		$(RM) ../doc/help/man-`basename $$file .$(MAN8EXT)`.html; \
  	done
@@ -36,7 +36,7 @@ Bug-Debian: http://bugs.debian.org/478597
  
  
  #
-@@ -158,6 +169,7 @@
+@@ -159,6 +170,7 @@
  	done
  	$(RM) $(AMANDIR)/man$(MAN8DIR)/cupsdisable.$(MAN8EXT)
  	$(LN) cupsenable.$(MAN8EXT) $(AMANDIR)/man$(MAN8DIR)/cupsdisable.$(MAN8EXT)
@@ -44,7 +44,7 @@ Bug-Debian: http://bugs.debian.org/478597
  
  
  #
-@@ -206,6 +218,7 @@
+@@ -207,6 +219,7 @@
  	$(RM) $(AMANDIR)/man$(MAN8DIR)/reject.$(MAN8EXT)
  	$(RM) $(AMANDIR)/man$(MAN8DIR)/cupsdisable.$(MAN8EXT)
  	-$(RMDIR) $(AMANDIR)/man$(MAN8DIR)

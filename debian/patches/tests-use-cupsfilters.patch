@@ -60,7 +60,7 @@ Last-Update: 2012-10-14
  fi
  
  #
-@@ -488,6 +508,8 @@
+@@ -491,6 +511,8 @@
  if test `uname` = SunOS -a -r /usr/lib/libCrun.so.1; then
  	LD_PRELOAD="/usr/lib/libCrun.so.1:$LD_PRELOAD"
  fi
