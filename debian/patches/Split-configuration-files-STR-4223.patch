@@ -1,34 +1,17 @@
-From 9a4aea8702eaae4a7f85e05b615e37a752060997 Mon Sep 17 00:00:00 2001
-From: mike <mike@7a7537e8-13f0-0310-91df-b6672ffda945>
-Date: Mon, 26 Nov 2012 18:26:01 +0000
-Subject: [PATCH] Mirror changes for STR #4223.
+Description: Move file, directory, user, and group configuration to a
+ separate file. Also warn about directives that have moved and set
+ default cups-files.conf.
 
-git-svn-id: http://svn.cups.org/public/cups/branches/branch-1.6@10710 7a7537e8-13f0-0310-91df-b6672ffda945
----
- CHANGES.txt                          |    5 +-
- conf/Makefile                        |    2 +-
- conf/cups-files.conf.in              |   98 +++++
- conf/cupsd.conf.in                   |    4 -
- config-scripts/cups-defaults.m4      |    2 +
- config-scripts/cups-ssl.m4           |   11 +
- configure.in                         |    2 +
- doc/Makefile                         |    2 +-
- doc/help/ref-cups-files-conf.html.in |  531 ++++++++++++++++++++++++
- doc/help/ref-cupsd-conf.html.in      |  340 ----------------
- man/Makefile                         |    1 +
- man/cups-files.conf.man.in           |  146 +++++++
- man/cupsd.conf.man.in                |  143 +------
- packaging/cups.list.in               |    2 +
- packaging/cups.spec.in               |    1 +
- scheduler/client.c                   |   37 +-
- scheduler/conf.c                     |  745 ++++++++++++++++++++--------------
- scheduler/conf.h                     |    4 +-
- scheduler/main.c                     |   53 ++-
- test/run-stp-tests.sh                |   33 +-
- 20 files changed, 1339 insertions(+), 823 deletions(-)
- create mode 100644 conf/cups-files.conf.in
- create mode 100644 doc/help/ref-cups-files-conf.html.in
- create mode 100644 man/cups-files.conf.man.in
+Author: Michael Sweet <msweet@apple.com>
+Origin: http://svn.cups.org/public/cups/branches/branch-1.6@10710
+Origin: http://svn.cups.org/public/cups/branches/branch-1.6@10713
+
+Author: Marc Deslauriers <marc.deslauriers@canonical.com>
+Origin: https://www.cups.org/strfiles/4223/small-fixes.patch
+
+Bug-Upstream: https://www.cups.org/strfiles/4223/small-fixes.patch
+Bug-Debian: http://bugs.debian.org/692791
+Bug-CVE: http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2012-5519
 
 --- a/conf/Makefile
 +++ b/conf/Makefile
@@ -85,7 +68,7 @@ git-svn-id: http://svn.cups.org/public/cups/branches/branch-1.6@10710 7a7537e8-1
 +#DataDir @CUPS_DATADIR@
 +
 +# Location of the static web content served by the scheduler...
-+#DocRoot @CUPS_DOCROOT@
++#DocumentRoot @CUPS_DOCROOT@
 +
 +# Location of the file logging all messages produced by the scheduler and any
 +# helper programs; may be the name "syslog". If not an absolute path, the value
@@ -1816,7 +1799,7 @@ git-svn-id: http://svn.cups.org/public/cups/branches/branch-1.6@10710 7a7537e8-1
 -  { "Printcap",			&Printcap,		CUPSD_VARTYPE_STRING },
 -  { "PrintcapGUI",		&PrintcapGUI,		CUPSD_VARTYPE_STRING },
    { "ReloadTimeout",		&ReloadTimeout,		CUPSD_VARTYPE_TIME },
-   { "RemoteRoot",		&RemoteRoot,		CUPSD_VARTYPE_STRING },
+-  { "RemoteRoot",		&RemoteRoot,		CUPSD_VARTYPE_STRING },
 -  { "RequestRoot",		&RequestRoot,		CUPSD_VARTYPE_STRING },
    { "RIPCache",			&RIPCache,		CUPSD_VARTYPE_STRING },
    { "RootCertDuration",		&RootCertDuration,	CUPSD_VARTYPE_TIME },
@@ -1840,6 +1823,7 @@ git-svn-id: http://svn.cups.org/public/cups/branches/branch-1.6@10710 7a7537e8-1
 +  { "LPDConfigFile",		&LPDConfigFile,		CUPSD_VARTYPE_STRING },
 +  { "PageLog",			&PageLog,		CUPSD_VARTYPE_STRING },
 +  { "Printcap",			&Printcap,		CUPSD_VARTYPE_STRING },
++  { "RemoteRoot",		&RemoteRoot,		CUPSD_VARTYPE_STRING },
 +  { "RequestRoot",		&RequestRoot,		CUPSD_VARTYPE_STRING },
    { "ServerBin",		&ServerBin,		CUPSD_VARTYPE_PATHNAME },
  #ifdef HAVE_SSL
@@ -2333,9 +2317,44 @@ git-svn-id: http://svn.cups.org/public/cups/branches/branch-1.6@10710 7a7537e8-1
      else if (!_cups_strcasecmp(line, "ServerTokens") && value)
      {
       /*
-@@ -3118,181 +3288,158 @@
+@@ -3117,182 +3287,193 @@
+ 			"line %d.", value, linenum);
      }
  #endif /* HAVE_SSL */
++    else if (!_cups_strcasecmp(line, "AccessLog") ||
++             !_cups_strcasecmp(line, "CacheDir") ||
++             !_cups_strcasecmp(line, "ConfigFilePerm") ||
++             !_cups_strcasecmp(line, "DataDir") ||
++             !_cups_strcasecmp(line, "DocumentRoot") ||
++             !_cups_strcasecmp(line, "ErrorLog") ||
++             !_cups_strcasecmp(line, "FatalErrors") ||
++             !_cups_strcasecmp(line, "FileDevice") ||
++             !_cups_strcasecmp(line, "FontPath") ||
++             !_cups_strcasecmp(line, "Group") ||
++             !_cups_strcasecmp(line, "LogFilePerm") ||
++             !_cups_strcasecmp(line, "LPDConfigFile") ||
++             !_cups_strcasecmp(line, "PageLog") ||
++             !_cups_strcasecmp(line, "Printcap") ||
++             !_cups_strcasecmp(line, "PrintcapFormat") ||
++             !_cups_strcasecmp(line, "RemoteRoot") ||
++             !_cups_strcasecmp(line, "RequestRoot") ||
++             !_cups_strcasecmp(line, "ServerBin") ||
++             !_cups_strcasecmp(line, "ServerCertificate") ||
++             !_cups_strcasecmp(line, "ServerKey") ||
++             !_cups_strcasecmp(line, "ServerRoot") ||
++             !_cups_strcasecmp(line, "SMBConfigFile") ||
++             !_cups_strcasecmp(line, "StateDir") ||
++             !_cups_strcasecmp(line, "SystemGroup") ||
++             !_cups_strcasecmp(line, "SystemGroupAuthKey") ||
++             !_cups_strcasecmp(line, "TempDir") ||
++	     !_cups_strcasecmp(line, "User"))
++    {
++      cupsdLogMessage(CUPSD_LOG_WARN,
++		      "Please move \"%s%s%s\" on line %d of %s to the %s file; "
++		      "this will become an error in a future release.",
++		      line, value ? " " : "", value ? value : "", linenum,
++		      ConfigurationFile, CupsFilesFile);
++    }
      else
 +      parse_variable(ConfigurationFile, linenum, line, value,
 +                     sizeof(cupsd_vars) / sizeof(cupsd_vars[0]), cupsd_vars);
@@ -2739,6 +2758,17 @@ git-svn-id: http://svn.cups.org/public/cups/branches/branch-1.6@10710 7a7537e8-1
  #ifdef __APPLE__
            case 'S' : /* Disable system management functions */
                fputs("cupsd: -S (disable system management) for internal "
+@@ -298,7 +349,10 @@
+     }
+ 
+   if (!ConfigurationFile)
++  {
+     cupsdSetString(&ConfigurationFile, CUPS_SERVERROOT "/cupsd.conf");
++    cupsdSetString(&CupsFilesFile, CUPS_SERVERROOT "/cups-files.conf");
++  }
+ 
+  /*
+   * If the user hasn't specified "-f", run in the background...
 --- a/test/run-stp-tests.sh
 +++ b/test/run-stp-tests.sh
 @@ -390,26 +390,11 @@
