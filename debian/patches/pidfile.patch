@@ -2,7 +2,7 @@ Description: Add support for creating pid files.
 Author: Martin Pitt <mpitt@debian.org>
 Bug: http://www.cups.org/str.php?L2465
 
-Last-Update: 2012-11-27
+Last-Update: 2012-11-29
 
 --- a/scheduler/conf.c
 +++ b/scheduler/conf.c
@@ -24,6 +24,14 @@ Last-Update: 2012-11-27
  
    if (!strcmp(CUPS_DEFAULT_PRINTCAP, "/etc/printers.conf"))
      PrintcapFormat = PRINTCAP_SOLARIS;
+@@ -3313,6 +3315,7 @@
+              !_cups_strcasecmp(line, "SystemGroup") ||
+              !_cups_strcasecmp(line, "SystemGroupAuthKey") ||
+              !_cups_strcasecmp(line, "TempDir") ||
++             !_cups_strcasecmp(line, "PidFile") ||
+ 	     !_cups_strcasecmp(line, "User"))
+     {
+       cupsdLogMessage(CUPSD_LOG_WARN,
 --- a/scheduler/conf.h
 +++ b/scheduler/conf.h
 @@ -244,6 +244,8 @@
