@@ -1,5 +1,6 @@
 var/
 etc/cups/cupsd.conf.default
+etc/cups/cups-files.conf
 etc/cups/snmp.conf
 etc/cups/ppd
 usr/lib/cups/backend/* usr/lib/cups/backend-available
