@@ -1,5 +1,4 @@
 var/
-etc/cups/cupsd.conf
 etc/cups/cupsd.conf.default
 etc/cups/snmp.conf
 etc/cups/ppd
