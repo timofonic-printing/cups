@@ -9,3 +9,7 @@ upgrade)
         mv /etc/cups/cupsd.conf /etc/cups/cupsd.conf.conffile-bak
     fi
 esac
+
+#DEBHELPER#
+
+exit 0
