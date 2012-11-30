@@ -210,7 +210,6 @@ cups (1.6.1-1) UNRELEASED; urgency=low
     small fixes.
     Fixes CVE-2012-5519, Closes: #692791.
   * Update most patches to cope with the above change.
-  * Handle /etc/cups/cupsd.conf with ucf.
 
  -- Didier Raboud <odyx@debian.org>  Sun, 14 Oct 2012 21:52:35 +0200
 

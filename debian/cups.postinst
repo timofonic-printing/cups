@@ -162,9 +162,6 @@ EOM
 	rm /var/cache/cups/ppds.dat 2> /dev/null || :
     fi
 
-    ucf --debconf-ok "/etc/cups/cupsd.conf.default" "/etc/cups/cupsd.conf"
-    ucfr cups "/etc/cups/cupsd.conf"
-
     # Manage printcap file and associated symlinks
     if [ -e /etc/cups/cupsd.conf ]; then
 	if [ -e /etc/printcap.cups ]; then
