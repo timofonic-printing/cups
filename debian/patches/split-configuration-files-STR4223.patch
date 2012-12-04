@@ -1879,7 +1879,21 @@ Bug-CVE: http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2012-5519
    RunUser = getuid();
  
    cupsdLogMessage(CUPSD_LOG_INFO, "Remote access is %s.",
-@@ -2504,13 +2550,174 @@
+@@ -839,6 +885,13 @@
+   BrowseACL = cupsdFindLocation("CUPS_INTERNAL_BROWSE_ACL");
+ 
+  /*
++  * Make sure ConfigFilePerm and LogFilePerm have sane values...
++  */
++
++  ConfigFilePerm &= 0664;
++  LogFilePerm    &= 0664;
++
++ /*
+   * Open the system log for cupsd if necessary...
+   */
+ 
+@@ -2504,13 +2557,174 @@
  
  
  /*
@@ -2057,7 +2071,7 @@ Bug-CVE: http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2012-5519
    int			linenum;	/* Current line number */
    char			line[HTTP_MAX_BUFFER],
  					/* Line from file */
-@@ -2520,7 +2727,6 @@
+@@ -2520,7 +2734,6 @@
  			*value,		/* Pointer to value */
  			*valueptr;	/* Pointer into value */
    int			valuelen;	/* Length of value */
@@ -2065,7 +2079,7 @@ Bug-CVE: http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2012-5519
    http_addrlist_t	*addrlist,	/* Address list */
  			*addr;		/* Current address */
    unsigned		ip[4],		/* Address value */
-@@ -2530,7 +2736,6 @@
+@@ -2530,7 +2743,6 @@
    cupsd_location_t	*location;	/* Browse location */
    cups_file_t		*incfile;	/* Include file */
    char			incname[1024];	/* Include filename */
@@ -2073,7 +2087,7 @@ Bug-CVE: http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2012-5519
  
  
   /*
-@@ -2562,7 +2767,7 @@
+@@ -2562,7 +2774,7 @@
  	                incname, strerror(errno));
        else
        {
@@ -2082,7 +2096,7 @@ Bug-CVE: http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2012-5519
  	cupsFileClose(incfile);
        }
      }
-@@ -2586,8 +2791,6 @@
+@@ -2586,8 +2798,6 @@
        if (linenum == 0)
  	return (0);
      }
@@ -2091,7 +2105,7 @@ Bug-CVE: http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2012-5519
      else if (!_cups_strcasecmp(line, "FaxRetryInterval") && value)
      {
        JobRetryInterval = atoi(value);
-@@ -3246,81 +3449,6 @@
+@@ -3246,81 +3456,6 @@
        }
      }
  #endif /* HAVE_SSL */
@@ -2173,7 +2187,7 @@ Bug-CVE: http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2012-5519
      else if (!_cups_strcasecmp(line, "HostNameLookups") && value)
      {
       /*
-@@ -3399,22 +3527,6 @@
+@@ -3399,22 +3534,6 @@
          cupsdLogMessage(CUPSD_LOG_WARN, "Unknown LogTimeFormat %s on line %d.",
  	                value, linenum);
      }
@@ -2196,7 +2210,7 @@ Bug-CVE: http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2012-5519
      else if (!_cups_strcasecmp(line, "ServerTokens") && value)
      {
       /*
-@@ -3540,117 +3652,192 @@
+@@ -3540,117 +3659,192 @@
  			"line %d.", value, linenum);
      }
  #endif /* HAVE_SSL */
@@ -2563,17 +2577,51 @@ Bug-CVE: http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2012-5519
  #ifdef __APPLE__
            case 'S' : /* Disable system management functions */
                fputs("cupsd: -S (disable system management) for internal "
-@@ -299,7 +351,10 @@
+@@ -298,9 +350,41 @@
+       usage(1);
      }
  
-   if (!ConfigurationFile)
-+  {
-     cupsdSetString(&ConfigurationFile, CUPS_SERVERROOT "/cupsd.conf");
-+    cupsdSetString(&CupsFilesFile, CUPS_SERVERROOT "/cups-files.conf");
-+  }
- 
+-  if (!ConfigurationFile)
+-    cupsdSetString(&ConfigurationFile, CUPS_SERVERROOT "/cupsd.conf");
+-
++    if (!ConfigurationFile)
++    {
++      cupsdSetString(&ConfigurationFile, CUPS_SERVERROOT "/cupsd.conf");
++      cupsdSetString(&CupsFilesFile, CUPS_SERVERROOT "/cups-files.conf");
++    }
++  
++    if (!CupsFilesFile)
++    {
++      char	*filename,		/* Copy of cupsd.conf filename */
++  		*slash;			/* Final slash in cupsd.conf filename */
++      size_t	len;			/* Size of buffer */
++  
++      len = strlen(ConfigurationFile) + 15;
++      if ((filename = malloc(len)) == NULL)
++      {
++        _cupsLangPrintf(stderr,
++  		      _("cupsd: Unable to get path to "
++  			"cups-files.conf file."));
++        return (1);
++      }
++  
++      strlcpy(filename, ConfigurationFile, len);
++      if ((slash = strrchr(filename, '/')) == NULL)
++      {
++        _cupsLangPrintf(stderr,
++  		      _("cupsd: Unable to get path to "
++  			"cups-files.conf file."));
++        return (1);
++      }
++  
++      strlcpy(slash, "/cups-files.conf", len - (slash - filename));
++      cupsdSetString(&CupsFilesFile, filename);
++      free(filename);
++    }
++ 
   /*
    * If the user hasn't specified "-f", run in the background...
+   */
 --- a/test/run-stp-tests.sh
 +++ b/test/run-stp-tests.sh
 @@ -337,25 +337,10 @@

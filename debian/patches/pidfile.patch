@@ -51,7 +51,7 @@ Bug: http://www.cups.org/str.php?L2465
  
  
  /*
-@@ -643,6 +645,11 @@
+@@ -672,6 +674,11 @@
    }
  #endif /* __sgi */
  
@@ -63,7 +63,7 @@ Bug: http://www.cups.org/str.php?L2465
   /*
    * Initialize authentication certificates...
    */
-@@ -1227,10 +1234,41 @@
+@@ -1256,10 +1263,41 @@
  
    cupsdStopSelect();
  
