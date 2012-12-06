@@ -222,17 +222,6 @@ Bug-CVE: http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2012-5519
  	  man/cups-lpd.man
  	  man/cupsaddsmb.man
  	  man/cupsd.conf.man
---- a/doc/Makefile
-+++ b/doc/Makefile
-@@ -3,7 +3,7 @@
- #
- #   Documentation makefile for CUPS.
- #
--#   Copyright 2007-2011 by Apple Inc.
-+#   Copyright 2007-2012 by Apple Inc.
- #   Copyright 1997-2007 by Easy Software Products.
- #
- #   These coded instructions, statements, and computer programs are the
 --- /dev/null
 +++ b/doc/help/ref-cups-files-conf.html.in
 @@ -0,0 +1,531 @@
