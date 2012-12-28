@@ -52,7 +52,7 @@ Last-Update: 2012-12-28
 +
 +  /* Make sure our buffer is at least as large as the input string */
 +  str_len = strlen (str);
-+  if (str_len > buflen)
++  if (str_len >= buflen)
 +  {
 +    if (buffer == NULL)
 +      /* Set encoding type to UTF-8 the first time we need to */
