@@ -126,15 +126,6 @@ cups (1.6.1-1) UNRELEASED; urgency=low
     -network-errors.patch:
     Prevent IPP backend from falling into an infinite loop in certain
     situations (CUPS STR #4194).
-  * debian/patches/forward-port-cups-1-5-x-cups-browsing.patch: Re-introduced
-    CUPS Browsing/Broadcasting for automatic discovery of shared CUPS printers
-    on the local network. We will keep this for the Quantal cycle until we
-    get automatic discovery of Bonjour-broadcasted printers, which most
-    probably needs to be implemented in the application's print dialogs. This
-    will only be possible to be done in Quantal+1 (13.04). The patch is large
-    but all code added worked very well in many generations of CUPS and the
-    code added back in smoothly without need of alterations of the existing
-    code (LP: #1061063, LP: #1061069).
   * debian/patches/fix-make-check.patch: Fix "make check".
   * debian/patches/ubuntu/ubuntu-disable-browsing.patch: Updated.
   * debian/cups.install: Removed all references to the discontinued cups-polld.
@@ -148,10 +139,19 @@ cups (1.6.1-1) UNRELEASED; urgency=low
     libcupsdriver.so got moved to cups-filters as part of libcupsfilters.so.
   * debian/libcupsimage2-dev.install: image.h removed, this API has moved to
     cups-filters.
+  * debian/rules: Removed "--with-remote_protocols='CUPS dnssd'" from the
+    ./configure command line and removed the "CUPS" from
+    "--with-local_protocols='CUPS dnssd'". These settings are not supported
+    any more in CUPS 1.6.x.
   * debian/rules, debian/libcups2-dev.examples: Removed references to scripting/
     this subdirectory does not exist any more in CUPS 1.6.x.
   * debian/libcups2.symbols, debian/libcupsimage2.symbols: Refreshed using the
     diff of the dpkg-gensymbols output during build.
+  * debian/cups.postinst: Clean /etc/cups/cupsd.conf from all keywords and
+    settings which got obsolete with the dropping CUPS Broadcasting/Browsing
+    in CUPS 1.6.x: BrowsePoll, BrowseAllow, BrowseDeny, BrowseOrder, and
+    BrowseRemoteProtocols lines get removed and the "cups" argument gets
+    removed from the BrowseLocalProtocols line (LP: #1052897).
 
   [ Martin Pitt ]
   * manpage-translations.patch: Update German manpage translations, thanks
