@@ -289,6 +289,66 @@ cups (1.5.3-3) experimental; urgency=low
 
  -- Till Kamppeter <till.kamppeter@gmail.com>  Fri,  6 Jul 2012 17:28:01 +0200
 
+cups (1.5.3-2.12) unstable; urgency=low
+
+  [ Julien Cristau ]
+  * In the dbus UTF8 checker:
+    - Make sure to reset the buffer correctly.
+
+ -- Didier Raboud <odyx@debian.org>  Sun, 30 Dec 2012 14:12:20 +0100
+
+cups (1.5.3-2.11.1) unstable; urgency=low
+
+  * Re-upload without spurious debian-changes-* patch.
+
+ -- Didier Raboud <odyx@debian.org>  Sat, 29 Dec 2012 12:38:55 +0100
+
+cups (1.5.3-2.11) unstable; urgency=low
+
+  [ Julien Cristau ]
+  * In the dbus UTF8 checker:
+    - Use C.UTF-8 instead of not-certainly-available en_US.UTF-8; make
+      cups depend on libc-bin (>= 2.13).
+    - Make sure the buffer is really big enough.
+
+ -- Didier Raboud <odyx@debian.org>  Fri, 28 Dec 2012 13:41:27 +0100
+
+cups (1.5.3-2.10) unstable; urgency=low
+
+  * Backport more upstream configuration split fixes:
+    - Fix cupsctl man page
+    - Generate and install cups-files.conf online help.
+    - Fix "-t" operation that shows correct filename.
+    - Use syslog for startup errors.
+    - Fix installation of cupsd.conf: need to use ConfigurationFile and not
+      ServerRoot/cupsd.conf.
+    - Check permissions of ConfigurationFile and CupsFilesFile: should be
+      ConfigFilePerm.
+
+ -- Didier Raboud <odyx@debian.org>  Sun, 16 Dec 2012 15:33:27 +0100
+
+cups (1.5.3-2.9) unstable; urgency=low
+
+  [ Didier Raboud ]
+  * In the configuration file split patch:
+    - Include 'FileDevice warning fix in ipp.c:add_printer()' from Tim
+      Waugh (RedHat).
+    - Drop pure-comment part.
+  * Remove cupsd.conf during purge too. (Closes: #695337)
+
+  [ Bernard Massot ]
+  * Fix lpa{t,d}min typo in cups.NEWS.
+
+ -- Didier Raboud <odyx@debian.org>  Fri, 07 Dec 2012 11:41:51 +0100
+
+cups (1.5.3-2.8) unstable; urgency=low
+
+  * Bugfix the configuration stanzas split: it left some possibilities
+    to have configuration stanzas taken from the wrong file.
+    - Refresh affected patches too.
+
+ -- Didier Raboud <odyx@debian.org>  Tue, 04 Dec 2012 17:10:04 +0100
+
 cups (1.5.3-2.7) unstable; urgency=low
 
   * Backport upstream configuration files split to address CVE-2012-5519.

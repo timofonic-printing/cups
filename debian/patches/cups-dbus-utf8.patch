@@ -1,4 +1,6 @@
 Description: Ensure attributes are valid UTF-8 in dbus notifier
+ Debian-specific: Use C.UTF-8 instead of not-certainly-available
+ en_US.UTF-8.
 Author: Tim Waugh <twaugh@redhat.com>
 Bug-Redhat: https://bugzilla.redhat.com/show_bug.cgi?id=863387
 Bug-Upstream: http://cups.org/str.php?L4219
@@ -15,7 +17,7 @@ Last-Update: 2012-06-11
  
  #ifdef HAVE_DBUS
  #  include <dbus/dbus.h>
-@@ -157,10 +160,82 @@
+@@ -157,10 +160,84 @@
   * Local functions...
   */
  
@@ -40,7 +42,9 @@ Last-Update: 2012-06-11
 +
 +  if (str == NULL)
 +  {
++    buflen = 0;
 +    free (buffer);
++    buffer = NULL;
 +    return (NULL);
 +  }
 +
@@ -50,11 +54,11 @@ Last-Update: 2012-06-11
 +
 +  /* Make sure our buffer is at least as large as the input string */
 +  str_len = strlen (str);
-+  if (str_len > buflen)
++  if (str_len >= buflen)
 +  {
 +    if (buffer == NULL)
 +      /* Set encoding type to UTF-8 the first time we need to */
-+      setlocale (LC_CTYPE, "en_US.UTF-8");
++      setlocale (LC_CTYPE, "C.UTF-8");
 +
 +    buflen = str_len + 1;
 +    buffer = realloc (buffer, buflen);
@@ -99,7 +103,7 @@ Last-Update: 2012-06-11
   * 'main()' - Read events and send DBUS notifications.
   */
  
-@@ -227,6 +302,7 @@
+@@ -227,6 +304,7 @@
      int			no = 0;		/* Boolean "no" value */
      int			params = PARAMS_NONE;
  					/* What parameters to include? */
@@ -107,7 +111,7 @@ Last-Update: 2012-06-11
  
  
     /*
-@@ -366,7 +442,7 @@
+@@ -366,7 +444,7 @@
      attr = ippFindAttribute(msg, "notify-text", IPP_TAG_TEXT);
      if (attr)
      {
@@ -116,7 +120,7 @@ Last-Update: 2012-06-11
        if (!dbus_message_iter_append_string(&iter, &val))
          goto bail;
      }
-@@ -530,7 +606,7 @@
+@@ -530,7 +608,7 @@
        attr = ippFindAttribute(msg, "job-name", IPP_TAG_NAME);
        if (attr)
        {
