@@ -101,6 +101,16 @@ EOM
 	fi
     fi
 
+    # Create default cupsd.conf if it doesn't exist
+    if [ ! -r /etc/cups/cupsd.conf ]; then
+        if dpkg --compare-versions "$2" le "1.6.1" && [ -e /etc/cups/cupsd.conf.conffile-bak ]; then
+            # Move cupsd.conf back as it is now a non-conffile
+            mv /etc/cups/cupsd.conf.conffile-bak /etc/cups/cupsd.conf
+        else
+            cp /etc/cups/cupsd.conf.default /etc/cups/cupsd.conf
+        fi
+    fi
+
     # Remove lines from cupsd.conf which got obsolete in CUPS 1.6.x and would
     # prevent the CUPS daemon from starting due to being invalid now.
     cat /etc/cups/cupsd.conf | grep -Eiv '^\s*Browse(Order|Allow|Deny|Poll|RemoteProtocols)' > /etc/cups/cupsd.conf.new
