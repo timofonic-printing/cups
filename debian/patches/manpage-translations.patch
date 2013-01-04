@@ -4,7 +4,15 @@ Bug-Debian: http://bugs.debian.org/478597
 
 --- a/man/Makefile
 +++ b/man/Makefile
-@@ -67,12 +67,18 @@
+@@ -42,6 +42,7 @@
+ 		cups-files.conf.$(MAN5EXT) \
+ 		cups-snmp.conf.$(MAN5EXT) \
+ 		cupsd.conf.$(MAN5EXT) \
++		cups-files.conf.$(MAN5EXT) \
+ 		ipptoolfile.$(MAN5EXT) \
+ 		mailto.conf.$(MAN5EXT) \
+ 		mime.convs.$(MAN5EXT) \
+@@ -67,12 +68,18 @@
  		lpmove.$(MAN8EXT) \
  		lpc.$(MAN8EXT)
  
@@ -24,7 +32,7 @@ Bug-Debian: http://bugs.debian.org/478597
  
  
  #
-@@ -112,6 +118,11 @@
+@@ -112,6 +119,11 @@
  	for file in $(MAN8); do \
  		$(RM) ../doc/help/man-`basename $$file .$(MAN8EXT)`.html; \
  	done
@@ -36,7 +44,7 @@ Bug-Debian: http://bugs.debian.org/478597
  
  
  #
-@@ -159,6 +170,7 @@
+@@ -159,6 +171,7 @@
  	done
  	$(RM) $(AMANDIR)/man$(MAN8DIR)/cupsdisable.$(MAN8EXT)
  	$(LN) cupsenable.$(MAN8EXT) $(AMANDIR)/man$(MAN8DIR)/cupsdisable.$(MAN8EXT)
@@ -44,7 +52,7 @@ Bug-Debian: http://bugs.debian.org/478597
  
  
  #
-@@ -207,6 +219,7 @@
+@@ -207,6 +220,7 @@
  	$(RM) $(AMANDIR)/man$(MAN8DIR)/reject.$(MAN8EXT)
  	$(RM) $(AMANDIR)/man$(MAN8DIR)/cupsdisable.$(MAN8EXT)
  	-$(RMDIR) $(AMANDIR)/man$(MAN8DIR)
@@ -54,7 +62,7 @@ Bug-Debian: http://bugs.debian.org/478597
  #
 --- /dev/null
 +++ b/man/Makefile.l10n
-@@ -0,0 +1,209 @@
+@@ -0,0 +1,210 @@
 +#
 +# "$Id: $"
 +#
@@ -92,6 +100,7 @@ Bug-Debian: http://bugs.debian.org/478597
 +		client.conf.$(MAN5EXT) \
 +		cups-snmp.conf.$(MAN5EXT) \
 +		cupsd.conf.$(MAN5EXT) \
++		cups-files.conf.$(MAN5EXT) \
 +		mailto.conf.$(MAN5EXT) \
 +		mime.convs.$(MAN5EXT) \
 +		mime.types.$(MAN5EXT) \
@@ -298,7 +307,7 @@ Bug-Debian: http://bugs.debian.org/478597
 +#
 --- /dev/null
 +++ b/man/po4a/cups.cfg
-@@ -0,0 +1,39 @@
+@@ -0,0 +1,40 @@
 +[po4a_langs] fr de
 +[po4a_paths] po4a/po/cups.pot $lang:po4a/po/$lang.po
 +
@@ -311,6 +320,7 @@ Bug-Debian: http://bugs.debian.org/478597
 +[type: man] cups-config.man	$lang:$lang/cups-config.man
 +[type: man] cupsctl.man	$lang:$lang/cupsctl.man
 +[type: man] cupsd.conf.man.in	$lang:$lang/cupsd.conf.man.in
++[type: man] cups-files.conf.man.in	$lang:$lang/cupsd.conf.man.in
 +[type: man] cups-deviced.man.in	$lang:$lang/cups-deviced.man.in
 +[type: man] cupsd.man.in	$lang:$lang/cupsd.man.in
 +[type: man] cups-driverd.man.in	$lang:$lang/cups-driverd.man.in
@@ -340,7 +350,7 @@ Bug-Debian: http://bugs.debian.org/478597
 +
 --- /dev/null
 +++ b/man/po4a/po/de.po
-@@ -0,0 +1,10643 @@
+@@ -0,0 +1,10680 @@
 +# Translation of cups man pages to German
 +# Copyright (C) Helge Kreutzmann <debian@helgefjell.de>, 2008-2012
 +# Chris Leick <c.leick@vollbio.de>, 2009.
@@ -349,7 +359,7 @@ Bug-Debian: http://bugs.debian.org/478597
 +msgid ""
 +msgstr ""
 +"Project-Id-Version: cups man pages 1.5.2-10\n"
-+"POT-Creation-Date: 2012-10-30 15:29+0100\n"
++"POT-Creation-Date: 2013-01-04 16:48+0100\n"
 +"PO-Revision-Date: 2012-04-22 15:33+0200\n"
 +"Last-Translator: Helge Kreutzmann <debian@helgefjell.de>\n"
 +"Language-Team: de <debian-l10n-german@lists.debian.org>\n"
@@ -368,13 +378,14 @@ Bug-Debian: http://bugs.debian.org/478597
 +#. type: TH
 +#: cupsaccept.man:15 backend.man:15 cancel.man:15 classes.conf.man:15
 +#: client.conf.man.in:15 cupsaddsmb.man.in:15 cups-config.man:15
-+#: cupsctl.man:15 cupsd.conf.man.in:15 cups-deviced.man.in:15 cupsd.man.in:15
-+#: cups-driverd.man.in:15 cupsenable.man:15 cupsfilter.man:14
-+#: cups-lpd.man.in:15 cups-snmp.conf.man:15 cupstestdsc.man:15
-+#: cupstestppd.man:15 filter.man:15 lpadmin.man:15 lpc.man:15 lpinfo.man:15
-+#: lp.man:15 lpmove.man:15 lpoptions.man.in:15 lppasswd.man:15 lpq.man:15
-+#: lpr.man:15 lprm.man:15 lpstat.man:15 mailto.conf.man:15 mime.convs.man:15
-+#: mime.types.man:15 printers.conf.man:15 subscriptions.conf.man:15
++#: cupsctl.man:15 cupsd.conf.man.in:15 cups-files.conf.man.in:15
++#: cups-deviced.man.in:15 cupsd.man.in:15 cups-driverd.man.in:15
++#: cupsenable.man:15 cupsfilter.man:14 cups-lpd.man.in:15
++#: cups-snmp.conf.man:15 cupstestdsc.man:15 cupstestppd.man:15 filter.man:15
++#: lpadmin.man:15 lpc.man:15 lpinfo.man:15 lp.man:15 lpmove.man:15
++#: lpoptions.man.in:15 lppasswd.man:15 lpq.man:15 lpr.man:15 lprm.man:15
++#: lpstat.man:15 mailto.conf.man:15 mime.convs.man:15 mime.types.man:15
++#: printers.conf.man:15 subscriptions.conf.man:15
 +#, no-wrap
 +msgid "CUPS"
 +msgstr "CUPS"
@@ -388,13 +399,14 @@ Bug-Debian: http://bugs.debian.org/478597
 +#. type: TH
 +#: cupsaccept.man:15 backend.man:15 cancel.man:15 classes.conf.man:15
 +#: client.conf.man.in:15 cupsaddsmb.man.in:15 cups-config.man:15
-+#: cupsctl.man:15 cupsd.conf.man.in:15 cups-deviced.man.in:15 cupsd.man.in:15
-+#: cups-driverd.man.in:15 cupsenable.man:15 cupsfilter.man:14
-+#: cups-lpd.man.in:15 cups-snmp.conf.man:15 cupstestdsc.man:15
-+#: cupstestppd.man:15 filter.man:15 lpadmin.man:15 lpc.man:15 lpinfo.man:15
-+#: lp.man:15 lpmove.man:15 lpoptions.man.in:15 lppasswd.man:15 lpq.man:15
-+#: lpr.man:15 lprm.man:15 lpstat.man:15 mailto.conf.man:15 mime.convs.man:15
-+#: mime.types.man:15 printers.conf.man:15 subscriptions.conf.man:15
++#: cupsctl.man:15 cupsd.conf.man.in:15 cups-files.conf.man.in:15
++#: cups-deviced.man.in:15 cupsd.man.in:15 cups-driverd.man.in:15
++#: cupsenable.man:15 cupsfilter.man:14 cups-lpd.man.in:15
++#: cups-snmp.conf.man:15 cupstestdsc.man:15 cupstestppd.man:15 filter.man:15
++#: lpadmin.man:15 lpc.man:15 lpinfo.man:15 lp.man:15 lpmove.man:15
++#: lpoptions.man.in:15 lppasswd.man:15 lpq.man:15 lpr.man:15 lprm.man:15
++#: lpstat.man:15 mailto.conf.man:15 mime.convs.man:15 mime.types.man:15
++#: printers.conf.man:15 subscriptions.conf.man:15
 +#, no-wrap
 +msgid "Apple Inc."
 +msgstr "Apple Inc."
@@ -402,13 +414,14 @@ Bug-Debian: http://bugs.debian.org/478597
 +#. type: SH
 +#: cupsaccept.man:16 backend.man:17 cancel.man:16 classes.conf.man:16
 +#: client.conf.man.in:16 cupsaddsmb.man.in:16 cups-config.man:16
-+#: cupsctl.man:16 cupsd.conf.man.in:16 cups-deviced.man.in:16 cupsd.man.in:16
-+#: cups-driverd.man.in:16 cupsenable.man:16 cupsfilter.man:15
-+#: cups-lpd.man.in:16 cups-snmp.conf.man:17 cupstestdsc.man:16
-+#: cupstestppd.man:16 filter.man:16 lpadmin.man:16 lpc.man:16 lpinfo.man:16
-+#: lp.man:16 lpmove.man:16 lpoptions.man.in:16 lppasswd.man:16 lpq.man:16
-+#: lpr.man:16 lprm.man:16 lpstat.man:16 mailto.conf.man:16 mime.convs.man:16
-+#: mime.types.man:16 printers.conf.man:16 subscriptions.conf.man:16
++#: cupsctl.man:16 cupsd.conf.man.in:16 cups-files.conf.man.in:16
++#: cups-deviced.man.in:16 cupsd.man.in:16 cups-driverd.man.in:16
++#: cupsenable.man:16 cupsfilter.man:15 cups-lpd.man.in:16
++#: cups-snmp.conf.man:17 cupstestdsc.man:16 cupstestppd.man:16 filter.man:16
++#: lpadmin.man:16 lpc.man:16 lpinfo.man:16 lp.man:16 lpmove.man:16
++#: lpoptions.man.in:16 lppasswd.man:16 lpq.man:16 lpr.man:16 lprm.man:16
++#: lpstat.man:16 mailto.conf.man:16 mime.convs.man:16 mime.types.man:16
++#: printers.conf.man:16 subscriptions.conf.man:16
 +#, no-wrap
 +msgid "NAME"
 +msgstr "NAME"
@@ -455,13 +468,14 @@ Bug-Debian: http://bugs.debian.org/478597
 +#. type: SH
 +#: cupsaccept.man:34 backend.man:26 cancel.man:33 classes.conf.man:18
 +#: client.conf.man.in:18 cupsaddsmb.man.in:38 cups-config.man:53
-+#: cupsctl.man:29 cupsd.conf.man.in:18 cups-deviced.man.in:21 cupsd.man.in:23
-+#: cups-driverd.man.in:26 cupsenable.man:34 cupsfilter.man:41
-+#: cups-lpd.man.in:25 cups-snmp.conf.man:19 cupstestdsc.man:26
-+#: cupstestppd.man:34 filter.man:23 lpadmin.man:46 lpc.man:25 lpinfo.man:50
-+#: lp.man:62 lpmove.man:34 lpoptions.man.in:62 lppasswd.man:33 lpq.man:29
-+#: lpr.man:35 lprm.man:29 lpstat.man:39 mailto.conf.man:18 mime.convs.man:18
-+#: mime.types.man:18 printers.conf.man:18 subscriptions.conf.man:18
++#: cupsctl.man:29 cupsd.conf.man.in:18 cups-files.conf.man.in:18
++#: cups-deviced.man.in:21 cupsd.man.in:23 cups-driverd.man.in:26
++#: cupsenable.man:34 cupsfilter.man:41 cups-lpd.man.in:25
++#: cups-snmp.conf.man:19 cupstestdsc.man:26 cupstestppd.man:34 filter.man:23
++#: lpadmin.man:46 lpc.man:25 lpinfo.man:50 lp.man:62 lpmove.man:34
++#: lpoptions.man.in:62 lppasswd.man:33 lpq.man:29 lpr.man:35 lprm.man:29
++#: lpstat.man:39 mailto.conf.man:18 mime.convs.man:18 mime.types.man:18
++#: printers.conf.man:18 subscriptions.conf.man:18
 +#, no-wrap
 +msgid "DESCRIPTION"
 +msgstr "BESCHREIBUNG"
@@ -605,13 +619,13 @@ Bug-Debian: http://bugs.debian.org/478597
 +#. type: SH
 +#: cupsaccept.man:70 backend.man:163 cancel.man:67 classes.conf.man:101
 +#: client.conf.man.in:53 cupsaddsmb.man.in:204 cups-config.man:111
-+#: cupsctl.man:94 cupsd.conf.man.in:642 cups-deviced.man.in:36 cupsd.man.in:61
-+#: cups-driverd.man.in:114 cupsenable.man:83 cupsfilter.man:101
-+#: cups-lpd.man.in:115 cups-snmp.conf.man:70 cupstestdsc.man:41
-+#: cupstestppd.man:155 filter.man:230 lpadmin.man:218 lpc.man:62
-+#: lpinfo.man:107 lp.man:243 lpmove.man:58 lpoptions.man.in:127
-+#: lppasswd.man:60 lpq.man:63 lpr.man:113 lprm.man:56 lpstat.man:135
-+#: mailto.conf.man:51 mime.convs.man:37 mime.types.man:106
++#: cupsctl.man:94 cupsd.conf.man.in:515 cups-files.conf.man.in:136
++#: cups-deviced.man.in:36 cupsd.man.in:61 cups-driverd.man.in:114
++#: cupsenable.man:83 cupsfilter.man:101 cups-lpd.man.in:115
++#: cups-snmp.conf.man:70 cupstestdsc.man:41 cupstestppd.man:155 filter.man:230
++#: lpadmin.man:218 lpc.man:62 lpinfo.man:107 lp.man:243 lpmove.man:58
++#: lpoptions.man.in:127 lppasswd.man:60 lpq.man:63 lpr.man:113 lprm.man:56
++#: lpstat.man:135 mailto.conf.man:51 mime.convs.man:37 mime.types.man:106
 +#: printers.conf.man:115 subscriptions.conf.man:80
 +#, no-wrap
 +msgid "SEE ALSO"
@@ -627,11 +641,11 @@ Bug-Debian: http://bugs.debian.org/478597
 +#. type: Plain text
 +#: cupsaccept.man:75 backend.man:168 cancel.man:71 classes.conf.man:106
 +#: client.conf.man.in:55 cups-config.man:113 cupsctl.man:98
-+#: cupsd.conf.man.in:648 cups-deviced.man.in:40 cupsd.man.in:68
-+#: cups-driverd.man.in:118 cupsenable.man:88 cupsfilter.man:105
-+#: cups-lpd.man.in:120 cups-snmp.conf.man:74 cupstestdsc.man:43
-+#: cupstestppd.man:159 filter.man:234 lpadmin.man:223 lpc.man:67
-+#: lpinfo.man:111 lp.man:248 lpmove.man:62 lpoptions.man.in:131
++#: cupsd.conf.man.in:521 cups-files.conf.man.in:142 cups-deviced.man.in:40
++#: cupsd.man.in:68 cups-driverd.man.in:118 cupsenable.man:88
++#: cupsfilter.man:105 cups-lpd.man.in:120 cups-snmp.conf.man:74
++#: cupstestdsc.man:43 cupstestppd.man:159 filter.man:234 lpadmin.man:223
++#: lpc.man:67 lpinfo.man:111 lp.man:248 lpmove.man:62 lpoptions.man.in:131
 +#: lppasswd.man:64 lpq.man:68 lpr.man:118 lprm.man:61 lpstat.man:139
 +#: mailto.conf.man:56 mime.convs.man:42 mime.types.man:111
 +#: printers.conf.man:120 subscriptions.conf.man:85
@@ -642,13 +656,13 @@ Bug-Debian: http://bugs.debian.org/478597
 +#. type: SH
 +#: cupsaccept.man:75 backend.man:168 cancel.man:71 classes.conf.man:106
 +#: client.conf.man.in:55 cupsaddsmb.man.in:210 cups-config.man:113
-+#: cupsctl.man:98 cupsd.conf.man.in:648 cups-deviced.man.in:40 cupsd.man.in:68
-+#: cups-driverd.man.in:118 cupsenable.man:88 cupsfilter.man:105
-+#: cups-lpd.man.in:120 cups-snmp.conf.man:74 cupstestdsc.man:46
-+#: cupstestppd.man:161 filter.man:234 lpadmin.man:223 lpc.man:67
-+#: lpinfo.man:111 lp.man:248 lpmove.man:62 lpoptions.man.in:131
-+#: lppasswd.man:64 lpq.man:68 lpr.man:118 lprm.man:61 lpstat.man:139
-+#: mailto.conf.man:56 mime.convs.man:42 mime.types.man:111
++#: cupsctl.man:98 cupsd.conf.man.in:521 cups-files.conf.man.in:142
++#: cups-deviced.man.in:40 cupsd.man.in:68 cups-driverd.man.in:118
++#: cupsenable.man:88 cupsfilter.man:105 cups-lpd.man.in:120
++#: cups-snmp.conf.man:74 cupstestdsc.man:46 cupstestppd.man:161 filter.man:234
++#: lpadmin.man:223 lpc.man:67 lpinfo.man:111 lp.man:248 lpmove.man:62
++#: lpoptions.man.in:131 lppasswd.man:64 lpq.man:68 lpr.man:118 lprm.man:61
++#: lpstat.man:139 mailto.conf.man:56 mime.convs.man:42 mime.types.man:111
 +#: printers.conf.man:120 subscriptions.conf.man:85
 +#, no-wrap
 +msgid "COPYRIGHT"
@@ -658,13 +672,13 @@ Bug-Debian: http://bugs.debian.org/478597
 +#. type: Plain text
 +#: cupsaccept.man:76 backend.man:169 cancel.man:72 classes.conf.man:107
 +#: client.conf.man.in:56 cupsaddsmb.man.in:211 cups-config.man:114
-+#: cupsctl.man:99 cupsd.conf.man.in:649 cups-deviced.man.in:41 cupsd.man.in:69
-+#: cups-driverd.man.in:119 cupsenable.man:90 cupsfilter.man:106
-+#: cups-lpd.man.in:121 cups-snmp.conf.man:75 cupstestdsc.man:47
-+#: cupstestppd.man:162 filter.man:235 lpadmin.man:224 lpc.man:68
-+#: lpinfo.man:112 lp.man:249 lpmove.man:63 lpoptions.man.in:132
-+#: lppasswd.man:65 lpq.man:69 lpr.man:119 lprm.man:62 lpstat.man:140
-+#: mailto.conf.man:57 mime.convs.man:43 mime.types.man:112
++#: cupsctl.man:99 cupsd.conf.man.in:522 cups-files.conf.man.in:143
++#: cups-deviced.man.in:41 cupsd.man.in:69 cups-driverd.man.in:119
++#: cupsenable.man:90 cupsfilter.man:106 cups-lpd.man.in:121
++#: cups-snmp.conf.man:75 cupstestdsc.man:47 cupstestppd.man:162 filter.man:235
++#: lpadmin.man:224 lpc.man:68 lpinfo.man:112 lp.man:249 lpmove.man:63
++#: lpoptions.man.in:132 lppasswd.man:65 lpq.man:69 lpr.man:119 lprm.man:62
++#: lpstat.man:140 mailto.conf.man:57 mime.convs.man:43 mime.types.man:112
 +#: printers.conf.man:121 subscriptions.conf.man:86
 +#, fuzzy
 +#| msgid "Copyright 2007-2011 by Apple Inc."
@@ -1334,8 +1348,8 @@ Bug-Debian: http://bugs.debian.org/478597
 +"gelöscht werden."
 +
 +#. type: Plain text
-+#: classes.conf.man:26 mailto.conf.man:24 printers.conf.man:26
-+#: subscriptions.conf.man:26
++#: classes.conf.man:26 cups-files.conf.man.in:25 mailto.conf.man:24
++#: printers.conf.man:26 subscriptions.conf.man:26
 +msgid ""
 +"Each line in the file can be a configuration directive, a blank line, or a "
 +"comment. Comment lines start with the # character."
@@ -1344,9 +1358,9 @@ Bug-Debian: http://bugs.debian.org/478597
 +"oder ein Kommentar sein. Kommentarzeilen beginnen mit dem Zeichen »#«."
 +
 +#. type: SH
-+#: classes.conf.man:26 client.conf.man.in:24 cupsd.conf.man.in:26
-+#: cups-snmp.conf.man:28 mailto.conf.man:24 printers.conf.man:26
-+#: subscriptions.conf.man:26
++#: classes.conf.man:26 client.conf.man.in:24 cupsd.conf.man.in:29
++#: cups-files.conf.man.in:25 cups-snmp.conf.man:28 mailto.conf.man:24
++#: printers.conf.man:26 subscriptions.conf.man:26
 +#, no-wrap
 +msgid "DIRECTIVES"
 +msgstr "DIREKTIVEN"
@@ -1633,25 +1647,25 @@ Bug-Debian: http://bugs.debian.org/478597
 +"Online-Hilfe für detailliertere Beschreibungen:"
 +
 +#. type: TP
-+#: client.conf.man.in:27 cupsd.conf.man.in:203
++#: client.conf.man.in:27 cupsd.conf.man.in:173
 +#, no-wrap
 +msgid "Encryption IfRequested"
 +msgstr "Encryption IfRequested"
 +
 +#. type: TP
-+#: client.conf.man.in:29 cupsd.conf.man.in:205
++#: client.conf.man.in:29 cupsd.conf.man.in:175
 +#, no-wrap
 +msgid "Encryption Never"
 +msgstr "Encryption Never"
 +
 +#. type: TP
-+#: client.conf.man.in:31 cupsd.conf.man.in:207
++#: client.conf.man.in:31 cupsd.conf.man.in:177
 +#, no-wrap
 +msgid "Encryption Required"
 +msgstr "Encryption Required"
 +
 +#. type: Plain text
-+#: client.conf.man.in:36 cupsd.conf.man.in:212
++#: client.conf.man.in:36 cupsd.conf.man.in:182
 +msgid ""
 +"Specifies the level of encryption that is required for a particular location."
 +msgstr ""
@@ -1659,7 +1673,7 @@ Bug-Debian: http://bugs.debian.org/478597
 +"benötigt wird."
 +
 +#. type: TP
-+#: client.conf.man.in:36 cupsd.conf.man.in:252
++#: client.conf.man.in:36 cupsd.conf.man.in:191
 +#, no-wrap
 +msgid "GSSServiceName name"
 +msgstr "GSSServiceName Name"
@@ -2694,11 +2708,11 @@ Bug-Debian: http://bugs.debian.org/478597
 +msgstr "cupsd.conf"
 +
 +#. type: TH
-+#: cupsd.conf.man.in:15 filter.man:15
++#: cupsd.conf.man.in:15 cups-files.conf.man.in:15
 +#, fuzzy, no-wrap
-+#| msgid "18 May 2011"
-+msgid "18 May 2012"
-+msgstr "18. Mai 2011"
++#| msgid "19 November 2009"
++msgid "19 November 2012"
++msgstr "19. November 2009"
 +
 +#. type: Plain text
 +#: cupsd.conf.man.in:18
@@ -2706,17 +2720,17 @@ Bug-Debian: http://bugs.debian.org/478597
 +msgstr "cupsd.conf - Server-Konfigurationsdatei für CUPS"
 +
 +#. type: Plain text
-+#: cupsd.conf.man.in:21
++#: cupsd.conf.man.in:24
 +msgid ""
 +"The I<cupsd.conf> file configures the CUPS scheduler, I<cupsd(8)>.  It is "
-+"normally located in the I<@CUPS_SERVERROOT@> directory."
++"normally located in the I<@CUPS_SERVERROOT@> directory. B<Note:> File, "
++"directory, and user configuration directives that used to be allowed in the "
++"I<cupsd.conf> file are now stored in the I<cups-files.conf(5)> instead in "
++"order to prevent certain types of privilege escalation attacks."
 +msgstr ""
-+"Die Datei I<cupsd.conf> konfiguriert den CUPS-Auftragsplaner (Scheduler), "
-+"I<cupsd(8)>. Sie befindet sich normalerweise im Verzeichnis "
-+"I<@CUPS_SERVERROOT@>."
 +
 +#. type: Plain text
-+#: cupsd.conf.man.in:26
++#: cupsd.conf.man.in:29
 +msgid ""
 +"Each line in the file can be a configuration directive, a blank line, or a "
 +"comment. Comment lines start with the # character. The configuration "
@@ -2729,7 +2743,7 @@ Bug-Debian: http://bugs.debian.org/478597
 +"Webservers gehalten und werden unten beschrieben."
 +
 +#. type: Plain text
-+#: cupsd.conf.man.in:29
++#: cupsd.conf.man.in:32 cups-files.conf.man.in:28
 +msgid ""
 +"The following directives are understood by I<cupsd(8)>. Consult the on-line "
 +"help for detailed descriptions:"
@@ -2737,204 +2751,140 @@ Bug-Debian: http://bugs.debian.org/478597
 +"Die folgenden Direktiven werden von I<cupsd(8)> verstanden. Schauen Sie in "
 +"die Online-Hilfe für eine detailliertere Beschreibung:"
 +
-+#. type: TP
-+#: cupsd.conf.man.in:29
-+#, no-wrap
-+msgid "AccessLog filename"
-+msgstr "AccessLog Dateiname"
-+
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:31
-+#, no-wrap
-+msgid "AccessLog syslog"
-+msgstr "AccessLog syslog"
-+
-+# type: Plain text
-+#. type: Plain text
-+#: cupsd.conf.man.in:35
-+msgid "Defines the access log filename."
-+msgstr "Definiert den Namen der Zugriffsprotokolldatei."
-+
-+# type: TP
-+#. type: TP
-+#: cupsd.conf.man.in:35
++#: cupsd.conf.man.in:32
 +#, no-wrap
 +msgid "AccessLogLevel config"
 +msgstr "AccessLogLevel config"
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:37
++#: cupsd.conf.man.in:34
 +#, no-wrap
 +msgid "AccessLogLevel actions"
 +msgstr "AccessLogLevel actions"
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:39
++#: cupsd.conf.man.in:36
 +#, no-wrap
 +msgid "AccessLogLevel all"
 +msgstr "AccessLogLevel all"
 +
 +# type: Plain text
 +#. type: Plain text
-+#: cupsd.conf.man.in:43
++#: cupsd.conf.man.in:40
 +msgid "Specifies the logging level for the AccessLog file."
 +msgstr "Spezifiziert die Protokollierungsstufe für die AccessLog-Datei."
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:43
++#: cupsd.conf.man.in:40
 +#, no-wrap
 +msgid "Allow all"
 +msgstr "Allow all"
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:45
++#: cupsd.conf.man.in:42
 +#, no-wrap
 +msgid "Allow none"
 +msgstr "Allow none"
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:47
++#: cupsd.conf.man.in:44
 +#, no-wrap
 +msgid "Allow host.domain.com"
 +msgstr "Allow host.domain.com"
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:49
++#: cupsd.conf.man.in:46
 +#, no-wrap
 +msgid "Allow *.domain.com"
 +msgstr "Allow *.domain.com"
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:51
++#: cupsd.conf.man.in:48
 +#, no-wrap
 +msgid "Allow ip-address"
 +msgstr "Allow IP-Adresse"
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:53
++#: cupsd.conf.man.in:50
 +#, no-wrap
 +msgid "Allow ip-address/netmask"
 +msgstr "Allow IP-Adresse/Netzmaske"
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:55
++#: cupsd.conf.man.in:52
 +#, no-wrap
 +msgid "Allow ip-address/mm"
 +msgstr "Allow IP-Adresse/mm"
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:57
++#: cupsd.conf.man.in:54
 +#, no-wrap
 +msgid "Allow @IF(name)"
 +msgstr "Allow @IF(Name)"
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:59
++#: cupsd.conf.man.in:56
 +#, no-wrap
 +msgid "Allow @LOCAL"
 +msgstr "Allow @LOCAL"
 +
 +# type: Plain text
 +#. type: Plain text
-+#: cupsd.conf.man.in:63
++#: cupsd.conf.man.in:60
 +msgid "Allows access from the named hosts or addresses."
 +msgstr "Erlaubt Zugriff von den benannten Rechnern oder Adressen."
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:63
-+#, no-wrap
-+msgid "AuthClass User"
-+msgstr "AuthClass User"
-+
-+# type: TP
-+#. type: TP
-+#: cupsd.conf.man.in:65
-+#, no-wrap
-+msgid "AuthClass Group"
-+msgstr "AuthClass Group"
-+
-+# type: TP
-+#. type: TP
-+#: cupsd.conf.man.in:67
-+#, no-wrap
-+msgid "AuthClass System"
-+msgstr "AuthClass System"
-+
-+# type: Plain text
-+#. type: Plain text
-+#: cupsd.conf.man.in:72
-+msgid ""
-+"Specifies the authentication class (User, Group, System) - B<this directive "
-+"is deprecated>."
-+msgstr ""
-+"Spezifiziert die Authentifizierungsklasse (Benutzer, Gruppe, System) - "
-+"B<diese Direktive ist veraltet>."
-+
-+# type: TP
-+#. type: TP
-+#: cupsd.conf.man.in:72
-+#, no-wrap
-+msgid "AuthGroupName group-name"
-+msgstr "AuthGroupName Gruppenname"
-+
-+# type: Plain text
-+#. type: Plain text
-+#: cupsd.conf.man.in:77
-+msgid "Specifies the authentication group - B<this directive is deprecated>."
-+msgstr ""
-+"Spezifiziert die Authentifizierungsgruppe - B<diese Direktive ist veraltet>."
-+
-+# type: TP
-+#. type: TP
-+#: cupsd.conf.man.in:77
++#: cupsd.conf.man.in:60
 +#, no-wrap
 +msgid "AuthType None"
 +msgstr "AuthType None"
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:79
++#: cupsd.conf.man.in:62
 +#, no-wrap
 +msgid "AuthType Basic"
 +msgstr "AuthType Basic"
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:81
++#: cupsd.conf.man.in:64
 +#, no-wrap
 +msgid "AuthType BasicDigest"
 +msgstr "AuthType BasicDigest"
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:83
++#: cupsd.conf.man.in:66
 +#, no-wrap
 +msgid "AuthType Digest"
 +msgstr "AuthType Digest"
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:85
++#: cupsd.conf.man.in:68
 +#, no-wrap
 +msgid "AuthType Negotiate"
 +msgstr "AuthType Negotiate"
 +
 +# type: Plain text
 +#. type: Plain text
-+#: cupsd.conf.man.in:89
++#: cupsd.conf.man.in:72
 +msgid ""
 +"Specifies the authentication type (None, Basic, BasicDigest, Digest, "
 +"Negotiate)"
@@ -2944,21 +2894,21 @@ Bug-Debian: http://bugs.debian.org/478597
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:89
++#: cupsd.conf.man.in:72
 +#, no-wrap
 +msgid "AutoPurgeJobs Yes"
 +msgstr "AutoPurgeJobs Yes"
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:91
++#: cupsd.conf.man.in:74
 +#, no-wrap
 +msgid "AutoPurgeJobs No"
 +msgstr "AutoPurgeJobs No"
 +
 +# type: Plain text
 +#. type: Plain text
-+#: cupsd.conf.man.in:96
++#: cupsd.conf.man.in:79
 +msgid ""
 +"Specifies whether to purge job history data automatically when it is no "
 +"longer required for quotas."
@@ -2968,7 +2918,7 @@ Bug-Debian: http://bugs.debian.org/478597
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:96
++#: cupsd.conf.man.in:79
 +#, fuzzy, no-wrap
 +#| msgid "BrowseLocalProtocols [All] [CUPS] [DNSSD] [LDAP] [SLP]"
 +msgid "BrowseLocalProtocols [All] [DNSSD]"
@@ -2976,7 +2926,7 @@ Bug-Debian: http://bugs.debian.org/478597
 +
 +# type: Plain text
 +#. type: Plain text
-+#: cupsd.conf.man.in:100
++#: cupsd.conf.man.in:83
 +#, fuzzy
 +#| msgid "Specifies the protocols to use for local printer browsing."
 +msgid "Specifies the protocols to use for local printer sharing."
@@ -2986,76 +2936,78 @@ Bug-Debian: http://bugs.debian.org/478597
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:100
++#: cupsd.conf.man.in:83
 +#, no-wrap
 +msgid "BrowseWebIF Yes"
 +msgstr "BrowseWebIF Yes"
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:102
++#: cupsd.conf.man.in:85
 +#, no-wrap
 +msgid "BrowseWebIF No"
 +msgstr "BrowseWebIF No"
 +
 +# type: Plain text
 +#. type: Plain text
-+#: cupsd.conf.man.in:106
++#: cupsd.conf.man.in:89
 +msgid "Specifies whether the CUPS web interface is advertised via DNS-SD."
 +msgstr "Gibt an, ob die CUPS-Web-Schnittstelle über DNS-SD angekündigt wird."
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:106
++#: cupsd.conf.man.in:89
 +#, no-wrap
 +msgid "Browsing Yes"
 +msgstr "Browsing Yes"
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:108
++#: cupsd.conf.man.in:91
 +#, no-wrap
 +msgid "Browsing No"
 +msgstr "Browsing No"
 +
 +# type: Plain text
 +#. type: Plain text
-+#: cupsd.conf.man.in:112
-+msgid "Specifies whether or not remote printer browsing should be enabled."
++#: cupsd.conf.man.in:95
++#, fuzzy
++#| msgid "Specifies whether or not remote printer browsing should be enabled."
++msgid "Specifies whether or not shared printers should be advertised."
 +msgstr ""
 +"Spezifiziert, ob das Durchsuchen von Druckern in der Ferne aktiviert werden "
 +"soll oder nicht."
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:112
++#: cupsd.conf.man.in:95
 +#, no-wrap
 +msgid "Classification banner"
 +msgstr "Classification Deckblatt"
 +
 +# type: Plain text
 +#. type: Plain text
-+#: cupsd.conf.man.in:116
++#: cupsd.conf.man.in:99
 +msgid "Specifies the security classification of the server."
 +msgstr "Spezifiziert die Sicherheitseinstufung des Servers."
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:116
++#: cupsd.conf.man.in:99
 +#, no-wrap
 +msgid "ClassifyOverride Yes"
 +msgstr "ClassifyOverride Yes"
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:118
++#: cupsd.conf.man.in:101
 +#, no-wrap
 +msgid "ClassifyOverride No"
 +msgstr "ClassifyOverride No"
 +
 +# type: Plain text
 +#. type: Plain text
-+#: cupsd.conf.man.in:123
++#: cupsd.conf.man.in:106
 +msgid ""
 +"Specifies whether to allow users to override the classification of "
 +"individual print jobs."
@@ -3065,93 +3017,62 @@ Bug-Debian: http://bugs.debian.org/478597
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:123
-+#, no-wrap
-+msgid "ConfigFilePerm mode"
-+msgstr "ConfigFilePerm Modus"
-+
-+# type: Plain text
-+#. type: Plain text
-+#: cupsd.conf.man.in:128
-+msgid ""
-+"Specifies the permissions for all configuration files that the scheduler "
-+"writes."
-+msgstr ""
-+"Spezifiziert die Rechte für alle vom Auftragsplaner (Scheduler) "
-+"geschriebenen Konfigurationsdateien."
-+
-+# type: TP
-+#. type: TP
-+#: cupsd.conf.man.in:128
-+#, no-wrap
-+msgid "DataDir path"
-+msgstr "DataDir Pfad"
-+
-+# type: Plain text
-+#. type: Plain text
-+#: cupsd.conf.man.in:132
-+msgid "Specified the directory where data files can be found."
-+msgstr ""
-+"Spezifiziert das Verzeichnis, in dem Datendateien gefunden werden können."
-+
-+# type: TP
-+#. type: TP
-+#: cupsd.conf.man.in:132
++#: cupsd.conf.man.in:106
 +#, no-wrap
 +msgid "DefaultAuthType Basic"
 +msgstr "DefaultAuthType Basic"
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:134
++#: cupsd.conf.man.in:108
 +#, no-wrap
 +msgid "DefaultAuthType BasicDigest"
 +msgstr "DefaultAuthType BasicDigest"
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:136
++#: cupsd.conf.man.in:110
 +#, no-wrap
 +msgid "DefaultAuthType Digest"
 +msgstr "DefaultAuthType Digest"
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:138
++#: cupsd.conf.man.in:112
 +#, no-wrap
 +msgid "DefaultAuthType Negotiate"
 +msgstr "DefaultAuthType Negotiate"
 +
 +# type: Plain text
 +#. type: Plain text
-+#: cupsd.conf.man.in:142
++#: cupsd.conf.man.in:116
 +msgid "Specifies the default type of authentication to use."
 +msgstr "Spezifiziert den standardmäßig zu verwendenden Authentifizierungstyp."
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:142
++#: cupsd.conf.man.in:116
 +#, no-wrap
 +msgid "DefaultEncryption Never"
 +msgstr "DefaultEncryption Never"
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:144
++#: cupsd.conf.man.in:118
 +#, no-wrap
 +msgid "DefaultEncryption IfRequested"
 +msgstr "DefaultEncryption IfRequested"
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:146
++#: cupsd.conf.man.in:120
 +#, no-wrap
 +msgid "DefaultEncryption Required"
 +msgstr "DefaultEncryption Required"
 +
 +# type: Plain text
 +#. type: Plain text
-+#: cupsd.conf.man.in:150
++#: cupsd.conf.man.in:124
 +msgid "Specifies the type of encryption to use for authenticated requests."
 +msgstr ""
 +"Gibt den Typ der Verschlüsselung an, der für authentifizierte Anfragen "
@@ -3159,14 +3080,14 @@ Bug-Debian: http://bugs.debian.org/478597
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:150
++#: cupsd.conf.man.in:124
 +#, no-wrap
 +msgid "DefaultLanguage locale"
 +msgstr "DefaultLanguage Locale (Standorteinstellung)"
 +
 +# type: Plain text
 +#. type: Plain text
-+#: cupsd.conf.man.in:154
++#: cupsd.conf.man.in:128
 +msgid "Specifies the default language to use for text and web content."
 +msgstr ""
 +"Spezifiziert die Standardsprache, die für Text und Webinhalte verwandt "
@@ -3174,27 +3095,27 @@ Bug-Debian: http://bugs.debian.org/478597
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:154
++#: cupsd.conf.man.in:128
 +#, no-wrap
 +msgid "DefaultPaperSize Auto"
 +msgstr "DefaultPaperSize Auto"
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:156
++#: cupsd.conf.man.in:130
 +#, no-wrap
 +msgid "DefaultPaperSize None"
 +msgstr "DefaultPaperSize None"
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:158
++#: cupsd.conf.man.in:132
 +#, no-wrap
 +msgid "DefaultPaperSize sizename"
 +msgstr "DefaultPaperSize Größenname"
 +
 +#. type: Plain text
-+#: cupsd.conf.man.in:163
++#: cupsd.conf.man.in:137
 +msgid ""
 +"Specifies the default paper size for new print queues. \"Auto\" uses a "
 +"locale- specific default, while \"None\" specifies there is no default paper "
@@ -3206,115 +3127,115 @@ Bug-Debian: http://bugs.debian.org/478597
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:163
++#: cupsd.conf.man.in:137
 +#, no-wrap
 +msgid "DefaultPolicy policy-name"
 +msgstr "DefaultPolicy Richtlinienname"
 +
 +# type: Plain text
 +#. type: Plain text
-+#: cupsd.conf.man.in:167
++#: cupsd.conf.man.in:141
 +msgid "Specifies the default access policy to use."
 +msgstr "Spezifiziert die zu verwendende Standardzugriffsrichtlinie."
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:167
++#: cupsd.conf.man.in:141
 +#, no-wrap
 +msgid "DefaultShared Yes"
 +msgstr "DefaultShared Yes"
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:169
++#: cupsd.conf.man.in:143
 +#, no-wrap
 +msgid "DefaultShared No"
 +msgstr "DefaultShared No"
 +
 +# type: Plain text
 +#. type: Plain text
-+#: cupsd.conf.man.in:173
++#: cupsd.conf.man.in:147
 +msgid "Specifies whether local printers are shared by default."
 +msgstr "Spezifiziert, ob lokale Drucker standardmäßig freigegeben sind."
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:173
++#: cupsd.conf.man.in:147
 +#, no-wrap
 +msgid "Deny all"
 +msgstr "Deny all"
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:175
++#: cupsd.conf.man.in:149
 +#, no-wrap
 +msgid "Deny none"
 +msgstr "Deny none"
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:177
++#: cupsd.conf.man.in:151
 +#, no-wrap
 +msgid "Deny host.domain.com"
 +msgstr "Deny Rechner.Domain.com"
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:179
++#: cupsd.conf.man.in:153
 +#, no-wrap
 +msgid "Deny *.domain.com"
 +msgstr "Deny *.domain.com"
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:181
++#: cupsd.conf.man.in:155
 +#, no-wrap
 +msgid "Deny ip-address"
 +msgstr "Deny IP-Adresse"
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:183
++#: cupsd.conf.man.in:157
 +#, no-wrap
 +msgid "Deny ip-address/netmask"
 +msgstr "Deny IP-Adresse/Netzmaske"
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:185
++#: cupsd.conf.man.in:159
 +#, no-wrap
 +msgid "Deny ip-address/mm"
 +msgstr "Deny IP-Adresse/mm"
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:187
++#: cupsd.conf.man.in:161
 +#, no-wrap
 +msgid "Deny @IF(name)"
 +msgstr "Deny @IF(Name)"
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:189
++#: cupsd.conf.man.in:163
 +#, no-wrap
 +msgid "Deny @LOCAL"
 +msgstr "Deny @LOCAL"
 +
 +# type: Plain text
 +#. type: Plain text
-+#: cupsd.conf.man.in:193
++#: cupsd.conf.man.in:167
 +msgid "Denies access to the named host or address."
 +msgstr "Verweigert Zugriff auf die benannten Rechner oder Adressen."
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:193
++#: cupsd.conf.man.in:167
 +#, no-wrap
 +msgid "DirtyCleanInterval seconds"
 +msgstr "DirtyCleanInterval Sekunden"
 +
 +#. type: Plain text
-+#: cupsd.conf.man.in:199
++#: cupsd.conf.man.in:173
 +msgid ""
 +"Specifies the delay for updating of configuration and state files. A value "
 +"of 0 causes the update to happen as soon as possible, typically within a few "
@@ -3325,103 +3246,26 @@ Bug-Debian: http://bugs.debian.org/478597
 +"schnell wie möglich erfolgt, typischerweise innerhalb von wenigen "
 +"Millisekunden."
 +
-+# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:199
-+#, no-wrap
-+msgid "DocumentRoot directory"
-+msgstr "DocumentRoot Verzeichnis"
-+
-+#. type: Plain text
-+#: cupsd.conf.man.in:203
-+msgid "Specifies the root directory for the internal web server documents."
-+msgstr ""
-+"Spezifiziert das Wurzelverzeichnis für die internen Webserver-Dokumente."
-+
-+#. type: TP
-+#: cupsd.conf.man.in:212
-+#, no-wrap
-+msgid "ErrorLog filename"
-+msgstr "ErrorLog Dateiname"
-+
-+#. type: TP
-+#: cupsd.conf.man.in:214
-+#, no-wrap
-+msgid "ErrorLog syslog"
-+msgstr "ErrorLog syslog"
-+
-+#. type: Plain text
-+#: cupsd.conf.man.in:218
-+msgid "Specifies the error log filename."
-+msgstr "Spezifiziert den Dateinamen des Fehlerprotokolls."
-+
-+#. type: TP
-+#: cupsd.conf.man.in:218
-+#, no-wrap
-+msgid "FatalErrors none"
-+msgstr "FatalErrors none"
-+
-+#. type: TP
-+#: cupsd.conf.man.in:220
-+#, no-wrap
-+msgid "FatalErrors all -kind [... -kind]"
-+msgstr "FatalErrors all -kind [… -kind]"
-+
-+#. type: TP
-+#: cupsd.conf.man.in:222
-+#, no-wrap
-+msgid "FatalErrors kind [... kind]"
-+msgstr "FatalErrors kind [… kind]"
-+
-+#. type: Plain text
-+#: cupsd.conf.man.in:227
-+msgid ""
-+"Specifies which errors are fatal, causing the scheduler to exit. \"Kind\" is "
-+"\"browse\", \"config\", \"listen\", \"log\", or \"permissions\"."
-+msgstr ""
-+"Gibt an, welche Fehler fatal sind und den Zeitplaner zum Beenden "
-+"veranlassen. »Art« ist »browse«, »config«, »log« oder »permissions«,"
-+
-+#. type: TP
-+#: cupsd.conf.man.in:227
-+#, no-wrap
-+msgid "FileDevice Yes"
-+msgstr "FileDevice Yes"
-+
-+#. type: TP
-+#: cupsd.conf.man.in:229
-+#, no-wrap
-+msgid "FileDevice No"
-+msgstr "FileDevice No"
-+
-+#. type: Plain text
-+#: cupsd.conf.man.in:234
-+msgid ""
-+"Specifies whether the file pseudo-device can be used for new printer queues."
-+msgstr ""
-+"Spezifiziert, ob das Pseudo-Gerät file für neue Druckerwarteschlangen "
-+"benutzt werden kann."
-+
-+#. type: TP
-+#: cupsd.conf.man.in:234
++#: cupsd.conf.man.in:182
 +#, no-wrap
 +msgid "FilterLimit limit"
 +msgstr "FilterLimit Beschränkung"
 +
 +#. type: Plain text
-+#: cupsd.conf.man.in:238
++#: cupsd.conf.man.in:186
 +msgid "Specifies the maximum cost of filters that are run concurrently."
 +msgstr ""
 +"Spezifiziert die maximale Belastung der Filter, die gleichzeitig laufen."
 +
 +#. type: TP
-+#: cupsd.conf.man.in:238
++#: cupsd.conf.man.in:186
 +#, no-wrap
 +msgid "FilterNice nice-value"
 +msgstr "FilterNice Nice-Wert"
 +
 +#. type: Plain text
-+#: cupsd.conf.man.in:243
++#: cupsd.conf.man.in:191
 +msgid ""
 +"Specifies the scheduling priority (\"nice\" value) of filters that are run "
 +"to print a job."
@@ -3429,36 +3273,8 @@ Bug-Debian: http://bugs.debian.org/478597
 +"Spezifiziert die Planungspriorität (»nice«-Wert) von Filtern, die laufen, um "
 +"einen Druckauftrag auszudrucken."
 +
-+#. type: TP
-+#: cupsd.conf.man.in:243
-+#, no-wrap
-+msgid "FontPath directory[:directory:...]"
-+msgstr "FontPath Verzeichnis[:Verzeichnis:…]"
-+
 +#. type: Plain text
-+#: cupsd.conf.man.in:247
-+msgid "Specifies the search path for fonts."
-+msgstr "Spezifiziert den Suchpfad für Schriften."
-+
-+# type: TP
-+#. type: TP
-+#: cupsd.conf.man.in:247
-+#, no-wrap
-+msgid "Group group-name-or-number"
-+msgstr "Group Gruppenname-oder-nummer"
-+
-+# type: Plain text
-+#. type: Plain text
-+#: cupsd.conf.man.in:252
-+msgid ""
-+"Specifies the group name or ID that will be used when executing external "
-+"programs."
-+msgstr ""
-+"Spezifiziert den Gruppenname oder deren ID, die bei der Ausführung externer "
-+"Programme verwandt wird."
-+
-+#. type: Plain text
-+#: cupsd.conf.man.in:257
++#: cupsd.conf.man.in:196
 +msgid ""
 +"Specifies the service name when using Kerberos authentication. The default "
 +"service name is \"@CUPS_DEFAULT_GSSSERVICENAME@\"."
@@ -3466,51 +3282,51 @@ Bug-Debian: http://bugs.debian.org/478597
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:257
++#: cupsd.conf.man.in:196
 +#, no-wrap
 +msgid "HostNameLookups On"
 +msgstr "HostNameLookups On"
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:259
++#: cupsd.conf.man.in:198
 +#, no-wrap
 +msgid "HostNameLookups Off"
 +msgstr "HostNameLookups Off"
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:261
++#: cupsd.conf.man.in:200
 +#, no-wrap
 +msgid "HostNameLookups Double"
 +msgstr "HostNameLookups Double"
 +
 +# type: Plain text
 +#. type: Plain text
-+#: cupsd.conf.man.in:265
++#: cupsd.conf.man.in:204
 +msgid "Specifies whether or not to do reverse lookups on client addresses."
 +msgstr ""
 +"Spezifiziert, ob inverse Client-Adressabfragen erfolgen sollen oder nicht."
 +
 +#. type: TP
-+#: cupsd.conf.man.in:265
++#: cupsd.conf.man.in:204
 +#, no-wrap
 +msgid "Include filename"
 +msgstr "Include Dateiname"
 +
 +#. type: Plain text
-+#: cupsd.conf.man.in:269
++#: cupsd.conf.man.in:208
 +msgid "Includes the named file."
 +msgstr "Schließt die genannte Datei ein."
 +
 +#. type: TP
-+#: cupsd.conf.man.in:269
++#: cupsd.conf.man.in:208
 +#, no-wrap
 +msgid "JobKillDelay seconds"
 +msgstr "JobKillDelay Sekunden"
 +
 +#. type: Plain text
-+#: cupsd.conf.man.in:274
++#: cupsd.conf.man.in:213
 +msgid ""
 +"Specifies the number of seconds to wait before killing the filters and "
 +"backend associated with a canceled or held job."
@@ -3520,25 +3336,25 @@ Bug-Debian: http://bugs.debian.org/478597
 +"Druckauftrag verbunden sind."
 +
 +#. type: TP
-+#: cupsd.conf.man.in:274
++#: cupsd.conf.man.in:213
 +#, no-wrap
 +msgid "JobPrivateAccess all"
 +msgstr "JobPrivateAccess all"
 +
 +#. type: TP
-+#: cupsd.conf.man.in:276
++#: cupsd.conf.man.in:215
 +#, no-wrap
 +msgid "JobPrivateAccess default"
 +msgstr "JobPrivateAccess default"
 +
 +#. type: TP
-+#: cupsd.conf.man.in:278
++#: cupsd.conf.man.in:217
 +#, no-wrap
 +msgid "JobPrivateAccess {user|@group|@ACL|@OWNER|@SYSTEM}+"
 +msgstr "JobPrivateAccess {Benutzer|@Gruppe|@ACL|@OWNER|@SYSTEM}+"
 +
 +#. type: Plain text
-+#: cupsd.conf.man.in:284
++#: cupsd.conf.man.in:223
 +msgid ""
 +"Specifies an access list for a job's private values. The \"default\" access "
 +"list is \"@OWNER @SYSTEM\". \"@ACL\" maps to the printer's requesting-user-"
@@ -3550,31 +3366,31 @@ Bug-Debian: http://bugs.debian.org/478597
 +"Druckers."
 +
 +#. type: TP
-+#: cupsd.conf.man.in:284
++#: cupsd.conf.man.in:223
 +#, no-wrap
 +msgid "JobPrivateValues all"
 +msgstr "JobPrivateValues all"
 +
 +#. type: TP
-+#: cupsd.conf.man.in:286
++#: cupsd.conf.man.in:225
 +#, no-wrap
 +msgid "JobPrivateValues default"
 +msgstr "JobPrivateValues default"
 +
 +#. type: TP
-+#: cupsd.conf.man.in:288
++#: cupsd.conf.man.in:227
 +#, no-wrap
 +msgid "JobPrivateValues none"
 +msgstr "JobPrivateValues none"
 +
 +#. type: TP
-+#: cupsd.conf.man.in:290
++#: cupsd.conf.man.in:229
 +#, no-wrap
 +msgid "JobPrivateValues attribute-name-1 [ ... attribute-name-N ]"
 +msgstr "JobPrivateValues Attributname-1 [ … Attributname-N ]"
 +
 +#. type: Plain text
-+#: cupsd.conf.man.in:294
++#: cupsd.conf.man.in:233
 +msgid ""
 +"Specifies the list of job values to make private. The \"default\" values are "
 +"\"job-name\", \"job-originating-host-name\", and \"job-originating-user-name"
@@ -3585,143 +3401,143 @@ Bug-Debian: http://bugs.debian.org/478597
 +"»job-originating-user-name«."
 +
 +#. type: TP
-+#: cupsd.conf.man.in:294
++#: cupsd.conf.man.in:233
 +#, no-wrap
 +msgid "JobRetryInterval seconds"
 +msgstr "JobRetryInterval Sekunden"
 +
 +#. type: Plain text
-+#: cupsd.conf.man.in:298
++#: cupsd.conf.man.in:237
 +msgid "Specifies the interval between retries of jobs in seconds."
 +msgstr ""
 +"Spezifiziert das Intervall zwischen Neuversuchen von Aufträgen in Sekunden."
 +
 +#. type: TP
-+#: cupsd.conf.man.in:298
++#: cupsd.conf.man.in:237
 +#, no-wrap
 +msgid "JobRetryLimit count"
 +msgstr "JobRetryLimit Anzahl"
 +
 +#. type: Plain text
-+#: cupsd.conf.man.in:302
++#: cupsd.conf.man.in:241
 +msgid "Specifies the number of retries that are done for jobs."
 +msgstr ""
 +"Spezifiziert die Anzahl der Neuversuche, die für Auträge durchgeführt werden."
 +
 +#. type: TP
-+#: cupsd.conf.man.in:302
++#: cupsd.conf.man.in:241
 +#, no-wrap
 +msgid "KeepAlive Yes"
 +msgstr "KeepAlive Yes"
 +
 +#. type: TP
-+#: cupsd.conf.man.in:304
++#: cupsd.conf.man.in:243
 +#, no-wrap
 +msgid "KeepAlive No"
 +msgstr "KeepAlive No"
 +
 +#. type: Plain text
-+#: cupsd.conf.man.in:308
++#: cupsd.conf.man.in:247
 +msgid "Specifies whether to support HTTP keep-alive connections."
 +msgstr "Spezifiziert, ob HTTP-keep-alive-Verbindungen unterstützt werden."
 +
 +#. type: TP
-+#: cupsd.conf.man.in:308
++#: cupsd.conf.man.in:247
 +#, no-wrap
 +msgid "KeepAliveTimeout seconds"
 +msgstr "KeepAliveTimeout Sekunden"
 +
 +#. type: Plain text
-+#: cupsd.conf.man.in:312
++#: cupsd.conf.man.in:251
 +msgid "Specifies the amount of time that connections are kept alive."
 +msgstr "Spezifiziert die Zeit, die Verbindungen am Leben erhalten werden."
 +
 +#. type: TP
-+#: cupsd.conf.man.in:312
++#: cupsd.conf.man.in:251
 +#, no-wrap
 +msgid "E<lt>Limit operationsE<gt> ... E<lt>/LimitE<gt>"
 +msgstr "E<lt>Limit operationsE<gt> … E<lt>/LimitE<gt>"
 +
 +#. type: Plain text
-+#: cupsd.conf.man.in:316
++#: cupsd.conf.man.in:255
 +msgid "Specifies the IPP operations that are being limited inside a policy."
 +msgstr ""
 +"Spezifiziert die IPP-Operationen, die innerhalb einer Richtlinie begrenzt "
 +"werden."
 +
 +#. type: TP
-+#: cupsd.conf.man.in:316
++#: cupsd.conf.man.in:255
 +#, no-wrap
 +msgid "E<lt>Limit methodsE<gt> ... E<lt>/LimitE<gt>"
 +msgstr "E<lt>Limit methodsE<gt> … E<lt>/LimitE<gt>"
 +
 +#. type: TP
-+#: cupsd.conf.man.in:318
++#: cupsd.conf.man.in:257
 +#, no-wrap
 +msgid "E<lt>LimitExcept methodsE<gt> ... E<lt>/LimitExceptE<gt>"
 +msgstr "E<lt>LimitExcept methodsE<gt> … E<lt>/LimitExceptE<gt>"
 +
 +#. type: Plain text
-+#: cupsd.conf.man.in:322
++#: cupsd.conf.man.in:261
 +msgid "Specifies the HTTP methods that are being limited inside a location."
 +msgstr ""
 +"Spezifiziert die HTTP-Methoden, die innerhalb eines Ortes begrenzt werden."
 +
 +#. type: TP
-+#: cupsd.conf.man.in:322
++#: cupsd.conf.man.in:261
 +#, no-wrap
 +msgid "LimitRequestBody"
 +msgstr "LimitRequestBody"
 +
 +#. type: Plain text
-+#: cupsd.conf.man.in:326
++#: cupsd.conf.man.in:265
 +msgid "Specifies the maximum size of any print job request."
 +msgstr "Spezifiziert die maximale Größe jedes Druckauftrags."
 +
 +#. type: TP
-+#: cupsd.conf.man.in:326
++#: cupsd.conf.man.in:265
 +#, no-wrap
 +msgid "Listen ip-address:port"
 +msgstr "Listen IP-Adresse:Port"
 +
 +#. type: TP
-+#: cupsd.conf.man.in:328
++#: cupsd.conf.man.in:267
 +#, no-wrap
 +msgid "Listen *:port"
 +msgstr "Listen *:Port"
 +
 +#. type: TP
-+#: cupsd.conf.man.in:330
++#: cupsd.conf.man.in:269
 +#, no-wrap
 +msgid "Listen /path/to/domain/socket"
 +msgstr "Listen /pfad/zu/Domain/Socket"
 +
 +#. type: Plain text
-+#: cupsd.conf.man.in:334
++#: cupsd.conf.man.in:273
 +msgid "Listens to the specified address and port or domain socket path."
 +msgstr ""
 +"Warten auf der angegebenen Adresse und Port oder Domain Socket-Pfad auf "
 +"Anfragen."
 +
 +#. type: TP
-+#: cupsd.conf.man.in:334
++#: cupsd.conf.man.in:273
 +#, no-wrap
 +msgid "E<lt>Location /pathE<gt> ... E<lt>/LocationE<gt>"
 +msgstr "E<lt>Location /pathE<gt> … E<lt>/LocationE<gt>"
 +
 +#. type: Plain text
-+#: cupsd.conf.man.in:338
++#: cupsd.conf.man.in:277
 +msgid "Specifies access control for the named location."
 +msgstr "Spezifiziert die Zugriffssteuerung für den benannten Ort."
 +
 +#. type: TP
-+#: cupsd.conf.man.in:338
++#: cupsd.conf.man.in:277
 +#, no-wrap
 +msgid "LogDebugHistory #-messages"
 +msgstr "LogDebugHistory #-messages"
 +
 +#. type: Plain text
-+#: cupsd.conf.man.in:343
++#: cupsd.conf.man.in:282
 +msgid ""
 +"Specifies the number of debugging messages that are logged when an error "
 +"occurs in a print job."
@@ -3730,136 +3546,123 @@ Bug-Debian: http://bugs.debian.org/478597
 +"wenn ein Fehler in einem Druckauftrag auftritt."
 +
 +#. type: TP
-+#: cupsd.conf.man.in:343
-+#, no-wrap
-+msgid "LogFilePerm mode"
-+msgstr "LogFilePerm Modus"
-+
-+#. type: Plain text
-+#: cupsd.conf.man.in:347
-+msgid "Specifies the permissions for all log files that the scheduler writes."
-+msgstr ""
-+"Spezifiziert die Rechte für alle vom Auftragsplaner (Scheduler) "
-+"geschriebenen Protokolldateien."
-+
-+#. type: TP
-+#: cupsd.conf.man.in:347
++#: cupsd.conf.man.in:282
 +#, no-wrap
 +msgid "LogLevel alert"
 +msgstr "LogLevel alert"
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:349
++#: cupsd.conf.man.in:284
 +#, no-wrap
 +msgid "LogLevel crit"
 +msgstr "LogLevel crit"
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:351
++#: cupsd.conf.man.in:286
 +#, no-wrap
 +msgid "LogLevel debug2"
 +msgstr "LogLevel debug2"
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:353
++#: cupsd.conf.man.in:288
 +#, no-wrap
 +msgid "LogLevel debug"
 +msgstr "LogLevel debug"
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:355
++#: cupsd.conf.man.in:290
 +#, no-wrap
 +msgid "LogLevel emerg"
 +msgstr "LogLevel emerg"
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:357
++#: cupsd.conf.man.in:292
 +#, no-wrap
 +msgid "LogLevel error"
 +msgstr "LogLevel error"
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:359
++#: cupsd.conf.man.in:294
 +#, no-wrap
 +msgid "LogLevel info"
 +msgstr "LogLevel info"
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:361
++#: cupsd.conf.man.in:296
 +#, no-wrap
 +msgid "LogLevel none"
 +msgstr "LogLevel none"
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:363
++#: cupsd.conf.man.in:298
 +#, no-wrap
 +msgid "LogLevel notice"
 +msgstr "LogLevel notice"
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:365
++#: cupsd.conf.man.in:300
 +#, no-wrap
 +msgid "LogLevel warn"
 +msgstr "LogLevel warn"
 +
 +# type: Plain text
 +#. type: Plain text
-+#: cupsd.conf.man.in:369
++#: cupsd.conf.man.in:304
 +msgid "Specifies the logging level for the ErrorLog file."
 +msgstr "Spezifiziert die Protokollierungsstufe für die ErrorLog-Datei."
 +
 +#. type: TP
-+#: cupsd.conf.man.in:369
++#: cupsd.conf.man.in:304
 +#, no-wrap
 +msgid "LogTimeFormat standard"
 +msgstr "LogTimeFormat standard"
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:371
++#: cupsd.conf.man.in:306
 +#, no-wrap
 +msgid "LogTimeFormat usecs"
 +msgstr "LogTimeFormat usecs"
 +
 +# type: Plain text
 +#. type: Plain text
-+#: cupsd.conf.man.in:375
++#: cupsd.conf.man.in:310
 +msgid "Specifies the format of the date and time in the log files."
 +msgstr "Spezifiziert das Format von Datum und Zeit in den Protokolldateien."
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:375
++#: cupsd.conf.man.in:310
 +#, no-wrap
 +msgid "MaxClients number"
 +msgstr "MaxClients Anzahl"
 +
 +# type: Plain text
 +#. type: Plain text
-+#: cupsd.conf.man.in:379
++#: cupsd.conf.man.in:314
 +msgid "Specifies the maximum number of simultaneous clients to support."
 +msgstr ""
 +"Spezifiziert die maximale Anzahl an simultan zu unterstützenden Clients."
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:379
++#: cupsd.conf.man.in:314
 +#, no-wrap
 +msgid "MaxClientsPerHost number"
 +msgstr "MaxClientsPerHost Anzahl"
 +
 +# type: Plain text
 +#. type: Plain text
-+#: cupsd.conf.man.in:384
++#: cupsd.conf.man.in:319
 +msgid ""
 +"Specifies the maximum number of simultaneous clients to support from a "
 +"single address."
@@ -3869,14 +3672,14 @@ Bug-Debian: http://bugs.debian.org/478597
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:384
++#: cupsd.conf.man.in:319
 +#, no-wrap
 +msgid "MaxCopies number"
 +msgstr "MaxCopies Anzahl"
 +
 +# type: Plain text
 +#. type: Plain text
-+#: cupsd.conf.man.in:388
++#: cupsd.conf.man.in:323
 +msgid ""
 +"Specifies the maximum number of copies that a user can print of each job."
 +msgstr ""
@@ -3884,14 +3687,14 @@ Bug-Debian: http://bugs.debian.org/478597
 +"Auftrag drucken kann."
 +
 +#. type: TP
-+#: cupsd.conf.man.in:388
++#: cupsd.conf.man.in:323
 +#, fuzzy, no-wrap
 +#| msgid "MaxRunTime I<seconds>"
 +msgid "MaxHoldTime seconds"
 +msgstr "MaxRunTime I<Sekunden>"
 +
 +#. type: Plain text
-+#: cupsd.conf.man.in:393
++#: cupsd.conf.man.in:328
 +msgid ""
 +"Specifies the maximum time a job may remain in the \"indefinite\" hold state "
 +"before it is canceled. Set to 0 to disable cancellation of held jobs."
@@ -3899,28 +3702,28 @@ Bug-Debian: http://bugs.debian.org/478597
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:393
++#: cupsd.conf.man.in:328
 +#, no-wrap
 +msgid "MaxJobs number"
 +msgstr "MaxJobs Anzahl"
 +
 +# type: Plain text
 +#. type: Plain text
-+#: cupsd.conf.man.in:397
++#: cupsd.conf.man.in:332
 +msgid "Specifies the maximum number of simultaneous jobs to support."
 +msgstr ""
 +"Spezifiziert die maximale Anzahl an simultan zu unterstützenden Aufträgen."
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:397
++#: cupsd.conf.man.in:332
 +#, no-wrap
 +msgid "MaxJobsPerPrinter number"
 +msgstr "MaxJobsPerPrinter Anzahl"
 +
 +# type: Plain text
 +#. type: Plain text
-+#: cupsd.conf.man.in:401
++#: cupsd.conf.man.in:336
 +msgid ""
 +"Specifies the maximum number of simultaneous jobs per printer to support."
 +msgstr ""
@@ -3929,28 +3732,28 @@ Bug-Debian: http://bugs.debian.org/478597
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:401
++#: cupsd.conf.man.in:336
 +#, no-wrap
 +msgid "MaxJobsPerUser number"
 +msgstr "MaxJobsPerUser Anzahl"
 +
 +# type: Plain text
 +#. type: Plain text
-+#: cupsd.conf.man.in:405
++#: cupsd.conf.man.in:340
 +msgid "Specifies the maximum number of simultaneous jobs per user to support."
 +msgstr ""
 +"Spezifiziert die maximale Anzahl an simultan zu unterstützenden Aufträgen "
 +"pro Benutzer."
 +
 +#. type: TP
-+#: cupsd.conf.man.in:405
++#: cupsd.conf.man.in:340
 +#, fuzzy, no-wrap
 +#| msgid "MaxRunTime I<seconds>"
 +msgid "MaxJobTime seconds"
 +msgstr "MaxRunTime I<Sekunden>"
 +
 +#. type: Plain text
-+#: cupsd.conf.man.in:411
++#: cupsd.conf.man.in:346
 +msgid ""
 +"Specifies the maximum time a job may take to print before it is canceled. "
 +"The default is 10800 seconds (3 hours). Set to 0 to disable cancellation of "
@@ -3959,14 +3762,14 @@ Bug-Debian: http://bugs.debian.org/478597
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:411
++#: cupsd.conf.man.in:346
 +#, no-wrap
 +msgid "MaxLogSize number-bytes"
 +msgstr "MaxLogSize Byteanzahl"
 +
 +# type: Plain text
 +#. type: Plain text
-+#: cupsd.conf.man.in:416
++#: cupsd.conf.man.in:351
 +msgid ""
 +"Specifies the maximum size of the log files before they are rotated (0 to "
 +"disable rotation)"
@@ -3976,14 +3779,14 @@ Bug-Debian: http://bugs.debian.org/478597
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:416
++#: cupsd.conf.man.in:351
 +#, no-wrap
 +msgid "MaxRequestSize number-bytes"
 +msgstr "MaxRequestSize Byteanzahl"
 +
 +# type: Plain text
 +#. type: Plain text
-+#: cupsd.conf.man.in:420
++#: cupsd.conf.man.in:355
 +msgid "Specifies the maximum request/file size in bytes (0 for no limit)"
 +msgstr ""
 +"Spezifiziert die maximale Anfrage-/Dateigröße in Bytes (0 für keine "
@@ -3991,14 +3794,14 @@ Bug-Debian: http://bugs.debian.org/478597
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:420
++#: cupsd.conf.man.in:355
 +#, no-wrap
 +msgid "MultipleOperationTimeout seconds"
 +msgstr "MultipleOperationTimeout Sekunden"
 +
 +# type: Plain text
 +#. type: Plain text
-+#: cupsd.conf.man.in:425
++#: cupsd.conf.man.in:360
 +msgid ""
 +"Specifies the maximum amount of time to allow between files in a multiple "
 +"file print job."
@@ -4008,103 +3811,86 @@ Bug-Debian: http://bugs.debian.org/478597
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:425
++#: cupsd.conf.man.in:360
 +#, no-wrap
 +msgid "Order allow,deny"
 +msgstr "Order allow,deny"
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:427
++#: cupsd.conf.man.in:362
 +#, no-wrap
 +msgid "Order deny,allow"
 +msgstr "Order deny,allow"
 +
 +# type: Plain text
 +#. type: Plain text
-+#: cupsd.conf.man.in:431
++#: cupsd.conf.man.in:366
 +msgid "Specifies the order of HTTP access control (allow,deny or deny,allow)"
 +msgstr ""
 +"Spezifiziert die Reihenfolge der HTTP-Zugriffssteuerung (allow, deny oder "
 +"deny, allow)"
 +
 +#. type: TP
-+#: cupsd.conf.man.in:431
-+#, no-wrap
-+msgid "PageLog filename"
-+msgstr "PageLog Dateiname"
-+
-+#. type: TP
-+#: cupsd.conf.man.in:433
-+#, no-wrap
-+msgid "PageLog syslog"
-+msgstr "PageLog syslog"
-+
-+#. type: Plain text
-+#: cupsd.conf.man.in:437
-+msgid "Specifies the page log filename."
-+msgstr "Spezifiziert den Dateinamen des Seitenprotokolls."
-+
-+#. type: TP
-+#: cupsd.conf.man.in:437
++#: cupsd.conf.man.in:366
 +#, no-wrap
 +msgid "PageLogFormat format string"
 +msgstr "PageLogFormat Format Zeichenkette"
 +
 +#. type: Plain text
-+#: cupsd.conf.man.in:441
++#: cupsd.conf.man.in:370
 +msgid "Specifies the format of page log lines."
 +msgstr "Spezifiziert das Format der Seitenprotokollzeilen."
 +
 +#. type: TP
-+#: cupsd.conf.man.in:441
++#: cupsd.conf.man.in:370
 +#, no-wrap
 +msgid "PassEnv variable [... variable]"
 +msgstr "PassEnv Variable [… Variable]"
 +
 +#. type: Plain text
-+#: cupsd.conf.man.in:445
++#: cupsd.conf.man.in:374
 +msgid "Passes the specified environment variable(s) to child processes."
 +msgstr "Gibt die angegebene(n) Umgebungsvariable(n) an Kindprozesse weiter."
 +
 +#. type: TP
-+#: cupsd.conf.man.in:445
++#: cupsd.conf.man.in:374
 +#, no-wrap
 +msgid "E<lt>Policy nameE<gt> ... E<lt>/PolicyE<gt>"
 +msgstr "E<lt>Policy nameE<gt> … E<lt>/PolicyE<gt>"
 +
 +#. type: Plain text
-+#: cupsd.conf.man.in:449
++#: cupsd.conf.man.in:378
 +msgid "Specifies access control for the named policy."
 +msgstr "Spezifiziert die Zugriffskontrolle für die genannte Richtlinie."
 +
 +#. type: TP
-+#: cupsd.conf.man.in:449
++#: cupsd.conf.man.in:378
 +#, no-wrap
 +msgid "Port number"
 +msgstr "Port Nummer"
 +
 +#. type: Plain text
-+#: cupsd.conf.man.in:453
++#: cupsd.conf.man.in:382
 +msgid "Specifies a port number to listen to for HTTP requests."
 +msgstr ""
 +"Spezifiziert eine Portnummer, an der auf HTTP-Anfragen gewartet werden soll."
 +
 +#. type: TP
-+#: cupsd.conf.man.in:453
++#: cupsd.conf.man.in:382
 +#, no-wrap
 +msgid "PreserveJobFiles Yes"
 +msgstr "PreserveJobFiles Yes"
 +
 +#. type: TP
-+#: cupsd.conf.man.in:455
++#: cupsd.conf.man.in:384
 +#, no-wrap
 +msgid "PreserveJobFiles No"
 +msgstr "PreserveJobFiles No"
 +
 +# type: Plain text
 +#. type: Plain text
-+#: cupsd.conf.man.in:459
++#: cupsd.conf.man.in:388
 +msgid "Specifies whether or not to preserve job files after they are printed."
 +msgstr ""
 +"Spezifiziert, ob Druckauftragsdateien nach dem Druck aufgehoben werden "
@@ -4112,21 +3898,21 @@ Bug-Debian: http://bugs.debian.org/478597
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:459
++#: cupsd.conf.man.in:388
 +#, no-wrap
 +msgid "PreserveJobHistory Yes"
 +msgstr "PreserveJobHistory Yes"
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:461
++#: cupsd.conf.man.in:390
 +#, no-wrap
 +msgid "PreserveJobHistory No"
 +msgstr "PreserveJobHistory No"
 +
 +# type: Plain text
 +#. type: Plain text
-+#: cupsd.conf.man.in:466
++#: cupsd.conf.man.in:395
 +msgid ""
 +"Specifies whether or not to preserve the job history after they are printed."
 +msgstr ""
@@ -4135,21 +3921,634 @@ Bug-Debian: http://bugs.debian.org/478597
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:466
++#: cupsd.conf.man.in:395
++#, no-wrap
++msgid "PrintcapFormat bsd"
++msgstr "PrintcapFormat bsd"
++
++# type: TP
++#. type: TP
++#: cupsd.conf.man.in:397
++#, no-wrap
++msgid "PrintcapFormat plist"
++msgstr "PrintcapFormat plist"
++
++# type: TP
++#. type: TP
++#: cupsd.conf.man.in:399
++#, no-wrap
++msgid "PrintcapFormat solaris"
++msgstr "PrintcapFormat solaris"
++
++# type: Plain text
++#. type: Plain text
++#: cupsd.conf.man.in:403
++msgid "Specifies the format of the printcap file."
++msgstr "Spezifiziert das Format der Printcap-Datei."
++
++# type: TP
++#. type: TP
++#: cupsd.conf.man.in:403
++#, no-wrap
++msgid "ReloadTimeout seconds"
++msgstr "ReloadTimeout Sekunden"
++
++# type: Plain text
++#. type: Plain text
++#: cupsd.conf.man.in:408
++msgid ""
++"Specifies the amount of time to wait for job completion before restarting "
++"the scheduler."
++msgstr ""
++"Spezifiziert die Zeitspanne, während der auf die Beendigung von Aufträgen "
++"gewartet werden soll, bevor der Auftragsplaner (Scheduler) neu gestartet "
++"wird."
++
++# type: TP
++#. type: TP
++#: cupsd.conf.man.in:408
++#, no-wrap
++msgid "Require group group-name-list"
++msgstr "Require group group-name-list"
++
++# type: TP
++#. type: TP
++#: cupsd.conf.man.in:410
++#, no-wrap
++msgid "Require user user-name-list"
++msgstr "Benötigt Benutzer user-name-list"
++
++# type: TP
++#. type: TP
++#: cupsd.conf.man.in:412
++#, no-wrap
++msgid "Require valid-user"
++msgstr "Benötigt valid-user"
++
++# type: Plain text
++#. type: Plain text
++#: cupsd.conf.man.in:416
++msgid "Specifies that user or group authentication is required."
++msgstr ""
++"Spezifiziert, dass Benutzer- oder Gruppenauthentifizierung benötigt wird."
++
++# type: TP
++#. type: TP
++#: cupsd.conf.man.in:416
++#, no-wrap
++msgid "RIPCache bytes"
++msgstr "RIPCache Bytes"
++
++# type: Plain text
++#. type: Plain text
++#: cupsd.conf.man.in:421
++msgid ""
++"Specifies the maximum amount of memory to use when converting images and "
++"PostScript files to bitmaps for a printer."
++msgstr ""
++"Spezifiziert die maximale Menge an zu verwendendem Speicher beim "
++"Konvertieren von Bilder und PostScript-Dateien in Bitmaps für den Drucker."
++
++#. type: TP
++#: cupsd.conf.man.in:421
++#, no-wrap
++msgid "Satisfy all"
++msgstr "Satisfy all"
++
++#. type: TP
++#: cupsd.conf.man.in:423
++#, no-wrap
++msgid "Satisfy any"
++msgstr "Satisfy any"
++
++#. type: Plain text
++#: cupsd.conf.man.in:428
++msgid ""
++"Specifies whether all or any limits set for a Location must be satisfied to "
++"allow access."
++msgstr ""
++"Spezifiziert, ob alle (alle) oder eine (any) Beschränkung für einen Standort "
++"erfüllt sein muss, um Zugriff zu erlauben."
++
++#. type: TP
++#: cupsd.conf.man.in:428
++#, no-wrap
++msgid "ServerAdmin user@domain.com"
++msgstr "ServerAdmin Benutzer@domain.com"
++
++#. type: Plain text
++#: cupsd.conf.man.in:432
++msgid "Specifies the email address of the server administrator."
++msgstr "Spezifiziert die E-Mail-Adresse des Server-Administrators."
++
++#. type: TP
++#: cupsd.conf.man.in:432
++#, no-wrap
++msgid "ServerAlias hostname [... hostname]"
++msgstr "ServerAlias hostname [… hostname]"
++
++#. type: TP
++#: cupsd.conf.man.in:434
++#, no-wrap
++msgid "ServerAlias *"
++msgstr "ServerAlias *"
++
++#. type: Plain text
++#: cupsd.conf.man.in:439
++msgid ""
++"Specifies an alternate name that the server is known by. The special name \"*"
++"\" allows any name to be used."
++msgstr ""
++"Spezifiziert einen alternativen Namen, unter dem der Server bekannt ist. Der "
++"besondere Name »*« erlaubt die Verwendung jedes Namens."
++
++# type: TP
++#. type: TP
++#: cupsd.conf.man.in:439
++#, no-wrap
++msgid "ServerName hostname-or-ip-address"
++msgstr "ServerName Rechnername-oder-IP-Adresse"
++
++# type: Plain text
++#. type: Plain text
++#: cupsd.conf.man.in:443
++msgid "Specifies the fully-qualified hostname of the server."
++msgstr "Spezifiziert den vollqualifizierten Rechnernamen des Servers."
++
++# type: TP
++#. type: TP
++#: cupsd.conf.man.in:443
++#, no-wrap
++msgid "ServerTokens Full"
++msgstr "ServerTokens Full"
++
++# type: TP
++#. type: TP
++#: cupsd.conf.man.in:445
++#, no-wrap
++msgid "ServerTokens Major"
++msgstr "ServerTokens Major"
++
++# type: TP
++#. type: TP
++#: cupsd.conf.man.in:447
++#, no-wrap
++msgid "ServerTokens Minimal"
++msgstr "ServerTokens Minimal"
++
++# type: TP
++#. type: TP
++#: cupsd.conf.man.in:449
++#, no-wrap
++msgid "ServerTokens Minor"
++msgstr "ServerTokens Minor"
++
++# type: TP
++#. type: TP
++#: cupsd.conf.man.in:451
++#, no-wrap
++msgid "ServerTokens None"
++msgstr "ServerTokens None"
++
++# type: TP
++#. type: TP
++#: cupsd.conf.man.in:453
++#, no-wrap
++msgid "ServerTokens OS"
++msgstr "ServerTokens OS"
++
++# type: TP
++#. type: TP
++#: cupsd.conf.man.in:455
++#, no-wrap
++msgid "ServerTokens ProductOnly"
++msgstr "ServerTokens ProductOnly"
++
++# type: Plain text
++#. type: Plain text
++#: cupsd.conf.man.in:460
++msgid ""
++"Specifies what information is included in the Server header of HTTP "
++"responses."
++msgstr ""
++"Spezifiziert, welche Informationen im Server-Header von HTTP-Antworten "
++"enthalten sein sollen."
++
++# type: TP
++#. type: TP
++#: cupsd.conf.man.in:460
++#, no-wrap
++msgid "SetEnv variable value"
++msgstr "SetEnv Variable Wert"
++
++# type: Plain text
++#. type: Plain text
++#: cupsd.conf.man.in:464
++msgid "Set the specified environment variable to be passed to child processes."
++msgstr "Setzt die angegebene Umgebungsvariable zur Weitergabe an Kindprozesse."
++
++# type: TP
++#. type: TP
++#: cupsd.conf.man.in:464
++#, no-wrap
++msgid "SSLListen"
++msgstr "SSLListen"
++
++# type: Plain text
++#. type: Plain text
++#: cupsd.conf.man.in:468
++msgid "Listens on the specified address and port for encrypted connections."
++msgstr ""
++"Wartet auf der angegebenen Adresse und dem Port auf verschlüsselte "
++"Verbindungen."
++
++#. type: TP
++#: cupsd.conf.man.in:468
++#, no-wrap
++msgid "SSLOptions None"
++msgstr "SSLOptions None"
++
++#. type: TP
++#: cupsd.conf.man.in:470
++#, no-wrap
++msgid "SSLOptions NoEmptyFragments"
++msgstr "SSLOptions NoEmptyFragments"
++
++# type: Plain text
++#. type: Plain text
++#: cupsd.conf.man.in:474
++msgid "Sets SSL/TLS protocol options for encrypted connections."
++msgstr "Setzt SSL/TLS-Protokolloptionen für verschlüsselte Verbindungen."
++
++# type: TP
++#. type: TP
++#: cupsd.conf.man.in:474
++#, no-wrap
++msgid "SSLPort"
++msgstr "SSLPort"
++
++# type: Plain text
++#. type: Plain text
++#: cupsd.conf.man.in:478
++msgid "Listens on the specified port for encrypted connections."
++msgstr "Wartet auf dem angegebenen Port auf verschlüsselte Verbindungen."
++
++#. type: TP
++#: cupsd.conf.man.in:478
++#, no-wrap
++msgid "StrictConformance Yes"
++msgstr ""
++
++#. type: TP
++#: cupsd.conf.man.in:480
++#, no-wrap
++msgid "StrictConformance No"
++msgstr ""
++
++#. type: Plain text
++#: cupsd.conf.man.in:485
++msgid ""
++"Specifies whether the scheduler requires clients to strictly adhere to the "
++"IPP specifications. The default is No."
++msgstr ""
++
++#. type: TP
++#: cupsd.conf.man.in:485
++#, no-wrap
++msgid "SubscriptionPrivateAccess all"
++msgstr "SubscriptionPrivateAccess all"
++
++#. type: TP
++#: cupsd.conf.man.in:487
++#, no-wrap
++msgid "SubscriptionPrivateAccess default"
++msgstr "SubscriptionPrivateAccess default"
++
++#. type: TP
++#: cupsd.conf.man.in:489
++#, no-wrap
++msgid "SubscriptionPrivateAccess {user|@group|@ACL|@OWNER|@SYSTEM}+"
++msgstr "SubscriptionPrivateAccess {Benutzer|@Gruppe|@ACL|@OWNER|@SYSTEM}+"
++
++#. type: Plain text
++#: cupsd.conf.man.in:495
++msgid ""
++"Specifies an access list for a subscription's private values. The \"default"
++"\" access list is \"@OWNER @SYSTEM\". \"@ACL\" maps to the printer's "
++"requesting-user-name-allowed or requesting-user-name-denied values."
++msgstr ""
++"Spezifiziert eine Zugriffsliste für die privaten Werte eines Abonnements. "
++"Die »Standard«- (default) Zugriffsliste ist »@OWNER @SYSTEM«. »@ACL« passt "
++"auf die Werte requesting-user-name-allowed oder requesting-user-name-denied "
++"des Druckers."
++
++#. type: TP
++#: cupsd.conf.man.in:495
++#, no-wrap
++msgid "SubscriptionPrivateValues all"
++msgstr "SubscriptionPrivateValues all"
++
++#. type: TP
++#: cupsd.conf.man.in:497
++#, no-wrap
++msgid "SubscriptionPrivateValues default"
++msgstr "SubscriptionPrivateValues default"
++
++#. type: TP
++#: cupsd.conf.man.in:499
++#, no-wrap
++msgid "SubscriptionPrivateValues none"
++msgstr "SubscriptionPrivateValues none"
++
++#. type: TP
++#: cupsd.conf.man.in:501
++#, no-wrap
++msgid "SubscriptionPrivateValues attribute-name-1 [ ... attribute-name-N ]"
++msgstr "SubscriptionPrivateValues Attributname-1 [ … Attributname-N ]"
++
++#. type: Plain text
++#: cupsd.conf.man.in:506
++msgid ""
++"Specifies the list of job values to make private. The \"default\" values are "
++"\"notify-events\", \"notify-pull-method\", \"notify-recipient-uri\", "
++"\"notify-subscriber-user-name\", and \"notify-user-data\"."
++msgstr ""
++"Spezifiziert die Liste der Auftragswerte, die privat werden sollen. Die "
++"»Standard«- (default) Werte sind »notify-events«, »notify-pull-method«, "
++"»notify-recipient-uri«, »notify-subscriber-user-name« und »notify-user-data«."
++
++#. type: TP
++#: cupsd.conf.man.in:506
++#, no-wrap
++msgid "Timeout seconds"
++msgstr "Timeout Sekunden"
++
++#. type: Plain text
++#: cupsd.conf.man.in:510
++msgid "Specifies the HTTP request timeout in seconds."
++msgstr "Spezifiziert die HTTP-Zeitüberschreitung in Sekunden."
++
++#. type: TP
++#: cupsd.conf.man.in:510
++#, no-wrap
++msgid "WebInterface yes"
++msgstr "WebInterface yes"
++
++#. type: TP
++#: cupsd.conf.man.in:512
++#, no-wrap
++msgid "WebInterface no"
++msgstr "WebInterface no"
++
++#. type: Plain text
++#: cupsd.conf.man.in:515
++msgid "Specifies whether the web interface is enabled."
++msgstr "Spezifiziert, ob die Webschnittstelle freigegeben ist."
++
++#. type: Plain text
++#: cupsd.conf.man.in:519
++#, fuzzy
++#| msgid ""
++#| "I<classes.conf(5)>, I<cupsd(8)>, I<mime.convs(5)>, I<mime.types(5)>, "
++#| "I<printers.conf(5)>, I<subscriptions.conf(5)>,"
++msgid ""
++"I<classes.conf(5)>, I<cups-files.conf(5)>, I<cupsd(8)>, I<mime.convs(5)>, "
++"I<mime.types(5)>, I<printers.conf(5)>, I<subscriptions.conf(5)>,"
++msgstr ""
++"I<classes.conf(5)>, I<cupsd(8)>, I<mime.convs(5)>, I<mime.types(5)>, "
++"I<printers.conf(5)>, I<subscriptions.conf(5)>,"
++
++#. type: TH
++#: cups-files.conf.man.in:15
++#, fuzzy, no-wrap
++#| msgid "cupsd.conf"
++msgid "cups-files.conf"
++msgstr "cupsd.conf"
++
++#. type: Plain text
++#: cups-files.conf.man.in:18
++#, fuzzy
++#| msgid "cupsd.conf - server configuration file for cups"
++msgid "cups-files.conf - file and directory configuration file for cups"
++msgstr "cupsd.conf - Server-Konfigurationsdatei für CUPS"
++
++#. type: Plain text
++#: cups-files.conf.man.in:22
++#, fuzzy
++#| msgid ""
++#| "The I<cupsd.conf> file configures the CUPS scheduler, I<cupsd(8)>.  It is "
++#| "normally located in the I<@CUPS_SERVERROOT@> directory."
++msgid ""
++"The I<cups-file.conf> file configures the files and directories used by the "
++"CUPS scheduler, I<cupsd(8)>.  It is normally located in the "
++"I<@CUPS_SERVERROOT@> directory."
++msgstr ""
++"Die Datei I<cupsd.conf> konfiguriert den CUPS-Auftragsplaner (Scheduler), "
++"I<cupsd(8)>. Sie befindet sich normalerweise im Verzeichnis "
++"I<@CUPS_SERVERROOT@>."
++
++#. type: TP
++#: cups-files.conf.man.in:28
++#, no-wrap
++msgid "AccessLog filename"
++msgstr "AccessLog Dateiname"
++
++# type: TP
++#. type: TP
++#: cups-files.conf.man.in:30
++#, no-wrap
++msgid "AccessLog syslog"
++msgstr "AccessLog syslog"
++
++# type: Plain text
++#. type: Plain text
++#: cups-files.conf.man.in:34
++msgid "Defines the access log filename."
++msgstr "Definiert den Namen der Zugriffsprotokolldatei."
++
++# type: TP
++#. type: TP
++#: cups-files.conf.man.in:34
++#, no-wrap
++msgid "ConfigFilePerm mode"
++msgstr "ConfigFilePerm Modus"
++
++# type: Plain text
++#. type: Plain text
++#: cups-files.conf.man.in:39
++msgid ""
++"Specifies the permissions for all configuration files that the scheduler "
++"writes."
++msgstr ""
++"Spezifiziert die Rechte für alle vom Auftragsplaner (Scheduler) "
++"geschriebenen Konfigurationsdateien."
++
++# type: TP
++#. type: TP
++#: cups-files.conf.man.in:39
++#, no-wrap
++msgid "DataDir path"
++msgstr "DataDir Pfad"
++
++# type: Plain text
++#. type: Plain text
++#: cups-files.conf.man.in:43
++msgid "Specified the directory where data files can be found."
++msgstr ""
++"Spezifiziert das Verzeichnis, in dem Datendateien gefunden werden können."
++
++# type: TP
++#. type: TP
++#: cups-files.conf.man.in:43
++#, no-wrap
++msgid "DocumentRoot directory"
++msgstr "DocumentRoot Verzeichnis"
++
++#. type: Plain text
++#: cups-files.conf.man.in:47
++msgid "Specifies the root directory for the internal web server documents."
++msgstr ""
++"Spezifiziert das Wurzelverzeichnis für die internen Webserver-Dokumente."
++
++#. type: TP
++#: cups-files.conf.man.in:47
++#, no-wrap
++msgid "ErrorLog filename"
++msgstr "ErrorLog Dateiname"
++
++#. type: TP
++#: cups-files.conf.man.in:49
++#, no-wrap
++msgid "ErrorLog syslog"
++msgstr "ErrorLog syslog"
++
++#. type: Plain text
++#: cups-files.conf.man.in:53
++msgid "Specifies the error log filename."
++msgstr "Spezifiziert den Dateinamen des Fehlerprotokolls."
++
++#. type: TP
++#: cups-files.conf.man.in:53
++#, no-wrap
++msgid "FatalErrors none"
++msgstr "FatalErrors none"
++
++#. type: TP
++#: cups-files.conf.man.in:55
++#, no-wrap
++msgid "FatalErrors all -kind [... -kind]"
++msgstr "FatalErrors all -kind [… -kind]"
++
++#. type: TP
++#: cups-files.conf.man.in:57
++#, no-wrap
++msgid "FatalErrors kind [... kind]"
++msgstr "FatalErrors kind [… kind]"
++
++#. type: Plain text
++#: cups-files.conf.man.in:62
++msgid ""
++"Specifies which errors are fatal, causing the scheduler to exit. \"Kind\" is "
++"\"browse\", \"config\", \"listen\", \"log\", or \"permissions\"."
++msgstr ""
++"Gibt an, welche Fehler fatal sind und den Zeitplaner zum Beenden "
++"veranlassen. »Art« ist »browse«, »config«, »log« oder »permissions«,"
++
++#. type: TP
++#: cups-files.conf.man.in:62
++#, no-wrap
++msgid "FileDevice Yes"
++msgstr "FileDevice Yes"
++
++#. type: TP
++#: cups-files.conf.man.in:64
++#, no-wrap
++msgid "FileDevice No"
++msgstr "FileDevice No"
++
++#. type: Plain text
++#: cups-files.conf.man.in:69
++msgid ""
++"Specifies whether the file pseudo-device can be used for new printer queues."
++msgstr ""
++"Spezifiziert, ob das Pseudo-Gerät file für neue Druckerwarteschlangen "
++"benutzt werden kann."
++
++#. type: TP
++#: cups-files.conf.man.in:69
++#, no-wrap
++msgid "FontPath directory[:directory:...]"
++msgstr "FontPath Verzeichnis[:Verzeichnis:…]"
++
++#. type: Plain text
++#: cups-files.conf.man.in:73
++msgid "Specifies the search path for fonts."
++msgstr "Spezifiziert den Suchpfad für Schriften."
++
++# type: TP
++#. type: TP
++#: cups-files.conf.man.in:73
++#, no-wrap
++msgid "Group group-name-or-number"
++msgstr "Group Gruppenname-oder-nummer"
++
++# type: Plain text
++#. type: Plain text
++#: cups-files.conf.man.in:78
++msgid ""
++"Specifies the group name or ID that will be used when executing external "
++"programs."
++msgstr ""
++"Spezifiziert den Gruppenname oder deren ID, die bei der Ausführung externer "
++"Programme verwandt wird."
++
++#. type: TP
++#: cups-files.conf.man.in:78
++#, no-wrap
++msgid "LogFilePerm mode"
++msgstr "LogFilePerm Modus"
++
++#. type: Plain text
++#: cups-files.conf.man.in:82
++msgid "Specifies the permissions for all log files that the scheduler writes."
++msgstr ""
++"Spezifiziert die Rechte für alle vom Auftragsplaner (Scheduler) "
++"geschriebenen Protokolldateien."
++
++#. type: TP
++#: cups-files.conf.man.in:82
++#, no-wrap
++msgid "PageLog filename"
++msgstr "PageLog Dateiname"
++
++#. type: TP
++#: cups-files.conf.man.in:84
++#, no-wrap
++msgid "PageLog syslog"
++msgstr "PageLog syslog"
++
++#. type: Plain text
++#: cups-files.conf.man.in:88
++msgid "Specifies the page log filename."
++msgstr "Spezifiziert den Dateinamen des Seitenprotokolls."
++
++# type: TP
++#. type: TP
++#: cups-files.conf.man.in:88
 +#, no-wrap
 +msgid "Printcap"
 +msgstr "Printcap"
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:468
++#: cups-files.conf.man.in:90
 +#, no-wrap
 +msgid "Printcap filename"
 +msgstr "Printcap Dateiname"
 +
 +# type: Plain text
 +#. type: Plain text
-+#: cupsd.conf.man.in:475
++#: cups-files.conf.man.in:97
 +msgid ""
 +"Specifies the filename for a printcap file that is updated automatically "
 +"with a list of available printers (needed for legacy applications); "
@@ -4162,86 +4561,14 @@ Bug-Debian: http://bugs.debian.org/478597
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:475
-+#, no-wrap
-+msgid "PrintcapFormat bsd"
-+msgstr "PrintcapFormat bsd"
-+
-+# type: TP
-+#. type: TP
-+#: cupsd.conf.man.in:477
-+#, no-wrap
-+msgid "PrintcapFormat plist"
-+msgstr "PrintcapFormat plist"
-+
-+# type: TP
-+#. type: TP
-+#: cupsd.conf.man.in:479
-+#, no-wrap
-+msgid "PrintcapFormat solaris"
-+msgstr "PrintcapFormat solaris"
-+
-+# type: Plain text
-+#. type: Plain text
-+#: cupsd.conf.man.in:483
-+msgid "Specifies the format of the printcap file."
-+msgstr "Spezifiziert das Format der Printcap-Datei."
-+
-+# type: TP
-+#. type: TP
-+#: cupsd.conf.man.in:483
-+#, no-wrap
-+msgid "PrintcapGUI"
-+msgstr "PrintcapGUI"
-+
-+# type: TP
-+#. type: TP
-+#: cupsd.conf.man.in:485
-+#, no-wrap
-+msgid "PrintcapGUI gui-program-filename"
-+msgstr "PrintcapGUI GUI-Programmdateiname"
-+
-+# type: Plain text
-+#. type: Plain text
-+#: cupsd.conf.man.in:491
-+msgid ""
-+"Specifies whether to generate option panel definition files on some "
-+"operating systems. When provided with no program filename, disables option "
-+"panel definition files."
-+msgstr ""
-+"Spezifiziert, ob Definitionsdateien für die Optionsleiste auf einigen "
-+"Betriebssystemen generiert werden. Diese Option schaltet "
-+"Optionsschaltflächendefinitionsdateien aus, wenn sie ohne Dateiname "
-+"angegeben wird."
-+
-+# type: TP
-+#. type: TP
-+#: cupsd.conf.man.in:491
-+#, no-wrap
-+msgid "ReloadTimeout seconds"
-+msgstr "ReloadTimeout Sekunden"
-+
-+# type: Plain text
-+#. type: Plain text
-+#: cupsd.conf.man.in:496
-+msgid ""
-+"Specifies the amount of time to wait for job completion before restarting "
-+"the scheduler."
-+msgstr ""
-+"Spezifiziert die Zeitspanne, während der auf die Beendigung von Aufträgen "
-+"gewartet werden soll, bevor der Auftragsplaner (Scheduler) neu gestartet "
-+"wird."
-+
-+# type: TP
-+#. type: TP
-+#: cupsd.conf.man.in:496
++#: cups-files.conf.man.in:97
 +#, no-wrap
 +msgid "RemoteRoot user-name"
 +msgstr "RemoteRoot Benutzername"
 +
 +# type: Plain text
 +#. type: Plain text
-+#: cupsd.conf.man.in:501
++#: cups-files.conf.man.in:102
 +msgid ""
 +"Specifies the username that is associated with unauthenticated root accesses."
 +msgstr ""
@@ -4250,126 +4577,28 @@ Bug-Debian: http://bugs.debian.org/478597
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:501
++#: cups-files.conf.man.in:102
 +#, no-wrap
 +msgid "RequestRoot directory"
 +msgstr "RequestRoot Verzeichnis"
 +
 +# type: Plain text
 +#. type: Plain text
-+#: cupsd.conf.man.in:506
++#: cups-files.conf.man.in:107
 +msgid ""
 +"Specifies the directory to store print jobs and other HTTP request data."
 +msgstr ""
 +"Spezifiziert das Verzeichnis, in dem Druckaufträge und andere HTTP-"
 +"Anfragedaten gespeichert werden sollen."
 +
-+# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:506
-+#, no-wrap
-+msgid "Require group group-name-list"
-+msgstr "Require group group-name-list"
-+
-+# type: TP
-+#. type: TP
-+#: cupsd.conf.man.in:508
-+#, no-wrap
-+msgid "Require user user-name-list"
-+msgstr "Benötigt Benutzer user-name-list"
-+
-+# type: TP
-+#. type: TP
-+#: cupsd.conf.man.in:510
-+#, no-wrap
-+msgid "Require valid-user"
-+msgstr "Benötigt valid-user"
-+
-+# type: Plain text
-+#. type: Plain text
-+#: cupsd.conf.man.in:514
-+msgid "Specifies that user or group authentication is required."
-+msgstr ""
-+"Spezifiziert, dass Benutzer- oder Gruppenauthentifizierung benötigt wird."
-+
-+# type: TP
-+#. type: TP
-+#: cupsd.conf.man.in:514
-+#, no-wrap
-+msgid "RIPCache bytes"
-+msgstr "RIPCache Bytes"
-+
-+# type: Plain text
-+#. type: Plain text
-+#: cupsd.conf.man.in:519
-+msgid ""
-+"Specifies the maximum amount of memory to use when converting images and "
-+"PostScript files to bitmaps for a printer."
-+msgstr ""
-+"Spezifiziert die maximale Menge an zu verwendendem Speicher beim "
-+"Konvertieren von Bilder und PostScript-Dateien in Bitmaps für den Drucker."
-+
-+#. type: TP
-+#: cupsd.conf.man.in:519
-+#, no-wrap
-+msgid "Satisfy all"
-+msgstr "Satisfy all"
-+
-+#. type: TP
-+#: cupsd.conf.man.in:521
-+#, no-wrap
-+msgid "Satisfy any"
-+msgstr "Satisfy any"
-+
-+#. type: Plain text
-+#: cupsd.conf.man.in:526
-+msgid ""
-+"Specifies whether all or any limits set for a Location must be satisfied to "
-+"allow access."
-+msgstr ""
-+"Spezifiziert, ob alle (alle) oder eine (any) Beschränkung für einen Standort "
-+"erfüllt sein muss, um Zugriff zu erlauben."
-+
-+#. type: TP
-+#: cupsd.conf.man.in:526
-+#, no-wrap
-+msgid "ServerAdmin user@domain.com"
-+msgstr "ServerAdmin Benutzer@domain.com"
-+
-+#. type: Plain text
-+#: cupsd.conf.man.in:530
-+msgid "Specifies the email address of the server administrator."
-+msgstr "Spezifiziert die E-Mail-Adresse des Server-Administrators."
-+
-+#. type: TP
-+#: cupsd.conf.man.in:530
-+#, no-wrap
-+msgid "ServerAlias hostname [... hostname]"
-+msgstr "ServerAlias hostname [… hostname]"
-+
-+#. type: TP
-+#: cupsd.conf.man.in:532
-+#, no-wrap
-+msgid "ServerAlias *"
-+msgstr "ServerAlias *"
-+
-+#. type: Plain text
-+#: cupsd.conf.man.in:537
-+msgid ""
-+"Specifies an alternate name that the server is known by. The special name \"*"
-+"\" allows any name to be used."
-+msgstr ""
-+"Spezifiziert einen alternativen Namen, unter dem der Server bekannt ist. Der "
-+"besondere Name »*« erlaubt die Verwendung jedes Namens."
-+
-+#. type: TP
-+#: cupsd.conf.man.in:537
++#: cups-files.conf.man.in:107
 +#, no-wrap
 +msgid "ServerBin directory"
 +msgstr "ServerBin Verzeichnis"
 +
 +#. type: Plain text
-+#: cupsd.conf.man.in:542
++#: cups-files.conf.man.in:112
 +msgid ""
 +"Specifies the directory where backends, CGIs, daemons, and filters may be "
 +"found."
@@ -4378,332 +4607,93 @@ Bug-Debian: http://bugs.debian.org/478597
 +"gefunden werden können."
 +
 +#. type: TP
-+#: cupsd.conf.man.in:542
++#: cups-files.conf.man.in:112
 +#, no-wrap
 +msgid "ServerCertificate filename"
 +msgstr "ServerCertificate Dateiname"
 +
 +#. type: Plain text
-+#: cupsd.conf.man.in:546
++#: cups-files.conf.man.in:116
 +msgid "Specifies the encryption certificate to use."
 +msgstr "Spezifiziert das zu verwendende Verschlüsselungszertifikat."
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:546
++#: cups-files.conf.man.in:116
 +#, no-wrap
 +msgid "ServerKey filename"
 +msgstr "ServerKey Dateiname"
 +
 +# type: Plain text
 +#. type: Plain text
-+#: cupsd.conf.man.in:550
++#: cups-files.conf.man.in:120
 +msgid "Specifies the encryption key to use."
 +msgstr "Spezifiziert den zu verwendenden Schlüssel für die Verschlüsselung."
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:550
-+#, no-wrap
-+msgid "ServerName hostname-or-ip-address"
-+msgstr "ServerName Rechnername-oder-IP-Adresse"
-+
-+# type: Plain text
-+#. type: Plain text
-+#: cupsd.conf.man.in:554
-+msgid "Specifies the fully-qualified hostname of the server."
-+msgstr "Spezifiziert den vollqualifizierten Rechnernamen des Servers."
-+
-+# type: TP
-+#. type: TP
-+#: cupsd.conf.man.in:554
++#: cups-files.conf.man.in:120
 +#, no-wrap
 +msgid "ServerRoot directory"
 +msgstr "ServerRoot Verzeichnis"
 +
 +# type: Plain text
 +#. type: Plain text
-+#: cupsd.conf.man.in:558
++#: cups-files.conf.man.in:124
 +msgid ""
 +"Specifies the directory where the server configuration files can be found."
 +msgstr ""
 +"Spezifiziert das Verzeichnis, in dem die Serverkonfiguration gefunden werden "
 +"kann."
 +
-+# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:558
-+#, no-wrap
-+msgid "ServerTokens Full"
-+msgstr "ServerTokens Full"
-+
-+# type: TP
-+#. type: TP
-+#: cupsd.conf.man.in:560
-+#, no-wrap
-+msgid "ServerTokens Major"
-+msgstr "ServerTokens Major"
-+
-+# type: TP
-+#. type: TP
-+#: cupsd.conf.man.in:562
-+#, no-wrap
-+msgid "ServerTokens Minimal"
-+msgstr "ServerTokens Minimal"
-+
-+# type: TP
-+#. type: TP
-+#: cupsd.conf.man.in:564
-+#, no-wrap
-+msgid "ServerTokens Minor"
-+msgstr "ServerTokens Minor"
-+
-+# type: TP
-+#. type: TP
-+#: cupsd.conf.man.in:566
-+#, no-wrap
-+msgid "ServerTokens None"
-+msgstr "ServerTokens None"
-+
-+# type: TP
-+#. type: TP
-+#: cupsd.conf.man.in:568
-+#, no-wrap
-+msgid "ServerTokens OS"
-+msgstr "ServerTokens OS"
-+
-+# type: TP
-+#. type: TP
-+#: cupsd.conf.man.in:570
-+#, no-wrap
-+msgid "ServerTokens ProductOnly"
-+msgstr "ServerTokens ProductOnly"
-+
-+# type: Plain text
-+#. type: Plain text
-+#: cupsd.conf.man.in:575
-+msgid ""
-+"Specifies what information is included in the Server header of HTTP "
-+"responses."
-+msgstr ""
-+"Spezifiziert, welche Informationen im Server-Header von HTTP-Antworten "
-+"enthalten sein sollen."
-+
-+# type: TP
-+#. type: TP
-+#: cupsd.conf.man.in:575
-+#, no-wrap
-+msgid "SetEnv variable value"
-+msgstr "SetEnv Variable Wert"
-+
-+# type: Plain text
-+#. type: Plain text
-+#: cupsd.conf.man.in:579
-+msgid "Set the specified environment variable to be passed to child processes."
-+msgstr "Setzt die angegebene Umgebungsvariable zur Weitergabe an Kindprozesse."
-+
-+# type: TP
-+#. type: TP
-+#: cupsd.conf.man.in:579
-+#, no-wrap
-+msgid "SSLListen"
-+msgstr "SSLListen"
-+
-+# type: Plain text
-+#. type: Plain text
-+#: cupsd.conf.man.in:583
-+msgid "Listens on the specified address and port for encrypted connections."
-+msgstr ""
-+"Wartet auf der angegebenen Adresse und dem Port auf verschlüsselte "
-+"Verbindungen."
-+
-+#. type: TP
-+#: cupsd.conf.man.in:583
-+#, no-wrap
-+msgid "SSLOptions None"
-+msgstr "SSLOptions None"
-+
-+#. type: TP
-+#: cupsd.conf.man.in:585
-+#, no-wrap
-+msgid "SSLOptions NoEmptyFragments"
-+msgstr "SSLOptions NoEmptyFragments"
-+
-+# type: Plain text
-+#. type: Plain text
-+#: cupsd.conf.man.in:589
-+msgid "Sets SSL/TLS protocol options for encrypted connections."
-+msgstr "Setzt SSL/TLS-Protokolloptionen für verschlüsselte Verbindungen."
-+
-+# type: TP
-+#. type: TP
-+#: cupsd.conf.man.in:589
-+#, no-wrap
-+msgid "SSLPort"
-+msgstr "SSLPort"
-+
-+# type: Plain text
-+#. type: Plain text
-+#: cupsd.conf.man.in:593
-+msgid "Listens on the specified port for encrypted connections."
-+msgstr "Wartet auf dem angegebenen Port auf verschlüsselte Verbindungen."
-+
-+#. type: TP
-+#: cupsd.conf.man.in:593
-+#, no-wrap
-+msgid "StrictConformance Yes"
-+msgstr ""
-+
-+#. type: TP
-+#: cupsd.conf.man.in:595
-+#, no-wrap
-+msgid "StrictConformance No"
-+msgstr ""
-+
-+#. type: Plain text
-+#: cupsd.conf.man.in:600
-+msgid ""
-+"Specifies whether the scheduler requires clients to strictly adhere to the "
-+"IPP specifications. The default is No."
-+msgstr ""
-+
-+#. type: TP
-+#: cupsd.conf.man.in:600
-+#, no-wrap
-+msgid "SubscriptionPrivateAccess all"
-+msgstr "SubscriptionPrivateAccess all"
-+
-+#. type: TP
-+#: cupsd.conf.man.in:602
-+#, no-wrap
-+msgid "SubscriptionPrivateAccess default"
-+msgstr "SubscriptionPrivateAccess default"
-+
-+#. type: TP
-+#: cupsd.conf.man.in:604
-+#, no-wrap
-+msgid "SubscriptionPrivateAccess {user|@group|@ACL|@OWNER|@SYSTEM}+"
-+msgstr "SubscriptionPrivateAccess {Benutzer|@Gruppe|@ACL|@OWNER|@SYSTEM}+"
-+
-+#. type: Plain text
-+#: cupsd.conf.man.in:610
-+msgid ""
-+"Specifies an access list for a subscription's private values. The \"default"
-+"\" access list is \"@OWNER @SYSTEM\". \"@ACL\" maps to the printer's "
-+"requesting-user-name-allowed or requesting-user-name-denied values."
-+msgstr ""
-+"Spezifiziert eine Zugriffsliste für die privaten Werte eines Abonnements. "
-+"Die »Standard«- (default) Zugriffsliste ist »@OWNER @SYSTEM«. »@ACL« passt "
-+"auf die Werte requesting-user-name-allowed oder requesting-user-name-denied "
-+"des Druckers."
-+
-+#. type: TP
-+#: cupsd.conf.man.in:610
-+#, no-wrap
-+msgid "SubscriptionPrivateValues all"
-+msgstr "SubscriptionPrivateValues all"
-+
-+#. type: TP
-+#: cupsd.conf.man.in:612
-+#, no-wrap
-+msgid "SubscriptionPrivateValues default"
-+msgstr "SubscriptionPrivateValues default"
-+
-+#. type: TP
-+#: cupsd.conf.man.in:614
-+#, no-wrap
-+msgid "SubscriptionPrivateValues none"
-+msgstr "SubscriptionPrivateValues none"
-+
-+#. type: TP
-+#: cupsd.conf.man.in:616
-+#, no-wrap
-+msgid "SubscriptionPrivateValues attribute-name-1 [ ... attribute-name-N ]"
-+msgstr "SubscriptionPrivateValues Attributname-1 [ … Attributname-N ]"
-+
-+#. type: Plain text
-+#: cupsd.conf.man.in:621
-+msgid ""
-+"Specifies the list of job values to make private. The \"default\" values are "
-+"\"notify-events\", \"notify-pull-method\", \"notify-recipient-uri\", "
-+"\"notify-subscriber-user-name\", and \"notify-user-data\"."
-+msgstr ""
-+"Spezifiziert die Liste der Auftragswerte, die privat werden sollen. Die "
-+"»Standard«- (default) Werte sind »notify-events«, »notify-pull-method«, "
-+"»notify-recipient-uri«, »notify-subscriber-user-name« und »notify-user-data«."
-+
-+#. type: TP
-+#: cupsd.conf.man.in:621
++#: cups-files.conf.man.in:124
 +#, no-wrap
 +msgid "SystemGroup group-name [group-name ...]"
 +msgstr "SystemGroup Gruppenname [Gruppenname …]"
 +
 +#. type: Plain text
-+#: cupsd.conf.man.in:625
++#: cups-files.conf.man.in:128
 +msgid "Specifies the group(s) to use for System class authentication."
 +msgstr ""
 +"Spezifiziert den/die Gruppe(n), die für Systemklassen-Authentifizierung "
 +"verwandt werden."
 +
 +#. type: TP
-+#: cupsd.conf.man.in:625
++#: cups-files.conf.man.in:128
 +#, no-wrap
 +msgid "TempDir directory"
 +msgstr "TempDir Verzeichnis"
 +
 +#. type: Plain text
-+#: cupsd.conf.man.in:629
++#: cups-files.conf.man.in:132
 +msgid "Specifies the directory where temporary files are stored."
 +msgstr ""
 +"Spezifiziert das Verzeichnis, in dem temporäre Dateien gespeichert werden."
 +
 +#. type: TP
-+#: cupsd.conf.man.in:629
-+#, no-wrap
-+msgid "Timeout seconds"
-+msgstr "Timeout Sekunden"
-+
-+#. type: Plain text
-+#: cupsd.conf.man.in:633
-+msgid "Specifies the HTTP request timeout in seconds."
-+msgstr "Spezifiziert die HTTP-Zeitüberschreitung in Sekunden."
-+
-+#. type: TP
-+#: cupsd.conf.man.in:633
++#: cups-files.conf.man.in:132
 +#, no-wrap
 +msgid "User user-name"
 +msgstr "User Benutzername"
 +
 +#. type: Plain text
-+#: cupsd.conf.man.in:637
++#: cups-files.conf.man.in:136
 +msgid ""
 +"Specifies the user name or ID that is used when running external programs."
 +msgstr ""
 +"Spezifiziert den Benutzernamen oder die ID, die bei der Ausführung externer "
 +"Programme verwandt wird."
 +
-+#. type: TP
-+#: cupsd.conf.man.in:637
-+#, no-wrap
-+msgid "WebInterface yes"
-+msgstr "WebInterface yes"
-+
-+#. type: TP
-+#: cupsd.conf.man.in:639
-+#, no-wrap
-+msgid "WebInterface no"
-+msgstr "WebInterface no"
-+
 +#. type: Plain text
-+#: cupsd.conf.man.in:642
-+msgid "Specifies whether the web interface is enabled."
-+msgstr "Spezifiziert, ob die Webschnittstelle freigegeben ist."
-+
-+#. type: Plain text
-+#: cupsd.conf.man.in:646
++#: cups-files.conf.man.in:140
++#, fuzzy
++#| msgid ""
++#| "I<classes.conf(5)>, I<cupsd(8)>, I<mime.convs(5)>, I<mime.types(5)>, "
++#| "I<printers.conf(5)>, I<subscriptions.conf(5)>,"
 +msgid ""
-+"I<classes.conf(5)>, I<cupsd(8)>, I<mime.convs(5)>, I<mime.types(5)>, "
-+"I<printers.conf(5)>, I<subscriptions.conf(5)>,"
++"I<classes.conf(5)>, I<cupsd(8)>, I<cupsd.conf(5)>, I<mime.convs(5)>, I<mime."
++"types(5)>, I<printers.conf(5)>, I<subscriptions.conf(5)>,"
 +msgstr ""
 +"I<classes.conf(5)>, I<cupsd(8)>, I<mime.convs(5)>, I<mime.types(5)>, "
 +"I<printers.conf(5)>, I<subscriptions.conf(5)>,"
@@ -6521,6 +6511,13 @@ Bug-Debian: http://bugs.debian.org/478597
 +#, no-wrap
 +msgid "filter"
 +msgstr "filter"
++
++#. type: TH
++#: filter.man:15
++#, fuzzy, no-wrap
++#| msgid "18 May 2011"
++msgid "18 May 2012"
++msgstr "18. Mai 2011"
 +
 +# type: Plain text
 +#. type: Plain text
@@ -10495,6 +10492,56 @@ Bug-Debian: http://bugs.debian.org/478597
 +"I<classes.conf(5)>, I<cupsd(8)>, I<cupsd.conf(5)>, I<mime.convs(5)>, I<mime."
 +"types(5)>, printers.conf(5)"
 +
++# type: TP
++#~ msgid "AuthClass User"
++#~ msgstr "AuthClass User"
++
++# type: TP
++#~ msgid "AuthClass Group"
++#~ msgstr "AuthClass Group"
++
++# type: TP
++#~ msgid "AuthClass System"
++#~ msgstr "AuthClass System"
++
++# type: Plain text
++#~ msgid ""
++#~ "Specifies the authentication class (User, Group, System) - B<this "
++#~ "directive is deprecated>."
++#~ msgstr ""
++#~ "Spezifiziert die Authentifizierungsklasse (Benutzer, Gruppe, System) - "
++#~ "B<diese Direktive ist veraltet>."
++
++# type: TP
++#~ msgid "AuthGroupName group-name"
++#~ msgstr "AuthGroupName Gruppenname"
++
++# type: Plain text
++#~ msgid ""
++#~ "Specifies the authentication group - B<this directive is deprecated>."
++#~ msgstr ""
++#~ "Spezifiziert die Authentifizierungsgruppe - B<diese Direktive ist "
++#~ "veraltet>."
++
++# type: TP
++#~ msgid "PrintcapGUI"
++#~ msgstr "PrintcapGUI"
++
++# type: TP
++#~ msgid "PrintcapGUI gui-program-filename"
++#~ msgstr "PrintcapGUI GUI-Programmdateiname"
++
++# type: Plain text
++#~ msgid ""
++#~ "Specifies whether to generate option panel definition files on some "
++#~ "operating systems. When provided with no program filename, disables "
++#~ "option panel definition files."
++#~ msgstr ""
++#~ "Spezifiziert, ob Definitionsdateien für die Optionsleiste auf einigen "
++#~ "Betriebssystemen generiert werden. Diese Option schaltet "
++#~ "Optionsschaltflächendefinitionsdateien aus, wenn sie ohne Dateiname "
++#~ "angegeben wird."
++
 +#~ msgid "I<cupsd(8)>, I<cupsd.conf(5)>, I<filter(7)>,"
 +#~ msgstr "I<cupsd(8)>, I<cupsd.conf(5)>, I<filter(7)>,"
 +
@@ -10986,7 +11033,7 @@ Bug-Debian: http://bugs.debian.org/478597
 +#~ msgstr "2. März 2009"
 --- /dev/null
 +++ b/man/po4a/po/fr.po
-@@ -0,0 +1,11088 @@
+@@ -0,0 +1,11109 @@
 +# Translation of the cups manpages into French.
 +#
 +# Original translations from:
@@ -10997,7 +11044,7 @@ Bug-Debian: http://bugs.debian.org/478597
 +msgid ""
 +msgstr ""
 +"Project-Id-Version: cups\n"
-+"POT-Creation-Date: 2012-10-30 15:29+0100\n"
++"POT-Creation-Date: 2013-01-04 16:48+0100\n"
 +"PO-Revision-Date: 2012-03-22 16:59+0100\n"
 +"Last-Translator: Julien Patriarca <patriarcaj@gmail.com>\n"
 +"Language-Team: French <debian-l10n-french@lists.debian.org>\n"
@@ -11016,13 +11063,14 @@ Bug-Debian: http://bugs.debian.org/478597
 +#. type: TH
 +#: cupsaccept.man:15 backend.man:15 cancel.man:15 classes.conf.man:15
 +#: client.conf.man.in:15 cupsaddsmb.man.in:15 cups-config.man:15
-+#: cupsctl.man:15 cupsd.conf.man.in:15 cups-deviced.man.in:15 cupsd.man.in:15
-+#: cups-driverd.man.in:15 cupsenable.man:15 cupsfilter.man:14
-+#: cups-lpd.man.in:15 cups-snmp.conf.man:15 cupstestdsc.man:15
-+#: cupstestppd.man:15 filter.man:15 lpadmin.man:15 lpc.man:15 lpinfo.man:15
-+#: lp.man:15 lpmove.man:15 lpoptions.man.in:15 lppasswd.man:15 lpq.man:15
-+#: lpr.man:15 lprm.man:15 lpstat.man:15 mailto.conf.man:15 mime.convs.man:15
-+#: mime.types.man:15 printers.conf.man:15 subscriptions.conf.man:15
++#: cupsctl.man:15 cupsd.conf.man.in:15 cups-files.conf.man.in:15
++#: cups-deviced.man.in:15 cupsd.man.in:15 cups-driverd.man.in:15
++#: cupsenable.man:15 cupsfilter.man:14 cups-lpd.man.in:15
++#: cups-snmp.conf.man:15 cupstestdsc.man:15 cupstestppd.man:15 filter.man:15
++#: lpadmin.man:15 lpc.man:15 lpinfo.man:15 lp.man:15 lpmove.man:15
++#: lpoptions.man.in:15 lppasswd.man:15 lpq.man:15 lpr.man:15 lprm.man:15
++#: lpstat.man:15 mailto.conf.man:15 mime.convs.man:15 mime.types.man:15
++#: printers.conf.man:15 subscriptions.conf.man:15
 +#, no-wrap
 +msgid "CUPS"
 +msgstr "CUPS"
@@ -11038,13 +11086,14 @@ Bug-Debian: http://bugs.debian.org/478597
 +#. type: TH
 +#: cupsaccept.man:15 backend.man:15 cancel.man:15 classes.conf.man:15
 +#: client.conf.man.in:15 cupsaddsmb.man.in:15 cups-config.man:15
-+#: cupsctl.man:15 cupsd.conf.man.in:15 cups-deviced.man.in:15 cupsd.man.in:15
-+#: cups-driverd.man.in:15 cupsenable.man:15 cupsfilter.man:14
-+#: cups-lpd.man.in:15 cups-snmp.conf.man:15 cupstestdsc.man:15
-+#: cupstestppd.man:15 filter.man:15 lpadmin.man:15 lpc.man:15 lpinfo.man:15
-+#: lp.man:15 lpmove.man:15 lpoptions.man.in:15 lppasswd.man:15 lpq.man:15
-+#: lpr.man:15 lprm.man:15 lpstat.man:15 mailto.conf.man:15 mime.convs.man:15
-+#: mime.types.man:15 printers.conf.man:15 subscriptions.conf.man:15
++#: cupsctl.man:15 cupsd.conf.man.in:15 cups-files.conf.man.in:15
++#: cups-deviced.man.in:15 cupsd.man.in:15 cups-driverd.man.in:15
++#: cupsenable.man:15 cupsfilter.man:14 cups-lpd.man.in:15
++#: cups-snmp.conf.man:15 cupstestdsc.man:15 cupstestppd.man:15 filter.man:15
++#: lpadmin.man:15 lpc.man:15 lpinfo.man:15 lp.man:15 lpmove.man:15
++#: lpoptions.man.in:15 lppasswd.man:15 lpq.man:15 lpr.man:15 lprm.man:15
++#: lpstat.man:15 mailto.conf.man:15 mime.convs.man:15 mime.types.man:15
++#: printers.conf.man:15 subscriptions.conf.man:15
 +#, no-wrap
 +msgid "Apple Inc."
 +msgstr "Apple Inc."
@@ -11053,13 +11102,14 @@ Bug-Debian: http://bugs.debian.org/478597
 +#. type: SH
 +#: cupsaccept.man:16 backend.man:17 cancel.man:16 classes.conf.man:16
 +#: client.conf.man.in:16 cupsaddsmb.man.in:16 cups-config.man:16
-+#: cupsctl.man:16 cupsd.conf.man.in:16 cups-deviced.man.in:16 cupsd.man.in:16
-+#: cups-driverd.man.in:16 cupsenable.man:16 cupsfilter.man:15
-+#: cups-lpd.man.in:16 cups-snmp.conf.man:17 cupstestdsc.man:16
-+#: cupstestppd.man:16 filter.man:16 lpadmin.man:16 lpc.man:16 lpinfo.man:16
-+#: lp.man:16 lpmove.man:16 lpoptions.man.in:16 lppasswd.man:16 lpq.man:16
-+#: lpr.man:16 lprm.man:16 lpstat.man:16 mailto.conf.man:16 mime.convs.man:16
-+#: mime.types.man:16 printers.conf.man:16 subscriptions.conf.man:16
++#: cupsctl.man:16 cupsd.conf.man.in:16 cups-files.conf.man.in:16
++#: cups-deviced.man.in:16 cupsd.man.in:16 cups-driverd.man.in:16
++#: cupsenable.man:16 cupsfilter.man:15 cups-lpd.man.in:16
++#: cups-snmp.conf.man:17 cupstestdsc.man:16 cupstestppd.man:16 filter.man:16
++#: lpadmin.man:16 lpc.man:16 lpinfo.man:16 lp.man:16 lpmove.man:16
++#: lpoptions.man.in:16 lppasswd.man:16 lpq.man:16 lpr.man:16 lprm.man:16
++#: lpstat.man:16 mailto.conf.man:16 mime.convs.man:16 mime.types.man:16
++#: printers.conf.man:16 subscriptions.conf.man:16
 +#, no-wrap
 +msgid "NAME"
 +msgstr "NOM"
@@ -11109,13 +11159,14 @@ Bug-Debian: http://bugs.debian.org/478597
 +#. type: SH
 +#: cupsaccept.man:34 backend.man:26 cancel.man:33 classes.conf.man:18
 +#: client.conf.man.in:18 cupsaddsmb.man.in:38 cups-config.man:53
-+#: cupsctl.man:29 cupsd.conf.man.in:18 cups-deviced.man.in:21 cupsd.man.in:23
-+#: cups-driverd.man.in:26 cupsenable.man:34 cupsfilter.man:41
-+#: cups-lpd.man.in:25 cups-snmp.conf.man:19 cupstestdsc.man:26
-+#: cupstestppd.man:34 filter.man:23 lpadmin.man:46 lpc.man:25 lpinfo.man:50
-+#: lp.man:62 lpmove.man:34 lpoptions.man.in:62 lppasswd.man:33 lpq.man:29
-+#: lpr.man:35 lprm.man:29 lpstat.man:39 mailto.conf.man:18 mime.convs.man:18
-+#: mime.types.man:18 printers.conf.man:18 subscriptions.conf.man:18
++#: cupsctl.man:29 cupsd.conf.man.in:18 cups-files.conf.man.in:18
++#: cups-deviced.man.in:21 cupsd.man.in:23 cups-driverd.man.in:26
++#: cupsenable.man:34 cupsfilter.man:41 cups-lpd.man.in:25
++#: cups-snmp.conf.man:19 cupstestdsc.man:26 cupstestppd.man:34 filter.man:23
++#: lpadmin.man:46 lpc.man:25 lpinfo.man:50 lp.man:62 lpmove.man:34
++#: lpoptions.man.in:62 lppasswd.man:33 lpq.man:29 lpr.man:35 lprm.man:29
++#: lpstat.man:39 mailto.conf.man:18 mime.convs.man:18 mime.types.man:18
++#: printers.conf.man:18 subscriptions.conf.man:18
 +#, no-wrap
 +msgid "DESCRIPTION"
 +msgstr "DESCRIPTION"
@@ -11261,13 +11312,13 @@ Bug-Debian: http://bugs.debian.org/478597
 +#. type: SH
 +#: cupsaccept.man:70 backend.man:163 cancel.man:67 classes.conf.man:101
 +#: client.conf.man.in:53 cupsaddsmb.man.in:204 cups-config.man:111
-+#: cupsctl.man:94 cupsd.conf.man.in:642 cups-deviced.man.in:36 cupsd.man.in:61
-+#: cups-driverd.man.in:114 cupsenable.man:83 cupsfilter.man:101
-+#: cups-lpd.man.in:115 cups-snmp.conf.man:70 cupstestdsc.man:41
-+#: cupstestppd.man:155 filter.man:230 lpadmin.man:218 lpc.man:62
-+#: lpinfo.man:107 lp.man:243 lpmove.man:58 lpoptions.man.in:127
-+#: lppasswd.man:60 lpq.man:63 lpr.man:113 lprm.man:56 lpstat.man:135
-+#: mailto.conf.man:51 mime.convs.man:37 mime.types.man:106
++#: cupsctl.man:94 cupsd.conf.man.in:515 cups-files.conf.man.in:136
++#: cups-deviced.man.in:36 cupsd.man.in:61 cups-driverd.man.in:114
++#: cupsenable.man:83 cupsfilter.man:101 cups-lpd.man.in:115
++#: cups-snmp.conf.man:70 cupstestdsc.man:41 cupstestppd.man:155 filter.man:230
++#: lpadmin.man:218 lpc.man:62 lpinfo.man:107 lp.man:243 lpmove.man:58
++#: lpoptions.man.in:127 lppasswd.man:60 lpq.man:63 lpr.man:113 lprm.man:56
++#: lpstat.man:135 mailto.conf.man:51 mime.convs.man:37 mime.types.man:106
 +#: printers.conf.man:115 subscriptions.conf.man:80
 +#, no-wrap
 +msgid "SEE ALSO"
@@ -11283,11 +11334,11 @@ Bug-Debian: http://bugs.debian.org/478597
 +#. type: Plain text
 +#: cupsaccept.man:75 backend.man:168 cancel.man:71 classes.conf.man:106
 +#: client.conf.man.in:55 cups-config.man:113 cupsctl.man:98
-+#: cupsd.conf.man.in:648 cups-deviced.man.in:40 cupsd.man.in:68
-+#: cups-driverd.man.in:118 cupsenable.man:88 cupsfilter.man:105
-+#: cups-lpd.man.in:120 cups-snmp.conf.man:74 cupstestdsc.man:43
-+#: cupstestppd.man:159 filter.man:234 lpadmin.man:223 lpc.man:67
-+#: lpinfo.man:111 lp.man:248 lpmove.man:62 lpoptions.man.in:131
++#: cupsd.conf.man.in:521 cups-files.conf.man.in:142 cups-deviced.man.in:40
++#: cupsd.man.in:68 cups-driverd.man.in:118 cupsenable.man:88
++#: cupsfilter.man:105 cups-lpd.man.in:120 cups-snmp.conf.man:74
++#: cupstestdsc.man:43 cupstestppd.man:159 filter.man:234 lpadmin.man:223
++#: lpc.man:67 lpinfo.man:111 lp.man:248 lpmove.man:62 lpoptions.man.in:131
 +#: lppasswd.man:64 lpq.man:68 lpr.man:118 lprm.man:61 lpstat.man:139
 +#: mailto.conf.man:56 mime.convs.man:42 mime.types.man:111
 +#: printers.conf.man:120 subscriptions.conf.man:85
@@ -11298,13 +11349,13 @@ Bug-Debian: http://bugs.debian.org/478597
 +#. type: SH
 +#: cupsaccept.man:75 backend.man:168 cancel.man:71 classes.conf.man:106
 +#: client.conf.man.in:55 cupsaddsmb.man.in:210 cups-config.man:113
-+#: cupsctl.man:98 cupsd.conf.man.in:648 cups-deviced.man.in:40 cupsd.man.in:68
-+#: cups-driverd.man.in:118 cupsenable.man:88 cupsfilter.man:105
-+#: cups-lpd.man.in:120 cups-snmp.conf.man:74 cupstestdsc.man:46
-+#: cupstestppd.man:161 filter.man:234 lpadmin.man:223 lpc.man:67
-+#: lpinfo.man:111 lp.man:248 lpmove.man:62 lpoptions.man.in:131
-+#: lppasswd.man:64 lpq.man:68 lpr.man:118 lprm.man:61 lpstat.man:139
-+#: mailto.conf.man:56 mime.convs.man:42 mime.types.man:111
++#: cupsctl.man:98 cupsd.conf.man.in:521 cups-files.conf.man.in:142
++#: cups-deviced.man.in:40 cupsd.man.in:68 cups-driverd.man.in:118
++#: cupsenable.man:88 cupsfilter.man:105 cups-lpd.man.in:120
++#: cups-snmp.conf.man:74 cupstestdsc.man:46 cupstestppd.man:161 filter.man:234
++#: lpadmin.man:223 lpc.man:67 lpinfo.man:111 lp.man:248 lpmove.man:62
++#: lpoptions.man.in:131 lppasswd.man:64 lpq.man:68 lpr.man:118 lprm.man:61
++#: lpstat.man:139 mailto.conf.man:56 mime.convs.man:42 mime.types.man:111
 +#: printers.conf.man:120 subscriptions.conf.man:85
 +#, no-wrap
 +msgid "COPYRIGHT"
@@ -11314,18 +11365,16 @@ Bug-Debian: http://bugs.debian.org/478597
 +#. type: Plain text
 +#: cupsaccept.man:76 backend.man:169 cancel.man:72 classes.conf.man:107
 +#: client.conf.man.in:56 cupsaddsmb.man.in:211 cups-config.man:114
-+#: cupsctl.man:99 cupsd.conf.man.in:649 cups-deviced.man.in:41 cupsd.man.in:69
-+#: cups-driverd.man.in:119 cupsenable.man:90 cupsfilter.man:106
-+#: cups-lpd.man.in:121 cups-snmp.conf.man:75 cupstestdsc.man:47
-+#: cupstestppd.man:162 filter.man:235 lpadmin.man:224 lpc.man:68
-+#: lpinfo.man:112 lp.man:249 lpmove.man:63 lpoptions.man.in:132
-+#: lppasswd.man:65 lpq.man:69 lpr.man:119 lprm.man:62 lpstat.man:140
-+#: mailto.conf.man:57 mime.convs.man:43 mime.types.man:112
++#: cupsctl.man:99 cupsd.conf.man.in:522 cups-files.conf.man.in:143
++#: cups-deviced.man.in:41 cupsd.man.in:69 cups-driverd.man.in:119
++#: cupsenable.man:90 cupsfilter.man:106 cups-lpd.man.in:121
++#: cups-snmp.conf.man:75 cupstestdsc.man:47 cupstestppd.man:162 filter.man:235
++#: lpadmin.man:224 lpc.man:68 lpinfo.man:112 lp.man:249 lpmove.man:63
++#: lpoptions.man.in:132 lppasswd.man:65 lpq.man:69 lpr.man:119 lprm.man:62
++#: lpstat.man:140 mailto.conf.man:57 mime.convs.man:43 mime.types.man:112
 +#: printers.conf.man:121 subscriptions.conf.man:86
-+#, fuzzy
-+#| msgid "Copyright 2007-2011 by Apple Inc."
 +msgid "Copyright 2007-2012 by Apple Inc."
-+msgstr "Copyright 2007-2011 par Apple Inc."
++msgstr "Copyright 2007-2012 par Apple Inc."
 +
 +# type: TH
 +#. type: TH
@@ -11337,10 +11386,9 @@ Bug-Debian: http://bugs.debian.org/478597
 +# type: TH
 +#. type: TH
 +#: backend.man:15 client.conf.man.in:15 cups-snmp.conf.man:15
-+#, fuzzy, no-wrap
-+#| msgid "15 April 2011"
++#, no-wrap
 +msgid "23 April 2012"
-+msgstr "15 avril 2011"
++msgstr "23 avril 2012"
 +
 +# type: Plain text
 +#. type: Plain text
@@ -12002,8 +12050,8 @@ Bug-Debian: http://bugs.debian.org/478597
 +
 +# type: Plain text
 +#. type: Plain text
-+#: classes.conf.man:26 mailto.conf.man:24 printers.conf.man:26
-+#: subscriptions.conf.man:26
++#: classes.conf.man:26 cups-files.conf.man.in:25 mailto.conf.man:24
++#: printers.conf.man:26 subscriptions.conf.man:26
 +msgid ""
 +"Each line in the file can be a configuration directive, a blank line, or a "
 +"comment. Comment lines start with the # character."
@@ -12013,9 +12061,9 @@ Bug-Debian: http://bugs.debian.org/478597
 +
 +# type: SH
 +#. type: SH
-+#: classes.conf.man:26 client.conf.man.in:24 cupsd.conf.man.in:26
-+#: cups-snmp.conf.man:28 mailto.conf.man:24 printers.conf.man:26
-+#: subscriptions.conf.man:26
++#: classes.conf.man:26 client.conf.man.in:24 cupsd.conf.man.in:29
++#: cups-files.conf.man.in:25 cups-snmp.conf.man:28 mailto.conf.man:24
++#: printers.conf.man:26 subscriptions.conf.man:26
 +#, no-wrap
 +msgid "DIRECTIVES"
 +msgstr "DIRECTIVES"
@@ -12316,34 +12364,34 @@ Bug-Debian: http://bugs.debian.org/478597
 +
 +# type: TP
 +#. type: TP
-+#: client.conf.man.in:27 cupsd.conf.man.in:203
++#: client.conf.man.in:27 cupsd.conf.man.in:173
 +#, no-wrap
 +msgid "Encryption IfRequested"
 +msgstr "Encryption IfRequested"
 +
 +# type: TP
 +#. type: TP
-+#: client.conf.man.in:29 cupsd.conf.man.in:205
++#: client.conf.man.in:29 cupsd.conf.man.in:175
 +#, no-wrap
 +msgid "Encryption Never"
 +msgstr "Encryption Never"
 +
 +# type: TP
 +#. type: TP
-+#: client.conf.man.in:31 cupsd.conf.man.in:207
++#: client.conf.man.in:31 cupsd.conf.man.in:177
 +#, no-wrap
 +msgid "Encryption Required"
 +msgstr "Encryption Required"
 +
 +# type: Plain text
 +#. type: Plain text
-+#: client.conf.man.in:36 cupsd.conf.man.in:212
++#: client.conf.man.in:36 cupsd.conf.man.in:182
 +msgid ""
 +"Specifies the level of encryption that is required for a particular location."
 +msgstr "Définir le niveau de chiffrement nécessaire pour un emplacement donné."
 +
 +#. type: TP
-+#: client.conf.man.in:36 cupsd.conf.man.in:252
++#: client.conf.man.in:36 cupsd.conf.man.in:191
 +#, no-wrap
 +msgid "GSSServiceName name"
 +msgstr "Nom pour GSSServiceName"
@@ -13401,11 +13449,10 @@ Bug-Debian: http://bugs.debian.org/478597
 +
 +# type: TH
 +#. type: TH
-+#: cupsd.conf.man.in:15 filter.man:15
-+#, fuzzy, no-wrap
-+#| msgid "18 May 2011"
-+msgid "18 May 2012"
-+msgstr "18 mai 2011"
++#: cupsd.conf.man.in:15 cups-files.conf.man.in:15
++#, no-wrap
++msgid "19 November 2012"
++msgstr "19 novembre 2012"
 +
 +# type: Plain text
 +#. type: Plain text
@@ -13413,19 +13460,19 @@ Bug-Debian: http://bugs.debian.org/478597
 +msgid "cupsd.conf - server configuration file for cups"
 +msgstr "cupsd.conf - Fichier de configuration du serveur CUPS."
 +
-+# type: Plain text
 +#. type: Plain text
-+#: cupsd.conf.man.in:21
++#: cupsd.conf.man.in:24
 +msgid ""
 +"The I<cupsd.conf> file configures the CUPS scheduler, I<cupsd(8)>.  It is "
-+"normally located in the I<@CUPS_SERVERROOT@> directory."
++"normally located in the I<@CUPS_SERVERROOT@> directory. B<Note:> File, "
++"directory, and user configuration directives that used to be allowed in the "
++"I<cupsd.conf> file are now stored in the I<cups-files.conf(5)> instead in "
++"order to prevent certain types of privilege escalation attacks."
 +msgstr ""
-+"Le fichier I<cupsd.conf> configure l'ordonnanceur CUPS, B<cupsd>(8). Il est "
-+"généralement situé dans le répertoire I<@CUPS_SERVERROOT@>."
 +
 +# type: Plain text
 +#. type: Plain text
-+#: cupsd.conf.man.in:26
++#: cupsd.conf.man.in:29
 +msgid ""
 +"Each line in the file can be a configuration directive, a blank line, or a "
 +"comment. Comment lines start with the # character. The configuration "
@@ -13439,7 +13486,7 @@ Bug-Debian: http://bugs.debian.org/478597
 +
 +# type: Plain text
 +#. type: Plain text
-+#: cupsd.conf.man.in:29
++#: cupsd.conf.man.in:32 cups-files.conf.man.in:28
 +msgid ""
 +"The following directives are understood by I<cupsd(8)>. Consult the on-line "
 +"help for detailed descriptions:"
@@ -13449,202 +13496,138 @@ Bug-Debian: http://bugs.debian.org/478597
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:29
-+#, no-wrap
-+msgid "AccessLog filename"
-+msgstr "AccessLog fichier"
-+
-+# type: TP
-+#. type: TP
-+#: cupsd.conf.man.in:31
-+#, no-wrap
-+msgid "AccessLog syslog"
-+msgstr "AccessLog syslog"
-+
-+# type: Plain text
-+#. type: Plain text
-+#: cupsd.conf.man.in:35
-+msgid "Defines the access log filename."
-+msgstr "Définir le fichier traçant les accès."
-+
-+# type: TP
-+#. type: TP
-+#: cupsd.conf.man.in:35
++#: cupsd.conf.man.in:32
 +#, no-wrap
 +msgid "AccessLogLevel config"
 +msgstr "AccessLogLevel config"
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:37
++#: cupsd.conf.man.in:34
 +#, no-wrap
 +msgid "AccessLogLevel actions"
 +msgstr "AccessLogLevel actions"
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:39
++#: cupsd.conf.man.in:36
 +#, no-wrap
 +msgid "AccessLogLevel all"
 +msgstr "AccessLogLevel all"
 +
 +# type: Plain text
 +#. type: Plain text
-+#: cupsd.conf.man.in:43
++#: cupsd.conf.man.in:40
 +msgid "Specifies the logging level for the AccessLog file."
 +msgstr "Indique le niveau de journalisation pour le fichier des AccessLog."
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:43
++#: cupsd.conf.man.in:40
 +#, no-wrap
 +msgid "Allow all"
 +msgstr "Allow all"
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:45
++#: cupsd.conf.man.in:42
 +#, no-wrap
 +msgid "Allow none"
 +msgstr "Allow none"
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:47
++#: cupsd.conf.man.in:44
 +#, no-wrap
 +msgid "Allow host.domain.com"
 +msgstr "Allow serveur.domaine.com"
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:49
++#: cupsd.conf.man.in:46
 +#, no-wrap
 +msgid "Allow *.domain.com"
 +msgstr "Allow *.domaine.com"
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:51
++#: cupsd.conf.man.in:48
 +#, no-wrap
 +msgid "Allow ip-address"
 +msgstr "Allow adresse_ip"
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:53
++#: cupsd.conf.man.in:50
 +#, no-wrap
 +msgid "Allow ip-address/netmask"
 +msgstr "Allow adresse_ip/masque_sous_réseau"
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:55
++#: cupsd.conf.man.in:52
 +#, no-wrap
 +msgid "Allow ip-address/mm"
 +msgstr "Allow adresse_ip/mm"
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:57
++#: cupsd.conf.man.in:54
 +#, no-wrap
 +msgid "Allow @IF(name)"
 +msgstr "Allow @IF(nom)"
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:59
++#: cupsd.conf.man.in:56
 +#, no-wrap
 +msgid "Allow @LOCAL"
 +msgstr "Allow @LOCAL"
 +
 +# type: Plain text
 +#. type: Plain text
-+#: cupsd.conf.man.in:63
++#: cupsd.conf.man.in:60
 +msgid "Allows access from the named hosts or addresses."
 +msgstr "Permettre l'accès depuis des machines nommées ou des adresses IP."
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:63
-+#, no-wrap
-+msgid "AuthClass User"
-+msgstr "AuthClass User"
-+
-+# type: TP
-+#. type: TP
-+#: cupsd.conf.man.in:65
-+#, no-wrap
-+msgid "AuthClass Group"
-+msgstr "AuthClass Group"
-+
-+# type: TP
-+#. type: TP
-+#: cupsd.conf.man.in:67
-+#, no-wrap
-+msgid "AuthClass System"
-+msgstr "AuthClass System"
-+
-+# type: Plain text
-+#. type: Plain text
-+#: cupsd.conf.man.in:72
-+msgid ""
-+"Specifies the authentication class (User, Group, System) - B<this directive "
-+"is deprecated>."
-+msgstr ""
-+"Définir la classe d'identification (User, Group, System). B<Cette directive "
-+"est obsolète.>"
-+
-+# type: TP
-+#. type: TP
-+#: cupsd.conf.man.in:72
-+#, no-wrap
-+msgid "AuthGroupName group-name"
-+msgstr "AuthGroupName groupe"
-+
-+# type: Plain text
-+#. type: Plain text
-+#: cupsd.conf.man.in:77
-+msgid "Specifies the authentication group - B<this directive is deprecated>."
-+msgstr "Définir le groupe d'identification. B<Cette directive est obsolète.>"
-+
-+# type: TP
-+#. type: TP
-+#: cupsd.conf.man.in:77
++#: cupsd.conf.man.in:60
 +#, no-wrap
 +msgid "AuthType None"
 +msgstr "AuthType None"
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:79
++#: cupsd.conf.man.in:62
 +#, no-wrap
 +msgid "AuthType Basic"
 +msgstr "AuthType Basic"
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:81
++#: cupsd.conf.man.in:64
 +#, no-wrap
 +msgid "AuthType BasicDigest"
 +msgstr "AuthType BasicDigest"
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:83
++#: cupsd.conf.man.in:66
 +#, no-wrap
 +msgid "AuthType Digest"
 +msgstr "AuthType Digest"
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:85
++#: cupsd.conf.man.in:68
 +#, no-wrap
 +msgid "AuthType Negotiate"
 +msgstr "AuthType Negotiate"
 +
 +# type: Plain text
 +#. type: Plain text
-+#: cupsd.conf.man.in:89
++#: cupsd.conf.man.in:72
 +msgid ""
 +"Specifies the authentication type (None, Basic, BasicDigest, Digest, "
 +"Negotiate)"
@@ -13654,21 +13637,21 @@ Bug-Debian: http://bugs.debian.org/478597
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:89
++#: cupsd.conf.man.in:72
 +#, no-wrap
 +msgid "AutoPurgeJobs Yes"
 +msgstr "AutoPurgeJobs Yes"
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:91
++#: cupsd.conf.man.in:74
 +#, no-wrap
 +msgid "AutoPurgeJobs No"
 +msgstr "AutoPurgeJobs No"
 +
 +# type: Plain text
 +#. type: Plain text
-+#: cupsd.conf.man.in:96
++#: cupsd.conf.man.in:79
 +msgid ""
 +"Specifies whether to purge job history data automatically when it is no "
 +"longer required for quotas."
@@ -13678,7 +13661,7 @@ Bug-Debian: http://bugs.debian.org/478597
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:96
++#: cupsd.conf.man.in:79
 +#, fuzzy, no-wrap
 +#| msgid "BrowseLocalProtocols [All] [CUPS] [DNSSD] [LDAP] [SLP]"
 +msgid "BrowseLocalProtocols [All] [DNSSD]"
@@ -13686,7 +13669,7 @@ Bug-Debian: http://bugs.debian.org/478597
 +
 +# type: Plain text
 +#. type: Plain text
-+#: cupsd.conf.man.in:100
++#: cupsd.conf.man.in:83
 +#, fuzzy
 +#| msgid "Specifies the protocols to use for local printer browsing."
 +msgid "Specifies the protocols to use for local printer sharing."
@@ -13696,75 +13679,77 @@ Bug-Debian: http://bugs.debian.org/478597
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:100
++#: cupsd.conf.man.in:83
 +#, no-wrap
 +msgid "BrowseWebIF Yes"
 +msgstr "BrowseWebIF Yes"
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:102
++#: cupsd.conf.man.in:85
 +#, no-wrap
 +msgid "BrowseWebIF No"
 +msgstr "BrowseWebIF No"
 +
 +# type: Plain text
 +#. type: Plain text
-+#: cupsd.conf.man.in:106
++#: cupsd.conf.man.in:89
 +msgid "Specifies whether the CUPS web interface is advertised via DNS-SD."
 +msgstr "Indique si l'interface WEB de CUPS est avertie via DNS-SD."
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:106
++#: cupsd.conf.man.in:89
 +#, no-wrap
 +msgid "Browsing Yes"
 +msgstr "Browsing Yes"
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:108
++#: cupsd.conf.man.in:91
 +#, no-wrap
 +msgid "Browsing No"
 +msgstr "Browsing No"
 +
 +# type: Plain text
 +#. type: Plain text
-+#: cupsd.conf.man.in:112
-+msgid "Specifies whether or not remote printer browsing should be enabled."
++#: cupsd.conf.man.in:95
++#, fuzzy
++#| msgid "Specifies whether or not remote printer browsing should be enabled."
++msgid "Specifies whether or not shared printers should be advertised."
 +msgstr "Définir si la recherche des imprimantes distantes doit être activée."
 +
 +# NOTE: bannière à traduire ?
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:112
++#: cupsd.conf.man.in:95
 +#, no-wrap
 +msgid "Classification banner"
 +msgstr "Classification bannière"
 +
 +# type: Plain text
 +#. type: Plain text
-+#: cupsd.conf.man.in:116
++#: cupsd.conf.man.in:99
 +msgid "Specifies the security classification of the server."
 +msgstr "Définir le niveau de classification du serveur."
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:116
++#: cupsd.conf.man.in:99
 +#, no-wrap
 +msgid "ClassifyOverride Yes"
 +msgstr "ClassifyOverride Yes"
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:118
++#: cupsd.conf.man.in:101
 +#, no-wrap
 +msgid "ClassifyOverride No"
 +msgstr "ClassifyOverride No"
 +
 +# type: Plain text
 +#. type: Plain text
-+#: cupsd.conf.man.in:123
++#: cupsd.conf.man.in:106
 +msgid ""
 +"Specifies whether to allow users to override the classification of "
 +"individual print jobs."
@@ -13774,133 +13759,103 @@ Bug-Debian: http://bugs.debian.org/478597
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:123
-+#, no-wrap
-+msgid "ConfigFilePerm mode"
-+msgstr "ConfigFilePerm mode"
-+
-+# type: Plain text
-+#. type: Plain text
-+#: cupsd.conf.man.in:128
-+msgid ""
-+"Specifies the permissions for all configuration files that the scheduler "
-+"writes."
-+msgstr ""
-+"Définir les permissions à utiliser pour les fichiers de configuration écrits "
-+"par l'ordonnanceur."
-+
-+# type: TP
-+#. type: TP
-+#: cupsd.conf.man.in:128
-+#, no-wrap
-+msgid "DataDir path"
-+msgstr "DataDir path"
-+
-+# type: Plain text
-+#. type: Plain text
-+#: cupsd.conf.man.in:132
-+msgid "Specified the directory where data files can be found."
-+msgstr "Définir le répertoire où se trouvent les fichiers de données."
-+
-+# type: TP
-+#. type: TP
-+#: cupsd.conf.man.in:132
++#: cupsd.conf.man.in:106
 +#, no-wrap
 +msgid "DefaultAuthType Basic"
 +msgstr "DefaultAuthType Basic"
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:134
++#: cupsd.conf.man.in:108
 +#, no-wrap
 +msgid "DefaultAuthType BasicDigest"
 +msgstr "DefaultAuthType BasicDigest"
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:136
++#: cupsd.conf.man.in:110
 +#, no-wrap
 +msgid "DefaultAuthType Digest"
 +msgstr "DefaultAuthType Digest"
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:138
++#: cupsd.conf.man.in:112
 +#, no-wrap
 +msgid "DefaultAuthType Negotiate"
 +msgstr "DefaultAuthType Negotiate"
 +
 +# type: Plain text
 +#. type: Plain text
-+#: cupsd.conf.man.in:142
++#: cupsd.conf.man.in:116
 +msgid "Specifies the default type of authentication to use."
 +msgstr "Définir le type d'identification à utiliser par défaut."
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:142
++#: cupsd.conf.man.in:116
 +#, no-wrap
 +msgid "DefaultEncryption Never"
 +msgstr "DefaultEncryption Never"
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:144
++#: cupsd.conf.man.in:118
 +#, no-wrap
 +msgid "DefaultEncryption IfRequested"
 +msgstr "DefaultEncryption IfRequested"
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:146
++#: cupsd.conf.man.in:120
 +#, no-wrap
 +msgid "DefaultEncryption Required"
 +msgstr "DefaultEncryption Required"
 +
 +# type: Plain text
 +#. type: Plain text
-+#: cupsd.conf.man.in:150
++#: cupsd.conf.man.in:124
 +msgid "Specifies the type of encryption to use for authenticated requests."
 +msgstr ""
 +"Indique le type de chiffrement à utiliser pour les requêtes authentifiées."
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:150
++#: cupsd.conf.man.in:124
 +#, no-wrap
 +msgid "DefaultLanguage locale"
 +msgstr "DefaultLanguage locale"
 +
 +# type: Plain text
 +#. type: Plain text
-+#: cupsd.conf.man.in:154
++#: cupsd.conf.man.in:128
 +msgid "Specifies the default language to use for text and web content."
 +msgstr ""
 +"Définir la langue par défaut à utiliser pour les textes et le site web."
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:154
++#: cupsd.conf.man.in:128
 +#, no-wrap
 +msgid "DefaultPaperSize Auto"
 +msgstr "DefaultPaperSize Auto"
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:156
++#: cupsd.conf.man.in:130
 +#, no-wrap
 +msgid "DefaultPaperSize None"
 +msgstr "DefaultPaperSize None"
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:158
++#: cupsd.conf.man.in:132
 +#, no-wrap
 +msgid "DefaultPaperSize sizename"
 +msgstr "DefaultPaperSize sizename"
 +
 +#. type: Plain text
-+#: cupsd.conf.man.in:163
++#: cupsd.conf.man.in:137
 +msgid ""
 +"Specifies the default paper size for new print queues. \"Auto\" uses a "
 +"locale- specific default, while \"None\" specifies there is no default paper "
@@ -13912,115 +13867,115 @@ Bug-Debian: http://bugs.debian.org/478597
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:163
++#: cupsd.conf.man.in:137
 +#, no-wrap
 +msgid "DefaultPolicy policy-name"
 +msgstr "DefaultPolicy nom"
 +
 +# type: Plain text
 +#. type: Plain text
-+#: cupsd.conf.man.in:167
++#: cupsd.conf.man.in:141
 +msgid "Specifies the default access policy to use."
 +msgstr "Indiquer la politique d'accès par défaut."
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:167
++#: cupsd.conf.man.in:141
 +#, no-wrap
 +msgid "DefaultShared Yes"
 +msgstr "DefaultShared Yes"
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:169
++#: cupsd.conf.man.in:143
 +#, no-wrap
 +msgid "DefaultShared No"
 +msgstr "DefaultShared No"
 +
 +# type: Plain text
 +#. type: Plain text
-+#: cupsd.conf.man.in:173
++#: cupsd.conf.man.in:147
 +msgid "Specifies whether local printers are shared by default."
 +msgstr "Définir si les imprimantes locales sont partagées par défaut."
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:173
++#: cupsd.conf.man.in:147
 +#, no-wrap
 +msgid "Deny all"
 +msgstr "Deny all"
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:175
++#: cupsd.conf.man.in:149
 +#, no-wrap
 +msgid "Deny none"
 +msgstr "Deny none"
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:177
++#: cupsd.conf.man.in:151
 +#, no-wrap
 +msgid "Deny host.domain.com"
 +msgstr "Deny serveur.domaine.com"
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:179
++#: cupsd.conf.man.in:153
 +#, no-wrap
 +msgid "Deny *.domain.com"
 +msgstr "Deny *.domaine.com"
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:181
++#: cupsd.conf.man.in:155
 +#, no-wrap
 +msgid "Deny ip-address"
 +msgstr "Deny adresse_ip"
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:183
++#: cupsd.conf.man.in:157
 +#, no-wrap
 +msgid "Deny ip-address/netmask"
 +msgstr "Deny adresse_ip/masque_sous_réseau"
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:185
++#: cupsd.conf.man.in:159
 +#, no-wrap
 +msgid "Deny ip-address/mm"
 +msgstr "Deny adresse_ip/mm"
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:187
++#: cupsd.conf.man.in:161
 +#, no-wrap
 +msgid "Deny @IF(name)"
 +msgstr "Deny @IF(nom)"
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:189
++#: cupsd.conf.man.in:163
 +#, no-wrap
 +msgid "Deny @LOCAL"
 +msgstr "Deny @LOCAL"
 +
 +# type: Plain text
 +#. type: Plain text
-+#: cupsd.conf.man.in:193
++#: cupsd.conf.man.in:167
 +msgid "Denies access to the named host or address."
 +msgstr "Interdire l'accès à une machine ou à une adresse IP donnée."
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:193
++#: cupsd.conf.man.in:167
 +#, no-wrap
 +msgid "DirtyCleanInterval seconds"
 +msgstr "DirtyCleanInterval secondes"
 +
 +#. type: Plain text
-+#: cupsd.conf.man.in:199
++#: cupsd.conf.man.in:173
 +msgid ""
 +"Specifies the delay for updating of configuration and state files. A value "
 +"of 0 causes the update to happen as soon as possible, typically within a few "
@@ -14032,110 +13987,27 @@ Bug-Debian: http://bugs.debian.org/478597
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:199
-+#, no-wrap
-+msgid "DocumentRoot directory"
-+msgstr "DocumentRoot répertoire"
-+
-+# type: Plain text
-+#. type: Plain text
-+#: cupsd.conf.man.in:203
-+msgid "Specifies the root directory for the internal web server documents."
-+msgstr "Définir le répertoire racine des documents du serveur web interne."
-+
-+# type: TP
-+#. type: TP
-+#: cupsd.conf.man.in:212
-+#, no-wrap
-+msgid "ErrorLog filename"
-+msgstr "ErrorLog fichier"
-+
-+# type: TP
-+#. type: TP
-+#: cupsd.conf.man.in:214
-+#, no-wrap
-+msgid "ErrorLog syslog"
-+msgstr "ErrorLog syslog"
-+
-+# type: Plain text
-+#. type: Plain text
-+#: cupsd.conf.man.in:218
-+msgid "Specifies the error log filename."
-+msgstr "Définir le nom du fichier traçant les erreurs."
-+
-+#. type: TP
-+#: cupsd.conf.man.in:218
-+#, no-wrap
-+msgid "FatalErrors none"
-+msgstr "FatalErrors none"
-+
-+#. type: TP
-+#: cupsd.conf.man.in:220
-+#, no-wrap
-+msgid "FatalErrors all -kind [... -kind]"
-+msgstr "FatalErrors tout -type [... -type]"
-+
-+#. type: TP
-+#: cupsd.conf.man.in:222
-+#, no-wrap
-+msgid "FatalErrors kind [... kind]"
-+msgstr "FatalErrors type [... type]"
-+
-+#. type: Plain text
-+#: cupsd.conf.man.in:227
-+msgid ""
-+"Specifies which errors are fatal, causing the scheduler to exit. \"Kind\" is "
-+"\"browse\", \"config\", \"listen\", \"log\", or \"permissions\"."
-+msgstr ""
-+"Indique quelles erreurs sont fatales, entraînant l'arrêt de l'ordonnanceur. "
-+"le « type » est « browse », « config » « listen » ou « permissions »."
-+
-+# type: TP
-+#. type: TP
-+#: cupsd.conf.man.in:227
-+#, no-wrap
-+msgid "FileDevice Yes"
-+msgstr "FileDevice Oui"
-+
-+# type: TP
-+#. type: TP
-+#: cupsd.conf.man.in:229
-+#, no-wrap
-+msgid "FileDevice No"
-+msgstr "FileDevice Non"
-+
-+# type: Plain text
-+#. type: Plain text
-+#: cupsd.conf.man.in:234
-+msgid ""
-+"Specifies whether the file pseudo-device can be used for new printer queues."
-+msgstr ""
-+"Indiquer si un fichier de pseudo-périphérique peut être utilisé pour les "
-+"queues d'impression."
-+
-+# type: TP
-+#. type: TP
-+#: cupsd.conf.man.in:234
++#: cupsd.conf.man.in:182
 +#, no-wrap
 +msgid "FilterLimit limit"
 +msgstr "FilterLimit limite"
 +
 +# type: Plain text
 +#. type: Plain text
-+#: cupsd.conf.man.in:238
++#: cupsd.conf.man.in:186
 +msgid "Specifies the maximum cost of filters that are run concurrently."
 +msgstr "Définir le coût maximum des filtres lancés simultanément."
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:238
++#: cupsd.conf.man.in:186
 +#, no-wrap
 +msgid "FilterNice nice-value"
 +msgstr "FilterNice priorité"
 +
 +# type: Plain text
 +#. type: Plain text
-+#: cupsd.conf.man.in:243
++#: cupsd.conf.man.in:191
 +msgid ""
 +"Specifies the scheduling priority (\"nice\" value) of filters that are run "
 +"to print a job."
@@ -14143,38 +14015,8 @@ Bug-Debian: http://bugs.debian.org/478597
 +"Définir la priorité (valeur «\\ nice\\ ») des filtres exécutés pour une "
 +"impression."
 +
-+# type: TP
-+#. type: TP
-+#: cupsd.conf.man.in:243
-+#, no-wrap
-+msgid "FontPath directory[:directory:...]"
-+msgstr "FontPath répertoire[:répertoire:...]"
-+
-+# type: Plain text
 +#. type: Plain text
-+#: cupsd.conf.man.in:247
-+msgid "Specifies the search path for fonts."
-+msgstr "Définir le chemin de recherche des polices."
-+
-+# type: TP
-+#. type: TP
-+#: cupsd.conf.man.in:247
-+#, no-wrap
-+msgid "Group group-name-or-number"
-+msgstr "Group nom_groupe-ou-identifiant_numérique"
-+
-+# type: Plain text
-+#. type: Plain text
-+#: cupsd.conf.man.in:252
-+msgid ""
-+"Specifies the group name or ID that will be used when executing external "
-+"programs."
-+msgstr ""
-+"Définir le nom du groupe ou l'identifiant numérique du groupe qui sera "
-+"utilisé lors de l'exécution de programmes externes."
-+
-+#. type: Plain text
-+#: cupsd.conf.man.in:257
++#: cupsd.conf.man.in:196
 +msgid ""
 +"Specifies the service name when using Kerberos authentication. The default "
 +"service name is \"@CUPS_DEFAULT_GSSSERVICENAME@\"."
@@ -14182,28 +14024,28 @@ Bug-Debian: http://bugs.debian.org/478597
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:257
++#: cupsd.conf.man.in:196
 +#, no-wrap
 +msgid "HostNameLookups On"
 +msgstr "HostNameLookups On"
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:259
++#: cupsd.conf.man.in:198
 +#, no-wrap
 +msgid "HostNameLookups Off"
 +msgstr "HostNameLookups Off"
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:261
++#: cupsd.conf.man.in:200
 +#, no-wrap
 +msgid "HostNameLookups Double"
 +msgstr "HostNameLookups Double"
 +
 +# type: Plain text
 +#. type: Plain text
-+#: cupsd.conf.man.in:265
++#: cupsd.conf.man.in:204
 +msgid "Specifies whether or not to do reverse lookups on client addresses."
 +msgstr ""
 +"Définir s'il faut effectuer des recherches de noms à partir des adresses des "
@@ -14211,25 +14053,25 @@ Bug-Debian: http://bugs.debian.org/478597
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:265
++#: cupsd.conf.man.in:204
 +#, no-wrap
 +msgid "Include filename"
 +msgstr "Include fichier"
 +
 +# type: Plain text
 +#. type: Plain text
-+#: cupsd.conf.man.in:269
++#: cupsd.conf.man.in:208
 +msgid "Includes the named file."
 +msgstr "Inclure le fichier donné."
 +
 +#. type: TP
-+#: cupsd.conf.man.in:269
++#: cupsd.conf.man.in:208
 +#, no-wrap
 +msgid "JobKillDelay seconds"
 +msgstr "JobKillDelay seconds"
 +
 +#. type: Plain text
-+#: cupsd.conf.man.in:274
++#: cupsd.conf.man.in:213
 +msgid ""
 +"Specifies the number of seconds to wait before killing the filters and "
 +"backend associated with a canceled or held job."
@@ -14238,25 +14080,25 @@ Bug-Debian: http://bugs.debian.org/478597
 +"processus d'arrière-plan associés à une tâche suspendue ou annulée."
 +
 +#. type: TP
-+#: cupsd.conf.man.in:274
++#: cupsd.conf.man.in:213
 +#, no-wrap
 +msgid "JobPrivateAccess all"
 +msgstr "JobPrivateAccess tout"
 +
 +#. type: TP
-+#: cupsd.conf.man.in:276
++#: cupsd.conf.man.in:215
 +#, no-wrap
 +msgid "JobPrivateAccess default"
 +msgstr "JobPrivateAccess defaut"
 +
 +#. type: TP
-+#: cupsd.conf.man.in:278
++#: cupsd.conf.man.in:217
 +#, no-wrap
 +msgid "JobPrivateAccess {user|@group|@ACL|@OWNER|@SYSTEM}+"
 +msgstr "JobPrivateAccess {user|@group|@ACL|@OWNER|@SYSTEM}+"
 +
 +#. type: Plain text
-+#: cupsd.conf.man.in:284
++#: cupsd.conf.man.in:223
 +msgid ""
 +"Specifies an access list for a job's private values. The \"default\" access "
 +"list is \"@OWNER @SYSTEM\". \"@ACL\" maps to the printer's requesting-user-"
@@ -14268,31 +14110,31 @@ Bug-Debian: http://bugs.debian.org/478597
 +"l'imprimante."
 +
 +#. type: TP
-+#: cupsd.conf.man.in:284
++#: cupsd.conf.man.in:223
 +#, no-wrap
 +msgid "JobPrivateValues all"
 +msgstr "JobPrivateValues tous"
 +
 +#. type: TP
-+#: cupsd.conf.man.in:286
++#: cupsd.conf.man.in:225
 +#, no-wrap
 +msgid "JobPrivateValues default"
 +msgstr "JobPrivateValues defaut"
 +
 +#. type: TP
-+#: cupsd.conf.man.in:288
++#: cupsd.conf.man.in:227
 +#, no-wrap
 +msgid "JobPrivateValues none"
 +msgstr "JobPrivateValues aucun"
 +
 +#. type: TP
-+#: cupsd.conf.man.in:290
++#: cupsd.conf.man.in:229
 +#, no-wrap
 +msgid "JobPrivateValues attribute-name-1 [ ... attribute-name-N ]"
 +msgstr "JobPrivateValues nom-de-l'attribut-1 [ ... nom-de-l'attribut-N ]"
 +
 +#. type: Plain text
-+#: cupsd.conf.man.in:294
++#: cupsd.conf.man.in:233
 +msgid ""
 +"Specifies the list of job values to make private. The \"default\" values are "
 +"\"job-name\", \"job-originating-host-name\", and \"job-originating-user-name"
@@ -14304,14 +14146,14 @@ Bug-Debian: http://bugs.debian.org/478597
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:294
++#: cupsd.conf.man.in:233
 +#, no-wrap
 +msgid "JobRetryInterval seconds"
 +msgstr "JobRetryInterval secondes"
 +
 +# type: Plain text
 +#. type: Plain text
-+#: cupsd.conf.man.in:298
++#: cupsd.conf.man.in:237
 +msgid "Specifies the interval between retries of jobs in seconds."
 +msgstr ""
 +"Indiquer l'intervalle entre deux essais d'impression d'un travail, en "
@@ -14319,120 +14161,120 @@ Bug-Debian: http://bugs.debian.org/478597
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:298
++#: cupsd.conf.man.in:237
 +#, no-wrap
 +msgid "JobRetryLimit count"
 +msgstr "JobRetryLimit nombre"
 +
 +# type: Plain text
 +#. type: Plain text
-+#: cupsd.conf.man.in:302
++#: cupsd.conf.man.in:241
 +msgid "Specifies the number of retries that are done for jobs."
 +msgstr "Indiquer le nombre d'essais maximum pour les travaux."
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:302
++#: cupsd.conf.man.in:241
 +#, no-wrap
 +msgid "KeepAlive Yes"
 +msgstr "KeepAlive Oui"
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:304
++#: cupsd.conf.man.in:243
 +#, no-wrap
 +msgid "KeepAlive No"
 +msgstr "KeepAlive Non"
 +
 +# type: Plain text
 +#. type: Plain text
-+#: cupsd.conf.man.in:308
++#: cupsd.conf.man.in:247
 +msgid "Specifies whether to support HTTP keep-alive connections."
 +msgstr "Définir s'il faut utiliser HTTP-Keep-Alive."
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:308
++#: cupsd.conf.man.in:247
 +#, no-wrap
 +msgid "KeepAliveTimeout seconds"
 +msgstr "KeepAliveTimeout secondes"
 +
 +# type: Plain text
 +#. type: Plain text
-+#: cupsd.conf.man.in:312
++#: cupsd.conf.man.in:251
 +msgid "Specifies the amount of time that connections are kept alive."
 +msgstr "Définir la durée pendant laquelle les connexions sont conservées."
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:312
++#: cupsd.conf.man.in:251
 +#, no-wrap
 +msgid "E<lt>Limit operationsE<gt> ... E<lt>/LimitE<gt>"
 +msgstr "E<lt>Limit operationsE<gt> ... E<lt>/LimitE<gt>"
 +
 +# type: Plain text
 +#. type: Plain text
-+#: cupsd.conf.man.in:316
++#: cupsd.conf.man.in:255
 +msgid "Specifies the IPP operations that are being limited inside a policy."
 +msgstr "Indiquer les opérations IPP non autorisés dans une certaine politique."
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:316
++#: cupsd.conf.man.in:255
 +#, no-wrap
 +msgid "E<lt>Limit methodsE<gt> ... E<lt>/LimitE<gt>"
 +msgstr "E<lt>Limit methodesE<gt> ... E<lt>/LimitE<gt>"
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:318
++#: cupsd.conf.man.in:257
 +#, no-wrap
 +msgid "E<lt>LimitExcept methodsE<gt> ... E<lt>/LimitExceptE<gt>"
 +msgstr "E<lt>LimitExcept methodesE<gt> ... E<lt>/LimitExceptE<gt>"
 +
 +# type: Plain text
 +#. type: Plain text
-+#: cupsd.conf.man.in:322
++#: cupsd.conf.man.in:261
 +msgid "Specifies the HTTP methods that are being limited inside a location."
 +msgstr "Définir les méthodes HTTP interdites pour un lieu donné."
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:322
++#: cupsd.conf.man.in:261
 +#, no-wrap
 +msgid "LimitRequestBody"
 +msgstr "LimitRequestBody"
 +
 +# type: Plain text
 +#. type: Plain text
-+#: cupsd.conf.man.in:326
++#: cupsd.conf.man.in:265
 +msgid "Specifies the maximum size of any print job request."
 +msgstr "Définir la taille maximale des demandes de travaux d'impression."
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:326
++#: cupsd.conf.man.in:265
 +#, no-wrap
 +msgid "Listen ip-address:port"
 +msgstr "Listen adress_ip:port"
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:328
++#: cupsd.conf.man.in:267
 +#, no-wrap
 +msgid "Listen *:port"
 +msgstr "Listen *:port"
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:330
++#: cupsd.conf.man.in:269
 +#, no-wrap
 +msgid "Listen /path/to/domain/socket"
 +msgstr "Listen /chemin/socket/domaine"
 +
 +# type: Plain text
 +#. type: Plain text
-+#: cupsd.conf.man.in:334
++#: cupsd.conf.man.in:273
 +msgid "Listens to the specified address and port or domain socket path."
 +msgstr ""
 +"Écouter à l'adresse et au port indiqué ou sur la socket de domaine dont le "
@@ -14440,27 +14282,27 @@ Bug-Debian: http://bugs.debian.org/478597
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:334
++#: cupsd.conf.man.in:273
 +#, no-wrap
 +msgid "E<lt>Location /pathE<gt> ... E<lt>/LocationE<gt>"
 +msgstr "E<lt>Location /cheminE<gt> ... E<lt>/LocationE<gt>"
 +
 +# type: Plain text
 +#. type: Plain text
-+#: cupsd.conf.man.in:338
++#: cupsd.conf.man.in:277
 +msgid "Specifies access control for the named location."
 +msgstr "Définir les contrôles d'accès pour un lieu donné."
 +
 +# type: Plain text
 +#. type: TP
-+#: cupsd.conf.man.in:338
++#: cupsd.conf.man.in:277
 +#, no-wrap
 +msgid "LogDebugHistory #-messages"
 +msgstr "LogDebugHistory #-messages"
 +
 +# type: Plain text
 +#. type: Plain text
-+#: cupsd.conf.man.in:343
++#: cupsd.conf.man.in:282
 +msgid ""
 +"Specifies the number of debugging messages that are logged when an error "
 +"occurs in a print job."
@@ -14470,136 +14312,122 @@ Bug-Debian: http://bugs.debian.org/478597
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:343
-+#, no-wrap
-+msgid "LogFilePerm mode"
-+msgstr "LogFilePerm mode"
-+
-+# type: Plain text
-+#. type: Plain text
-+#: cupsd.conf.man.in:347
-+msgid "Specifies the permissions for all log files that the scheduler writes."
-+msgstr ""
-+"Définir les permissions des fichiers journaux écrits par l'ordonnanceur."
-+
-+# type: TP
-+#. type: TP
-+#: cupsd.conf.man.in:347
++#: cupsd.conf.man.in:282
 +#, no-wrap
 +msgid "LogLevel alert"
 +msgstr "LogLevel alert"
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:349
++#: cupsd.conf.man.in:284
 +#, no-wrap
 +msgid "LogLevel crit"
 +msgstr "LogLevel crit"
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:351
++#: cupsd.conf.man.in:286
 +#, no-wrap
 +msgid "LogLevel debug2"
 +msgstr "LogLevel debug2"
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:353
++#: cupsd.conf.man.in:288
 +#, no-wrap
 +msgid "LogLevel debug"
 +msgstr "LogLevel debug"
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:355
++#: cupsd.conf.man.in:290
 +#, no-wrap
 +msgid "LogLevel emerg"
 +msgstr "LogLevel emerg"
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:357
++#: cupsd.conf.man.in:292
 +#, no-wrap
 +msgid "LogLevel error"
 +msgstr "LogLevel error"
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:359
++#: cupsd.conf.man.in:294
 +#, no-wrap
 +msgid "LogLevel info"
 +msgstr "LogLevel info"
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:361
++#: cupsd.conf.man.in:296
 +#, no-wrap
 +msgid "LogLevel none"
 +msgstr "LogLevel none"
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:363
++#: cupsd.conf.man.in:298
 +#, no-wrap
 +msgid "LogLevel notice"
 +msgstr "LogLevel notice"
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:365
++#: cupsd.conf.man.in:300
 +#, no-wrap
 +msgid "LogLevel warn"
 +msgstr "LogLevel warn"
 +
 +# type: Plain text
 +#. type: Plain text
-+#: cupsd.conf.man.in:369
++#: cupsd.conf.man.in:304
 +msgid "Specifies the logging level for the ErrorLog file."
 +msgstr "Définir le niveau de trace pour le journal des erreurs."
 +
 +#. type: TP
-+#: cupsd.conf.man.in:369
++#: cupsd.conf.man.in:304
 +#, no-wrap
 +msgid "LogTimeFormat standard"
 +msgstr "LogTimeFormat standard"
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:371
++#: cupsd.conf.man.in:306
 +#, no-wrap
 +msgid "LogTimeFormat usecs"
 +msgstr "LogTimeFormat usecs"
 +
 +# type: Plain text
 +#. type: Plain text
-+#: cupsd.conf.man.in:375
++#: cupsd.conf.man.in:310
 +msgid "Specifies the format of the date and time in the log files."
 +msgstr "Indique le format de la date et du temps dans les fichiers journaux."
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:375
++#: cupsd.conf.man.in:310
 +#, no-wrap
 +msgid "MaxClients number"
 +msgstr "MaxClients nombre"
 +
 +# type: Plain text
 +#. type: Plain text
-+#: cupsd.conf.man.in:379
++#: cupsd.conf.man.in:314
 +msgid "Specifies the maximum number of simultaneous clients to support."
 +msgstr "Définir le nombre maximum de clients simultanés."
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:379
++#: cupsd.conf.man.in:314
 +#, no-wrap
 +msgid "MaxClientsPerHost number"
 +msgstr "MaxClientsPerHost nombre"
 +
 +# type: Plain text
 +#. type: Plain text
-+#: cupsd.conf.man.in:384
++#: cupsd.conf.man.in:319
 +msgid ""
 +"Specifies the maximum number of simultaneous clients to support from a "
 +"single address."
@@ -14608,14 +14436,14 @@ Bug-Debian: http://bugs.debian.org/478597
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:384
++#: cupsd.conf.man.in:319
 +#, no-wrap
 +msgid "MaxCopies number"
 +msgstr "MaxCopies nombre"
 +
 +# type: Plain text
 +#. type: Plain text
-+#: cupsd.conf.man.in:388
++#: cupsd.conf.man.in:323
 +msgid ""
 +"Specifies the maximum number of copies that a user can print of each job."
 +msgstr ""
@@ -14624,14 +14452,14 @@ Bug-Debian: http://bugs.debian.org/478597
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:388
++#: cupsd.conf.man.in:323
 +#, fuzzy, no-wrap
 +#| msgid "MaxRunTime I<seconds>"
 +msgid "MaxHoldTime seconds"
 +msgstr "MaxRunTime I<secondes>"
 +
 +#. type: Plain text
-+#: cupsd.conf.man.in:393
++#: cupsd.conf.man.in:328
 +msgid ""
 +"Specifies the maximum time a job may remain in the \"indefinite\" hold state "
 +"before it is canceled. Set to 0 to disable cancellation of held jobs."
@@ -14639,54 +14467,54 @@ Bug-Debian: http://bugs.debian.org/478597
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:393
++#: cupsd.conf.man.in:328
 +#, no-wrap
 +msgid "MaxJobs number"
 +msgstr "MaxJobs nombre"
 +
 +# type: Plain text
 +#. type: Plain text
-+#: cupsd.conf.man.in:397
++#: cupsd.conf.man.in:332
 +msgid "Specifies the maximum number of simultaneous jobs to support."
 +msgstr "Définir le nombre maximum de travaux simultanés."
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:397
++#: cupsd.conf.man.in:332
 +#, no-wrap
 +msgid "MaxJobsPerPrinter number"
 +msgstr "MaxJobsPerPrinter nombre"
 +
 +# type: Plain text
 +#. type: Plain text
-+#: cupsd.conf.man.in:401
++#: cupsd.conf.man.in:336
 +msgid ""
 +"Specifies the maximum number of simultaneous jobs per printer to support."
 +msgstr "Définir le nombre maximum de travaux simultanés par imprimante."
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:401
++#: cupsd.conf.man.in:336
 +#, no-wrap
 +msgid "MaxJobsPerUser number"
 +msgstr "MaxJobsPerUser nombre"
 +
 +# type: Plain text
 +#. type: Plain text
-+#: cupsd.conf.man.in:405
++#: cupsd.conf.man.in:340
 +msgid "Specifies the maximum number of simultaneous jobs per user to support."
 +msgstr "Définir le nombre maximum de travaux simultanés par utilisateur."
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:405
++#: cupsd.conf.man.in:340
 +#, fuzzy, no-wrap
 +#| msgid "MaxRunTime I<seconds>"
 +msgid "MaxJobTime seconds"
 +msgstr "MaxRunTime I<secondes>"
 +
 +#. type: Plain text
-+#: cupsd.conf.man.in:411
++#: cupsd.conf.man.in:346
 +msgid ""
 +"Specifies the maximum time a job may take to print before it is canceled. "
 +"The default is 10800 seconds (3 hours). Set to 0 to disable cancellation of "
@@ -14695,14 +14523,14 @@ Bug-Debian: http://bugs.debian.org/478597
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:411
++#: cupsd.conf.man.in:346
 +#, no-wrap
 +msgid "MaxLogSize number-bytes"
 +msgstr "MaxLogSize nombre_octets"
 +
 +# type: Plain text
 +#. type: Plain text
-+#: cupsd.conf.man.in:416
++#: cupsd.conf.man.in:351
 +msgid ""
 +"Specifies the maximum size of the log files before they are rotated (0 to "
 +"disable rotation)"
@@ -14712,14 +14540,14 @@ Bug-Debian: http://bugs.debian.org/478597
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:416
++#: cupsd.conf.man.in:351
 +#, no-wrap
 +msgid "MaxRequestSize number-bytes"
 +msgstr "MaxRequestSize nombre_octets"
 +
 +# type: Plain text
 +#. type: Plain text
-+#: cupsd.conf.man.in:420
++#: cupsd.conf.man.in:355
 +msgid "Specifies the maximum request/file size in bytes (0 for no limit)"
 +msgstr ""
 +"Définir la taille maximale des fichiers et des requêtes à imprimer. La "
@@ -14727,14 +14555,14 @@ Bug-Debian: http://bugs.debian.org/478597
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:420
++#: cupsd.conf.man.in:355
 +#, no-wrap
 +msgid "MultipleOperationTimeout seconds"
 +msgstr "MultipleOperationTimeout seconds"
 +
 +# type: Plain text
 +#. type: Plain text
-+#: cupsd.conf.man.in:425
++#: cupsd.conf.man.in:360
 +msgid ""
 +"Specifies the maximum amount of time to allow between files in a multiple "
 +"file print job."
@@ -14744,134 +14572,114 @@ Bug-Debian: http://bugs.debian.org/478597
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:425
++#: cupsd.conf.man.in:360
 +#, no-wrap
 +msgid "Order allow,deny"
 +msgstr "Order allow,deny"
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:427
++#: cupsd.conf.man.in:362
 +#, no-wrap
 +msgid "Order deny,allow"
 +msgstr "Order deny,allow"
 +
 +# type: Plain text
 +#. type: Plain text
-+#: cupsd.conf.man.in:431
++#: cupsd.conf.man.in:366
 +msgid "Specifies the order of HTTP access control (allow,deny or deny,allow)"
 +msgstr ""
 +"Définir l'ordre pour le contrôle d'accès HTTP (allow,deny ou deny,allow)."
 +
-+# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:431
-+#, no-wrap
-+msgid "PageLog filename"
-+msgstr "PageLog fichier"
-+
-+# type: TP
-+#. type: TP
-+#: cupsd.conf.man.in:433
-+#, no-wrap
-+msgid "PageLog syslog"
-+msgstr "PageLog syslog"
-+
-+# type: Plain text
-+#. type: Plain text
-+#: cupsd.conf.man.in:437
-+msgid "Specifies the page log filename."
-+msgstr "Définir le fichier de trace des pages web visitées."
-+
-+#. type: TP
-+#: cupsd.conf.man.in:437
++#: cupsd.conf.man.in:366
 +#, no-wrap
 +msgid "PageLogFormat format string"
 +msgstr "Format de chaîne de PageLogFormat"
 +
 +# type: Plain text
 +#. type: Plain text
-+#: cupsd.conf.man.in:441
++#: cupsd.conf.man.in:370
 +msgid "Specifies the format of page log lines."
 +msgstr "Définir le format des lignes dans les pages des journaux."
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:441
++#: cupsd.conf.man.in:370
 +#, no-wrap
 +msgid "PassEnv variable [... variable]"
 +msgstr "PassEnv variable [... variable]"
 +
 +# type: Plain text
 +#. type: Plain text
-+#: cupsd.conf.man.in:445
++#: cupsd.conf.man.in:374
 +msgid "Passes the specified environment variable(s) to child processes."
 +msgstr "Passer les variables d'environnement indiquées aux processus fils."
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:445
++#: cupsd.conf.man.in:374
 +#, no-wrap
 +msgid "E<lt>Policy nameE<gt> ... E<lt>/PolicyE<gt>"
 +msgstr "E<lt>Policy nomE<gt> ... E<lt>/PolicyE<gt>"
 +
 +# type: Plain text
 +#. type: Plain text
-+#: cupsd.conf.man.in:449
++#: cupsd.conf.man.in:378
 +msgid "Specifies access control for the named policy."
 +msgstr "Définir les contrôles d'accès pour la politique donnée."
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:449
++#: cupsd.conf.man.in:378
 +#, no-wrap
 +msgid "Port number"
 +msgstr "Port nombre"
 +
 +# type: Plain text
 +#. type: Plain text
-+#: cupsd.conf.man.in:453
++#: cupsd.conf.man.in:382
 +msgid "Specifies a port number to listen to for HTTP requests."
 +msgstr "Définir le numéro du port où écouter les requêtes HTTP."
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:453
++#: cupsd.conf.man.in:382
 +#, no-wrap
 +msgid "PreserveJobFiles Yes"
 +msgstr "PreserveJobFiles Yes"
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:455
++#: cupsd.conf.man.in:384
 +#, no-wrap
 +msgid "PreserveJobFiles No"
 +msgstr "PreserveJobFiles No"
 +
 +# type: Plain text
 +#. type: Plain text
-+#: cupsd.conf.man.in:459
++#: cupsd.conf.man.in:388
 +msgid "Specifies whether or not to preserve job files after they are printed."
 +msgstr ""
 +"Définir s'il faut conserver ou non les fichiers de travail après impression."
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:459
++#: cupsd.conf.man.in:388
 +#, no-wrap
 +msgid "PreserveJobHistory Yes"
 +msgstr "PreserveJobHistory Yes"
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:461
++#: cupsd.conf.man.in:390
 +#, no-wrap
 +msgid "PreserveJobHistory No"
 +msgstr "PreserveJobHistory No"
 +
 +# type: Plain text
 +#. type: Plain text
-+#: cupsd.conf.man.in:466
++#: cupsd.conf.man.in:395
 +msgid ""
 +"Specifies whether or not to preserve the job history after they are printed."
 +msgstr ""
@@ -14880,21 +14688,650 @@ Bug-Debian: http://bugs.debian.org/478597
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:466
++#: cupsd.conf.man.in:395
++#, no-wrap
++msgid "PrintcapFormat bsd"
++msgstr "PrintcapFormat bsd"
++
++# type: TP
++#. type: TP
++#: cupsd.conf.man.in:397
++#, no-wrap
++msgid "PrintcapFormat plist"
++msgstr "PrintcapFormat plist"
++
++# type: TP
++#. type: TP
++#: cupsd.conf.man.in:399
++#, no-wrap
++msgid "PrintcapFormat solaris"
++msgstr "PrintcapFormat solaris"
++
++# type: Plain text
++#. type: Plain text
++#: cupsd.conf.man.in:403
++msgid "Specifies the format of the printcap file."
++msgstr "Définir le format du fichier printcap."
++
++# type: TP
++#. type: TP
++#: cupsd.conf.man.in:403
++#, no-wrap
++msgid "ReloadTimeout seconds"
++msgstr "ReloadTimeout secondes"
++
++# type: Plain text
++#. type: Plain text
++#: cupsd.conf.man.in:408
++msgid ""
++"Specifies the amount of time to wait for job completion before restarting "
++"the scheduler."
++msgstr ""
++"Définir le temps maximum à attendre pour la fin d'un travail avant de "
++"redémarrer l'ordonnanceur."
++
++# type: TP
++#. type: TP
++#: cupsd.conf.man.in:408
++#, no-wrap
++msgid "Require group group-name-list"
++msgstr "Require group liste_groupes"
++
++# type: TP
++#. type: TP
++#: cupsd.conf.man.in:410
++#, no-wrap
++msgid "Require user user-name-list"
++msgstr "Require user liste_utilisateurs"
++
++# type: TP
++#. type: TP
++#: cupsd.conf.man.in:412
++#, no-wrap
++msgid "Require valid-user"
++msgstr "Require valid-user"
++
++# type: Plain text
++#. type: Plain text
++#: cupsd.conf.man.in:416
++msgid "Specifies that user or group authentication is required."
++msgstr ""
++"Indiquer qu'une identification par utilisateur ou par groupe est nécessaire."
++
++# type: TP
++#. type: TP
++#: cupsd.conf.man.in:416
++#, no-wrap
++msgid "RIPCache bytes"
++msgstr "RIPCache octets"
++
++# type: Plain text
++#. type: Plain text
++#: cupsd.conf.man.in:421
++msgid ""
++"Specifies the maximum amount of memory to use when converting images and "
++"PostScript files to bitmaps for a printer."
++msgstr ""
++"Définir la taille maximale de mémoire à utiliser lors de la conversion "
++"d'images ou de fichiers PostScript en fichier bitmap pour une imprimante."
++
++# type: TP
++#. type: TP
++#: cupsd.conf.man.in:421
++#, no-wrap
++msgid "Satisfy all"
++msgstr "Satisfy all"
++
++# type: TP
++#. type: TP
++#: cupsd.conf.man.in:423
++#, no-wrap
++msgid "Satisfy any"
++msgstr "Satisfy any"
++
++# type: Plain text
++#. type: Plain text
++#: cupsd.conf.man.in:428
++msgid ""
++"Specifies whether all or any limits set for a Location must be satisfied to "
++"allow access."
++msgstr ""
++"Définir si toutes les limites (« all »), ou seulement une des limites "
++"(« any ») définies pour un lieu donné doivent être satisfaites pour "
++"permettre l'accès."
++
++# type: TP
++#. type: TP
++#: cupsd.conf.man.in:428
++#, no-wrap
++msgid "ServerAdmin user@domain.com"
++msgstr "ServerAdmin utilisateur@domaine.com"
++
++# type: Plain text
++#. type: Plain text
++#: cupsd.conf.man.in:432
++msgid "Specifies the email address of the server administrator."
++msgstr "Définir l'adresse électronique de l'administrateur du serveur."
++
++# type: TP
++#. type: TP
++#: cupsd.conf.man.in:432
++#, no-wrap
++msgid "ServerAlias hostname [... hostname]"
++msgstr "ServerAlias nom [... nom]"
++
++#. type: TP
++#: cupsd.conf.man.in:434
++#, no-wrap
++msgid "ServerAlias *"
++msgstr "ServerAlias*"
++
++#. type: Plain text
++#: cupsd.conf.man.in:439
++msgid ""
++"Specifies an alternate name that the server is known by. The special name \"*"
++"\" allows any name to be used."
++msgstr ""
++"Indique un nom alternatif par lequel le serveur est connu. Le nom spécial "
++"« * » autorise l'emploi de n'importe quel nom."
++
++# type: TP
++#. type: TP
++#: cupsd.conf.man.in:439
++#, no-wrap
++msgid "ServerName hostname-or-ip-address"
++msgstr "ServerName hôte-ou-adresse_ip"
++
++# type: Plain text
++#. type: Plain text
++#: cupsd.conf.man.in:443
++msgid "Specifies the fully-qualified hostname of the server."
++msgstr "Définir le nom complet du serveur."
++
++# type: TP
++#. type: TP
++#: cupsd.conf.man.in:443
++#, no-wrap
++msgid "ServerTokens Full"
++msgstr "ServerTokens Full"
++
++# type: TP
++#. type: TP
++#: cupsd.conf.man.in:445
++#, no-wrap
++msgid "ServerTokens Major"
++msgstr "ServerTokens Major"
++
++# type: TP
++#. type: TP
++#: cupsd.conf.man.in:447
++#, no-wrap
++msgid "ServerTokens Minimal"
++msgstr "ServerTokens Minimal"
++
++# type: TP
++#. type: TP
++#: cupsd.conf.man.in:449
++#, no-wrap
++msgid "ServerTokens Minor"
++msgstr "ServerTokens Minor"
++
++# type: TP
++#. type: TP
++#: cupsd.conf.man.in:451
++#, no-wrap
++msgid "ServerTokens None"
++msgstr "ServerTokens None"
++
++# type: TP
++#. type: TP
++#: cupsd.conf.man.in:453
++#, no-wrap
++msgid "ServerTokens OS"
++msgstr "ServerTokens OS"
++
++# type: TP
++#. type: TP
++#: cupsd.conf.man.in:455
++#, no-wrap
++msgid "ServerTokens ProductOnly"
++msgstr "ServerTokens ProductOnly"
++
++# type: Plain text
++#. type: Plain text
++#: cupsd.conf.man.in:460
++msgid ""
++"Specifies what information is included in the Server header of HTTP "
++"responses."
++msgstr ""
++"Indiquer quelles informations sont disponibles dans l'entête des réponses du "
++"serveur HTTP."
++
++# type: TP
++#. type: TP
++#: cupsd.conf.man.in:460
++#, no-wrap
++msgid "SetEnv variable value"
++msgstr "SetEnv variable valeur"
++
++# type: Plain text
++#. type: Plain text
++#: cupsd.conf.man.in:464
++msgid "Set the specified environment variable to be passed to child processes."
++msgstr "Fixer les varaibles d'environnement à passer aux processus fils."
++
++# type: TP
++#. type: TP
++#: cupsd.conf.man.in:464
++#, no-wrap
++msgid "SSLListen"
++msgstr "SSLListen"
++
++# type: Plain text
++#. type: Plain text
++#: cupsd.conf.man.in:468
++msgid "Listens on the specified address and port for encrypted connections."
++msgstr ""
++"Écouter à l'adresse et au port indiqués pour les connexions sécurisées."
++
++#. type: TP
++#: cupsd.conf.man.in:468
++#, no-wrap
++msgid "SSLOptions None"
++msgstr "SSLOptions Aucune"
++
++#. type: TP
++#: cupsd.conf.man.in:470
++#, no-wrap
++msgid "SSLOptions NoEmptyFragments"
++msgstr "SSLOptions NoEmptyFragments"
++
++# type: Plain text
++#. type: Plain text
++#: cupsd.conf.man.in:474
++msgid "Sets SSL/TLS protocol options for encrypted connections."
++msgstr ""
++"Appliquer les options du protocole SSL/TLS pour les connexions chiffrées."
++
++# type: TP
++#. type: TP
++#: cupsd.conf.man.in:474
++#, no-wrap
++msgid "SSLPort"
++msgstr "SSLPort"
++
++# type: Plain text
++#. type: Plain text
++#: cupsd.conf.man.in:478
++msgid "Listens on the specified port for encrypted connections."
++msgstr "Écouter sur le port indiqué pour les connexions sécurisées."
++
++#. type: TP
++#: cupsd.conf.man.in:478
++#, no-wrap
++msgid "StrictConformance Yes"
++msgstr ""
++
++#. type: TP
++#: cupsd.conf.man.in:480
++#, no-wrap
++msgid "StrictConformance No"
++msgstr ""
++
++#. type: Plain text
++#: cupsd.conf.man.in:485
++msgid ""
++"Specifies whether the scheduler requires clients to strictly adhere to the "
++"IPP specifications. The default is No."
++msgstr ""
++
++#. type: TP
++#: cupsd.conf.man.in:485
++#, no-wrap
++msgid "SubscriptionPrivateAccess all"
++msgstr "SubscriptionPrivateAccess tout"
++
++#. type: TP
++#: cupsd.conf.man.in:487
++#, no-wrap
++msgid "SubscriptionPrivateAccess default"
++msgstr "SubscriptionPrivateAccess defaut"
++
++#. type: TP
++#: cupsd.conf.man.in:489
++#, no-wrap
++msgid "SubscriptionPrivateAccess {user|@group|@ACL|@OWNER|@SYSTEM}+"
++msgstr "SubscriptionPrivateAccess {user|@group|@ACL|@OWNER|@SYSTEM}+"
++
++#. type: Plain text
++#: cupsd.conf.man.in:495
++msgid ""
++"Specifies an access list for a subscription's private values. The \"default"
++"\" access list is \"@OWNER @SYSTEM\". \"@ACL\" maps to the printer's "
++"requesting-user-name-allowed or requesting-user-name-denied values."
++msgstr ""
++"Indique une liste d'accès pour les valeurs privées d'une souscription. La "
++"liste d'accès « par défaut » est « @OWNER @SYSTEM ». « @ACL » est défini "
++"selon les valeurs requesting-user-name-allowed ou requesting-user-name-"
++"denied de l'imprimante."
++
++#. type: TP
++#: cupsd.conf.man.in:495
++#, no-wrap
++msgid "SubscriptionPrivateValues all"
++msgstr "SubscriptionPrivateValues tout"
++
++#. type: TP
++#: cupsd.conf.man.in:497
++#, no-wrap
++msgid "SubscriptionPrivateValues default"
++msgstr "SubscriptionPrivateValues defaut"
++
++#. type: TP
++#: cupsd.conf.man.in:499
++#, no-wrap
++msgid "SubscriptionPrivateValues none"
++msgstr "SubscriptionPrivateValues aucune"
++
++#. type: TP
++#: cupsd.conf.man.in:501
++#, no-wrap
++msgid "SubscriptionPrivateValues attribute-name-1 [ ... attribute-name-N ]"
++msgstr "SubscriptionPrivateValues nom-attribut-1 [ ... nom-attribut-N ]"
++
++#. type: Plain text
++#: cupsd.conf.man.in:506
++msgid ""
++"Specifies the list of job values to make private. The \"default\" values are "
++"\"notify-events\", \"notify-pull-method\", \"notify-recipient-uri\", "
++"\"notify-subscriber-user-name\", and \"notify-user-data\"."
++msgstr ""
++"Indique la liste des valeurs des tâches à rendre privées. Les valeurs par "
++"défaut sont « default », « notify-events », « notify-pull-method », « notify-"
++"recipient-uri », « notify-subscriber-user-name » et « notify-user-data »."
++
++# type: TP
++#. type: TP
++#: cupsd.conf.man.in:506
++#, no-wrap
++msgid "Timeout seconds"
++msgstr "Timeout secondes"
++
++# type: Plain text
++#. type: Plain text
++#: cupsd.conf.man.in:510
++msgid "Specifies the HTTP request timeout in seconds."
++msgstr "Définir le timeout des requêtes HTTP (en secondes)."
++
++#. type: TP
++#: cupsd.conf.man.in:510
++#, no-wrap
++msgid "WebInterface yes"
++msgstr "WebInterface oui"
++
++#. type: TP
++#: cupsd.conf.man.in:512
++#, no-wrap
++msgid "WebInterface no"
++msgstr "WebInterface non"
++
++# type: Plain text
++#. type: Plain text
++#: cupsd.conf.man.in:515
++msgid "Specifies whether the web interface is enabled."
++msgstr "Indique si l'interface web est activée."
++
++# type: Plain text
++#. type: Plain text
++#: cupsd.conf.man.in:519
++msgid ""
++"I<classes.conf(5)>, I<cups-files.conf(5)>, I<cupsd(8)>, I<mime.convs(5)>, "
++"I<mime.types(5)>, I<printers.conf(5)>, I<subscriptions.conf(5)>,"
++msgstr ""
++"B<classes.conf>(5), B<cups-files.conf>(5), B<cupsd>(8), B<mime.convs>(5), "
++"B<mime.types>(5), B<printers.conf>(5), B<subscriptions.conf>(5),"
++
++# type: TH
++#. type: TH
++#: cups-files.conf.man.in:15
++#, no-wrap
++msgid "cups-files.conf"
++msgstr "cups-files.conf"
++
++# type: Plain text
++#. type: Plain text
++#: cups-files.conf.man.in:18
++msgid "cups-files.conf - file and directory configuration file for cups"
++msgstr ""
++"cups-files.conf - Fichier de configuration des fichiers et dossiers du "
++"serveur CUPS."
++
++# type: Plain text
++#. type: Plain text
++#: cups-files.conf.man.in:22
++msgid ""
++"The I<cups-file.conf> file configures the files and directories used by the "
++"CUPS scheduler, I<cupsd(8)>.  It is normally located in the "
++"I<@CUPS_SERVERROOT@> directory."
++msgstr ""
++"Le fichier I<cups-files.conf> configure les emplacements des fichiers et "
++"dossiers utilisés par l'ordonnanceur CUPS, B<cupsd>(8). Il est généralement "
++"situé dans le répertoire I<@CUPS_SERVERROOT@>."
++
++# type: TP
++#. type: TP
++#: cups-files.conf.man.in:28
++#, no-wrap
++msgid "AccessLog filename"
++msgstr "AccessLog fichier"
++
++# type: TP
++#. type: TP
++#: cups-files.conf.man.in:30
++#, no-wrap
++msgid "AccessLog syslog"
++msgstr "AccessLog syslog"
++
++# type: Plain text
++#. type: Plain text
++#: cups-files.conf.man.in:34
++msgid "Defines the access log filename."
++msgstr "Définir le fichier traçant les accès."
++
++# type: TP
++#. type: TP
++#: cups-files.conf.man.in:34
++#, no-wrap
++msgid "ConfigFilePerm mode"
++msgstr "ConfigFilePerm mode"
++
++# type: Plain text
++#. type: Plain text
++#: cups-files.conf.man.in:39
++msgid ""
++"Specifies the permissions for all configuration files that the scheduler "
++"writes."
++msgstr ""
++"Définir les permissions à utiliser pour les fichiers de configuration écrits "
++"par l'ordonnanceur."
++
++# type: TP
++#. type: TP
++#: cups-files.conf.man.in:39
++#, no-wrap
++msgid "DataDir path"
++msgstr "DataDir path"
++
++# type: Plain text
++#. type: Plain text
++#: cups-files.conf.man.in:43
++msgid "Specified the directory where data files can be found."
++msgstr "Définir le répertoire où se trouvent les fichiers de données."
++
++# type: TP
++#. type: TP
++#: cups-files.conf.man.in:43
++#, no-wrap
++msgid "DocumentRoot directory"
++msgstr "DocumentRoot répertoire"
++
++# type: Plain text
++#. type: Plain text
++#: cups-files.conf.man.in:47
++msgid "Specifies the root directory for the internal web server documents."
++msgstr "Définir le répertoire racine des documents du serveur web interne."
++
++# type: TP
++#. type: TP
++#: cups-files.conf.man.in:47
++#, no-wrap
++msgid "ErrorLog filename"
++msgstr "ErrorLog fichier"
++
++# type: TP
++#. type: TP
++#: cups-files.conf.man.in:49
++#, no-wrap
++msgid "ErrorLog syslog"
++msgstr "ErrorLog syslog"
++
++# type: Plain text
++#. type: Plain text
++#: cups-files.conf.man.in:53
++msgid "Specifies the error log filename."
++msgstr "Définir le nom du fichier traçant les erreurs."
++
++#. type: TP
++#: cups-files.conf.man.in:53
++#, no-wrap
++msgid "FatalErrors none"
++msgstr "FatalErrors none"
++
++#. type: TP
++#: cups-files.conf.man.in:55
++#, no-wrap
++msgid "FatalErrors all -kind [... -kind]"
++msgstr "FatalErrors tout -type [... -type]"
++
++#. type: TP
++#: cups-files.conf.man.in:57
++#, no-wrap
++msgid "FatalErrors kind [... kind]"
++msgstr "FatalErrors type [... type]"
++
++#. type: Plain text
++#: cups-files.conf.man.in:62
++msgid ""
++"Specifies which errors are fatal, causing the scheduler to exit. \"Kind\" is "
++"\"browse\", \"config\", \"listen\", \"log\", or \"permissions\"."
++msgstr ""
++"Indique quelles erreurs sont fatales, entraînant l'arrêt de l'ordonnanceur. "
++"le « type » est « browse », « config » « listen » ou « permissions »."
++
++# type: TP
++#. type: TP
++#: cups-files.conf.man.in:62
++#, no-wrap
++msgid "FileDevice Yes"
++msgstr "FileDevice Oui"
++
++# type: TP
++#. type: TP
++#: cups-files.conf.man.in:64
++#, no-wrap
++msgid "FileDevice No"
++msgstr "FileDevice Non"
++
++# type: Plain text
++#. type: Plain text
++#: cups-files.conf.man.in:69
++msgid ""
++"Specifies whether the file pseudo-device can be used for new printer queues."
++msgstr ""
++"Indiquer si un fichier de pseudo-périphérique peut être utilisé pour les "
++"queues d'impression."
++
++# type: TP
++#. type: TP
++#: cups-files.conf.man.in:69
++#, no-wrap
++msgid "FontPath directory[:directory:...]"
++msgstr "FontPath répertoire[:répertoire:...]"
++
++# type: Plain text
++#. type: Plain text
++#: cups-files.conf.man.in:73
++msgid "Specifies the search path for fonts."
++msgstr "Définir le chemin de recherche des polices."
++
++# type: TP
++#. type: TP
++#: cups-files.conf.man.in:73
++#, no-wrap
++msgid "Group group-name-or-number"
++msgstr "Group nom_groupe-ou-identifiant_numérique"
++
++# type: Plain text
++#. type: Plain text
++#: cups-files.conf.man.in:78
++msgid ""
++"Specifies the group name or ID that will be used when executing external "
++"programs."
++msgstr ""
++"Définir le nom du groupe ou l'identifiant numérique du groupe qui sera "
++"utilisé lors de l'exécution de programmes externes."
++
++# type: TP
++#. type: TP
++#: cups-files.conf.man.in:78
++#, no-wrap
++msgid "LogFilePerm mode"
++msgstr "LogFilePerm mode"
++
++# type: Plain text
++#. type: Plain text
++#: cups-files.conf.man.in:82
++msgid "Specifies the permissions for all log files that the scheduler writes."
++msgstr ""
++"Définir les permissions des fichiers journaux écrits par l'ordonnanceur."
++
++# type: TP
++#. type: TP
++#: cups-files.conf.man.in:82
++#, no-wrap
++msgid "PageLog filename"
++msgstr "PageLog fichier"
++
++# type: TP
++#. type: TP
++#: cups-files.conf.man.in:84
++#, no-wrap
++msgid "PageLog syslog"
++msgstr "PageLog syslog"
++
++# type: Plain text
++#. type: Plain text
++#: cups-files.conf.man.in:88
++msgid "Specifies the page log filename."
++msgstr "Définir le fichier de trace des pages web visitées."
++
++# type: TP
++#. type: TP
++#: cups-files.conf.man.in:88
 +#, no-wrap
 +msgid "Printcap"
 +msgstr "Printcap"
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:468
++#: cups-files.conf.man.in:90
 +#, no-wrap
 +msgid "Printcap filename"
 +msgstr "Printcap fichier"
 +
 +# type: Plain text
 +#. type: Plain text
-+#: cupsd.conf.man.in:475
++#: cups-files.conf.man.in:97
 +msgid ""
 +"Specifies the filename for a printcap file that is updated automatically "
 +"with a list of available printers (needed for legacy applications); "
@@ -14907,98 +15344,28 @@ Bug-Debian: http://bugs.debian.org/478597
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:475
-+#, no-wrap
-+msgid "PrintcapFormat bsd"
-+msgstr "PrintcapFormat bsd"
-+
-+# type: TP
-+#. type: TP
-+#: cupsd.conf.man.in:477
-+#, no-wrap
-+msgid "PrintcapFormat plist"
-+msgstr "PrintcapFormat plist"
-+
-+# type: TP
-+#. type: TP
-+#: cupsd.conf.man.in:479
-+#, no-wrap
-+msgid "PrintcapFormat solaris"
-+msgstr "PrintcapFormat solaris"
-+
-+# type: Plain text
-+#. type: Plain text
-+#: cupsd.conf.man.in:483
-+msgid "Specifies the format of the printcap file."
-+msgstr "Définir le format du fichier printcap."
-+
-+# type: TP
-+#. type: TP
-+#: cupsd.conf.man.in:483
-+#, no-wrap
-+msgid "PrintcapGUI"
-+msgstr "PrintcapGUI"
-+
-+# type: TP
-+#. type: TP
-+#: cupsd.conf.man.in:485
-+#, no-wrap
-+msgid "PrintcapGUI gui-program-filename"
-+msgstr "PrintcapGUI fichier_interface_graphique"
-+
-+# type: Plain text
-+#. type: Plain text
-+#: cupsd.conf.man.in:491
-+msgid ""
-+"Specifies whether to generate option panel definition files on some "
-+"operating systems. When provided with no program filename, disables option "
-+"panel definition files."
-+msgstr ""
-+"Définir s'il faut créer des fichiers de définition d'options pour des "
-+"systèmes d'exploitation. Quand c'est fourni sans nom de programme, il n'y a "
-+"pas de fichier de définition d'options."
-+
-+# type: TP
-+#. type: TP
-+#: cupsd.conf.man.in:491
-+#, no-wrap
-+msgid "ReloadTimeout seconds"
-+msgstr "ReloadTimeout secondes"
-+
-+# type: Plain text
-+#. type: Plain text
-+#: cupsd.conf.man.in:496
-+msgid ""
-+"Specifies the amount of time to wait for job completion before restarting "
-+"the scheduler."
-+msgstr ""
-+"Définir le temps maximum à attendre pour la fin d'un travail avant de "
-+"redémarrer l'ordonnanceur."
-+
-+# type: TP
-+#. type: TP
-+#: cupsd.conf.man.in:496
++#: cups-files.conf.man.in:97
 +#, no-wrap
 +msgid "RemoteRoot user-name"
 +msgstr "RemoteRoot utilisateur"
 +
 +# type: Plain text
 +#. type: Plain text
-+#: cupsd.conf.man.in:501
++#: cups-files.conf.man.in:102
 +msgid ""
 +"Specifies the username that is associated with unauthenticated root accesses."
 +msgstr "Définir l'utilisateur associé aux accès root non identifié."
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:501
++#: cups-files.conf.man.in:102
 +#, no-wrap
 +msgid "RequestRoot directory"
 +msgstr "RequestRoot répertoire"
 +
 +# type: Plain text
 +#. type: Plain text
-+#: cupsd.conf.man.in:506
++#: cups-files.conf.man.in:107
 +msgid ""
 +"Specifies the directory to store print jobs and other HTTP request data."
 +msgstr ""
@@ -15007,119 +15374,14 @@ Bug-Debian: http://bugs.debian.org/478597
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:506
-+#, no-wrap
-+msgid "Require group group-name-list"
-+msgstr "Require group liste_groupes"
-+
-+# type: TP
-+#. type: TP
-+#: cupsd.conf.man.in:508
-+#, no-wrap
-+msgid "Require user user-name-list"
-+msgstr "Require user liste_utilisateurs"
-+
-+# type: TP
-+#. type: TP
-+#: cupsd.conf.man.in:510
-+#, no-wrap
-+msgid "Require valid-user"
-+msgstr "Require valid-user"
-+
-+# type: Plain text
-+#. type: Plain text
-+#: cupsd.conf.man.in:514
-+msgid "Specifies that user or group authentication is required."
-+msgstr ""
-+"Indiquer qu'une identification par utilisateur ou par groupe est nécessaire."
-+
-+# type: TP
-+#. type: TP
-+#: cupsd.conf.man.in:514
-+#, no-wrap
-+msgid "RIPCache bytes"
-+msgstr "RIPCache octets"
-+
-+# type: Plain text
-+#. type: Plain text
-+#: cupsd.conf.man.in:519
-+msgid ""
-+"Specifies the maximum amount of memory to use when converting images and "
-+"PostScript files to bitmaps for a printer."
-+msgstr ""
-+"Définir la taille maximale de mémoire à utiliser lors de la conversion "
-+"d'images ou de fichiers PostScript en fichier bitmap pour une imprimante."
-+
-+# type: TP
-+#. type: TP
-+#: cupsd.conf.man.in:519
-+#, no-wrap
-+msgid "Satisfy all"
-+msgstr "Satisfy all"
-+
-+# type: TP
-+#. type: TP
-+#: cupsd.conf.man.in:521
-+#, no-wrap
-+msgid "Satisfy any"
-+msgstr "Satisfy any"
-+
-+# type: Plain text
-+#. type: Plain text
-+#: cupsd.conf.man.in:526
-+msgid ""
-+"Specifies whether all or any limits set for a Location must be satisfied to "
-+"allow access."
-+msgstr ""
-+"Définir si toutes les limites (« all »), ou seulement une des limites "
-+"(« any ») définies pour un lieu donné doivent être satisfaites pour "
-+"permettre l'accès."
-+
-+# type: TP
-+#. type: TP
-+#: cupsd.conf.man.in:526
-+#, no-wrap
-+msgid "ServerAdmin user@domain.com"
-+msgstr "ServerAdmin utilisateur@domaine.com"
-+
-+# type: Plain text
-+#. type: Plain text
-+#: cupsd.conf.man.in:530
-+msgid "Specifies the email address of the server administrator."
-+msgstr "Définir l'adresse électronique de l'administrateur du serveur."
-+
-+# type: TP
-+#. type: TP
-+#: cupsd.conf.man.in:530
-+#, no-wrap
-+msgid "ServerAlias hostname [... hostname]"
-+msgstr "ServerAlias nom [... nom]"
-+
-+#. type: TP
-+#: cupsd.conf.man.in:532
-+#, no-wrap
-+msgid "ServerAlias *"
-+msgstr "ServerAlias*"
-+
-+#. type: Plain text
-+#: cupsd.conf.man.in:537
-+msgid ""
-+"Specifies an alternate name that the server is known by. The special name \"*"
-+"\" allows any name to be used."
-+msgstr ""
-+"Indique un nom alternatif par lequel le serveur est connu. Le nom spécial "
-+"« * » autorise l'emploi de n'importe quel nom."
-+
-+# type: TP
-+#. type: TP
-+#: cupsd.conf.man.in:537
++#: cups-files.conf.man.in:107
 +#, no-wrap
 +msgid "ServerBin directory"
 +msgstr "ServerBin répertoire"
 +
 +# type: Plain text
 +#. type: Plain text
-+#: cupsd.conf.man.in:542
++#: cups-files.conf.man.in:112
 +msgid ""
 +"Specifies the directory where backends, CGIs, daemons, and filters may be "
 +"found."
@@ -15129,53 +15391,40 @@ Bug-Debian: http://bugs.debian.org/478597
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:542
++#: cups-files.conf.man.in:112
 +#, no-wrap
 +msgid "ServerCertificate filename"
 +msgstr "ServerCertificate fichier"
 +
 +# type: Plain text
 +#. type: Plain text
-+#: cupsd.conf.man.in:546
++#: cups-files.conf.man.in:116
 +msgid "Specifies the encryption certificate to use."
 +msgstr "Définir le certificat à utiliser pour le chiffrement."
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:546
++#: cups-files.conf.man.in:116
 +#, no-wrap
 +msgid "ServerKey filename"
 +msgstr "ServerKey fichier"
 +
 +# type: Plain text
 +#. type: Plain text
-+#: cupsd.conf.man.in:550
++#: cups-files.conf.man.in:120
 +msgid "Specifies the encryption key to use."
 +msgstr "Définir la clé de chiffrement à utiliser."
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:550
-+#, no-wrap
-+msgid "ServerName hostname-or-ip-address"
-+msgstr "ServerName hôte-ou-adresse_ip"
-+
-+# type: Plain text
-+#. type: Plain text
-+#: cupsd.conf.man.in:554
-+msgid "Specifies the fully-qualified hostname of the server."
-+msgstr "Définir le nom complet du serveur."
-+
-+# type: TP
-+#. type: TP
-+#: cupsd.conf.man.in:554
++#: cups-files.conf.man.in:120
 +#, no-wrap
 +msgid "ServerRoot directory"
 +msgstr "ServerRoot répertoire"
 +
 +# type: Plain text
 +#. type: Plain text
-+#: cupsd.conf.man.in:558
++#: cups-files.conf.man.in:124
 +msgid ""
 +"Specifies the directory where the server configuration files can be found."
 +msgstr ""
@@ -15184,288 +15433,55 @@ Bug-Debian: http://bugs.debian.org/478597
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:558
-+#, no-wrap
-+msgid "ServerTokens Full"
-+msgstr "ServerTokens Full"
-+
-+# type: TP
-+#. type: TP
-+#: cupsd.conf.man.in:560
-+#, no-wrap
-+msgid "ServerTokens Major"
-+msgstr "ServerTokens Major"
-+
-+# type: TP
-+#. type: TP
-+#: cupsd.conf.man.in:562
-+#, no-wrap
-+msgid "ServerTokens Minimal"
-+msgstr "ServerTokens Minimal"
-+
-+# type: TP
-+#. type: TP
-+#: cupsd.conf.man.in:564
-+#, no-wrap
-+msgid "ServerTokens Minor"
-+msgstr "ServerTokens Minor"
-+
-+# type: TP
-+#. type: TP
-+#: cupsd.conf.man.in:566
-+#, no-wrap
-+msgid "ServerTokens None"
-+msgstr "ServerTokens None"
-+
-+# type: TP
-+#. type: TP
-+#: cupsd.conf.man.in:568
-+#, no-wrap
-+msgid "ServerTokens OS"
-+msgstr "ServerTokens OS"
-+
-+# type: TP
-+#. type: TP
-+#: cupsd.conf.man.in:570
-+#, no-wrap
-+msgid "ServerTokens ProductOnly"
-+msgstr "ServerTokens ProductOnly"
-+
-+# type: Plain text
-+#. type: Plain text
-+#: cupsd.conf.man.in:575
-+msgid ""
-+"Specifies what information is included in the Server header of HTTP "
-+"responses."
-+msgstr ""
-+"Indiquer quelles informations sont disponibles dans l'entête des réponses du "
-+"serveur HTTP."
-+
-+# type: TP
-+#. type: TP
-+#: cupsd.conf.man.in:575
-+#, no-wrap
-+msgid "SetEnv variable value"
-+msgstr "SetEnv variable valeur"
-+
-+# type: Plain text
-+#. type: Plain text
-+#: cupsd.conf.man.in:579
-+msgid "Set the specified environment variable to be passed to child processes."
-+msgstr "Fixer les varaibles d'environnement à passer aux processus fils."
-+
-+# type: TP
-+#. type: TP
-+#: cupsd.conf.man.in:579
-+#, no-wrap
-+msgid "SSLListen"
-+msgstr "SSLListen"
-+
-+# type: Plain text
-+#. type: Plain text
-+#: cupsd.conf.man.in:583
-+msgid "Listens on the specified address and port for encrypted connections."
-+msgstr ""
-+"Écouter à l'adresse et au port indiqués pour les connexions sécurisées."
-+
-+#. type: TP
-+#: cupsd.conf.man.in:583
-+#, no-wrap
-+msgid "SSLOptions None"
-+msgstr "SSLOptions Aucune"
-+
-+#. type: TP
-+#: cupsd.conf.man.in:585
-+#, no-wrap
-+msgid "SSLOptions NoEmptyFragments"
-+msgstr "SSLOptions NoEmptyFragments"
-+
-+# type: Plain text
-+#. type: Plain text
-+#: cupsd.conf.man.in:589
-+msgid "Sets SSL/TLS protocol options for encrypted connections."
-+msgstr ""
-+"Appliquer les options du protocole SSL/TLS pour les connexions chiffrées."
-+
-+# type: TP
-+#. type: TP
-+#: cupsd.conf.man.in:589
-+#, no-wrap
-+msgid "SSLPort"
-+msgstr "SSLPort"
-+
-+# type: Plain text
-+#. type: Plain text
-+#: cupsd.conf.man.in:593
-+msgid "Listens on the specified port for encrypted connections."
-+msgstr "Écouter sur le port indiqué pour les connexions sécurisées."
-+
-+#. type: TP
-+#: cupsd.conf.man.in:593
-+#, no-wrap
-+msgid "StrictConformance Yes"
-+msgstr ""
-+
-+#. type: TP
-+#: cupsd.conf.man.in:595
-+#, no-wrap
-+msgid "StrictConformance No"
-+msgstr ""
-+
-+#. type: Plain text
-+#: cupsd.conf.man.in:600
-+msgid ""
-+"Specifies whether the scheduler requires clients to strictly adhere to the "
-+"IPP specifications. The default is No."
-+msgstr ""
-+
-+#. type: TP
-+#: cupsd.conf.man.in:600
-+#, no-wrap
-+msgid "SubscriptionPrivateAccess all"
-+msgstr "SubscriptionPrivateAccess tout"
-+
-+#. type: TP
-+#: cupsd.conf.man.in:602
-+#, no-wrap
-+msgid "SubscriptionPrivateAccess default"
-+msgstr "SubscriptionPrivateAccess defaut"
-+
-+#. type: TP
-+#: cupsd.conf.man.in:604
-+#, no-wrap
-+msgid "SubscriptionPrivateAccess {user|@group|@ACL|@OWNER|@SYSTEM}+"
-+msgstr "SubscriptionPrivateAccess {user|@group|@ACL|@OWNER|@SYSTEM}+"
-+
-+#. type: Plain text
-+#: cupsd.conf.man.in:610
-+msgid ""
-+"Specifies an access list for a subscription's private values. The \"default"
-+"\" access list is \"@OWNER @SYSTEM\". \"@ACL\" maps to the printer's "
-+"requesting-user-name-allowed or requesting-user-name-denied values."
-+msgstr ""
-+"Indique une liste d'accès pour les valeurs privées d'une souscription. La "
-+"liste d'accès « par défaut » est « @OWNER @SYSTEM ». « @ACL » est défini "
-+"selon les valeurs requesting-user-name-allowed ou requesting-user-name-"
-+"denied de l'imprimante."
-+
-+#. type: TP
-+#: cupsd.conf.man.in:610
-+#, no-wrap
-+msgid "SubscriptionPrivateValues all"
-+msgstr "SubscriptionPrivateValues tout"
-+
-+#. type: TP
-+#: cupsd.conf.man.in:612
-+#, no-wrap
-+msgid "SubscriptionPrivateValues default"
-+msgstr "SubscriptionPrivateValues defaut"
-+
-+#. type: TP
-+#: cupsd.conf.man.in:614
-+#, no-wrap
-+msgid "SubscriptionPrivateValues none"
-+msgstr "SubscriptionPrivateValues aucune"
-+
-+#. type: TP
-+#: cupsd.conf.man.in:616
-+#, no-wrap
-+msgid "SubscriptionPrivateValues attribute-name-1 [ ... attribute-name-N ]"
-+msgstr "SubscriptionPrivateValues nom-attribut-1 [ ... nom-attribut-N ]"
-+
-+#. type: Plain text
-+#: cupsd.conf.man.in:621
-+msgid ""
-+"Specifies the list of job values to make private. The \"default\" values are "
-+"\"notify-events\", \"notify-pull-method\", \"notify-recipient-uri\", "
-+"\"notify-subscriber-user-name\", and \"notify-user-data\"."
-+msgstr ""
-+"Indique la liste des valeurs des tâches à rendre privées. Les valeurs par "
-+"défaut sont « default », « notify-events », « notify-pull-method », « notify-"
-+"recipient-uri », « notify-subscriber-user-name » et « notify-user-data »."
-+
-+# type: TP
-+#. type: TP
-+#: cupsd.conf.man.in:621
++#: cups-files.conf.man.in:124
 +#, no-wrap
 +msgid "SystemGroup group-name [group-name ...]"
 +msgstr "SystemGroup groupe [groupe ...]"
 +
 +# type: Plain text
 +#. type: Plain text
-+#: cupsd.conf.man.in:625
++#: cups-files.conf.man.in:128
 +msgid "Specifies the group(s) to use for System class authentication."
 +msgstr "Définir le(s) groupe(s) à utiliser pour les identifications système."
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:625
++#: cups-files.conf.man.in:128
 +#, no-wrap
 +msgid "TempDir directory"
 +msgstr "TempDir répertoire"
 +
 +# type: Plain text
 +#. type: Plain text
-+#: cupsd.conf.man.in:629
++#: cups-files.conf.man.in:132
 +msgid "Specifies the directory where temporary files are stored."
 +msgstr "Définir le répertoire où les fichiers temporaires sont stockés."
 +
 +# type: TP
 +#. type: TP
-+#: cupsd.conf.man.in:629
-+#, no-wrap
-+msgid "Timeout seconds"
-+msgstr "Timeout secondes"
-+
-+# type: Plain text
-+#. type: Plain text
-+#: cupsd.conf.man.in:633
-+msgid "Specifies the HTTP request timeout in seconds."
-+msgstr "Définir le timeout des requêtes HTTP (en secondes)."
-+
-+# type: TP
-+#. type: TP
-+#: cupsd.conf.man.in:633
++#: cups-files.conf.man.in:132
 +#, no-wrap
 +msgid "User user-name"
 +msgstr "User utilisateur"
 +
 +# type: Plain text
 +#. type: Plain text
-+#: cupsd.conf.man.in:637
++#: cups-files.conf.man.in:136
 +msgid ""
 +"Specifies the user name or ID that is used when running external programs."
 +msgstr ""
 +"Définir le nom ou l'identifiant de l'utilisateur utilisé lors du lancement "
 +"de programmes externes."
 +
-+#. type: TP
-+#: cupsd.conf.man.in:637
-+#, no-wrap
-+msgid "WebInterface yes"
-+msgstr "WebInterface oui"
-+
-+#. type: TP
-+#: cupsd.conf.man.in:639
-+#, no-wrap
-+msgid "WebInterface no"
-+msgstr "WebInterface non"
-+
 +# type: Plain text
 +#. type: Plain text
-+#: cupsd.conf.man.in:642
-+msgid "Specifies whether the web interface is enabled."
-+msgstr "Indique si l'interface web est activée."
-+
-+# type: Plain text
-+#. type: Plain text
-+#: cupsd.conf.man.in:646
++#: cups-files.conf.man.in:140
 +msgid ""
-+"I<classes.conf(5)>, I<cupsd(8)>, I<mime.convs(5)>, I<mime.types(5)>, "
-+"I<printers.conf(5)>, I<subscriptions.conf(5)>,"
++"I<classes.conf(5)>, I<cupsd(8)>, I<cupsd.conf(5)>, I<mime.convs(5)>, I<mime."
++"types(5)>, I<printers.conf(5)>, I<subscriptions.conf(5)>,"
 +msgstr ""
-+"B<classes.conf>(5), B<cupsd>(8), B<mime.convs>(5), B<mime.types>(5), "
-+"B<printers.conf>(5), B<subscriptions.conf>(5),"
++"B<classes.conf>(5), B<cupsd>(8), B<cupsd.conf>(5), B<mime.convs>(5), B<mime."
++"types>(5), B<printers.conf>(5), B<subscriptions.conf>(5),"
 +
 +# type: TH
 +#. type: TH
@@ -16173,10 +16189,9 @@ Bug-Debian: http://bugs.debian.org/478597
 +# type: TH
 +#. type: TH
 +#: cupsfilter.man:14
-+#, fuzzy, no-wrap
-+#| msgid "16 June 2008"
++#, no-wrap
 +msgid "20 June 2012"
-+msgstr "16 juin 2008"
++msgstr "20 juin 2012"
 +
 +# type: Plain text
 +#. type: Plain text
@@ -17358,6 +17373,13 @@ Bug-Debian: http://bugs.debian.org/478597
 +msgid "filter"
 +msgstr "filter"
 +
++# type: TH
++#. type: TH
++#: filter.man:15
++#, no-wrap
++msgid "18 May 2012"
++msgstr "18 mai 2012"
++
 +# type: Plain text
 +#. type: Plain text
 +#: filter.man:18
@@ -18032,10 +18054,8 @@ Bug-Debian: http://bugs.debian.org/478597
 +# type: Plain text
 +#. type: Plain text
 +#: filter.man:232
-+#, fuzzy
-+#| msgid "I<backend(7)>, I<cupsd(8)>,"
 +msgid "I<backend(7)>, I<cupsd(8)>, I<cupsfilter(8)>,"
-+msgstr "I<backend(7)>, I<cupsd(8)>,"
++msgstr "I<backend(7)>, I<cupsd(8)>, I<cupsfilter(8)>,"
 +
 +# type: TH
 +#. type: TH
@@ -21457,6 +21477,54 @@ Bug-Debian: http://bugs.debian.org/478597
 +msgstr ""
 +"B<classes.conf>(5), B<cupsd>(8), B<cupsd.conf>(5), B<mime.convs>(5), B<mime."
 +"types>(5), B<printers.conf>(5)"
++
++# type: TP
++#~ msgid "AuthClass User"
++#~ msgstr "AuthClass User"
++
++# type: TP
++#~ msgid "AuthClass Group"
++#~ msgstr "AuthClass Group"
++
++# type: TP
++#~ msgid "AuthClass System"
++#~ msgstr "AuthClass System"
++
++# type: Plain text
++#~ msgid ""
++#~ "Specifies the authentication class (User, Group, System) - B<this "
++#~ "directive is deprecated>."
++#~ msgstr ""
++#~ "Définir la classe d'identification (User, Group, System). B<Cette "
++#~ "directive est obsolète.>"
++
++# type: TP
++#~ msgid "AuthGroupName group-name"
++#~ msgstr "AuthGroupName groupe"
++
++# type: Plain text
++#~ msgid ""
++#~ "Specifies the authentication group - B<this directive is deprecated>."
++#~ msgstr ""
++#~ "Définir le groupe d'identification. B<Cette directive est obsolète.>"
++
++# type: TP
++#~ msgid "PrintcapGUI"
++#~ msgstr "PrintcapGUI"
++
++# type: TP
++#~ msgid "PrintcapGUI gui-program-filename"
++#~ msgstr "PrintcapGUI fichier_interface_graphique"
++
++# type: Plain text
++#~ msgid ""
++#~ "Specifies whether to generate option panel definition files on some "
++#~ "operating systems. When provided with no program filename, disables "
++#~ "option panel definition files."
++#~ msgstr ""
++#~ "Définir s'il faut créer des fichiers de définition d'options pour des "
++#~ "systèmes d'exploitation. Quand c'est fourni sans nom de programme, il n'y "
++#~ "a pas de fichier de définition d'options."
 +
 +# type: Plain text
 +#~| msgid "I<cupsd(8)>, I<cupsd.conf(5)>, I<filter(7)>"
