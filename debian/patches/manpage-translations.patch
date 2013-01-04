@@ -350,7 +350,7 @@ Bug-Debian: http://bugs.debian.org/478597
 +
 --- /dev/null
 +++ b/man/po4a/po/de.po
-@@ -0,0 +1,10680 @@
+@@ -0,0 +1,10664 @@
 +# Translation of cups man pages to German
 +# Copyright (C) Helge Kreutzmann <debian@helgefjell.de>, 2008-2012
 +# Chris Leick <c.leick@vollbio.de>, 2009.
@@ -359,7 +359,7 @@ Bug-Debian: http://bugs.debian.org/478597
 +msgid ""
 +msgstr ""
 +"Project-Id-Version: cups man pages 1.5.2-10\n"
-+"POT-Creation-Date: 2013-01-04 16:48+0100\n"
++"POT-Creation-Date: 2013-01-04 18:30+0100\n"
 +"PO-Revision-Date: 2012-04-22 15:33+0200\n"
 +"Last-Translator: Helge Kreutzmann <debian@helgefjell.de>\n"
 +"Language-Team: de <debian-l10n-german@lists.debian.org>\n"
@@ -619,7 +619,7 @@ Bug-Debian: http://bugs.debian.org/478597
 +#. type: SH
 +#: cupsaccept.man:70 backend.man:163 cancel.man:67 classes.conf.man:101
 +#: client.conf.man.in:53 cupsaddsmb.man.in:204 cups-config.man:111
-+#: cupsctl.man:94 cupsd.conf.man.in:515 cups-files.conf.man.in:136
++#: cupsctl.man:89 cupsd.conf.man.in:515 cups-files.conf.man.in:136
 +#: cups-deviced.man.in:36 cupsd.man.in:61 cups-driverd.man.in:114
 +#: cupsenable.man:83 cupsfilter.man:101 cups-lpd.man.in:115
 +#: cups-snmp.conf.man:70 cupstestdsc.man:41 cupstestppd.man:155 filter.man:230
@@ -640,7 +640,7 @@ Bug-Debian: http://bugs.debian.org/478597
 +# type: Plain text
 +#. type: Plain text
 +#: cupsaccept.man:75 backend.man:168 cancel.man:71 classes.conf.man:106
-+#: client.conf.man.in:55 cups-config.man:113 cupsctl.man:98
++#: client.conf.man.in:55 cups-config.man:113 cupsctl.man:93
 +#: cupsd.conf.man.in:521 cups-files.conf.man.in:142 cups-deviced.man.in:40
 +#: cupsd.man.in:68 cups-driverd.man.in:118 cupsenable.man:88
 +#: cupsfilter.man:105 cups-lpd.man.in:120 cups-snmp.conf.man:74
@@ -656,7 +656,7 @@ Bug-Debian: http://bugs.debian.org/478597
 +#. type: SH
 +#: cupsaccept.man:75 backend.man:168 cancel.man:71 classes.conf.man:106
 +#: client.conf.man.in:55 cupsaddsmb.man.in:210 cups-config.man:113
-+#: cupsctl.man:98 cupsd.conf.man.in:521 cups-files.conf.man.in:142
++#: cupsctl.man:93 cupsd.conf.man.in:521 cups-files.conf.man.in:142
 +#: cups-deviced.man.in:40 cupsd.man.in:68 cups-driverd.man.in:118
 +#: cupsenable.man:88 cupsfilter.man:105 cups-lpd.man.in:120
 +#: cups-snmp.conf.man:74 cupstestdsc.man:46 cupstestppd.man:161 filter.man:234
@@ -672,7 +672,7 @@ Bug-Debian: http://bugs.debian.org/478597
 +#. type: Plain text
 +#: cupsaccept.man:76 backend.man:169 cancel.man:72 classes.conf.man:107
 +#: client.conf.man.in:56 cupsaddsmb.man.in:211 cups-config.man:114
-+#: cupsctl.man:99 cupsd.conf.man.in:522 cups-files.conf.man.in:143
++#: cupsctl.man:94 cupsd.conf.man.in:522 cups-files.conf.man.in:143
 +#: cups-deviced.man.in:41 cupsd.man.in:69 cups-driverd.man.in:119
 +#: cupsenable.man:90 cupsfilter.man:106 cups-lpd.man.in:121
 +#: cups-snmp.conf.man:75 cupstestdsc.man:47 cupstestppd.man:162 filter.man:235
@@ -680,10 +680,8 @@ Bug-Debian: http://bugs.debian.org/478597
 +#: lpoptions.man.in:132 lppasswd.man:65 lpq.man:69 lpr.man:119 lprm.man:62
 +#: lpstat.man:140 mailto.conf.man:57 mime.convs.man:43 mime.types.man:112
 +#: printers.conf.man:121 subscriptions.conf.man:86
-+#, fuzzy
-+#| msgid "Copyright 2007-2011 by Apple Inc."
 +msgid "Copyright 2007-2012 by Apple Inc."
-+msgstr "Copyright 2007-2011 by Apple Inc."
++msgstr "Copyright 2007-2012 by Apple Inc."
 +
 +#. type: TH
 +#: backend.man:15
@@ -693,10 +691,9 @@ Bug-Debian: http://bugs.debian.org/478597
 +
 +#. type: TH
 +#: backend.man:15 client.conf.man.in:15 cups-snmp.conf.man:15
-+#, fuzzy, no-wrap
-+#| msgid "15 April 2011"
++#, , no-wrap
 +msgid "23 April 2012"
-+msgstr "15. April 2011"
++msgstr "23. April 2012"
 +
 +#. type: Plain text
 +#: backend.man:19
@@ -1197,15 +1194,10 @@ Bug-Debian: http://bugs.debian.org/478597
 +# type: Plain text
 +#. type: Plain text
 +#: backend.man:166
-+#, fuzzy
-+#| msgid ""
-+#| "I<classes.conf(5)>, I<cupsd(8)>, I<cupsd.conf(5)>, I<mime.types(5)>, "
-+#| "I<printers.conf(5)>,"
 +msgid ""
 +"I<cups-snmp(8)>, I<cupsd(8)>, I<cupsd.conf(5)>, I<filter(7)>, I<lpinfo(8)>,"
 +msgstr ""
-+"I<classes.conf(5)>, I<cupsd(8)>, I<cupsd.conf(5)>, I<mime.types(5)>, "
-+"I<printers.conf(5)>,"
++"I<cups-snmp(8)>, I<cupsd(8)>, I<cupsd.conf(5)>, I<filter(7)>, I<lpinfo(8)>,"
 +
 +#. type: TH
 +#: cancel.man:15
@@ -2167,7 +2159,7 @@ Bug-Debian: http://bugs.debian.org/478597
 +
 +# type: SH
 +#. type: SH
-+#: cupsaddsmb.man.in:201 cupsctl.man:92
++#: cupsaddsmb.man.in:201 cupsctl.man:87
 +#, no-wrap
 +msgid "KNOWN ISSUES"
 +msgstr "BEKANNTE PROBLEME"
@@ -2464,11 +2456,11 @@ Bug-Debian: http://bugs.debian.org/478597
 +
 +# type: TH
 +#. type: TH
-+#: cupsctl.man:15 lpadmin.man:15 lp.man:15
++#: cupsctl.man:15
 +#, fuzzy, no-wrap
-+#| msgid "31 July 2006"
-+msgid "16 July 2012"
-+msgstr "31. Juli 2006"
++#| msgid "5 December 2008"
++msgid "12 December 2012"
++msgstr "5. Dezember 2008"
 +
 +#. type: Plain text
 +#: cupsctl.man:18
@@ -2681,23 +2673,12 @@ Bug-Debian: http://bugs.debian.org/478597
 +
 +#. type: Plain text
 +#: cupsctl.man:89
-+msgid "Enable printing using the file: pseudo-device:"
-+msgstr "Aktiviere Druckerfreigabe unter Verwendung des file:-Pseudogeräts:"
-+
-+#. type: Plain text
-+#: cupsctl.man:91
-+#, no-wrap
-+msgid "    cupsctl FileDevice=Yes\n"
-+msgstr "    cupsctl FileDevice=Yes\n"
-+
-+#. type: Plain text
-+#: cupsctl.man:94
 +msgid "You cannot set the Listen or Port directives using I<cupsctl>."
 +msgstr ""
 +"Sie können die Direktiven »Listen« oder »Port« nicht mit I<cupsctl> setzen."
 +
 +#. type: Plain text
-+#: cupsctl.man:96
++#: cupsctl.man:91
 +msgid "I<cupsd.conf(5)>, I<cupsd(8)>,"
 +msgstr "I<cupsd.conf(5)>, I<cupsd(8)>,"
 +
@@ -2709,10 +2690,9 @@ Bug-Debian: http://bugs.debian.org/478597
 +
 +#. type: TH
 +#: cupsd.conf.man.in:15 cups-files.conf.man.in:15
-+#, fuzzy, no-wrap
-+#| msgid "19 November 2009"
++#, no-wrap
 +msgid "19 November 2012"
-+msgstr "19. November 2009"
++msgstr "19. November 2012"
 +
 +#. type: Plain text
 +#: cupsd.conf.man.in:18
@@ -4307,23 +4287,18 @@ Bug-Debian: http://bugs.debian.org/478597
 +
 +#. type: Plain text
 +#: cupsd.conf.man.in:519
-+#, fuzzy
-+#| msgid ""
-+#| "I<classes.conf(5)>, I<cupsd(8)>, I<mime.convs(5)>, I<mime.types(5)>, "
-+#| "I<printers.conf(5)>, I<subscriptions.conf(5)>,"
 +msgid ""
 +"I<classes.conf(5)>, I<cups-files.conf(5)>, I<cupsd(8)>, I<mime.convs(5)>, "
 +"I<mime.types(5)>, I<printers.conf(5)>, I<subscriptions.conf(5)>,"
 +msgstr ""
-+"I<classes.conf(5)>, I<cupsd(8)>, I<mime.convs(5)>, I<mime.types(5)>, "
-+"I<printers.conf(5)>, I<subscriptions.conf(5)>,"
++"I<classes.conf(5)>, I<cups-files.conf(5)>, I<cupsd(8)>, I<mime.convs(5)>, "
++"I<mime.types(5)>, I<printers.conf(5)>, I<subscriptions.conf(5)>,"
 +
 +#. type: TH
 +#: cups-files.conf.man.in:15
-+#, fuzzy, no-wrap
-+#| msgid "cupsd.conf"
++#, no-wrap
 +msgid "cups-files.conf"
-+msgstr "cupsd.conf"
++msgstr "cups-files.conf"
 +
 +#. type: Plain text
 +#: cups-files.conf.man.in:18
@@ -4687,16 +4662,12 @@ Bug-Debian: http://bugs.debian.org/478597
 +
 +#. type: Plain text
 +#: cups-files.conf.man.in:140
-+#, fuzzy
-+#| msgid ""
-+#| "I<classes.conf(5)>, I<cupsd(8)>, I<mime.convs(5)>, I<mime.types(5)>, "
-+#| "I<printers.conf(5)>, I<subscriptions.conf(5)>,"
 +msgid ""
 +"I<classes.conf(5)>, I<cupsd(8)>, I<cupsd.conf(5)>, I<mime.convs(5)>, I<mime."
 +"types(5)>, I<printers.conf(5)>, I<subscriptions.conf(5)>,"
 +msgstr ""
-+"I<classes.conf(5)>, I<cupsd(8)>, I<mime.convs(5)>, I<mime.types(5)>, "
-+"I<printers.conf(5)>, I<subscriptions.conf(5)>,"
++"I<classes.conf(5)>, I<cupsd(8)>, I<cupsd.conf(5)>, I<mime.convs(5)>, I<mime."
++"types(5)>, I<printers.conf(5)>, I<subscriptions.conf(5)>,"
 +
 +#. type: TH
 +#: cups-deviced.man.in:15
@@ -5355,10 +5326,9 @@ Bug-Debian: http://bugs.debian.org/478597
 +
 +#. type: TH
 +#: cupsfilter.man:14
-+#, fuzzy, no-wrap
-+#| msgid "16 June 2008"
++#, no-wrap
 +msgid "20 June 2012"
-+msgstr "16. Juni 2008"
++msgstr "20. Juni 2012"
 +
 +#. type: Plain text
 +#: cupsfilter.man:17
@@ -7190,6 +7160,14 @@ Bug-Debian: http://bugs.debian.org/478597
 +#, no-wrap
 +msgid "lpadmin"
 +msgstr "lpadmin"
++
++# type: TH
++#. type: TH
++#: lpadmin.man:15 lp.man:15
++#, fuzzy, no-wrap
++#| msgid "31 July 2006"
++msgid "16 July 2012"
++msgstr "31. Juli 2006"
 +
 +#. type: Plain text
 +#: lpadmin.man:18
@@ -10492,6 +10470,12 @@ Bug-Debian: http://bugs.debian.org/478597
 +"I<classes.conf(5)>, I<cupsd(8)>, I<cupsd.conf(5)>, I<mime.convs(5)>, I<mime."
 +"types(5)>, printers.conf(5)"
 +
++#~ msgid "Enable printing using the file: pseudo-device:"
++#~ msgstr "Aktiviere Druckerfreigabe unter Verwendung des file:-Pseudogeräts:"
++
++#~ msgid "    cupsctl FileDevice=Yes\n"
++#~ msgstr "    cupsctl FileDevice=Yes\n"
++
 +# type: TP
 +#~ msgid "AuthClass User"
 +#~ msgstr "AuthClass User"
@@ -11033,7 +11017,7 @@ Bug-Debian: http://bugs.debian.org/478597
 +#~ msgstr "2. März 2009"
 --- /dev/null
 +++ b/man/po4a/po/fr.po
-@@ -0,0 +1,11109 @@
+@@ -0,0 +1,11110 @@
 +# Translation of the cups manpages into French.
 +#
 +# Original translations from:
@@ -11044,7 +11028,7 @@ Bug-Debian: http://bugs.debian.org/478597
 +msgid ""
 +msgstr ""
 +"Project-Id-Version: cups\n"
-+"POT-Creation-Date: 2013-01-04 16:48+0100\n"
++"POT-Creation-Date: 2013-01-04 18:30+0100\n"
 +"PO-Revision-Date: 2012-03-22 16:59+0100\n"
 +"Last-Translator: Julien Patriarca <patriarcaj@gmail.com>\n"
 +"Language-Team: French <debian-l10n-french@lists.debian.org>\n"
@@ -11312,7 +11296,7 @@ Bug-Debian: http://bugs.debian.org/478597
 +#. type: SH
 +#: cupsaccept.man:70 backend.man:163 cancel.man:67 classes.conf.man:101
 +#: client.conf.man.in:53 cupsaddsmb.man.in:204 cups-config.man:111
-+#: cupsctl.man:94 cupsd.conf.man.in:515 cups-files.conf.man.in:136
++#: cupsctl.man:89 cupsd.conf.man.in:515 cups-files.conf.man.in:136
 +#: cups-deviced.man.in:36 cupsd.man.in:61 cups-driverd.man.in:114
 +#: cupsenable.man:83 cupsfilter.man:101 cups-lpd.man.in:115
 +#: cups-snmp.conf.man:70 cupstestdsc.man:41 cupstestppd.man:155 filter.man:230
@@ -11333,7 +11317,7 @@ Bug-Debian: http://bugs.debian.org/478597
 +# type: Plain text
 +#. type: Plain text
 +#: cupsaccept.man:75 backend.man:168 cancel.man:71 classes.conf.man:106
-+#: client.conf.man.in:55 cups-config.man:113 cupsctl.man:98
++#: client.conf.man.in:55 cups-config.man:113 cupsctl.man:93
 +#: cupsd.conf.man.in:521 cups-files.conf.man.in:142 cups-deviced.man.in:40
 +#: cupsd.man.in:68 cups-driverd.man.in:118 cupsenable.man:88
 +#: cupsfilter.man:105 cups-lpd.man.in:120 cups-snmp.conf.man:74
@@ -11349,7 +11333,7 @@ Bug-Debian: http://bugs.debian.org/478597
 +#. type: SH
 +#: cupsaccept.man:75 backend.man:168 cancel.man:71 classes.conf.man:106
 +#: client.conf.man.in:55 cupsaddsmb.man.in:210 cups-config.man:113
-+#: cupsctl.man:98 cupsd.conf.man.in:521 cups-files.conf.man.in:142
++#: cupsctl.man:93 cupsd.conf.man.in:521 cups-files.conf.man.in:142
 +#: cups-deviced.man.in:40 cupsd.man.in:68 cups-driverd.man.in:118
 +#: cupsenable.man:88 cupsfilter.man:105 cups-lpd.man.in:120
 +#: cups-snmp.conf.man:74 cupstestdsc.man:46 cupstestppd.man:161 filter.man:234
@@ -11365,7 +11349,7 @@ Bug-Debian: http://bugs.debian.org/478597
 +#. type: Plain text
 +#: cupsaccept.man:76 backend.man:169 cancel.man:72 classes.conf.man:107
 +#: client.conf.man.in:56 cupsaddsmb.man.in:211 cups-config.man:114
-+#: cupsctl.man:99 cupsd.conf.man.in:522 cups-files.conf.man.in:143
++#: cupsctl.man:94 cupsd.conf.man.in:522 cups-files.conf.man.in:143
 +#: cups-deviced.man.in:41 cupsd.man.in:69 cups-driverd.man.in:119
 +#: cupsenable.man:90 cupsfilter.man:106 cups-lpd.man.in:121
 +#: cups-snmp.conf.man:75 cupstestdsc.man:47 cupstestppd.man:162 filter.man:235
@@ -12897,7 +12881,7 @@ Bug-Debian: http://bugs.debian.org/478597
 +
 +# type: SH
 +#. type: SH
-+#: cupsaddsmb.man.in:201 cupsctl.man:92
++#: cupsaddsmb.man.in:201 cupsctl.man:87
 +#, no-wrap
 +msgid "KNOWN ISSUES"
 +msgstr "PROBLÈMES CONNUS"
@@ -13196,11 +13180,10 @@ Bug-Debian: http://bugs.debian.org/478597
 +
 +# type: TH
 +#. type: TH
-+#: cupsctl.man:15 lpadmin.man:15 lp.man:15
-+#, fuzzy, no-wrap
-+#| msgid "6 July 2007"
-+msgid "16 July 2012"
-+msgstr "6 juillet 2007"
++#: cupsctl.man:15
++#, no-wrap
++msgid "12 December 2012"
++msgstr "12 décembre 2012"
 +
 +# type: Plain text
 +#. type: Plain text
@@ -13414,21 +13397,8 @@ Bug-Debian: http://bugs.debian.org/478597
 +msgid "    cupsctl --no-shared-printers\n"
 +msgstr "    cupsctl --no-shared-printers\n"
 +
-+# type: Plain text
 +#. type: Plain text
 +#: cupsctl.man:89
-+msgid "Enable printing using the file: pseudo-device:"
-+msgstr "Activer l'impression dans le fichier « pseudo-périphérique » :"
-+
-+# type: TP
-+#. type: Plain text
-+#: cupsctl.man:91
-+#, no-wrap
-+msgid "    cupsctl FileDevice=Yes\n"
-+msgstr "    cupsctl FileDevice=Yes\n"
-+
-+#. type: Plain text
-+#: cupsctl.man:94
 +msgid "You cannot set the Listen or Port directives using I<cupsctl>."
 +msgstr ""
 +"Vous ne pouvez pas régler les paramètres Listen ou Port en utilisant "
@@ -13436,7 +13406,7 @@ Bug-Debian: http://bugs.debian.org/478597
 +
 +# type: Plain text
 +#. type: Plain text
-+#: cupsctl.man:96
++#: cupsctl.man:91
 +msgid "I<cupsd.conf(5)>, I<cupsd(8)>,"
 +msgstr "B<cupsd.conf>(5), B<cupsd>(8),"
 +
@@ -18064,6 +18034,13 @@ Bug-Debian: http://bugs.debian.org/478597
 +msgid "lpadmin"
 +msgstr "lpadmin"
 +
++# type: TH
++#. type: TH
++#: lpadmin.man:15 lp.man:15
++#, no-wrap
++msgid "16 July 2012"
++msgstr "16 juillet 2012"
++
 +# type: Plain text
 +#. type: Plain text
 +#: lpadmin.man:18
@@ -21477,6 +21454,14 @@ Bug-Debian: http://bugs.debian.org/478597
 +msgstr ""
 +"B<classes.conf>(5), B<cupsd>(8), B<cupsd.conf>(5), B<mime.convs>(5), B<mime."
 +"types>(5), B<printers.conf>(5)"
++
++# type: Plain text
++#~ msgid "Enable printing using the file: pseudo-device:"
++#~ msgstr "Activer l'impression dans le fichier « pseudo-périphérique » :"
++
++# type: TP
++#~ msgid "    cupsctl FileDevice=Yes\n"
++#~ msgstr "    cupsctl FileDevice=Yes\n"
 +
 +# type: TP
 +#~ msgid "AuthClass User"
