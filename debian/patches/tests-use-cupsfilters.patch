@@ -26,13 +26,13 @@ Last-Update: 2012-10-14
  	ln -s /usr/lib/cups/filter/imagetops /tmp/cups-$user/bin/filter
  	ln -s /usr/lib/cups/filter/imagetoraster /tmp/cups-$user/bin/filter
  	ln -s /usr/lib/cups/filter/pdftops /tmp/cups-$user/bin/filter
-@@ -373,6 +366,33 @@
+@@ -373,6 +366,34 @@
  		ln -s /usr/share/cups/data/psglyphs $root/data
  	fi
  	ln -s /usr/share/cups/fonts /tmp/cups-$user/share
 +
 +	#
-+	# cups-filters 1.0.24
++	# cups-filters 1.0.25
 +	#
 +	ln -s /usr/share/cups/mime/cupsfilters.types /tmp/cups-$user/share/mime
 +	ln -s /usr/share/cups/mime/cupsfilters.convs /tmp/cups-$user/share/mime
@@ -50,6 +50,7 @@ Last-Update: 2012-10-14
 +	ln -s /usr/lib/cups/filter/rastertopclx /tmp/cups-$user/bin/filter
 +	ln -s /usr/lib/cups/filter/textonly /tmp/cups-$user/bin/filter
 +	ln -s /usr/lib/cups/filter/texttopdf /tmp/cups-$user/bin/filter
++	ln -s /usr/lib/cups/filter/urftopdf /tmp/cups-$user/bin/filter
 +
 +	ln -s /usr/share/cups/banners/classified /tmp/cups-$user/share/banners
 +	ln -s /usr/share/cups/banners/confidential /tmp/cups-$user/share/banners
@@ -60,7 +61,7 @@ Last-Update: 2012-10-14
  fi
  
  #
-@@ -491,6 +511,8 @@
+@@ -491,6 +512,8 @@
  if test `uname` = SunOS -a -r /usr/lib/libCrun.so.1; then
  	LD_PRELOAD="/usr/lib/libCrun.so.1:$LD_PRELOAD"
  fi

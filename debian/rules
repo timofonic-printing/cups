@@ -82,13 +82,13 @@ endif
 	rm debian/cups/usr/share/cups/data/testprint
 
 	# Ensure that we don't ship anything in /var/run
-	rm -rf debian/cups/var/run
+	rm -rf debian/cups*/var/run
 
 	# Install AppArmor, ufw profile, and Apport hook on Ubuntu
 ifeq ($(derives_from_ubuntu),yes)
-	install -D -m 644 debian/local/apparmor-profile debian/cups/etc/apparmor.d/usr.sbin.cupsd
-	install -D -m 644 debian/local/cups.ufw.profile debian/cups/etc/ufw/applications.d/cups
-	install -D -m 644 debian/local/apport-hook.py debian/cups/usr/share/apport/package-hooks/source_cups.py
+	install -D -m 644 debian/local/apparmor-profile debian/cups-daemon/etc/apparmor.d/usr.sbin.cupsd
+	install -D -m 644 debian/local/cups.ufw.profile debian/cups-daemon/etc/ufw/applications.d/cups
+	install -D -m 644 debian/local/apport-hook.py debian/cups-daemon/usr/share/apport/package-hooks/source_cups.py
 endif
 
 	# Make the usb backend run as root, since /dev/bus/usb/* are
@@ -118,9 +118,9 @@ override_dh_installchangelogs:
 
 override_dh_installinit:
 ifeq ($(derives_from_ubuntu),yes)
-	dh_installinit --upstart-only
+	dh_installinit --name=cups --upstart-only
 else
-	dh_installinit -u'start 50 2 3 4 5 . stop 80 1 .'
+	dh_installinit --name=cups -u'start 50 2 3 4 5 . stop 80 1 .'
 endif
 
 override_dh_fixperms:
