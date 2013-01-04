@@ -26,6 +26,8 @@ ppd-poll-with-client-conf.patch
 # no answer yet, po4a might not be appropriate
 manpage-translations.patch
 rootbackends-worldreadable.patch
+cups-dbus-utf8.patch
+cups-workaround-broken-1284-DeviceID-newline-instead-of-semicolon.patch
 
 # patches which should go upstream
 airprint-support.patch
@@ -57,3 +59,4 @@ ppdc-dynamic-linking.patch
 log-debug-history-nearly-unlimited.patch
 # Disabled in 1.6.1-1 as it breaks the tests. It addresses #593338
 # pstops-based-workflow-only-for-printing-ps-on-a-ps-printer.patch
+usb-backend-xerox-3124.patch

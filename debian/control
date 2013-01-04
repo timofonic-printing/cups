@@ -70,6 +70,7 @@ Section: libs
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends},
  libcupsfilters1 (>= 1.0~b1),
+ libcups2 (= ${binary:Version}),
 Pre-Depends: ${misc:Pre-Depends}
 Multi-Arch: same
 Description: Common UNIX Printing System(tm) - Raster image library
@@ -84,7 +85,8 @@ Description: Common UNIX Printing System(tm) - Raster image library
 Package: libcupscgi1
 Section: libs
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}
+Depends: ${shlibs:Depends}, ${misc:Depends},
+ libcups2 (= ${binary:Version}),
 Pre-Depends: ${misc:Pre-Depends}
 Multi-Arch: same
 Description: Common UNIX Printing System(tm) - CGI library
@@ -116,7 +118,8 @@ Description: Common UNIX Printing System(tm) - MIME library
 Package: libcupsppdc1
 Section: libs
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}
+Depends: ${shlibs:Depends}, ${misc:Depends},
+ libcups2 (= ${binary:Version}),
 Pre-Depends: ${misc:Pre-Depends}
 Multi-Arch: same
 Description: Common UNIX Printing System(tm) - PPD manipulation library
