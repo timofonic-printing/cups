@@ -1,4 +1,4 @@
-cups (1.6.1-1) UNRELEASED; urgency=low
+cups (1.6.1-1) experimental; urgency=low
 
   * New upstream release
      - Avahi-based Bonjour/DNS-SD/mDNS support
@@ -220,7 +220,7 @@ cups (1.6.1-1) UNRELEASED; urgency=low
   * Import "The scheduler did not delete job control backup files
     (STR #4244)" from upstream to fix the testsuite.
 
- -- Didier Raboud <odyx@debian.org>  Sun, 14 Oct 2012 21:52:35 +0200
+ -- Didier Raboud <odyx@debian.org>  Sat, 12 Jan 2013 09:41:00 +0100
 
 cups (1.5.3-4) experimental; urgency=low
 
