@@ -2,6 +2,12 @@ cups (1.6.1-2) UNRELEASED; urgency=low
 
   * Cherry-pick more upstream enhancements:
     - Add french translation (CUPS STR: #4247)
+  * Refresh po4a translations
+  * Merge the 1.5.3-2.13 Debian release.
+  * Correct Replaces/Breaks versions of cups-daemon against cups to cope
+    with recent Ubuntu releases (LP: #1099242).
+  * Make sure /e/cups/raw.{convs,types} are deleted during purge.
+    (Closes: #698213)
 
  -- Didier Raboud <odyx@debian.org>  Sun, 13 Jan 2013 10:32:13 +0100
 
