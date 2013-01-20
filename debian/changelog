@@ -1,4 +1,4 @@
-cups (1.5.3-2.14) unstable; urgency=low
+cups (1.5.3-2.14) UNRELEASED; urgency=low
 
   * Add upstream patch to avoid using Kerberos over the local socket.
     Avoids having the hplip-cups upgrade asking for a root password
