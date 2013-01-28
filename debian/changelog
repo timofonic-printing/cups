@@ -1,5 +1,12 @@
 cups (1.6.1-2) UNRELEASED; urgency=low
 
+  [ Till Kamppeter ]
+  * debian/patches/client-conf-specify-ipp-version-support.patch: Added support
+    for specifying the IPP version of a remote CUPS server in
+    /etc/cups/client.conf (LP: #1069671).
+  * debian/patches/printer-filtering.patch: Refreshed with quilt.
+
+  [ Didier Raboud ]
   * Cherry-pick more upstream enhancements:
     - Add french translation (CUPS STR: #4247)
   * Refresh po4a translations
