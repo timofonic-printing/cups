@@ -4,10 +4,9 @@ cups (1.6.1-2) UNRELEASED; urgency=low
   * debian/local/cups-daemon.cups.upstart: Let the CUPS daemon start after
     avahi-daemon, to assure that the Bonjour broadcasting of shared printers
     works.
-  * debian/patches/client-conf-specify-ipp-version-support.patch: Added support
-    for specifying the IPP version of a remote CUPS server in
-    /etc/cups/client.conf (LP: #1069671).
-  * debian/patches/printer-filtering.patch: Refreshed with quilt.
+  * Import upstream patch to add support for specifying the IPP version
+    of a remote CUPS server in /etc/cups/client.conf (LP: #1069671),
+    refresh the other ones affected.
 
   [ Didier Raboud ]
   * Cherry-pick more upstream enhancements:
@@ -18,6 +17,11 @@ cups (1.6.1-2) UNRELEASED; urgency=low
     with recent Ubuntu releases (LP: #1099242).
   * Make sure /e/cups/raw.{convs,types} are deleted during purge.
     (Closes: #698213)
+  * Take manpage translations out of the manpage-translations patch to
+    ease external contributions to the .po files.
+
+  [ Helge Kreutzmann ]
+  * Update German manpage (Closes: #698965)
 
  -- Didier Raboud <odyx@debian.org>  Sun, 13 Jan 2013 10:32:13 +0100
 
