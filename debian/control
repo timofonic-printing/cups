@@ -173,7 +173,6 @@ Description: Common UNIX Printing System(tm) - server
  drivers.
 
 Package: cups-daemon
-Priority: optional
 Section: net
 Architecture: any
 Pre-Depends: dpkg (>= 1.15.7.2)
