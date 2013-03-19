@@ -1,3 +1,34 @@
+cups (1.6.2-1) experimental; urgency=low
+
+  * New upstream release
+    - Adds localizations for Czech, French, and Russian
+    - Adds several improvements to the USB backend on Linux
+    - Fixes several printing and tool bugs
+
+  * Patches:
+    - Drop all patches previously backported from upstream
+    - Update all remaining patches
+  * Merge changes targeted at Wheezy:
+    - Correct usb-backend quirk for Epson Stylus Photo 750
+      (Closes: #697970)
+  * Manpage translation infrastructure:
+    - Refresh it.
+    - Allow the translation of the ipptool and ipptoolfile manpages.
+    - Fix translation infrastructure typos, to get 'man cups-files.conf'
+      localized.
+  * More cups-daemon split cleanup:
+    - Drop superfluous Priority snd Section settings.
+    - Install the forgotten ipp14 backend.
+    - Drop two unmatched lintian overrides.
+    - Drop ipp and ipp14 from the cups backends selection; they are
+      shipped unconditionally in cups-daemon.
+    - Add long-description to the init script
+    - Alter the cups-daemon short description.
+  * In cups-client, add 'accept' and 'reject' manpage symlinks.
+  * Bump private symbols version to latest upstream.
+
+ -- Didier Raboud <odyx@debian.org>  Tue, 19 Mar 2013 16:21:18 +0100
+
 cups (1.6.1-3) experimental; urgency=low
 
   * Wait 30 minutes for jobs to complete, hopefully fixes the mips
