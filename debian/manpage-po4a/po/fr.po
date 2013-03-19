@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: cups\n"
-"POT-Creation-Date: 2013-01-04 18:30+0100\n"
+"POT-Creation-Date: 2013-03-19 12:16+0100\n"
 "PO-Revision-Date: 2013-01-27 19:07+0100\n"
 "Last-Translator: Julien Patriarca <leatherface@debian.org>\n"
 "Language-Team: French <debian-l10n-french@lists.debian.org>\n"
@@ -341,8 +341,8 @@ msgstr "COPYRIGHT"
 #: lpoptions.man.in:132 lppasswd.man:65 lpq.man:69 lpr.man:119 lprm.man:62
 #: lpstat.man:140 mailto.conf.man:57 mime.convs.man:43 mime.types.man:112
 #: printers.conf.man:121 subscriptions.conf.man:86
-msgid "Copyright 2007-2012 by Apple Inc."
-msgstr "Copyright 2007-2012 par Apple Inc."
+msgid "Copyright 2007-2013 by Apple Inc."
+msgstr "Copyright 2007-2013 par Apple Inc."
 
 # type: TH
 #. type: TH
@@ -2134,8 +2134,8 @@ msgstr "cupsctl"
 #. type: TH
 #: cupsctl.man:15
 #, no-wrap
-msgid "12 December 2012"
-msgstr "12 décembre 2012"
+msgid "11 January 2013"
+msgstr "11 janvier 2013"
 
 # type: Plain text
 #. type: Plain text
@@ -2339,8 +2339,8 @@ msgstr "Désactiver le partage d'imprimantes :"
 #. type: Plain text
 #: cupsctl.man:86
 #, no-wrap
-msgid "    cupsctl --no-shared-printers\n"
-msgstr "    cupsctl --no-shared-printers\n"
+msgid "    cupsctl --no-share-printers\n"
+msgstr "    cupsctl --no-share-printers\n"
 
 #. type: Plain text
 #: cupsctl.man:89
@@ -3725,6 +3725,7 @@ msgstr ""
 # type: TP
 #. type: TP
 #: cupsd.conf.man.in:428
+#, no-wrap
 msgid "ServerAdmin user@domain.com"
 msgstr "ServerAdmin utilisateur@domaine.com"
 
@@ -4033,7 +4034,7 @@ msgstr ""
 #. type: Plain text
 #: cups-files.conf.man.in:22
 msgid ""
-"The I<cups-file.conf> file configures the files and directories used by the "
+"The I<cups-files.conf> file configures the files and directories used by the "
 "CUPS scheduler, I<cupsd(8)>.  It is normally located in the "
 "I<@CUPS_SERVERROOT@> directory."
 msgstr ""
@@ -10469,10 +10470,6 @@ msgstr ""
 
 #~ msgid "2 September 2011"
 #~ msgstr "2 septembre 2011"
-
-# type: TH
-#~ msgid "10 January 2011"
-#~ msgstr "10 janvier 2011"
 
 # type: TP
 #~ msgid "--[no-]remote-printers"

@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2013-01-14 11:04+0100\n"
+"POT-Creation-Date: 2013-03-19 12:16+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -193,7 +193,7 @@ msgstr ""
 
 #. type: Plain text
 #: cupsaccept.man:76 backend.man:169 cancel.man:72 classes.conf.man:107 client.conf.man.in:56 cupsaddsmb.man.in:211 cups-config.man:114 cupsctl.man:94 cupsd.conf.man.in:522 cups-files.conf.man.in:143 cups-deviced.man.in:41 cupsd.man.in:69 cups-driverd.man.in:119 cupsenable.man:90 cupsfilter.man:106 cups-lpd.man.in:121 cups-snmp.conf.man:75 cupstestdsc.man:47 cupstestppd.man:162 filter.man:235 lpadmin.man:224 lpc.man:68 lpinfo.man:112 lp.man:249 lpmove.man:63 lpoptions.man.in:132 lppasswd.man:65 lpq.man:69 lpr.man:119 lprm.man:62 lpstat.man:140 mailto.conf.man:57 mime.convs.man:43 mime.types.man:112 printers.conf.man:121 subscriptions.conf.man:86
-msgid "Copyright 2007-2012 by Apple Inc."
+msgid "Copyright 2007-2013 by Apple Inc."
 msgstr ""
 
 #. type: TH
@@ -1531,7 +1531,7 @@ msgstr ""
 #. type: TH
 #: cupsctl.man:15
 #, no-wrap
-msgid "12 December 2012"
+msgid "11 January 2013"
 msgstr ""
 
 #. type: Plain text
@@ -1691,7 +1691,7 @@ msgstr ""
 #. type: Plain text
 #: cupsctl.man:86
 #, no-wrap
-msgid "    cupsctl --no-shared-printers\n"
+msgid "    cupsctl --no-share-printers\n"
 msgstr ""
 
 #. type: Plain text
@@ -3089,7 +3089,7 @@ msgstr ""
 #. type: Plain text
 #: cups-files.conf.man.in:22
 msgid ""
-"The I<cups-file.conf> file configures the files and directories used by the "
+"The I<cups-files.conf> file configures the files and directories used by the "
 "CUPS scheduler, I<cupsd(8)>.  It is normally located in the "
 "I<@CUPS_SERVERROOT@> directory."
 msgstr ""
