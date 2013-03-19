@@ -1,6 +1,9 @@
 Description: Patch to support Apple AirPrint (printing from iPhone, iPad, iPod Touch to a CUPS server)
 Author: Till Kamppeter <till.kamppeter@gmail.com>
 Bug: https://bugs.launchpad.net/bugs/711779
+Bug: https://bugs.launchpad.net/bugs/1054495
+Bug-Debian: http://bugs.debian.org/700961
+Last-Update: 2013-02-20
 
 --- a/scheduler/conf.c
 +++ b/scheduler/conf.c
