@@ -11,6 +11,7 @@ rootbackends-worldreadable.patch
 cups-dbus-utf8.patch
 
 # patches which should go upstream
+drop-arch-specifics-from-doc.patch
 airprint-support.patch
 removecvstag.patch
 no-conffile-timestamp.patch
