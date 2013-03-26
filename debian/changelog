@@ -1,3 +1,10 @@
+cups (1.6.2-4) UNRELEASED; urgency=low
+
+  * debian/local/apparmor-profile: Allow "audit_write" capability.
+    (LP: #1157318)
+
+ -- Martin Pitt <mpitt@debian.org>  Tue, 26 Mar 2013 08:33:23 +0100
+
 cups (1.6.2-3) experimental; urgency=low
 
   [ Didier Raboud ]
