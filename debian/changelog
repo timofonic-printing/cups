@@ -1,5 +1,14 @@
 cups (1.6.2-4) UNRELEASED; urgency=low
 
+  [ Till Kamppeter ]
+  * debian/patches/usb-backend-epson-stylus-photo-750.patch,
+    debian/patches/usb-backend-more-quirk-rules.patch: Added quirk rules for
+    five additional printers: Lexmark e250d (LP: #1084164), Canon PIXMA iP6000D
+    (LP: #1160638), Canon MF4150 (LP: #1160638), Brother HL-1450
+    (LP: #1000253), Epson Stylus Color 670 (LP: #872483), joined the quirk rule
+    patches.
+
+  [ Martin Pitt ]
   * debian/local/apparmor-profile: Allow "audit_write" capability.
     (LP: #1157318)
 
