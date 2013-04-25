@@ -11,6 +11,7 @@ manpage-hyphen-minus.patch
 manpage-translations.patch
 rootbackends-worldreadable.patch
 cups-dbus-utf8.patch
+usb-backend-do-not-crash-if-usb-disabled-in-bios.patch
 
 # patches which should go upstream
 drop-arch-specifics-from-doc.patch
