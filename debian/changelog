@@ -1,5 +1,8 @@
 cups (1.6.2-6) UNRELEASED; urgency=low
 
+  * debian/cups.logrotate: Do not remove CUPS' log files while the CUPS
+    daemon is running. Stop CUPS, move the files, and then start it again.
+    This avoids crashes during the log rotation process (LP: #1086019).
   * debian/patches/usb-backend-do-not-crash-if-usb-disabled-in-bios.patch:
     Added more error handling to the libusb-based USB backend, especially to
     avoid a crash when USB is disabled in the BIOS (LP: #1108719).
