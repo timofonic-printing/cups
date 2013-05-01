@@ -1,5 +1,8 @@
 cups (1.6.2-6) UNRELEASED; urgency=low
 
+  * debian/control: Let the cups-daemon binary package depend on avahi-daemon,
+    not only recommend it, as the Upstart script for CUPS starts CUPS only
+    after starting avahi-daemon (LP: #1133794).
   * debian/cups.logrotate: Do not remove CUPS' log files while the CUPS
     daemon is running. Stop CUPS, move the files, and then start it again.
     This avoids crashes during the log rotation process (LP: #1086019).
