@@ -184,9 +184,10 @@ Depends: ${shlibs:Depends},
  ssl-cert (>= 1.0.11),
  adduser,
  bc,
- avahi-daemon
+ ${ubuntu:avahi-daemon}
 Recommends: colord,
- cups-browsed
+ cups-browsed,
+ ${debian:avahi-daemon}
 Suggests: cups, cups-bsd,
  cups-common (>= ${source:Version}),
  cups-server-common (>= ${source:Version}),
