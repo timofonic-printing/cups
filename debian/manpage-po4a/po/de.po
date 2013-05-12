@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cups man pages 1.5.2-10\n"
 "POT-Creation-Date: 2013-03-19 12:55+0100\n"
-"PO-Revision-Date: 2013-05-10 18:13+0200\n"
+"PO-Revision-Date: 2013-05-12 17:37+0200\n"
 "Last-Translator: Helge Kreutzmann <debian@helgefjell.de>\n"
 "Language-Team: de <debian-l10n-german@lists.debian.org>\n"
 "Language: de\n"
@@ -7447,13 +7447,10 @@ msgstr ""
 msgid "DELAY seconds"
 msgstr "DELAY Sekunden"
 
-# type: Plain text
 #. type: Plain text
 #: ipptoolfile.man:156
-#, fuzzy
-#| msgid "Specifies the error policy for the printer."
 msgid "Specifies a delay before this test will be run."
-msgstr "Spezifiziert die Fehler-Richtlinien für den Drucker."
+msgstr "Spezifiziert eine Verzögerung, bevor der Test ausgeführt wird."
 
 #. type: TP
 #: ipptoolfile.man:156
@@ -7461,19 +7458,14 @@ msgstr "Spezifiziert die Fehler-Richtlinien für den Drucker."
 msgid "DISPLAY attribute-name"
 msgstr "DISPLAY Attributname"
 
-# type: Plain text
 #. type: Plain text
 #: ipptoolfile.man:160
-#, fuzzy
-#| msgid ""
-#| "Specifies that the named print files should be deleted after printing "
-#| "them."
 msgid ""
 "Specifies that value of the named attribute should be output as part of the "
 "test report."
 msgstr ""
-"Spezifiziert, dass die benannte Druckdatei nach dem Druck gelöscht werden "
-"soll."
+"Spezifiziert, dass der Wert des benannten Attributes als Teil des "
+"Testberichts ausgegeben werden soll."
 
 #. type: TP
 #: ipptoolfile.man:160
@@ -7807,7 +7799,9 @@ msgstr "OF-TYPE Markierung[,Markierung,…]"
 #. type: Plain text
 #: ipptoolfile.man:268
 msgid "Requires the EXPECT attribute to use the specified value tag(s)."
-msgstr "Verlangt, dass das EXPECT-Attribut die angegebenen Wertemarkierung(en) verwendet"
+msgstr ""
+"Verlangt, dass das EXPECT-Attribut die angegebenen Wertemarkierung(en) "
+"verwendet."
 
 #. type: TP
 #: ipptoolfile.man:268 ipptoolfile.man:337
@@ -7841,7 +7835,8 @@ msgid ""
 "Specifies that the current test should be repeated when the EXPECT condition "
 "matches or does not match."
 msgstr ""
-"Spezifiziert, dass der aktuelle Test wiederholt werden soll, wenn die EXPECT-Bedingung (nicht) passt."
+"Spezifiziert, dass der aktuelle Test wiederholt werden soll, wenn die EXPECT-"
+"Bedingung (nicht) passt."
 
 #. type: TP
 #: ipptoolfile.man:278
@@ -7870,30 +7865,32 @@ msgid ""
 "Requires that all values of the EXPECT attribute match the literal string. "
 "Comparisons are case-sensitive."
 msgstr ""
+"Verlangt, dass alle Werte des EXPECT-Attributs auf die Zeichenkette passen. "
+"Vergleiche berücksichtigen die Groß- und Kleinschreibung."
 
 #. type: TP
 #: ipptoolfile.man:285
 #, no-wrap
 msgid "WITH-ALL-VALUES E<lt>number"
-msgstr ""
+msgstr "WITH-ALL-VALUES E<lt>Zahl"
 
 #. type: TP
 #: ipptoolfile.man:287
 #, no-wrap
 msgid "WITH-ALL-VALUES =number"
-msgstr ""
+msgstr "WITH-ALL-VALUES =Zahl"
 
 #. type: TP
 #: ipptoolfile.man:289
 #, no-wrap
 msgid "WITH-ALL-VALUES E<gt>number"
-msgstr ""
+msgstr "WITH-ALL-VALUES E<gt>Zahl"
 
 #. type: TP
 #: ipptoolfile.man:291
 #, no-wrap
 msgid "WITH-ALL-VALUES number[,number,...]"
-msgstr ""
+msgstr "WITH-ALL-VALUES Zahl[,Zahl,…]"
 
 #. type: Plain text
 #: ipptoolfile.man:294
@@ -7902,18 +7899,21 @@ msgid ""
 "numeric comparison. When comparing rangeOfInteger values, the \"E<lt>\" and "
 "\"E<gt>\" operators only check the upper bound of the range."
 msgstr ""
+"Verlangt, dass alle Werte des EXPECT-Attributs auf die Zahl(en) passen oder "
+"den numerischen Vergleich erfüllen. Beim Vergleich von rangeOfInteger-Werten "
+"prüfen die Operatoren »E<lt>« und »E<gt>« nur die obere Grenze der Bereiche."
 
 #. type: TP
 #: ipptoolfile.man:294
 #, no-wrap
 msgid "WITH-ALL-VALUES \"false\""
-msgstr ""
+msgstr "WITH-ALL-VALUES \"false\""
 
 #. type: TP
 #: ipptoolfile.man:296
 #, no-wrap
 msgid "WITH-ALL-VALUES \"true\""
-msgstr ""
+msgstr "WITH-ALL-VALUES \"true\""
 
 #. type: Plain text
 #: ipptoolfile.man:299
@@ -7921,12 +7921,14 @@ msgid ""
 "Requires that all values of the EXPECT attribute match the boolean value "
 "given."
 msgstr ""
+"Verlangt, dass alle Werte des EXPECT-Attributs auf den übergebenen logischen "
+"Wert passen."
 
 #. type: TP
 #: ipptoolfile.man:299
 #, no-wrap
 msgid "WITH-ALL-VALUES \"/regular expression/\""
-msgstr ""
+msgstr "WITH-ALL-VALUES \"/regulärer Ausdruck/\""
 
 #. type: Plain text
 #: ipptoolfile.man:302
@@ -7935,12 +7937,15 @@ msgid ""
 "expression, which must conform to the POSIX regular expression syntax. "
 "Comparisons are case-sensitive."
 msgstr ""
+"Verlangt, dass alle Werte des EXPECT-Attributes auf den regulären Ausdruck "
+"passen. Dieser muss die Syntax regulärer POSIX-Ausdrücke erfüllen. "
+"Vergleiche berücksichtigen Groß- und Kleinschreibung."
 
 #. type: TP
 #: ipptoolfile.man:302
 #, no-wrap
 msgid "WITH-VALUE \"literal string\""
-msgstr ""
+msgstr "WITH-VALUE »Zeichenkette«"
 
 #. type: Plain text
 #: ipptoolfile.man:305
@@ -7948,30 +7953,32 @@ msgid ""
 "Requires that at least one value of the EXPECT attribute matches the literal "
 "string. Comparisons are case-sensitive."
 msgstr ""
+"Verlangt, dass mindestens ein Wert des EXPECT-Attributs auf die Zeichenkette "
+"passt. Vergleiche berücksichtigen Groß- und Kleinschreibung."
 
 #. type: TP
 #: ipptoolfile.man:305
 #, no-wrap
 msgid "WITH-VALUE E<lt>number"
-msgstr ""
+msgstr "WITH-VALUE E<lt>Zahl"
 
 #. type: TP
 #: ipptoolfile.man:307
 #, no-wrap
 msgid "WITH-VALUE =number"
-msgstr ""
+msgstr "WITH-VALUE =Zahl"
 
 #. type: TP
 #: ipptoolfile.man:309
 #, no-wrap
 msgid "WITH-VALUE E<gt>number"
-msgstr ""
+msgstr "WITH-VALUE E<gt>Zahl"
 
 #. type: TP
 #: ipptoolfile.man:311
 #, no-wrap
 msgid "WITH-VALUE number[,number,...]"
-msgstr ""
+msgstr "WITH-VALUE Zahl[,Zahl,…]"
 
 #. type: Plain text
 #: ipptoolfile.man:314
@@ -7980,6 +7987,10 @@ msgid ""
 "(s) or numeric comparison. When comparing rangeOfInteger values, the \"E<lt>"
 "\" and \"E<gt>\" operators only check the upper bound of the range."
 msgstr ""
+"Verlangt, dass mindestens ein Wert des EXPECT-Attributs auf die Zahl(en) "
+"passt oder den numerischen Vergleich erfüllt. Beim Vergleich von "
+"rangeOfInteger-Werten prüfen die Operatoren »E<lt>« und »E<gt>« nur die "
+"obere Grenze der Bereiche."
 
 #. type: TP
 #: ipptoolfile.man:314
@@ -7999,12 +8010,14 @@ msgid ""
 "Requires that at least one value of the EXPECT attribute matches the boolean "
 "value given."
 msgstr ""
+"Verlangt, dass mindestens ein Werte des EXPECT-Attributs auf den übergebenen "
+"logischen Wert passt."
 
 #. type: TP
 #: ipptoolfile.man:319
 #, no-wrap
 msgid "WITH-VALUE \"/regular expression/\""
-msgstr ""
+msgstr "WITH-VALUE \"/regulärer Ausdruck/\""
 
 #. type: Plain text
 #: ipptoolfile.man:322
@@ -8013,25 +8026,23 @@ msgid ""
 "expression, which must conform to the POSIX regular expression syntax. "
 "Comparisons are case-sensitive."
 msgstr ""
+"Verlangt, dass mindestens ein Wert des EXPECT-Attributes auf den regulären "
+"Ausdruck passt. Dieser muss die Syntax regulärer POSIX-Ausdrücke erfüllen. "
+"Vergleiche berücksichtigen Groß- und Kleinschreibung."
 
 #. type: SH
 #: ipptoolfile.man:323
 #, no-wrap
 msgid "STATUS PREDICATES"
-msgstr ""
+msgstr "STATUS-EIGENSCHAFTEN"
 
-# type: Plain text
 #. type: Plain text
 #: ipptoolfile.man:325
-#, fuzzy
-#| msgid ""
-#| "The following directives are understood by the client. Consult the on-"
-#| "line help for detailed descriptions:"
 msgid ""
 "The following predicates are understood following the STATUS test directive:"
 msgstr ""
-"Die folgenden Direktiven werden vom Client verstanden. Schauen Sie in die "
-"Online-Hilfe für detailliertere Beschreibungen:"
+"Die folgenden Eigenschaften werden von den folgenden STATUS-Testdirektiven "
+"verstanden:"
 
 #. type: Plain text
 #: ipptoolfile.man:328
@@ -8039,6 +8050,8 @@ msgid ""
 "Defines the variable to \"1\" when the STATUS matches. A side-effect of this "
 "predicate is that this STATUS will never fail a test."
 msgstr ""
+"Definiert die Variable auf »1« wenn der STATUS past. Ein Seiteneffekt dieser "
+"Eigenschaft ist, dass dieser EXPECT niemals bei einem Test fehlschlägt."
 
 #. type: Plain text
 #: ipptoolfile.man:331
@@ -8046,16 +8059,23 @@ msgid ""
 "Defines the variable to \"1\" when the STATUS does not match. A side-effect "
 "of this predicate is that this STATUS will never fail a test."
 msgstr ""
+"Definiert die Variable auf »1« wenn der STATUS nicht past. Ein Seiteneffekt "
+"dieser Eigenschaft ist, dass dieser EXPECT niemals bei einem Test "
+"fehlschlägt."
 
 #. type: Plain text
 #: ipptoolfile.man:334
 msgid "Makes the STATUS apply only if the specified variable is defined."
 msgstr ""
+"Führt dazu, dass der STATUS nur angewandt wird, falls die angegebene "
+"Variable definiert ist."
 
 #. type: Plain text
 #: ipptoolfile.man:337
 msgid "Makes the STATUS apply only if the specified variable is not defined."
 msgstr ""
+"Führt dazu, dass der STATUS nur angewandt wird, falls die angegebene "
+"Variable nicht definiert ist."
 
 #. type: Plain text
 #: ipptoolfile.man:347
@@ -8063,6 +8083,9 @@ msgid ""
 "Specifies that the current test should be repeated when the response status-"
 "code matches or does not match the value specified by the STATUS directive."
 msgstr ""
+"Sepzifiziert, dass der aktuelle Test wiederholt werden soll, wenn der "
+"Rückgabestatuscode (nicht) auf den durch die STATUS-Direktive angegebenen "
+"Wert passt."
 
 #. type: SH
 #: ipptoolfile.man:348
@@ -8150,13 +8173,78 @@ msgid ""
 "    Validate-Document\n"
 "    Validate-Job\n"
 msgstr ""
+"    Activate-Printer\n"
+"    CUPS-Accept-Jobs\n"
+"    CUPS-Add-Modify-Class\n"
+"    CUPS-Add-Modify-Printer\n"
+"    CUPS-Authenticate-Job\n"
+"    CUPS-Delete-Class\n"
+"    CUPS-Delete-Printer\n"
+"    CUPS-Get-Classes\n"
+"    CUPS-Get-Default\n"
+"    CUPS-Get-Devices\n"
+"    CUPS-Get-Document\n"
+"    CUPS-Get-PPD\n"
+"    CUPS-Get-PPDs\n"
+"    CUPS-Get-Printers\n"
+"    CUPS-Move-Job\n"
+"    CUPS-Reject-Jobs\n"
+"    CUPS-Set-Default\n"
+"    Cancel-Current-Job\n"
+"    Cancel-Job\n"
+"    Cancel-Jobs\n"
+"    Cancel-My-Jobs\n"
+"    Cancel-Subscription\n"
+"    Close-Job\n"
+"    Create-Job\n"
+"    Create-Job-Subscription\n"
+"    Create-Printer-Subscription\n"
+"    Deactivate-Printer\n"
+"    Disable-Printer\n"
+"    Enable-Printer\n"
+"    Get-Job-Attributes\n"
+"    Get-Jobs\n"
+"    Get-Notifications\n"
+"    Get-Printer-Attributes\n"
+"    Get-Printer-Support-Files\n"
+"    Get-Printer-Supported-Values\n"
+"    Get-Subscription-Attributes\n"
+"    Get-Subscriptions\n"
+"    Hold-Job\n"
+"    Hold-New-Jobs\n"
+"    Identify-Printer\n"
+"    Pause-Printer\n"
+"    Pause-Printer-After-Current-Job\n"
+"    Print-Job\n"
+"    Print-URI\n"
+"    Promote-Job\n"
+"    Purge-Jobs\n"
+"    Release-Held-New-Jobs\n"
+"    Release-Job\n"
+"    Renew-Subscription\n"
+"    Reprocess-Job\n"
+"    Restart-Job\n"
+"    Restart-Printer\n"
+"    Resubmit-Job\n"
+"    Resume-Job\n"
+"    Resume-Printer\n"
+"    Schedule-Job-After\n"
+"    Send-Document\n"
+"    Send-Notifications\n"
+"    Send-URI\n"
+"    Set-Job-Attributes\n"
+"    Set-Printer-Attributes\n"
+"    Shutdown-Printer\n"
+"    Startup-Printer\n"
+"    Suspend-Current-Job\n"
+"    Validate-Document\n"
+"    Validate-Job\n"
 
 #. type: SH
 #: ipptoolfile.man:420
-#, fuzzy, no-wrap
-#| msgid "EXIT CODES"
+#, no-wrap
 msgid "STATUS CODES"
-msgstr "EXIT-CODES"
+msgstr "STATUS-CODES"
 
 #. type: Plain text
 #: ipptoolfile.man:423
@@ -8164,6 +8252,9 @@ msgid ""
 "Status codes correspond to the hexadecimal numbers (0xHHHH) and names from "
 "RFC 2911 and other IPP extension specifications. Here is a complete list:"
 msgstr ""
+"Status-Codes entsprechend den hexadezimalen Zahlen (0xHHHH) und Namen aus "
+"RFC 2911 und anderen IPP-Erweiterungsspezifikationen. Hier ist die komplette "
+"Liste:"
 
 #. type: Plain text
 #: ipptoolfile.man:473
@@ -8219,12 +8310,61 @@ msgid ""
 "    successful-ok-ignored-subscriptions\n"
 "    successful-ok-too-many-events\n"
 msgstr ""
+"    client-error-attributes-not-settable\n"
+"    client-error-attributes-or-values-not-supported\n"
+"    client-error-bad-request\n"
+"    client-error-charset-not-supported\n"
+"    client-error-compression-error\n"
+"    client-error-compression-not-supported\n"
+"    client-error-conflicting-attributes\n"
+"    client-error-document-access-error\n"
+"    client-error-document-format-error\n"
+"    client-error-document-format-not-supported\n"
+"    client-error-document-password-error\n"
+"    client-error-document-permission-error\n"
+"    client-error-document-security-error\n"
+"    client-error-document-unprintable-error\n"
+"    client-error-forbidden\n"
+"    client-error-gone\n"
+"    client-error-ignored-all-notifications\n"
+"    client-error-ignored-all-subscriptions\n"
+"    client-error-not-authenticated\n"
+"    client-error-not-authorized\n"
+"    client-error-not-found\n"
+"    client-error-not-possible\n"
+"    client-error-print-support-file-not-found\n"
+"    client-error-request-entity-too-large\n"
+"    client-error-request-value-too-long\n"
+"    client-error-timeout\n"
+"    client-error-too-many-subscriptions\n"
+"    client-error-uri-scheme-not-supported\n"
+"    cups-see-other\n"
+"    redirection-other-site\n"
+"    server-error-busy\n"
+"    server-error-device-error\n"
+"    server-error-internal-error\n"
+"    server-error-job-canceled\n"
+"    server-error-multiple-document-jobs-not-supported\n"
+"    server-error-not-accepting-jobs\n"
+"    server-error-operation-not-supported\n"
+"    server-error-printer-is-deactivated\n"
+"    server-error-service-unavailable\n"
+"    server-error-temporary-error\n"
+"    server-error-version-not-supported\n"
+"    successful-ok\n"
+"    successful-ok-but-cancel-subscription\n"
+"    successful-ok-conflicting-attributes\n"
+"    successful-ok-events-complete\n"
+"    successful-ok-ignored-notifications\n"
+"    successful-ok-ignored-or-substituted-attributes\n"
+"    successful-ok-ignored-subscriptions\n"
+"    successful-ok-too-many-events\n"
 
 #. type: SH
 #: ipptoolfile.man:475
 #, no-wrap
 msgid "TAGS"
-msgstr ""
+msgstr "MARKIERUNGEN"
 
 #. type: Plain text
 #: ipptoolfile.man:478
@@ -8232,6 +8372,8 @@ msgid ""
 "Value and group tags correspond to the names from RFC 2911 and other IPP "
 "extension specifications. Here are the group tags:"
 msgstr ""
+"Werte- und Gruppenmarkierungen entsprechen den Namen aus RFC 2911 und "
+"anderen IPP-Erweiterungsspezifikationen. Hier sind die Gruppenmarkierungen:"
 
 #. type: Plain text
 #: ipptoolfile.man:485
@@ -8244,11 +8386,17 @@ msgid ""
 "    subscription-attributes-tag\n"
 "    unsupported-attributes-tag\n"
 msgstr ""
+"    event-notification-attributes-tag\n"
+"    job-attributes-tag\n"
+"    operation-attributes-tag\n"
+"    printer-attributes-tag\n"
+"    subscription-attributes-tag\n"
+"    unsupported-attributes-tag\n"
 
 #. type: Plain text
 #: ipptoolfile.man:488
 msgid "Here are the value tags:"
-msgstr ""
+msgstr "Hier sind die Wertemarkierungen:"
 
 #. type: Plain text
 #: ipptoolfile.man:514
@@ -8280,14 +8428,37 @@ msgid ""
 "    uri\n"
 "    uriScheme\n"
 msgstr ""
+"    admin-define\n"
+"    boolean\n"
+"    charset\n"
+"    collection\n"
+"    dateTime\n"
+"    default\n"
+"    delete-attribute\n"
+"    enum\n"
+"    integer\n"
+"    keyword\n"
+"    mimeMediaType\n"
+"    nameWithLanguage\n"
+"    nameWithoutLanguage\n"
+"    naturalLanguage\n"
+"    no-value\n"
+"    not-settable\n"
+"    octetString\n"
+"    rangeOfInteger\n"
+"    resolution\n"
+"    textWithLanguage\n"
+"    textWithoutLanguage\n"
+"    unknown\n"
+"    unsupported\n"
+"    uri\n"
+"    uriScheme\n"
 
-# type: SH
 #. type: SH
 #: ipptoolfile.man:516
-#, fuzzy, no-wrap
-#| msgid "ENVIRONMENT VARIABLES"
+#, no-wrap
 msgid "VARIABLES"
-msgstr "UMGEBUNGSVARIABLEN"
+msgstr "VARIABLEN"
 
 #. type: Plain text
 #: ipptoolfile.man:521
