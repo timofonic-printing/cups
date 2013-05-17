@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cups man pages 1.5.2-10\n"
 "POT-Creation-Date: 2013-03-19 12:55+0100\n"
-"PO-Revision-Date: 2013-05-12 17:37+0200\n"
+"PO-Revision-Date: 2013-05-17 16:28+0200\n"
 "Last-Translator: Helge Kreutzmann <debian@helgefjell.de>\n"
 "Language-Team: de <debian-l10n-german@lists.debian.org>\n"
 "Language: de\n"
@@ -7137,10 +7137,9 @@ msgstr ""
 
 #. type: SH
 #: ipptoolfile.man:67
-#, fuzzy, no-wrap
-#| msgid "DIRECTIVES"
+#, no-wrap
 msgid "TOP-LEVEL DIRECTIVES"
-msgstr "DIREKTIVEN"
+msgstr "OBERSTE DIREKTIVEN"
 
 #. type: Plain text
 #: ipptoolfile.man:69
@@ -8089,10 +8088,9 @@ msgstr ""
 
 #. type: SH
 #: ipptoolfile.man:348
-#, fuzzy, no-wrap
-#| msgid "EXIT CODES"
+#, no-wrap
 msgid "OPERATION CODES"
-msgstr "EXIT-CODES"
+msgstr "BETRIEBS-CODES"
 
 #. type: Plain text
 #: ipptoolfile.man:351
@@ -8101,6 +8099,9 @@ msgid ""
 "from RFC 2911 and other IPP extension specifications. Here is a complete "
 "list:"
 msgstr ""
+"Betriebscodes entsprechen hexadezimalen Zahlen (0xHHHH) und Namen aus RFC "
+"2911 und anderen IPP-Erweiterungsspezifikationen. Hier ist die komplette "
+"Liste:"
 
 #. type: Plain text
 #: ipptoolfile.man:418
@@ -8468,6 +8469,11 @@ msgid ""
 "from variables defined using the \"-d\" option or \"DEFINE\" directive, the "
 "following pre-defined variables are available:"
 msgstr ""
+"Das Programm I<ipptool> betreut eine Liste von Variablen, die in jeder "
+"Zeichenkette oder jedem Attributswert über Angabe von »$variable-name« "
+"verwandt werden kann. Neben den durch die Option »-d« oder der Direktiven "
+"»DEFINE« sepzifzierten Variablen sind folgende vordefinierte Variablen "
+"verfügbar:"
 
 #. type: TP
 #: ipptoolfile.man:521
@@ -8478,13 +8484,13 @@ msgstr "$$"
 #. type: Plain text
 #: ipptoolfile.man:524
 msgid "Inserts a single \"$\" character."
-msgstr ""
+msgstr "Fügt ein Zeichen »$« ein."
 
 #. type: TP
 #: ipptoolfile.man:524
 #, no-wrap
 msgid "$ENV[name]"
-msgstr ""
+msgstr "$ENV[Name]"
 
 #. type: Plain text
 #: ipptoolfile.man:528
@@ -8492,6 +8498,8 @@ msgid ""
 "Inserts the value of the named environment variable, or an empty string if "
 "the environment variable is not defined."
 msgstr ""
+"Fügt den Wert der benannten Umgebungsvariablen oder eine leere Zeichenkette, "
+"falls die Umgebungsvariable nicht definiert ist, ein."
 
 #. type: TP
 #: ipptoolfile.man:528
@@ -8503,6 +8511,7 @@ msgstr "$filename"
 #: ipptoolfile.man:531
 msgid "Inserts the filename provided to I<ipptool> with the \"-f\" option."
 msgstr ""
+"Fügt den mit der Option »-f« an I<ipptool> bereitgestellten Dateinamen ein."
 
 #. type: TP
 #: ipptoolfile.man:531
@@ -8513,7 +8522,7 @@ msgstr "$hostname"
 #. type: Plain text
 #: ipptoolfile.man:534
 msgid "Inserts the hostname from the URI provided to I<ipptool>."
-msgstr ""
+msgstr "Fügt den Rechnernamen aus der I<ipptool> bereitgestellten URI ein."
 
 #. type: TP
 #: ipptoolfile.man:534
@@ -8527,6 +8536,8 @@ msgid ""
 "Inserts the last job-id value returned in a test response or 0 if no job-id "
 "has been seen."
 msgstr ""
+"Fügt den letzten in einer Testantwort zurückgelieferten Auftrags-ID-Wert "
+"oder 0, falls keine Auftrags-ID gesehen wurde, ein."
 
 #. type: TP
 #: ipptoolfile.man:538
@@ -8540,6 +8551,8 @@ msgid ""
 "Inserts the last job-uri value returned in a test response or an empty "
 "string if no job-uri has been seen."
 msgstr ""
+"Fügt den letzten in einer Testantwort zurückgelieferten Auftrags-URI-Wert "
+"oder eine leere Zeichenkette, falls keine Auftrags-ID gesehen wurde, ein."
 
 #. type: TP
 #: ipptoolfile.man:542
@@ -8550,7 +8563,7 @@ msgstr "$scheme"
 #. type: Plain text
 #: ipptoolfile.man:545
 msgid "Inserts the scheme from the URI provided to I<ipptool>."
-msgstr ""
+msgstr "Fügt das Schema aus der I<ipptool> übergebenen URI ein."
 
 #. type: TP
 #: ipptoolfile.man:545
@@ -8564,6 +8577,8 @@ msgid ""
 "Inserts the last notify-subscription-id value returned in a test response or "
 "0 if no notify-subscription-id has been seen."
 msgstr ""
+"Fügt den letzten in einer Testantwort zurückgelieferten »notify-subscription-"
+"id«-Wert oder 0, falls keine »notify-subscription-id« gesehen wurde, ein."
 
 #. type: TP
 #: ipptoolfile.man:549
@@ -8574,7 +8589,7 @@ msgstr "$port"
 #. type: Plain text
 #: ipptoolfile.man:552
 msgid "Inserts the port number from the URI provided to I<ipptool>."
-msgstr ""
+msgstr "Fügt die Portnummer aus der an I<ipptool> übergebenen URI ein."
 
 #. type: TP
 #: ipptoolfile.man:552
@@ -8585,7 +8600,7 @@ msgstr "$resource"
 #. type: Plain text
 #: ipptoolfile.man:555
 msgid "Inserts the resource path from the URI provided to I<ipptool>."
-msgstr ""
+msgstr "Fügt den Ressourcenpfad aus der an I<ipptool> übergebenen URI ein."
 
 #. type: TP
 #: ipptoolfile.man:555
@@ -8596,7 +8611,7 @@ msgstr "$uri"
 #. type: Plain text
 #: ipptoolfile.man:558
 msgid "Inserts the URI provided to I<ipptool>."
-msgstr ""
+msgstr "Fügt die an I<ipptool> übergebene URI ein."
 
 #. type: TP
 #: ipptoolfile.man:558
@@ -8604,13 +8619,10 @@ msgstr ""
 msgid "$user"
 msgstr "$user"
 
-# type: Plain text
 #. type: Plain text
 #: ipptoolfile.man:561
-#, fuzzy
-#| msgid "Get the current debug logging state:"
 msgid "Inserts the current user's login name."
-msgstr "Den aktuellen Fehlersucheprotokollierzustand abfragen:"
+msgstr "Fügt den Anmeldenamen des aktuellen Benutzers ein."
 
 #. type: TP
 #: ipptoolfile.man:561
@@ -8622,6 +8634,8 @@ msgstr "$username"
 #: ipptoolfile.man:564
 msgid "Inserts the username from the URI provided to I<ipptool>, if any."
 msgstr ""
+"Fügt den Benutzernamen aus der I<ipptool> übergebenen URI ein, falls "
+"vorhanden."
 
 #. type: Plain text
 #: ipptoolfile.man:567
