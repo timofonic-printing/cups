@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cups man pages 1.5.2-10\n"
 "POT-Creation-Date: 2013-03-19 12:55+0100\n"
-"PO-Revision-Date: 2013-05-17 16:28+0200\n"
+"PO-Revision-Date: 2013-05-21 20:44+0200\n"
 "Last-Translator: Helge Kreutzmann <debian@helgefjell.de>\n"
 "Language-Team: de <debian-l10n-german@lists.debian.org>\n"
 "Language: de\n"
@@ -6629,7 +6629,7 @@ msgstr "9. November 2010"
 #. type: Plain text
 #: ipptool.man:17
 msgid "ipptool - perform internet printing protocol requests"
-msgstr "ipptool - Internet-Printing-Protokollabfragen durchführen"
+msgstr "ipptool - Internet-Printing-Protocol-Abfragen durchführen"
 
 #. type: Plain text
 #: ipptool.man:37
@@ -6722,7 +6722,7 @@ msgid ""
 "Forces TLS encryption when connecting to the server using the HTTP \"Upgrade"
 "\" header."
 msgstr ""
-"Erzwingt TSL-Verschlüsselung bei Verbindungen zum Server mit dem HTTP-Header "
+"Erzwingt TLS-Verschlüsselung bei Verbindungen zum Server mit dem HTTP-Header "
 "»Upgrade«."
 
 #. type: TP
@@ -6860,7 +6860,7 @@ msgstr ""
 #. type: Plain text
 #: ipptool.man:86
 msgid "Specifies that plain text output is desired."
-msgstr "Spezifiziert, dass die Ausgabe als reine Textdateien erwünscht ist."
+msgstr "Spezifiziert, dass die Ausgabe als einfacher Text erwünscht ist."
 
 #. type: TP
 #: ipptool.man:86
@@ -6884,7 +6884,7 @@ msgid ""
 "Specifies that CUPS test report output is desired instead of the plain text "
 "output."
 msgstr ""
-"Spezifiziert, dass CUPS-Testberichtausgabe statt reiner Textausgabe "
+"Spezifiziert, dass CUPS-Testberichtausgabe statt einfache Textausgabe "
 "erwünscht ist."
 
 #. type: Plain text
@@ -6935,7 +6935,7 @@ msgstr "STANDARD-DATEIEN"
 #. type: Plain text
 #: ipptool.man:110
 msgid "The following standard files are available:"
-msgstr "Die folgenden Standard-Dateien sind verfügbar:"
+msgstr "Die folgenden Standarddateien sind verfügbar:"
 
 #. type: Plain text
 #: ipptool.man:134
@@ -7019,7 +7019,7 @@ msgid ""
 "continue to the end of the line. Each request is enclosed by curly braces, "
 "for example:"
 msgstr ""
-"Das Programm I<ipptool(1)> akzeptiert frei formatierte reine Textdateien, "
+"Das Programm I<ipptool(1)> akzeptiert frei formatierte einfache Textdateien, "
 "die eine oder mehrere IPP-Anfragen beschreiben. Kommentare beginnen mit dem "
 "Zeichen »#« und gehen bis zum Zeilenende. Jede Anfrage ist in geschweiften "
 "Klammern eingeschlossen. Beispiel:"
@@ -7229,7 +7229,7 @@ msgid ""
 "include directory."
 msgstr ""
 "Bindet eine andere Testdatei ein. Die erste Form bindet eine Datei relativ "
-"zu der aktuellen Testdatei ein während die zweite Form eine Datei aus dem "
+"zu der aktuellen Testdatei ein, während die zweite Form eine Datei aus dem "
 "I<ipptool>-Einbindeverzeichnis einbindet."
 
 #. type: TP
@@ -7252,7 +7252,7 @@ msgid ""
 "includes a file from the I<ipptool> include directory."
 msgstr ""
 "Bindet eine andere Testdatei ein, falls die benannte Variable definiert ist. "
-"Die erste Form bindet eine Datei relativ zu der aktuellen Testdatei ein "
+"Die erste Form bindet eine Datei relativ zu der aktuellen Testdatei ein, "
 "während die zweite Form eine Datei aus dem I<ipptool>-Einbindeverzeichnis "
 "einbindet."
 
@@ -7277,7 +7277,7 @@ msgid ""
 msgstr ""
 "Bindet eine andere Testdatei ein, falls die benannte Variable nicht "
 "definiert ist. Die erste Form bindet eine Datei relativ zu der aktuellen "
-"Testdatei ein während die zweite Form eine Datei aus dem I<ipptool>-"
+"Testdatei ein, während die zweite Form eine Datei aus dem I<ipptool>-"
 "Einbindeverzeichnis einbindet."
 
 #. type: TP
@@ -7710,7 +7710,7 @@ msgid ""
 "Defines the variable to \"1\" when the EXPECT condition matches. A side-"
 "effect of this predicate is that this EXPECT will never fail a test."
 msgstr ""
-"Definiert die Variable auf »1«, wenn die EXPECT-Bedingung passt. Ein "
+"Setzt die Variable auf »1«, wenn die EXPECT-Bedingung passt. Ein "
 "Seiteneffekt dieser Eigenschaft ist, dass dieser EXPECT niemals bei einem "
 "Test fehlschlägt."
 
@@ -7727,7 +7727,7 @@ msgid ""
 "Defines the variable to \"1\" when the EXPECT condition does not match. A "
 "side- effect of this predicate is that this EXPECT will never fail a test."
 msgstr ""
-"Definiert die Variable auf »1«, wenn die EXPECT-Bedingung nicht passt. Ein "
+"Setzt die Variable auf »1«, wenn die EXPECT-Bedingung nicht passt. Ein "
 "Seiteneffekt dieser Eigenschaft ist, dass dieser EXPECT niemals bei einem "
 "Test fehlschlägt."
 
@@ -7744,7 +7744,7 @@ msgid ""
 "matches. A side-effect of this predicate is that this EXPECT will never fail "
 "a test."
 msgstr ""
-"Definiert die Variable auf den Wert des Attributes, wenn die EXPECT-"
+"Setzt die Variable auf den Wert des Attributes, wenn die EXPECT-"
 "Bedingung passt. Ein Seiteneffekt dieser Eigenschaft ist, dass dieser EXPECT "
 "niemals bei einem Test fehlschlägt."
 
@@ -8009,7 +8009,7 @@ msgid ""
 "Requires that at least one value of the EXPECT attribute matches the boolean "
 "value given."
 msgstr ""
-"Verlangt, dass mindestens ein Werte des EXPECT-Attributs auf den übergebenen "
+"Verlangt, dass mindestens ein Wert des EXPECT-Attributs auf den übergebenen "
 "logischen Wert passt."
 
 #. type: TP
@@ -8049,7 +8049,7 @@ msgid ""
 "Defines the variable to \"1\" when the STATUS matches. A side-effect of this "
 "predicate is that this STATUS will never fail a test."
 msgstr ""
-"Definiert die Variable auf »1« wenn der STATUS past. Ein Seiteneffekt dieser "
+"Setzt die Variable auf »1« wenn der STATUS passt. Ein Seiteneffekt dieser "
 "Eigenschaft ist, dass dieser EXPECT niemals bei einem Test fehlschlägt."
 
 #. type: Plain text
@@ -8058,7 +8058,7 @@ msgid ""
 "Defines the variable to \"1\" when the STATUS does not match. A side-effect "
 "of this predicate is that this STATUS will never fail a test."
 msgstr ""
-"Definiert die Variable auf »1« wenn der STATUS nicht past. Ein Seiteneffekt "
+"Setzt die Variable auf »1« wenn der STATUS nicht passt. Ein Seiteneffekt "
 "dieser Eigenschaft ist, dass dieser EXPECT niemals bei einem Test "
 "fehlschlägt."
 
@@ -8469,10 +8469,10 @@ msgid ""
 "from variables defined using the \"-d\" option or \"DEFINE\" directive, the "
 "following pre-defined variables are available:"
 msgstr ""
-"Das Programm I<ipptool> betreut eine Liste von Variablen, die in jeder "
+"Das Programm I<ipptool> verwaltet eine Liste von Variablen, die in jeder "
 "Zeichenkette oder jedem Attributswert über Angabe von »$variable-name« "
 "verwandt werden kann. Neben den durch die Option »-d« oder der Direktiven "
-"»DEFINE« sepzifzierten Variablen sind folgende vordefinierte Variablen "
+"»DEFINE« angegebenen Variablen sind folgende vordefinierte Variablen "
 "verfügbar:"
 
 #. type: TP
@@ -8484,7 +8484,7 @@ msgstr "$$"
 #. type: Plain text
 #: ipptoolfile.man:524
 msgid "Inserts a single \"$\" character."
-msgstr "Fügt ein Zeichen »$« ein."
+msgstr "Fügt ein einzelnes »$«-Zeichen ein."
 
 #. type: TP
 #: ipptoolfile.man:524
