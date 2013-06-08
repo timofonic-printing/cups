@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cups man pages 1.5.2-10\n"
 "POT-Creation-Date: 2013-06-08 19:56+0300\n"
-"PO-Revision-Date: 2013-06-08 20:58+0200\n"
+"PO-Revision-Date: 2013-06-08 21:49+0200\n"
 "Last-Translator: Helge Kreutzmann <debian@helgefjell.de>\n"
 "Language-Team: de <debian-l10n-german@lists.debian.org>\n"
 "Language: de\n"
@@ -7054,7 +7054,6 @@ msgstr ""
 "      # Der Name des Tests\n"
 "      NAME \"Drucke PostScript-Auftrag\"\n"
 
-# FIXME: Should "language" and "name" be in value list below?
 #. type: Plain text
 #: ipptoolfile.man:35
 #, no-wrap
@@ -7071,13 +7070,12 @@ msgstr ""
 "      # Die zu sendende Anfrage\n"
 "      OPERATION Print-Job\n"
 "      GROUP operation-attributes-tag\n"
-"      ATTR charset Attributzeichensatz utf-8\n"
-"      ATTR language Attribut-natuerliche-Sprache en\n"
-"      ATTR uri Drucker-URI $uri\n"
-"      ATTR name Benutzernamen-Anfrage $user\n"
+"      ATTR charset attributes-charset utf-8\n"
+"      ATTR language attributes-natural-language en\n"
+"      ATTR uri printer-uri $uri\n"
+"      ATTR name requesting-user-name $user\n"
 "      FILE Testdatei.ps\n"
 
-# FIXME: Attribut "job-id" and "job-uri" im ersten Teil nicht gesetzt?
 #. type: Plain text
 #: ipptoolfile.man:46
 #, no-wrap
@@ -7095,10 +7093,10 @@ msgid ""
 msgstr ""
 "      # Die zu erwartende Antwort\n"
 "      STATUS successful-ok\n"
-"      EXPECT Attributzeichensatz OF-TYPE charset\n"
-"      EXPECT Attribut-natuerliche-Sprache OF-TYPE naturalLanguage\n"
-"      EXPECT Auftrags-ID OF-TYPE integer\n"
-"      EXPECT Auftrags-URI OF-TYPE uri\n"
+"      EXPECT attributes-charset OF-TYPE charset\n"
+"      EXPECT attributes-natural-language OF-TYPE naturalLanguage\n"
+"      EXPECT job-id OF-TYPE integer\n"
+"      EXPECT job-uri OF-TYPE uri\n"
 "    }\n"
 "    {\n"
 "      # Der Name des Tests\n"
@@ -7120,13 +7118,12 @@ msgstr ""
 "      # Die zu sendende Anfrage\n"
 "      OPERATION Get-Job-Attributes\n"
 "      GROUP operation-attributes-tag\n"
-"      ATTR charset Attributzeichensatz utf-8\n"
-"      ATTR language Attribut-natuerliche-Sprache en\n"
-"      ATTR uri Drucker-URI $uri\n"
-"      ATTR integer Auftrags-ID $job-id\n"
-"      ATTR name Benutzernamen-Anfrage $user\n"
+"      ATTR charset attributes-charset utf-8\n"
+"      ATTR language attributes-natural-language en\n"
+"      ATTR uri printer-uri $uri\n"
+"      ATTR integer job-id $job-id\n"
+"      ATTR name requesting-user-name $user\n"
 
-# FIXME: Attribut "job-state" und "job-originating-user-name" im ersten Teil nicht gesetzt?
 #. type: Plain text
 #: ipptoolfile.man:65
 #, no-wrap
@@ -7143,12 +7140,12 @@ msgid ""
 msgstr ""
 "      # Die zu erwartende Antwort\n"
 "      STATUS successful-ok\n"
-"      EXPECT Attributzeichensatz OF-TYPE charset\n"
-"      EXPECT Attribut-natuerliche-Sprache OF-TYPE naturalLanguage\n"
-"      EXPECT Auftrags-ID OF-TYPE integer\n"
-"      EXPECT Auftrags-URI OF-TYPE uri\n"
-"      EXPECT Auftrags-Status OF-TYPE enum\n"
-"      EXPECT Auftrags-Sendender-Benutzer-Name OF-TYPE name WITH-VALUE \"$user\"\n"
+"      EXPECT attributes-charset OF-TYPE charset\n"
+"      EXPECT attributes-natural-language OF-TYPE naturalLanguage\n"
+"      EXPECT job-id OF-TYPE integer\n"
+"      EXPECT job-uri OF-TYPE uri\n"
+"      EXPECT job-state OF-TYPE enum\n"
+"      EXPECT job-originating-user-name OF-TYPE name WITH-VALUE \"$user\"\n"
 "    }\n"
 
 #. type: SH
