@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: cups man pages 1.5.2-10\n"
-"POT-Creation-Date: 2013-06-08 19:56+0300\n"
+"POT-Creation-Date: 2013-06-09 19:51+0300\n"
 "PO-Revision-Date: 2013-06-08 21:49+0200\n"
 "Last-Translator: Helge Kreutzmann <debian@helgefjell.de>\n"
 "Language-Team: de <debian-l10n-german@lists.debian.org>\n"
@@ -231,7 +231,7 @@ msgstr ""
 #. type: SH
 #: cupsaccept.man:61 cancel.man:59 cupsd.man.in:57 cupsenable.man:70
 #: cups-lpd.man.in:104 filter.man:225 ipptool.man:95 lpadmin.man:207
-#: lpc.man:59 lpinfo.man:105 lp.man:234 lpoptions.man.in:119 lpr.man:111
+#: lpc.man:59 lpinfo.man:105 lp.man:234 lpoptions.man.in:119 lpr.man:110
 #: lprm.man:53 lpstat.man:127
 #, no-wrap
 msgid "COMPATIBILITY"
@@ -272,7 +272,7 @@ msgstr ""
 #: cups-snmp.conf.man:70 cupstestdsc.man:41 cupstestppd.man:155 filter.man:230
 #: ipptool.man:135 ipptoolfile.man:565 lpadmin.man:218 lpc.man:62
 #: lpinfo.man:107 lp.man:243 lpmove.man:58 lpoptions.man.in:127
-#: lppasswd.man:60 lpq.man:63 lpr.man:114 lprm.man:56 lpstat.man:135
+#: lppasswd.man:60 lpq.man:63 lpr.man:113 lprm.man:56 lpstat.man:135
 #: mailto.conf.man:51 mime.convs.man:37 mime.types.man:106
 #: printers.conf.man:115 subscriptions.conf.man:80
 #, no-wrap
@@ -294,7 +294,7 @@ msgstr "I<cancel(1)>, I<cupsenable(8)>, I<lp(1)>, I<lpadmin(8)>, I<lpstat(1)>,"
 #: cupsfilter.man:105 cups-lpd.man.in:120 cups-snmp.conf.man:74
 #: cupstestdsc.man:43 cupstestppd.man:159 filter.man:234 ipptool.man:139
 #: ipptoolfile.man:569 lpadmin.man:223 lpc.man:67 lpinfo.man:111 lp.man:248
-#: lpmove.man:62 lpoptions.man.in:131 lppasswd.man:64 lpq.man:68 lpr.man:119
+#: lpmove.man:62 lpoptions.man.in:131 lppasswd.man:64 lpq.man:68 lpr.man:118
 #: lprm.man:61 lpstat.man:139 mailto.conf.man:56 mime.convs.man:42
 #: mime.types.man:111 printers.conf.man:120 subscriptions.conf.man:85
 msgid "http://localhost:631/help"
@@ -308,9 +308,9 @@ msgstr "http://localhost:631/help"
 #: cups-deviced.man.in:40 cupsd.man.in:68 cups-driverd.man.in:118
 #: cupsenable.man:88 cupsfilter.man:105 cups-lpd.man.in:120
 #: cups-snmp.conf.man:74 cupstestdsc.man:46 cupstestppd.man:161 filter.man:234
-#: ipptool.man:139 ipptoolfile.man:570 lpadmin.man:223 lpc.man:67
+#: ipptool.man:139 ipptoolfile.man:572 lpadmin.man:223 lpc.man:67
 #: lpinfo.man:111 lp.man:248 lpmove.man:62 lpoptions.man.in:131
-#: lppasswd.man:64 lpq.man:68 lpr.man:119 lprm.man:61 lpstat.man:139
+#: lppasswd.man:64 lpq.man:68 lpr.man:118 lprm.man:61 lpstat.man:139
 #: mailto.conf.man:56 mime.convs.man:42 mime.types.man:111
 #: printers.conf.man:120 subscriptions.conf.man:85
 #, no-wrap
@@ -325,9 +325,9 @@ msgstr "COPYRIGHT"
 #: cups-deviced.man.in:41 cupsd.man.in:69 cups-driverd.man.in:119
 #: cupsenable.man:90 cupsfilter.man:106 cups-lpd.man.in:121
 #: cups-snmp.conf.man:75 cupstestdsc.man:47 cupstestppd.man:162 filter.man:235
-#: ipptool.man:140 ipptoolfile.man:571 lpadmin.man:224 lpc.man:68
+#: ipptool.man:140 ipptoolfile.man:573 lpadmin.man:224 lpc.man:68
 #: lpinfo.man:112 lp.man:249 lpmove.man:63 lpoptions.man.in:132
-#: lppasswd.man:65 lpq.man:69 lpr.man:120 lprm.man:62 lpstat.man:140
+#: lppasswd.man:65 lpq.man:69 lpr.man:119 lprm.man:62 lpstat.man:140
 #: mailto.conf.man:57 mime.convs.man:43 mime.types.man:112
 #: printers.conf.man:121 subscriptions.conf.man:86
 msgid "Copyright 2007-2013 by Apple Inc."
@@ -1273,12 +1273,6 @@ msgstr ""
 #. type: TP
 #: client.conf.man.in:42
 #, no-wrap
-msgid "ServerName hostname-or-ip-address[:port]"
-msgstr "ServerName Hostname-oder-IP-Adresse[:Port]"
-
-#. type: TP
-#: client.conf.man.in:42
-#, no-wrap
 msgid "ServerName hostname-or-ip-address[:port][/version=1.1]"
 msgstr "ServerName Hostname-oder-IP-Adresse[:Port][/version=1.1]"
 
@@ -1287,16 +1281,6 @@ msgstr "ServerName Hostname-oder-IP-Adresse[:Port][/version=1.1]"
 #, no-wrap
 msgid "ServerName /domain/socket"
 msgstr "ServerName /Domäne/Socket"
-
-#. type: Plain text
-#: client.conf.man.in:49
-msgid ""
-"Specifies the address and optionally the port to use when connecting to the "
-"server. B<Note: Not supported on OS X 10.7 or later.>"
-msgstr ""
-"Spezifiziert die Adresse und optional den Port, die bei der Verbindung zum "
-"Server verwandt werden sollen. B<Hinweis: Auf OS X 10.7 oder neuer nicht "
-"unterstützt.>"
 
 #. type: Plain text
 #: client.conf.man.in:49
@@ -5781,7 +5765,7 @@ msgid "Report all of the previous errors as errors."
 msgstr "Berichtet alle bisherigen Fehler als Fehler"
 
 #. type: TP
-#: cupstestppd.man:95 lpr.man:102
+#: cupstestppd.man:95 lpr.man:101
 #, no-wrap
 msgid "-q"
 msgstr "-q"
@@ -5792,7 +5776,7 @@ msgid "Specifies that no information should be displayed."
 msgstr "Spezifiziert, dass keine Information angezeigt werden soll."
 
 #. type: TP
-#: cupstestppd.man:99 lpr.man:106 lpstat.man:101
+#: cupstestppd.man:99 lpr.man:105 lpstat.man:101
 #, no-wrap
 msgid "-r"
 msgstr "-r"
@@ -7425,12 +7409,16 @@ msgstr "Die nachfolgenden Direktiven werden in einem Test verstanden:"
 msgid "ATTR tag attribute-name value(s)"
 msgstr "ATTR Markierung Attributname Wert(e)"
 
-#.  character.
 #. type: Plain text
 #: ipptoolfile.man:148
+#, fuzzy
+#| msgid ""
+#| "Adds an attribute to the test request. Values are separated by the comma "
+#| "(\",\")  character - escape commas using the \""
 msgid ""
 "Adds an attribute to the test request. Values are separated by the comma (\","
-"\")  character - escape commas using the \""
+"\")  character - escape commas using the \"\\e\" character. Possible "
+"attribute-name are defined in RFC2911."
 msgstr ""
 "Fügt der Testanfrage ein Attribut hinzu. Werte werden durch Kommata (»,«) "
 "getrennt, maskieren Sie Kommata mit \"."
@@ -8654,6 +8642,11 @@ msgstr ""
 #: ipptoolfile.man:567
 msgid "I<ipptool(1)>,"
 msgstr "I<ipptool(1)>,"
+
+#. type: Plain text
+#: ipptoolfile.man:571
+msgid "RFC2911 http://tools.ietf.org/html/rfc2911"
+msgstr ""
 
 #. type: TH
 #: lpadmin.man:15
@@ -10706,28 +10699,24 @@ msgid "-p"
 msgstr "-p"
 
 #. type: Plain text
-#: lpr.man:100
+#: lpr.man:101
 msgid ""
 "Specifies that the print file should be formatted with a shaded header with "
 "the date, time, job name, and page number. This option is equivalent to \"-o "
-"prettyprint\" and is only useful when"
+"prettyprint\" and is only useful when printing text files."
 msgstr ""
 "Spezifiziert, dass die Druckdatei mit einem schattierten Kopf mit Datum, "
 "Uhrzeit, Auftragsname und Seitennummer formatiert werden soll. Diese Option "
-"Ist äquivalent zu »-o prettyprint« und ist nur nützlich, wenn "
+"Ist äquivalent zu »-o prettyprint« und ist nur beim Druck von Textdateien "
+"nützlich."
 
 #. type: Plain text
-#: lpr.man:102
-msgid "printing text files."
-msgstr "Textdateien gedruckt werden."
-
-#. type: Plain text
-#: lpr.man:106
+#: lpr.man:105
 msgid "Hold job for printing."
 msgstr "Druckauftrag zum Drucken anhalten."
 
 #. type: Plain text
-#: lpr.man:111
+#: lpr.man:110
 msgid ""
 "Specifies that the named print files should be deleted after printing them."
 msgstr ""
@@ -10735,7 +10724,7 @@ msgstr ""
 "soll."
 
 #. type: Plain text
-#: lpr.man:114
+#: lpr.man:113
 msgid ""
 "The \"c\", \"d\", \"f\", \"g\", \"i\", \"n\", \"t\", \"v\", and \"w\" "
 "options are not supported by CUPS and produce a warning message if used."
@@ -10744,7 +10733,7 @@ msgstr ""
 "nicht unterstützt und führen bei Benutzung zu einer Warnmeldung."
 
 #. type: Plain text
-#: lpr.man:117
+#: lpr.man:116
 msgid ""
 "I<cancel(1)>, I<lp(1)>, I<lpadmin(8)>, I<lpoptions(1)>, I<lpq(1)>, I<lprm(1)"
 ">, I<lpstat(1)>,"
@@ -11913,15 +11902,28 @@ msgstr ""
 "I<classes.conf(5)>, I<cupsd(8)>, I<cupsd.conf(5)>, I<mime.convs(5)>, I<mime."
 "types(5)>, printers.conf(5)"
 
+#~ msgid "ServerName hostname-or-ip-address[:port]"
+#~ msgstr "ServerName Hostname-oder-IP-Adresse[:Port]"
+
+#~ msgid ""
+#~ "Specifies the address and optionally the port to use when connecting to "
+#~ "the server. B<Note: Not supported on OS X 10.7 or later.>"
+#~ msgstr ""
+#~ "Spezifiziert die Adresse und optional den Port, die bei der Verbindung "
+#~ "zum Server verwandt werden sollen. B<Hinweis: Auf OS X 10.7 oder neuer "
+#~ "nicht unterstützt.>"
+
 #~ msgid ""
 #~ "Specifies that the print file should be formatted with a shaded header "
 #~ "with the date, time, job name, and page number. This option is equivalent "
-#~ "to \"-o prettyprint\" and is only useful when printing text files."
+#~ "to \"-o prettyprint\" and is only useful when"
 #~ msgstr ""
 #~ "Spezifiziert, dass die Druckdatei mit einem schattierten Kopf mit Datum, "
 #~ "Uhrzeit, Auftragsname und Seitennummer formatiert werden soll. Diese "
-#~ "Option Ist äquivalent zu »-o prettyprint« und ist nur beim Druck von "
-#~ "Textdateien nützlich."
+#~ "Option Ist äquivalent zu »-o prettyprint« und ist nur nützlich, wenn "
+
+#~ msgid "printing text files."
+#~ msgstr "Textdateien gedruckt werden."
 
 #~ msgid "Enable printing using the file: pseudo-device:"
 #~ msgstr "Aktiviere Druckerfreigabe unter Verwendung des file:-Pseudogeräts:"
