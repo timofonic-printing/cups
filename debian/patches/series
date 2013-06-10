@@ -25,6 +25,7 @@ cups-snmp-oids-device-id-hp-ricoh.patch
 configure-default-browse-protocols.patch
 mention-ipp-version-specifier-in-man-and-ref.patch
 mention-rfc2911-in-ipptoolfile-for-clarity.patch
+colord-add-profile-fix.patch
 # Fix tests, should probably go upstream
 tests-ignore-warnings.patch
 tests-ignore-usb-crash.patch
