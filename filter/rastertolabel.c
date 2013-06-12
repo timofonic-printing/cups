@@ -1,5 +1,5 @@
 /*
- * "$Id: rastertolabel.c 10430 2012-04-23 18:07:59Z mike $"
+ * "$Id: rastertolabel.c 10632 2012-10-01 04:07:51Z mike $"
  *
  *   Label printer filter for CUPS.
  *
@@ -777,17 +777,6 @@ OutputLine(ppd_file_t         *ppd,	/* I - PPD file */
           putchar(0x16);
 	  fwrite(Buffer, header->cupsBytesPerLine, 1, stdout);
 	  fflush(stdout);
-
-#ifdef __sgi
-	 /*
-          * This hack works around a bug in the IRIX serial port driver when
-	  * run at high baud rates (e.g. 115200 baud)...  This results in
-	  * slightly slower label printing, but at least the labels come
-	  * out properly.
-	  */
-
-	  sginap(1);
-#endif /* __sgi */
 	}
 	else
           Feed ++;
@@ -1308,5 +1297,5 @@ main(int  argc,				/* I - Number of command-line arguments */
 
 
 /*
- * End of "$Id: rastertolabel.c 10430 2012-04-23 18:07:59Z mike $".
+ * End of "$Id: rastertolabel.c 10632 2012-10-01 04:07:51Z mike $".
  */

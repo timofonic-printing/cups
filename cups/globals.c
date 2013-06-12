@@ -1,5 +1,5 @@
 /*
- * "$Id: globals.c 10814 2013-01-14 22:06:21Z mike $"
+ * "$Id: globals.c 10813 2013-01-14 22:05:00Z mike $"
  *
  *   Global variable access routines for CUPS.
  *
@@ -38,6 +38,10 @@
  */
 
 
+#ifdef DEBUG
+static int		cups_global_index = 0;
+					/* Next thread number */
+#endif /* DEBUG */
 static _cups_threadkey_t cups_globals_key = _CUPS_THREADKEY_INITIALIZER;
 					/* Thread local storage key */
 #ifdef HAVE_PTHREAD_H
@@ -217,6 +221,14 @@ cups_globals_alloc(void)
   cg->expired_root   = 1;
   cg->server_version = 20;
 
+#ifdef DEBUG
+ /*
+  * Friendly thread ID for debugging...
+  */
+
+  cg->thread_id = ++ cups_global_index;
+#endif /* DEBUG */
+
  /*
   * Then set directories as appropriate...
   */
@@ -228,7 +240,7 @@ cups_globals_alloc(void)
     * Open the registry...
     */
 
-    strcpy(installdir, "C:/Program Files/cups.org");
+    strlcpy(installdir, "C:/Program Files/cups.org", sizeof(installdir));
 
     if (!RegOpenKeyEx(HKEY_LOCAL_MACHINE, "SOFTWARE\\cups.org", 0, KEY_READ,
                       &key))
@@ -381,5 +393,5 @@ cups_globals_init(void)
 
 
 /*
- * End of "$Id: globals.c 10814 2013-01-14 22:06:21Z mike $".
+ * End of "$Id: globals.c 10813 2013-01-14 22:05:00Z mike $".
  */

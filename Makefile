@@ -1,5 +1,5 @@
 #
-# "$Id: Makefile 10507 2012-05-23 22:39:50Z mike $"
+# "$Id: Makefile 10632 2012-10-01 04:07:51Z mike $"
 #
 #   Top-level Makefile for CUPS.
 #
@@ -316,7 +316,6 @@ dist:	all
 	case `uname` in \
 		*BSD*) $(MAKE) $(MFLAGS) bsd;; \
 		Darwin*) $(MAKE) $(MFLAGS) osx;; \
-		IRIX*) $(MAKE) $(MFLAGS) tardist;; \
 		Linux*) test ! -x /usr/bin/rpm || $(MAKE) $(MFLAGS) rpm;; \
 		SunOS*) $(MAKE) $(MFLAGS) pkg;; \
 	esac
@@ -330,5 +329,5 @@ dist:	all
 
 
 #
-# End of "$Id: Makefile 10507 2012-05-23 22:39:50Z mike $".
+# End of "$Id: Makefile 10632 2012-10-01 04:07:51Z mike $".
 #

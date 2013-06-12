@@ -1,9 +1,9 @@
 #
-# "$Id: Makefile 10580 2012-08-29 19:02:00Z mike $"
+# "$Id: Makefile 10934 2013-04-03 13:41:04Z mike $"
 #
 #   API library Makefile for CUPS.
 #
-#   Copyright 2007-2012 by Apple Inc.
+#   Copyright 2007-2013 by Apple Inc.
 #   Copyright 1997-2006 by Easy Software Products, all rights reserved.
 #
 #   These coded instructions, statements, and computer programs are the
@@ -16,6 +16,14 @@
 #
 
 include ../Makedefs
+
+
+#
+# Options to build libcups without the use of deprecated APIs...
+#
+
+OPTIONS	=	-D_CUPS_NO_DEPRECATED=1 -D_PPD_DEPRECATED=""
+
 
 #
 # Object files...
@@ -105,6 +113,7 @@ HEADERS	=	\
 		ipp.h \
 		language.h \
 		ppd.h \
+		pwg.h \
 		raster.h \
 		sidechannel.h \
 		transcode.h \
@@ -193,6 +202,14 @@ depend:
 
 
 #
+# Run oclint to check code coverage...
+#
+
+oclint:
+	oclint -o=oclint.html -html $(LIBOBJS:.o=.c) -- $(ALL_CFLAGS)
+
+
+#
 # Install all targets...
 #
 
@@ -251,6 +268,7 @@ install-libs: $(INSTALLSTATIC)
 	if test "x$(SYMROOT)" != "x"; then \
 		$(INSTALL_DIR) $(SYMROOT); \
 		cp $(LIBCUPS) $(SYMROOT); \
+		dsymutil $(SYMROOT)/$(LIBCUPS); \
 	fi
 
 installstatic:
@@ -518,8 +536,8 @@ apihelp:
 		--css ../doc/cups-printable.css \
 		--header api-cups.header --intro api-cups.shtml \
 		api-cups.xml \
-		cups.h adminutil.c dest*.c language.c notify.c \
-		options.c tempfile.c usersys.c \
+		cups.h pwg.h adminutil.c dest*.c language.c notify.c \
+		options.c pwg-media.c tempfile.c usersys.c \
 		util.c >../doc/help/api-cups.html
 	mxmldoc --tokens help/api-cups.html api-cups.xml >../doc/help/api-cups.tokens
 	$(RM) api-cups.xml
@@ -621,5 +639,5 @@ include Dependencies
 
 
 #
-# End of "$Id: Makefile 10580 2012-08-29 19:02:00Z mike $".
+# End of "$Id: Makefile 10934 2013-04-03 13:41:04Z mike $".
 #

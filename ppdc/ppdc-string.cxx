@@ -1,9 +1,9 @@
 //
-// "$Id: ppdc-string.cxx 8698 2009-06-05 20:49:06Z mike $"
+// "$Id: ppdc-string.cxx 10596 2012-09-07 02:49:46Z mike $"
 //
 //   Shared string class for the CUPS PPD Compiler.
 //
-//   Copyright 2007-2009 by Apple Inc.
+//   Copyright 2007-2012 by Apple Inc.
 //   Copyright 2002-2005 by Easy Software Products.
 //
 //   These coded instructions, statements, and computer programs are the
@@ -36,8 +36,10 @@ ppdcString::ppdcString(const char *v)	// I - String
 
   if (v)
   {
-    value = new char[strlen(v) + 1];
-    strcpy(value, v);
+    size_t vlen = strlen(v);
+
+    value = new char[vlen + 1];
+    memcpy(value, v, vlen + 1);
   }
   else
     value = 0;
@@ -58,5 +60,5 @@ ppdcString::~ppdcString()
 
 
 //
-// End of "$Id: ppdc-string.cxx 8698 2009-06-05 20:49:06Z mike $".
+// End of "$Id: ppdc-string.cxx 10596 2012-09-07 02:49:46Z mike $".
 //

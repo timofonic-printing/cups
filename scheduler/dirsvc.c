@@ -1,5 +1,5 @@
 /*
- * "$Id: dirsvc.c 10641 2012-10-03 14:17:41Z mike $"
+ * "$Id: dirsvc.c 10672 2012-11-01 00:57:55Z mike $"
  *
  *   Directory services routines for the CUPS scheduler.
  *
@@ -258,7 +258,7 @@ cupsdStartBrowsing(void)
       if (httpAddrLocalhost(&(lis->address)))
 	continue;
 
-      DNSSDPort = _httpAddrPort(&(lis->address));
+      DNSSDPort = httpAddrPort(&(lis->address));
       break;
     }
 
@@ -1333,6 +1333,8 @@ dnssdStop(void)
   DNSSDMaster = NULL;
 
 #  else /* HAVE_AVAHI */
+  avahi_threaded_poll_stop(DNSSDMaster);
+
   avahi_client_free(DNSSDClient);
   DNSSDClient = NULL;
 
@@ -1666,5 +1668,5 @@ update_smb(int onoff)			/* I - 1 = turn on, 0 = turn off */
 
 
 /*
- * End of "$Id: dirsvc.c 10641 2012-10-03 14:17:41Z mike $".
+ * End of "$Id: dirsvc.c 10672 2012-11-01 00:57:55Z mike $".
  */

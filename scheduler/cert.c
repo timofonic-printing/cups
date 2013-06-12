@@ -1,5 +1,5 @@
 /*
- * "$Id: cert.c 10776 2012-12-17 22:17:08Z mike $"
+ * "$Id: cert.c 10774 2012-12-17 22:04:34Z mike $"
  *
  *   Authentication certificate routines for the CUPS scheduler.
  *
@@ -436,5 +436,5 @@ cupsdInitCerts(void)
 
 
 /*
- * End of "$Id: cert.c 10776 2012-12-17 22:17:08Z mike $".
+ * End of "$Id: cert.c 10774 2012-12-17 22:04:34Z mike $".
  */

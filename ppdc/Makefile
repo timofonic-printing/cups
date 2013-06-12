@@ -1,5 +1,5 @@
 #
-# "$Id: Makefile 10191 2012-01-20 19:00:32Z mike $"
+# "$Id: Makefile 10768 2012-12-14 13:06:44Z mike $"
 #
 #   Makefile for the CUPS PPD Compiler.
 #
@@ -145,6 +145,7 @@ install-exec:
 		$(INSTALL_DIR) $(SYMROOT); \
 		for file in $(EXECTARGETS); do \
 			cp $$file $(SYMROOT); \
+			dsymutil $(SYMROOT)/$$file; \
 		done \
 	fi
 
@@ -178,6 +179,7 @@ install-libs: $(INSTALLSTATIC)
 	if test "x$(SYMROOT)" != "x"; then \
 		$(INSTALL_DIR) $(SYMROOT); \
 		cp $(LIBCUPSPPDC) $(SYMROOT); \
+		dsymutil $(SYMROOT)/$(LIBCUPSPPDC); \
 	fi
 
 installstatic:
@@ -400,5 +402,5 @@ include Dependencies
 
 
 #
-# End of "$Id: Makefile 10191 2012-01-20 19:00:32Z mike $".
+# End of "$Id: Makefile 10768 2012-12-14 13:06:44Z mike $".
 #

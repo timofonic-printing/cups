@@ -1,5 +1,5 @@
 #
-# "$Id: Makefile 10554 2012-07-27 17:57:49Z mike $"
+# "$Id: Makefile 10736 2012-12-07 21:45:35Z mike $"
 #
 #   Backend makefile for CUPS.
 #
@@ -134,8 +134,9 @@ install-exec:	$(INSTALLXPC)
 	fi
 	if test "x$(SYMROOT)" != "x"; then \
 		$(INSTALL_DIR) $(SYMROOT); \
-		for file in $(TARGETS); do \
+		for file in $(RBACKENDS) $(UBACKENDS); do \
 			cp $$file $(SYMROOT); \
+			dsymutil $(SYMROOT)/$$file; \
 		done \
 	fi
 
@@ -295,5 +296,5 @@ include Dependencies
 
 
 #
-# End of "$Id: Makefile 10554 2012-07-27 17:57:49Z mike $".
+# End of "$Id: Makefile 10736 2012-12-07 21:45:35Z mike $".
 #

@@ -1,5 +1,5 @@
 /*
- * "$Id: network.c 10378 2012-03-23 21:38:25Z mike $"
+ * "$Id: network.c 10672 2012-11-01 00:57:55Z mike $"
  *
  *   Network interface functions for the CUPS scheduler.
  *
@@ -264,7 +264,7 @@ cupsdNetIFUpdate(void)
 
       if (match)
       {
-        temp->port = _httpAddrPort(&(lis->address));
+        temp->port = httpAddrPort(&(lis->address));
 	break;
       }
     }
@@ -296,5 +296,5 @@ compare_netif(cupsd_netif_t *a,		/* I - First network interface */
 
 
 /*
- * End of "$Id: network.c 10378 2012-03-23 21:38:25Z mike $".
+ * End of "$Id: network.c 10672 2012-11-01 00:57:55Z mike $".
  */

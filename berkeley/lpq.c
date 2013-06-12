@@ -1,5 +1,5 @@
 /*
- * "$Id: lpq.c 10540 2012-07-16 16:50:32Z mike $"
+ * "$Id: lpq.c 10596 2012-09-07 02:49:46Z mike $"
  *
  *   "lpq" command for CUPS.
  *
@@ -527,7 +527,7 @@ show_jobs(const char *command,		/* I - Command name */
       */
 
       if (jobstate == IPP_JOB_PROCESSING)
-	strcpy(rankstr, "active");
+	strlcpy(rankstr, "active", sizeof(rankstr));
       else
       {
        /*
@@ -678,5 +678,5 @@ usage(void)
 
 
 /*
- * End of "$Id: lpq.c 10540 2012-07-16 16:50:32Z mike $".
+ * End of "$Id: lpq.c 10596 2012-09-07 02:49:46Z mike $".
  */
