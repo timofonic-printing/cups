@@ -1,5 +1,5 @@
 /*
- * "$Id: interpret.c 10424 2012-04-23 17:26:57Z mike $"
+ * "$Id: interpret.c 10596 2012-09-07 02:49:46Z mike $"
  *
  *   PPD command interpreter for CUPS.
  *
@@ -200,7 +200,7 @@ cupsRasterInterpretPPD(
   h->cupsImagingBBox[2]          = 612.0f;
   h->cupsImagingBBox[3]          = 792.0f;
 
-  strcpy(h->cupsPageSizeName, "Letter");
+  strlcpy(h->cupsPageSizeName, "Letter", sizeof(h->cupsPageSizeName));
 
 #ifdef __APPLE__
  /*
@@ -1684,5 +1684,5 @@ DEBUG_stack(_cups_ps_stack_t *st)	/* I - Stack */
 
 
 /*
- * End of "$Id: interpret.c 10424 2012-04-23 17:26:57Z mike $".
+ * End of "$Id: interpret.c 10596 2012-09-07 02:49:46Z mike $".
  */

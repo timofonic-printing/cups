@@ -1,9 +1,9 @@
 #
-# "$Id: Makefile 10456 2012-05-07 22:41:42Z mike $"
+# "$Id: Makefile 10955 2013-04-18 19:24:44Z mike $"
 #
 #   IPP test makefile for CUPS.
 #
-#   Copyright 2007-2012 by Apple Inc.
+#   Copyright 2007-2013 by Apple Inc.
 #   Copyright 1997-2006 by Easy Software Products, all rights reserved.
 #
 #   These coded instructions, statements, and computer programs are the
@@ -40,11 +40,18 @@ TESTFILES	=	\
 			create-printer-subscription.test \
 			get-completed-jobs.test \
 			get-jobs.test \
+			get-notifications.test \
 			get-printer-attributes.test \
+			get-subscriptions.test \
 			ipp-1.1.test \
 			ipp-2.0.test \
 			ipp-2.1.test \
-			ipp-2.2.test
+			ipp-2.2.test \
+			ipp-everywhere.test \
+			print-job.test \
+			print-job-deflate.test \
+			print-job-gzip.test \
+			validate-job.test
 OBJS		=	\
 			ippserver.o \
 			ipptool.o \
@@ -125,6 +132,7 @@ install-exec:
 	if test "x$(SYMROOT)" != "x"; then \
 		$(INSTALL_DIR) $(SYMROOT); \
 		cp ipptool $(SYMROOT); \
+		dsymutil $(SYMROOT)/ipptool; \
 	fi
 
 
@@ -214,5 +222,5 @@ include Dependencies
 
 
 #
-# End of "$Id: Makefile 10456 2012-05-07 22:41:42Z mike $".
+# End of "$Id: Makefile 10955 2013-04-18 19:24:44Z mike $".
 #

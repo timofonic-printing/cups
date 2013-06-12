@@ -1,5 +1,5 @@
 #
-# "$Id: Makefile 10752 2012-12-12 18:03:02Z mike $"
+# "$Id: Makefile 10763 2012-12-13 20:29:45Z mike $"
 #
 #   Documentation makefile for CUPS.
 #
@@ -116,7 +116,6 @@ HELPFILES	=	\
 			help/security.html \
 			help/sharing.html \
 			help/spec-banner.html \
-			help/spec-browsing.html \
 			help/spec-cmp.html \
 			help/spec-command.html \
 			help/spec-design.html \

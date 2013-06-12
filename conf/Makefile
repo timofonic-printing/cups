@@ -1,9 +1,9 @@
 #
-# "$Id: Makefile 10710 2012-11-26 18:26:01Z mike $"
+# "$Id: Makefile 10726 2012-12-04 18:38:31Z mike $"
 #
 #   Configuration file makefile for CUPS.
 #
-#   Copyright 2007-2011 by Apple Inc.
+#   Copyright 2007-2012 by Apple Inc.
 #   Copyright 1993-2006 by Easy Software Products.
 #
 #   These coded instructions, statements, and computer programs are the
@@ -139,5 +139,5 @@ uninstall:
 
 
 #
-# End of "$Id: Makefile 10710 2012-11-26 18:26:01Z mike $".
+# End of "$Id: Makefile 10726 2012-12-04 18:38:31Z mike $".
 #

@@ -1,9 +1,9 @@
 /*
- * "$Id: langprintf.c 9637 2011-03-21 23:03:22Z mike $"
+ * "$Id: langprintf.c 10596 2012-09-07 02:49:46Z mike $"
  *
  *   Localized printf/puts functions for CUPS.
  *
- *   Copyright 2007-2011 by Apple Inc.
+ *   Copyright 2007-2012 by Apple Inc.
  *   Copyright 2002-2007 by Easy Software Products.
  *
  *   These coded instructions, statements, and computer programs are the
@@ -304,7 +304,7 @@ _cupsSetLocale(char *argv[])		/* IO - Command-line arguments */
     strlcpy(charset, ".UTF-8", sizeof(new_lc_time) - (charset - new_lc_time));
   }
   else
-    strcpy(new_lc_time, "C");
+    strlcpy(new_lc_time, "C", sizeof(new_lc_time));
 
   setlocale(LC_TIME, new_lc_time);
 #endif /* LC_TIME */
@@ -348,5 +348,5 @@ _cupsSetLocale(char *argv[])		/* IO - Command-line arguments */
 
 
 /*
- * End of "$Id: langprintf.c 9637 2011-03-21 23:03:22Z mike $".
+ * End of "$Id: langprintf.c 10596 2012-09-07 02:49:46Z mike $".
  */

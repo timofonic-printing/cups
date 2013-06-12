@@ -1,5 +1,5 @@
 /*
- * "$Id: conf.c 10824 2013-01-18 19:58:41Z mike $"
+ * "$Id: conf.c 10928 2013-04-01 16:51:23Z mike $"
  *
  *   Configuration routines for the CUPS scheduler.
  *
@@ -235,7 +235,7 @@ cupsdAddAlias(cups_array_t *aliases,	/* I - Array of aliases */
     return;
 
   a->namelen = namelen;
-  strcpy(a->name, name);		/* OK since a->name is allocated */
+  memcpy(a->name, name, namelen + 1);	/* OK since a->name is allocated */
 
   cupsArrayAdd(aliases, a);
 }
@@ -588,7 +588,6 @@ cupsdReadConfiguration(void)
                  "%p %u %j %T %P %C %{job-billing} "
 		 "%{job-originating-host-name} %{job-name} %{media} %{sides}");
   cupsdSetString(&Printcap, CUPS_DEFAULT_PRINTCAP);
-  cupsdSetString(&PrintcapGUI, "/usr/bin/glpoptions");
   cupsdSetString(&FontPath, CUPS_FONTPATH);
   cupsdSetString(&RemoteRoot, "remroot");
   cupsdSetStringf(&ServerHeader, "CUPS/%d.%d IPP/2.1", CUPS_VERSION_MAJOR,
@@ -705,7 +704,7 @@ cupsdReadConfiguration(void)
   AccessLogLevel           = CUPSD_ACCESSLOG_ACTIONS;
   ConfigFilePerm           = CUPS_DEFAULT_CONFIG_FILE_PERM;
   FatalErrors              = parse_fatal_errors(CUPS_DEFAULT_FATAL_ERRORS);
-  default_auth_type          = CUPSD_AUTH_BASIC;
+  default_auth_type        = CUPSD_AUTH_BASIC;
 #ifdef HAVE_SSL
   DefaultEncryption        = HTTP_ENCRYPT_REQUIRED;
   SSLOptions               = CUPSD_SSL_NONE;
@@ -767,7 +766,7 @@ cupsdReadConfiguration(void)
   cupsdClearString(&DefaultPolicy);
 
 #ifdef HAVE_AUTHORIZATION_H
-  cupsdClearString(&SystemGroupAuthKey);
+  cupsdSetString(&SystemGroupAuthKey, CUPS_DEFAULT_SYSTEM_AUTHKEY);
 #endif /* HAVE_AUTHORIZATION_H */
 
   MaxSubscriptions           = 100;
@@ -2977,7 +2976,7 @@ read_cupsd_conf(cups_file_t *fp)	/* I - File to read from */
 	     lis;
 	     lis = (cupsd_listener_t *)cupsArrayNext(Listeners))
           if (httpAddrEqual(&(addr->addr), &(lis->address)) &&
-	      _httpAddrPort(&(addr->addr)) == _httpAddrPort(&(lis->address)))
+	      httpAddrPort(&(addr->addr)) == httpAddrPort(&(lis->address)))
 	    break;
 
         if (lis)
@@ -3033,11 +3032,11 @@ read_cupsd_conf(cups_file_t *fp)	/* I - File to read from */
 	else
 #endif /* AF_LOCAL */
 	cupsdLogMessage(CUPSD_LOG_INFO, "Listening to %s:%d (IPv%d)", temp,
-                        _httpAddrPort(&(lis->address)),
+                        httpAddrPort(&(lis->address)),
 			_httpAddrFamily(&(lis->address)) == AF_INET ? 4 : 6);
 
         if (!httpAddrLocalhost(&(lis->address)))
-	  RemotePort = _httpAddrPort(&(lis->address));
+	  RemotePort = httpAddrPort(&(lis->address));
       }
 
      /*
@@ -3350,7 +3349,7 @@ read_cupsd_conf(cups_file_t *fp)	/* I - File to read from */
              !_cups_strcasecmp(line, "TempDir") ||
 	     !_cups_strcasecmp(line, "User"))
     {
-      cupsdLogMessage(CUPSD_LOG_WARN,
+      cupsdLogMessage(CUPSD_LOG_INFO,
 		      "Please move \"%s%s%s\" on line %d of %s to the %s file; "
 		      "this will become an error in a future release.",
 		      line, value ? " " : "", value ? value : "", linenum,
@@ -4080,5 +4079,5 @@ set_policy_defaults(cupsd_policy_t *pol)/* I - Policy */
 
 
 /*
- * End of "$Id: conf.c 10824 2013-01-18 19:58:41Z mike $".
+ * End of "$Id: conf.c 10928 2013-04-01 16:51:23Z mike $".
  */

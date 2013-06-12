@@ -1,5 +1,5 @@
 .\"
-.\" "$Id: ipptoolfile.man 10789 2013-01-10 16:51:10Z mike $"
+.\" "$Id: ipptoolfile.man 10788 2013-01-10 16:51:07Z mike $"
 .\"
 .\"   ipptoolfile man page for CUPS.
 .\"
@@ -150,6 +150,15 @@ ATTR collection attribute-name { MEMBER tag member-name value(s) ... } [ ... { .
 Adds a collection attribute to the test request. Member attributes follow the
 same syntax as regular attributes and can themselves be nested collections.
 Multiple collection values can be supplied as needed.
+.TP 5
+COMPRESSION deflate
+.TP 5
+COMPRESSION gzip
+.TP 5
+COMPRESSION none
+.br
+Uses the specified compression on the document data following the attributes in
+a Print-Job or Send-Document request.
 .TP 5
 DELAY seconds
 Specifies a delay before this test will be run.
@@ -570,5 +579,5 @@ http://localhost:631/help
 .SH COPYRIGHT
 Copyright 2007-2013 by Apple Inc.
 .\"
-.\" End of "$Id: ipptoolfile.man 10789 2013-01-10 16:51:10Z mike $".
+.\" End of "$Id: ipptoolfile.man 10788 2013-01-10 16:51:07Z mike $".
 .\"

@@ -1,9 +1,9 @@
 /*
- * "$Id: cups.h 10688 2012-11-09 03:24:57Z mike $"
+ * "$Id: cups.h 10909 2013-03-14 18:45:49Z mike $"
  *
  *   API definitions for CUPS.
  *
- *   Copyright 2007-2012 by Apple Inc.
+ *   Copyright 2007-2013 by Apple Inc.
  *   Copyright 1997-2007 by Easy Software Products.
  *
  *   These coded instructions, statements, and computer programs are the
@@ -37,6 +37,7 @@ typedef off_t ssize_t;			/* @private@ */
 #  include "file.h"
 #  include "ipp.h"
 #  include "language.h"
+#  include "pwg.h"
 
 
 /*
@@ -52,10 +53,10 @@ extern "C" {
  * Constants...
  */
 
-#  define CUPS_VERSION			1.0602
+#  define CUPS_VERSION			1.0700
 #  define CUPS_VERSION_MAJOR		1
-#  define CUPS_VERSION_MINOR		6
-#  define CUPS_VERSION_PATCH		2
+#  define CUPS_VERSION_MINOR		7
+#  define CUPS_VERSION_PATCH		0
 
 #  define CUPS_BC_FD			3
 					/* Back-channel file descriptor for
@@ -353,12 +354,12 @@ extern ipp_t		*cupsDoRequest(http_t *http, ipp_t *request,
 			               const char *resource);
 extern http_encryption_t cupsEncryption(void);
 extern void		cupsFreeJobs(int num_jobs, cups_job_t *jobs);
-extern int		cupsGetClasses(char ***classes) _CUPS_DEPRECATED;
+extern int		cupsGetClasses(char ***classes) _CUPS_DEPRECATED_MSG("Use cupsGetDests instead.");
 extern const char	*cupsGetDefault(void);
 extern int		cupsGetJobs(cups_job_t **jobs, const char *name,
 			            int myjobs, int whichjobs);
 extern const char	*cupsGetPPD(const char *name);
-extern int		cupsGetPrinters(char ***printers) _CUPS_DEPRECATED;
+extern int		cupsGetPrinters(char ***printers) _CUPS_DEPRECATED_MSG("Use cupsGetDests instead.");
 extern ipp_status_t	cupsLastError(void);
 extern int		cupsPrintFile(const char *name, const char *filename,
 			              const char *title, int num_options,
@@ -366,7 +367,7 @@ extern int		cupsPrintFile(const char *name, const char *filename,
 extern int		cupsPrintFiles(const char *name, int num_files,
 			               const char **files, const char *title,
 				       int num_options, cups_option_t *options);
-extern char		*cupsTempFile(char *filename, int len) _CUPS_DEPRECATED;
+extern char		*cupsTempFile(char *filename, int len) _CUPS_DEPRECATED_MSG("Use cupsTempFd or cupsTempFile2 instead.");
 extern int		cupsTempFd(char *filename, int len);
 
 extern int		cupsAddDest(const char *name, const char *instance,
@@ -590,6 +591,34 @@ extern http_status_t	cupsStartDestDocument(http_t *http, cups_dest_t *dest,
 					      cups_option_t *options,
 					      int last_document) _CUPS_API_1_6;
 
+/* New in CUPS 1.7 */
+extern ipp_attribute_t	*cupsFindDestDefault(http_t *http, cups_dest_t *dest,
+			                     cups_dinfo_t *dinfo,
+			                     const char *option) _CUPS_API_1_7;
+extern ipp_attribute_t	*cupsFindDestReady(http_t *http, cups_dest_t *dest,
+					   cups_dinfo_t *dinfo,
+					   const char *option) _CUPS_API_1_7;
+extern ipp_attribute_t	*cupsFindDestSupported(http_t *http, cups_dest_t *dest,
+			                       cups_dinfo_t *dinfo,
+			                       const char *option)
+			                       _CUPS_API_1_7;
+extern int		cupsGetDestMediaByIndex(http_t *http, cups_dest_t *dest,
+			                        cups_dinfo_t *dinfo, int n,
+			                        unsigned flags,
+			                        cups_size_t *size)
+			                        _CUPS_API_1_7;
+extern  int		cupsGetDestMediaCount(http_t *http, cups_dest_t *dest,
+			                      cups_dinfo_t *dinfo,
+			                      unsigned flags) _CUPS_API_1_7;
+extern int		cupsGetDestMediaDefault(http_t *http, cups_dest_t *dest,
+			                        cups_dinfo_t *dinfo,
+			                        unsigned flags,
+			                        cups_size_t *size)
+			                        _CUPS_API_1_7;
+extern void		cupsSetUserAgent(const char *user_agent) _CUPS_API_1_7;
+extern const char	*cupsUserAgent(void) _CUPS_API_1_7;
+
+
 #  ifdef __cplusplus
 }
 #  endif /* __cplusplus */
@@ -597,5 +626,5 @@ extern http_status_t	cupsStartDestDocument(http_t *http, cups_dest_t *dest,
 #endif /* !_CUPS_CUPS_H_ */
 
 /*
- * End of "$Id: cups.h 10688 2012-11-09 03:24:57Z mike $".
+ * End of "$Id: cups.h 10909 2013-03-14 18:45:49Z mike $".
  */
