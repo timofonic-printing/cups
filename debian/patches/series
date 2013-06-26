@@ -1,5 +1,6 @@
 # patches accepted and committed upstream:
 usb-backend-more-quirk-rules.patch
+remove-unreal-printers.patch
 
 # patches sent upstream
 cupsd-no-crash-on-avahi-threaded-poll-shutdown.patch
