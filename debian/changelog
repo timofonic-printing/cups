@@ -1,12 +1,5 @@
 cups (1.6.3-2) UNRELEASED; urgency=low
 
-  [ Adam Conrad ]
-  * debian/patches/tests-use-cupsfilters.patch: Update to reflect
-    the filter list in cups-filters 1.0.36 and fix the testsuite.
-  * debian/patches/tests-skip-ipp.patch: Skip the IPP failure for
-    now so we can build successfully and fix Ubuntu image builds.
-  * Remove versioned Suggests on ghostscript-cups (LP: #1212239)
-
   [ Till Kamppeter ]
   * debian/local/cups-daemon.cups.upstart: Increased timeout for waiting for
     the CUPS daemon to get ready before automatically configuring printers
@@ -19,7 +12,7 @@ cups (1.6.3-2) UNRELEASED; urgency=low
     ghostscript-cups (>= 9.02~)" as the CUPS filters in ghostscript-cups moved
     to cups-filters.
 
- -- Till Kamppeter <till.kamppeter@gmail.com>  Thu, 15 Aug 2013 12:29:01 +0200
+ -- Till Kamppeter <till.kamppeter@gmail.com>  Sat, 27 Jul 2013 20:33:01 +0200
 
 cups (1.6.3-1) unstable; urgency=low
 
