@@ -16,6 +16,10 @@ cups (1.6.3-2) UNRELEASED; urgency=low
     ghostscript-cups (>= 9.02~)" as the CUPS filters in ghostscript-cups moved
     to cups-filters.
 
+  [ Didier Raboud ]
+  * Don't run the dh_auto_clean command if the Makedefs doesn't exist
+    (Closes: #724134)
+
  -- Till Kamppeter <till.kamppeter@gmail.com>  Sat, 27 Jul 2013 20:33:01 +0200
 
 cups (1.6.3-1) unstable; urgency=low
