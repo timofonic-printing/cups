@@ -33,6 +33,10 @@ cups (1.6.4-1) UNRELEASED; urgency=low
   [ Didier Raboud ]
   * Don't run the dh_auto_clean command if the Makedefs doesn't exist
     (Closes: #724134)
+  * Refresh patches for 1.6.4:
+    - Drop colord-add-profile-fix.patch, fixed differently upstream
+    - Drop usb-backend-more-quirk-rules.patch, fixed differently upstream
+    - Refresh 9 other patches
 
  -- Till Kamppeter <till.kamppeter@gmail.com>  Sat, 27 Jul 2013 20:33:01 +0200
 
