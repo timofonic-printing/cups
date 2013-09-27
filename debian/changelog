@@ -5,7 +5,7 @@ cups (1.6.3-2) UNRELEASED; urgency=low
     the filter list in cups-filters 1.0.36 and fix the testsuite.
   * debian/patches/tests-skip-ipp.patch: Skip the IPP failure for
     now so we can build successfully and fix Ubuntu image builds.
-  * Remove versioned Suggests/Recommends on ghostscript-cups (LP: #1212239)
+  * Remove versioned Suggests on ghostscript-cups (LP: #1212239)
 
   [ Till Kamppeter ]
   * debian/local/cups-daemon.cups.upstart: Increased timeout for waiting for
@@ -15,6 +15,9 @@ cups (1.6.3-2) UNRELEASED; urgency=low
     (LP: #933308).
   * debian/cups.dirs: Create empty /etc/cups/interfaces directory
     (LP: #499585).
+  * debian/control: Use "Recommends: cups-filters (>= 1.0.36) |
+    ghostscript-cups (>= 9.02~)" as the CUPS filters in ghostscript-cups moved
+    to cups-filters.
 
  -- Till Kamppeter <till.kamppeter@gmail.com>  Thu, 15 Aug 2013 12:29:01 +0200
 
