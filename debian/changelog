@@ -38,6 +38,7 @@ cups (1.6.4-1) UNRELEASED; urgency=low
     - Drop usb-backend-more-quirk-rules.patch, fixed differently upstream
     - Refresh 9 other patches
   * Refresh the manpages translation files
+  * Install the usb-quirks in cups-common
 
  -- Till Kamppeter <till.kamppeter@gmail.com>  Sat, 27 Jul 2013 20:33:01 +0200
 
