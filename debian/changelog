@@ -3,6 +3,7 @@ cups (1.6.3-2) UNRELEASED; urgency=low
   [ Adam Conrad ]
   * Update the cupsfilters tests patch to reflect the filter list in
     cups-filters 1.0.36 and fix the testsuite
+  * Remove versioned Suggests/Recommends on ghostscript-cups (LP: #1212239)
 
   [ Till Kamppeter ]
   * debian/local/cups-daemon.cups.upstart: Increased timeout for waiting for
