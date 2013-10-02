@@ -39,6 +39,10 @@ cups (1.6.4-1) UNRELEASED; urgency=low
     - Refresh 9 other patches
   * Refresh the manpages translation files
   * Install the usb-quirks in cups-common
+  * Update the tests-use-cupsfilters patch to use a patched copy of
+    cups-filters 1.0.38's cupsfilters.convs to circumvent #712337 and
+    allow cups-filters 1.0.38 to ship with the optimized pstops filters
+    path
 
   [ Helge Kreutzmann ]
   * Update German manpages translation.
