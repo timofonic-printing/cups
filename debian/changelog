@@ -43,6 +43,7 @@ cups (1.6.4-1) UNRELEASED; urgency=low
     cups-filters 1.0.38's cupsfilters.convs to circumvent #712337 and
     allow cups-filters 1.0.38 to ship with the optimized pstops filters
     path
+  * Fix typo in README.Debian
 
   [ Helge Kreutzmann ]
   * Update German manpages translation.

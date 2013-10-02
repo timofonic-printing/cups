@@ -6,7 +6,7 @@ of the Debian package. When necessary, other versions will be specified
 explicitly.  This is because there is a very important difference in the
 behaviour of cups and cups 1.5.x (or older versions) regarding advertising
 print queues. In almost every other regard, the behaviour of cups is
-identical to its preceeding versions.
+identical to its preceding versions.
 
 We will we also use 'standard' to mean a Debian cups installation which
 pulls in all recommended packages. This will set you up with a complete
