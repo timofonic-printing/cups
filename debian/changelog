@@ -40,6 +40,9 @@ cups (1.6.4-1) UNRELEASED; urgency=low
   * Refresh the manpages translation files
   * Install the usb-quirks in cups-common
 
+  [ Helge Kreutzmann ]
+  * Update German manpages translation.
+
  -- Till Kamppeter <till.kamppeter@gmail.com>  Sat, 27 Jul 2013 20:33:01 +0200
 
 cups (1.6.3-1) unstable; urgency=low

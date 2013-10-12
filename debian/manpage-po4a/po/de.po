@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cups man pages 1.5.2-10\n"
 "POT-Creation-Date: 2013-09-27 11:17+0300\n"
-"PO-Revision-Date: 2013-06-16 16:06+0200\n"
+"PO-Revision-Date: 2013-10-12 13:42+0200\n"
 "Last-Translator: Helge Kreutzmann <debian@helgefjell.de>\n"
 "Language-Team: de <debian-l10n-german@lists.debian.org>\n"
 "Language: de\n"
@@ -1166,20 +1166,17 @@ msgstr "StateMessage Text"
 msgid "Specifies the message associated with the state."
 msgstr "Spezifiziert die einem Status zugeordnete Nachricht."
 
-# type: TP
 #. type: TP
 #: classes.conf.man:97 printers.conf.man:111
 #, no-wrap
 msgid "StateTime seconds"
 msgstr "StateTime Sekunden"
 
-# type: Plain text
 #. type: Plain text
 #: classes.conf.man:101 printers.conf.man:115
 msgid "Specifies the date/time associated with the state."
 msgstr "Spezifiziert das mit einem Status assoziierte Datum/Uhrzeit."
 
-# type: Plain text
 #. type: Plain text
 #: classes.conf.man:104
 msgid ""
@@ -1189,7 +1186,6 @@ msgstr ""
 "I<cupsd(8)>, I<cupsd.conf(5)>, I<mime.convs(5)>, I<mime.types(5)>, "
 "I<printers.conf(5)>,"
 
-# type: TH
 #. type: TH
 #: client.conf.man.in:15
 #, no-wrap
@@ -1198,17 +1194,15 @@ msgstr "client.conf"
 
 #. type: TH
 #: client.conf.man.in:15
-#, fuzzy, no-wrap
-#| msgid "20 June 2012"
+#, no-wrap
 msgid "25 June 2013"
-msgstr "20. Juni 2012"
+msgstr "25. Juni 2013"
 
 #. type: Plain text
 #: client.conf.man.in:18
 msgid "client.conf - client configuration file for cups"
 msgstr "client.conf - Clientkonfigurationsdatei für CUPS"
 
-# type: Plain text
 #. type: Plain text
 #: client.conf.man.in:24
 msgid ""
@@ -1222,7 +1216,6 @@ msgstr ""
 "Zeile in der Datei kann eine Konfigurationsdirektive, eine leere Zeile oder "
 "ein Kommentar sein. Kommentarzeilen beginnen mit dem Zeichen »#«."
 
-# type: Plain text
 #. type: Plain text
 #: client.conf.man.in:27
 msgid ""
@@ -1301,24 +1294,19 @@ msgstr ""
 
 #. type: TP
 #: client.conf.man.in:49
-#, fuzzy, no-wrap
-#| msgid "ServerName hostname-or-ip-address[:port][/version=1.1]"
+#, no-wrap
 msgid "ServerName hostname-or-ip-address[:port]/version=1.1"
-msgstr "ServerName Hostname-oder-IP-Adresse[:Port][/version=1.1]"
+msgstr "ServerName Hostname-oder-IP-Adresse[:Port]/version=1.1"
 
 #. type: Plain text
 #: client.conf.man.in:55
-#, fuzzy
-#| msgid ""
-#| "Specifies the address and optionally the port to use when connecting to "
-#| "the server. B<Note: Not supported on OS X 10.7 or later.>"
 msgid ""
 "Specifies the address and optionally the port to use when connecting to a "
 "server running CUPS 1.3.12 and earlier. B<Note: Not supported on OS X 10.7 "
 "or later.>"
 msgstr ""
 "Spezifiziert die Adresse und optional den Port, die bei der Verbindung zum "
-"Server verwandt werden sollen. B<Hinweis: Auf OS X 10.7 oder neuer nicht "
+"Server verwandt werden sollen, auf dem CUPS 1.3.12 oder älter läuft. B<Hinweis: Auf OS X 10.7 oder neuer nicht "
 "unterstützt.>"
 
 #. type: TP
@@ -1341,10 +1329,9 @@ msgstr "cupsaddsmb"
 
 #. type: TH
 #: cupsaddsmb.man.in:15
-#, fuzzy, no-wrap
-#| msgid "16 July 2012"
+#, no-wrap
 msgid "8 July 2013"
-msgstr "16. Juli 2012"
+msgstr "8. Juli 2013"
 
 #. type: Plain text
 #: cupsaddsmb.man.in:18
@@ -1561,7 +1548,6 @@ msgstr ""
 msgid "MICROSOFT POSTSCRIPT DRIVERS FOR WINDOWS"
 msgstr "MICROSOFT-POSTSCRIPT-TREIBER FÜR WINDOWS"
 
-# type: Plain text
 #. type: Plain text
 #: cupsaddsmb.man.in:117
 msgid ""
@@ -1577,48 +1563,30 @@ msgstr ""
 "und im Ordner %WINDIR%\\eSYSTEM32\\eSPOOL\\eDRIVERS\\eX64\\e3 für 64-bit-"
 "Treiber verfügbar ist."
 
-# type: Plain text
 #. type: Plain text
 #: cupsaddsmb.man.in:122
-#, fuzzy
-#| msgid ""
-#| "The CUPS printer driver is preferred over the Microsoft driver since it "
-#| "supports the page-label, job-billing, and job-hold-until options fully on "
-#| "all printers. However, currently only Windows 2000 and higher is "
-#| "supported by the Microsoft driver, so you will also need to get the Adobe "
-#| "driver to support Windows 95, 98, and Me clients. The Adobe and Microsoft "
-#| "drivers for Windows 2000 are identical."
 msgid ""
 "However, currently only Windows 2000 and higher is supported by the "
 "Microsoft driver, so you will also need to get the Adobe driver to support "
 "Windows 95, 98, and Me clients. The Adobe and Microsoft drivers for Windows "
 "2000 are identical."
 msgstr ""
-"Es wird empfohlen, den CUPS-Druckertreiber dem Microsoft-Treiber "
-"vorzuziehen, da er auf allen Druckern die Optionen page-label, job-billing "
-"und job-hold-until komplett unterstützt. Von den Microsoft-Treibern wird "
+"Von den Microsoft-Treibern wird "
 "allerdings nur Windows 2000 und höher unterstützt, daher müssen Sie sich die "
 "Adobe-Treiber besorgen, um Windows 95-, 98- und Me-Clients zu unterstützen. "
 "Die Adobe- und Microsoft-Treiber für Windows 2000 sind identisch."
 
-# type: Plain text
 #. type: Plain text
 #: cupsaddsmb.man.in:127
-#, fuzzy
-#| msgid ""
-#| "Once you have extracted the driver files, copy the 32-bit drivers to the "
-#| "I<@CUPS_DATADIR@/drivers> directory and the 64-bit drivers to the "
-#| "I<@CUPS_DATADIR@/drivers/x64> directory exactly as named below:"
 msgid ""
 "Once you have extracted the driver files, copy the 32-bit drivers to the I</"
 "usr/share/cups/drivers> directory and the 64-bit drivers to the I</usr/share/"
 "cups/drivers/x64> directory exactly as named below:"
 msgstr ""
 "Nachdem Sie die Treiberdatei extrahiert haben, kopieren Sie die 32-Bit-"
-"Treiber in das Verzeichnis I<@CUPS_DATADIR@/drivers> und die 64-Bit-Treiber "
-"in das Verzeichnis I<@CUPS_DATADIR@/drivers/x64>, genau wie unten benannt:"
+"Treiber in das Verzeichnis I</usr/share/cups/drivers> und die 64-Bit-Treiber "
+"in das Verzeichnis I</usr/share/cups/drivers/x64>, genau wie unten benannt:"
 
-# type: Plain text
 #. type: Plain text
 #: cupsaddsmb.man.in:134
 #, no-wrap
@@ -1635,7 +1603,6 @@ msgstr ""
 "    pscript.ntf\n"
 "    pscript5.dll\n"
 
-# type: Plain text
 #. type: Plain text
 #: cupsaddsmb.man.in:139
 msgid ""
@@ -1647,7 +1614,6 @@ msgstr ""
 "Stellen Sie sicher, dass Sie die Dateinamen wie oben klein schreiben, "
 "andernfalls kann I<cupsaddsmb> die Treiber nicht exportieren."
 
-# type: SH
 #. type: SH
 #: cupsaddsmb.man.in:140
 #, no-wrap
@@ -3812,10 +3778,9 @@ msgstr "cups-files.conf"
 
 #. type: TH
 #: cups-files.conf.man.in:15
-#, fuzzy, no-wrap
-#| msgid "16 July 2012"
+#, no-wrap
 msgid "26 July 2013"
-msgstr "16. Juli 2012"
+msgstr "26. Juli 2013"
 
 #. type: Plain text
 #: cups-files.conf.man.in:18
@@ -3839,20 +3804,17 @@ msgstr ""
 msgid "AccessLog filename"
 msgstr "AccessLog Dateiname"
 
-# type: TP
 #. type: TP
 #: cups-files.conf.man.in:30
 #, no-wrap
 msgid "AccessLog syslog"
 msgstr "AccessLog syslog"
 
-# type: Plain text
 #. type: Plain text
 #: cups-files.conf.man.in:34
 msgid "Defines the access log filename."
 msgstr "Definiert den Namen der Zugriffsprotokolldatei."
 
-# type: TP
 #. type: TP
 #: cups-files.conf.man.in:34
 #, no-wrap
@@ -4123,7 +4085,6 @@ msgstr "Spezifiziert den zu verwendenden Schlüssel für die Verschlüsselung."
 msgid "ServerRoot directory"
 msgstr "ServerRoot Verzeichnis"
 
-# type: Plain text
 #. type: Plain text
 #: cups-files.conf.man.in:124
 msgid ""
@@ -4136,26 +4097,22 @@ msgstr ""
 #: cups-files.conf.man.in:124
 #, no-wrap
 msgid "SyncOnClose Yes"
-msgstr ""
+msgstr "SyncOnClose Yes"
 
 #. type: TP
 #: cups-files.conf.man.in:126
 #, no-wrap
 msgid "SyncOnClose No"
-msgstr ""
+msgstr "SyncOnClose No"
 
 #. type: Plain text
 #: cups-files.conf.man.in:130
-#, fuzzy
-#| msgid ""
-#| "Specifies whether the scheduler requires clients to strictly adhere to "
-#| "the IPP specifications. The default is No."
 msgid ""
 "Specifies whether the scheduler calls I<fsync(2)> after writing "
 "configuration or state files. The default is No."
 msgstr ""
-"Spezifiziert, ob der Auftragsplaner von den Clients verlangt, dass sie "
-"streng den IPP-Spezifikationen folgen. Standardmäßig »No«."
+"Spezifiziert, ob der Auftragsplaner nach dem Schreiben der Konfigurations- "
+"oder Zustandsdateien I<fsync(2)> aufruft. Standardmäßig »No«."
 
 #. type: TP
 #: cups-files.conf.man.in:130
