@@ -44,8 +44,8 @@ cups (1.6.4-1) UNRELEASED; urgency=low
     allow cups-filters 1.0.38 to ship with the optimized pstops filters
     path
   * Fix typo in README.Debian
-  * When cleaning the obsolete stanzas from cupsd.conf, keep a copy of
-    these to let cups-browsed's postinst read from them.
+  * On upgrade to 1.6.4, keep a copy of obsolete stanzas to let
+    cups-browsed's postinst read them. This eases the 1.5->1.6 upgrade.
 
   [ Helge Kreutzmann ]
   * Update German manpages translation.
