@@ -116,6 +116,8 @@ EOM
     cat /etc/cups/cupsd.conf | grep -Eiv '^\s*Browse(Order|Allow|Deny|Poll|RemoteProtocols)' > /etc/cups/cupsd.conf.new
     if [ -r /etc/cups/cupsd.conf.new ]; then
 	if ! diff -q /etc/cups/cupsd.conf /etc/cups/cupsd.conf.new > /dev/null 2>&1; then
+	    # Backup pre-1.6 cupsd.conf for cups-browsed upgrade path
+	    cp /etc/cups/cupsd.conf /etc/cups/cupsd.conf.pre16-bak
 	    mv -f /etc/cups/cupsd.conf.new /etc/cups/cupsd.conf
 	else
 	    rm /etc/cups/cupsd.conf.new
