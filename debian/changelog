@@ -43,6 +43,8 @@ cups (1.6.4-1) UNRELEASED; urgency=low
     cups-filters 1.0.38's cupsfilters.convs to circumvent #712337 and
     allow cups-filters 1.0.38 to ship with the optimized pstops filters
     path
+  * Bump cups-filters B-D to 1.0.38 to make sure the tests run as
+    expected
   * Fix typo in README.Debian
   * On upgrade to 1.6.4, keep a copy of obsolete stanzas to let
     cups-browsed's postinst read them. This eases the 1.5->1.6 upgrade.
