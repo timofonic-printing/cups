@@ -1,4 +1,4 @@
-cups (1.6.4-1) UNRELEASED; urgency=low
+cups (1.6.4-1) unstable; urgency=low
 
   * New 1.6.4 upstream release:
     - Removed some duplicate size definitions for some ISO sizes that
@@ -52,7 +52,7 @@ cups (1.6.4-1) UNRELEASED; urgency=low
   [ Helge Kreutzmann ]
   * Update German manpages translation.
 
- -- Till Kamppeter <till.kamppeter@gmail.com>  Sat, 27 Jul 2013 20:33:01 +0200
+ -- Didier Raboud <odyx@debian.org>  Wed, 27 Nov 2013 17:19:20 +0100
 
 cups (1.6.3-1) unstable; urgency=low
 
