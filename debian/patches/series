@@ -24,6 +24,7 @@ cups-snmp-oids-device-id-hp-ricoh.patch
 configure-default-browse-protocols.patch
 mention-rfc2911-in-ipptoolfile-for-clarity.patch
 avoid_stale_lockfile_in_dbus_notifier.patch
+dont-use-dbus-from-two-threads.patch
 # Fix tests, should probably go upstream
 tests-ignore-warnings.patch
 tests-ignore-usb-crash.patch
