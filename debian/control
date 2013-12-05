@@ -6,7 +6,6 @@ Maintainer: Debian Printing Team <debian-printing@lists.debian.org>
 Uploaders: 
  Masayuki Hatta (mhatta) <mhatta@debian.org>,
  Till Kamppeter <till.kamppeter@gmail.com>,
- Roger Leigh <rleigh@debian.org>, 
  Jeff Licquia <licquia@debian.org>,
  Martin Pitt <mpitt@debian.org>,
  Didier Raboud <odyx@debian.org>
