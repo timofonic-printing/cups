@@ -1,5 +1,5 @@
 /*
- * "$Id: cups-exec.c 11173 2013-07-23 12:31:34Z msweet $"
+ * "$Id: cups-exec.c 4274 2013-04-09 20:10:23Z msweet $"
  *
  *   Sandbox helper for CUPS.
  *
@@ -105,5 +105,5 @@ main(int  argc,				/* I - Number of command-line args */
 
 
 /*
- * End of "$Id: cups-exec.c 11173 2013-07-23 12:31:34Z msweet $".
+ * End of "$Id: cups-exec.c 4274 2013-04-09 20:10:23Z msweet $".
  */
