@@ -1,5 +1,5 @@
 /*
- * "$Id: encode.c 10881 2013-02-25 22:12:59Z mike $"
+ * "$Id: encode.c 11115 2013-07-10 14:35:53Z msweet $"
  *
  *   Option encoding routines for CUPS.
  *
@@ -534,7 +534,7 @@ cupsEncodeOptions2(
       else
         ops ++;
 
-    if (*ops == IPP_OP_CUPS_NONE)
+    if (*ops == IPP_OP_CUPS_NONE && op != IPP_OP_CUPS_NONE)
     {
       DEBUG_printf(("2cupsEncodeOptions2: Skipping \"%s\".", option->name));
       continue;
@@ -872,5 +872,5 @@ compare_ipp_options(_ipp_option_t *a,	/* I - First option */
 
 
 /*
- * End of "$Id: encode.c 10881 2013-02-25 22:12:59Z mike $".
+ * End of "$Id: encode.c 11115 2013-07-10 14:35:53Z msweet $".
  */

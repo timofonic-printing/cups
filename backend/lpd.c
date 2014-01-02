@@ -1,5 +1,5 @@
 /*
- * "$Id: lpd.c 10672 2012-11-01 00:57:55Z mike $"
+ * "$Id: lpd.c 10996 2013-05-29 11:51:34Z msweet $"
  *
  *   Line Printer Daemon backend for CUPS.
  *
@@ -1331,5 +1331,5 @@ sigterm_handler(int sig)		/* I - Signal */
 
 
 /*
- * End of "$Id: lpd.c 10672 2012-11-01 00:57:55Z mike $".
+ * End of "$Id: lpd.c 10996 2013-05-29 11:51:34Z msweet $".
  */

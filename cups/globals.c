@@ -1,5 +1,5 @@
 /*
- * "$Id: globals.c 10813 2013-01-14 22:05:00Z mike $"
+ * "$Id: globals.c 11113 2013-07-10 14:08:39Z msweet $"
  *
  *   Global variable access routines for CUPS.
  *
@@ -219,7 +219,6 @@ cups_globals_alloc(void)
   cg->any_root       = 1;
   cg->expired_certs  = 1;
   cg->expired_root   = 1;
-  cg->server_version = 20;
 
 #ifdef DEBUG
  /*
@@ -393,5 +392,5 @@ cups_globals_init(void)
 
 
 /*
- * End of "$Id: globals.c 10813 2013-01-14 22:05:00Z mike $".
+ * End of "$Id: globals.c 11113 2013-07-10 14:08:39Z msweet $".
  */

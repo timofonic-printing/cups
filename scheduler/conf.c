@@ -1,5 +1,5 @@
 /*
- * "$Id: conf.c 10928 2013-04-01 16:51:23Z mike $"
+ * "$Id: conf.c 10996 2013-05-29 11:51:34Z msweet $"
  *
  *   Configuration routines for the CUPS scheduler.
  *
@@ -4079,5 +4079,5 @@ set_policy_defaults(cupsd_policy_t *pol)/* I - Policy */
 
 
 /*
- * End of "$Id: conf.c 10928 2013-04-01 16:51:23Z mike $".
+ * End of "$Id: conf.c 10996 2013-05-29 11:51:34Z msweet $".
  */

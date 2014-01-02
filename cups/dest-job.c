@@ -1,5 +1,5 @@
 /*
- * "$Id: dest-job.c 10906 2013-03-14 03:27:15Z mike $"
+ * "$Id: dest-job.c 4274 2013-04-09 20:10:23Z msweet $"
  *
  *   Destination job support for CUPS.
  *
@@ -362,5 +362,5 @@ cupsStartDestDocument(
 
 
 /*
- * End of "$Id: dest-job.c 10906 2013-03-14 03:27:15Z mike $".
+ * End of "$Id: dest-job.c 4274 2013-04-09 20:10:23Z msweet $".
  */

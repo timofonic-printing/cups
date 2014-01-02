@@ -1,5 +1,5 @@
 #
-# "$Id: Makefile 10768 2012-12-14 13:06:44Z mike $"
+# "$Id: Makefile 10996 2013-05-29 11:51:34Z msweet $"
 #
 #   CGI makefile for CUPS.
 #
@@ -380,5 +380,5 @@ include Dependencies
 
 
 #
-# End of "$Id: Makefile 10768 2012-12-14 13:06:44Z mike $".
+# End of "$Id: Makefile 10996 2013-05-29 11:51:34Z msweet $".
 #

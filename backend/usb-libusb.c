@@ -1,5 +1,5 @@
 /*
- * "$Id: usb-libusb.c 10948 2013-04-18 14:18:34Z mike $"
+ * "$Id: usb-libusb.c 10977 2013-05-13 16:46:08Z msweet $"
  *
  *   LIBUSB interface code for CUPS.
  *
@@ -230,6 +230,7 @@ static const struct quirk_printer_struct quirk_printers[] = {
 	{ 0x04a9, 0x3256, USBLP_QUIRK_BLACKLIST }, /* Canon SELPHY CP810 */
 	{ 0x04a9, 0x30F5, USBLP_QUIRK_BLACKLIST }, /* Canon SELPHY CP500 */
 	{ 0x04a9, 0x31AF, USBLP_QUIRK_BLACKLIST }, /* Canon SELPHY ES3 */
+	{ 0x04a9, 0x31DD, USBLP_QUIRK_BLACKLIST }, /* Canon SELPHY CP780 */
 	 /* MISSING PIDs: CP520, CP530, CP790 */
 	{ 0, 0 }
 };
@@ -898,7 +899,8 @@ find_device(usb_cb_t   cb,		/* I - Callback function */
 					/* Pointer to current alternate setting */
   const struct libusb_endpoint_descriptor *endpptr = NULL;
 					/* Pointer to current endpoint */
-  ssize_t               numdevs,        /* number of connected devices */
+  ssize_t               err = 0,	/* Error code */
+                        numdevs,        /* number of connected devices */
                         i = 0;
   uint8_t		conf,		/* Current configuration */
 			iface,		/* Current interface */
@@ -917,7 +919,14 @@ find_device(usb_cb_t   cb,		/* I - Callback function */
   * Initialize libusb...
   */
 
-  libusb_init(NULL);
+  err = libusb_init(NULL);
+  if (err)
+  {
+    fprintf(stderr, "DEBUG: Unable to initialize USB access via libusb, "
+                    "libusb error %i\n", err);
+    return (NULL);
+  }
+
   numdevs = libusb_get_device_list(NULL, &list);
   fprintf(stderr, "DEBUG: libusb_get_device_list=%d\n", (int)numdevs);
 
@@ -1087,7 +1096,8 @@ find_device(usb_cb_t   cb,		/* I - Callback function */
   * Clean up ....
   */
 
-  libusb_free_device_list(list, 1);
+  if (numdevs >= 0)
+    libusb_free_device_list(list, 1);
   libusb_exit(NULL);
 
   return (NULL);
@@ -1972,6 +1982,6 @@ static void soft_reset(void)
 
 
 /*
- * End of "$Id: usb-libusb.c 10948 2013-04-18 14:18:34Z mike $".
+ * End of "$Id: usb-libusb.c 10977 2013-05-13 16:46:08Z msweet $".
  */
 

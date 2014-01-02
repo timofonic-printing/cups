@@ -1,5 +1,5 @@
 /*
- * "$Id: http.c 10941 2013-04-09 19:05:29Z mike $"
+ * "$Id: http.c 11085 2013-07-03 13:53:05Z msweet $"
  *
  *   HTTP routines for CUPS.
  *
@@ -278,7 +278,7 @@ static BIO_METHOD	http_bio_methods =
  * 'httpAcceptConnection()' - Accept a new HTTP client connection from the
  *                            specified listening socket.
  *
- * @since CUPS 1.7@
+ * @since CUPS 1.7/OS X 10.9@
  */
 
 http_t *				/* O - HTTP connection or @code NULL@ */
@@ -582,7 +582,7 @@ httpConnect(const char *host,		/* I - Host to connect to */
 /*
  * 'httpConnect2()' - Connect to a HTTP server.
  *
- * @since CUPS 1.7@
+ * @since CUPS 1.7/OS X 10.9@
  */
 
 http_t *				/* O - New HTTP connection */
@@ -959,18 +959,7 @@ httpFlushWrite(http_t *http)		/* I - Connection to server */
   if (http->data_encoding == HTTP_ENCODING_CHUNKED)
     bytes = http_write_chunk(http, http->wbuffer, http->wused);
   else
-  {
     bytes = http_write(http, http->wbuffer, http->wused);
-
-    if (bytes > 0 && http->data_encoding == HTTP_ENCODING_LENGTH)
-    {
-      http->data_remaining -= bytes;
-
-      if (http->data_remaining <= 0)
-      {
-      }
-    }
-  }
 
   http->wused = 0;
 
@@ -1086,7 +1075,7 @@ httpGetBlocking(http_t *http)		/* I - Connection to server */
  * client.  The value returned can be use in subsequent requests (for clients)
  * or in the response (for servers) in order to compress the content stream.
  *
- * @since CUPS 1.7@
+ * @since CUPS 1.7/OS X 10.9@
  */
 
 const char *				/* O - Content-Coding value or
@@ -1184,7 +1173,7 @@ httpGetCookie(http_t *http)		/* I - HTTP connecion */
  * Returns @code HTTP_STATUS_NONE@ if there is no Expect header, otherwise
  * returns the expected HTTP status code, typically @code HTTP_STATUS_CONTINUE@.
  *
- * @since CUPS 1.7@
+ * @since CUPS 1.7/OS X 10.9@
  */
 
 http_status_t				/* O - Expect: status, if any */
@@ -1818,7 +1807,7 @@ httpOptions(http_t     *http,		/* I - Connection to server */
  *
  * For non-blocking connections the usual timeouts apply.
  *
- * @since CUPS 1.7@
+ * @since CUPS 1.7/OS X 10.9@
  */
 
 ssize_t					/* O - Number of bytes copied */
@@ -2483,7 +2472,7 @@ _httpReadGNUTLS(
 /*
  * 'httpReadRequest()' - Read a HTTP request from a connection.
  *
- * @since CUPS 1.7@
+ * @since CUPS 1.7/OS X 10.9@
  */
 
 http_state_t				/* O - New state of connection */
@@ -2904,7 +2893,7 @@ httpSetCookie(http_t     *http,		/* I - Connection */
  * Currently only @code HTTP_FIELD_ACCEPT_ENCODING@, @code HTTP_FIELD_SERVER@,
  * and @code HTTP_FIELD_USER_AGENT@ can be set.
  *
- * @since CUPS 1.7@
+ * @since CUPS 1.7/OS X 10.9@
  */
 
 void
@@ -3741,6 +3730,8 @@ httpWrite2(http_t     *http,		/* I - Connection to server */
 
     if (http->state == HTTP_STATE_POST_RECV)
       http->state ++;
+    else if (http->state == HTTP_STATE_POST_SEND)
+      http->state = HTTP_STATE_WAITING;
     else
       http->state = HTTP_STATE_STATUS;
 
@@ -3833,7 +3824,7 @@ _httpWriteGNUTLS(
 /*
  * 'httpWriteResponse()' - Write a HTTP response to a client connection.
  *
- * @since CUPS 1.7@
+ * @since CUPS 1.7/OS X 10.9@
  */
 
 int					/* O - 0 on success, -1 on error */
@@ -6027,5 +6018,5 @@ http_write_ssl(http_t     *http,	/* I - Connection to server */
 
 
 /*
- * End of "$Id: http.c 10941 2013-04-09 19:05:29Z mike $".
+ * End of "$Id: http.c 11085 2013-07-03 13:53:05Z msweet $".
  */

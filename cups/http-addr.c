@@ -1,5 +1,5 @@
 /*
- * "$Id: http-addr.c 10922 2013-03-20 18:14:10Z mike $"
+ * "$Id: http-addr.c 11085 2013-07-03 13:53:05Z msweet $"
  *
  *   HTTP address routines for CUPS.
  *
@@ -137,7 +137,7 @@ httpAddrLength(const http_addr_t *addr)	/* I - Address */
  * 'httpAddrListen()' - Create a listening socket bound to the specified
  *                      address and port.
  *
- * @since CUPS 1.7@
+ * @since CUPS 1.7/OS X 10.9@
  */
 
 int					/* O - Socket or -1 on error */
@@ -364,7 +364,7 @@ httpAddrLookup(
 /*
  * 'httpAddrPort()' - Get the port number associated with an address.
  *
- * @since CUPS 1.7@
+ * @since CUPS 1.7/OS X 10.9@
  */
 
 int					/* O - Port number */
@@ -769,5 +769,5 @@ httpGetHostname(http_t *http,		/* I - HTTP connection or NULL */
 
 
 /*
- * End of "$Id: http-addr.c 10922 2013-03-20 18:14:10Z mike $".
+ * End of "$Id: http-addr.c 11085 2013-07-03 13:53:05Z msweet $".
  */

@@ -1,5 +1,5 @@
 /*
- * "$Id: dest.c 10895 2013-03-11 16:19:48Z mike $"
+ * "$Id: dest.c 11101 2013-07-08 11:20:33Z msweet $"
  *
  *   User-defined destination (and option) support for CUPS.
  *
@@ -933,8 +933,8 @@ cupsEnumDests(
   * Get the list of local printers and pass them to the callback function...
   */
 
-  num_dests = _cupsGetDests(CUPS_HTTP_DEFAULT, IPP_OP_CUPS_GET_PRINTERS, NULL, &dests,
-                            type, mask);
+  num_dests = _cupsGetDests(CUPS_HTTP_DEFAULT, IPP_OP_CUPS_GET_PRINTERS, NULL,
+                            &dests, type, mask);
 
   for (i = num_dests, dest = dests;
        i > 0 && (!cancel || !*cancel);
@@ -1344,9 +1344,9 @@ _cupsGetDestResource(
 /*
  * '_cupsGetDests()' - Get destinations from a server.
  *
- * "op" is IPP_OP_CUPS_GET_PRINTERS to get a full list, IPP_OP_CUPS_GET_DEFAULT to get the
- * system-wide default printer, or IPP_OP_GET_PRINTER_ATTRIBUTES for a known
- * printer.
+ * "op" is IPP_OP_CUPS_GET_PRINTERS to get a full list, IPP_OP_CUPS_GET_DEFAULT
+ * to get the system-wide default printer, or IPP_OP_GET_PRINTER_ATTRIBUTES for
+ * a known printer.
  *
  * "name" is the name of an existing printer and is only used when "op" is
  * IPP_OP_GET_PRINTER_ATTRIBUTES.
@@ -1661,7 +1661,6 @@ int					/* O - Number of destinations */
 cupsGetDests2(http_t      *http,	/* I - Connection to server or @code CUPS_HTTP_DEFAULT@ */
               cups_dest_t **dests)	/* O - Destinations */
 {
-  int		i;			/* Looping var */
   int		num_dests;		/* Number of destinations */
   cups_dest_t	*dest;			/* Destination pointer */
   const char	*home;			/* HOME environment variable */
@@ -1784,21 +1783,16 @@ cupsGetDests2(http_t      *http,	/* I - Connection to server or @code CUPS_HTTP_
       * Have a default; see if it is real...
       */
 
-      dest = cupsGetDest(dest->name, NULL, num_reals, reals);
-    }
+      if (!cupsGetDest(dest->name, NULL, num_reals, reals))
+      {
+       /*
+        * Remove the non-real printer from the list, since we don't want jobs
+        * going to an unexpected printer... (<rdar://problem/14216472>)
+        */
 
-   /*
-    * If dest is NULL, then no default (that exists) is set, so we
-    * need to set a default if one exists...
-    */
-
-    if (!dest && *dests && defprinter)
-    {
-      for (i = 0; i < num_dests; i ++)
-        (*dests)[i].is_default = 0;
-
-      if ((dest = cupsGetDest(name, instance, num_dests, *dests)) != NULL)
-	dest->is_default = 1;
+        num_dests = cupsRemoveDest(dest->name, dest->instance, num_dests,
+                                   dests);
+      }
     }
 
    /*
@@ -1913,18 +1907,7 @@ cupsGetNamedDest(http_t     *http,	/* I - Connection to server or @code CUPS_HTT
   */
 
   if (!_cupsGetDests(http, op, name, &dest, 0, 0))
-  {
-    if (op == IPP_OP_CUPS_GET_DEFAULT || (name && !set_as_default))
-      return (NULL);
-
-   /*
-    * The default printer from environment variables or from a
-    * configuration file does not exist.  Find out the real default.
-    */
-
-    if (!_cupsGetDests(http, IPP_OP_CUPS_GET_DEFAULT, NULL, &dest, 0, 0))
-      return (NULL);
-  }
+    return (NULL);
 
   if (instance)
     dest->instance = _cupsStrAlloc(instance);
@@ -3908,5 +3891,5 @@ cups_make_string(
 
 
 /*
- * End of "$Id: dest.c 10895 2013-03-11 16:19:48Z mike $".
+ * End of "$Id: dest.c 11101 2013-07-08 11:20:33Z msweet $".
  */

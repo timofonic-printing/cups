@@ -1,5 +1,5 @@
 /*
- * "$Id: snmp-supplies.c 10734 2012-12-07 21:33:22Z mike $"
+ * "$Id: snmp-supplies.c 4074 2012-12-12 20:54:21Z msweet $"
  *
  *   SNMP supplies functions for CUPS.
  *
@@ -1073,5 +1073,5 @@ utf16_to_utf8(
 
 
 /*
- * End of "$Id: snmp-supplies.c 10734 2012-12-07 21:33:22Z mike $".
+ * End of "$Id: snmp-supplies.c 4074 2012-12-12 20:54:21Z msweet $".
  */

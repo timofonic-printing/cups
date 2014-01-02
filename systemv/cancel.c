@@ -1,5 +1,5 @@
 /*
- * "$Id: cancel.c 10857 2013-02-04 16:47:11Z mike $"
+ * "$Id: cancel.c 10996 2013-05-29 11:51:34Z msweet $"
  *
  *   "cancel" command for CUPS.
  *
@@ -383,5 +383,5 @@ main(int  argc,				/* I - Number of command-line arguments */
 
 
 /*
- * End of "$Id: cancel.c 10857 2013-02-04 16:47:11Z mike $".
+ * End of "$Id: cancel.c 10996 2013-05-29 11:51:34Z msweet $".
  */

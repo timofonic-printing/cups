@@ -1,5 +1,5 @@
 /*
- * "$Id: printers.c 10897 2013-03-11 18:01:44Z mike $"
+ * "$Id: printers.c 10996 2013-05-29 11:51:34Z msweet $"
  *
  *   Printer routines for the CUPS scheduler.
  *
@@ -5034,5 +5034,5 @@ write_xml_string(cups_file_t *fp,	/* I - File to write to */
 
 
 /*
- * End of "$Id: printers.c 10897 2013-03-11 18:01:44Z mike $".
+ * End of "$Id: printers.c 10996 2013-05-29 11:51:34Z msweet $".
  */

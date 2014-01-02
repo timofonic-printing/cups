@@ -1,5 +1,5 @@
 #
-# "$Id: ipp-everywhere.test 10870 2013-02-20 01:39:36Z mike $"
+# "$Id$"
 #
 #   IPP Everywhere test suite.
 #
@@ -9685,5 +9685,5 @@ INCLUDE "ipp-2.0.test"
 
 
 #
-# End of "$Id: ipp-everywhere.test 10870 2013-02-20 01:39:36Z mike $".
+# End of "$Id$".
 #

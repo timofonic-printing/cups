@@ -1,5 +1,5 @@
 /*
- * "$Id: listen.c 10672 2012-11-01 00:57:55Z mike $"
+ * "$Id: listen.c 10996 2013-05-29 11:51:34Z msweet $"
  *
  *   Server listening routines for the CUPS scheduler.
  *
@@ -427,5 +427,5 @@ cupsdStopListening(void)
 
 
 /*
- * End of "$Id: listen.c 10672 2012-11-01 00:57:55Z mike $".
+ * End of "$Id: listen.c 10996 2013-05-29 11:51:34Z msweet $".
  */

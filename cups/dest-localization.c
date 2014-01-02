@@ -1,5 +1,5 @@
 /*
- * "$Id: dest-localization.c 10881 2013-02-25 22:12:59Z mike $"
+ * "$Id: dest-localization.c 4216 2013-03-11 13:57:36Z msweet $"
  *
  *   Destination localization support for CUPS.
  *
@@ -383,5 +383,5 @@ cups_scan_strings(char *buffer)		/* I - Start of string */
 
 
 /*
- * End of "$Id: dest-localization.c 10881 2013-02-25 22:12:59Z mike $".
+ * End of "$Id: dest-localization.c 4216 2013-03-11 13:57:36Z msweet $".
  */

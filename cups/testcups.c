@@ -1,5 +1,5 @@
 /*
- * "$Id: testcups.c 10881 2013-02-25 22:12:59Z mike $"
+ * "$Id: testcups.c 11060 2013-06-25 15:02:18Z msweet $"
  *
  *   CUPS API test program for CUPS.
  *
@@ -24,6 +24,7 @@
  * Include necessary headers...
  */
 
+#undef _CUPS_NO_DEPRECATED
 #include "string-private.h"
 #include "cups.h"
 #include "ppd.h"
@@ -567,5 +568,5 @@ show_diffs(cups_dest_t *a,		/* I - First destination */
 
 
 /*
- * End of "$Id: testcups.c 10881 2013-02-25 22:12:59Z mike $".
+ * End of "$Id: testcups.c 11060 2013-06-25 15:02:18Z msweet $".
  */

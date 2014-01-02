@@ -1,5 +1,5 @@
 /*
- * "$Id: notify.c 10881 2013-02-25 22:12:59Z mike $"
+ * "$Id: notify.c 10996 2013-05-29 11:51:34Z msweet $"
  *
  *   Notification routines for CUPS.
  *
@@ -198,5 +198,5 @@ cupsNotifyText(cups_lang_t *lang,	/* I - Language data */
 
 
 /*
- * End of "$Id: notify.c 10881 2013-02-25 22:12:59Z mike $".
+ * End of "$Id: notify.c 10996 2013-05-29 11:51:34Z msweet $".
  */

@@ -1,5 +1,5 @@
 /*
- * "$Id: ipptool.c 10941 2013-04-09 19:05:29Z mike $"
+ * "$Id: ipptool.c 11020 2013-06-06 19:19:26Z msweet $"
  *
  *   ipptool command for CUPS.
  *
@@ -87,7 +87,10 @@ typedef enum _cups_with_e		/**** WITH flags ****/
 {
   _CUPS_WITH_LITERAL = 0,		/* Match string is a literal value */
   _CUPS_WITH_ALL = 1,			/* Must match all values */
-  _CUPS_WITH_REGEX = 2			/* Match string is a regular expression */
+  _CUPS_WITH_REGEX = 2,			/* Match string is a regular expression */
+  _CUPS_WITH_HOSTNAME = 4,		/* Match string is a URI hostname */
+  _CUPS_WITH_RESOURCE = 8,		/* Match string is a URI resource */
+  _CUPS_WITH_SCHEME = 16		/* Match string is a URI scheme */
 } _cups_with_t;
 
 typedef struct _cups_expect_s		/**** Expected attribute info ****/
@@ -156,6 +159,8 @@ _cups_output_t	Output = _CUPS_OUTPUT_LIST;
 					/* Output mode */
 int		Cancel = 0,		/* Cancel test? */
 		IgnoreErrors = 0,	/* Ignore errors? */
+		StopAfterIncludeError = 0,
+					/* Stop after include errors? */
 		Verbosity = 0,		/* Show all attributes? */
 		Version = 11,		/* Default IPP version */
 		XMLHeader = 0,		/* 1 if header is written */
@@ -195,6 +200,8 @@ static int      expect_matches(_cups_expect_t *expect, ipp_tag_t value_tag);
 static ipp_t	*get_collection(_cups_vars_t *vars, FILE *fp, int *linenum);
 static char	*get_filename(const char *testfile, char *dst, const char *src,
 		              size_t dstsize);
+static char	*get_string(ipp_attribute_t *attr, int element, int flags,
+		            char *buffer, size_t bufsize);
 static char	*get_token(FILE *fp, char *buf, int buflen,
 		           int *linenum);
 static char	*get_variable(_cups_vars_t *vars, const char *name);
@@ -282,7 +289,20 @@ main(int  argc,				/* I - Number of command-line args */
 
   for (i = 1; i < argc; i ++)
   {
-    if (argv[i][0] == '-')
+    if (!strcmp(argv[i], "--help"))
+    {
+      usage();
+    }
+    else if (!strcmp(argv[i], "--stop-after-include-error"))
+    {
+      StopAfterIncludeError = 1;
+    }
+    else if (!strcmp(argv[i], "--version"))
+    {
+      puts(CUPS_SVERSION);
+      return (0);
+    }
+    else if (argv[i][0] == '-')
     {
       for (opt = argv[i] + 1; *opt; opt ++)
       {
@@ -333,8 +353,9 @@ main(int  argc,				/* I - Number of command-line args */
 
 	      if (i >= argc)
 	      {
-		_cupsLangPuts(stderr,
-		              _("ipptool: Missing timeout for \"-T\"."));
+		_cupsLangPrintf(stderr,
+		                _("%s: Missing timeout for \"-T\"."),
+		                "ipptool");
 		usage();
               }
 
@@ -346,8 +367,9 @@ main(int  argc,				/* I - Number of command-line args */
 
 	      if (i >= argc)
 	      {
-		_cupsLangPuts(stderr,
-		              _("ipptool: Missing version for \"-V\"."));
+		_cupsLangPrintf(stderr,
+		                _("%s: Missing version for \"-V\"."),
+		                "ipptool");
 		usage();
               }
 
@@ -364,8 +386,8 @@ main(int  argc,				/* I - Number of command-line args */
 	      else
 	      {
 		_cupsLangPrintf(stderr,
-		                _("ipptool: Bad version %s for \"-V\"."),
-				argv[i]);
+		                _("%s: Bad version %s for \"-V\"."),
+				"ipptool", argv[i]);
 		usage();
 	      }
 	      break;
@@ -792,7 +814,9 @@ do_tests(_cups_vars_t *vars,		/* I - Variables */
   ipp_attribute_t *attrptr,		/* Attribute pointer */
 		*found,			/* Found attribute */
 		*lastcol = NULL;	/* Last collection attribute */
-  char		name[1024];		/* Name of test */
+  char		name[1024],		/* Name of test */
+		file_id[1024],		/* File identifier */
+		test_id[1024];		/* Test identifier */
   char		filename[1024];		/* Filename */
   _cups_transfer_t transfer;		/* To chunk or not to chunk */
   int		version,		/* IPP version number to use */
@@ -855,6 +879,7 @@ do_tests(_cups_vars_t *vars,		/* I - Variables */
 
   errors     = cupsArrayNew3(NULL, NULL, NULL, 0, (cups_acopy_func_t)strdup,
                              (cups_afree_func_t)free);
+  file_id[0] = '\0';
   pass       = 1;
   linenum    = 1;
   request_id = (CUPS_RAND() % 1000) * 137 + 1;
@@ -910,6 +935,25 @@ do_tests(_cups_vars_t *vars,		/* I - Variables */
 
       continue;
     }
+    else if (!strcmp(token, "FILE-ID"))
+    {
+     /*
+      * FILE-ID "string"
+      */
+
+      if (get_token(fp, temp, sizeof(temp), &linenum))
+      {
+        expand_variables(vars, file_id, temp, sizeof(file_id));
+      }
+      else
+      {
+        print_fatal_error("Missing FILE-ID value on line %d.", linenum);
+	pass = 0;
+	goto test_exit;
+      }
+
+      continue;
+    }
     else if (!strcmp(token, "IGNORE-ERRORS"))
     {
      /*
@@ -949,7 +993,7 @@ do_tests(_cups_vars_t *vars,		/* I - Variables */
 	{
 	  pass = 0;
 
-	  if (!IgnoreErrors)
+	  if (StopAfterIncludeError)
 	    goto test_exit;
 	}
       }
@@ -983,7 +1027,7 @@ do_tests(_cups_vars_t *vars,		/* I - Variables */
 	{
 	  pass = 0;
 
-	  if (!IgnoreErrors)
+	  if (StopAfterIncludeError)
 	    goto test_exit;
 	}
       }
@@ -1018,7 +1062,7 @@ do_tests(_cups_vars_t *vars,		/* I - Variables */
 	{
 	  pass = 0;
 
-	  if (!IgnoreErrors)
+	  if (StopAfterIncludeError)
 	    goto test_exit;
 	}
       }
@@ -1070,6 +1114,28 @@ do_tests(_cups_vars_t *vars,		/* I - Variables */
 	pass = 0;
 	goto test_exit;
       }
+    }
+    else if (!strcmp(token, "STOP-AFTER-INCLUDE-ERROR"))
+    {
+     /*
+      * STOP-AFTER-INCLUDE-ERROR yes
+      * STOP-AFTER-INCLUDE-ERROR no
+      */
+
+      if (get_token(fp, temp, sizeof(temp), &linenum) &&
+          (!_cups_strcasecmp(temp, "yes") || !_cups_strcasecmp(temp, "no")))
+      {
+        StopAfterIncludeError = !_cups_strcasecmp(temp, "yes");
+      }
+      else
+      {
+        print_fatal_error("Missing STOP-AFTER-INCLUDE-ERROR value on line %d.",
+                          linenum);
+	pass = 0;
+	goto test_exit;
+      }
+
+      continue;
     }
     else if (!strcmp(token, "TRANSFER"))
     {
@@ -1167,6 +1233,7 @@ do_tests(_cups_vars_t *vars,		/* I - Variables */
     filename[0]    = '\0';
     skip_previous  = 0;
     skip_test      = 0;
+    test_id[0]     = '\0';
     version        = Version;
     transfer       = Transfer;
     compression[0] = '\0';
@@ -1194,6 +1261,12 @@ do_tests(_cups_vars_t *vars,		/* I - Variables */
           _cups_strcasecmp(token, "REPEAT-NO-MATCH") &&
           _cups_strcasecmp(token, "SAME-COUNT-AS") &&
           _cups_strcasecmp(token, "WITH-ALL-VALUES") &&
+          _cups_strcasecmp(token, "WITH-ALL-HOSTNAMES") &&
+          _cups_strcasecmp(token, "WITH-ALL-RESOURCES") &&
+          _cups_strcasecmp(token, "WITH-ALL-SCHEMES") &&
+          _cups_strcasecmp(token, "WITH-HOSTNAME") &&
+          _cups_strcasecmp(token, "WITH-RESOURCE") &&
+          _cups_strcasecmp(token, "WITH-SCHEME") &&
           _cups_strcasecmp(token, "WITH-VALUE"))
         last_expect = NULL;
 
@@ -1444,6 +1517,25 @@ do_tests(_cups_vars_t *vars,		/* I - Variables */
 	else
 	{
 	  print_fatal_error("Missing SKIP-PREVIOUS-ERROR value on line %d.", linenum);
+	  pass = 0;
+	  goto test_exit;
+	}
+
+	continue;
+      }
+      else if (!strcmp(token, "TEST-ID"))
+      {
+       /*
+	* TEST-ID "string"
+	*/
+
+	if (get_token(fp, temp, sizeof(temp), &linenum))
+	{
+	  expand_variables(vars, test_id, temp, sizeof(test_id));
+	}
+	else
+	{
+	  print_fatal_error("Missing TEST-ID value on line %d.", linenum);
 	  pass = 0;
 	  goto test_exit;
 	}
@@ -2197,10 +2289,29 @@ do_tests(_cups_vars_t *vars,		/* I - Variables */
 	}
       }
       else if (!_cups_strcasecmp(token, "WITH-ALL-VALUES") ||
+               !_cups_strcasecmp(token, "WITH-ALL-HOSTNAMES") ||
+               !_cups_strcasecmp(token, "WITH-ALL-RESOURCES") ||
+               !_cups_strcasecmp(token, "WITH-ALL-SCHEMES") ||
+               !_cups_strcasecmp(token, "WITH-HOSTNAME") ||
+               !_cups_strcasecmp(token, "WITH-RESOURCE") ||
+               !_cups_strcasecmp(token, "WITH-SCHEME") ||
                !_cups_strcasecmp(token, "WITH-VALUE"))
       {
-	if (!_cups_strcasecmp(token, "WITH-ALL-VALUES") && last_expect)
-	  last_expect->with_flags = _CUPS_WITH_ALL;
+	if (last_expect)
+	{
+	  if (!_cups_strcasecmp(token, "WITH-ALL-HOSTNAMES") ||
+	      !_cups_strcasecmp(token, "WITH-HOSTNAME"))
+	    last_expect->with_flags = _CUPS_WITH_HOSTNAME;
+	  else if (!_cups_strcasecmp(token, "WITH-ALL-RESOURCES") ||
+	      !_cups_strcasecmp(token, "WITH-RESOURCE"))
+	    last_expect->with_flags = _CUPS_WITH_RESOURCE;
+	  else if (!_cups_strcasecmp(token, "WITH-ALL-SCHEMES") ||
+	      !_cups_strcasecmp(token, "WITH-SCHEME"))
+	    last_expect->with_flags = _CUPS_WITH_SCHEME;
+
+	  if (!_cups_strncasecmp(token, "WITH-ALL-", 9))
+	    last_expect->with_flags |= _CUPS_WITH_ALL;
+        }
 
       	if (!get_token(fp, temp, sizeof(temp), &linenum))
 	{
@@ -2311,8 +2422,22 @@ do_tests(_cups_vars_t *vars,		/* I - Variables */
       puts("<dict>");
       puts("<key>Name</key>");
       print_xml_string("string", name);
+      if (file_id[0])
+      {
+	puts("<key>FileId</key>");
+	print_xml_string("string", file_id);
+      }
+      if (test_id[0])
+      {
+        puts("<key>TestId</key>");
+        print_xml_string("string", test_id);
+      }
+      puts("<key>Version</key>");
+      printf("<string>%d.%d</string>\n", version / 10, version % 10);
       puts("<key>Operation</key>");
       print_xml_string("string", ippOpString(op));
+      puts("<key>RequestId</key>");
+      printf("<integer>%d</integer>\n", request_id);
       puts("<key>RequestAttributes</key>");
       puts("<array>");
       if (request->attrs)
@@ -3683,6 +3808,59 @@ get_filename(const char *testfile,	/* I - Current test file */
 
 
 /*
+ * 'get_string()' - Get a pointer to a string value or the portion of interest.
+ */
+
+static char *				/* O - Pointer to string */
+get_string(ipp_attribute_t *attr,	/* I - IPP attribute */
+           int             element,	/* I - Element to fetch */
+           int             flags,	/* I - Value ("with") flags */
+           char            *buffer,	/* I - Temporary buffer */
+	   size_t          bufsize)	/* I - Size of temporary buffer */
+{
+  char	*ptr,				/* Value */
+	scheme[256],			/* URI scheme */
+	userpass[256],			/* Username/password */
+	hostname[256],			/* Hostname */
+	resource[1024];			/* Resource */
+  int	port;				/* Port number */
+
+
+  ptr = attr->values[element].string.text;
+
+  if (flags & _CUPS_WITH_HOSTNAME)
+  {
+    if (httpSeparateURI(HTTP_URI_CODING_ALL, ptr, scheme, sizeof(scheme),
+                        userpass, sizeof(userpass), buffer, bufsize, &port,
+                        resource, sizeof(resource)) < HTTP_URI_STATUS_OK)
+      return ("");
+    else
+      return (buffer);
+  }
+  else if (flags & _CUPS_WITH_RESOURCE)
+  {
+    if (httpSeparateURI(HTTP_URI_CODING_ALL, ptr, scheme, sizeof(scheme),
+                        userpass, sizeof(userpass), hostname, sizeof(hostname),
+                        &port, buffer, bufsize) < HTTP_URI_STATUS_OK)
+      return ("");
+    else
+      return (buffer);
+  }
+  else if (flags & _CUPS_WITH_SCHEME)
+  {
+    if (httpSeparateURI(HTTP_URI_CODING_ALL, ptr, buffer, bufsize,
+                        userpass, sizeof(userpass), hostname, sizeof(hostname),
+                        &port, resource, sizeof(resource)) < HTTP_URI_STATUS_OK)
+      return ("");
+    else
+      return (buffer);
+  }
+  else
+    return (ptr);
+}
+
+
+/*
  * 'get_token()' - Get a token from a file.
  */
 
@@ -4369,6 +4547,8 @@ print_xml_header(void)
          "\"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">");
     puts("<plist version=\"1.0\">");
     puts("<dict>");
+    puts("<key>ipptoolVersion</key>");
+    puts("<string>" CUPS_SVERSION "</string>");
     puts("<key>Transfer</key>");
     printf("<string>%s</string>\n",
            Transfer == _CUPS_TRANSFER_AUTO ? "auto" :
@@ -4566,14 +4746,34 @@ sigterm_handler(int sig)		/* I - Signal number (unused) */
  */
 
 static int				/* O - 1 to continue, 0 to cancel */
-timeout_cb(http_t *http,		/* I - Connection to server (unused) */
+timeout_cb(http_t *http,		/* I - Connection to server */
            void   *user_data)		/* I - User data (unused) */
 {
+  int		buffered = 0;		/* Bytes buffered but not yet sent */
+
+
+ /*
+  * If the socket still have data waiting to be sent to the printer (as can
+  * happen if the printer runs out of paper), continue to wait until the output
+  * buffer is empty...
+  */
+
+#ifdef SO_NWRITE			/* OS X and some versions of Linux */
+  socklen_t len = sizeof(buffered);	/* Size of return value */
+
+  if (getsockopt(httpGetFd(http), SOL_SOCKET, SO_NWRITE, &buffered, &len))
+    buffered = 0;
+
+#elif defined(SIOCOUTQ)			/* Others except Windows */
+  if (ioctl(httpGetFd(http), SIOCOUTQ, &buffered))
+    buffered = 0;
+
+#else					/* Windows (not possible) */
   (void)http;
   (void)user_data;
+#endif /* SO_NWRITE */
 
- /* Always cancel on timeout */
-  return (0);
+  return (buffered > 0);
 }
 
 
@@ -5295,7 +5495,7 @@ with_value(cups_array_t    *errors,	/* I - Errors array */
 {
   int	i,				/* Looping var */
 	match;				/* Match? */
-  char	temp[256],			/* Temporary value string */
+  char	temp[1024],			/* Temporary value string */
 	*valptr;			/* Pointer into value */
 
 
@@ -5574,10 +5774,13 @@ with_value(cups_array_t    *errors,	/* I - Errors array */
 
 	  for (i = 0; i < attr->num_values; i ++)
 	  {
-	    if (!regexec(&re, attr->values[i].string.text, 0, NULL, 0))
+	    if (!regexec(&re, get_string(attr, i, flags, temp, sizeof(temp)),
+	                 0, NULL, 0))
 	    {
 	      if (!matchbuf[0])
-		strlcpy(matchbuf, attr->values[i].string.text, matchlen);
+		strlcpy(matchbuf,
+		        get_string(attr, i, flags, temp, sizeof(temp)),
+		        matchlen);
 
 	      if (!(flags & _CUPS_WITH_ALL))
 	      {
@@ -5602,10 +5805,12 @@ with_value(cups_array_t    *errors,	/* I - Errors array */
 
 	  for (i = 0; i < attr->num_values; i ++)
 	  {
-	    if (!strcmp(value, attr->values[i].string.text))
+	    if (!strcmp(value, get_string(attr, i, flags, temp, sizeof(temp))))
 	    {
 	      if (!matchbuf[0])
-		strlcpy(matchbuf, attr->values[i].string.text, matchlen);
+		strlcpy(matchbuf,
+		        get_string(attr, i, flags, temp, sizeof(temp)),
+		        matchlen);
 
 	      if (!(flags & _CUPS_WITH_ALL))
 	      {
@@ -5625,7 +5830,7 @@ with_value(cups_array_t    *errors,	/* I - Errors array */
         {
 	  for (i = 0; i < attr->num_values; i ++)
 	    add_stringf(errors, "GOT: %s=\"%s\"", attr->name,
-			     attr->values[i].string.text);
+			attr->values[i].string.text);
         }
 	break;
 
@@ -5638,5 +5843,5 @@ with_value(cups_array_t    *errors,	/* I - Errors array */
 
 
 /*
- * End of "$Id: ipptool.c 10941 2013-04-09 19:05:29Z mike $".
+ * End of "$Id: ipptool.c 11020 2013-06-06 19:19:26Z msweet $".
  */

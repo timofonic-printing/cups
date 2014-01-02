@@ -1,5 +1,5 @@
 /*
- * "$Id: http-support.c 10922 2013-03-20 18:14:10Z mike $"
+ * "$Id: http-support.c 11085 2013-07-03 13:53:05Z msweet $"
  *
  *   HTTP support routines for CUPS.
  *
@@ -239,6 +239,9 @@ httpAssembleURI(
 
   if (host)
   {
+    const char	*hostptr;		/* Pointer into hostname */
+    int		have_ipv6;		/* Do we have an IPv6 address? */
+
     if (username && *username)
     {
      /*
@@ -266,13 +269,23 @@ httpAssembleURI(
     * too...
     */
 
-    if (host[0] != '[' && strchr(host, ':') && !strstr(host, "._tcp"))
+    for (hostptr = host,
+             have_ipv6 = strchr(host, ':') && !strstr(host, "._tcp");
+         *hostptr && have_ipv6;
+         hostptr ++)
+      if (*hostptr != ':' && !isxdigit(*hostptr & 255))
+      {
+        have_ipv6 = *hostptr == '%';
+        break;
+      }
+
+    if (have_ipv6)
     {
      /*
       * We have a raw IPv6 address...
       */
 
-      if (strchr(host, '%'))
+      if (strchr(host, '%') && !(encoding & HTTP_URI_CODING_RFC6874))
       {
        /*
         * We have a link-local address, add "[v1." prefix...
@@ -291,7 +304,7 @@ httpAssembleURI(
       else
       {
        /*
-        * We have a normal address, add "[" prefix...
+        * We have a normal (or RFC 6874 link-local) address, add "[" prefix...
 	*/
 
 	if (ptr < end)
@@ -307,8 +320,23 @@ httpAssembleURI(
       while (ptr < end && *host)
       {
         if (*host == '%')
-	{
-          *ptr++ = '+';			/* Convert zone separator */
+        {
+         /*
+          * Convert/encode zone separator
+          */
+
+          if (encoding & HTTP_URI_CODING_RFC6874)
+          {
+            if (ptr >= (end - 2))
+              goto assemble_overflow;
+
+            *ptr++ = '%';
+            *ptr++ = '2';
+            *ptr++ = '5';
+          }
+          else
+	    *ptr++ = '+';
+
 	  host ++;
 	}
 	else
@@ -326,9 +354,12 @@ httpAssembleURI(
     else
     {
      /*
-      * Otherwise, just copy the host string...
+      * Otherwise, just copy the host string (the extra chars are not in the
+      * "reg-name" ABNF rule; anything <= SP or >= DEL plus % gets automatically
+      * percent-encoded.
       */
-      ptr = http_copy_encode(ptr, host, end, "<>{}|^:/?#[]@\\\"", NULL,
+
+      ptr = http_copy_encode(ptr, host, end, "\"#/:<>?@[\\]^`{|}", NULL,
                              encoding & HTTP_URI_CODING_HOSTNAME);
 
       if (!ptr)
@@ -475,7 +506,7 @@ httpAssembleURIf(
  *
  * The buffer needs to be at least 46 bytes in size.
  *
- * @since CUPS 1.7@
+ * @since CUPS 1.7/OS X 10.9@
  */
 
 char *					/* I - UUID string */
@@ -1097,8 +1128,25 @@ httpSeparateURI(
       */
 
       uri ++;
-      if (!strncmp(uri, "v1.", 3))
-        uri += 3;			/* Skip IPvN leader... */
+      if (*uri == 'v')
+      {
+       /*
+        * Skip IPvFuture ("vXXXX.") prefix...
+        */
+
+        uri ++;
+
+        while (isxdigit(*uri & 255))
+          uri ++;
+
+        if (*uri != '.')
+        {
+	  *host = '\0';
+	  return (HTTP_URI_STATUS_BAD_HOSTNAME);
+        }
+
+        uri ++;
+      }
 
       uri = http_copy_decode(host, uri, hostlen, "]",
                              decoding & HTTP_URI_CODING_HOSTNAME);
@@ -1131,6 +1179,14 @@ httpSeparateURI(
 	  *ptr = '%';
 	  break;
 	}
+	else if (*ptr == '%')
+	{
+	 /*
+	  * Stop at zone separator (RFC 6874)
+	  */
+
+	  break;
+	}
 	else if (*ptr != ':' && *ptr != '.' && !isxdigit(*ptr & 255))
 	{
 	  *host = '\0';
@@ -1146,12 +1202,13 @@ httpSeparateURI(
       for (ptr = (char *)uri; *ptr; ptr ++)
         if (strchr(":?/", *ptr))
 	  break;
-        else if (!strchr("abcdefghijklmnopqrstuvwxyz"
-			 "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-			 "0123456789"
-	        	 "-._~"
-			 "%"
-			 "!$&'()*+,;=\\", *ptr))
+        else if (!strchr("abcdefghijklmnopqrstuvwxyz"	/* unreserved */
+			 "ABCDEFGHIJKLMNOPQRSTUVWXYZ"	/* unreserved */
+			 "0123456789"			/* unreserved */
+	        	 "-._~"				/* unreserved */
+			 "%"				/* pct-encoded */
+			 "!$&'()*+,;="			/* sub-delims */
+			 "\\", *ptr))			/* SMB domain */
 	{
 	  *host = '\0';
 	  return (HTTP_URI_STATUS_BAD_HOSTNAME);
@@ -1244,8 +1301,9 @@ httpSeparateURI(
 
       char *resptr = resource + strlen(resource);
 
-      uri = http_copy_decode(resptr, uri, resourcelen - (int)(resptr - resource),
-                             NULL, decoding & HTTP_URI_CODING_QUERY);
+      uri = http_copy_decode(resptr, uri,
+                             resourcelen - (int)(resptr - resource), NULL,
+                             decoding & HTTP_URI_CODING_QUERY);
     }
   }
 
@@ -1282,6 +1340,9 @@ httpStatus(http_status_t status)	/* I - HTTP status code */
 
   switch (status)
   {
+    case HTTP_STATUS_ERROR :
+        s = strerror(errno);
+        break;
     case HTTP_STATUS_CONTINUE :
         s = _("Continue");
 	break;
@@ -2319,5 +2380,5 @@ http_resolve_cb(
 
 
 /*
- * End of "$Id: http-support.c 10922 2013-03-20 18:14:10Z mike $".
+ * End of "$Id: http-support.c 11085 2013-07-03 13:53:05Z msweet $".
  */

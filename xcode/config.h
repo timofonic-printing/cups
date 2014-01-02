@@ -1,6 +1,6 @@
 /* config.h.  Generated from config.h.in by configure.  */
 /*
- * "$Id: config.h 10842 2013-01-30 15:16:16Z mike $"
+ * "$Id: config.h 4216 2013-03-11 13:57:36Z msweet $"
  *
  *   Configuration file for CUPS.
  *
@@ -706,5 +706,5 @@ static __inline int _cups_abs(int i) { return (i < 0 ? -i : i); }
 #endif /* !_CUPS_CONFIG_H_ */
 
 /*
- * End of "$Id: config.h 10842 2013-01-30 15:16:16Z mike $".
+ * End of "$Id: config.h 4216 2013-03-11 13:57:36Z msweet $".
  */

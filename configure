@@ -635,6 +635,8 @@ CUPS_BUNDLEDIR
 LANGUAGES
 LAUNCHDLIBS
 DEFAULT_LAUNCHD_CONF
+IPPFIND_MAN
+IPPFIND_BIN
 DNSSD_BACKEND
 DNSSDLIBS
 LARGEFILE
@@ -2514,7 +2516,7 @@ esac
 ac_config_headers="$ac_config_headers config.h"
 
 
-CUPS_VERSION=1.7b1
+CUPS_VERSION=1.7rc1
 CUPS_REVISION=
 #if test -z "$CUPS_REVISION" -a -d .svn; then
 #	CUPS_REVISION="-r`svnversion . | awk -F: '{print $NF}' | sed -e '1,$s/[[a-zA-Z]]*//g'`"
@@ -9075,6 +9077,8 @@ fi
 
 DNSSDLIBS=""
 DNSSD_BACKEND=""
+IPPFIND_BIN=""
+IPPFIND_MAN=""
 
 if test "x$PKGCONFIG" != x -a x$enable_avahi != xno; then
 	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for Avahi" >&5
@@ -9085,6 +9089,8 @@ $as_echo "yes" >&6; }
 		CFLAGS="$CFLAGS `$PKGCONFIG --cflags avahi-client`"
 		DNSSDLIBS="`$PKGCONFIG --libs avahi-client`"
 		DNSSD_BACKEND="dnssd"
+		IPPFIND_BIN="ippfind"
+		IPPFIND_MAN="ippfind.\$(MAN1EXT)"
 		$as_echo "#define HAVE_AVAHI 1" >>confdefs.h
 
 	else
@@ -9104,6 +9110,8 @@ if test "x$ac_cv_header_dns_sd_h" = xyes; then :
 
 				DNSSDLIBS="-framework CoreFoundation -framework SystemConfiguration"
 				DNSSD_BACKEND="dnssd"
+				IPPFIND_BIN="ippfind"
+				IPPFIND_MAN="ippfind.\$(MAN1EXT)"
 				;;
 			*)
 				# All others...
@@ -9134,7 +9142,9 @@ $as_echo "yes" >&6; }
 					DNSSDLIBS="-ldns_sd"
 					DNSSD_BACKEND="dnssd"
 else
-  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+  IPPFIND_BIN="ippfind"
+					IPPFIND_MAN="ippfind.\$(MAN1EXT)"
+					{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
 $as_echo "no" >&6; }
 fi
 rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
@@ -9146,6 +9156,8 @@ fi
 
 
 fi
+
+
 
 
 
@@ -10068,7 +10080,7 @@ fi
 
 
 
-ac_config_files="$ac_config_files Makedefs conf/cups-files.conf conf/cupsd.conf conf/mime.convs conf/pam.std conf/snmp.conf cups-config data/testprint desktop/cups.desktop doc/help/ref-cups-files-conf.html doc/help/ref-cupsd-conf.html doc/help/standard.html doc/index.html man/client.conf.man man/cups-deviced.man man/cups-driverd.man man/cups-files.conf.man man/cups-lpd.man man/cups-snmp.man man/cupsaddsmb.man man/cupsd.conf.man man/cupsd.man man/lpoptions.man scheduler/cups-lpd.xinetd scheduler/cups.sh scheduler/cups.xml scheduler/org.cups.cups-lpd.plist templates/header.tmpl packaging/cups.list $LANGFILES"
+ac_config_files="$ac_config_files Makedefs conf/cups-files.conf conf/cupsd.conf conf/mime.convs conf/pam.std conf/snmp.conf cups-config data/testprint desktop/cups.desktop doc/help/ref-cups-files-conf.html doc/help/ref-cupsd-conf.html doc/index.html man/client.conf.man man/cups-deviced.man man/cups-driverd.man man/cups-files.conf.man man/cups-lpd.man man/cups-snmp.man man/cupsaddsmb.man man/cupsd.conf.man man/cupsd.man man/lpoptions.man scheduler/cups-lpd.xinetd scheduler/cups.sh scheduler/cups.xml scheduler/org.cups.cups-lpd.plist templates/header.tmpl packaging/cups.list $LANGFILES"
 
 cat >confcache <<\_ACEOF
 # This file is a shell script that caches the results of configure
@@ -10784,7 +10796,6 @@ do
     "desktop/cups.desktop") CONFIG_FILES="$CONFIG_FILES desktop/cups.desktop" ;;
     "doc/help/ref-cups-files-conf.html") CONFIG_FILES="$CONFIG_FILES doc/help/ref-cups-files-conf.html" ;;
     "doc/help/ref-cupsd-conf.html") CONFIG_FILES="$CONFIG_FILES doc/help/ref-cupsd-conf.html" ;;
-    "doc/help/standard.html") CONFIG_FILES="$CONFIG_FILES doc/help/standard.html" ;;
     "doc/index.html") CONFIG_FILES="$CONFIG_FILES doc/index.html" ;;
     "man/client.conf.man") CONFIG_FILES="$CONFIG_FILES man/client.conf.man" ;;
     "man/cups-deviced.man") CONFIG_FILES="$CONFIG_FILES man/cups-deviced.man" ;;

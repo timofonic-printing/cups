@@ -1,5 +1,5 @@
 /*
- * "$Id: ipp.c 10909 2013-03-14 18:45:49Z mike $"
+ * "$Id: ipp.c 11113 2013-07-10 14:08:39Z msweet $"
  *
  *   Internet Printing Protocol functions for CUPS.
  *
@@ -1131,7 +1131,7 @@ ippAddString(ipp_t      *ipp,		/* I - IPP message */
  * needed.  The formatted string is truncated as needed to the maximum length of
  * the corresponding value type.
  *
- * @since CUPS 1.7@
+ * @since CUPS 1.7/OS X 10.9@
  */
 
 ipp_attribute_t *			/* O - New attribute */
@@ -1184,7 +1184,7 @@ ippAddStringf(ipp_t      *ipp,		/* I - IPP message */
  * stdarg pointer @code ap@.  The formatted string is truncated as needed to the
  * maximum length of the corresponding value type.
  *
- * @since CUPS 1.7@
+ * @since CUPS 1.7/OS X 10.9@
  */
 
 ipp_attribute_t *			/* O - New attribute */
@@ -1210,7 +1210,7 @@ ippAddStringfv(ipp_t      *ipp,		/* I - IPP message */
       group == IPP_TAG_END || group >= IPP_TAG_UNSUPPORTED_VALUE ||
       (value_tag < IPP_TAG_TEXT && value_tag != IPP_TAG_TEXTLANG &&
        value_tag != IPP_TAG_NAMELANG) || value_tag > IPP_TAG_MIMETYPE ||
-      !format || !ap)
+      !format)
     return (NULL);
 
   if ((value_tag == IPP_TAG_TEXTLANG || value_tag == IPP_TAG_NAMELANG)
@@ -1466,7 +1466,7 @@ ippAddStrings(
  * enum value, or the value falls within one of the rangeOfInteger values for
  * the attribute.
  *
- * @since CUPS 1.7@
+ * @since CUPS 1.7/OS X 10.9@
  */
 
 int					/* O - 1 on a match, 0 on no match */
@@ -1517,7 +1517,7 @@ ippContainsInteger(
  * Returns non-zero when the attribute contains a matching charset, keyword,
  * language, mimeMediaType, name, text, URI, or URI scheme value.
  *
- * @since CUPS 1.7@
+ * @since CUPS 1.7/OS X 10.9@
  */
 
 int					/* O - 1 on a match, 0 on no match */
@@ -2390,7 +2390,7 @@ ippGetName(ipp_attribute_t *attr)	/* I - IPP attribute */
  * The @code element@ parameter specifies which value to get from 0 to
  * @link ippGetCount(attr)@ - 1.
  *
- * @since CUPS 1.7@
+ * @since CUPS 1.7/OS X 10.9@
  */
 
 void *					/* O - Pointer to octetString data */
@@ -2741,6 +2741,9 @@ ippNew(void)
     * Set default version - usually 2.0...
     */
 
+    if (cg->server_version == 0)
+      _cupsSetDefaults();
+
     temp->request.any.version[0] = cg->server_version / 10;
     temp->request.any.version[1] = cg->server_version % 10;
     temp->use                    = 1;
@@ -2826,7 +2829,7 @@ ippNewRequest(ipp_op_t op)		/* I - Operation code */
  * "utf-8" and a value derived from the current locale are substituted,
  * respectively.
  *
- * @since CUPS 1.7@
+ * @since CUPS 1.7/OS X 10.9@
  */
 
 ipp_t *					/* O - IPP response message */
@@ -4009,7 +4012,7 @@ ippSetName(ipp_t           *ipp,	/* I  - IPP message */
  * The @code element@ parameter specifies which value to set from 0 to
  * @link ippGetCount(attr)@.
  *
- * @since CUPS 1.7@
+ * @since CUPS 1.7/OS X 10.9@
  */
 
 int					/* O  - 1 on success, 0 on failure */
@@ -4382,7 +4385,7 @@ ippSetString(ipp_t           *ipp,	/* I  - IPP message */
  * needed.  The formatted string is truncated as needed to the maximum length of
  * the corresponding value type.
  *
- * @since CUPS 1.7@
+ * @since CUPS 1.7/OS X 10.9@
  */
 
 int					/* O  - 1 on success, 0 on failure */
@@ -4420,7 +4423,7 @@ ippSetStringf(ipp_t           *ipp,	/* I  - IPP message */
  * needed.  The formatted string is truncated as needed to the maximum length of
  * the corresponding value type.
  *
- * @since CUPS 1.7@
+ * @since CUPS 1.7/OS X 10.9@
  */
 
 int					/* O  - 1 on success, 0 on failure */
@@ -4449,7 +4452,7 @@ ippSetStringfv(ipp_t           *ipp,	/* I  - IPP message */
   if (!ipp || !attr || !*attr ||
       (value_tag < IPP_TAG_TEXT && value_tag != IPP_TAG_TEXTLANG &&
        value_tag != IPP_TAG_NAMELANG) || value_tag > IPP_TAG_MIMETYPE ||
-      !format || !ap)
+      !format)
     return (0);
 
  /*
@@ -4810,7 +4813,7 @@ ippTimeToDate(time_t t)			/* I - UNIX time value */
  * value tag.  1 is returned if the attribute is valid, 0 otherwise.  On
  * failure, cupsLastErrorString() is set to a human-readable message.
  *
- * @since CUPS 1.7@
+ * @since CUPS 1.7/OS X 10.9@
  */
 
 int					/* O - 1 if valid, 0 otherwise */
@@ -5449,7 +5452,7 @@ ippValidateAttribute(
  * attribute.  Like @link ippValidateAttribute@, cupsLastErrorString() is set
  * to a human-readable message on failure.
  *
- * @since CUPS 1.7@
+ * @since CUPS 1.7/OS X 10.9@
  */
 
 int					/* O - 1 if valid, 0 otherwise */
@@ -6348,10 +6351,11 @@ ippWriteIO(void       *dst,		/* I - Destination */
 	  }
 
 	 /*
-          * If blocking is disabled, stop here...
+          * If blocking is disabled and we aren't at the end of the attribute
+          * list, stop here...
 	  */
 
-          if (!blocking)
+          if (!blocking && ipp->current)
 	    break;
 	}
 
@@ -7060,5 +7064,5 @@ ipp_write_file(int         *fd,		/* I - File descriptor */
 
 
 /*
- * End of "$Id: ipp.c 10909 2013-03-14 18:45:49Z mike $".
+ * End of "$Id: ipp.c 11113 2013-07-10 14:08:39Z msweet $".
  */

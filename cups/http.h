@@ -1,5 +1,5 @@
 /*
- * "$Id: http.h 10881 2013-02-25 22:12:59Z mike $"
+ * "$Id: http.h 11085 2013-07-03 13:53:05Z msweet $"
  *
  *   Hyper-Text Transport Protocol definitions for CUPS.
  *
@@ -182,9 +182,9 @@ typedef enum http_field_e		/**** HTTP field names ****/
   HTTP_FIELD_UPGRADE,			/* Upgrade field */
   HTTP_FIELD_USER_AGENT,		/* User-Agent field */
   HTTP_FIELD_WWW_AUTHENTICATE,		/* WWW-Authenticate field */
-  HTTP_FIELD_ACCEPT_ENCODING,		/* Accepting-Encoding field @since CUPS 1.7@ */
-  HTTP_FIELD_ALLOW,			/* Allow field @since CUPS 1.7@ */
-  HTTP_FIELD_SERVER,			/* Server field @since CUPS 1.7@ */
+  HTTP_FIELD_ACCEPT_ENCODING,		/* Accepting-Encoding field @since CUPS 1.7/OS X 10.9@ */
+  HTTP_FIELD_ALLOW,			/* Allow field @since CUPS 1.7/OS X 10.9@ */
+  HTTP_FIELD_SERVER,			/* Server field @since CUPS 1.7/OS X 10.9@ */
   HTTP_FIELD_MAX			/* Maximum field index */
 } http_field_t;
 
@@ -213,8 +213,8 @@ typedef enum http_state_e		/**** HTTP state values; states
   HTTP_STATE_TRACE,			/* TRACE command, waiting for blank line */
   HTTP_STATE_CONNECT,			/* CONNECT command, waiting for blank line */
   HTTP_STATE_STATUS,			/* Command complete, sending status */
-  HTTP_STATE_UNKNOWN_METHOD,		/* Unknown request method, waiting for blank line @since CUPS 1.7@ */
-  HTTP_STATE_UNKNOWN_VERSION		/* Unknown request method, waiting for blank line @since CUPS 1.7@ */
+  HTTP_STATE_UNKNOWN_METHOD,		/* Unknown request method, waiting for blank line @since CUPS 1.7/OS X 10.9@ */
+  HTTP_STATE_UNKNOWN_VERSION		/* Unknown request method, waiting for blank line @since CUPS 1.7/OS X 10.9@ */
 
 #  ifndef _CUPS_NO_DEPRECATED
 #    define HTTP_WAITING	HTTP_STATE_WAITING
@@ -237,7 +237,7 @@ typedef enum http_state_e		/**** HTTP state values; states
 typedef enum http_status_e		/**** HTTP status codes ****/
 {
   HTTP_STATUS_ERROR = -1,		/* An error response from httpXxxx() */
-  HTTP_STATUS_NONE = 0,			/* No Expect value @since CUPS 1.7@ */
+  HTTP_STATUS_NONE = 0,			/* No Expect value @since CUPS 1.7/OS X 10.9@ */
 
   HTTP_STATUS_CONTINUE = 100,		/* Everything OK, keep going... */
   HTTP_STATUS_SWITCHING_PROTOCOLS,	/* HTTP upgrade to TLS/SSL */
@@ -383,7 +383,8 @@ typedef enum http_uri_coding_e		/**** URI en/decode flags ****/
   HTTP_URI_CODING_RESOURCE = 4,		/* En/decode the resource portion */
   HTTP_URI_CODING_MOST = 7,		/* En/decode all but the query */
   HTTP_URI_CODING_QUERY = 8,		/* En/decode the query portion */
-  HTTP_URI_CODING_ALL = 15		/* En/decode everything */
+  HTTP_URI_CODING_ALL = 15,		/* En/decode everything */
+  HTTP_URI_CODING_RFC6874 = 16		/* Use RFC 6874 address format */
 } http_uri_coding_t;
 
 typedef enum http_version_e		/**** HTTP version numbers ****/
@@ -448,10 +449,10 @@ extern int		httpCheck(http_t *http);
 extern void		httpClearFields(http_t *http);
 extern void		httpClose(http_t *http);
 extern http_t		*httpConnect(const char *host, int port)
-			             _CUPS_DEPRECATED_MSG("Use httpConnect2 instead.");
+			             _CUPS_DEPRECATED_1_7_MSG("Use httpConnect2 instead.");
 extern http_t		*httpConnectEncrypt(const char *host, int port,
 			                    http_encryption_t encryption)
-			                    _CUPS_DEPRECATED_MSG("Use httpConnect2 instead.");
+			                    _CUPS_DEPRECATED_1_7_MSG("Use httpConnect2 instead.");
 extern int		httpDelete(http_t *http, const char *uri);
 extern int		httpEncryption(http_t *http, http_encryption_t e);
 extern int		httpError(http_t *http);
@@ -472,7 +473,7 @@ extern int		httpPrintf(http_t *http, const char *format, ...)
 			__attribute__ ((__format__ (__printf__, 2, 3)));
 extern int		httpPut(http_t *http, const char *uri);
 extern int		httpRead(http_t *http, char *buffer, int length) _CUPS_DEPRECATED_MSG("Use httpRead2 instead.");
-extern int		httpReconnect(http_t *http) _CUPS_DEPRECATED_MSG("Use httpReconnect2 instead.");
+extern int		httpReconnect(http_t *http) _CUPS_DEPRECATED_1_6_MSG("Use httpReconnect2 instead.");
 extern void		httpSeparate(const char *uri, char *method,
 			             char *username, char *host, int *port,
 				     char *resource) _CUPS_DEPRECATED_MSG("Use httpSeparateURI instead.");
@@ -622,5 +623,5 @@ extern http_state_t	httpWriteResponse(http_t *http,
 #endif /* !_CUPS_HTTP_H_ */
 
 /*
- * End of "$Id: http.h 10881 2013-02-25 22:12:59Z mike $".
+ * End of "$Id: http.h 11085 2013-07-03 13:53:05Z msweet $".
  */

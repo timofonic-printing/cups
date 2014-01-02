@@ -1,5 +1,5 @@
 dnl
-dnl "$Id: cups-manpages.m4 10632 2012-10-01 04:07:51Z mike $"
+dnl "$Id: cups-manpages.m4 6649 2007-07-11 21:46:42Z mike $"
 dnl
 dnl   Manpage stuff for CUPS.
 dnl
@@ -78,5 +78,5 @@ AC_SUBST(MAN8EXT)
 AC_SUBST(MAN8DIR)
 
 dnl
-dnl End of "$Id: cups-manpages.m4 10632 2012-10-01 04:07:51Z mike $".
+dnl End of "$Id: cups-manpages.m4 6649 2007-07-11 21:46:42Z mike $".
 dnl

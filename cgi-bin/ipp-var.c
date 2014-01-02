@@ -1,5 +1,5 @@
 /*
- * "$Id: ipp-var.c 10734 2012-12-07 21:33:22Z mike $"
+ * "$Id: ipp-var.c 10996 2013-05-29 11:51:34Z msweet $"
  *
  *   CGI <-> IPP variable routines for CUPS.
  *
@@ -1589,5 +1589,5 @@ cgiText(const char *message)		/* I - Message */
 
 
 /*
- * End of "$Id: ipp-var.c 10734 2012-12-07 21:33:22Z mike $".
+ * End of "$Id: ipp-var.c 10996 2013-05-29 11:51:34Z msweet $".
  */

@@ -1,5 +1,5 @@
 #
-# "$Id: Makefile 10955 2013-04-18 19:24:44Z mike $"
+# "$Id: Makefile 11129 2013-07-11 20:39:46Z msweet $"
 #
 #   IPP test makefile for CUPS.
 #
@@ -53,10 +53,12 @@ TESTFILES	=	\
 			print-job-gzip.test \
 			validate-job.test
 OBJS		=	\
+			ippfind.o \
 			ippserver.o \
 			ipptool.o \
 			xmltotest.o
 TARGETS		=	\
+			$(IPPFIND_BIN) \
 			ippserver \
 			ipptool \
 			ipptool-static
@@ -129,8 +131,13 @@ install-exec:
 	echo Installing ipptool in $(BINDIR)...
 	$(INSTALL_DIR) -m 755 $(BINDIR)
 	$(INSTALL_BIN) ipptool $(BINDIR)
+	if test -x ippfind; then \
+		$(INSTALL_BIN) ippfind $(BINDIR); \
+	fi
 	if test "x$(SYMROOT)" != "x"; then \
 		$(INSTALL_DIR) $(SYMROOT); \
+		cp ippfind $(SYMROOT); \
+		dsymutil $(SYMROOT)/ippfind; \
 		cp ipptool $(SYMROOT); \
 		dsymutil $(SYMROOT)/ipptool; \
 	fi
@@ -163,6 +170,18 @@ uninstall:
 		$(RM) $(DATADIR)/ipptool/$$file; \
 	done
 	-$(RMDIR) $(DATADIR)/ipptool
+
+
+#
+# ippfind
+#
+
+ippfind:	ippfind.o ../cups/$(LIBCUPS) ../cups/$(LIBCUPSSTATIC)
+	echo Linking $@...
+	$(CC) $(LDFLAGS) -o $@ ippfind.o $(LIBS)
+	echo Linking $@-static...
+	$(CC) $(LDFLAGS) -o $@-static ippfind.o  ../cups/$(LIBCUPSSTATIC) \
+		$(LIBGSSAPI) $(SSLLIBS) $(DNSSDLIBS) $(COMMONLIBS) $(LIBZ)
 
 
 #
@@ -222,5 +241,5 @@ include Dependencies
 
 
 #
-# End of "$Id: Makefile 10955 2013-04-18 19:24:44Z mike $".
+# End of "$Id: Makefile 11129 2013-07-11 20:39:46Z msweet $".
 #

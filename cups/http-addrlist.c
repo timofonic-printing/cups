@@ -1,5 +1,5 @@
 /*
- * "$Id: http-addrlist.c 10932 2013-04-03 13:06:27Z mike $"
+ * "$Id: http-addrlist.c 11085 2013-07-03 13:53:05Z msweet $"
  *
  *   HTTP address list routines for CUPS.
  *
@@ -59,7 +59,7 @@ httpAddrConnect(
  * 'httpAddrConnect2()' - Connect to any of the addresses in the list with a
  *                        timeout and optional cancel.
  *
- * @since CUPS 1.7@
+ * @since CUPS 1.7/OS X 10.9@
  */
 
 http_addrlist_t *			/* O - Connected address or NULL on failure */
@@ -322,7 +322,7 @@ httpAddrConnect2(
 /*
  * 'httpAddrCopyList()' - Copy an address list.
  *
- * @since CUPS 1.7@
+ * @since CUPS 1.7/OS X 10.9@
  */
 
 http_addrlist_t	*			/* O - New address list or @code NULL@ on error */
@@ -882,5 +882,5 @@ httpAddrGetList(const char *hostname,	/* I - Hostname, IP address, or NULL for p
 
 
 /*
- * End of "$Id: http-addrlist.c 10932 2013-04-03 13:06:27Z mike $".
+ * End of "$Id: http-addrlist.c 11085 2013-07-03 13:53:05Z msweet $".
  */

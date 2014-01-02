@@ -1,5 +1,5 @@
 #
-# "$Id: Makefile 10726 2012-12-04 18:38:31Z mike $"
+# "$Id: Makefile 10996 2013-05-29 11:51:34Z msweet $"
 #
 #   System V commands makefile for CUPS.
 #
@@ -290,5 +290,5 @@ include Dependencies
 
 
 #
-# End of "$Id: Makefile 10726 2012-12-04 18:38:31Z mike $".
+# End of "$Id: Makefile 10996 2013-05-29 11:51:34Z msweet $".
 #

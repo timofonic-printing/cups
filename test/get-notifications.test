@@ -1,5 +1,5 @@
 #
-# "$Id: get-notifications.test 10839 2013-01-24 21:31:59Z mike $"
+# "$Id$"
 #
 #   Get subscription events.
 #
@@ -42,5 +42,5 @@
 
 
 #
-# End of "$Id: get-notifications.test 10839 2013-01-24 21:31:59Z mike $"
+# End of "$Id$"
 #

@@ -1,5 +1,5 @@
 /*
- * "$Id: client.c 10943 2013-04-09 19:26:08Z mike $"
+ * "$Id: client.c 10999 2013-05-30 00:48:16Z msweet $"
  *
  *   Client routines for the CUPS scheduler.
  *
@@ -471,6 +471,9 @@ cupsdAcceptClient(cupsd_listener_t *lis)/* I - Listener socket */
 
   cupsdAddSelect(con->http.fd, (cupsd_selfunc_t)cupsdReadClient, NULL, con);
 
+  cupsdLogMessage(CUPSD_LOG_DEBUG, "[Client %d] Waiting for request.",
+		  con->http.fd);
+
  /*
   * Temporarily suspend accept()'s until we lose a client...
   */
@@ -594,6 +597,9 @@ cupsdCloseClient(cupsd_client_t *con)	/* I - Client to close */
 
       shutdown(con->http.fd, 0);
       cupsdAddSelect(con->http.fd, (cupsd_selfunc_t)cupsdReadClient, NULL, con);
+
+      cupsdLogMessage(CUPSD_LOG_DEBUG, "[Client %d] Waiting for socket close.",
+		      con->http.fd);
     }
     else
     {
@@ -2431,6 +2437,9 @@ cupsdSendCommand(
 
   cupsdAddSelect(con->file, (cupsd_selfunc_t)write_pipe, NULL, con);
 
+  cupsdLogMessage(CUPSD_LOG_DEBUG, "[Client %d] Waiting for CGI data.",
+		  con->http.fd);
+
   con->sent_header = 0;
   con->file_ready  = 0;
   con->got_fields  = 0;
@@ -2817,7 +2826,7 @@ cupsdWriteClient(cupsd_client_t *con)	/* I - Client connection */
   ipp_state_t	ipp_state;		/* IPP state value */
 
 
-  cupsdLogMessage(CUPSD_LOG_DEBUG2,
+  cupsdLogMessage(CUPSD_LOG_DEBUG,
 		  "[Client %d] cupsdWriteClient "
 		  "error=%d, "
 		  "used=%d, "
@@ -2859,6 +2868,9 @@ cupsdWriteClient(cupsd_client_t *con)	/* I - Client connection */
 
     cupsdAddSelect(con->file, (cupsd_selfunc_t)write_pipe, NULL, con);
 
+    cupsdLogMessage(CUPSD_LOG_DEBUG, "[Client %d] Waiting for CGI data.",
+		    con->http.fd);
+
     if (!con->file_ready)
     {
      /*
@@ -2874,9 +2886,45 @@ cupsdWriteClient(cupsd_client_t *con)	/* I - Client connection */
 
   if (con->response && con->response->state != IPP_DATA)
   {
-    ipp_state = ippWrite(HTTP(con), con->response);
-    bytes     = ipp_state != IPP_ERROR &&
-                (con->file >= 0 || ipp_state != IPP_DATA);
+    int wused = con->http.wused;	/* Previous write buffer use */
+
+    do
+    {
+     /*
+      * Write a single attribute or the IPP message header...
+      */
+
+      ipp_state = ippWrite(HTTP(con), con->response);
+
+     /*
+      * If the write buffer has been flushed, stop buffering up attributes...
+      */
+
+      if (con->http.wused <= wused)
+        break;
+    }
+    while (ipp_state != IPP_STATE_DATA && ipp_state != IPP_STATE_ERROR);
+
+    cupsdLogMessage(CUPSD_LOG_DEBUG,
+                    "[Client %d] Writing IPP response, ipp_state=%s, old "
+                    "wused=%d, new wused=%d", con->http.fd,
+                    ipp_state == IPP_STATE_ERROR ? "ERROR" :
+			ipp_state == IPP_STATE_IDLE ? "IDLE" :
+			ipp_state == IPP_STATE_HEADER ? "HEADER" :
+			ipp_state == IPP_STATE_ATTRIBUTE ? "ATTRIBUTE" : "DATA",
+		    wused, con->http.wused);
+
+    if (con->http.wused > 0)
+      httpFlushWrite(HTTP(con));
+
+    bytes = ipp_state != IPP_STATE_ERROR &&
+	    (con->file >= 0 || ipp_state != IPP_STATE_DATA);
+
+    cupsdLogMessage(CUPSD_LOG_DEBUG,
+                    "[Client %d] bytes=%d, http_state=%d, "
+                    "data_remaining=" CUPS_LLFMT,
+                    con->http.fd, (int)bytes, con->http.state,
+                    CUPS_LLCAST con->http.data_remaining);
   }
   else if ((bytes = read(con->file, con->header + con->header_used,
 			 sizeof(con->header) - con->header_used)) > 0)
@@ -3021,7 +3069,8 @@ cupsdWriteClient(cupsd_client_t *con)	/* I - Client connection */
   }
 
   if (bytes <= 0 ||
-      (con->http.state != HTTP_STATE_GET_SEND && con->http.state != HTTP_STATE_POST_SEND))
+      (con->http.state != HTTP_STATE_GET_SEND &&
+       con->http.state != HTTP_STATE_POST_SEND))
   {
     if (!con->sent_header && con->pipe_pid)
       cupsdSendError(con, HTTP_SERVER_ERROR, CUPSD_AUTH_NONE);
@@ -3031,7 +3080,8 @@ cupsdWriteClient(cupsd_client_t *con)	/* I - Client connection */
 
       httpFlushWrite(HTTP(con));
 
-      if (con->http.data_encoding == HTTP_ENCODING_CHUNKED && con->sent_header == 1)
+      if (con->http.data_encoding == HTTP_ENCODING_CHUNKED &&
+          con->sent_header == 1)
       {
 	if (httpWrite2(HTTP(con), "", 0) < 0)
 	{
@@ -3048,6 +3098,9 @@ cupsdWriteClient(cupsd_client_t *con)	/* I - Client connection */
     con->http.state = HTTP_STATE_WAITING;
 
     cupsdAddSelect(con->http.fd, (cupsd_selfunc_t)cupsdReadClient, NULL, con);
+
+    cupsdLogMessage(CUPSD_LOG_DEBUG, "[Client %d] Waiting for request.",
+                    con->http.fd);
 
     if (con->file >= 0)
     {
@@ -4297,6 +4350,8 @@ write_file(cupsd_client_t *con,		/* I - Client connection */
   cupsdAddSelect(con->http.fd, (cupsd_selfunc_t)cupsdReadClient,
                  (cupsd_selfunc_t)cupsdWriteClient, con);
 
+  cupsdLogMessage(CUPSD_LOG_DEBUG, "[Client %d] Sending file.", con->http.fd);
+
   return (1);
 }
 
@@ -4316,9 +4371,12 @@ write_pipe(cupsd_client_t *con)		/* I - Client connection */
 
   cupsdRemoveSelect(con->file);
   cupsdAddSelect(con->http.fd, NULL, (cupsd_selfunc_t)cupsdWriteClient, con);
+
+  cupsdLogMessage(CUPSD_LOG_DEBUG, "[Client %d] CGI data ready to be sent.",
+		  con->http.fd);
 }
 
 
 /*
- * End of "$Id: client.c 10943 2013-04-09 19:26:08Z mike $".
+ * End of "$Id: client.c 10999 2013-05-30 00:48:16Z msweet $".
  */

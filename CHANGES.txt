@@ -1,5 +1,31 @@
-CHANGES.txt - 1.7b1 - 2013-04-18
---------------------------------
+CHANGES.txt - 1.7rc1 - 2013-07-10
+---------------------------------
+
+CHANGES IN CUPS V1.7rc1
+
+	- Printer xxx-default values were not reported by Get-Printer-Attributes
+	  or lpoptions (<rdar://problem/14401795>)
+	- Fixed deprecation warnings for many functions on OS X so they are tied
+	  to the deployment version when building (<rdar://problem/14210079>)
+	- Fixed a build issue on ARM-based Linux systems - unable to validate
+	  va_list arguments.
+	- Added a new ippfind tool for finding IPP printers and other Bonjour
+	  services (<rdar://problem/13876199>)
+	- Fixed some issues with conversion of PWG media size names to
+	  hundredths of millimeters (<rdar://problem/14065748>)
+	- The IPP backend could crash on OS X when printing to a Kerberized
+	  printer (<rdar://problem/14040186>)
+	- The ipptool program now automatically extends timeouts when the
+	  output buffer is filled (<rdar://problem/14016099>)
+	- The ipptool program now supports the --help and --version options.
+	- The ipptool program did not continue past include file errors by
+	  default (<rdar://problem/13875803>)
+	- The ipptool program now supports FILE-ID and TEST-ID directives and
+	  includes their values in its XML output (<rdar://problem/13876038>)
+	- The ipptool program now supports WITH-HOSTNAME, WITH-RESOURCE, and
+	  WITH-SCHEME expect predicates to compare the corresponding URI
+	  components (<rdar://problem/13876091>)
+
 
 CHANGES IN CUPS V1.7b1
 

@@ -1,5 +1,5 @@
 /*
- * "$Id: conflicts.c 10596 2012-09-07 02:49:46Z mike $"
+ * "$Id: conflicts.c 3933 2012-10-01 03:01:10Z msweet $"
  *
  *   Option marking routines for CUPS.
  *
@@ -1210,5 +1210,5 @@ ppd_test_constraints(
 
 
 /*
- * End of "$Id: conflicts.c 10596 2012-09-07 02:49:46Z mike $".
+ * End of "$Id: conflicts.c 3933 2012-10-01 03:01:10Z msweet $".
  */

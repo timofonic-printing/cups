@@ -1,5 +1,5 @@
 /*
- * "$Id: ipp.c 10929 2013-04-01 18:49:19Z mike $"
+ * "$Id: ipp.c 11089 2013-07-03 16:39:38Z msweet $"
  *
  *   IPP backend for CUPS.
  *
@@ -366,7 +366,8 @@ main(int  argc,				/* I - Number of command-line args */
   * that way.
   */
 
-  if (!getuid() && (value = getenv("AUTH_UID")) != NULL)
+  if (!getuid() && (value = getenv("AUTH_UID")) != NULL &&
+      !getenv("AUTH_PASSWORD"))
   {
     uid_t	uid = (uid_t)atoi(value);
 					/* User ID */
@@ -431,7 +432,7 @@ main(int  argc,				/* I - Number of command-line args */
   if (!port)
     port = IPP_PORT;			/* Default to port 631 */
 
-  if (!strcmp(scheme, "https"))
+  if (!strcmp(scheme, "https") || !strcmp(scheme, "ipps"))
     cupsSetEncryption(HTTP_ENCRYPT_ALWAYS);
   else
     cupsSetEncryption(HTTP_ENCRYPT_IF_REQUESTED);
@@ -2601,17 +2602,27 @@ new_request(
                      "job-password-encryption", NULL, keyword);
       }
 
-      if (pc->account_id &&
-          (keyword = cupsGetOption("job-account-id", num_options,
-                                   options)) != NULL)
-        ippAddString(request, IPP_TAG_JOB, IPP_TAG_NAME, "job-account-id",
-                     NULL, keyword);
+      if (pc->account_id)
+      {
+        if ((keyword = cupsGetOption("job-account-id", num_options,
+				     options)) == NULL)
+	  keyword = cupsGetOption("job-billing", num_options, options);
 
-      if (pc->accounting_user_id &&
-          (keyword = cupsGetOption("job-accounting-user-id", num_options,
-                                   options)) != NULL)
-        ippAddString(request, IPP_TAG_JOB, IPP_TAG_NAME,
-                     "job-accounting-user-id", NULL, keyword);
+        if (keyword)
+	  ippAddString(request, IPP_TAG_JOB, IPP_TAG_NAME, "job-account-id",
+		       NULL, keyword);
+      }
+
+      if (pc->accounting_user_id)
+      {
+        if ((keyword = cupsGetOption("job-accounting-user-id", num_options,
+				     options)) == NULL)
+	  keyword = user;
+
+        if (keyword)
+	  ippAddString(request, IPP_TAG_JOB, IPP_TAG_NAME,
+		       "job-accounting-user-id", NULL, keyword);
+      }
 
       for (mandatory = (char *)cupsArrayFirst(pc->mandatory);
            mandatory;
@@ -3403,7 +3414,6 @@ run_as_user(char       *argv[],		/* I - Command-line arguments */
 
   if (conn)
   {
-    xpc_connection_suspend(conn);
     xpc_connection_cancel(conn);
     xpc_release(conn);
   }
@@ -3669,5 +3679,5 @@ update_reasons(ipp_attribute_t *attr,	/* I - printer-state-reasons or NULL */
 }
 
 /*
- * End of "$Id: ipp.c 10929 2013-04-01 18:49:19Z mike $".
+ * End of "$Id: ipp.c 11089 2013-07-03 16:39:38Z msweet $".
  */

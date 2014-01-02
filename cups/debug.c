@@ -1,5 +1,5 @@
 /*
- * "$Id: debug.c 10700 2012-11-15 21:01:21Z mike $"
+ * "$Id: debug.c 4027 2012-11-16 01:00:05Z msweet $"
  *
  *   Debugging functions for CUPS.
  *
@@ -650,5 +650,5 @@ _cups_debug_set(const char *logfile,	/* I - Log file or NULL */
 
 
 /*
- * End of "$Id: debug.c 10700 2012-11-15 21:01:21Z mike $".
+ * End of "$Id: debug.c 4027 2012-11-16 01:00:05Z msweet $".
  */

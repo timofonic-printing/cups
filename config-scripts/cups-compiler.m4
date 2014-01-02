@@ -1,5 +1,5 @@
 dnl
-dnl "$Id: cups-compiler.m4 10853 2013-01-31 16:27:05Z mike $"
+dnl "$Id: cups-compiler.m4 7871 2008-08-27 21:12:43Z mike $"
 dnl
 dnl   Compiler stuff for CUPS.
 dnl
@@ -291,5 +291,5 @@ case $uname in
 esac
 
 dnl
-dnl End of "$Id: cups-compiler.m4 10853 2013-01-31 16:27:05Z mike $".
+dnl End of "$Id: cups-compiler.m4 7871 2008-08-27 21:12:43Z mike $".
 dnl

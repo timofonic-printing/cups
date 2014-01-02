@@ -1,5 +1,5 @@
 /*
- * "$Id: usb-unix.c 10632 2012-10-01 04:07:51Z mike $"
+ * "$Id: usb-unix.c 10996 2013-05-29 11:51:34Z msweet $"
  *
  *   USB port backend for CUPS.
  *
@@ -612,5 +612,5 @@ side_cb(int         print_fd,		/* I - Print file */
 
 
 /*
- * End of "$Id: usb-unix.c 10632 2012-10-01 04:07:51Z mike $".
+ * End of "$Id: usb-unix.c 10996 2013-05-29 11:51:34Z msweet $".
  */

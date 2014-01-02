@@ -1,5 +1,5 @@
 /*
- * "$Id: testpwg.c 10895 2013-03-11 16:19:48Z mike $"
+ * "$Id: testpwg.c 11011 2013-06-05 17:25:22Z msweet $"
  *
  *   PWG test program for CUPS.
  *
@@ -169,6 +169,20 @@ main(int  argc,				/* I - Number of command-line args */
   }
   else
     puts("PASS");
+
+  fputs("pwgMediaForPWG(\"roll_max_36.1025x3622.0472in\"): ", stdout);
+  if ((pwgmedia = pwgMediaForPWG("roll_max_36.1025x3622.0472in")) == NULL)
+  {
+    puts("FAIL (not found)");
+    status ++;
+  }
+  else if (pwgmedia->width != 91700 || pwgmedia->length != 9199999)
+  {
+    printf("FAIL (%dx%d)\n", pwgmedia->width, pwgmedia->length);
+    status ++;
+  }
+  else
+    printf("PASS (%dx%d)\n", pwgmedia->width, pwgmedia->length);
 
   fputs("pwgMediaForLegacy(\"na-letter\"): ", stdout);
   if ((pwgmedia = pwgMediaForLegacy("na-letter")) == NULL)
@@ -521,5 +535,5 @@ test_ppd_cache(_ppd_cache_t *pc,	/* I - PWG mapping data */
 
 
 /*
- * End of "$Id: testpwg.c 10895 2013-03-11 16:19:48Z mike $".
+ * End of "$Id: testpwg.c 11011 2013-06-05 17:25:22Z msweet $".
  */

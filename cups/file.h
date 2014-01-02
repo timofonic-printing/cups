@@ -1,5 +1,5 @@
 /*
- * "$Id: file.h 9950 2011-09-01 23:02:24Z mike $"
+ * "$Id: file.h 10996 2013-05-29 11:51:34Z msweet $"
  *
  *   Public file definitions for CUPS.
  *
@@ -112,5 +112,5 @@ extern ssize_t		cupsFileWrite(cups_file_t *fp, const char *buf,
 #endif /* !_CUPS_FILE_H_ */
 
 /*
- * End of "$Id: file.h 9950 2011-09-01 23:02:24Z mike $".
+ * End of "$Id: file.h 10996 2013-05-29 11:51:34Z msweet $".
  */

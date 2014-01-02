@@ -1,5 +1,5 @@
 /*
- * "$Id: select.c 10632 2012-10-01 04:07:51Z mike $"
+ * "$Id: select.c 10999 2013-05-30 00:48:16Z msweet $"
  *
  *   Select abstraction functions for the CUPS scheduler.
  *
@@ -30,6 +30,7 @@
  */
 
 #include "cupsd.h"
+#undef HAVE_KQUEUE
 
 #ifdef HAVE_EPOLL
 #  include <sys/epoll.h>
@@ -812,7 +813,7 @@ cupsdRemoveSelect(int fd)		/* I - File descriptor */
 void
 cupsdStartSelect(void)
 {
-  cupsdLogMessage(CUPSD_LOG_DEBUG2, "cupsdStartSelect()");
+  cupsdLogMessage(CUPSD_LOG_DEBUG, "cupsdStartSelect()");
 
   cupsd_fds = cupsArrayNew((cups_array_func_t)compare_fds, NULL);
 
@@ -850,7 +851,7 @@ cupsdStopSelect(void)
   _cupsd_fd_t	*fdptr;			/* Current file descriptor */
 
 
-  cupsdLogMessage(CUPSD_LOG_DEBUG2, "cupsdStopSelect()");
+  cupsdLogMessage(CUPSD_LOG_DEBUG, "cupsdStopSelect()");
 
   for (fdptr = (_cupsd_fd_t *)cupsArrayFirst(cupsd_fds);
        fdptr;
@@ -946,5 +947,5 @@ find_fd(int fd)				/* I - File descriptor */
 
 
 /*
- * End of "$Id: select.c 10632 2012-10-01 04:07:51Z mike $".
+ * End of "$Id: select.c 10999 2013-05-30 00:48:16Z msweet $".
  */

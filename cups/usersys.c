@@ -1,5 +1,5 @@
 /*
- * "$Id: usersys.c 10902 2013-03-12 14:22:34Z mike $"
+ * "$Id: usersys.c 11113 2013-07-10 14:08:39Z msweet $"
  *
  *   User, system, and password routines for CUPS.
  *
@@ -370,6 +370,8 @@ cupsSetServer(const char *server)	/* I - Server name */
       else if (!strcmp(options, "version=2.2"))
         cg->server_version = 22;
     }
+    else
+      cg->server_version = 20;
 
     if (cg->server[0] != '/' && (port = strrchr(cg->server, ':')) != NULL &&
         !strchr(port, ']') && isdigit(port[1] & 255))
@@ -453,7 +455,7 @@ cupsSetUser(const char *user)		/* I - User name */
  * Setting the string to NULL forces the default value containing the CUPS
  * version, IPP version, and operating system version and architecture.
  *
- * @since CUPS 1.7@
+ * @since CUPS 1.7/OS X 10.9@
  */
 
 void
@@ -528,7 +530,7 @@ cupsUser(void)
 /*
  * 'cupsUserAgent()' - Return the default HTTP User-Agent string.
  *
- * @since CUPS 1.7@
+ * @since CUPS 1.7/OS X 10.9@
  */
 
 const char *				/* O - User-Agent string */
@@ -1135,5 +1137,5 @@ cups_read_client_conf(
 
 
 /*
- * End of "$Id: usersys.c 10902 2013-03-12 14:22:34Z mike $".
+ * End of "$Id: usersys.c 11113 2013-07-10 14:08:39Z msweet $".
  */
