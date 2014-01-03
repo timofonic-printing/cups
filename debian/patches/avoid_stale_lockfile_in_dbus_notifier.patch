@@ -1,7 +1,7 @@
 Description: Avoid stale lockfile in dbus notifier
 Bug-Redhat: https://bugzilla.redhat.com/bugzilla/show_bug.cgi?id=1026949
 Author: Tim Waugh <twaugh@redhat.com>
-Last-Updated: 2013-11-14
+Last-Updated: 2014-01-02
 
 --- a/notifier/dbus.c
 +++ b/notifier/dbus.c
@@ -49,7 +49,7 @@ Last-Updated: 2013-11-14
    }
  
    return (0);
-@@ -664,6 +669,26 @@
+@@ -664,6 +669,27 @@
  
  
  /*
@@ -70,13 +70,14 @@ Last-Updated: 2013-11-14
 +handle_sigterm(int signum)
 +{
 +  release_lock();
++  _exit (0);
 +}
 +
 +/*
   * 'acquire_lock()' - Acquire a lock so we only have a single notifier running.
   */
  
-@@ -672,7 +697,8 @@
+@@ -672,7 +698,8 @@
               char   *lockfile,		/* I - Lock filename buffer */
  	     size_t locksize)		/* I - Size of filename buffer */
  {
@@ -86,7 +87,7 @@ Last-Updated: 2013-11-14
  
  
   /*
-@@ -690,8 +716,16 @@
+@@ -690,8 +717,16 @@
  
    if ((*fd = open(lockfile, O_RDWR | O_CREAT | O_EXCL, S_IRUSR | S_IWUSR)) < 0)
      return (-1);
