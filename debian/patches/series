@@ -28,6 +28,7 @@ revert-upstream-change-to-FINAL_CONTENT_TYPE-to-fix-printing-to-remote-CUPS-serv
 avoid-sign-extending-CRCs-for-gz-decompression.patch
 build-with-full-relro.patch
 fix-job-history-logging.patch
+fix-stringpool-corruption.patch
 # Fix tests, should probably go upstream
 tests-ignore-warnings.patch
 tests-ignore-usb-crash.patch
