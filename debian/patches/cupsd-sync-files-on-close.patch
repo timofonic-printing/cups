@@ -1,0 +1,17 @@
+Description: Activate syncronisation of files in the CUPS daemon when
+ closing them, so that config files (like printers.conf) do not
+ mysteriously disappear.
+Bug-Ubuntu: https://launchpad.net/bugs/1157972
+Bug-RedHat: https://bugzilla.redhat.com/show_bug.cgi?id=984883
+Last-Update: 2013-09-15
+--- a/conf/cups-files.conf.in
++++ b/conf/cups-files.conf.in
+@@ -9,7 +9,7 @@
+ #FatalErrors @CUPS_FATAL_ERRORS@
+ 
+ # Do we call fsync() after writing configuration or status files?
+-#SyncOnClose No
++SyncOnClose Yes
+ 
+ # Default user and group for filters/backends/helper programs; this cannot be
+ # any user or group that resolves to ID 0 for security reasons...
