@@ -4,7 +4,7 @@ Bug-Debian: http://bugs.debian.org/478597
 
 --- a/man/Makefile
 +++ b/man/Makefile
-@@ -67,12 +67,18 @@
+@@ -68,12 +68,18 @@
  		lpmove.$(MAN8EXT) \
  		lpc.$(MAN8EXT)
  
@@ -44,7 +44,7 @@ Bug-Debian: http://bugs.debian.org/478597
  
  
  #
-@@ -207,6 +219,7 @@
+@@ -192,6 +199,7 @@
  	$(RM) $(AMANDIR)/man$(MAN8DIR)/reject.$(MAN8EXT)
  	$(RM) $(AMANDIR)/man$(MAN8DIR)/cupsdisable.$(MAN8EXT)
  	-$(RMDIR) $(AMANDIR)/man$(MAN8DIR)
