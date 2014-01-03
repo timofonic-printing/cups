@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: cups man pages 1.5.2-10\n"
-"POT-Creation-Date: 2014-01-03 13:37+0100\n"
+"POT-Creation-Date: 2014-01-03 18:24+0100\n"
 "PO-Revision-Date: 2013-10-12 13:42+0200\n"
 "Last-Translator: Helge Kreutzmann <debian@helgefjell.de>\n"
 "Language-Team: de <debian-l10n-german@lists.debian.org>\n"
@@ -4145,9 +4145,13 @@ msgstr "SyncOnClose No"
 
 #. type: Plain text
 #: cups-files.conf.man.in:130
+#, fuzzy
+#| msgid ""
+#| "Specifies whether the scheduler calls I<fsync(2)> after writing "
+#| "configuration or state files. The default is No."
 msgid ""
 "Specifies whether the scheduler calls I<fsync(2)> after writing "
-"configuration or state files. The default is No."
+"configuration or state files. The default is Yes."
 msgstr ""
 "Spezifiziert, ob der Auftragsplaner nach dem Schreiben der Konfigurations- "
 "oder Zustandsdateien I<fsync(2)> aufruft. Standardmäßig »No«."
