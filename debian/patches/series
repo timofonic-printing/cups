@@ -26,6 +26,7 @@ dont-use-dbus-from-two-threads.patch
 fixes-for-jobs-with-multiple-files-and-multiple-formats.patch
 revert-upstream-change-to-FINAL_CONTENT_TYPE-to-fix-printing-to-remote-CUPS-servers.patch
 avoid-sign-extending-CRCs-for-gz-decompression.patch
+build-with-full-relro.patch
 # Fix tests, should probably go upstream
 tests-ignore-warnings.patch
 tests-ignore-usb-crash.patch
