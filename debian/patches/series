@@ -30,6 +30,7 @@ build-with-full-relro.patch
 fix-job-history-logging.patch
 fix-stringpool-corruption.patch
 prevent-USB-timeouts-causing-incorrect-print-output.patch
+fix-template.c-typo.patch
 # Fix tests, should probably go upstream
 tests-ignore-warnings.patch
 tests-ignore-usb-crash.patch
