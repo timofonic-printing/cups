@@ -44,8 +44,8 @@ endif
 		--enable-slp \
 		--enable-libpaper \
 		--enable-ssl \
-		--enable-gnutls \
-		--disable-openssl \
+		--disable-gnutls \
+		--enable-openssl \
 		--enable-threads \
 		--enable-static \
 		--enable-debug \
