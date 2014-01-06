@@ -1,7 +1,6 @@
 # patches accepted and committed upstream:
 
 # patches sent upstream
-get-ppd-file-for-statically-configured-ipp-shared-queues.patch
 pidfile.patch
 ppd-poll-with-client-conf.patch
 manpage-hyphen-minus.patch
