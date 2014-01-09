@@ -1,20 +1,48 @@
 Description: Avoid stale lockfile in dbus notifier
 Bug-Redhat: https://bugzilla.redhat.com/bugzilla/show_bug.cgi?id=1026949
+Bug-Upstream: https://www.cups.org/str.php?L4314
 Author: Tim Waugh <twaugh@redhat.com>
-Last-Updated: 2014-01-02
+Author: Michael Sweet <msweet@apple.com>
+Last-Updated: 2014-01-09
 
 --- a/notifier/dbus.c
 +++ b/notifier/dbus.c
-@@ -4,7 +4,7 @@
-  *   D-Bus notifier for CUPS.
+@@ -1,23 +1,18 @@
+ /*
+  * "$Id: dbus.c 3933 2012-10-01 03:01:10Z msweet $"
   *
-  *   Copyright 2008-2012 by Apple Inc.
+- *   D-Bus notifier for CUPS.
++ * D-Bus notifier for CUPS.
+  *
+- *   Copyright 2008-2012 by Apple Inc.
 - *   Copyright (C) 2011 Red Hat, Inc.
-+ *   Copyright (C) 2011, 2013 Red Hat, Inc.
-  *   Copyright (C) 2007 Tim Waugh <twaugh@redhat.com>
-  *   Copyright 1997-2005 by Easy Software Products.
-  *
-@@ -157,9 +157,16 @@
+- *   Copyright (C) 2007 Tim Waugh <twaugh@redhat.com>
+- *   Copyright 1997-2005 by Easy Software Products.
+- *
+- *   These coded instructions, statements, and computer programs are the
+- *   property of Apple Inc. and are protected by Federal copyright
+- *   law.  Distribution and use rights are outlined in the file "LICENSE.txt"
+- *   which should have been included with this file.  If this file is
+- *   file is missing or damaged, see the license at "http://www.cups.org/".
+- *
+- * Contents:
+- *
+- *   main()         - Read events and send DBUS notifications.
+- *   acquire_lock() - Acquire a lock so we only have a single notifier running.
++ * Copyright 2008-2014 by Apple Inc.
++ * Copyright (C) 2011, 2013 Red Hat, Inc.
++ * Copyright (C) 2007 Tim Waugh <twaugh@redhat.com>
++ * Copyright 1997-2005 by Easy Software Products.
++ *
++ * These coded instructions, statements, and computer programs are the
++ * property of Apple Inc. and are protected by Federal copyright
++ * law.  Distribution and use rights are outlined in the file "LICENSE.txt"
++ * which should have been included with this file.  If this file is
++ * file is missing or damaged, see the license at "http://www.cups.org/".
+  */
+ 
+ /*
+@@ -157,6 +152,13 @@
  
  
  /*
@@ -23,15 +51,12 @@ Last-Updated: 2014-01-02
 +
 +static char		lock_filename[1024];	/* Lock filename */
 +
++
 +/*
   * Local functions...
   */
  
-+static void		release_lock(void);
- static int		acquire_lock(int *fd, char *lockfile, size_t locksize);
- static const char	*validate_utf8(const char *str);
- 
-@@ -253,8 +260,6 @@
+@@ -253,8 +255,6 @@
    DBusMessage		*message;	/* Message to send */
    DBusMessageIter	iter;		/* Iterator for message data */
    int			lock_fd = -1;	/* Lock file descriptor */
@@ -40,7 +65,7 @@ Last-Updated: 2014-01-02
  
  
   /*
-@@ -656,7 +661,7 @@
+@@ -656,7 +656,7 @@
    if (lock_fd >= 0)
    {
      close(lock_fd);
@@ -49,7 +74,7 @@ Last-Updated: 2014-01-02
    }
  
    return (0);
-@@ -664,6 +669,27 @@
+@@ -664,6 +664,27 @@
  
  
  /*
@@ -70,14 +95,14 @@ Last-Updated: 2014-01-02
 +handle_sigterm(int signum)
 +{
 +  release_lock();
-+  _exit (0);
++  _exit(0);
 +}
 +
 +/*
   * 'acquire_lock()' - Acquire a lock so we only have a single notifier running.
   */
  
-@@ -672,7 +698,8 @@
+@@ -672,7 +693,8 @@
               char   *lockfile,		/* I - Lock filename buffer */
  	     size_t locksize)		/* I - Size of filename buffer */
  {
@@ -87,7 +112,7 @@ Last-Updated: 2014-01-02
  
  
   /*
-@@ -690,8 +717,16 @@
+@@ -690,8 +712,16 @@
  
    if ((*fd = open(lockfile, O_RDWR | O_CREAT | O_EXCL, S_IRUSR | S_IWUSR)) < 0)
      return (-1);
