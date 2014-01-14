@@ -9,6 +9,7 @@ rootbackends-worldreadable.patch
 # patches which should go upstream
 color-management-extension.patch
 airprint-support.patch
+move-cupsd-conf-default-to-share.patch
 removecvstag.patch
 no-conffile-timestamp.patch
 drop_unnecessary_dependencies.patch
