@@ -11,6 +11,7 @@ Uploaders:
  Didier Raboud <odyx@debian.org>
 Build-Depends: 
  debhelper (>= 9~),
+ dh-apparmor,
  dpkg-dev (>= 1.16.1~),
  patch,
  autoconf, 
