@@ -1,12 +1,12 @@
 cups (1.7.1-3) UNRELEASED; urgency=low
 
-  * Splitted binary package "cups" into "cups" and "cups-ppd-less". In
+  * Splitted binary package "cups" into "cups" and "cups-core-drivers". In
     low-footprint (mobile) environments we can restrict the printer
     support to only IPP printers with known common languages (PDF,
     PostScript, PWG Raster, PCL) to get rid of the heavy load of drivers
     and PPDs for thousands of printers. From CUPS we need only the
-    "cups-daemon" and "cups-ppd-less" (plus library packages) then.
-    "cups-ppd-less" currently only contains the gziptoany and pstops
+    "cups-daemon" and "cups-core-drivers" (plus library packages) then.
+    "cups-core-drivers" currently only contains the gziptoany and pstops
     filters.
 
  -- Till Kamppeter <till.kamppeter@gmail.com>  Thu, 16 Jan 2014 21:34:01 +0100

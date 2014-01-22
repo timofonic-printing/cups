@@ -137,7 +137,7 @@ Pre-Depends: ${misc:Pre-Depends}
 Depends: ${shlibs:Depends},
  ${misc:Depends},
  libc-bin (>= 2.13),
- cups-ppd-less (>= ${binary:Version}),
+ cups-core-drivers (>= ${binary:Version}),
  cups-daemon (>= ${binary:Version}),
  debconf (>= 1.2.9) | debconf-2.0,
  poppler-utils (>= 0.12),
@@ -174,14 +174,14 @@ Description: Common UNIX Printing System(tm) - PPD/driver support, web interface
  This package provides the parts of CUPS which are needed for using printer
  drivers.
 
-Package: cups-ppd-less
+Package: cups-core-drivers
 Architecture: any
 Pre-Depends: ${misc:Pre-Depends}
 Depends: ${shlibs:Depends},
  ${misc:Depends},
  cups-daemon (>= ${binary:Version}),
  libcups2 (= ${binary:Version}),
- cups-filters-ppd-less (>= 1.0.24-3~)
+ cups-filters-core-drivers (>= 1.0.24-3~)
 Recommends: avahi-daemon
 Replaces: cups (<= 1.7.1-2)
 Breaks: cups (<= 1.7.1-2)
