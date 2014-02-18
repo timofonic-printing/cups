@@ -12,6 +12,7 @@ prevent-dnssd-backend-exiting-too-early.patch
 
 # patches which should go upstream
 color-management-extension.patch
+systemd-optional-socket-activation.patch
 # Fix tests, should probably go upstream
 tests-ignore-warnings.patch
 tests-ignore-usb-crash.patch

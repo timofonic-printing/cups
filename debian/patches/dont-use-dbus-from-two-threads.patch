@@ -608,7 +608,7 @@ Last-Updated: 2013-11-28
      }
  #  endif /* HAVE_DNSSD */
  
-@@ -754,9 +752,7 @@
+@@ -748,9 +746,7 @@
    DNSServiceRefDeallocate(*srv);
  
  #  else /* HAVE_AVAHI */
@@ -618,7 +618,7 @@ Last-Updated: 2013-11-28
  #  endif /* HAVE_DNSSD */
  
    *srv = NULL;
-@@ -1051,14 +1047,10 @@
+@@ -1045,14 +1041,10 @@
    (void)commit;
  
  #  else /* HAVE_AVAHI */
@@ -633,7 +633,7 @@ Last-Updated: 2013-11-28
      cupsdLogMessage(CUPSD_LOG_WARN, "DNS-SD registration of \"%s\" failed: %s",
                      name, dnssdErrorString(avahi_client_errno(DNSSDClient)));
      return (0);
-@@ -1173,8 +1165,6 @@
+@@ -1167,8 +1159,6 @@
        cupsdLogMessage(CUPSD_LOG_DEBUG, "DNS-SD commit of \"%s\" failed.",
                        name);
    }
@@ -642,7 +642,7 @@ Last-Updated: 2013-11-28
  #  endif /* HAVE_DNSSD */
  
    if (error)
-@@ -1341,12 +1331,10 @@
+@@ -1335,12 +1325,10 @@
    DNSSDMaster = NULL;
  
  #  else /* HAVE_AVAHI */
