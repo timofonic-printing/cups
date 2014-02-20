@@ -258,7 +258,7 @@ Last-Update: 2014-02-18
  static void		parent_handler(int sig);
  static void		process_children(void);
  static void		sigchld_handler(int sig);
-@@ -568,6 +577,14 @@
+@@ -599,6 +608,14 @@
    }
  #endif /* HAVE_LAUNCHD */
  
@@ -273,7 +273,7 @@ Last-Update: 2014-02-18
   /*
    * Startup the server...
    */
-@@ -764,6 +781,16 @@
+@@ -795,6 +812,16 @@
  	}
  #endif /* HAVE_LAUNCHD */
  
@@ -290,7 +290,7 @@ Last-Update: 2014-02-18
         /*
          * Startup the server...
          */
-@@ -1523,6 +1550,104 @@
+@@ -1588,6 +1615,104 @@
  }
  #endif /* HAVE_LAUNCHD */
  

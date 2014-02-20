@@ -12,6 +12,7 @@ fix-template.c-typo.patch
 
 # patches which should go upstream
 color-management-extension.patch
+cupsd-exit-on-idle.patch
 systemd-optional-socket-activation.patch
 # Fix tests, should probably go upstream
 tests-ignore-warnings.patch
