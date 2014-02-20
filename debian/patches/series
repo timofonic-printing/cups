@@ -1,4 +1,5 @@
 # patches accepted and committed upstream:
+prevent-dnssd-backend-exiting-too-early.patch
 
 # patches sent upstream
 manpage-hyphen-minus.patch
@@ -8,7 +9,6 @@ dont-use-dbus-from-two-threads.patch
 fixes-for-jobs-with-multiple-files-and-multiple-formats.patch
 build-with-full-relro.patch
 fix-template.c-typo.patch
-prevent-dnssd-backend-exiting-too-early.patch
 
 # patches which should go upstream
 color-management-extension.patch
