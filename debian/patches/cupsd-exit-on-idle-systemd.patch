@@ -1,0 +1,19 @@
+Description: When cupsd is started by systemd, let it die after 30 seconds by default
+Author: Didier Raboud <odyx@debian.org>
+Last-Update: 2013-02-23
+--- a/scheduler/main.c
++++ b/scheduler/main.c
+@@ -1748,6 +1748,13 @@
+ #  endif /* HAVE_SSL */
+   }
+ 
++  /* As we are started on-demand, stop on idle */
++  if (!ExitOnIdleTimeout)
++    ExitOnIdleTimeout = 30;
++
++  cupsdLogMessage(CUPSD_LOG_DEBUG, "systemd_checkin: Activate exit-on-idle mode, timeout: %d seconds.",
++                      ExitOnIdleTimeout);
++
+   return (0);
+ }
+ #endif /* HAVE_SYSTEMD */
