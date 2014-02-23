@@ -57,7 +57,7 @@ Last-Update: 2014-02-14
  #if HAVE_LAUNCHD
    int			launchd_idle_exit;
  					/* Idle exit on select timeout? */
-@@ -170,6 +174,11 @@
+@@ -166,6 +170,11 @@
  
    fg = 0;
  
@@ -69,7 +69,7 @@ Last-Update: 2014-02-14
  #ifdef HAVE_LAUNCHD
    if (getenv("CUPSD_LAUNCHD"))
    {
-@@ -311,6 +320,21 @@
+@@ -307,6 +316,21 @@
  	      fg             = 1;
  	      break;
  
@@ -91,7 +91,7 @@ Last-Update: 2014-02-14
  	  default : /* Unknown option */
                _cupsLangPrintf(stderr, _("cupsd: Unknown option \"%c\" - "
  	                                "aborting."), *opt);
-@@ -548,6 +572,13 @@
+@@ -552,6 +576,13 @@
    }
  
   /*
@@ -105,7 +105,7 @@ Last-Update: 2014-02-14
    * Clean out old temp files and printer cache data.
    */
  
-@@ -793,6 +824,26 @@
+@@ -789,6 +820,26 @@
      if ((timeout = select_timeout(fds)) > 1 && LastEvent)
        timeout = 1;
  
@@ -132,7 +132,7 @@ Last-Update: 2014-02-14
  #if HAVE_LAUNCHD
     /*
      * If no other work is scheduled and we're being controlled by
-@@ -916,6 +967,20 @@
+@@ -902,6 +953,20 @@
      }
  #endif /* !__APPLE__ */
  

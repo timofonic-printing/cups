@@ -258,7 +258,7 @@ Last-Update: 2014-02-18
  static void		parent_handler(int sig);
  static void		process_children(void);
  static void		sigchld_handler(int sig);
-@@ -599,6 +608,14 @@
+@@ -603,6 +612,14 @@
    }
  #endif /* HAVE_LAUNCHD */
  
@@ -273,7 +273,7 @@ Last-Update: 2014-02-18
   /*
    * Startup the server...
    */
-@@ -795,6 +812,16 @@
+@@ -791,6 +808,16 @@
  	}
  #endif /* HAVE_LAUNCHD */
  
@@ -290,7 +290,7 @@ Last-Update: 2014-02-18
         /*
          * Startup the server...
          */
-@@ -1588,6 +1615,104 @@
+@@ -1574,6 +1601,104 @@
  }
  #endif /* HAVE_LAUNCHD */
  
@@ -397,7 +397,7 @@ Last-Update: 2014-02-18
   * 'parent_handler()' - Catch USR1/CHLD signals...
 --- a/scheduler/Makefile
 +++ b/scheduler/Makefile
-@@ -383,7 +383,7 @@
+@@ -381,7 +381,7 @@
  	$(CC) $(LDFLAGS) -o cupsd $(CUPSDOBJS) -L. -lcupsmime \
  		$(LIBZ) $(SSLLIBS) $(LIBSLP) $(LIBLDAP) $(PAMLIBS) \
  		$(LIBPAPER) $(LIBMALLOC) $(SERVERLIBS) $(DNSSDLIBS) $(LIBS) \
@@ -406,7 +406,7 @@ Last-Update: 2014-02-18
  
  cupsd-static:	$(CUPSDOBJS) libcupsmime.a ../cups/$(LIBCUPSSTATIC)
  	echo Linking $@...
-@@ -391,7 +391,7 @@
+@@ -389,7 +389,7 @@
  		$(LIBZ) $(SSLLIBS) $(LIBSLP) $(LIBLDAP) $(PAMLIBS) \
  		../cups/$(LIBCUPSSTATIC) $(COMMONLIBS) $(LIBZ) $(LIBPAPER) \
  		$(LIBMALLOC) $(SERVERLIBS) $(DNSSDLIBS) $(LIBGSSAPI) \

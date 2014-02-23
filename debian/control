@@ -24,7 +24,7 @@ Build-Depends:
  libavahi-client-dev,
  libavahi-common-dev,
  libavahi-compat-libdnssd-dev,
- libdbus-1-dev,
+ libdbus-1-dev (>= 1.0.2),
  libfontconfig1-dev,
  libfreetype6-dev,
  libgnutls-dev, 

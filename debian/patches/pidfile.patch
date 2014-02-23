@@ -54,7 +54,7 @@ Last-Update: 2012-11-29
  
  
  /*
-@@ -705,6 +707,11 @@
+@@ -701,6 +703,11 @@
      cupsdStartSystemMonitor();
  #endif /* __APPLE__ */
  
@@ -66,7 +66,7 @@ Last-Update: 2012-11-29
   /*
    * Send server-started event...
    */
-@@ -1254,10 +1261,41 @@
+@@ -1240,10 +1247,41 @@
  
    cupsdStopSelect();
  
