@@ -2,11 +2,11 @@
 cupsd-support-avahi-daemon-restarting.patch
 prevent-dnssd-backend-exiting-too-early.patch
 fix-a-dbus-threading-issue-that-caused-the-scheduler-to-crash.patch
+ipptool-doco-updates.patch
 
 # patches sent upstream
 manpage-hyphen-minus.patch
 rootbackends-worldreadable.patch
-mention-rfc2911-in-ipptoolfile-for-clarity.patch
 fixes-for-jobs-with-multiple-files-and-multiple-formats.patch
 build-with-full-relro.patch
 fix-template.c-typo.patch
