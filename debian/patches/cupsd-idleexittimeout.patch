@@ -1,20 +1,19 @@
 Description: Add mode to let cupsd terminate when it is idle,
  also for running CUPS on-demand. If the mode is activated, either by
- ExitOnIdleTimeout=TIMEOUT in cupsd.conf, by "-x TIMEOUT" on the cupsd
- command line or by setting the env variable CUPSD_EXIT_ON_IDLE_TIMEOUT=
- TIMEOUT (With TIMEOUT in all theree cases the idle timeout in seconds,
+ IdleExitTimeout=TIMEOUT in cupsd.conf, by "-x TIMEOUT" on the cupsd
+ command line (With TIMEOUT in both cases the idle timeout in seconds,
  0 turning off the feature, off by default), cupsd terminates when it
  is idle (no jobs, no shared printers) for the given timeout.
 Author: Till Kamppeter <till.kamppeter@gmail.com>
 Bug: https://cups.org/str.php?L4374
-Last-Update: 2014-02-14
+Last-Update: 2014-02-24
 --- a/scheduler/conf.c
 +++ b/scheduler/conf.c
 @@ -79,6 +79,7 @@
    { "DefaultShared",		&DefaultShared,		CUPSD_VARTYPE_BOOLEAN },
    { "DirtyCleanInterval",	&DirtyCleanInterval,	CUPSD_VARTYPE_TIME },
    { "ErrorPolicy",		&ErrorPolicy,		CUPSD_VARTYPE_STRING },
-+  { "ExitOnIdleTimeout",	&ExitOnIdleTimeout,	CUPSD_VARTYPE_TIME },
++  { "IdleExitTimeout",		&IdleExitTimeout,	CUPSD_VARTYPE_TIME },
    { "FilterLimit",		&FilterLimit,		CUPSD_VARTYPE_INTEGER },
    { "FilterNice",		&FilterNice,		CUPSD_VARTYPE_INTEGER },
  #ifdef HAVE_GSSAPI
@@ -22,7 +21,7 @@ Last-Update: 2014-02-14
    MaxSubscriptionsPerUser    = 0;
    DefaultLeaseDuration       = 86400;
    MaxLeaseDuration           = 0;
-+  ExitOnIdleTimeout          = 0;
++  IdleExitTimeout            = 0;
  
  #ifdef HAVE_LAUNCHD
    LaunchdTimeout = 10;
@@ -32,7 +31,7 @@ Last-Update: 2014-02-14
  					/* SSL/TLS options */
  #endif /* HAVE_SSL */
  
-+VAR int			ExitOnIdleTimeout	VALUE(0);
++VAR int			IdleExitTimeout		VALUE(0);
 +					/* Time after which an idle cupsd will exit */
 +
  #ifdef HAVE_LAUNCHD
@@ -40,16 +39,15 @@ Last-Update: 2014-02-14
  					/* Time after which an idle cupsd will exit */
 --- a/scheduler/main.c
 +++ b/scheduler/main.c
-@@ -117,6 +117,8 @@
+@@ -117,6 +117,7 @@
       char *argv[])			/* I - Command-line arguments */
  {
    int			i;		/* Looping var */
-+  char			*val;		/* Value of environment variable */
 +  int			t = -1;		/* Timeout */
    char			*opt;		/* Option character */
    int			fg;		/* Run in the foreground */
    int			fds;		/* Number of ready descriptors */
-@@ -142,6 +144,8 @@
+@@ -142,6 +143,8 @@
  #else
    time_t		netif_time = 0;	/* Time since last network update */
  #endif /* __APPLE__ */
@@ -58,19 +56,7 @@ Last-Update: 2014-02-14
  #if HAVE_LAUNCHD
    int			launchd_idle_exit;
  					/* Idle exit on select timeout? */
-@@ -166,6 +170,11 @@
- 
-   fg = 0;
- 
-+  if (val = getenv("CUPSD_EXIT_ON_IDLE_TIMEOUT"))
-+  {
-+    t = atoi(val);
-+  }
-+
- #ifdef HAVE_LAUNCHD
-   if (getenv("CUPSD_LAUNCHD"))
-   {
-@@ -307,6 +316,21 @@
+@@ -307,6 +310,21 @@
  	      fg             = 1;
  	      break;
  
@@ -92,36 +78,36 @@ Last-Update: 2014-02-14
  	  default : /* Unknown option */
                _cupsLangPrintf(stderr, _("cupsd: Unknown option \"%c\" - "
  	                                "aborting."), *opt);
-@@ -552,6 +576,13 @@
+@@ -552,6 +570,13 @@
    }
  
   /*
-+  * Exit-on-idle timeout set by command line or environment variable
++  * Exit-on-idle timeout set by command line or configuration file
 +  */
 +
 +  if (t >= 0)
-+    ExitOnIdleTimeout = t;
++    IdleExitTimeout = t;
 +
 + /*
    * Clean out old temp files and printer cache data.
    */
  
-@@ -789,6 +820,26 @@
+@@ -789,6 +814,26 @@
      if ((timeout = select_timeout(fds)) > 1 && LastEvent)
        timeout = 1;
  
 +   /*
 +    * If no other work is scheduled and we've set the exit-on-idle timeout
-+    * then timeout after 'ExitOnIdleTimeout' seconds of inactivity...
++    * then timeout after 'IdleExitTimeout' seconds of inactivity...
 +    */
 +
-+    if (ExitOnIdleTimeout && timeout >= ExitOnIdleTimeout &&
++    if (IdleExitTimeout && timeout >= IdleExitTimeout &&
 +        !cupsArrayCount(ActiveJobs) &&
 +	(!Browsing || !BrowseLocalProtocols || !cupsArrayCount(Printers)))
 +    {
 +      cupsdLogMessage(CUPSD_LOG_DEBUG, "cupsd is idle, scheduling shutdown in %d seconds.",
-+                      ExitOnIdleTimeout);
-+      timeout		= ExitOnIdleTimeout;
++                      IdleExitTimeout);
++      timeout		= IdleExitTimeout;
 +      idle_exit = 1;
 +    }
 +    else
@@ -133,13 +119,13 @@ Last-Update: 2014-02-14
  #if HAVE_LAUNCHD
     /*
      * If no other work is scheduled and we're being controlled by
-@@ -902,6 +953,20 @@
+@@ -902,6 +947,20 @@
      }
  #endif /* !__APPLE__ */
  
 +   /*
 +    * If no other work is scheduled and we've set the exit-on-idle timeout
-+    * then timeout after 'ExitOnIdleTimeout' seconds of inactivity...
++    * then timeout after 'IdleExitTimeout' seconds of inactivity...
 +    */
 +
 +    if (!fds && idle_exit)

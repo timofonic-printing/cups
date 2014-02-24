@@ -41,7 +41,7 @@ Last-Update: 2012-11-29
 +VAR char		*PidFile		VALUE(NULL);
 +					/* Debian CUPS pid file */
  
- VAR int			ExitOnIdleTimeout	VALUE(0);
+ VAR int			IdleExitTimeout		VALUE(0);
  					/* Time after which an idle cupsd will exit */
 --- a/scheduler/main.c
 +++ b/scheduler/main.c
@@ -54,7 +54,7 @@ Last-Update: 2012-11-29
  
  
  /*
-@@ -701,6 +703,11 @@
+@@ -695,6 +697,11 @@
      cupsdStartSystemMonitor();
  #endif /* __APPLE__ */
  
@@ -66,7 +66,7 @@ Last-Update: 2012-11-29
   /*
    * Send server-started event...
    */
-@@ -1240,10 +1247,41 @@
+@@ -1234,10 +1241,41 @@
  
    cupsdStopSelect();
  
