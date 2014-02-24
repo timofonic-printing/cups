@@ -6,6 +6,7 @@ Description: Add mode to let cupsd terminate when it is idle,
  0 turning off the feature, off by default), cupsd terminates when it
  is idle (no jobs, no shared printers) for the given timeout.
 Author: Till Kamppeter <till.kamppeter@gmail.com>
+Bug: https://cups.org/str.php?L4374
 Last-Update: 2014-02-14
 --- a/scheduler/conf.c
 +++ b/scheduler/conf.c
