@@ -245,8 +245,7 @@ Depends: ${shlibs:Depends}, ${misc:Depends},
  cups-common (>= ${source:Version}),
  libcups2 (= ${binary:Version}),
  adduser
-Recommends: smbclient
-Suggests: cups, xpp, cups-bsd
+Suggests: cups, xpp, cups-bsd, smbclient
 Conflicts: lprng
 Multi-Arch: foreign
 Description: Common UNIX Printing System(tm) - client programs (SysV)
