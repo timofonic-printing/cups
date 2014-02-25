@@ -41,7 +41,6 @@ endif
 	dh_auto_configure -- \
 		--with-docdir=/usr/share/cups/doc-root \
 		--localedir=/usr/share/cups/locale \
-		--enable-slp \
 		--enable-libpaper \
 		--enable-ssl \
 		--enable-gnutls \
@@ -53,7 +52,6 @@ endif
 		--with-dbusdir=/etc/dbus-1 \
 		--enable-gssapi \
 		--enable-avahi \
-		--with-pdftops=/usr/bin/gs \
 		--disable-launchd \
 		--with-cups-group=lp \
 		--with-system-groups=lpadmin \
