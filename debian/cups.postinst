@@ -7,8 +7,11 @@ set -e
 
 if [ "$1" = configure ]; then
     # set up custom PPD directory
-    chown root:lpadmin /usr/share/ppd/custom 2>/dev/null || true
-    chmod 3775 /usr/share/ppd/custom 2>/dev/null || true
+    if ! dpkg-statoverride --list /usr/share/ppd/custom > /dev/null
+    then
+        chown root:lpadmin /usr/share/ppd/custom 2>/dev/null || true
+        chmod 3775 /usr/share/ppd/custom 2>/dev/null || true
+    fi
 
     # Generate raw MIME handling files if they don't already exist.
     if [ ! -e /etc/cups/raw.types ]; then

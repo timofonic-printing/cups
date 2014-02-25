@@ -8,12 +8,12 @@ if [ "$1" = configure ]; then
 	addgroup --system lpadmin
     fi
 
-    if [ -f /etc/cups/classes.conf ]; then
-      chown root:lp /etc/cups/classes.conf ; chmod 600 /etc/cups/classes.conf
-    fi
-    if [ -f /etc/cups/printers.conf ]; then
-      chown root:lp /etc/cups/printers.conf ; chmod 600 /etc/cups/printers.conf
-    fi
+    for i in /etc/cups/classes.conf /etc/cups/printers.conf
+    do
+        if [ -f $i ] && ! dpkg-statoverride --list $i > /dev/null; then
+            chown root:lp $i; chmod 600 $i
+        fi
+    done
 
     # symlink snakeoil SSL certificate if present
     if [ -e /etc/ssl/certs/ssl-cert-snakeoil.pem -a \
