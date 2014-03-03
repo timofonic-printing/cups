@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cups man pages 1.7.1-2\n"
 "POT-Creation-Date: 2014-02-23 15:37+0100\n"
-"PO-Revision-Date: 2014-01-18 20:46+0100\n"
+"PO-Revision-Date: 2014-03-03 19:49+0100\n"
 "Last-Translator: Helge Kreutzmann <debian@helgefjell.de>\n"
 "Language-Team: de <debian-l10n-german@lists.debian.org>\n"
 "Language: de\n"
@@ -6576,46 +6576,32 @@ msgstr ""
 msgid "The following options are recognized by I<ipptool>:"
 msgstr "Die folgenden Optionen werden von I<ipptool> erkannt:"
 
-# type: Plain text
 #. type: Plain text
 #: ipptool.man:45
-#, fuzzy
-#| msgid "Shows the program usage."
 msgid "Shows program help."
-msgstr "Zeigt die Programm-Verwendung."
+msgstr "Zeigt die Programmhilfe."
 
 #. type: TP
 #: ipptool.man:45
 #, no-wrap
 msgid "--stop-after-include-error"
-msgstr ""
+msgstr "--stop-after-include-error"
 
-# FIXME: Fehler in der Formatierung?
 #. type: Plain text
 #: ipptool.man:48
-#, fuzzy
-#| msgid ""
-#| "Shows program help.  --stop-after-include-error Tells I<ipptool> to stop "
-#| "if an error occurs in an included file. Normally I<ipptool> will continue "
-#| "with subsequent tests after the INCLUDE directive.  --version Shows the "
-#| "version of I<ipptool> being used."
 msgid ""
 "Tells I<ipptool> to stop if an error occurs in an included file. Normally "
 "I<ipptool> will continue with subsequent tests after the INCLUDE directive."
 msgstr ""
-"Zeigt die Programmhilfe.  --stop-after-include-error  Teilt I<ipptool> mit, "
+"Teilt I<ipptool> mit, "
 "abzubrechen, falls ein Fehler in der eingebundenen Datei auftritt. "
-"Normalerweise wird I<ipptool> mit folgenden Tests nachd der INCLUDE-"
-"Direktive fortfahren.   --version Zeigt die verwandte Version von I<ipptool> "
-"an."
+"Normalerweise wird I<ipptool> mit folgenden Tests nach der INCLUDE-"
+"Direktive fortfahren."
 
-# type: Plain text
 #. type: Plain text
 #: ipptool.man:51
-#, fuzzy
-#| msgid "Shows the ranking of print jobs."
 msgid "Shows the version of I<ipptool> being used."
-msgstr "Zeigt die Rangordnung der Druckaufträge."
+msgstr "Zeigt die verwandte Version von I<ipptool> an."
 
 #. type: TP
 #: ipptool.man:51
@@ -6969,25 +6955,19 @@ msgstr ""
 
 #. type: Plain text
 #: ipptool.man:156
-#, fuzzy
-#| msgid "I<ipptoolfile(5)>,"
 msgid "I<ipptoolfile(5)>, RFC 2911,"
-msgstr "I<ipptoolfile(5)>,"
+msgstr "I<ipptoolfile(5)>, RFC 2911,"
 
 #. type: Plain text
 #: ipptool.man:160 ipptoolfile.man:622
 msgid "http://www.iana.org/assignments/ipp-registrations"
-msgstr ""
+msgstr "http://www.iana.org/assignments/ipp-registrations"
 
-# type: Plain text
 #. type: Plain text
 #: ipptool.man:162 ipptoolfile.man:624
-#, fuzzy
-#| msgid "http://www.cups.org/windows/"
 msgid "http://www.pwg.org/ipp"
-msgstr "http://www.cups.org/windows/"
+msgstr "http://www.pwg.org/ipp"
 
-# type: Plain text
 #. type: Plain text
 #: ipptool.man:163 ipptoolfile.man:625
 msgid "Copyright 2007-2014 by Apple Inc."
@@ -7433,6 +7413,7 @@ msgstr "Die nachfolgenden Direktiven werden in einem Test verstanden:"
 msgid "ATTR tag attribute-name value(s)"
 msgstr "ATTR Markierung Attributname Wert(e)"
 
+# FIXME Broken man page?
 #.  character. Common attributes and values are listed in the IANA IPP registry \- see references below.
 #. type: Plain text
 #: ipptoolfile.man:156
@@ -8817,10 +8798,8 @@ msgstr ""
 
 #. type: Plain text
 #: ipptoolfile.man:618
-#, fuzzy
-#| msgid "I<ipptool(1)>,"
 msgid "I<ipptool(1)>, RFC 2911,"
-msgstr "I<ipptool(1)>,"
+msgstr "I<ipptool(1)>, RFC 2911,"
 
 #. type: TH
 #: lpadmin.man:15
