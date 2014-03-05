@@ -1,4 +1,5 @@
 # patches accepted and committed upstream:
+cupsenumdests-does-not-set-cb.patch
 cupsd-support-avahi-daemon-restarting.patch
 prevent-dnssd-backend-exiting-too-early.patch
 fix-a-dbus-threading-issue-that-caused-the-scheduler-to-crash.patch
