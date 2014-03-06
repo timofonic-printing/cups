@@ -1,5 +1,6 @@
 # patches accepted and committed upstream:
 fix-race-condition-in-cupsdoiorequest.patch
+fix-cupsdgetprivateattrs-function-missing-null-check.patch
 cupsenumdests-does-not-set-cb.patch
 cupsd-support-avahi-daemon-restarting.patch
 prevent-dnssd-backend-exiting-too-early.patch
