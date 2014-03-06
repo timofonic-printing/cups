@@ -6,7 +6,7 @@ Bug: https://cups.org/str.php?L4380
 Last-Update: 2014-03-05
 --- a/cups/dest.c
 +++ b/cups/dest.c
-@@ -953,11 +953,11 @@
+@@ -982,11 +982,11 @@
    * Get Bonjour-shared printers...
    */
  
