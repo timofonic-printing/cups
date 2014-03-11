@@ -56,6 +56,7 @@ cupsd-set-default-for-SyncOnClose-to-Yes.patch
 man-cups-lpd-drop-dangling-references.patch
 cupsd-idleexittimeout-systemd.patch
 cupsd-write-systemd-Port.patch
+lppasswd-manpage-mention-dpkg-statoverride.patch
 # Disabled in 1.6.1-1 as it breaks the tests. It addresses #593338
 # pstops-based-workflow-only-for-printing-ps-on-a-ps-printer.patch
 
