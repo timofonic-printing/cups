@@ -4,7 +4,7 @@ cups (1.7.1-8) unstable; urgency=medium
   needed in non-default usecases. See lppasswd(5) to restore the setuid
   bit.
 
- -- Didier Raboud <odyx@debian.org>  Tue, 11 Mar 2014 17:14:02 +0100
+ -- Didier Raboud <odyx@debian.org>  Wed, 12 Mar 2014 12:03:14 +0100
 
 cups (1.6.2-10) unstable; urgency=low
 
