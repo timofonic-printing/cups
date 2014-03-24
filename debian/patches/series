@@ -57,8 +57,6 @@ cupsd-idleexittimeout-systemd.patch
 cupsd-write-systemd-Port.patch
 lppasswd-manpage-mention-dpkg-statoverride.patch
 debianize_cups-config.patch
-# Disabled in 1.6.1-1 as it breaks the tests. It addresses #593338
-# pstops-based-workflow-only-for-printing-ps-on-a-ps-printer.patch
 
 # This one has been submitted upstream but no answer has been given yet,
 # po4a might not be appropriate. It also needs to be high on the patch
