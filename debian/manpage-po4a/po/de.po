@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: cups man pages 1.7.1-2\n"
-"POT-Creation-Date: 2014-03-11 16:58+0100\n"
+"POT-Creation-Date: 2014-03-26 07:59+0100\n"
 "PO-Revision-Date: 2014-03-03 19:49+0100\n"
 "Last-Translator: Helge Kreutzmann <debian@helgefjell.de>\n"
 "Language-Team: de <debian-l10n-german@lists.debian.org>\n"
@@ -7426,7 +7426,6 @@ msgid "ATTR tag attribute-name value(s)"
 msgstr "ATTR Markierung Attributname Wert(e)"
 
 # FIXME Broken man page?
-#.  character. Common attributes and values are listed in the IANA IPP registry \- see references below.
 #. type: Plain text
 #: ipptoolfile.man:156
 #, fuzzy
@@ -7436,7 +7435,9 @@ msgstr "ATTR Markierung Attributname Wert(e)"
 #| "attribute-name are defined in RFC2911."
 msgid ""
 "Adds an attribute to the test request. Values are separated by the comma (\","
-"\")  character - escape commas using the \""
+"\")  character - escape commas using the \"\\e\" character. Common "
+"attributes and values are listed in the IANA IPP registry - see references "
+"below."
 msgstr ""
 "Fügt der Testanfrage ein Attribut hinzu. Werte werden durch Kommata (»,«) "
 "getrennt, maskieren Sie Kommata mit dem Zeichen \"\\e\". Mögliche "
