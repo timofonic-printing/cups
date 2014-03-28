@@ -1,7 +1,9 @@
 Description: Use dpkg-architecture in cups-config to make it architecture-independant
+ Also filter -L/usr/lib/(triplet) out of LDFLAGS.
 Bug-Debian: https://bugs.debian.org/741519
+Bug-Debian: https://bugs.debian.org/727058
 Author: Didier Raboud <odyx@debian.org>
-Last-Update: 2014-03-24
+Last-Update: 2014-03-28
 --- a/cups-config.in
 +++ b/cups-config.in
 @@ -22,8 +22,8 @@
@@ -15,3 +17,12 @@ Last-Update: 2014-03-24
  datarootdir=@datadir@
  datadir=@datadir@
  sysconfdir=@sysconfdir@
+@@ -50,7 +50,7 @@
+ 	CFLAGS="$CFLAGS -I$includedir"
+     fi
+ 
+-    if test $libdir != /usr/lib -a $libdir != /usr/lib32 -a $libdir != /usr/lib64; then
++    if test $libdir != /usr/lib -a $libdir != /usr/lib32 -a $libdir != /usr/lib64 -a $libdir != /usr/lib/$(dpkg-architecture -qDEB_HOST_ARCH); then
+ 	LDFLAGS="$LDFLAGS -L$libdir"
+     fi
+ fi
