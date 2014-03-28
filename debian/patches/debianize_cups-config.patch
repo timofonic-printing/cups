@@ -1,7 +1,9 @@
 Description: Use dpkg-architecture in cups-config to make it architecture-independant
  Also filter -L/usr/lib/(triplet) out of LDFLAGS.
+ Also strip unnecessary libs from --libs.
 Bug-Debian: https://bugs.debian.org/741519
 Bug-Debian: https://bugs.debian.org/727058
+Bug-Debian: https://bugs.debian.org/730838
 Author: Didier Raboud <odyx@debian.org>
 Last-Update: 2014-03-28
 --- a/cups-config.in
@@ -26,3 +28,12 @@ Last-Update: 2014-03-28
  	LDFLAGS="$LDFLAGS -L$libdir"
      fi
  fi
+@@ -105,7 +105,7 @@
+ 	    ;;
+ 	--libs)
+ 	    if test $static = no; then
+-	        libs="@EXTLINKCUPS@ $LIBS";
++	        libs="@EXTLINKCUPS@";
+  	        if test $image = yes; then
+  	            libs="@EXTLINKCUPSIMAGE@ $libs"
+ 		fi
