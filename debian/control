@@ -212,7 +212,7 @@ Depends: ${shlibs:Depends},
  bc
 Recommends: colord,
  cups-browsed,
- avahi-daemon
+ avahi-daemon (>= 0.6.31-3~)
 Suggests: cups, cups-bsd,
  cups-common (>= ${source:Version}),
  cups-server-common (>= ${source:Version}),

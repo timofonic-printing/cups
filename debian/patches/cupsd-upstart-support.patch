@@ -56,7 +56,7 @@ Bug: https://bugs.launchpad.net/ubuntu/+source/cups/+bug/1276713
  
         /*
 +        * If we were started by Upstart get the listen sockets file
-+	* descriptors...
++        * descriptors...
 +        */
 +
 +        upstart_checkin();
@@ -65,15 +65,7 @@ Bug: https://bugs.launchpad.net/ubuntu/+source/cups/+bug/1276713
          * Startup the server...
          */
  
-@@ -1536,7 +1557,6 @@
-   launch_data_free(ld_resp);
- }
- 
--
- /*
-  * 'launchd_checkout()' - Update the launchd KeepAlive file as needed.
-  */
-@@ -1673,6 +1693,94 @@
+@@ -1673,6 +1694,94 @@
  }
  #endif /* HAVE_SYSTEMD */
  
@@ -108,7 +100,7 @@ Bug: https://bugs.launchpad.net/ubuntu/+source/cups/+bug/1276713
 +  if (!(e = getenv("UPSTART_FDS")))
 +  {
 +    cupsdLogMessage(CUPSD_LOG_ERROR,
-+		    "upstart_checkin: We got started via Upstart socket event but no environment variable UPSTART_FDS is not set");
++            "upstart_checkin: We got started via Upstart socket event but no environment variable UPSTART_FDS is not set");
 +    return;
 +  }
 +
@@ -117,8 +109,8 @@ Bug: https://bugs.launchpad.net/ubuntu/+source/cups/+bug/1276713
 +  if (getsockname(fd, (struct sockaddr*) &addr, &addrlen) < 0)
 +  {
 +    cupsdLogMessage(CUPSD_LOG_ERROR,
-+		    "upstart_checkin: Unable to get local address - %s",
-+		    strerror(errno));
++            "upstart_checkin: Unable to get local address - %s",
++            strerror(errno));
 +    return;
 +  }
 +
@@ -135,20 +127,20 @@ Bug: https://bugs.launchpad.net/ubuntu/+source/cups/+bug/1276713
 +  if (lis)
 +  {
 +    cupsdLogMessage(CUPSD_LOG_DEBUG,
-+		    "upstart_checkin: Matched existing listener %s with fd %d...",
-+		    httpAddrString(&(lis->address), s, sizeof(s)), fd);
++            "upstart_checkin: Matched existing listener %s with fd %d...",
++            httpAddrString(&(lis->address), s, sizeof(s)), fd);
 +  }
 +  else
 +  {
 +    cupsdLogMessage(CUPSD_LOG_DEBUG,
-+		    "upstart_checkin: Adding new listener %s with fd %d...",
-+		    httpAddrString(&addr, s, sizeof(s)), fd);
++            "upstart_checkin: Adding new listener %s with fd %d...",
++            httpAddrString(&addr, s, sizeof(s)), fd);
 +
 +    if ((lis = calloc(1, sizeof(cupsd_listener_t))) == NULL)
 +    {
 +      cupsdLogMessage(CUPSD_LOG_ERROR,
-+		      "upstart_checkin: Unable to allocate listener - "
-+		      "%s.", strerror(errno));
++              "upstart_checkin: Unable to allocate listener - "
++              "%s.", strerror(errno));
 +      exit(EXIT_FAILURE);
 +    }
 +
