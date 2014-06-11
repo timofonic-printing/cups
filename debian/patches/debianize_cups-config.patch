@@ -16,8 +16,8 @@ Last-Update: 2014-06-11
  includedir=@includedir@
 -libdir=@libdir@
 -imagelibdir=@libdir@
-+libdir=${prefix}/lib/$(dpkg-architecture -qDEB_HOST_ARCH)
-+imagelibdir=${prefix}/lib/$(dpkg-architecture -qDEB_HOST_ARCH)
++libdir=${prefix}/lib/$(dpkg-architecture -qDEB_HOST_MULTIARCH)
++imagelibdir=${prefix}/lib/$(dpkg-architecture -qDEB_HOST_MULTIARCH)
  datarootdir=@datadir@
  datadir=@datadir@
  sysconfdir=@sysconfdir@
@@ -36,7 +36,7 @@ Last-Update: 2014-06-11
      fi
  
 -    if test $libdir != /usr/lib -a $libdir != /usr/lib32 -a $libdir != /usr/lib64; then
-+    if test $libdir != /usr/lib -a $libdir != /usr/lib32 -a $libdir != /usr/lib64 -a $libdir != /usr/lib/$(dpkg-architecture -qDEB_HOST_ARCH); then
++    if test $libdir != /usr/lib -a $libdir != /usr/lib32 -a $libdir != /usr/lib64 -a $libdir != /usr/lib/$(dpkg-architecture -qDEB_HOST_MULTIARCH); then
  	LDFLAGS="$LDFLAGS -L$libdir"
      fi
  fi
