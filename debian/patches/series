@@ -1,4 +1,5 @@
 # patches accepted and committed upstream
+fix-cgi-scripts.patch
 
 # patches sent upstream
 pwg-raster-attributes.patch
