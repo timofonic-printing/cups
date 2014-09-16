@@ -1,3 +1,6 @@
+Description: Color management per queue using colord.
+Author: Joe Simon <jsimon383@gmail.com>
+Last-Update: 2014-08-29
 --- a/cgi-bin/admin.c
 +++ b/cgi-bin/admin.c
 @@ -1132,6 +1132,11 @@
