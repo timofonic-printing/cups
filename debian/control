@@ -4,11 +4,8 @@ Priority: optional
 Section: net
 Maintainer: Debian Printing Team <debian-printing@lists.debian.org>
 Uploaders: 
- Masayuki Hatta (mhatta) <mhatta@debian.org>,
+ Didier Raboud <odyx@debian.org>,
  Till Kamppeter <till.kamppeter@gmail.com>,
- Jeff Licquia <licquia@debian.org>,
- Martin Pitt <mpitt@debian.org>,
- Didier Raboud <odyx@debian.org>
 Build-Depends: 
  debhelper (>= 9~),
  dh-apparmor,
