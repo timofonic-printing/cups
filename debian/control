@@ -284,7 +284,7 @@ Depends: ${shlibs:Depends}, ${misc:Depends},
  libcupsfilters-dev (>= 1.0~b1),
  libpng-dev,
  libtiff-dev,
- libjpeg8-dev | libjpeg-dev,
+ libjpeg-dev,
  zlib1g-dev
 Description: Common UNIX Printing System(tm) - Development files CUPS image library
  The Common UNIX Printing System (or CUPS(tm)) is a printing system and 
