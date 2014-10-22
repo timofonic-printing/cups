@@ -1,5 +1,6 @@
 # patches accepted and committed upstream
 str4461-restore-access-to-logfiles.patch
+str4475-fix-the-spinner-imager-on-restart.patch
 
 # patches sent upstream
 pwg-raster-attributes.patch
