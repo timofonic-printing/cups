@@ -41,7 +41,6 @@ ppd-poll-with-client-conf.patch
 removecvstag.patch
 
 # Debian patches
-revert-upstream-change-to-FINAL_CONTENT_TYPE-to-fix-printing-to-remote-CUPS-servers.patch
 do-not-broadcast-with-hostnames.patch
 reactivate_recommended_driver.patch
 add-ipp-backend-of-cups-1.4.patch
