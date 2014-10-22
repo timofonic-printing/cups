@@ -1,4 +1,5 @@
 # patches accepted and committed upstream
+str4396-make-scheduler-return-completed-jobs-in-correct-order.patch
 str4461-restore-access-to-logfiles.patch
 str4475-fix-the-spinner-imager-on-restart.patch
 

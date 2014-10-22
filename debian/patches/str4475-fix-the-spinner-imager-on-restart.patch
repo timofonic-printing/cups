@@ -3,10 +3,9 @@ Author: Michael Sweet <msweet@apple.com>
 Origin: upstream
 Bug: https://www.cups.org/str.php?L4475
 Last-Update: 2014-10-22
-diff -up cups-1.7.5/cgi-bin/admin.c.str4475 cups-1.7.5/cgi-bin/admin.c
---- cups-1.7.5/cgi-bin/admin.c.str4475	2014-09-01 13:03:51.295152124 +0100
-+++ cups-1.7.5/cgi-bin/admin.c	2014-09-01 13:03:59.367197078 +0100
-@@ -1917,7 +1917,7 @@ do_config_server(http_t *http)		/* I - H
+--- a/cgi-bin/admin.c
++++ b/cgi-bin/admin.c
+@@ -1917,7 +1917,7 @@
      }
      else
      {
@@ -15,9 +14,8 @@ diff -up cups-1.7.5/cgi-bin/admin.c.str4475 cups-1.7.5/cgi-bin/admin.c
  
        cgiStartHTML(cgiText(_("Edit Configuration File")));
        cgiCopyTemplateLang("restart.tmpl");
-diff -up cups-1.7.5/templates/restart.tmpl.str4475 cups-1.7.5/templates/restart.tmpl
---- cups-1.7.5/templates/restart.tmpl.str4475	2008-10-08 23:50:16.000000000 +0100
-+++ cups-1.7.5/templates/restart.tmpl	2014-09-01 13:03:59.368197084 +0100
+--- a/templates/restart.tmpl
++++ b/templates/restart.tmpl
 @@ -2,7 +2,7 @@
  
  <H2 CLASS="title">Change Settings</H2>
