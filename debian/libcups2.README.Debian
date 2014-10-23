@@ -139,11 +139,10 @@ CUPS opens its listening ports based on 'Port' and 'Listen' stanzas in
 needs to be configured to listen to the correct IPs and aports by dropping
 configuration files in the /etc/systemd/system/cups.socket.d/ directory.
 
-When launched by socket-activation, CUPS will exit itself after being
-idle for some time (30 seconds by default). The delay before exiting on
-idle can be configured using 'IdleExitTimeout' in /etc/cups/cupsd.conf.
-CUPS can also be left running continuously using 'SystemdIdleExit off'
-in that same file.
+When launched by socket-activation, CUPS can additionally exit itself after
+being idle for some time (30 seconds by default) by using 'SystemdIdleExit on'
+in /etc/cups/cupsd.conf'. The delay before exiting on idle can be configured
+using 'IdleExitTimeout' in that same file.
 
 Printing without using a local cups daemon
 ==========================================
