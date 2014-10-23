@@ -137,13 +137,14 @@ Last-Update: 2014-07-23
 +WantedBy=printer.target
 --- /dev/null
 +++ b/data/cups.socket.in
-@@ -0,0 +1,9 @@
+@@ -0,0 +1,10 @@
 +[Unit]
 +Description=CUPS Printing Service Sockets
 +
 +[Socket]
 +ListenStream=@CUPS_DEFAULT_DOMAINSOCKET@
 +BindIPv6Only=ipv6-only
++PassCredentials=true
 +
 +[Install]
 +WantedBy=sockets.target
