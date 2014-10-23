@@ -131,8 +131,8 @@ Socket-activation under systemd
 Since 1.7.1-7, when systemd is the active init system, CUPS can be
 configured to be socket-activated; it will then only be launched on accesses to
 its sockets. The socket definition in /lib/systemd/system/cups.socket gets
-configured through all files in /etc/systemd/system/cups.socket.d/; see
-systemd.unit(5).
+configured through files in /etc/systemd/system/cups.socket.d/; see
+systemd.unit(5) and the examples files in /usr/share/doc/cups-daemon/examples .
  
 CUPS opens its listening ports based on 'Port' and 'Listen' stanzas in
 /etc/cups/cupsd.conf. For systemd's socket activation to working, cups.socket
