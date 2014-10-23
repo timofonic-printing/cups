@@ -49,16 +49,6 @@ Last-Update: 2014-06-04
    return (0);
  }
  #endif /* HAVE_SYSTEMD */
---- a/data/cups.service.in
-+++ b/data/cups.service.in
-@@ -1,6 +1,7 @@
- [Unit]
- Description=CUPS Printing Service
- Documentation=man:cupsd(8) man:cupsd.conf(5)
-+Requires=cups.socket
- 
- [Service]
- ExecStart=@sbindir@/cupsd -f
 --- a/man/cupsd.conf.man.in
 +++ b/man/cupsd.conf.man.in
 @@ -521,6 +521,12 @@
