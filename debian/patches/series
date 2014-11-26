@@ -17,7 +17,6 @@ canon-mx3x0-quirks.patch
 brother-hl-1250-quirks.patch
 
 # patches which should go upstream
-color-management-extension.patch
 systemd-optional-socket-activation.patch
 cupsd-upstart-support.patch
 # Fix tests, should probably go upstream
