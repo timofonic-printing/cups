@@ -45,7 +45,6 @@ ppdc-dynamic-linking.patch
 log-debug-history-nearly-unlimited.patch
 cupsd-set-default-for-SyncOnClose-to-Yes.patch
 man-cups-lpd-drop-dangling-references.patch
-cupsd-idleexittimeout-upstart.patch
 debianize_cups-config.patch
 
 # This one has been submitted upstream but no answer has been given yet,
