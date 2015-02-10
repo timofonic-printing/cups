@@ -110,7 +110,7 @@ Last-Update: 2015-02-10
   */
 --- a/test/run-stp-tests.sh
 +++ b/test/run-stp-tests.sh
-@@ -523,6 +523,7 @@
+@@ -540,6 +540,7 @@
  DocumentRoot $root/doc
  RequestRoot $BASE/spool
  TempDir $BASE/spool/temp
