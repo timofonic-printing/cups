@@ -32,6 +32,7 @@ no-conffile-timestamp.patch
 pidfile.patch
 ppd-poll-with-client-conf.patch
 removecvstag.patch
+rename-systemd-units.patch
 
 # Debian patches
 do-not-broadcast-with-hostnames.patch
