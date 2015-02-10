@@ -1,3 +1,27 @@
+cups (1.7.5-10) unstable; urgency=medium
+
+  * Change ppd-updaters trigger to use interest-noawait instead of interest to
+    avoid trigger cycles (Closes: #772871, #771765)
+
+ -- Didier Raboud <odyx@debian.org>  Mon, 15 Dec 2014 22:22:33 +0100
+
+cups (1.7.5-9) unstable; urgency=medium
+
+  * Drop color-management patch; it got refused by upstream and is not
+    available in non-english translations (Closes: #763517, #768163)
+  * Drop the upstream patch to limit Get-Jobs replies to 500, as this triggers
+    a FTBS on mips
+
+ -- Didier Raboud <odyx@debian.org>  Thu, 27 Nov 2014 20:44:45 +0100
+
+cups (1.7.5-8) unstable; urgency=medium
+
+  * Add a USB quirk fix for Brother HL-1250 (Closes: #712512)
+  * Backport upstream patch to fix random crash in TLS handling. The patch also
+    enables coredumps.(Closes: #760475, #760476)
+
+ -- Didier Raboud <odyx@debian.org>  Sun, 23 Nov 2014 13:26:24 +0100
+
 cups (1.7.5-7) unstable; urgency=medium
 
   * Revert to not socket-activating CUPS (Closes: #747073)
