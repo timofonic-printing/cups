@@ -5,7 +5,6 @@ pwg-raster-attributes.patch
 manpage-hyphen-minus.patch
 rootbackends-worldreadable.patch
 fixes-for-jobs-with-multiple-files-and-multiple-formats.patch
-cups-no-gcrypt.patch
 canon-mx3x0-quirks.patch
 brother-hl-1250-quirks.patch
 
