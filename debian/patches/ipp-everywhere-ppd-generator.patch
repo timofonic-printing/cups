@@ -170,7 +170,7 @@ Last-Update: 2015-06-05
  static void	pwg_unppdize_name(const char *ppd, char *name, size_t namesize,
  		                  const char *dashchars);
  
-@@ -2467,6 +2468,593 @@
+@@ -2467,6 +2468,601 @@
  
  
  /*
@@ -572,8 +572,6 @@ Last-Update: 2015-06-05
 +  {
 +    const char *default_color = NULL;	/* Default */
 +
-+    cupsFilePuts(fp, "*OpenUI *ColorModel/Color Mode: PickOne\n"
-+		     "*OrderDependency: 10 AnySetup *ColorModel\n");
 +    for (i = 0, count = ippGetCount(attr); i < count; i ++)
 +    {
 +      const char *keyword = ippGetString(attr, i, NULL);
@@ -581,6 +579,9 @@ Last-Update: 2015-06-05
 +
 +      if (!strcmp(keyword, "black_1") || !strcmp(keyword, "bi-level") || !strcmp(keyword, "process-bi-level"))
 +      {
++	if (!default_color)
++	  cupsFilePuts(fp, "*OpenUI *ColorModel/Color Mode: PickOne\n"
++		       "*OrderDependency: 10 AnySetup *ColorModel\n");
 +        cupsFilePuts(fp, "*ColorModel FastGray/Fast Grayscale: \"<</cupsColorSpace 3/cupsBitsPerColor 1/cupsColorOrder 0/cupsCompression 0>>setpagedevice\"\n");
 +
 +        if (!default_color)
@@ -588,6 +589,9 @@ Last-Update: 2015-06-05
 +      }
 +      else if (!strcmp(keyword, "sgray_8") || !strcmp(keyword, "monochrome") || !strcmp(keyword, "process-monochrome"))
 +      {
++	if (!default_color)
++	  cupsFilePuts(fp, "*OpenUI *ColorModel/Color Mode: PickOne\n"
++		       "*OrderDependency: 10 AnySetup *ColorModel\n");
 +        cupsFilePuts(fp, "*ColorModel Gray/Grayscale: \"<</cupsColorSpace 18/cupsBitsPerColor 8/cupsColorOrder 0/cupsCompression 0>>setpagedevice\"\n");
 +
 +        if (!default_color || !strcmp(default_color, "FastGray"))
@@ -595,6 +599,9 @@ Last-Update: 2015-06-05
 +      }
 +      else if (!strcmp(keyword, "srgb_8") || !strcmp(keyword, "color"))
 +      {
++	if (!default_color)
++	  cupsFilePuts(fp, "*OpenUI *ColorModel/Color Mode: PickOne\n"
++		       "*OrderDependency: 10 AnySetup *ColorModel\n");
 +        cupsFilePuts(fp, "*ColorModel RGB/Color: \"<</cupsColorSpace 19/cupsBitsPerColor 8/cupsColorOrder 0/cupsCompression 0>>setpagedevice\"\n");
 +
 +	default_color = "RGB";
@@ -602,9 +609,10 @@ Last-Update: 2015-06-05
 +    }
 +
 +    if (default_color)
++    {
 +      cupsFilePrintf(fp, "*DefaultColorModel: %s\n", default_color);
-+
-+    cupsFilePuts(fp, "*CloseUI: *ColorModel\n");
++      cupsFilePuts(fp, "*CloseUI: *ColorModel\n");
++    }
 +  }
 +
 + /*
@@ -764,7 +772,7 @@ Last-Update: 2015-06-05
   * '_pwgInputSlotForSource()' - Get the InputSlot name for the given PWG
   *                              media-source.
   */
-@@ -2677,6 +3265,41 @@
+@@ -2677,6 +3273,41 @@
  }
  
  
