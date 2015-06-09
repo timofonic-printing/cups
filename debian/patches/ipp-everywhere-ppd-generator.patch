@@ -995,15 +995,6 @@ Last-Update: 2015-06-05
    * Send IPP attributes...
 --- a/systemv/lpadmin.c
 +++ b/systemv/lpadmin.c
-@@ -3,7 +3,7 @@
-  *
-  * "lpadmin" command for CUPS.
-  *
-- * Copyright 2007-2014 by Apple Inc.
-+ * Copyright 2007-2015 by Apple Inc.
-  * Copyright 1997-2006 by Easy Software Products.
-  *
-  * These coded instructions, statements, and computer programs are the
 @@ -17,6 +17,8 @@
   * Include necessary headers...
   */
@@ -1466,7 +1457,7 @@ Last-Update: 2015-06-05
    ippAddString(request, IPP_TAG_OPERATION, IPP_TAG_URI,
                 "printer-uri", NULL, uri);
    ippAddString(request, IPP_TAG_OPERATION, IPP_TAG_KEYWORD,
-@@ -1255,8 +1340,8 @@
+@@ -1257,8 +1342,8 @@
  		options, file));
  
   /*
@@ -1477,7 +1468,7 @@ Last-Update: 2015-06-05
    *
    *    attributes-charset
    *    attributes-natural-language
-@@ -1266,19 +1351,24 @@
+@@ -1268,32 +1353,17 @@
    */
  
    if (get_printer_type(http, printer, uri, sizeof(uri)) & CUPS_PRINTER_CLASS)
@@ -1498,6 +1489,33 @@ Last-Update: 2015-06-05
    * Add the options...
    */
  
+-  cupsEncodeOptions2(request, num_options, options, IPP_TAG_OPERATION);
+-  cupsEncodeOptions2(request, num_options, options, IPP_TAG_PRINTER);
+-
+-  if ((protocol = cupsGetOption("protocol", num_options, options)) != NULL)
+-  {
+-    if (!_cups_strcasecmp(protocol, "bcp"))
+-      ippAddString(request, IPP_TAG_PRINTER, IPP_TAG_NAME, "port-monitor",
+-                   NULL, "bcp");
+-    else if (!_cups_strcasecmp(protocol, "tbcp"))
+-      ippAddString(request, IPP_TAG_PRINTER, IPP_TAG_NAME, "port-monitor",
+-                   NULL, "tbcp");
+-  }
+-
+   if (file)
+     ppdfile = file;
+   else if ((ppdname = cupsGetOption("ppd-name", num_options, options)) != NULL && strcmp(ppdname, "raw") && num_options > 1)
+@@ -1316,12 +1386,32 @@
+       options        = temp;
+     }
+   }
+-  else if (request->request.op.operation_id == CUPS_ADD_MODIFY_PRINTER)
++  else if (request->request.op.operation_id == IPP_OP_CUPS_ADD_MODIFY_PRINTER)
+     ppdfile = cupsGetPPD(printer);
+   else
+     ppdfile = NULL;
+ 
+-  if (ppdfile != NULL)
 +  if (file)
 +    ppdfile = file;
 +  else if (request->request.op.operation_id == IPP_OP_CUPS_ADD_MODIFY_PRINTER)
@@ -1505,26 +1523,24 @@ Last-Update: 2015-06-05
 +  else
 +    ppdfile = NULL;
 +
-   cupsEncodeOptions2(request, num_options, options, IPP_TAG_OPERATION);
-   cupsEncodeOptions2(request, num_options, options, IPP_TAG_PRINTER);
- 
-@@ -1292,14 +1382,7 @@
-                    NULL, "tbcp");
-   }
- 
--  if (file)
--    ppdfile = file;
--  else if (request->request.op.operation_id == CUPS_ADD_MODIFY_PRINTER)
--    ppdfile = cupsGetPPD(printer);
--  else
--    ppdfile = NULL;
--
--  if (ppdfile != NULL)
++  cupsEncodeOptions2(request, num_options, options, IPP_TAG_OPERATION);
++  cupsEncodeOptions2(request, num_options, options, IPP_TAG_PRINTER);
++
++  if ((protocol = cupsGetOption("protocol", num_options, options)) != NULL)
++  {
++    if (!_cups_strcasecmp(protocol, "bcp"))
++      ippAddString(request, IPP_TAG_PRINTER, IPP_TAG_NAME, "port-monitor",
++                   NULL, "bcp");
++    else if (!_cups_strcasecmp(protocol, "tbcp"))
++      ippAddString(request, IPP_TAG_PRINTER, IPP_TAG_NAME, "port-monitor",
++                   NULL, "tbcp");
++  }
++
 +  if (ppdfile)
    {
     /*
      * Set default options in the PPD file...
-@@ -1458,7 +1541,7 @@
+@@ -1493,7 +1583,7 @@
    * Check the response...
    */
  
