@@ -1,5 +1,4 @@
 # patches accepted and committed upstream
-str4576-fix-ipp-1.1-timing-issues.patch
 ipp-everywhere-ppd-generator.patch
 ippserver-fix-pwg-raster-document-types-supported-values.patch
 
