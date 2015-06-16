@@ -138,6 +138,11 @@ ifneq (,$(filter cups-bsd,$(shell dh_listpackages)))
         done
 endif
 
+ifneq (,$(filter cups-ipp-utils,$(shell dh_listpackages)))
+	# gzip and install manpage for ippserver
+	cat test/ippserver.man | gzip -9 > debian/cups-ipp-utils/usr/share/man/man1/ippserver.1.gz
+endif
+
 override_dh_installchangelogs:
 	dh_installchangelogs CHANGES.txt
 
