@@ -1,5 +1,7 @@
-cups (2.0.3-4) experimental; urgency=medium
+cups (2.0.3-4) unstable; urgency=medium
 
+  * Upload to unstable
+  
   [ Helge Kreutzmann ]
   * Update German man page (1366t464f280u)
 
