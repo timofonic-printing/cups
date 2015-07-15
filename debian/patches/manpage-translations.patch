@@ -102,6 +102,7 @@ Last-Update: 2015-07-15
 +		cups-files.conf.$(MAN5EXT) \
 +		cups-snmp.conf.$(MAN5EXT) \
 +		cupsd.conf.$(MAN5EXT) \
++		cupsd-logs.$(MAN5EXT) \
 +		ipptoolfile.$(MAN5EXT) \
 +		mailto.conf.$(MAN5EXT) \
 +		mime.convs.$(MAN5EXT) \
@@ -120,7 +121,6 @@ Last-Update: 2015-07-15
 +		cups-snmp.$(MAN8EXT) \
 +		cupsd.$(MAN8EXT) \
 +		cupsd-helper.$(MAN8EXT) \
-+		cupsd-logs.$(MAN8EXT) \
 +		cupsenable.$(MAN8EXT) \
 +		lpadmin.$(MAN8EXT) \
 +		lpinfo.$(MAN8EXT) \
