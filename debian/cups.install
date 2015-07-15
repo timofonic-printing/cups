@@ -14,6 +14,7 @@ usr/sbin/cupsfilter
 usr/share/man/man7/filter.7.gz
 usr/share/man/man5/subscriptions.conf.5.gz
 usr/share/man/man5/mime.convs.5.gz
+usr/share/man/man8/cupsd-helper.8.gz
 usr/share/man/man8/cups-deviced.8.gz
 usr/share/man/man8/cups-driverd.8.gz
 usr/share/man/man8/cupsfilter.8.gz
