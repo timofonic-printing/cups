@@ -31,6 +31,26 @@ cups (2.1~b1-1) experimental; urgency=low
 
  -- Didier Raboud <odyx@debian.org>  Thu, 09 Jul 2015 13:36:17 +0200
 
+cups (2.0.3-8) unstable; urgency=medium
+
+  * Mark the libsystemd as reported (and fixed) upstream
+  * Translate and install the cupsd-helper.8 manpage (Closes: #792484)
+  * Update the manpage translation infrastructure: install multiple missing
+    new manpages
+  * Add patch to move cupsd-logs manpage to section 5
+
+ -- Didier Raboud <odyx@debian.org>  Wed, 15 Jul 2015 17:03:00 +0200
+
+cups (2.0.3-7) unstable; urgency=medium
+
+  [ Michael Biebl ]
+  * Transition from libsystemd-daemon to libsystemd:
+    - Update Build-Depends
+    - Patch the configuration system
+    (Closes: #779770)
+
+ -- Didier Raboud <odyx@debian.org>  Mon, 13 Jul 2015 18:35:43 +0200
+
 cups (2.0.3-6) unstable; urgency=low
 
   * Fix the 'which' calls, causing uninstallation error of cups-bsd
