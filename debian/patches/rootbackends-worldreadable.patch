@@ -1,0 +1,48 @@
+Description: Install root backends world-readable, to comply to Debian Policy and because it is both nonsensical to to not do so, and also breaks system checkers, bug reporting, etc.
+Author: Martin Pitt <mpitt@debian.org>
+Bug: http://www.cups.org/str.php?L2935
+Bug-Debian: http://bugs.debian.org/410171
+Last-Update: 2015-02-10
+
+--- a/backend/Makefile
++++ b/backend/Makefile
+@@ -21,7 +21,7 @@
+ # Object files...
+ #
+ 
+-# RBACKENDS are installed mode 0700 so cupsd will run them as root...
++# RBACKENDS are installed mode 0744 so cupsd will run them as root...
+ #
+ # UBACKENDS and ULBACKENDS are installed mode 0755 so cupsd will run them as
+ # an unprivileged user...
+@@ -126,7 +126,7 @@
+ 	echo Installing backends in $(SERVERBIN)/backend
+ 	$(INSTALL_DIR) -m 755 $(SERVERBIN)/backend
+ 	for file in $(RBACKENDS); do \
+-		$(LIBTOOL) $(INSTALL_BIN) -m 700 $$file $(SERVERBIN)/backend; \
++		$(LIBTOOL) $(INSTALL_BIN) -m 744 $$file $(SERVERBIN)/backend; \
+ 	done
+ 	for file in $(UBACKENDS); do \
+ 		$(INSTALL_BIN) $$file $(SERVERBIN)/backend; \
+--- a/scheduler/cups-deviced.c
++++ b/scheduler/cups-deviced.c
+@@ -270,7 +270,7 @@
+     * all others run as the unprivileged user...
+     */
+ 
+-    start_backend(dent->filename, !(dent->fileinfo.st_mode & (S_IWGRP | S_IRWXO)));
++    start_backend(dent->filename, !(dent->fileinfo.st_mode & (S_IWGRP | S_IWOTH | S_IXOTH)));
+   }
+ 
+   cupsDirClose(dir);
+--- a/scheduler/job.c
++++ b/scheduler/job.c
+@@ -1231,7 +1231,7 @@
+       else if (stat(command, &backinfo))
+ 	backroot = 0;
+       else
+-        backroot = !(backinfo.st_mode & (S_IWGRP | S_IRWXO));
++        backroot = !(backinfo.st_mode & (S_IWGRP | S_IWOTH | S_IXOTH));
+ 
+       argv[0] = job->printer->sanitized_device_uri;
+ 
