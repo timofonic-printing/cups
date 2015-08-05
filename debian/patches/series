@@ -1,8 +1,6 @@
 # patches accepted and committed upstream
 ipp-everywhere-ppd-generator.patch
 ippserver-fix-pwg-raster-document-types-supported-values.patch
-str4538-fix-redirection-from-cgi-scripts.patch
-str4646-fix-the-activejobs-loop-in-cupsdcheckjobs.patch
 
 # patches sent upstream
 pwg-raster-attributes.patch
@@ -10,7 +8,6 @@ manpage-hyphen-minus.patch
 rootbackends-worldreadable.patch
 fixes-for-jobs-with-multiple-files-and-multiple-formats.patch
 libsystemd.patch
-cupsd-logs-manpage-in-section-5.patch
 str4679-fix-local-domainsocket-access-checking.patch
 
 # patches which should go upstream
