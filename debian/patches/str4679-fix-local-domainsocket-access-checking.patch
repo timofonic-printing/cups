@@ -8,7 +8,7 @@ Bug-Debian: https://bugs.debian.org/792730
 Last-Update: 2015-07-18
 --- a/cups/usersys.c
 +++ b/cups/usersys.c
-@@ -1017,7 +1017,7 @@
+@@ -1012,7 +1012,7 @@
      struct stat	sockinfo;		/* Domain socket information */
  
      if (!stat(CUPS_DEFAULT_DOMAINSOCKET, &sockinfo) &&
