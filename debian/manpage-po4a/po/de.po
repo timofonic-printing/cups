@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cups man pages 2.0.3-10\n"
 "POT-Creation-Date: 2015-06-30 08:36+0200\n"
-"PO-Revision-Date: 2015-08-01 17:38+0200\n"
+"PO-Revision-Date: 2015-08-09 20:46+0200\n"
 "Last-Translator: Helge Kreutzmann <debian@helgefjell.de>\n"
 "Language-Team: de <debian-l10n-german@lists.debian.org>\n"
 "Language: de\n"
@@ -240,6 +240,7 @@ msgstr ""
 "der Funktion I<cupsBackChannelWrite> weitergeleitet werden."
 
 #. type: Plain text
+# FIXME: Beim ersten das Argument außerhalb des B<>, beim zweiten innerhalb
 #: backend.man:78
 msgid ""
 "Backends are responsible for reading side-channel requests using the "
@@ -247,6 +248,10 @@ msgid ""
 "B<cupsSideChannelWrite()> function. The B<CUPS_SC_FD> constant defines the "
 "file descriptor that should be monitored for incoming requests."
 msgstr ""
+"Backends sind dafür verantwortlich, mittels der Funktion "
+"B<cupsSideChannelRead>() Seitenkanalanfragen zu lesen und mit der Funktion "
+"B<cupsSideChannelWrite()> zu antworten. Die Konstante B<CUPS_SC_FD> definiert "
+"den Dateideskriptor, der für eingehende Anfragen überwacht werden sollte."
 
 #. type: SS
 #: backend.man:78
@@ -593,6 +598,9 @@ msgid ""
 "In addition to the environment variables listed in B<cups>(1)  and "
 "B<filter>(7), CUPS backends can expect the following environment variable:"
 msgstr ""
+"Zusätzlich zu den in B<cups>(1) und B<filter>(7) aufgeführten "
+"Umgebungsvariablen können CUPS-Backends die folgenden Umgebungsvariablen "
+"erwarten:"
 
 #. type: TP
 #: backend.man:169
@@ -1228,6 +1236,8 @@ msgid ""
 "Specifies whether to only allow TLS with certificates whose common name "
 "matches the hostname.  The default is \"No\"."
 msgstr ""
+"Spezifiziert, ob nur TLS mit Zertifikaten erlaubt wird, deren »common name« "
+"auf den Rechnernamen passt. Die Vorgabe ist »No«."
 
 #. type: Plain text
 #: client.conf.man.in:77
@@ -1235,6 +1245,8 @@ msgid ""
 "The B<client.conf> file is deprecated and will no longer be supported in a "
 "future version of CUPS."
 msgstr ""
+"Die Datei B<client.conf> ist veraltet und wird in zukünftigen Versionen von "
+"CUPS nicht mehr unterstützt."
 
 #. type: Plain text
 #: client.conf.man.in:80 cups-config.man:112
@@ -1890,7 +1902,7 @@ msgstr "    cups-config --version\n"
 #. type: Plain text
 #: cups-config.man:104
 msgid "Compile a simple one-file CUPS filter:"
-msgstr ""
+msgstr "Einen einfachen CUPS-Filter in einer Datei übersetzen:"
 
 #. type: Plain text
 #: cups-config.man:108
@@ -2317,17 +2329,13 @@ msgstr "B<ClassifyOverride No>"
 #. #DefaultAuthType
 #. type: Plain text
 #: cupsd.conf.man.in:98
-#, fuzzy
-#| msgid ""
-#| "Specifies whether to allow users to override the classification of "
-#| "individual print jobs."
 msgid ""
 "Specifies whether users may override the classification (cover page) of "
 "individual print jobs using the \"job-sheets\" option.  The default is \"No"
 "\"."
 msgstr ""
-"Spezifiziert, ob Benutzern erlaubt werden soll, die Einstufung individueller "
-"Druckaufträge zu ändern."
+"Spezifiziert, ob es Benutzern erlaubt werden soll, die Einstufung (Titelseite) individueller "
+"Druckaufträge mit der Option »job-sheets« zu ändern. Die Vorgabe ist »No«."
 
 #. type: TP
 #: cupsd.conf.man.in:98
@@ -2380,10 +2388,9 @@ msgstr ""
 
 #. type: TP
 #: cupsd.conf.man.in:115
-#, fuzzy, no-wrap
-#| msgid "DefaultLanguage locale"
+#, no-wrap
 msgid "B<DefaultLanguage >I<locale>"
-msgstr "DefaultLanguage Locale (Standorteinstellung)"
+msgstr "B<DefaultLanguage >I<Standorteinstellung>"
 
 #. #DefaultPaperSize
 #. type: Plain text
@@ -2423,7 +2430,7 @@ msgid ""
 "is \"Auto\"."
 msgstr ""
 "Gibt die Standardpapiergröße für neue Druckerwarteschlangen an. »Auto« "
-"benutzt eine sprachabhängige Vorgabe, während »None« angibt, dass keine "
+"benutzt eine standortabhängige Vorgabe, während »None« angibt, dass keine "
 "Papiergröße vorgegeben ist. Bestimmte Größennamen sind typischerweise "
 "»Letter« oder »A4«. Die Vorgabe ist »Auto«."
 
@@ -2809,6 +2816,11 @@ msgid ""
 "multiple addresses.  The Listen directive is similar to the Port directive "
 "but allows you to restrict access to specific interfaces or networks."
 msgstr ""
+"Wartet auf den angegebenen Adressen und Ports oder Domain-Socketpfaden auf "
+"Anfragen. Mehrere »Listen«-Direktiven können angegeben werden, um auf "
+"mehreren Adressen auf Anfragen zu warten. Die Direktive »Listen« ist ähnlich "
+"zu der Direktive »Port«, erlaubt es Ihnen aber, den Zugriff auf bestimmte "
+"Schnittstellen oder Netze zu beschränken."
 
 #. type: TP
 #: cupsd.conf.man.in:254
@@ -3242,6 +3254,10 @@ msgid ""
 "indicated number of seconds after printing.  The default is "
 "\"86400\" (preserve 1 day)."
 msgstr ""
+"Spezifiziert, ob Auftragsdateien (Dokumente) erhalten bleiben, nachdem ein "
+"Auftrag gedruckt wurde. Falls ein numerischer Wert angegeben wird, werden die "
+"Auftragsdateien für die angegebene Anzahl an Sekunden nach dem Druck "
+"erhalten. Die Vorgabe ist »86400« (einen Tag erhalten)."
 
 #. type: TP
 #: cupsd.conf.man.in:396
@@ -3413,6 +3429,12 @@ msgid ""
 "where UNAME is the output of the B<uname>(1)  command.  \"Full\" reports "
 "\"CUPS 2.0.0 (UNAME) IPP/2.0\".  The default is \"Minimal\"."
 msgstr ""
+"Spezifiziert, welche Informationen in die Server-Kopfzeilen von HTTP-"
+"Antworten aufgenommen werden. »None« deaktiviert die Server-Kopfzeilen. "
+"»ProductOnly« meldet »CUPS«. »Major« berichtet »CUPS 2.0«. »Minimal« "
+"berichtet »CUPS 2.0.0«. »OS« berichtet »CUPS 2.0.0 (UNAME)«, wobei UNAME die "
+"Ausgabe des Befehls B<uname>(1) ist. »Full« berichtet »CUPS 2.0.0 (UNAME) "
+"IPP/2.0«. Die Vorgabe ist »Minimal«."
 
 #. type: TP
 #: cupsd.conf.man.in:463
@@ -3553,6 +3575,8 @@ msgid ""
 "Used by a client to download icons and other printer resources and to access "
 "the CUPS web interface."
 msgstr ""
+"Wird von einem Client zum Herunterladen von Icons und anderen Druckresourcen "
+"und zum Zugriff auf die CUPS-Webschnittstelle verwandt."
 
 #. type: TP
 #: cupsd.conf.man.in:512
@@ -3565,6 +3589,8 @@ msgstr "HEAD"
 msgid ""
 "Used by a client to get the type, size, and modification date of resources."
 msgstr ""
+"Wird von einem Client verwandt, um den Typ, die Größe und das Änderungsdatum "
+"von Ressourcen zu erhalten."
 
 #. type: Plain text
 #: cupsd.conf.man.in:518
@@ -3651,7 +3677,7 @@ msgstr "CUPS-Authenticate-Job"
 #. type: Plain text
 #: cupsd.conf.man.in:539
 msgid "Releases a job that is held for authentication."
-msgstr ""
+msgstr "Gibt einen Auftrag frei, der für Authentifizierung gehalten ist."
 
 #. type: TP
 #: cupsd.conf.man.in:539
@@ -3986,6 +4012,8 @@ msgid ""
 "Stops processing of jobs by a printer or printer class after the current job "
 "is finished."
 msgstr ""
+"Beendet die Verarbeitung von Aufträgen durch einen Drucker oder eine "
+"Druckerklasse, nachdem der aktuelle Auftrag beendet wurde."
 
 #. type: TP
 #: cupsd.conf.man.in:629
@@ -4259,15 +4287,16 @@ msgstr "Der PPD-Dateipfad für den benannten Drucker"
 #, no-wrap
 msgid "DIRECTIVES VALID WITHIN LOCATION AND LIMIT SECTIONS"
 msgstr ""
+"DIREKTIVEN, DIE INNERHALB VON ORTS- UND EINSCHRÄNKUNGS-ABSCHNITTEN GÜLTIG SIND"
 
 #. type: Plain text
 #: cupsd.conf.man.in:700
-#, fuzzy
-#| msgid "The following directives can be used outside of a test:"
 msgid ""
 "The following directives may be placed inside Location and Limit sections in "
 "the B<cupsd.conf> file:"
-msgstr "Die folgenden Direktiven können außerhalb eines Tests verwandt werden:"
+msgstr ""
+"Die folgenden Direktiven können innerhalb von Orts- und "
+"Einschränkungsabschnitten in der Datei B<cupsd.conf> eingetragen werden:"
 
 #. type: TP
 #: cupsd.conf.man.in:700
@@ -4902,6 +4931,8 @@ msgid ""
 "PPD files can be compressed using the B<gzip>(1)  program or placed in "
 "compressed B<tar>(1)  archives to further reduce their size."
 msgstr ""
+"PPD-Dateien können mit dem Programm B<gzip>(1) komprimiert oder innerhalb von "
+"komprimierten B<tar>(1)-Archiven abgelegt werden, um ihre Größe weiter zu reduzieren."
 
 #. type: Plain text
 #: cupsd-helper.man:82
@@ -4909,6 +4940,8 @@ msgid ""
 "Driver information files must conform to the format defined in "
 "B<ppdcfile>(5)."
 msgstr ""
+"Treiberinformationsdateien müssen dem in B<ppdcfile>(5) definierten Format "
+"folgen."
 
 #. type: Plain text
 #: cupsd-helper.man:90
@@ -5488,6 +5521,9 @@ msgid ""
 "    I<printer user job-id date-time page-number num-copies job-billing\n"
 "      job-originating-host-name job-name media sides>\n"
 msgstr ""
+"    I<Drucker Benutzer Auftrags-ID Datum-Uhrzeit Seitennummer Anzahl-Kopien\n"
+"      Auftrags-Abrechnung Auftrags-erstellender-Rechnername Auftragsname\n"
+"      Medium Seiten>\n"
 
 #. type: Plain text
 #: cupsd-logs.man:190
@@ -5496,6 +5532,9 @@ msgid ""
 "    I<printer user job-id date-time >B<total >I<num-impressions job-billing\n"
 "      job-originating-host-name job-name media sides>\n"
 msgstr ""
+"    I<Drucker Benutzer Auftrags-ID Datum-Uhrzeit >B<total >I<Anzahl-Abdrucke\n"
+"      Auftrags-Abrechnung Auftrags-erstellender-Rechnername Auftragsname "
+"      Medium Seiten>\n"
 
 #. type: Plain text
 #: cupsd-logs.man:193
@@ -5583,6 +5622,10 @@ msgid ""
 "number of copies being printed of that page.  For printers that cannot "
 "produce copies on their own, the num-copies field will always be 1."
 msgstr ""
+"Die Felder I<Seitennummer> und I<Anzahl-Kopien> enthalten die Seitennummer "
+"und die Anzahl der Kopien, die von dieser Seite gedruckt werden. Für Drucker, "
+"die selbst keine Kopien erzeugen können, wird das Feld »Anzahl-Kopien« immer 1 "
+"sein."
 
 #. type: Plain text
 #: cupsd-logs.man:222
@@ -5591,6 +5634,9 @@ msgid ""
 "instead which provides the total number of impressions (sides) that have "
 "been printed on for the job."
 msgstr ""
+"Zeilen, die das Schlüsselwort »total« enthalten, haben stattdessen ein Feld "
+"I<Anzahl-Abdrucke>, das die Gesamtanzahl der Abdrucke (Seiten) angibt, auf "
+"die für den Auftrag gedruckt wurde."
 
 #. type: Plain text
 #: cupsd-logs.man:224
@@ -5599,6 +5645,9 @@ msgid ""
 "id attributes provided with the IPP Create-Job or Print-Job requests or \"-"
 "\" if neither was provided."
 msgstr ""
+"Das Feld I<Auftrags-Abrechnung> enthält eine Kopie der mit den IPP-Create-"
+"Job- oder -Print-Job-Anfragen bereitgestellten Attribute »job-billing« oder "
+"»job-account-id« oder »-«, falls keines der beiden bereitgestellt wurde."
 
 #. type: Plain text
 #: cupsd-logs.man:226
@@ -5606,6 +5655,8 @@ msgid ""
 "The I<job-originating-host-name> field contains the hostname or IP address "
 "of the client that printed the job."
 msgstr ""
+"Das Feld I<Auftrags-erstellender-Rechnername> enthält den Rechnernamen oder "
+"die IP-Adresse des Clients, den den Auftrag gedruckt hat."
 
 #. type: Plain text
 #: cupsd-logs.man:228
@@ -5613,6 +5664,9 @@ msgid ""
 "The I<job-name> field contains a copy of the job-name attribute provided "
 "with the IPP Create-Job or Print-Job requests or \"-\" if none was provided."
 msgstr ""
+"Das Feld I<Auftragsname> enthält eine Kopie des mit der IPP-Anfrage »Create-"
+"Job« oder »Print-Job« bereitgestellten Attributes »job-name« oder »-«, falls "
+"keines bereitgestellt wurde."
 
 #. type: Plain text
 #: cupsd-logs.man:230
@@ -5621,6 +5675,9 @@ msgid ""
 "attribute provided with the IPP Create-Job or Print-Job requests or \"-\" if "
 "none was provided."
 msgstr ""
+"Das Feld I<Medium> enthält eine Kopie des mit der IPP-Anfrage »Create-Job« "
+"oder »Print-Job« bereitgestellten Attribute »media« oder »media-col/media-"
+"size« oder »-«, falls keines der beiden bereitgestellt wurde."
 
 #. type: Plain text
 #: cupsd-logs.man:232
@@ -5628,6 +5685,9 @@ msgid ""
 "The I<sides> field contains a copy of the sides attribute provided with the "
 "IPP Create-Job or Print-Job requests or \"-\" if none was provided."
 msgstr ""
+"Das Feld I<Seiten> enthält eine Kopie des mit der IPP-Anfrage »Create-Job« "
+"oder »Print-Job« bereitgestellten Attributs »sides« oder »-«, falls keines "
+"bereitgestellt wurde."
 
 #. type: Plain text
 #: cupsd-logs.man:237
@@ -6464,6 +6524,9 @@ msgid ""
 "helper programs, notifiers, and port monitors.  The default is \"/usr/lib/"
 "cups\" or \"/usr/libexec/cups\" depending on the platform."
 msgstr ""
+"Spezifiziert das Verzeichnis, das die Backends, CGI-Programme, Filter, "
+"Helferprogramme, Benachrichtiger und Port-Monitore enthält. Die Vorgabe ist "
+"»/usr/lib/cups« oder »/usr/libexec/cups«, abhängig von der Plattform."
 
 #. type: TP
 #: cups-files.conf.man.in:174
@@ -6839,6 +6902,9 @@ msgid ""
 "current user and security session. This may result in different output or "
 "unexpected behavior."
 msgstr ""
+"Anders als beim Drucken verwenden Filter, die mit dem Befehl B<cupsfilter> "
+"ausgeführt werden, die aktuelle Benutzer- und Sicherheitssitzung. Dies kann "
+"zu anderer Ausgabe oder unerwartetem Verhalten führen."
 
 #. type: SH
 #: cupsfilter.man:126 cups-lpd.man.in:88 lpadmin.man:203
@@ -6852,12 +6918,15 @@ msgid ""
 "The following command will generate a PDF preview of job 42 for a printer "
 "named \"myprinter\" and save it to a file named \"preview.pdf\":"
 msgstr ""
+"Der folgende Befehl erzeugt eine PDF-Vorschau des Auftrags 42 für einen "
+"Drucker namens »meinDrucker« und speichert sie in einer Datei namens »Vorschau."
+"pdf«.:"
 
 #. type: Plain text
 #: cupsfilter.man:131
 #, no-wrap
 msgid "    cupsfilter -m application/pdf -d myprinter -j 42 E<gt>preview.pdf\n"
-msgstr ""
+msgstr "    cupsfilter -m application/pdf -d meinDrucker -j 42 E<gt>Vorschau.pdf\n"
 
 #. type: Plain text
 #: cupsfilter.man:139
@@ -8867,7 +8936,7 @@ msgstr "B<LANG>"
 #. type: Plain text
 #: filter.man:183
 msgid "The default language locale (typically C or en)."
-msgstr "Die Standardsprach-Locale (normalerweise C oder en)."
+msgstr "Die Standardsprach-Standorteinstellung (normalerweise C oder en)."
 
 #. type: TP
 #: filter.man:183
@@ -9416,7 +9485,7 @@ msgstr ""
 #. type: Plain text
 #: ippfind.man:147
 msgid "Expressions may also contain modifiers:"
-msgstr ""
+msgstr "Ausdrücke können auch Modifikatoren enthalten:"
 
 #. type: TP
 #: ippfind.man:147
@@ -9444,7 +9513,7 @@ msgstr "B<--not >I<Ausdruck>"
 #. type: Plain text
 #: ippfind.man:155
 msgid "Unary NOT of the expression."
-msgstr ""
+msgstr "Unäres NICHT des Ausdrucks."
 
 #. type: TP
 #: ippfind.man:155
@@ -9542,7 +9611,7 @@ msgstr "B<{service_regtype}>"
 #. type: Plain text
 #: ippfind.man:180 ippfind.man:233
 msgid "DNS-SD registration type, e.g., \"_ipp._tcp\", \"_http._tcp\", etc."
-msgstr ""
+msgstr "DNS-SD-Registrierungstyp, z.B. »_ipp._tcp«, »_http._tcp« usw."
 
 #. type: TP
 #: ippfind.man:180
@@ -9622,7 +9691,7 @@ msgstr "B<-6>"
 #. type: Plain text
 #: ippfind.man:205
 msgid "Use IPv6 when listing."
-msgstr ""
+msgstr "IPv6 beim Warten auf Anfragen verwenden."
 
 #. type: TP
 #: ippfind.man:205
@@ -9649,6 +9718,8 @@ msgid ""
 "Specifies the IPP version when listing.  Supported values are \"1.1\", "
 "\"2.0\", \"2.1\", and \"2.2\"."
 msgstr ""
+"Legt die IPP-Version beim Warten auf Anfragen fest. Unterstützte Werte sind "
+"»1.1«, »2.0«, »2.1« und »2.2«."
 
 #. type: Plain text
 #: ippfind.man:216
@@ -9740,6 +9811,8 @@ msgstr "    ippfind --ls\n"
 msgid ""
 "Similarly, to send a PostScript test page to every PostScript printer, run:"
 msgstr ""
+"Um eine PostScript-Testseite an jeden Postscript-Drucker zu senden, führen "
+"Sie aus:"
 
 #. type: Plain text
 #: ippfind.man:254
@@ -10062,28 +10135,33 @@ msgid ""
 "become the \"IPP_PRINT_QUALITY\" environment variable with a value of \"draft"
 "\"."
 msgstr ""
+"Aufgezählte Werte werden in ihr Schlüsselwort-Äquivalent umgewandelt. "
+"Beispielsweise wird ein Auftrags-Attribut »print-quality« mit dem aufgezählten "
+"Wert 3 die Umgebungsvariablen »IPP_PRINT_QUALITY« mit dem Wert »draft« werden."
 
 #. type: Plain text
 #: ../test/ippserver.man:154
 msgid "Run B<ippserver> with a service name of My Cool Printer:"
-msgstr ""
+msgstr "B<ippserver> mit dem Dienstnamen »Mein Toller Drucker« ausführen:"
 
 #. type: Plain text
 #: ../test/ippserver.man:157
 #, no-wrap
 msgid "    ippserver \"My Cool Printer\"\n"
-msgstr ""
+msgstr "    ippserver \"Mein Toller Drucker\"\n"
 
 #. type: Plain text
 #: ../test/ippserver.man:162
 msgid "Run the B<file>(1)  command whenever a job is sent to the server:"
 msgstr ""
+"Den Befehl B<file>(1) immer ausführen, wenn ein Auftrag an den Server "
+"gesendet wird:"
 
 #. type: Plain text
 #: ../test/ippserver.man:165
 #, no-wrap
 msgid "    ippserver -c file \"My Cool Printer\"\n"
-msgstr ""
+msgstr "    ippserver -c file \"Mein Toller Drucker\"\n"
 
 #. type: Plain text
 #: ../test/ippserver.man:168
@@ -12434,6 +12512,10 @@ msgid ""
 "Printing Protocol Workgroup (http://www.pwg.org/ipp)  RFC 2911 (http://tools."
 "ietf.org/html/rfc2911),"
 msgstr ""
+"B<ipptoolfile>(5), CUPS-Online-Hilfe (http://localhost:631/help), IANA IPP "
+"Registry (http://www.iana.org/assignments/ipp-registrations), PWG Internet "
+"Printing Protocol Workgroup (http://www.pwg.org/ipp)  RFC 2911 (http://tools."
+"ietf.org/html/rfc2911),"
 
 #. type: TH
 #: lpadmin.man:15
@@ -12669,7 +12751,7 @@ msgid ""
 "number of seconds; 86,400 seconds are in one day."
 msgstr ""
 "Setzt die Berechnungsperiode für Quotas je Benutzer. Der Wert ist eine "
-"Ganzzahl von Sekunden; 86,400 Sekunden sind ein Tag."
+"Ganzzahl von Sekunden; 86.400 Sekunden sind ein Tag."
 
 #. type: TP
 #: lpadmin.man:117
@@ -12709,7 +12791,7 @@ msgstr ""
 #: lpadmin.man:128
 #, no-wrap
 msgid "B<-o >I<name>B<-default=>I<value>"
-msgstr "B<-o >I<name>B<-default=>I<Wert>"
+msgstr "B<-o >I<Name>B<-default=>I<Wert>"
 
 #. type: Plain text
 #: lpadmin.man:132
@@ -12892,10 +12974,9 @@ msgstr ""
 
 #. type: TP
 #: lpadmin.man:179
-#, fuzzy, no-wrap
-#| msgid "-D \"info\""
+#, no-wrap
 msgid "B<-D \">I<info>B<\">"
-msgstr "-D »info«"
+msgstr "B<-D \">I<Info>B<\">"
 
 #. type: Plain text
 #: lpadmin.man:182
@@ -12917,10 +12998,9 @@ msgstr ""
 
 #. type: TP
 #: lpadmin.man:189
-#, fuzzy, no-wrap
-#| msgid "-L \"location\""
+#, no-wrap
 msgid "B<-L \">I<location>B<\">"
-msgstr "-L »Ort«"
+msgstr "B<-L \">I<Ort>B<\">"
 
 #. type: Plain text
 #: lpadmin.man:192
@@ -12929,10 +13009,9 @@ msgstr "Stellt den Ort des Ziel textuell bereit."
 
 #. type: TP
 #: lpadmin.man:192
-#, fuzzy, no-wrap
-#| msgid "-P ppd-file"
+#, no-wrap
 msgid "B<-P >I<ppd-file>"
-msgstr "-P PPD-Datei"
+msgstr "B<-P >I<PPD-Datei>"
 
 #. type: Plain text
 #: lpadmin.man:196
@@ -12948,7 +13027,6 @@ msgstr ""
 "mit dem Drucker. Falls angegeben überschreibt diese Option die Option I<-i> "
 "(Schnittstellenskript)."
 
-# type: Plain text
 #. type: Plain text
 #: lpadmin.man:201
 #, fuzzy
@@ -12977,27 +13055,23 @@ msgstr ""
 
 #. type: Plain text
 #: lpadmin.man:203
-#, fuzzy
-#| msgid ""
-#| "The CUPS version of I<lpadmin> does not support all of the System V or "
-#| "Solaris printing system configuration options."
 msgid ""
 "The CUPS version of B<lpadmin> does not support all of the System V or "
 "Solaris printing system configuration options."
 msgstr ""
-"Die CUPS-Version von I<lpadmin> unterstützt nicht alle Optionen der System "
+"Die CUPS-Version von B<lpadmin> unterstützt nicht alle Optionen der System-"
 "V- oder Solaris-Drucksystemkonfiguration."
 
 #. type: Plain text
 #: lpadmin.man:205
 msgid "Create an IPP Everywhere print queue:"
-msgstr ""
+msgstr "Eine IPP-Überall-Warteschlange erstellen:"
 
 #. type: Plain text
 #: lpadmin.man:208
 #, no-wrap
 msgid "    lpadmin -p myprinter -E -v ipp://myprinter.local/ipp/print -m everywhere\n"
-msgstr ""
+msgstr "    lpadmin -p meinDrucker -E -v ipp://meinDrucker.local/ipp/print -m ueberall\n"
 
 #. type: Plain text
 #: lpadmin.man:216
@@ -13161,7 +13235,7 @@ msgstr ""
 "B<lpinfo> [ B<-E> ] [ B<-U> I<Benutzername> ] [ B<-h >I<Server>[B<:"
 ">I<Port>] ] [ B<-l> ] [ B<--device-id> I<Geräte-ID-Zeichenkette> ] [ B<--"
 "exclude-schemes> I<Schemenliste> ] [ B<--include-schemes> I<Schemenliste> ] "
-"[ B<--language> I<Locale> ] [ B<--make-and-model> I<Name> ] [ B<--product> "
+"[ B<--language> I<Standorteinstellung> ] [ B<--make-and-model> I<Name> ] [ B<--product> "
 "I<Name> ] B<-m>"
 
 #. type: Plain text
@@ -13259,7 +13333,7 @@ msgstr ""
 #: lpinfo.man:99
 #, no-wrap
 msgid "B<--language >I<locale>"
-msgstr "B<--language >I<Locale>"
+msgstr "B<--language >I<Standorteinstellung>"
 
 #. type: Plain text
 #: lpinfo.man:102
@@ -14244,29 +14318,19 @@ msgstr "B<-# >I<Kopien>"
 
 #. type: Plain text
 #: lpr.man:96
-#, fuzzy
-#| msgid ""
-#| "Disables banner printing. This option is equivalent to \"-o job-"
-#| "sheets=none\"."
 msgid ""
 "Disables banner printing. This option is equivalent to I<-o job-sheets=none>."
 msgstr ""
-"Deaktiviert das Drucken von Deckblättern. Diese Option ist äquivalent zu »-o "
-"job-sheets=none«."
+"Deaktiviert das Drucken von Deckblättern. Diese Option ist äquivalent zu I<-o job-sheets=none>."
 
 #. type: Plain text
 #: lpr.man:100
-#, fuzzy
-#| msgid ""
-#| "Specifies that the print file is already formatted for the destination "
-#| "and should be sent without filtering. This option is equivalent to \"-o "
-#| "raw\"."
 msgid ""
 "Specifies that the print file is already formatted for the destination and "
 "should be sent without filtering.  This option is equivalent to I<-o raw>."
 msgstr ""
 "Spezifiziert, dass die Druckdatei bereits für das Ziel formatiert ist und "
-"ohne Filtern gesendet werden soll. Diese Option ist äquivalent zu »-o raw«."
+"ohne Filtern gesendet werden soll. Diese Option ist äquivalent zu I<-o raw>."
 
 #. type: Plain text
 #: lpr.man:103
@@ -14280,11 +14344,6 @@ msgstr "Setzt eine Auftrags-Option."
 
 #. type: Plain text
 #: lpr.man:110
-#, fuzzy
-#| msgid ""
-#| "Specifies that the print file should be formatted with a shaded header "
-#| "with the date, time, job name, and page number. This option is equivalent "
-#| "to \"-o prettyprint\" and is only useful when printing text files."
 msgid ""
 "Specifies that the print file should be formatted with a shaded header with "
 "the date, time, job name, and page number.  This option is equivalent to I<-"
@@ -14292,7 +14351,7 @@ msgid ""
 msgstr ""
 "Spezifiziert, dass die Druckdatei mit einem schattierten Kopf mit Datum, "
 "Uhrzeit, Auftragsname und Seitennummer formatiert werden soll. Diese Option "
-"Ist äquivalent zu »-o prettyprint« und ist nur beim Druck von Textdateien "
+"Ist äquivalent zu I<-o prettyprint> und ist nur beim Druck von Textdateien "
 "nützlich."
 
 #. type: Plain text
@@ -14302,50 +14361,38 @@ msgstr "Druckauftrag zum Drucken anhalten."
 
 #. type: Plain text
 #: lpr.man:116
-#, fuzzy
-#| msgid ""
-#| "Specifies that the named print files should be deleted after printing "
-#| "them."
 msgid ""
 "Specifies that the named print files should be deleted after submitting them."
 msgstr ""
-"Spezifiziert, dass die benannte Druckdatei nach dem Druck gelöscht werden "
+"Spezifiziert, dass die benannte Druckdatei nach dem Einreichen gelöscht werden "
 "soll."
 
 #. type: Plain text
 #: lpr.man:118
-#, fuzzy
-#| msgid ""
-#| "The \"c\", \"d\", \"f\", \"g\", \"i\", \"n\", \"t\", \"v\", and \"w\" "
-#| "options are not supported by CUPS and produce a warning message if used."
 msgid ""
 "The I<-c>, I<-d>, I<-f>, I<-g>, I<-i>, I<-n>, I<-t>, I<-v>, and I<-w> "
 "options are not supported by CUPS and produce a warning message if used."
 msgstr ""
-"Die Optionen »c«, »d«, »f«, »g«, »i«, »n«, »t«, »v« und »w« werden von CUPS "
+"Die Optionen I<-c>, I<-d>, I<-f>, I<-g>, I<-i>, I<-n>, I<-t>, I<-v> und I<-w> werden von CUPS "
 "nicht unterstützt und führen bei Benutzung zu einer Warnmeldung."
 
-# type: Plain text
 #. type: Plain text
 #: lpr.man:123
-#, fuzzy, no-wrap
-#| msgid "    lp -d bar -o scaling=200 filename\n"
+#, no-wrap
 msgid "    lpr -# 2 filename\n"
-msgstr "    lp -d bar -o scaling=200 Dateiname\n"
+msgstr "    lpr -# 2 Dateiname\n"
 
 #. type: Plain text
 #: lpr.man:129
-#, fuzzy, no-wrap
-#| msgid "    lp -d foo -o media=legal -o sides=two-sided-long-edge filename\n"
+#, no-wrap
 msgid "    lpr -P foo -o media=legal -o sides=two-sided-long-edge filename\n"
-msgstr "    lp -d foo -o media=legal -o sides=two-sided-long-edge Dateiname\n"
+msgstr "    lpr -P foo -o media=legal -o sides=two-sided-long-edge Dateiname\n"
 
 #. type: Plain text
 #: lpr.man:135
-#, fuzzy, no-wrap
-#| msgid "    lp -d bar -o scaling=200 filename\n"
+#, no-wrap
 msgid "    lpr -P foo -o number-up=2 filename\n"
-msgstr "    lp -d bar -o scaling=200 Dateiname\n"
+msgstr "    lpr -P foo -o number-up=2 Dateiname\n"
 
 #. type: Plain text
 #: lpr.man:145
@@ -14441,7 +14488,7 @@ msgstr "    lprm\n"
 #. type: Plain text
 #: lprm.man:69
 msgid "Cancel job 1234:"
-msgstr ""
+msgstr "Auftrag 1234 abbrechen:"
 
 #. type: Plain text
 #: lprm.man:72
@@ -15181,10 +15228,8 @@ msgstr "B<locale(\">I<Zeichenkette>B<\")>"
 
 #. type: Plain text
 #: mime.types.man:78
-#, fuzzy
-#| msgid "True if current locale matches string"
 msgid "True if current locale matches I<string>."
-msgstr "Wahr, wenn aktuelle Locale zu Zeichenkette passt"
+msgstr "Wahr, wenn die aktuelle Standorteinstellung zu I<Zeichenkette> passt."
 
 #. type: TP
 #: mime.types.man:78
@@ -15472,7 +15517,7 @@ msgstr "B<#media \">I<Name>B</>I<Text>B<\" >I<Breite Länge>"
 #: ppdcfile.man:48
 #, no-wrap
 msgid "B<#po >I<locale >B<\">I<filename>B<\">"
-msgstr ""
+msgstr "B<#po >I<Standorteinstellung >B<\">I<Dateiname>B<\">"
 
 #. type: TP
 #: ppdcfile.man:50
@@ -15719,14 +15764,13 @@ msgstr "B<Option >I<Name Typ Abschnitt Reihenfolge>"
 #: ppdcfile.man:130
 #, no-wrap
 msgid "B<Option \">I<name>B</>I<text>B<\" >I<type section order>"
-msgstr ""
+msgstr "B<Option \">I<Name>B</>I<Text>B<\" >I<Typ Abschnitt Reihenfolge>"
 
 #. type: TP
 #: ppdcfile.man:132
-#, fuzzy, no-wrap
-#| msgid "-p filename.ppd"
+#, no-wrap
 msgid "B<PCFileName \">I<filename.ppd>B<\">"
-msgstr "-p Dateiname.ppd"
+msgstr "B<PCFileName \">I<Dateiname.ppd>B<\">"
 
 #. type: TP
 #: ppdcfile.man:134
@@ -15736,47 +15780,45 @@ msgstr ""
 
 #. type: TP
 #: ppdcfile.man:136
-#, no-wrap
+#, fuzzy, no-wrap
 msgid "B<Resolution >I<colorspace bits-per-color row-count row-feed row-step >B<\">I<name>B</>I<text>B<\">"
-msgstr ""
+msgstr "B<Resolution >I<Farbraum Bits-pro-Farbe row-count row-feed row-step >B<\">I<Name>B</>I<Text>B<\">"
 
 #. type: TP
 #: ppdcfile.man:138
 #, no-wrap
 msgid "B<SimpleColorProfile >I<resolution>B</>I<mediatype density yellow-density red-density gamma red-adjust green-adjust blue-adjust>"
-msgstr ""
+msgstr "B<SimpleColorProfile >I<Auflösung>B</>I<Medientyp Dichte Gelbdichte Rotdichte Gamma Rotanpassung Grünanpassung Blauanpassung>"
 
-# type: TP
 #. type: TP
 #: ppdcfile.man:140
-#, fuzzy, no-wrap
-#| msgid "Group group-name-or-number"
+#, no-wrap
 msgid "B<Throughput >I<pages-per-minute>"
-msgstr "Group Gruppenname-oder-nummer"
+msgstr "B<Throughput >I<Seiten-pro-Minute>"
 
 #. type: TP
 #: ppdcfile.man:142
 #, no-wrap
 msgid "B<UIConstraints \">I<*Option1 *Option2>B<\">"
-msgstr ""
+msgstr "B<UIConstraints \">I<*Option1 *Option2>B<\">"
 
 #. type: TP
 #: ppdcfile.man:144
 #, no-wrap
 msgid "B<UIConstraints \">I<*Option1 Choice1 *Option2>B<\">"
-msgstr ""
+msgstr "B<UIConstraints \">I<*Option1 Auswahl1 *Option2>B<\">"
 
 #. type: TP
 #: ppdcfile.man:146
 #, no-wrap
 msgid "B<UIConstraints \">I<*Option1 *Option2 Choice2>B<\">"
-msgstr ""
+msgstr "B<UIConstraints \">I<*Option1 *Option2 Auswahl2>B<\">"
 
 #. type: TP
 #: ppdcfile.man:148
 #, no-wrap
 msgid "B<UIConstraints \">I<*Option1 Choice1 *Option2 Choice2>B<\">"
-msgstr ""
+msgstr "B<UIConstraints \">I<*Option1 Auswahl1 *Option2 Auswahl2>B<\">"
 
 #. type: TP
 #: ppdcfile.man:150
@@ -15994,16 +16036,16 @@ msgstr "ppdhtml"
 #. type: Plain text
 #: ppdhtml.man:18
 msgid "ppdhtml - cups html summary generator (deprecated)"
-msgstr ""
+msgstr "ppdhtml - CUPS-HTML-Zusammenfassungserzeuger (veraltet)"
 
 #. type: Plain text
 #: ppdhtml.man:27
-#, fuzzy
-#| msgid "B<cups-lpd> [ -h I<hostname[:port]> ] [ -n ] [ -o I<option=value> ]"
 msgid ""
 "B<ppdhtml> [ B<-D >I<name>[B<=>I<value>] ] [ B<-I> I<include-directory> ] "
 "I<source-file>"
-msgstr "B<cups-lpd> [ -h I<Rechnername[:Port]> ] [ -n ] [ -o I<Option=Wert> ]"
+msgstr ""
+"B<ppdhtml> [ B<-D >I<Name>[B<=>I<Wert>] ] [ B<-I> I<Include-Verzeichnis> ] "
+"I<Quelldatei>"
 
 #. type: Plain text
 #: ppdhtml.man:30
@@ -16012,6 +16054,10 @@ msgid ""
 "that lists all of the drivers in a file and the supported options.  B<This "
 "program is deprecated and will be removed in a future release of CUPS.>"
 msgstr ""
+"B<ppdhtml> liest eine Treiberinformationsdatei und erstellt eine HTML-"
+"Zusammenfassungsseite, die alle Treiber in einer Datei und die unterstützten "
+"Optionen aufführt. B<Dieses Programm ist veraltet und wird in einer "
+"zukünftigen Veröffentlichung von CUPS entfernt.>"
 
 #. type: Plain text
 #: ppdhtml.man:32
@@ -16080,6 +16126,11 @@ msgid ""
 "the new PPD file(s) on the command-line.  If no source file is specified, "
 "the filename I<ppdi.drv> is used."
 msgstr ""
+"Legt die zu aktualisierende PPD-Quelldatei fest. Falls die Quelldatei nicht "
+"existiert, wird eine neue Quelldatei erstellt. Andernfalls wird die "
+"bestehende mit der/den neuen PPD-Datei(en) auf der Befehlszeile "
+"zusammengeführt. Falls keine Quelldatei angegeben ist wird der Dateiname "
+"I<ppdi.drv> verwandt."
 
 #. type: Plain text
 #: ppdi.man:54
@@ -16214,6 +16265,9 @@ msgid ""
 "for GNU gettext format message catalogs and I<.strings> for OS X strings "
 "files."
 msgstr ""
+"Legt die Ausgabedatei fest. Die unterstützten Endungen sind I<.po> oder I<.po."
+"gz> für GNU-Gettext-Nachrichtenkataloge und I<.strings> für OS-X-Strings-"
+"Dateien."
 
 #. type: Plain text
 #: ppdpo.man:54
@@ -16237,22 +16291,16 @@ msgstr "printers.conf - Druckerkonfigurationsdatei für CUPS"
 
 #. type: Plain text
 #: printers.conf.man:22
-#, fuzzy
-#| msgid ""
-#| "The I<printers.conf> file defines the local printers that are available. "
-#| "It is normally located in the I</etc/cups> directory and is generated "
-#| "automatically by the I<cupsd(8)> program when printers are added or "
-#| "deleted."
 msgid ""
 "The B<printers.conf> file defines the local printers that are available. It "
 "is normally located in the I</etc/cups> directory and is maintained by the "
 "B<cupsd>(8)  program. This file is not intended to be edited or managed "
 "manually."
 msgstr ""
-"Die Datei I<printers.conf> definiert die verfügbaren lokalen Drucker. Sie "
+"Die Datei B<printers.conf> definiert die verfügbaren lokalen Drucker. Sie "
 "befindet sich normalerweise im Verzeichnis I</etc/cups> und wird vom "
-"Programm I<cupsd(8)> automatisch beim Löschen oder Hinzufügen von Druckern "
-"generiert."
+"Programm B<cupsd>(8) verwaltet. Diese Datei ist nicht dazu gedacht, "
+"bearbeitet oder manuell verwaltet zu werden."
 
 #. type: Plain text
 #: printers.conf.man:32
@@ -16273,29 +16321,21 @@ msgstr "subscriptions.conf"
 
 #. type: Plain text
 #: subscriptions.conf.man:18
-#, fuzzy
-#| msgid "subscriptions.conf - subscriptions file for cups"
 msgid "subscriptions.conf - subscription configuration file for cups"
-msgstr "subscriptions.conf - Abonnement-Datei für CUPS"
+msgstr "subscriptions.conf - Abonnement-Konfigurationsdatei für CUPS"
 
 #. type: Plain text
 #: subscriptions.conf.man:22
-#, fuzzy
-#| msgid ""
-#| "The I<subscriptions.conf> file defines the local subscriptions that are "
-#| "active. It is normally located in the I</etc/cups> directory and is "
-#| "generated automatically by the I<cupsd(8)> program when subscriptions are "
-#| "created, renewed, or cancelled."
 msgid ""
 "The B<subscriptions.conf> file defines the local event notification "
 "subscriptions that are active. It is normally located in the I</etc/cups> "
 "directory and is maintained by the B<cupsd>(8)  program. This file is not "
 "intended to be edited or managed manually."
 msgstr ""
-"Die Datei I<subscriptions.conf> definiert die Abonnements, die lokal aktiv "
+"Die Datei B<subscriptions.conf> definiert die lokalen Ereignis-Benachrichtigungsabonnements, die lokal aktiv "
 "sind. Sie liegt normalerweise im Verzeichnis I</etc/cups> und wird "
-"automatisch vom I<cupsd(8)>-Programm generiert, wenn Abonnements erstellt, "
-"erneuert oder beendet werden."
+"vom B<cupsd>(8)-Programm verwaltet. Diese Datei ist nicht dazu gedacht, "
+"bearbeitet oder manuell verwaltet zu werden."
 
 #. type: Plain text
 #: subscriptions.conf.man:32
@@ -17032,7 +17072,7 @@ msgstr ""
 #~ msgstr ""
 #~ "I<Treibername> ist der Name des Treiberprogramms. I<PPD-Name> ist der "
 #~ "Name, der zur Auswahl des gegebenen Treibers verwandt wird. I<Sprache> "
-#~ "ist die mit der Standardsprache der PPD-Datei assoziierte Lokale "
+#~ "ist die mit der Standardsprache der PPD-Datei assoziierte Standorteinstellung "
 #~ "(Standorteinstellung), typischerweise »en«. I<Marke> ist der "
 #~ "Herstellername aus der PPD-Datei. I<Marke und Modell> ist der »NickName« "
 #~ "aus der PPD-Datei. I<1284-Geräte-ID> ist die 1284DeviceId aus der PPD-"
