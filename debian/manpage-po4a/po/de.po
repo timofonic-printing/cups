@@ -3,11 +3,14 @@
 # Chris Leick <c.leick@vollbio.de>, 2009.
 # This file is distributed under the same license as the cups package.
 #
+# Decisions in the translation:
+#  banner == banner page -> Deckblatt
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: cups man pages 2.0.3-10\n"
 "POT-Creation-Date: 2015-06-30 08:36+0200\n"
-"PO-Revision-Date: 2015-08-09 20:46+0200\n"
+"PO-Revision-Date: 2015-08-16 20:41+0200\n"
 "Last-Translator: Helge Kreutzmann <debian@helgefjell.de>\n"
 "Language-Team: de <debian-l10n-german@lists.debian.org>\n"
 "Language: de\n"
@@ -2300,7 +2303,6 @@ msgid "B<Classification >I<banner>"
 msgstr "B<Classification >I<Deckblatt>"
 
 #. #ClassifyOverride
-#, fuzzy
 #. type: Plain text
 #: cupsd.conf.man.in:90
 msgid ""
@@ -2309,10 +2311,11 @@ msgid ""
 "\"topsecret\", and \"unclassified\", or the banner can be omitted to disable "
 "secure printing functions.  The default is no classification banner."
 msgstr ""
-"Spezifiziert die Sicherheitsklassifizierung des Servers. Jeder gültige FIXME-"
-"Name kann verwandt werden, darunter »classified«, »confidential«, »secret«, "
-"»topsecret« und »unclassified«. Der FIXME kann auch entfallen, um die "
-"sicheren Druckfunktionen zu deaktivieren. Standardmäßig gibt es kein FIXME."
+"Spezifiziert die Sicherheitsklassifizierung des Servers. Jeder gültige "
+"Deckblattname kann verwandt werden, darunter »classified«, »confidential«, "
+"»secret«, »topsecret« und »unclassified«. Der Deckblattname kann auch "
+"entfallen, um die sicheren Druckfunktionen zu deaktivieren. Standardmäßig "
+"gibt es kein Einstufungsdeckblatt."
 
 #. type: TP
 #: cupsd.conf.man.in:90
@@ -2570,6 +2573,15 @@ msgid ""
 "the scheduler to printing a single job at any time.  The default limit is "
 "\"0\"."
 msgstr ""
+"Spezifiziert die maximale Belastung gleichzeitig ausgeführter Filter. Damit "
+"können Platten-, Arbeitsspeicher- und CPU-Ressourcenprobleme minimiert "
+"werden. Eine Beschränkung von 0 deaktiviert die Beschränkung von Filtern. Ein "
+"durchschnittlicher Ausdruck auf einen nicht PostScript-Drucker benötigt eine "
+"Filter-Beschränkung von ungefähr 200. Ein PostScript-Drucker benötigt "
+"ungefähr die Hälfte (100) davon. Wird die Beschränkung unterhalb dieser "
+"Schwellen gesetzt, wird der Auftragsplaner effektiv darauf eingeschränkt, "
+"immer nur einen einzelnen Auftrag gleichzeitig zu drucken. Die Vorgabe ist "
+"»0«."
 
 #. type: TP
 #: cupsd.conf.man.in:170
@@ -2619,6 +2631,7 @@ msgid "B<HostNameLookups Double>"
 msgstr "B<HostNameLookups Double>"
 
 #. #JobKillDelay
+#, fuzzy
 #. type: Plain text
 #: cupsd.conf.man.in:197
 msgid ""
@@ -2630,6 +2643,8 @@ msgid ""
 "performance problems with hostname lookups.  Only set this option to \"On\" "
 "or \"Double\" if absolutely required."
 msgstr ""
+"Spezifiziert, ob Rückwärtsauflösung bei sich verbindenden Clients "
+"durchgeführt werden soll. Die Einstellung »Double« führt dazu, dass B<cupsd>(8) den Rechnernamen, der aus der "
 
 #. type: TP
 #: cupsd.conf.man.in:197
@@ -2840,6 +2855,14 @@ msgid ""
 "default is the OS-defined default limit, typically either \"5\" for older "
 "operating systems or \"128\" for newer operating systems."
 msgstr ""
+"Spezifiziert die Anzahl von erlaubten unerledigten Verbindungen. Dies "
+"betrifft normalerweise nur sehr beschäftigte Server, die die MaxClients-"
+"Beschränkung erreicht haben, kann aber auch von einer großen Anzahl von "
+"gleichzeitigen Verbindungen ausgelöst werden. Wenn die Beschränkung erreicht "
+"ist, wird das Betriebssystem zusätzliche Verbindungen ablehnen, bis der "
+"Auftragsplaner wieder unerledigte Verbindungen erlaubt. Die Vorgabe ist "
+"die betriebssystemabhängige Beschränkung, typischerweise »5« auf älteren "
+"Betriebssystemen oder »128« auf neueren Betriebssystemen."
 
 #. type: TP
 #: cupsd.conf.man.in:261
@@ -3286,6 +3309,11 @@ msgid ""
 "number of seconds after printing.  If \"Yes\", the job history is preserved "
 "until the MaxJobs limit is reached.  The default is \"Yes\"."
 msgstr ""
+"Spezifiziert, ob die Auftragschronik nach dem Druck behalten wird. Falls ein "
+"numerischer Wert angegeben ist, wird die Auftragschronik für die angegebene "
+"Anzahl von Sekunden nach dem Druck behalten. Falls »Yes« wird die "
+"Auftragschronik behalten, bis die Begrenzung MaxJobs erreicht ist. Die "
+"Vorgabe ist »Yes«."
 
 #. type: TP
 #: cupsd.conf.man.in:407
@@ -3359,6 +3387,14 @@ msgid ""
 "auto-discovery of alternate names does not work, we recommend listing each "
 "alternate name with a ServerAlias directive instead of using \"*\"."
 msgstr ""
+"Die Direktive ServerAlias wird für die Überprüfung von HTTP-Host-Kopfzeilen "
+"bei der Verbindungsaufnahme von Clients zum Auftragsplaner über externe "
+"Schnittstellen verwandt. Wenn Sie den besondere Name »*« verwenden, kann Ihr "
+"System für Browser-basierte DNS-Rebinding-Angriffe verwundbar werden, selbst "
+"falls die Zugriffe über eine Firewall erfolgen. Falls die automatische "
+"Erkennung von alternativen Namen nicht funktioniert, empfehlen wir, jeden "
+"alternativen Namen mit der Direktive ServerAlias aufzuführen, statt »*« zu "
+"verwenden."
 
 #. type: TP
 #: cupsd.conf.man.in:430
@@ -3485,6 +3521,12 @@ msgid ""
 "SSL v3.0, which is required for some older clients that do not support TLS "
 "v1.0."
 msgstr ""
+"Setzt Verschlüsselungsoptionen. Standardmäßig unterstützt CUPS nur "
+"Verschlüsselung mit TLS v1.0 oder höher mit bekanntermaßen sicheren "
+"Verschlüsselungsverfahren. Die Option I<AllowRC4> aktiviert die 128-Bit RC4-"
+"Chiffre, die für einige ältere Clients benötigt wird, die keine neuere "
+"Chiffre implementiert haben. Die Option I<AllowSSL3> aktiviert SSL v3.0, die "
+"für einige ältere Clients benötigt wird, die TLS v1.0 nicht unterstützen."
 
 #. type: TP
 #: cupsd.conf.man.in:484
@@ -4035,7 +4077,7 @@ msgstr "Purge-Jobs"
 #. type: Plain text
 #: cupsd.conf.man.in:635
 msgid "Cancels one or more jobs and deletes the job history."
-msgstr ""
+msgstr "Bricht einen oder mehrere Aufträge ab und löscht die Auftragschronik."
 
 #. type: TP
 #: cupsd.conf.man.in:635
@@ -6307,6 +6349,8 @@ msgid ""
 "Browsing initialization errors are fatal, for example failed connections to "
 "the DNS-SD daemon."
 msgstr ""
+"Initialisierungsfehler beim Browsing sind fatal, beispielsweise "
+"fehlgeschlagene Verbindungen zu dem DNS-SD-Daemon."
 
 #. type: TP
 #: cups-files.conf.man.in:103
@@ -6331,6 +6375,8 @@ msgid ""
 "Listen or Port errors are fatal, except for IPv6 failures on the loopback or "
 "\"any\" addresses."
 msgstr ""
+"Fehler beim Warten auf Anfragen oder Port-Fehler sind fatal, außer IPv6-"
+"Fehler auf dem Loopback- oder der »any«-Adresse."
 
 #. type: TP
 #: cups-files.conf.man.in:109
@@ -6355,6 +6401,9 @@ msgid ""
 "Bad startup file permissions are fatal, for example shared TLS certificate "
 "and key files with world-read permissions."
 msgstr ""
+"Fehlerhafte Dateirechte bei Initialisierungsdateien sind fatal, "
+"beispielsweise gemeinsam benutzte TLS-Zertifikate und Schlüsseldateien mit "
+"Leserechten für alle."
 
 #. type: TP
 #: cups-files.conf.man.in:117
@@ -6545,6 +6594,12 @@ msgid ""
 "specified directory, *.crt for PEM-encoded certificates and *.key for PEM-"
 "encoded private keys."
 msgstr ""
+"Spezifiziert den Ort der TLS-Zertifikate und privaten Schlüssel. Die Vorgabe "
+"ist »/Library/Keychains/System.keychain« unter OS X und »/etc/cups/ssl« auf "
+"allen anderen Betriebssystemen. OS X verwendet die Schlüsselring-Datenbank, "
+"um Zertifikate und Schlüssel zu speichern, während andere Plattformen "
+"einzelne Dateien in dem angegebenen Verzeichnis, *.crt für PEM-kodierte "
+"Zertifikate und *.key für PEM-kodierte private Schlüssel verwenden."
 
 #. type: TP
 #: cups-files.conf.man.in:180
@@ -9193,7 +9248,6 @@ msgid "EXPRESSIONS"
 msgstr "AUSDRÜCKE"
 
 #. type: Plain text
-#, fuzzy
 #: ippfind.man:66
 msgid ""
 "B<ippfind> supports expressions much like the B<find>(1)  utility.  However, "
@@ -9203,12 +9257,13 @@ msgid ""
 "specified, B<ippfind> adds I<--print> to print the service URI of anything "
 "it finds.  The following expressions are supported:"
 msgstr ""
-"B<ippfind> unterstützt ähnlich wie das Hilfswerkzeug B<find>(1) reguläre Ausdrücke. Anders als B<find>(1) verwendet B<ippfind> allerdings POSIX-reguläre-Ausdrücke statt der Datei "
-"unlike B<find>(1), B<ippfind> uses POSIX regular expressions instead of "
-"shell filename matching patterns.  If I<--exec>, I<-l>, I<--ls>, I<-p>, I<--"
-"print>, I<--print-name>, I<-q>, I<--quiet>, I<-s>, or I<-x> is not "
-"specified, B<ippfind> adds I<--print> to print the service URI of anything "
-"it finds.  The following expressions are supported:"
+"B<ippfind> unterstützt ähnlich wie das Hilfswerkzeug B<find>(1) reguläre "
+"Ausdrücke. Anders als B<find>(1) verwendet B<ippfind> allerdings POSIX-"
+"reguläre-Ausdrücke statt die Dateinamen-Platzhalter-Muster der Shell. Falls "
+"I<--exec>, I<-l>, I<--ls>, I<-p>, I<--print>, I<--print-name>, I<-q>, I<--"
+"quiet>, I<-s> oder I<-x> nicht angegeben ist wird B<ippfind> I<--print> "
+"hinzufügen, um die Dienste-URIs aller Treffer auszugeben. Die folgenden "
+"Ausdrücke werden unterstützt:"
 
 #. type: TP
 #: ippfind.man:66
@@ -9705,6 +9760,9 @@ msgid ""
 "Specify find timeout in seconds.  If 1 or less, B<ippfind> stops as soon as "
 "it thinks it has found everything.  The default timeout is 1 second."
 msgstr ""
+"Legt die Zeitüberschreitung beim Suchen fest (in Sekunden). Falls 1 oder "
+"weniger wird B<ippfind> aufhören, sobald es glaubt, alles gefunden zu haben. "
+"Die Vorgabezeitüberschreitung ist eine Sekunde."
 
 #. type: TP
 #: ippfind.man:210
@@ -9729,6 +9787,11 @@ msgid ""
 "query or resolution failed, 3 if an undefined option or invalid expression "
 "was specified, and 4 if it ran out of memory."
 msgstr ""
+"B<ippfind> liefert 0 zurück, falls das Ergebnis für alle verarbeiteten "
+"Ausdrücke wahr ist, 1, falls das Ergebnis irgendeines Ausdruckes falsch ist, "
+"2, falls das Browsen oder irgendeine Abfrage oder Auflösung fehlschlug, 3, "
+"falls eine nicht definierte Option oder ein ungültiger Ausdruck angegeben "
+"wurde oder 4, falls nicht genug Speicher vorhanden war."
 
 #. type: Plain text
 #: ippfind.man:218
@@ -12755,22 +12818,20 @@ msgstr ""
 
 #. type: TP
 #: lpadmin.man:117
-#, fuzzy, no-wrap
-#| msgid "-o job-sheets-default=banner"
+#, no-wrap
 msgid "B<-o job-sheets-default=>I<banner>"
-msgstr "-o job-sheets-default=Banner"
+msgstr "B<-o job-sheets-default=>I<Deckblatt>"
 
 #. type: TP
 #: lpadmin.man:119
-#, fuzzy, no-wrap
-#| msgid "-o job-sheets-default=banner,banner"
+#, no-wrap
 msgid "B<-o job-sheets-default=>I<banner>B<,>I<banner>"
-msgstr "-o job-sheets-default=Banner,Banner"
+msgstr "B<-o job-sheets-default=>I<Deckblatt>B<,>I<Deckblatt>"
 
 #. type: Plain text
 #: lpadmin.man:122
 msgid "Sets the default banner page(s) to use for print jobs."
-msgstr "Spezifiziert die Standarddeckblätter für das Drucken von Aufträgen."
+msgstr "Spezifiziert das/die Standarddeckblätter für das Drucken von Aufträgen."
 
 #. type: TP
 #: lpadmin.man:122
@@ -12936,11 +12997,6 @@ msgstr "B<-u deny:none>"
 
 #. type: Plain text
 #: lpadmin.man:173
-#, fuzzy
-#| msgid ""
-#| "Sets user-level access control on a destination. Names starting with \"@"
-#| "\" are interpreted as UNIX groups. The latter two forms turn user-level "
-#| "access control off."
 msgid ""
 "Sets user-level access control on a destination.  Names starting with \"@\" "
 "are interpreted as UNIX groups.  The latter two forms turn user-level access "
@@ -12958,18 +13014,13 @@ msgstr "B<-v \">I<Geräte-URI>B<\">"
 
 #. type: Plain text
 #: lpadmin.man:179
-#, fuzzy
-#| msgid ""
-#| "Sets the I<device-uri> attribute of the printer queue. Use the I<-v> "
-#| "option with the I<lpinfo(8)> command to get a list of supported device "
-#| "URIs and schemes."
 msgid ""
 "Sets the I<device-uri> attribute of the printer queue.  Use the I<-v> option "
 "with the B<lpinfo>(8)  command to get a list of supported device URIs and "
 "schemes."
 msgstr ""
 "Setzt das I<device-uri>-Attribut der Druckerwarteschlange. Benutzen Sie den "
-"Befehl I<lpinfo(8)> mit der Option I<-v>, um eine Liste der unterstützten "
+"Befehl B<lpinfo>(8) mit der Option I<-v>, um eine Liste der unterstützten "
 "Geräte-URIs und -Schemen zu erhalten."
 
 #. type: TP
@@ -12985,16 +13036,12 @@ msgstr "Stellt eine textuelle Beschreibung des Ziels bereit."
 
 #. type: Plain text
 #: lpadmin.man:189
-#, fuzzy
-#| msgid ""
-#| "Enables the destination and accepts jobs; this is the same as running the "
-#| "I<cupsaccept(8)> and I<cupsenable(8)> programs on the destination."
 msgid ""
 "Enables the destination and accepts jobs; this is the same as running the "
 "B<cupsaccept>(8)  and B<cupsenable>(8)  programs on the destination."
 msgstr ""
 "Aktiviert das Ziel und akzeptiert Aufträge. Dies ist identisch zur "
-"Ausführung der Programme I<cupsaccept(8)> und I<cupsenable(8)> für das Ziel."
+"Ausführung der Programme B<cupsaccept>(8) und B<cupsenable>(8) für das Ziel."
 
 #. type: TP
 #: lpadmin.man:189
@@ -13015,10 +13062,6 @@ msgstr "B<-P >I<PPD-Datei>"
 
 #. type: Plain text
 #: lpadmin.man:196
-#, fuzzy
-#| msgid ""
-#| "Specifies a PostScript Printer Description file to use with the printer. "
-#| "If specified, this option overrides the I<-i> option (interface script)."
 msgid ""
 "Specifies a PostScript Printer Description file to use with the printer.  If "
 "specified, this option overrides the I<-i> option (interface script)."
@@ -13029,14 +13072,6 @@ msgstr ""
 
 #. type: Plain text
 #: lpadmin.man:201
-#, fuzzy
-#| msgid ""
-#| "Unlike the System V printing system, CUPS allows printer names to contain "
-#| "any printable character except SPACE, TAB, \"/\", or \"#\".  Also, "
-#| "printer and class names are I<not> case-sensitive.  Finally, the CUPS "
-#| "version of I<lpadmin> may ask the user for an access password depending "
-#| "on the printing system configuration. This differs from the System V "
-#| "version which requires the root user to execute this command."
 msgid ""
 "Unlike the System V printing system, CUPS allows printer names to contain "
 "any printable character except SPACE, TAB, \"/\", or \"#\".  Also, printer "
@@ -13049,7 +13084,7 @@ msgstr ""
 "jedes druckbare Zeichen außer LEERZEICHEN, TABULATOR, »/« oder »#« "
 "enthalten. Außerdem wird bei Drucker- und Klassennamen Groß- und "
 "Kleinschreibung nicht unterschieden. Zu guter Letzt könnte die CUPS-Version "
-"von I<lpadmin> den Benutzer abhängig von der Drucksystemkonfiguration nach "
+"von B<lpadmin> den Benutzer abhängig von der Drucksystemkonfiguration nach "
 "einem Passwort fragen. Das unterscheidet es von der System-V-Version, die "
 "zur Ausführung dieses Befehls den Root-Benutzer benötigt."
 
@@ -13772,43 +13807,31 @@ msgstr "B<-o number-up=>{I<2|4|6|9|16>}"
 
 #. type: Plain text
 #: lp.man:186
-#, fuzzy
-#| msgid "Prints multiple document pages on each output page."
 msgid "Prints 2, 4, 6, 9, or 16 document (input) pages on each output page."
-msgstr "Druckt mehrere Dokumentenseiten auf jede Ausgabeseite."
+msgstr "Druckt 2, 4, 6, 9 oder 16 Dokumenten- (Eingabe-)Seiten auf jeder Ausgabeseite."
 
 #. type: Plain text
 #: lp.man:191
-#, fuzzy
-#| msgid ""
-#| "The \"q\" option accepts a different range of values than the Solaris lp "
-#| "command, matching the IPP job priority values (1-100, 100 is highest "
-#| "priority) instead of the Solaris values (0-39, 0 is highest priority)."
 msgid ""
 "The I<-q> option accepts a different range of values than the Solaris lp "
 "command, matching the IPP job priority values (1-100, 100 is highest "
 "priority) instead of the Solaris values (0-39, 0 is highest priority)."
 msgstr ""
-"Die Option »q« akzeptiert einen anderen Bereich von Werten als der Solaris-"
+"Die Option I<q> akzeptiert einen anderen Bereich von Werten als der Solaris-"
 "lp-Befehl, der den IPP-Druckauftragsprioritätswerten (1-100, 100 ist der "
 "höchste) anstelle der Solaris-Werte (0-39, 0 ist die höchste Priorität) "
 "entspricht."
 
 #. type: Plain text
 #: lp.man:193 lpr.man:120
-#, fuzzy
-#| msgid "Print a double-sided legal document to a printer called \"foo\":"
 msgid "Print two copies of a document to the default printer:"
-msgstr ""
-"Drucke ein doppelseitiges Dokument im Format legal auf dem Drucker mit Namen "
-"»foo«:"
+msgstr "Zwei Kopien eines Dokuments auf dem Vorgabedrucker ausdrucken:"
 
 #. type: Plain text
 #: lp.man:196
-#, fuzzy, no-wrap
-#| msgid "    lp -d bar -o scaling=200 filename\n"
+#, no-wrap
 msgid "    lp -n 2 filename\n"
-msgstr "    lp -d bar -o scaling=200 Dateiname\n"
+msgstr "    lp -n 2 Dateiname\n"
 
 #. type: Plain text
 #: lp.man:199 lpr.man:126
@@ -13833,10 +13856,9 @@ msgstr ""
 
 #. type: Plain text
 #: lp.man:208
-#, fuzzy, no-wrap
-#| msgid "    lp -d bar -o scaling=200 filename\n"
+#, no-wrap
 msgid "    lp -d foo -o number-up=2 filename\n"
-msgstr "    lp -d bar -o scaling=200 Dateiname\n"
+msgstr "    lp -d foo -o number-up=2 Dateiname\n"
 
 #. type: Plain text
 #: lp.man:218
@@ -14117,17 +14139,14 @@ msgstr "B<-x >I<Ziel>[B</>I</Instanz>]"
 
 #. type: Plain text
 #: lpoptions.man.in:124
-#, fuzzy
-#| msgid ""
-#| "Removes the options for the named destination and instance, if specified. "
-#| "If the named instance does not exist then this does nothing."
 msgid ""
 "Removes the options for the named destination and instance, if specified.  "
 "If the named instance does not exist then this does nothing.  Destinations "
 "can only be removed using the B<lpadmin>(8)  command."
 msgstr ""
 "Entfernt die Optionen für die benannten Ziele und Instanzen, falls "
-"angegeben. Falls die benannte Instanz nicht existiert, passiert nichts."
+"angegeben. Falls die benannte Instanz nicht existiert, passiert nichts. Ziele "
+"können nur mit dem Befehl B<lpadmin>(8) entfernt werden."
 
 #. type: Plain text
 #: lpoptions.man.in:126
@@ -15105,6 +15124,8 @@ msgstr "B<match(\">I<Muster>B<\")>"
 #: mime.types.man:49
 msgid "True if the filename matches the given shell wildcard I<pattern>."
 msgstr ""
+"Wahr, falls der Dateiname auf das angegebene Shell-Platzhalter-I<Muster> "
+"passt."
 
 #. type: TP
 #: mime.types.man:49
@@ -15773,16 +15794,17 @@ msgid "B<PCFileName \">I<filename.ppd>B<\">"
 msgstr "B<PCFileName \">I<Dateiname.ppd>B<\">"
 
 #. type: TP
+#, fuzzy
 #: ppdcfile.man:134
 #, no-wrap
 msgid "B<Resolution >I<colorspace bits-per-color row-count row-feed row-step name>"
-msgstr ""
+msgstr "B<Resolution >I<Farbraum Bits-pro-Farbe Zeilenanzahl Zeilenvorschub row-step Name>"
 
 #. type: TP
 #: ppdcfile.man:136
 #, fuzzy, no-wrap
 msgid "B<Resolution >I<colorspace bits-per-color row-count row-feed row-step >B<\">I<name>B</>I<text>B<\">"
-msgstr "B<Resolution >I<Farbraum Bits-pro-Farbe row-count row-feed row-step >B<\">I<Name>B</>I<Text>B<\">"
+msgstr "B<Resolution >I<Farbraum Bits-pro-Farbe Zeilenanzahl Zeilenvorschub row-step >B<\">I<Name>B</>I<Text>B<\">"
 
 #. type: TP
 #: ppdcfile.man:138
@@ -16436,7 +16458,7 @@ msgstr ""
 #~ msgstr "Spezifiziert menschenlesbaren Text, der den Drucker beschreibt."
 
 #~ msgid "JobSheets banner banner"
-#~ msgstr "JobSheets Banner Banner"
+#~ msgstr "JobSheets Deckblatt Deckblatt"
 
 #~ msgid "Specifies the banner pages to use for the printer."
 #~ msgstr ""
@@ -16750,7 +16772,7 @@ msgstr ""
 #~ "Specifies whether or not to preserve the job history after they are "
 #~ "printed."
 #~ msgstr ""
-#~ "Spezifiziert, ob der Verlauf des Druckauftrags nach dem Druck aufgehoben "
+#~ "Spezifiziert, ob die Auftragschronik nach dem Druck aufgehoben "
 #~ "werden soll."
 
 # type: TP
