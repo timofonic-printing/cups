@@ -1,3 +1,10 @@
+cups (2.1~rc1-3) experimental; urgency=medium
+
+  * Remove leftover test changelog entry
+  * Update the GetJobs patch in tests for the mips FTBFS
+
+ -- Didier Raboud <odyx@debian.org>  Tue, 18 Aug 2015 19:56:55 +0200
+
 cups (2.1~rc1-2) experimental; urgency=medium
 
   * Add patch to use the IPv4 127.0.0.1 address instead the 'localhost'
