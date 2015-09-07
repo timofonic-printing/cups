@@ -1,3 +1,105 @@
+cups (2.1.0-1) experimental; urgency=medium
+
+  * New 2.1.0 upstream release
+
+  [ Till Kamppeter ]
+  * Removed scheduler-create-ppd-correct-permissions.patch, included upstream
+  * Refreshed patches with quilt for the new 2.1.0 source code
+
+  [ Didier Raboud ]
+  * Refresh manpage translations
+
+ -- Didier Raboud <odyx@debian.org>  Thu, 03 Sep 2015 12:24:12 +0200
+
+cups (2.1~rc1-4) experimental; urgency=medium
+
+  [ Till Kamppeter ]
+  * Add patch from upstream to fix scheduler and make sure that the permissions
+    and ownerships of PPDs in /etc/cups/ppd/ are always the same
+    (STR #4703, Closes: #784271)
+
+ -- Didier Raboud <odyx@debian.org>  Fri, 28 Aug 2015 15:36:40 +0200
+
+cups (2.1~rc1-3) experimental; urgency=medium
+
+  * Remove leftover test changelog entry
+  * Update the GetJobs patch in tests for the mips FTBFS
+
+ -- Didier Raboud <odyx@debian.org>  Tue, 18 Aug 2015 19:56:55 +0200
+
+cups (2.1~rc1-2) experimental; urgency=medium
+
+  * Add patch to use the IPv4 127.0.0.1 address instead the 'localhost'
+    name in tests, this could fix the reproducible builds
+
+ -- Didier Raboud <odyx@debian.org>  Thu, 06 Aug 2015 18:47:38 +0200
+
+cups (2.1~rc1-1) experimental; urgency=low
+
+  * New 2.1~rc1 upstream version
+
+  [ Helge Kreutzmann ]
+  * Update German man page (2000t39f71u)
+
+  [ Didier Raboud ]
+  * Merge upstream version 2.0.4
+    - Fixed processing of server overrides without port numbers
+      (STR #4675, Closes: #711327, #791876)
+  * Drop patches included upstream:
+    - str4538-fix-redirection-from-cgi-scripts.patc
+    - str4646-fix-the-activejobs-loop-in-cupsdcheckjobs.patch
+    - cupsd-logs-manpage-in-section-5.patch
+    - libsystemd.patch
+    - str4679-fix-local-domainsocket-access-checking.patch
+    Refresh other patches
+
+ -- Didier Raboud <odyx@debian.org>  Wed, 05 Aug 2015 14:39:41 +0200
+
+cups (2.1~b1-4) experimental; urgency=medium
+
+  * Merge 2.0.3-10 from unstable
+
+ -- Didier Raboud <odyx@debian.org>  Tue, 21 Jul 2015 16:38:53 +0200
+
+cups (2.1~b1-3) experimental; urgency=medium
+
+  * Merge 2.0.3-8 from unstable
+
+ -- Didier Raboud <odyx@debian.org>  Wed, 15 Jul 2015 17:49:51 +0200
+
+cups (2.1~b1-2) experimental; urgency=low
+
+  [ Michael Biebl ]
+  * Transition from libsystemd-daemon to libsystemd:
+    - Update Build-Depends
+    - Patch the configuration system
+    (Closes: #779770)
+
+ -- Didier Raboud <odyx@debian.org>  Mon, 13 Jul 2015 18:43:43 +0200
+
+cups (2.1~b1-1) experimental; urgency=low
+
+  * New 2.1~b1 release
+   - No longer install banner files since third-party banner filters now
+     supply their own (STR #4518)
+   - The scheduler no longer listens on the loopback interface unless the
+     web interface or printer sharing are enabled
+   - Added a PPD generator for IPP Everywhere printers (STR #4258)
+   - Now install "default" versions of more configuration files
+   - Added SSLOptions values to allow Diffie-Hellman key exchange and
+     disable TLS/1.0 support.
+   - The scheduler now supports advanced ASL and journald logging when
+     "syslog" output is configured (STR #4474)
+   - The scheduler now supports logging to stderr when running in the
+     foreground (STR #4505)
+
+  * Drop two patches included upstream
+  * Refresh all patches
+  * Refresh manpage translations
+  * Install the cups-files.conf and snmp.conf default files in usr/share/cups
+
+ -- Didier Raboud <odyx@debian.org>  Thu, 09 Jul 2015 13:36:17 +0200
+
 cups (2.0.3-10) unstable; urgency=medium
 
   * Backport upstream patches:
