@@ -1,0 +1,20 @@
+Description: Applications were not able to load the PPD file from the CUPS
+ queues for IPP network printers as they were confused with remote CUPS queues
+Author: Till Kamppeter <till.kamppeter@gmail.com>
+Bug-Upstream: https://www.cups.org/str.php?L4725
+Last-Update: 2015-10-03
+--- a/cups/util.c
++++ b/cups/util.c
+@@ -1528,8 +1528,10 @@
+     }
+ 
+     if (device_uri &&
+-        (!strncmp(device_uri, "ipp://", 6) ||
+-         !strncmp(device_uri, "ipps://", 7) ||
++        (((!strncmp(device_uri, "ipp://", 6) ||
++	   !strncmp(device_uri, "ipps://", 7)) &&
++	  !strcmp(device_uri + strlen(device_uri) - strlen(resource),
++		  resource)) ||
+          ((strstr(device_uri, "._ipp.") != NULL ||
+            strstr(device_uri, "._ipps.") != NULL) &&
+           !strcmp(device_uri + strlen(device_uri) - 5, "/cups"))))
