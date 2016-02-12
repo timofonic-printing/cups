@@ -1,6 +1,4 @@
 # patches accepted and committed upstream
-admin-resource-files-not-served-when-web-interface-disabled.patch
-fix-pending-subscriptions-prevent-idle-timeout.patch
 
 # patches sent upstream
 pwg-raster-attributes.patch
