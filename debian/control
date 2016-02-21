@@ -33,7 +33,6 @@ Build-Depends:
  libpam0g-dev,
  libpaper-dev,
  libpng-dev,
- libslp-dev,
  libsystemd-dev [linux-any],
  libtiff-dev,
  libusb-1.0-0-dev [!hurd-any], 
