@@ -7,7 +7,7 @@ Uploaders:
  Didier Raboud <odyx@debian.org>,
  Till Kamppeter <till.kamppeter@gmail.com>,
 Build-Depends: 
- debhelper (>= 9~),
+ debhelper (>= 9.20160114),
  dh-apparmor,
  dh-exec,
  dh-systemd,
@@ -415,16 +415,3 @@ Description: Common UNIX Printing System(tm) - PPD manipulation utilities
  handling various document types.
  .
  This package provides utilities to generate and manipulate PPD files.
-
-Package: cups-dbg
-Priority: extra
-Section: debug
-Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}, cups-daemon (= ${binary:Version})
-Description: Common UNIX Printing System(tm) - debugging symbols
- The Common UNIX Printing System (or CUPS(tm)) is a printing system and 
- general replacement for lpd and the like.  It supports the Internet 
- Printing Protocol (IPP), and has its own filtering driver model for 
- handling various document types.
- .
- This package provides the debugging symbols of CUPS.
