@@ -1,6 +1,4 @@
 /*
- * "$Id: interpret.c 12746 2015-06-24 13:28:36Z msweet $"
- *
  * PPD command interpreter for CUPS.
  *
  * Copyright 2007-2015 by Apple Inc.
@@ -20,6 +18,7 @@
  */
 
 #include <cups/raster-private.h>
+#include <cups/ppd.h>
 
 
 /*
@@ -1724,8 +1723,3 @@ DEBUG_stack(const char       *prefix,	/* I - Prefix string */
     DEBUG_object(prefix, obj);
 }
 #endif /* DEBUG */
-
-
-/*
- * End of "$Id: interpret.c 12746 2015-06-24 13:28:36Z msweet $".
- */

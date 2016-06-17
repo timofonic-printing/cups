@@ -1,6 +1,4 @@
 .\"
-.\" "$Id: ppdpo.man 12854 2015-08-28 14:08:00Z msweet $"
-.\"
 .\" ppdpo man page for CUPS.
 .\"
 .\" Copyright 2007-2014 by Apple Inc.
@@ -52,7 +50,4 @@ The supported extensions are \fI.po\fR or \fI.po.gz\fR for GNU gettext format me
 .BR ppdcfile(5),
 CUPS Online Help (http://localhost:631/help)
 .SH COPYRIGHT
-Copyright \[co] 2007-2015 by Apple Inc.
-.\"
-.\" End of "$Id: ppdpo.man 12854 2015-08-28 14:08:00Z msweet $".
-.\"
+Copyright \[co] 2007-2016 by Apple Inc.

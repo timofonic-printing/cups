@@ -1,9 +1,7 @@
 /*
- * "$Id: dest-options.c 11882 2014-05-16 21:02:15Z msweet $"
- *
  * Destination option/media support for CUPS.
  *
- * Copyright 2012-2014 by Apple Inc.
+ * Copyright 2012-2016 by Apple Inc.
  *
  * These coded instructions, statements, and computer programs are the
  * property of Apple Inc. and are protected by Federal copyright
@@ -574,8 +572,7 @@ cupsCopyDestInfo(
   };
 
 
-  DEBUG_printf(("cupsCopyDestSupported(http=%p, dest=%p(%s))", http, dest,
-                dest ? dest->name : ""));
+  DEBUG_printf(("cupsCopyDestSupported(http=%p, dest=%p(%s))", (void *)http, (void *)dest, dest ? dest->name : ""));
 
  /*
   * Range check input...
@@ -706,6 +703,7 @@ cupsFindDestDefault(
   return (ippFindAttribute(dinfo->attrs, name, IPP_TAG_ZERO));
 }
 
+
 /*
  * 'cupsFindDestReady()' - Find the default value(s) for the given option.
  *
@@ -747,6 +745,7 @@ cupsFindDestReady(
   snprintf(name, sizeof(name), "%s-ready", option);
   return (ippFindAttribute(dinfo->ready_attrs, name, IPP_TAG_ZERO));
 }
+
 
 /*
  * 'cupsFindDestSupported()' - Find the default value(s) for the given option.
@@ -884,7 +883,7 @@ cupsGetDestMediaByIndex(
     _cupsSetError(IPP_STATUS_ERROR_INTERNAL, strerror(EINVAL), 0);
     return (0);
   }
-  
+
   if (nsize->size_name)
     strlcpy(size->media, nsize->size_name, sizeof(size->media));
   else if (nsize->key)
@@ -1261,7 +1260,7 @@ cups_create_cached(http_t       *http,	/* I - Connection to destination */
 			*first;		/* First entry this size */
 
 
-  DEBUG_printf(("3cups_create_cached(http=%p, dinfo=%p, flags=%u)", http, dinfo, flags));
+  DEBUG_printf(("3cups_create_cached(http=%p, dinfo=%p, flags=%u)", (void *)http, (void *)dinfo, flags));
 
   if (dinfo->cached_db)
     cupsArrayDelete(dinfo->cached_db);
@@ -1290,13 +1289,13 @@ cups_create_cached(http_t       *http,	/* I - Connection to destination */
        mdb;
        mdb = (_cups_media_db_t *)cupsArrayNext(db))
   {
-    DEBUG_printf(("4cups_create_cached: %p key=\"%s\", type=\"%s\", %dx%d, B%d L%d R%d T%d", mdb, mdb->key, mdb->type, mdb->width, mdb->length, mdb->bottom, mdb->left, mdb->right, mdb->top));
+    DEBUG_printf(("4cups_create_cached: %p key=\"%s\", type=\"%s\", %dx%d, B%d L%d R%d T%d", (void *)mdb, mdb->key, mdb->type, mdb->width, mdb->length, mdb->bottom, mdb->left, mdb->right, mdb->top));
 
     if (flags & CUPS_MEDIA_FLAGS_BORDERLESS)
     {
       if (!mdb->left && !mdb->right && !mdb->top && !mdb->bottom)
       {
-        DEBUG_printf(("4cups_create_cached: add %p", mdb));
+        DEBUG_printf(("4cups_create_cached: add %p", (void *)mdb));
         cupsArrayAdd(dinfo->cached_db, mdb);
       }
     }
@@ -1304,7 +1303,7 @@ cups_create_cached(http_t       *http,	/* I - Connection to destination */
     {
       if (first->width != mdb->width || first->length != mdb->length)
       {
-	DEBUG_printf(("4cups_create_cached: add %p", first));
+	DEBUG_printf(("4cups_create_cached: add %p", (void *)first));
         cupsArrayAdd(dinfo->cached_db, first);
         first = mdb;
       }
@@ -1314,14 +1313,14 @@ cups_create_cached(http_t       *http,	/* I - Connection to destination */
     }
     else
     {
-      DEBUG_printf(("4cups_create_cached: add %p", mdb));
+      DEBUG_printf(("4cups_create_cached: add %p", (void *)mdb));
       cupsArrayAdd(dinfo->cached_db, mdb);
     }
   }
 
   if (flags & CUPS_MEDIA_FLAGS_DUPLEX)
   {
-    DEBUG_printf(("4cups_create_cached: add %p", first));
+    DEBUG_printf(("4cups_create_cached: add %p", (void *)first));
     cupsArrayAdd(dinfo->cached_db, first);
   }
 }
@@ -2264,8 +2263,3 @@ cups_update_ready(http_t       *http,	/* I - Connection to destination */
 
   dinfo->ready_time = time(NULL);
 }
-
-
-/*
- * End of "$Id: dest-options.c 11882 2014-05-16 21:02:15Z msweet $".
- */

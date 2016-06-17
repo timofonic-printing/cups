@@ -1,20 +1,18 @@
 /*
- * "$Id: raster.h 4027 2012-11-16 01:00:05Z msweet $"
+ * Raster file definitions for CUPS.
  *
- *   Raster file definitions for CUPS.
+ * Copyright 2007-2016 by Apple Inc.
+ * Copyright 1997-2006 by Easy Software Products.
  *
- *   Copyright 2007-2012 by Apple Inc.
- *   Copyright 1997-2006 by Easy Software Products.
+ * This file is part of the CUPS Imaging library.
  *
- *   This file is part of the CUPS Imaging library.
+ * These coded instructions, statements, and computer programs are the
+ * property of Apple Inc. and are protected by Federal copyright
+ * law.  Distribution and use rights are outlined in the file "LICENSE.txt"
+ * which should have been included with this file.  If this file is
+ * file is missing or damaged, see the license at "http://www.cups.org/".
  *
- *   These coded instructions, statements, and computer programs are the
- *   property of Apple Inc. and are protected by Federal copyright
- *   law.  Distribution and use rights are outlined in the file "LICENSE.txt"
- *   which should have been included with this file.  If this file is
- *   file is missing or damaged, see the license at "http://www.cups.org/".
- *
- *   This file is subject to the Apple OS-Developed Software exception.
+ * This file is subject to the Apple OS-Developed Software exception.
  */
 
 #ifndef _CUPS_RASTER_H_
@@ -25,7 +23,6 @@
  */
 
 #  include "cups.h"
-#  include "ppd.h"
 
 
 #  ifdef __cplusplus
@@ -57,7 +54,6 @@ extern "C" {
 
 #  define CUPS_RASTER_SYNC_PWG	CUPS_RASTER_SYNCv2
 
-
 /*
  * The following definition can be used to determine if the
  * colorimetric colorspaces (CIEXYZ, CIELAB, and ICCn) are
@@ -78,6 +74,25 @@ extern "C" {
  */
 
 #  define CUPS_RASTER_HAVE_PWGRASTER 1
+
+/*
+ * The following PWG 5102.4 definitions specify indices into the
+ * cupsInteger[] array in the raster header.
+ */
+
+#  define CUPS_RASTER_PWG_TotalPageCount	0
+#  define CUPS_RASTER_PWG_CrossFeedTransform	1
+#  define CUPS_RASTER_PWG_FeedTransform		2
+#  define CUPS_RASTER_PWG_ImageBoxLeft		3
+#  define CUPS_RASTER_PWG_ImageBoxTop		4
+#  define CUPS_RASTER_PWG_ImageBoxRight		5
+#  define CUPS_RASTER_PWG_ImageBoxBottom	6
+#  define CUPS_RASTER_PWG_AlternatePrimary	7
+#  define CUPS_RASTER_PWG_PrintQuality		8
+#  define CUPS_RASTER_PWG_VendorIdentifier	14
+#  define CUPS_RASTER_PWG_VendorLength		15
+
+
 
 
 /*
@@ -377,11 +392,6 @@ extern unsigned		cupsRasterWritePixels(cups_raster_t *r,
 			                      unsigned char *p, unsigned len);
 
 /**** New in CUPS 1.2 ****/
-extern int		cupsRasterInterpretPPD(cups_page_header2_t *h,
-			                       ppd_file_t *ppd,
-					       int num_options,
-					       cups_option_t *options,
-					       cups_interpret_cb_t func) _CUPS_API_1_2;
 extern unsigned		cupsRasterReadHeader2(cups_raster_t *r,
 			                      cups_page_header2_t *h) _CUPS_API_1_2;
 extern unsigned		cupsRasterWriteHeader2(cups_raster_t *r,
@@ -394,12 +404,11 @@ extern const char	*cupsRasterErrorString(void) _CUPS_API_1_3;
 extern cups_raster_t	*cupsRasterOpenIO(cups_raster_iocb_t iocb, void *ctx,
 			                  cups_mode_t mode);
 
+/**** New in CUPS 2.2 ****/
+extern int		cupsRasterInitPWGHeader(cups_page_header2_t *h, pwg_media_t *media, const char *type, int xdpi, int ydpi, const char *sides, const char *sheet_back) _CUPS_API_2_2;
+
 #  ifdef __cplusplus
 }
 #  endif /* __cplusplus */
 
 #endif /* !_CUPS_RASTER_H_ */
-
-/*
- * End of "$Id: raster.h 4027 2012-11-16 01:00:05Z msweet $".
- */

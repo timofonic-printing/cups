@@ -1,6 +1,4 @@
 /*
- * "$Id: sysman.c 12236 2014-11-03 04:08:41Z msweet $"
- *
  * System management functions for the CUPS scheduler.
  *
  * Copyright 2007-2014 by Apple Inc.
@@ -1069,8 +1067,3 @@ sysUpdateNames(void)
     cupsdRegisterPrinter(p);
 }
 #endif	/* __APPLE__ */
-
-
-/*
- * End of "$Id: sysman.c 12236 2014-11-03 04:08:41Z msweet $".
- */

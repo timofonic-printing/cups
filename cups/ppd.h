@@ -1,31 +1,29 @@
 /*
- * "$Id: ppd.h 11056 2013-06-25 14:27:30Z msweet $"
+ * PostScript Printer Description definitions for CUPS.
  *
- *   PostScript Printer Description definitions for CUPS.
+ * THESE APIS ARE DEPRECATED. TO COMPILE WITHOUT WARNINGS ADD
+ * -D_PPD_DEPRECATED="" TO YOUR COMPILE OPTIONS.  THIS HEADER AND THESE
+ * FUNCTIONS WILL BE REMOVED IN A FUTURE RELEASE OF CUPS.
  *
- *   THESE APIS ARE DEPRECATED. TO COMPILE WITHOUT WARNINGS ADD
- *   -D_PPD_DEPRECATED="" TO YOUR COMPILE OPTIONS.  THIS HEADER AND THESE
- *   FUNCTIONS WILL BE REMOVED IN A FUTURE RELEASE OF CUPS.
+ * Copyright 2007-2015 by Apple Inc.
+ * Copyright 1997-2007 by Easy Software Products, all rights reserved.
  *
- *   Copyright 2007-2013 by Apple Inc.
- *   Copyright 1997-2007 by Easy Software Products, all rights reserved.
+ * These coded instructions, statements, and computer programs are the
+ * property of Apple Inc. and are protected by Federal copyright
+ * law.  Distribution and use rights are outlined in the file "LICENSE.txt"
+ * which should have been included with this file.  If this file is
+ * file is missing or damaged, see the license at "http://www.cups.org/".
  *
- *   These coded instructions, statements, and computer programs are the
- *   property of Apple Inc. and are protected by Federal copyright
- *   law.  Distribution and use rights are outlined in the file "LICENSE.txt"
- *   which should have been included with this file.  If this file is
- *   file is missing or damaged, see the license at "http://www.cups.org/".
+ * PostScript is a trademark of Adobe Systems, Inc.
  *
- *   PostScript is a trademark of Adobe Systems, Inc.
+ * This code and any derivative of it may be used and distributed
+ * freely under the terms of the GNU General Public License when
+ * used with GNU Ghostscript or its derivatives.  Use of the code
+ * (or any derivative of it) with software other than GNU
+ * GhostScript (or its derivatives) is governed by the CUPS license
+ * agreement.
  *
- *   This code and any derivative of it may be used and distributed
- *   freely under the terms of the GNU General Public License when
- *   used with GNU Ghostscript or its derivatives.  Use of the code
- *   (or any derivative of it) with software other than GNU
- *   GhostScript (or its derivatives) is governed by the CUPS license
- *   agreement.
- *
- *   This file is subject to the Apple OS-Developed Software exception.
+ * This file is subject to the Apple OS-Developed Software exception.
  */
 
 #ifndef _CUPS_PPD_H_
@@ -39,6 +37,7 @@
 #  include "cups.h"
 #  include "array.h"
 #  include "file.h"
+#  include "raster.h"
 
 
 /*
@@ -362,8 +361,12 @@ typedef struct ppd_file_s		/**** PPD File ****/
  * Prototypes...
  */
 
-extern int		cupsMarkOptions(ppd_file_t *ppd, int num_options,
-			                cups_option_t *options) _PPD_DEPRECATED;
+extern const char	*cupsGetPPD(const char *name) _PPD_DEPRECATED;
+extern const char	*cupsGetPPD2(http_t *http, const char *name) _PPD_DEPRECATED;
+extern http_status_t	cupsGetPPD3(http_t *http, const char *name, time_t *modtime, char *buffer, size_t bufsize) _PPD_DEPRECATED;
+extern char		*cupsGetServerPPD(http_t *http, const char *name) _PPD_DEPRECATED;
+extern int		cupsMarkOptions(ppd_file_t *ppd, int num_options, cups_option_t *options) _PPD_DEPRECATED;
+
 extern void		ppdClose(ppd_file_t *ppd) _PPD_DEPRECATED;
 extern int		ppdCollect(ppd_file_t *ppd, ppd_section_t section,
 			           ppd_choice_t  ***choices) _PPD_DEPRECATED;
@@ -409,6 +412,11 @@ extern ppd_status_t	ppdLastError(int *line) _PPD_DEPRECATED;
 extern void		ppdSetConformance(ppd_conform_t c) _PPD_DEPRECATED;
 
 /**** New in CUPS 1.2 ****/
+extern int		cupsRasterInterpretPPD(cups_page_header2_t *h,
+			                       ppd_file_t *ppd,
+					       int num_options,
+					       cups_option_t *options,
+					       cups_interpret_cb_t func) _PPD_DEPRECATED;
 extern int		ppdCollect2(ppd_file_t *ppd, ppd_section_t section,
 			            float min_order, ppd_choice_t  ***choices)
 			            _PPD_DEPRECATED;
@@ -472,7 +480,3 @@ extern int		ppdPageSizeLimits(ppd_file_t *ppd,
 }
 #  endif /* __cplusplus */
 #endif /* !_CUPS_PPD_H_ */
-
-/*
- * End of "$Id: ppd.h 11056 2013-06-25 14:27:30Z msweet $".
- */

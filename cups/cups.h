@@ -1,6 +1,4 @@
 /*
- * "$Id: cups.h 13087 2016-02-12 18:53:24Z msweet $"
- *
  * API definitions for CUPS.
  *
  * Copyright 2007-2016 by Apple Inc.
@@ -35,15 +33,6 @@ typedef off_t ssize_t;			/* @private@ */
 #  include "language.h"
 #  include "pwg.h"
 
-/*
- * Define _PPD_DEPRECATED to silence the warnings about PPD functions being
- * deprecated...
- */
-
-#  ifndef _PPD_DEPRECATED
-#    define _PPD_DEPRECATED _CUPS_DEPRECATED_1_6_MSG("Use cupsCopyDestInfo and friends instead.")
-#  endif /* !_PPD_DEPRECATED */
-
 
 /*
  * C++ magic...
@@ -58,10 +47,10 @@ extern "C" {
  * Constants...
  */
 
-#  define CUPS_VERSION			2.0104
+#  define CUPS_VERSION			2.0200
 #  define CUPS_VERSION_MAJOR		2
-#  define CUPS_VERSION_MINOR		1
-#  define CUPS_VERSION_PATCH		4
+#  define CUPS_VERSION_MINOR		2
+#  define CUPS_VERSION_PATCH		0
 
 #  define CUPS_BC_FD			3
 					/* Back-channel file descriptor for
@@ -250,7 +239,7 @@ enum cups_ptype_e			/* Printer type/capability bit
 					 * @since CUPS 1.4/OS X 10.6@ */
   CUPS_PRINTER_MFP = 0x4000000,		/* Printer with scanning capabilities
 					 * @since CUPS 1.4/OS X 10.6@ */
-  CUPS_PRINTER_3D = 0x8000000,		/* 3D Printing @since CUPS 2.1@ */
+  CUPS_PRINTER_3D = 0x8000000,		/* Printer with 3D capabilities @since CUPS 2.1@ */
   CUPS_PRINTER_OPTIONS = 0x6fffc	/* ~(CLASS | REMOTE | IMPLICIT |
 					 * DEFAULT | FAX | REJECTING | DELETE |
 					 * NOT_SHARED | AUTHENTICATED |
@@ -324,14 +313,6 @@ typedef int (^cups_dest_block_t)(unsigned flags, cups_dest_t *dest);
 					 * @since CUPS 1.6/OS X 10.8@ */
 #  endif /* __BLOCKS__ */
 
-typedef void (*cups_device_cb_t)(const char *device_class,
-                                 const char *device_id, const char *device_info,
-                                 const char *device_make_and_model,
-                                 const char *device_uri,
-				 const char *device_location, void *user_data);
-					/* Device callback
-					 * @since CUPS 1.4/OS X 10.6@ */
-
 typedef const char *(*cups_password_cb_t)(const char *prompt);
 					/* Password callback */
 
@@ -364,7 +345,6 @@ extern int		cupsGetClasses(char ***classes) _CUPS_DEPRECATED_MSG("Use cupsGetDes
 extern const char	*cupsGetDefault(void);
 extern int		cupsGetJobs(cups_job_t **jobs, const char *name,
 			            int myjobs, int whichjobs);
-extern const char	*cupsGetPPD(const char *name) _PPD_DEPRECATED;
 extern int		cupsGetPrinters(char ***printers) _CUPS_DEPRECATED_MSG("Use cupsGetDests instead.");
 extern ipp_status_t	cupsLastError(void);
 extern int		cupsPrintFile(const char *name, const char *filename,
@@ -422,7 +402,6 @@ extern int		cupsGetDests2(http_t *http, cups_dest_t **dests)
 extern int		cupsGetJobs2(http_t *http, cups_job_t **jobs,
 			             const char *name, int myjobs,
 				     int whichjobs) _CUPS_API_1_1_21;
-extern const char	*cupsGetPPD2(http_t *http, const char *name) _PPD_DEPRECATED;
 extern int		cupsPrintFile2(http_t *http, const char *name,
 			               const char *filename,
 				       const char *title, int num_options,
@@ -456,8 +435,6 @@ extern cups_file_t	*cupsTempFile2(char *filename, int len) _CUPS_API_1_2;
 extern ipp_t		*cupsDoIORequest(http_t *http, ipp_t *request,
 			                 const char *resource, int infile,
 					 int outfile) _CUPS_API_1_3;
-extern char		*cupsGetServerPPD(http_t *http, const char *name)
-			                  _CUPS_API_1_3;
 extern int		cupsRemoveDest(const char *name,
 			               const char *instance,
 				       int num_dests, cups_dest_t **dests)
@@ -475,19 +452,11 @@ extern int		cupsCreateJob(http_t *http, const char *name,
 				      cups_option_t *options) _CUPS_API_1_4;
 extern ipp_status_t	cupsFinishDocument(http_t *http,
 			                   const char *name) _CUPS_API_1_4;
-extern ipp_status_t	cupsGetDevices(http_t *http, int timeout,
-			               const char *include_schemes,
-			               const char *exclude_schemes,
-				       cups_device_cb_t callback,
-				       void *user_data) _CUPS_API_1_4;
 extern cups_dest_t	*cupsGetNamedDest(http_t *http, const char *name,
 			                  const char *instance) _CUPS_API_1_4;
 extern const char	*cupsGetPassword2(const char *prompt, http_t *http,
 					  const char *method,
 					  const char *resource) _CUPS_API_1_4;
-extern http_status_t	cupsGetPPD3(http_t *http, const char *name,
-			            time_t *modtime, char *buffer,
-				    size_t bufsize) _PPD_DEPRECATED;
 extern ipp_t		*cupsGetResponse(http_t *http,
 			                 const char *resource) _CUPS_API_1_4;
 extern ssize_t		cupsReadResponseData(http_t *http, char *buffer,
@@ -612,7 +581,7 @@ extern int		cupsGetDestMediaByIndex(http_t *http, cups_dest_t *dest,
 			                        unsigned flags,
 			                        cups_size_t *size)
 			                        _CUPS_API_1_7;
-extern  int		cupsGetDestMediaCount(http_t *http, cups_dest_t *dest,
+extern int		cupsGetDestMediaCount(http_t *http, cups_dest_t *dest,
 			                      cups_dinfo_t *dinfo,
 			                      unsigned flags) _CUPS_API_1_7;
 extern int		cupsGetDestMediaDefault(http_t *http, cups_dest_t *dest,
@@ -629,12 +598,11 @@ extern const char	*cupsLocalizeDestMedia(http_t *http, cups_dest_t *dest, cups_d
 extern int		cupsMakeServerCredentials(const char *path, const char *common_name, int num_alt_names, const char **alt_names, time_t expiration_date) _CUPS_API_2_0;
 extern int		cupsSetServerCredentials(const char *path, const char *common_name, int auto_create) _CUPS_API_2_0;
 
+/* New in CUPS 2.2 */
+extern ssize_t		cupsHashData(const char *algorithm, const void *data, size_t datalen, unsigned char *hash, size_t hashsize) _CUPS_API_2_2;
+
 #  ifdef __cplusplus
 }
 #  endif /* __cplusplus */
 
 #endif /* !_CUPS_CUPS_H_ */
-
-/*
- * End of "$Id: cups.h 13087 2016-02-12 18:53:24Z msweet $".
- */

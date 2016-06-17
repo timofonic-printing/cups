@@ -1,6 +1,4 @@
 /*
- * "$Id: client.c 13061 2016-01-26 21:31:40Z msweet $"
- *
  * Client routines for the CUPS scheduler.
  *
  * Copyright 2007-2015 by Apple Inc.
@@ -143,7 +141,12 @@ cupsdAcceptClient(cupsd_listener_t *lis)/* I - Listener socket */
   * Save the connected address and port number...
   */
 
-  con->clientaddr = lis->address;
+  addrlen = sizeof(con->clientaddr);
+
+  if (getsockname(httpGetFd(con->http), (struct sockaddr *)&con->clientaddr, &addrlen) || addrlen == 0)
+    con->clientaddr = lis->address;
+
+  cupsdLogClient(con, CUPSD_LOG_DEBUG, "Server address is \"%s\".", httpAddrString(&con->clientaddr, name, sizeof(name)));
 
  /*
   * Check the number of clients on the same address...
@@ -4074,8 +4077,3 @@ write_pipe(cupsd_client_t *con)		/* I - Client connection */
 
   cupsdLogClient(con, CUPSD_LOG_DEBUG, "CGI data ready to be sent.");
 }
-
-
-/*
- * End of "$Id: client.c 13061 2016-01-26 21:31:40Z msweet $".
- */

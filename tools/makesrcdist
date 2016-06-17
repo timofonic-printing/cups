@@ -25,8 +25,8 @@ fi
 if test $# = 0; then
 	# Compute version for snapshot
 	rev=`git show --oneline | head -1 | awk '{print $1}'`
-	version="2.1git"
-	fileversion="2.1git-$rev"
+	version="2.2git"
+	fileversion="2.2git-$rev"
 	fileurl="file://$TMPDIR/cups-$fileversion.tar.gz"
 else
 	# Use version from command-line
@@ -37,7 +37,7 @@ else
 
 	echo Validating sources...
 	cupsversionpatch=`echo $version | awk -F. '{if (NF == 3) { print $3 } else { print "0" } }'`
-	cupsversion=`printf "2.01%02d" $cupsversionpatch`
+	cupsversion=`printf "2.02%02d" $cupsversionpatch`
 
         temp=`grep AC_INIT configure.ac | awk '{print $2}' | sed -e '1,$s/^\[//' -e '1,$s/\],$//'`
         if test "$temp" != $version; then
@@ -76,7 +76,8 @@ else
 	fi
 
 	echo Creating tag for release...
-	git tag -m "Tag $version" release-$version
+	git tag -m "Tag $version" v$version
+	git push origin v$version
 fi
 
 fileurl=`echo $fileurl | sed -e '1,$s/\\//\\\\\\//g'`
@@ -92,13 +93,13 @@ sed -e '1,$s/@CUPS_VERSION@/'$version'/' \
 	-e '1,$s/^Source:.*/Source: '$fileurl'/' \
 	<packaging/cups.spec.in \
 	>packaging/cups.spec
-rm -rf everywhere tools .gitignore
+rm -rf tools .gitignore
 cd ..
 
 echo Archiving...
 tar czf cups-$fileversion-source.tar.gz cups-$version
 
 echo Removing temporary files...
-#rm -rf cups-$version
+rm -rf cups-$version
 
 echo "Done - files in $TMPDIR."

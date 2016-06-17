@@ -1,6 +1,4 @@
 /*
- * "$Id: env.c 12700 2015-06-08 18:32:35Z msweet $"
- *
  * Environment management routines for the CUPS scheduler.
  *
  * Copyright 2007-2014 by Apple Inc.
@@ -262,8 +260,3 @@ find_env(const char *name)		/* I - Variable name */
 
   return (-1);
 }
-
-
-/*
- * End of "$Id: env.c 12700 2015-06-08 18:32:35Z msweet $".
- */

@@ -1,6 +1,4 @@
 /*
- * "$Id: sidechannel.c 12124 2014-08-28 15:37:22Z msweet $"
- *
  * Side-channel API code for CUPS.
  *
  * Copyright 2007-2014 by Apple Inc.
@@ -622,8 +620,3 @@ cupsSideChannelWrite(
 
   return (0);
 }
-
-
-/*
- * End of "$Id: sidechannel.c 12124 2014-08-28 15:37:22Z msweet $".
- */

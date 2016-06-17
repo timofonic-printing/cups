@@ -1,6 +1,4 @@
 /*
- * "$Id: main.c 13087 2016-02-12 18:53:24Z msweet $"
- *
  * Main loop for the CUPS scheduler.
  *
  * Copyright 2007-2016 by Apple Inc.
@@ -109,8 +107,10 @@ main(int  argc,				/* I - Number of command-line args */
   int			close_all = 1,	/* Close all file descriptors? */
 			disconnect = 1,	/* Disconnect from controlling terminal? */
 			fg = 0,		/* Run in foreground? */
-			run_as_child = 0;
+			run_as_child = 0,
 					/* Running as child process? */
+			print_profile = 0;
+					/* Print the sandbox profile to stdout? */
   int			fds;		/* Number of ready descriptors */
   cupsd_client_t	*con;		/* Current client */
   cupsd_job_t		*job;		/* Current job */
@@ -308,6 +308,13 @@ main(int  argc,				/* I - Number of command-line args */
 	      disconnect     = 0;
 	      close_all      = 0;
 	      break;
+
+          case 'T' : /* Print security profile */
+              print_profile = 1;
+              fg            = 1;
+              disconnect    = 0;
+              close_all     = 0;
+              break;
 
 	  default : /* Unknown option */
               _cupsLangPrintf(stderr, _("cupsd: Unknown option \"%c\" - "
@@ -546,6 +553,27 @@ main(int  argc,				/* I - Number of command-line args */
     printf("\"%s\" is OK.\n", ConfigurationFile);
     return (0);
   }
+  else if (print_profile)
+  {
+    cups_file_t	*fp;			/* File pointer */
+    const char	*profile = cupsdCreateProfile(42, 0);
+					/* Profile */
+    char	line[1024];		/* Line from file */
+
+
+    if ((fp = cupsFileOpen(profile, "r")) == NULL)
+    {
+      printf("Unable to open profile file \"%s\": %s\n", profile ? profile : "(null)", strerror(errno));
+      return (1);
+    }
+
+    while (cupsFileGets(fp, line, sizeof(line)))
+      puts(line);
+
+    cupsFileClose(fp);
+
+    return (0);
+  }
 
  /*
   * Clean out old temp files and printer cache data.
@@ -725,6 +753,11 @@ main(int  argc,				/* I - Number of command-line args */
        /*
 	* Shutdown the server...
 	*/
+
+#if defined(HAVE_LAUNCHD) || defined(HAVE_SYSTEMD)
+	if (OnDemand)
+	  break;
+#endif /* HAVE_LAUNCHD || HAVE_SYSTEMD */
 
         DoingShutdown = 1;
 
@@ -1477,7 +1510,19 @@ process_children(void)
 	* filters are done, and if so move to the next file.
 	*/
 
-	if (job->current_file < job->num_files && job->printer)
+	if (job->state_value >= IPP_JOB_CANCELED)
+	{
+	 /*
+	  * Remove the job from the active list if there are no processes still
+	  * running for it...
+	  */
+
+	  for (i = 0; job->filters[i] < 0; i++);
+
+	  if (!job->filters[i] && job->backend <= 0)
+	    cupsArrayRemove(ActiveJobs, job);
+	}
+	else if (job->current_file < job->num_files && job->printer)
 	{
 	  for (i = 0; job->filters[i] < 0; i ++);
 
@@ -1491,18 +1536,6 @@ process_children(void)
 
 	    cupsdContinueJob(job);
 	  }
-	}
-	else if (job->state_value >= IPP_JOB_CANCELED)
-	{
-	 /*
-	  * Remove the job from the active list if there are no processes still
-	  * running for it...
-	  */
-
-	  for (i = 0; job->filters[i] < 0; i++);
-
-	  if (!job->filters[i] && job->backend <= 0)
-	    cupsArrayRemove(ActiveJobs, job);
 	}
       }
     }
@@ -2131,6 +2164,7 @@ service_checkout(void)
 
   if (cupsArrayCount(ActiveJobs) ||	/* Active jobs */
       WebInterface ||			/* Web interface enabled */
+      NeedReload ||			/* Doing a reload */
       (Browsing && BrowseLocalProtocols && cupsArrayCount(Printers)))
 					/* Printers being shared */
   {
@@ -2171,8 +2205,3 @@ usage(int status)			/* O - Exit status */
 
   exit(status);
 }
-
-
-/*
- * End of "$Id: main.c 13087 2016-02-12 18:53:24Z msweet $".
- */

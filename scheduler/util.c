@@ -1,6 +1,4 @@
 /*
- * "$Id: util.c 11558 2014-02-06 18:33:34Z msweet $"
- *
  * Mini-daemon utility functions for CUPS.
  *
  * Copyright 2007-2014 by Apple Inc.
@@ -452,8 +450,3 @@ cupsdSendIPPTrailer(void)
   putchar(IPP_TAG_END);
   fflush(stdout);
 }
-
-
-/*
- * End of "$Id: util.c 11558 2014-02-06 18:33:34Z msweet $".
- */

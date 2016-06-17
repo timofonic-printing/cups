@@ -1,6 +1,4 @@
 /*
- * "$Id: adminutil.c 12945 2015-10-26 19:46:02Z msweet $"
- *
  * Administration utility API definitions for CUPS.
  *
  * Copyright 2007-2015 by Apple Inc.
@@ -20,6 +18,7 @@
  */
 
 #include "cups-private.h"
+#include "ppd.h"
 #include "adminutil.h"
 #include <fcntl.h>
 #include <sys/stat.h>
@@ -2366,8 +2365,3 @@ write_option(cups_file_t     *dstfp,	/* I - PPD file */
 
   cupsFilePrintf(dstfp, "*JCLCloseUI: *%s\n\n", name);
 }
-
-
-/*
- * End of "$Id: adminutil.c 12945 2015-10-26 19:46:02Z msweet $".
- */

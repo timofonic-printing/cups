@@ -1,6 +1,4 @@
 /*
- * "$Id: conf.h 12689 2015-06-03 19:49:54Z msweet $"
- *
  * Configuration file definitions for the CUPS scheduler.
  *
  * Copyright 2007-2015 by Apple Inc.
@@ -259,9 +257,9 @@ VAR char		*SystemGroupAuthKey	VALUE(NULL);
 #ifdef HAVE_GSSAPI
 VAR char		*GSSServiceName		VALUE(NULL);
 					/* GSS service name */
-int			HaveServerCreds		VALUE(0);
+VAR int			HaveServerCreds		VALUE(0);
 					/* Do we have server credentials? */
-gss_cred_id_t		ServerCreds;	/* Server's GSS credentials */
+VAR gss_cred_id_t	ServerCreds;	/* Server's GSS credentials */
 #endif /* HAVE_GSSAPI */
 
 
@@ -297,8 +295,3 @@ extern int	cupsdLogPage(cupsd_job_t *job, const char *page);
 extern int	cupsdLogRequest(cupsd_client_t *con, http_status_t code);
 extern int	cupsdReadConfiguration(void);
 extern int	cupsdWriteErrorLog(int level, const char *message);
-
-
-/*
- * End of "$Id: conf.h 12689 2015-06-03 19:49:54Z msweet $".
- */

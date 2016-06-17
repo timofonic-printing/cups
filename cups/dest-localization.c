@@ -1,6 +1,4 @@
 /*
- * "$Id: dest-localization.c 12094 2014-08-19 12:15:11Z msweet $"
- *
  * Destination localization support for CUPS.
  *
  * Copyright 2012-2014 by Apple Inc.
@@ -143,7 +141,7 @@ cupsLocalizeDestMedia(
 
   if (mdb)
   {
-    DEBUG_printf(("1cupsLocalizeDestMedia: MATCH mdb%p [key=\"%s\" size_name=\"%s\" source=\"%s\" type=\"%s\" width=%d length=%d B%d L%d R%d T%d]", mdb, mdb->key, mdb->size_name, mdb->source, mdb->type, mdb->width, mdb->length, mdb->bottom, mdb->left, mdb->right, mdb->top));
+    DEBUG_printf(("1cupsLocalizeDestMedia: MATCH mdb%p [key=\"%s\" size_name=\"%s\" source=\"%s\" type=\"%s\" width=%d length=%d B%d L%d R%d T%d]", (void *)mdb, mdb->key, mdb->size_name, mdb->source, mdb->type, mdb->width, mdb->length, mdb->bottom, mdb->left, mdb->right, mdb->top));
 
     lsource = cupsLocalizeDestValue(http, dest, dinfo, "media-source", mdb->source);
     ltype   = cupsLocalizeDestValue(http, dest, dinfo, "media-type", mdb->type);
@@ -531,9 +529,3 @@ cups_scan_strings(char *buffer)		/* I - Start of string */
 
   return (bufptr);
 }
-
-
-
-/*
- * End of "$Id: dest-localization.c 12094 2014-08-19 12:15:11Z msweet $".
- */

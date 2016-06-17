@@ -1,6 +1,4 @@
 /*
- * "$Id: client.h 11717 2014-03-21 16:42:53Z msweet $"
- *
  * Client definitions for the CUPS scheduler.
  *
  * Copyright 2007-2014 by Apple Inc.
@@ -145,8 +143,3 @@ extern void	cupsdWriteClient(cupsd_client_t *con);
 extern int	cupsdEndTLS(cupsd_client_t *con);
 extern int	cupsdStartTLS(cupsd_client_t *con);
 #endif /* HAVE_SSL */
-
-
-/*
- * End of "$Id: client.h 11717 2014-03-21 16:42:53Z msweet $".
- */

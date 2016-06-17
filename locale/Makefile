@@ -1,6 +1,4 @@
 #
-# "$Id: Makefile 12233 2014-10-25 00:03:02Z msweet $"
-#
 # Locale file makefile for CUPS.
 #
 # Copyright 2007-2014 by Apple Inc.
@@ -201,8 +199,3 @@ strings2po:	strings2po.o
 #
 
 include Dependencies
-
-
-#
-# End of "$Id: Makefile 12233 2014-10-25 00:03:02Z msweet $".
-#

@@ -1,6 +1,4 @@
 /*
- * "$Id: cupsd.h 11717 2014-03-21 16:42:53Z msweet $"
- *
  * Main header file for the CUPS scheduler.
  *
  * Copyright 2007-2014 by Apple Inc.
@@ -20,6 +18,7 @@
 
 #include <cups/cups-private.h>
 #include <cups/file-private.h>
+#include <cups/ppd-private.h>
 
 #include <limits.h>
 #include <time.h>
@@ -225,8 +224,3 @@ extern void		cupsdStopSelect(void);
 /* server.c */
 extern void		cupsdStartServer(void);
 extern void		cupsdStopServer(void);
-
-
-/*
- * End of "$Id: cupsd.h 11717 2014-03-21 16:42:53Z msweet $".
- */

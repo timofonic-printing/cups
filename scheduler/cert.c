@@ -1,6 +1,4 @@
 /*
- * "$Id: cert.c 12972 2015-11-13 20:30:37Z msweet $"
- *
  * Authentication certificate routines for the CUPS scheduler.
  *
  * Copyright 2007-2015 by Apple Inc.
@@ -448,8 +446,3 @@ ctcompare(const char *a,		/* I - First string */
 
   return (result);
 }
-
-
-/*
- * End of "$Id: cert.c 12972 2015-11-13 20:30:37Z msweet $".
- */
