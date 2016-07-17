@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cups man pages 2.0.3-10\n"
 "POT-Creation-Date: 2016-07-03 11:50+0200\n"
-"PO-Revision-Date: 2016-07-02 06:34+0200\n"
+"PO-Revision-Date: 2016-07-17 14:53+0200\n"
 "Last-Translator: Helge Kreutzmann <debian@helgefjell.de>\n"
 "Language-Team: de <debian-l10n-german@lists.debian.org>\n"
 "Language: de\n"
@@ -4375,7 +4375,7 @@ msgstr "Der PPD-Dateipfad für den benannten Drucker"
 #: cupsd.conf.man.in:699
 #, no-wrap
 msgid "DIRECTIVES VALID WITHIN LOCATION AND LIMIT SECTIONS"
-msgstr "DIREKTIVEN, DIE INNERHALB VON ORTS- UND EINSCHRÄNKUNGS-ABSCHNITTEN GÜLTIG SIND"
+msgstr "DIREKTIVEN, DIE INNERHALB VON ORTS- UND EINSCHRÄNKUNGSABSCHNITTEN GÜLTIG SIND"
 
 #. type: Plain text
 #: cupsd.conf.man.in:701
