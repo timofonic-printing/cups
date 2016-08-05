@@ -22,6 +22,7 @@ tests-fix-mips-getjobs.patch
 tests-use-ipv4-lo-address.patch
 
 # Debian patches that upstream doesn't want to fix
+tests-make-lpstat-call-reproducible.patch
 move-cupsd-conf-default-to-share.patch
 drop_unnecessary_dependencies.patch
 read-embedded-options-from-incoming-postscript-and-add-to-ipp-attrs.patch
@@ -45,6 +46,7 @@ show-compile-command-lines.patch
 ppdc-dynamic-linking.patch
 log-debug-history-nearly-unlimited.patch
 cupsd-set-default-for-SyncOnClose-to-Yes.patch
+cups-set-default-error-policy-retry-job.patch
 man-cups-lpd-drop-dangling-references.patch
 debianize_cups-config.patch
 

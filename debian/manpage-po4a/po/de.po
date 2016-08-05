@@ -1,16 +1,18 @@
 # Translation of cups man pages to German
-# Copyright (C) Helge Kreutzmann <debian@helgefjell.de>, 2008-2015
+# Copyright (C) Helge Kreutzmann <debian@helgefjell.de>, 2008-2016
 # Chris Leick <c.leick@vollbio.de>, 2009.
 # This file is distributed under the same license as the cups package.
 #
 # Decisions in the translation:
 #  banner == banner page -> Deckblatt
 #
+# FIXME: Schlüssel als Subjekt, d.h. B<> legt die zu verwendende?
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: cups man pages 2.0.3-10\n"
-"POT-Creation-Date: 2016-06-17 11:32+0200\n"
-"PO-Revision-Date: 2016-05-01 14:00+0200\n"
+"POT-Creation-Date: 2016-08-05 23:27+0200\n"
+"PO-Revision-Date: 2016-08-05 17:25+0200\n"
 "Last-Translator: Helge Kreutzmann <debian@helgefjell.de>\n"
 "Language-Team: de <debian-l10n-german@lists.debian.org>\n"
 "Language: de\n"
@@ -740,10 +742,8 @@ msgstr "COPYRIGHT"
 #: mime.types.man:111 notifier.man:39 ppdcfile.man:160 ppdc.man:101
 #: ppdhtml.man:46 ppdi.man:53 ppdmerge.man:49 ppdpo.man:53 printers.conf.man:31
 #: subscriptions.conf.man:31
-#, fuzzy
-#| msgid "Copyright \\[co] 2007-2015 by Apple Inc."
 msgid "Copyright \\[co] 2007-2016 by Apple Inc."
-msgstr "Copyright \\[co] 2007-2015 by Apple Inc."
+msgstr "Copyright \\[co] 2007-2016 by Apple Inc."
 
 #. type: TH
 #: cancel.man:13
@@ -979,7 +979,7 @@ msgid ""
 "maintained by the B<cupsd>(8)  program. This file is not intended to be "
 "edited or managed manually."
 msgstr ""
-"Die Datei B<classes.conf> definiert lokal-verfügbare Druckerklassen. Sie "
+"Die Datei B<classes.conf> definiert lokal verfügbare Druckerklassen. Sie "
 "befindet sich normalerweise im Verzeichnis I</etc/cups> und wird vom "
 "Programm I<cupsd(8)> verwaltet. Diese Datei ist nicht dazu gedacht, per Hand "
 "bearbeitet oder verwaltet zu werden."
@@ -1014,16 +1014,16 @@ msgstr "client.conf"
 #. type: TH
 #: client.conf.man.in:13
 #, fuzzy, no-wrap
-#| msgid "10 May 2011"
+#| msgid "30 May 2016"
 msgid "18 May 2016"
-msgstr "10. Mai 2011"
+msgstr "30. Mai 2016"
 
 #. type: Plain text
 #: client.conf.man.in:16
 #, fuzzy
 #| msgid "client.conf - client configuration file for cups (deprecated)"
 msgid "client.conf - client configuration file for cups"
-msgstr "client.conf - Clientkonfigurationsdatei für CUPS (veraltet)"
+msgstr "client.conf - Client-Konfigurationsdatei für CUPS (veraltet)"
 
 #. type: Plain text
 #: client.conf.man.in:19
@@ -1227,9 +1227,9 @@ msgstr ""
 "mit bekannt sicheren Algorithmen. Die Option I<AllowDH> aktiviert "
 "Algorithmen, die den einfachen Diffie-Hellman-Schlüsselaustausch verwenden."
 "Die Option I<AllowRC4> aktiviert die 128-bit-RC4-Algorithmen, die für einige "
-"älteren Clients benötigt werden, die keine neueren implementierten. Die "
+"älteren Clients benötigt werden, die keine neueren implementieren. Die "
 "Option I<AllowSSL3> aktiviert SSL v3.0, das für einige ältere Clients "
-"benötigt wird, die TLS v1.0 nicht unterstützen.Die Option I<DenyTLS1.0> "
+"benötigt wird, die TLS v1.0 nicht unterstützen. Die Option I<DenyTLS1.0> "
 "deaktiviert die TLS-v1.0-Unterstützung - damit wird die minimale "
 "Protokollversion auf TLS v1.1 gesetzt."
 
@@ -1267,7 +1267,7 @@ msgstr "B<User >I<Name>"
 #. type: Plain text
 #: client.conf.man.in:77
 msgid "Specifies the default user name to use for requests."
-msgstr "Legt den für Anfragen standardmäßigen zu verwendenden Benutzer fest."
+msgstr "Legt den für Anfragen standardmäßig zu verwendenden Benutzer fest."
 
 #. type: TP
 #: client.conf.man.in:77
@@ -1528,7 +1528,7 @@ msgid ""
 "share, as follows:"
 msgstr ""
 "I<cupsaddsmb> verwendet die RPC-basierte Druck-Unterstützung in SAMBA, um "
-"Windows-Clientmaschinen Druckertreiber und PPD-Dateien bereitzustellen. Um "
+"Windows-Client-Maschinen Druckertreiber und PPD-Dateien bereitzustellen. Um "
 "diese Funktionalität zu benutzen, müssen Sie erst die Datei B<smb.conf>(5) "
 "von SAMBA so konfigurieren, dass das Drucken via CUPS erfolgt, und eine "
 "Freigabe für den Druckertreiber bereitstellt. Diese Konfiguration sieht wie "
@@ -2007,10 +2007,9 @@ msgstr "cupsctl"
 
 #. type: TH
 #: cupsctl.man:13
-#, fuzzy, no-wrap
-#| msgid "10 May 2011"
+#, no-wrap
 msgid "30 May 2016"
-msgstr "10. Mai 2011"
+msgstr "30. Mai 2016"
 
 #. type: Plain text
 #: cupsctl.man:16
@@ -2135,7 +2134,8 @@ msgstr "B<-->[B<no->]B<user-cancel-any>"
 #: cupsctl.man:69
 msgid "Allows (prevents) users to cancel jobs owned by others."
 msgstr ""
-"Ermöglicht (Verhindert) Benutzern, Aufträge anderer Benutzer abzubrechen."
+"Ermöglicht Benutzern, Aufträge anderer Benutzer abzubrechen oder hindert sie "
+"daran."
 
 #. type: Plain text
 #: cupsctl.man:71
@@ -2210,9 +2210,9 @@ msgstr "cupsd.conf"
 #. type: TH
 #: cupsd.conf.man.in:13 lpadmin.man:13
 #, fuzzy, no-wrap
-#| msgid "25 March 2014"
+#| msgid "5 March 2016"
 msgid "29 March 2016"
-msgstr "25. März 2014"
+msgstr "5. März 2016"
 
 #. type: Plain text
 #: cupsd.conf.man.in:16
@@ -2233,7 +2233,7 @@ msgstr ""
 "cups>. B<Hinweis:> Datei, Verzeichnis und Benutzerkonfigurationsdirektiven, "
 "die früher in der Datei B<cupsd.conf> erlaubt wurden, werden jetzt "
 "stattdessen in der Datei B<cups-files.conf>(5) gespeichert, um bestimmte "
-"Arten von Privilegien-Eskalationsangriffen zu vermeiden."
+"Arten von Angriffen zur Rechteerweiterung zu vermeiden."
 
 #. type: Plain text
 #: cupsd.conf.man.in:32 cups-files.conf.man.in:25 mailto.conf.man:23
@@ -2245,9 +2245,10 @@ msgid ""
 msgstr ""
 "Jede Zeile in der Datei kann eine Konfigurationsdirektive, eine leere Zeile "
 "oder ein Kommentar sein. Konfigurationsdirektiven bestehen typischerweise "
-"aus einem Namen und null oder mehr durch Leerzeichen getrennten Werten. Die "
-"Groß- und Kleinschreibung der Namen und Werte der Konfigurationsdirektiven "
-"ist nicht relevant. Kommentarzeilen beginnen mit dem Zeichen »#«. "
+"aus einem Namen und keinem oder mehren, durch Leerzeichen getrennten Werten. "
+"Die Groß- und Kleinschreibung der Namen und Werte der "
+"Konfigurationsdirektiven ist nicht relevant. Kommentarzeilen beginnen mit "
+"dem Zeichen »#«. "
 
 #. type: SS
 #: cupsd.conf.man.in:32 ipptoolfile.man:61
@@ -2551,7 +2552,7 @@ msgid ""
 "\"default\"."
 msgstr ""
 "Legt die zu verwendende Standardzugriffsrichtlinie fest. Die "
-"Standardzugriffsrichtlinie ist »Default«."
+"Standardzugriffsrichtlinie ist »default«."
 
 #. type: TP
 #: cupsd.conf.man.in:133
@@ -2619,11 +2620,12 @@ msgstr "B<ErrorPolicy retry-job>"
 #: cupsd.conf.man.in:152
 msgid ""
 "Specifies that a failed print job should be retried at a later time unless "
-"otherwise specified for the printer."
+"otherwise specified for the printer. The 'retry-job' error policy is the "
+"default."
 msgstr ""
 "Legt fest, dass ein fehlgeschlagener Druckauftrag zu einem späteren "
 "Zeitpunkt neu versucht werden soll, es sei denn, es wurde anders für den "
-"Drucker festgelegt."
+"Drucker festgelegt. Die Fehler-Richtlinie »retry-job« ist die Vorgabe."
 
 #. type: TP
 #: cupsd.conf.man.in:152
@@ -2651,11 +2653,10 @@ msgstr "B<ErrorPolicy stop-printer>"
 #: cupsd.conf.man.in:159
 msgid ""
 "Specifies that a failed print job should stop the printer unless otherwise "
-"specified for the printer. The 'stop-printer' error policy is the default."
+"specified for the printer."
 msgstr ""
 "Legt fest, dass ein fehlgeschlagener Druckauftrag den Drucker anhalten soll, "
-"es sei denn, es wurde anders für den Drucker festgelegt. Die Fehler-"
-"Richtlinie »stop-printer« ist die Vorgabe."
+"es sei denn, es wurde anders für den Drucker festgelegt."
 
 #. type: TP
 #: cupsd.conf.man.in:159
@@ -2678,7 +2679,7 @@ msgstr ""
 "Legt die maximale Belastung gleichzeitig ausgeführter Filter fest. Damit "
 "können Platten-, Arbeitsspeicher- und CPU-Ressourcenprobleme minimiert "
 "werden. Eine Beschränkung von 0 deaktiviert die Beschränkung von Filtern. "
-"Ein durchschnittlicher Ausdruck auf einen nicht PostScript-Drucker benötigt "
+"Ein durchschnittlicher Ausdruck auf einem Nicht-PostScript-Drucker benötigt "
 "eine Filter-Beschränkung von ungefähr 200. Ein PostScript-Drucker benötigt "
 "ungefähr die Hälfte (100) davon. Wird die Beschränkung unterhalb dieser "
 "Schwellen gesetzt, wird der Auftragsplaner effektiv darauf eingeschränkt, "
@@ -2735,7 +2736,6 @@ msgstr "B<HostNameLookups Double>"
 #. #JobKillDelay
 #. type: Plain text
 #: cupsd.conf.man.in:195
-#, fuzzy
 msgid ""
 "Specifies whether to do reverse lookups on connecting clients.  The \"Double"
 "\" setting causes B<cupsd>(8)  to verify that the hostname resolved from the "
@@ -2746,8 +2746,14 @@ msgid ""
 "or \"Double\" if absolutely required."
 msgstr ""
 "Legt fest, ob Rückwärtsauflösung bei sich verbindenden Clients durchgeführt "
-"werden soll. Die Einstellung »Double« führt dazu, dass B<cupsd>(8) den "
-"Rechnernamen, der aus der "
+"werden soll. Die Einstellung »Double« veranlasst B<cupsd>(8) zu prüfen, ob "
+"der über die Adresse aufgelöste Rechnername zu einer der dafür "
+"zurückgegebenen Adressen passt. Das Nachschlagen mit »Double« verhindert "
+"außerdem, dass sich Clients mit nicht registrierten Adressen mit Ihrem "
+"Server verbinden. Die Voreinstellung ist »Off«, um potenzielle Probleme mit "
+"der Systemleistung durch das Nachschlagen von Rechnernamen zu vermeiden. "
+"Setzen Sie diese Option nur auf »On« oder »Double«, wenn dies unbedingt "
+"erforderlich ist. "
 
 #. type: TP
 #: cupsd.conf.man.in:195
@@ -3498,9 +3504,9 @@ msgid ""
 msgstr ""
 "Die Direktive ServerAlias wird für die Überprüfung von HTTP-Host-Kopfzeilen "
 "bei der Verbindungsaufnahme von Clients zum Auftragsplaner über externe "
-"Schnittstellen verwandt. Wenn Sie den besondere Name »*« verwenden, kann Ihr "
-"System für Browser-basierte DNS-Rebinding-Angriffe verwundbar werden, selbst "
-"falls die Zugriffe über eine Firewall erfolgen. Falls die automatische "
+"Schnittstellen verwandt. Wenn Sie den besonderen Name »*« verwenden, kann "
+"Ihr System für Browser-basierte DNS-Rebinding-Angriffe verwundbar werden, "
+"selbst wenn die Zugriffe über eine Firewall erfolgen. Falls die automatische "
 "Erkennung von alternativen Namen nicht funktioniert, empfehlen wir, jeden "
 "alternativen Namen mit der Direktive ServerAlias aufzuführen, statt »*« zu "
 "verwenden."
@@ -3732,8 +3738,8 @@ msgid ""
 "Used by a client to download icons and other printer resources and to access "
 "the CUPS web interface."
 msgstr ""
-"Wird von einem Client zum Herunterladen von Icons und anderen Druckresourcen "
-"und zum Zugriff auf die CUPS-Webschnittstelle verwandt."
+"Wird von einem Client zum Herunterladen von Icons und anderen "
+"Druckressourcen und zum Zugriff auf die CUPS-Webschnittstelle verwandt."
 
 #. type: TP
 #: cupsd.conf.man.in:511
@@ -3934,7 +3940,7 @@ msgstr "CUPS-Get-Printers"
 #. type: Plain text
 #: cupsd.conf.man.in:565
 msgid "Gets a list of printers."
-msgstr "Eermittelt eine Liste von Druckern."
+msgstr "Ermittelt eine Liste von Druckern."
 
 #. type: TP
 #: cupsd.conf.man.in:565
@@ -4445,7 +4451,7 @@ msgstr "Der PPD-Dateipfad für den benannten Drucker"
 #: cupsd.conf.man.in:697
 #, no-wrap
 msgid "DIRECTIVES VALID WITHIN LOCATION AND LIMIT SECTIONS"
-msgstr "DIREKTIVEN, DIE INNERHALB VON ORTS- UND EINSCHRÄNKUNGS-ABSCHNITTEN GÜLTIG SIND"
+msgstr "DIREKTIVEN, DIE INNERHALB VON ORTS- UND EINSCHRÄNKUNGSABSCHNITTEN GÜLTIG SIND"
 
 #. type: Plain text
 #: cupsd.conf.man.in:699
@@ -4823,7 +4829,7 @@ msgstr ""
 "Legt eine Zugriffsliste für die privaten Werte eines Auftrags fest. Die "
 "»Standard«- (default) Zugriffsliste ist »@OWNER @SYSTEM«. »@ACL« passt auf "
 "die Werte requesting-user-name-allowed oder requesting-user-name-denied des "
-"Druckers. »@OWNER« passt auf den Eingentümer des Auftrags. »@SYSTEM« passt "
+"Druckers. »@OWNER« passt auf den Eigentümer des Auftrags. »@SYSTEM« passt "
 "auf die in der Direktive SystemGroup in der Datei B<cups-files.conf>(5) "
 "aufgeführten Gruppen."
 
@@ -4892,7 +4898,7 @@ msgstr ""
 "Legt eine Zugriffsliste für die privaten Werte eines Abonnements fest. Die "
 "»Standard«- (default) Zugriffsliste ist »@OWNER @SYSTEM«. »@ACL« passt auf "
 "die Werte requesting-user-name-allowed oder requesting-user-name-denied des "
-"Druckers. »@OWNER« passt auf den Eingentümer des Auftrags. »@SYSTEM« passt "
+"Druckers. »@OWNER« passt auf den Eigentümer des Auftrags. »@SYSTEM« passt "
 "auf die in der Direktive SystemGroup in der Datei B<cups-files.conf>(5) "
 "aufgeführten Gruppen."
 
@@ -5027,7 +5033,7 @@ msgid ""
 "B<cups-exec> I<sandbox-profile> [ I<-g> I<group-id> ] [ I<-n> I<nice-"
 "value> ] [ I<-u> I<user-id> ] I</path/to/program> I<argv0> I<...> I<argvN>"
 msgstr ""
-"B<cups-exec> I<Spielwiesenprofil> [ I<-g> I<Gruppen-ID> ] [ I<-n> I<nice-"
+"B<cups-exec> I<Sandbox-Profil> [ I<-g> I<Gruppen-ID> ] [ I<-n> I<nice-"
 "Wert> ] [ I<-u> I<Benutzer-ID> ] I</Pfad/zu/Programm> I<argv0> I<…> I<argvN>"
 
 #. type: Plain text
@@ -5061,7 +5067,7 @@ msgid ""
 "On OS X these programs are run in a secure sandbox."
 msgstr ""
 "Das Helferprogramm B<cups-exec> führt Backends, Filter und andere Programme "
-"aus. Unter OS X laufen diese Programme in einer sicheren Spielwiese."
+"aus. Unter OS X laufen diese Programme in einer sicheren Sandbox."
 
 #. type: Plain text
 #: cupsd-helper.man:61
@@ -5297,7 +5303,7 @@ msgstr "200"
 #. type: Plain text
 #: cupsd-logs.man:75
 msgid "Successful operation."
-msgstr "Vorgang erfolgreich."
+msgstr "Vorgang erfolgreich"
 
 #. type: TP
 #: cupsd-logs.man:75
@@ -5308,7 +5314,7 @@ msgstr "201"
 #. type: Plain text
 #: cupsd-logs.man:78
 msgid "File created/modified successfully."
-msgstr "Datei erfolgreich erstellt/verändert."
+msgstr "Datei erfolgreich erstellt/verändert"
 
 #. type: TP
 #: cupsd-logs.man:78
@@ -5414,7 +5420,7 @@ msgstr "426"
 #. type: Plain text
 #: cupsd-logs.man:102
 msgid "Upgrading to TLS-encrypted connection."
-msgstr "Hochstufen auf TLS-verschlüsselte Verbindung."
+msgstr "Hochstufen auf TLS-verschlüsselte Verbindung"
 
 #. type: TP
 #: cupsd-logs.man:102
@@ -5459,7 +5465,7 @@ msgid ""
 "HTTP version number not supported; typically this means that you have a "
 "malicious program trying to access your server."
 msgstr ""
-"HTTP-Versionnummer wird nicht unterstützt. Typischerweise bedeutet dies, "
+"HTTP-Versionsnummer wird nicht unterstützt. Typischerweise bedeutet dies, "
 "dass ein Schadprogramm versucht, auf Ihren Server zuzugreifen."
 
 #. type: Plain text
@@ -5876,10 +5882,9 @@ msgstr "cupsd"
 
 #. type: TH
 #: cupsd.man.in:13
-#, fuzzy, no-wrap
-#| msgid "11 February 2015"
+#, no-wrap
 msgid "12 February 2016"
-msgstr "11. Februar 2015"
+msgstr "12. Februar 2016"
 
 #. type: Plain text
 #: cupsd.man.in:16
@@ -5888,25 +5893,15 @@ msgstr "cupsd - Cups-Autragsplaner"
 
 #. type: Plain text
 #: cupsd.man.in:35
-#, fuzzy
-#| msgid ""
-#| "B<cupsd> [ B<-c> I<config-file> ] [ B<-f> ] [ B<-F> ] [ B<-h> ] [ B<-l> ] "
-#| "[ B<-t> ]"
 msgid ""
 "B<cupsd> [ B<-c> I<cupsd.conf> ] [ B<-f> ] [ B<-F> ] [ B<-h> ] [ B<-l> ] "
 "[ B<-s> I<cups-files.conf> ] [ B<-t> ]"
 msgstr ""
-"B<cupsd> [ B<-c> I<Konfig-Datei> ] [ B<-f> ] [ B<-F> ] [ B<-h> ] [ B<-l> ] "
-"[ B<-t> ]"
+"B<cupsd> [ B<-c> I<cupsd.conf> ] [ B<-f> ] [ B<-F> ] [ B<-h> ] [ B<-l> ] "
+"[ B<-s> I<cups-files.conf> ] [ B<-t> ]"
 
 #. type: Plain text
 #: cupsd.man.in:40
-#, fuzzy
-#| msgid ""
-#| "B<cupsd> is the scheduler for CUPS. It implements a printing system based "
-#| "upon the Internet Printing Protocol, version 2.1. If no options are "
-#| "specified on the command-line then the default configuration file I</etc/"
-#| "cups/cupsd.conf> will be used."
 msgid ""
 "B<cupsd> is the scheduler for CUPS. It implements a printing system based "
 "upon the Internet Printing Protocol, version 2.1, and supports most of the "
@@ -5916,23 +5911,21 @@ msgid ""
 msgstr ""
 "B<cupsd> ist der Auftragsplaner (Scheduler) für das Common UNIX Printing "
 "System. Es implementiert ein Drucksystem, das auf dem Internet Printing "
-"Protocol Version 2.1 basiert. Falls auf der Befehlszeile keine Optionen "
-"angegeben werden, wird stattdessen die Standard-Konfigurationsdatei I</etc/"
-"cups/cupsd.conf> verwandt."
+"Protocol Version 2.1 basiert und die meisten der Anforderungen von »IPP "
+"Everywhere« erfüllt. Falls auf der Befehlszeile keine Optionen angegeben "
+"werden, wird stattdessen die Standard-Konfigurationsdatei I</etc/cups/cupsd."
+"conf> verwandt."
 
 #. type: TP
 #: cupsd.man.in:41
-#, fuzzy, no-wrap
-#| msgid "I<cupsd.conf(5)>"
+#, no-wrap
 msgid "B<-c>I<\\ cupsd.conf>"
-msgstr "I<cupsd.conf(5)>"
+msgstr "B<-c>I<\\ cupsd.conf>"
 
 #. type: Plain text
 #: cupsd.man.in:44
-#, fuzzy
-#| msgid "Uses the named cups-files.conf configuration file."
 msgid "Uses the named cupsd.conf configuration file."
-msgstr "Verwendet die benannte cups-files.conf-Konfigurationsdatei."
+msgstr "Verwendet die benannte cupsd.conf-Konfigurationsdatei."
 
 #. type: TP
 #: cupsd.man.in:44
@@ -5995,10 +5988,9 @@ msgstr ""
 
 #. type: TP
 #: cupsd.man.in:68
-#, fuzzy, no-wrap
-#| msgid "cups-files.conf"
+#, no-wrap
 msgid "B<-s>I<\\ cups-files.conf>"
-msgstr "cups-files.conf"
+msgstr "B<-s>I<\\ cups-files.conf>"
 
 #. type: Plain text
 #: cupsd.man.in:71 cupsfilter.man:75
@@ -6084,22 +6076,16 @@ msgstr "    cupsd -f -c test.conf\n"
 
 #. type: Plain text
 #: cupsd.man.in:128
-#, fuzzy
-#| msgid ""
-#| "B<backend>(7), B<classes.conf>(5), B<cups>(1), B<cups-lpd>(8), B<cupsd."
-#| "conf>(5), B<cupsd-helper>(8), B<cupsd-logs>(8), B<filter>(7), "
-#| "B<launchd>(8), B<mime.convs>(5), B<mime.types>(5), B<printers.conf>(5), "
-#| "B<systemd>(8), CUPS Online Help (http://localhost:631/help)"
 msgid ""
 "B<backend>(7), B<classes.conf>(5), B<cups>(1), B<cups-files.conf>(5), B<cups-"
 "lpd>(8), B<cupsd.conf>(5), B<cupsd-helper>(8), B<cupsd-logs>(8), "
 "B<filter>(7), B<launchd>(8), B<mime.convs>(5), B<mime.types>(5), B<printers."
 "conf>(5), B<systemd>(8), CUPS Online Help (http://localhost:631/help)"
 msgstr ""
-"B<backend>(7), B<classes.conf>(5), B<cups>(1), B<cups-lpd>(8), B<cupsd."
-"conf>(5), B<cupsd-helper>(8), B<cupsd-logs>(8), B<filter>(7), B<launchd>(8), "
-"B<mime.convs>(5), B<mime.types>(5), B<printers.conf>(5), B<systemd>(8), CUPS-"
-"Online-Hilfe (http://localhost:631/help)"
+"B<backend>(7), B<classes.conf>(5), B<cups>(1), B<cups-files.conf>(5), B<cups-"
+"lpd>(8), B<cupsd.conf>(5), B<cupsd-helper>(8), B<cupsd-logs>(8), "
+"B<filter>(7), B<launchd>(8), B<mime.convs>(5), B<mime.types>(5), B<printers."
+"conf>(5), B<systemd>(8), CUPS-Online-Hilfe (http://localhost:631/help)"
 
 #. type: TH
 #: cupsenable.man:13
@@ -6745,6 +6731,10 @@ msgid ""
 "backends, and other child processes of the scheduler.  The default is "
 "\"strict\".  This directive is currently only used/supported on OS X."
 msgstr ""
+"Legt die Sicherheitsstufe für die Sandbox fest, die auf Druckfilter, "
+"Backends und andere Kindprozesse des Auftragsplaners angewandt werden soll. "
+"Die Vorgabe ist »strict«. Diese Direktive wird derzeit nur unter OS X "
+"verwandt/unterstützt."
 
 #. type: TP
 #: cups-files.conf.man.in:174
@@ -10054,7 +10044,7 @@ msgstr "    ippfind --ls\n"
 msgid ""
 "Similarly, to send a PostScript test page to every PostScript printer, run:"
 msgstr ""
-"Um eine PostScript-Testseite an jeden Postscript-Drucker zu senden, führen "
+"Um eine PostScript-Testseite an jeden PostScript-Drucker zu senden, führen "
 "Sie aus:"
 
 #. type: Plain text
@@ -13709,9 +13699,9 @@ msgstr "lp"
 #. type: TH
 #: lp.man:13 lpr.man:13
 #, fuzzy, no-wrap
-#| msgid "10 May 2011"
+#| msgid "30 May 2016"
 msgid "2 May 2016"
-msgstr "10. Mai 2011"
+msgstr "30. Mai 2016"
 
 #. type: Plain text
 #: lp.man:16
@@ -14313,9 +14303,9 @@ msgstr "lpmove"
 #. type: TH
 #: lpmove.man:13
 #, fuzzy, no-wrap
-#| msgid "10 May 2011"
+#| msgid "30 May 2016"
 msgid "26 May 2016"
-msgstr "10. Mai 2011"
+msgstr "30. Mai 2016"
 
 #. type: Plain text
 #: lpmove.man:16
@@ -15864,10 +15854,9 @@ msgstr "ppdcfile"
 
 #. type: TH
 #: ppdcfile.man:13
-#, fuzzy, no-wrap
-#| msgid "25 March 2014"
+#, no-wrap
 msgid "5 March 2016"
-msgstr "25. März 2014"
+msgstr "5. März 2016"
 
 #. type: Plain text
 #: ppdcfile.man:16
@@ -16090,13 +16079,11 @@ msgstr "B<DriverType >I<Typ>"
 msgid "B<Duplex >I<type>"
 msgstr "B<Duplex >I<Typ>"
 
-# FIXME Original i.O.?
 #. type: TP
 #: ppdcfile.man:82
-#, fuzzy, no-wrap
-#| msgid "B<Filter \\Imime-type cost program>"
+#, no-wrap
 msgid "B<Filter >I<mime-type cost program>"
-msgstr "B<Filter \\Imime-Typ Belastung Programm>"
+msgstr "B<Filter >I<MIME-Typ Belastung Programm>"
 
 #. type: TP
 #: ppdcfile.man:84
@@ -16869,6 +16856,14 @@ msgstr ""
 #~ msgid "Sets a job option."
 #~ msgstr "Setzt eine Auftrags-Option."
 
+#~ msgid ""
+#~ "Specifies that a failed print job should be retried at a later time "
+#~ "unless otherwise specified for the printer."
+#~ msgstr ""
+#~ "Legt fest, dass ein fehlgeschlagener Druckauftrag zu einem späteren "
+#~ "Zeitpunkt neu versucht werden soll, es sei denn, es wurde anders für den "
+#~ "Drucker festgelegt."
+
 #~ msgid "8 July 2014"
 #~ msgstr "8. Juli 2014"
 
@@ -17610,9 +17605,9 @@ msgstr ""
 #~ "ist der Herstellername aus der PPD-Datei. I<Marke und Modell> ist der "
 #~ "»NickName« aus der PPD-Datei. I<1284-Geräte-ID> ist die 1284DeviceId aus "
 #~ "der PPD-Datei, falls vorhanden. I<(PPD-Produkt)> ist die "
-#~ "Produktzeichenkette, wie sie in der PPD-Datei oder von einer Postscript-"
+#~ "Produktzeichenkette, wie sie in der PPD-Datei oder von einer PostScript-"
 #~ "Abfrage erscheinen könnte. I<PostScript-Version> ist die PSVersion-"
-#~ "Zeichenkette wie sie in der PPD-Datei oder von einer Postscript-Abfrage "
+#~ "Zeichenkette wie sie in der PPD-Datei oder von einer PostScript-Abfrage "
 #~ "erscheinen könnte. I<Typ> ist »postscript« für PostScript-Drucker, »pdf« "
 #~ "für PDF-Drucker, »raster« für Raster-Drucker oder »fax« für Faxgeräte."
 
