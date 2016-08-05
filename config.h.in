@@ -480,12 +480,18 @@
 
 
 /*
+ * Do we have on-demand support (launchd/systemd/upstart)?
+ */
+
+#undef HAVE_ONDEMAND
+
+
+/*
  * Do we have launchd support?
  */
 
 #undef HAVE_LAUNCH_H
 #undef HAVE_LAUNCHD
-#undef HAVE_LAUNCH_ACTIVATE_SOCKET
 
 
 /*
@@ -493,6 +499,13 @@
  */
 
 #undef HAVE_SYSTEMD
+
+
+/*
+ * Do we have upstart support?
+ */
+
+#undef HAVE_UPSTART
 
 
 /*
@@ -537,10 +550,10 @@
  */
 
 #undef HAVE_GETGROUPLIST
- 
+
 
 /*
- * Do we have OS X 10.4's mbr_XXX functions?
+ * Do we have macOS 10.4's mbr_XXX functions?
  */
 
 #undef HAVE_MEMBERSHIP_H
@@ -686,7 +699,7 @@
 
 
 /*
- * Location of OS X localization bundle, if any.
+ * Location of macOS localization bundle, if any.
  */
 
 #undef CUPS_BUNDLEDIR

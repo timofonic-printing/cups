@@ -534,6 +534,13 @@ typedef unsigned long useconds_t;
 
 
 /*
+ * Do we have on-demand support (launchd/systemd/upstart)?
+ */
+
+/* #undef HAVE_ONDEMAND */
+
+
+/*
  * Do we have launchd support?
  */
 
@@ -546,6 +553,13 @@ typedef unsigned long useconds_t;
  */
 
 /* #undef HAVE_SYSTEMD */
+
+
+/*
+ * Do we have upstart support?
+ */
+
+/* #undef HAVE_UPSTART */
 
 
 /*
@@ -593,7 +607,7 @@ typedef unsigned long useconds_t;
 
 
 /*
- * Do we have OS X 10.4's mbr_XXX functions?
+ * Do we have macOS 10.4's mbr_XXX functions?
  */
 
 /* #undef HAVE_MEMBERSHIP_H */
@@ -746,7 +760,7 @@ typedef unsigned long useconds_t;
 
 
 /*
- * Location of OS X localization bundle, if any.
+ * Location of macOS localization bundle, if any.
  */
 
 /* #undef CUPS_BUNDLEDIR */

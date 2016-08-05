@@ -107,7 +107,7 @@ cupsRasterClose(cups_raster_t *r)	/* I - Stream to close */
  * The "sheet_back" argument specifies a "pwg-raster-document-sheet-back" value
  * to apply for the back side of a page.  Pass @code NULL@ for the front side.
  *
- * @since CUPS 2.2@
+ * @since CUPS 2.2/macOS 10.12@
  */
 
 int					/* O - 1 on success, 0 on failure */
@@ -516,7 +516,7 @@ cupsRasterReadHeader(
  * 'cupsRasterReadHeader2()' - Read a raster page header and store it in a
  *                             version 2 page header structure.
  *
- * @since CUPS 1.2/OS X 10.5@
+ * @since CUPS 1.2/macOS 10.5@
  */
 
 unsigned				/* O - 1 on success, 0 on failure/end-of-file */
@@ -903,7 +903,7 @@ cupsRasterWriteHeader(
  *
  * The page header can be initialized using @link cupsRasterInterpretPPD@.
  *
- * @since CUPS 1.2/OS X 10.5@
+ * @since CUPS 1.2/macOS 10.5@
  */
 
 unsigned				/* O - 1 on success, 0 on failure */

@@ -878,6 +878,7 @@ with_dnssd_includes
 enable_launchd
 enable_systemd
 with_systemd
+enable_upstart
 with_smfmanifestdir
 with_rcdir
 with_rclevels
@@ -1560,12 +1561,13 @@ Optional Features:
   --disable-dnssd         disable DNS Service Discovery support using mDNSResponder
   --disable-launchd       disable launchd support
   --disable-systemd       disable systemd support
+ --enable-upstart         enable upstart support
   --enable-page-logging   enable page_log by default
   --disable-browsing      disable Browsing by default
   --disable-default-shared
 			  disable DefaultShared by default
   --disable-raw-printing  do not allow raw printing by default
-  --enable-webif          enable the web interface by default, default=no for OS X
+  --enable-webif          enable the web interface by default, default=no for macOS
 
 Optional Packages:
   --with-PACKAGE[=ARG]    use PACKAGE [ARG=yes]
@@ -1603,7 +1605,7 @@ Optional Packages:
   --with-rcstop           set stop number for rc scripts
   --with-xinetd           set path for xinetd config files
   --with-languages        set installed languages, default=all
-  --with-bundledir        set OS X localization bundle directory
+  --with-bundledir        set macOS localization bundle directory
   --with-config-file-perm set default ConfigFilePerm value, default=0640
   --with-cupsd-file-perm  set default cupsd permissions, default=0500
   --with-log-file-perm    set default LogFilePerm value, default=0644
@@ -2527,7 +2529,7 @@ case "$uname" in
 	Darwin*)
 		uname="Darwin"
 		if test $uversion -lt 120; then
-			as_fn_error $? "Sorry, this version of CUPS requires OS X 10.8 or higher." "$LINENO" 5
+			as_fn_error $? "Sorry, this version of CUPS requires macOS 10.8 or higher." "$LINENO" 5
 		fi
 		;;
 
@@ -6294,7 +6296,7 @@ _ACEOF
 # Server executables...
 case "$uname" in
 	*BSD* | Darwin*)
-		# *BSD and Darwin (MacOS X)
+		# *BSD and Darwin (macOS)
 		INSTALL_SYSV=""
 		CUPS_SERVERBIN="$exec_prefix/libexec/cups"
 		;;
@@ -6329,7 +6331,7 @@ else
 
 	case "$uname" in
 		Darwin*)
-			# Darwin (OS X)
+			# Darwin (macOS)
 			CUPS_STATEDIR="$CUPS_SERVERROOT"
 			;;
 		*)
@@ -6355,7 +6357,7 @@ fi
 if test "$mandir" = "\${prefix}/man" -a "$prefix" = "/"; then
 	case "$uname" in
         	Darwin* | Linux | GNU | *BSD*)
-        		# Darwin, MacOS X, Linux, GNU HURD, and *BSD
+        		# Darwin, macOS, Linux, GNU HURD, and *BSD
         		mandir="/usr/share/man"
         		AMANDIR="/usr/share/man"
         		PMANDIR="/usr/share/man"
@@ -6385,7 +6387,7 @@ case "$uname" in
 		MAN8DIR=1m
 		;;
 	Linux* | GNU* | Darwin*)
-		# Linux, GNU Hurd, and OS X
+		# Linux, GNU Hurd, and macOS
 		MAN1EXT=1.gz
 		MAN5EXT=5.gz
 		MAN7EXT=7.gz
@@ -7563,7 +7565,7 @@ if test x$enable_domainsocket != xno -a x$default_domainsocket != xno; then
 	if test "x$default_domainsocket" = x; then
 		case "$uname" in
 			Darwin*)
-				# Darwin and MaxOS X do their own thing...
+				# Darwin and macOS do their own thing...
 				CUPS_DEFAULT_DOMAINSOCKET="$localstatedir/run/cupsd"
 				;;
 			*)
@@ -7720,7 +7722,7 @@ fi
 	if test "x$KRB5CONFIG" != x; then
 		case "$uname" in
 			Darwin)
-				# OS X weak-links to the Kerberos framework...
+				# macOS weak-links to the Kerberos framework...
 				LIBGSSAPI="-weak_framework Kerberos"
 				{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for GSS framework" >&5
 $as_echo_n "checking for GSS framework... " >&6; }
@@ -8700,7 +8702,7 @@ fi
 
 	case "$uname" in
 		Darwin*)
-			# Darwin/OS X
+			# Darwin/macOS
 			if test "x$with_pam_module" != x; then
 				PAMFILE="pam.$with_pam_module"
 			elif test -f /usr/lib/pam/pam_opendirectory.so.2; then
@@ -9050,7 +9052,7 @@ if test "x$ac_cv_header_dns_sd_h" = xyes; then :
 
 		case "$uname" in
 			Darwin*)
-				# Darwin and MacOS X...
+				# Darwin and macOS...
 				$as_echo "#define HAVE_DNSSD 1" >>confdefs.h
 
 				DNSSDLIBS="-framework CoreFoundation -framework SystemConfiguration"
@@ -9122,23 +9124,15 @@ LAUNCHD_DIR=""
 
 
 if test x$enable_launchd != xno; then
-	ac_fn_c_check_func "$LINENO" "launch_msg" "ac_cv_func_launch_msg"
-if test "x$ac_cv_func_launch_msg" = xyes; then :
-  $as_echo "#define HAVE_LAUNCHD 1" >>confdefs.h
-
-fi
-
-	if test $uversion -ge 140; then
-		ac_fn_c_check_func "$LINENO" "launch_activate_socket" "ac_cv_func_launch_activate_socket"
+	ac_fn_c_check_func "$LINENO" "launch_activate_socket" "ac_cv_func_launch_activate_socket"
 if test "x$ac_cv_func_launch_activate_socket" = xyes; then :
 
-			$as_echo "#define HAVE_LAUNCHD 1" >>confdefs.h
+		$as_echo "#define HAVE_LAUNCHD 1" >>confdefs.h
 
-			$as_echo "#define HAVE_LAUNCH_ACTIVATE_SOCKET 1" >>confdefs.h
+		$as_echo "#define HAVE_ONDEMAND 1" >>confdefs.h
 
 fi
 
-	fi
 	ac_fn_c_check_header_mongrel "$LINENO" "launch.h" "ac_cv_header_launch_h" "$ac_includes_default"
 if test "x$ac_cv_header_launch_h" = xyes; then :
   $as_echo "#define HAVE_LAUNCH_H 1" >>confdefs.h
@@ -9149,7 +9143,7 @@ fi
 
 	case "$uname" in
 		Darwin*)
-			# Darwin, MacOS X
+			# Darwin, macOS
 			LAUNCHD_DIR="/System/Library/LaunchDaemons"
 			# liblaunch is already part of libSystem
 			;;
@@ -9208,6 +9202,8 @@ $as_echo "no" >&6; }
 		if test $have_systemd = yes; then
                         $as_echo "#define HAVE_SYSTEMD 1" >>confdefs.h
 
+                        $as_echo "#define HAVE_ONDEMAND 1" >>confdefs.h
+
 			ac_fn_c_check_header_mongrel "$LINENO" "systemd/sd-journal.h" "ac_cv_header_systemd_sd_journal_h" "$ac_includes_default"
 if test "x$ac_cv_header_systemd_sd_journal_h" = xyes; then :
   $as_echo "#define HAVE_SYSTEMD_SD_JOURNAL_H 1" >>confdefs.h
@@ -9220,6 +9216,21 @@ fi
                         fi
                 fi
         fi
+fi
+
+# Check whether --enable-upstart was given.
+if test "${enable_upstart+set}" = set; then :
+  enableval=$enable_upstart;
+fi
+
+if test "x$enable_upstart" = "xyes"; then
+	if test "x$have_systemd" = "xyes"; then
+		as_fn_error $? "Cannot support both systemd and upstart." "$LINENO" 5
+	fi
+	$as_echo "#define HAVE_UPSTART 1" >>confdefs.h
+
+	$as_echo "#define HAVE_ONDEMAND 1" >>confdefs.h
+
 fi
 
 SMFMANIFESTDIR=""

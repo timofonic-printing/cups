@@ -10,7 +10,7 @@
 .\" which should have been included with this file.  If this file is
 .\" file is missing or damaged, see the license at "http://www.cups.org/".
 .\"
-.TH cupsd.conf 5 "CUPS" "29 March 2016" "Apple Inc."
+.TH cupsd.conf 5 "CUPS" "21 June 2016" "Apple Inc."
 .SH NAME
 cupsd.conf \- server configuration file for cups
 .SH DESCRIPTION
@@ -191,6 +191,14 @@ to verify that the hostname resolved from the address matches one of the address
 Double lookups also prevent clients with unregistered addresses from connecting to your server.
 The default is "Off" to avoid the potential server performance problems with hostname lookups.
 Only set this option to "On" or "Double" if absolutely required.
+.\"#IdleExitTimeout
+.TP 5
+\fBIdleExitTimeout \fIseconds\fR
+Specifies the length of time to wait before shutting down due to inactivity.
+The default is "60" seconds.
+Note: Only applicable when
+.BR cupsd (8)
+is run on-demand (e.g., with \fB-l\fR).
 .\"#JobKillDelay
 .TP 5
 \fBJobKillDelay \fIseconds\fR
