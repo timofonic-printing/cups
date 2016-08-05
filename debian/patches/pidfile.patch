@@ -41,20 +41,20 @@ Last-Update: 2015-02-10
 +VAR char		*PidFile		VALUE(NULL);
 +					/* Debian CUPS pid file */
  
- #if defined(HAVE_LAUNCHD) || defined(HAVE_SYSTEMD)
+ #ifdef HAVE_ONDEMAND
  VAR int			IdleExitTimeout		VALUE(60);
 --- a/scheduler/main.c
 +++ b/scheduler/main.c
-@@ -77,6 +77,8 @@
+@@ -73,6 +73,8 @@
  static void		service_checkout(void);
- #endif /* HAVE_LAUNCHD || HAVE_SYSTEMD */
+ #endif /* HAVE_ONDEMAND */
  static void		usage(int status) __attribute__((noreturn));
 +int			write_pid(void);
 +int			remove_pid(void);
  
  
  /*
-@@ -692,6 +694,11 @@
+@@ -688,6 +690,11 @@
      cupsdStartSystemMonitor();
  #endif /* __APPLE__ */
  
@@ -66,7 +66,7 @@ Last-Update: 2015-02-10
   /*
    * Send server-started event...
    */
-@@ -1195,10 +1202,41 @@
+@@ -1191,10 +1198,41 @@
  
    cupsdStopSelect();
  

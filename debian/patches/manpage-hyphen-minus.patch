@@ -363,8 +363,8 @@ Last-Update: 2015-02-10
 -\fI/usr/lib/cups/filter\fR - Typical CUPS filter directory.
 +\fI/usr/lib/cups/filter\fR \- Typical CUPS filter directory.
  .br
--\fI/usr/libexec/cups/filter\fR - CUPS filter directory on OS X.
-+\fI/usr/libexec/cups/filter\fR \- CUPS filter directory on OS X.
+-\fI/usr/libexec/cups/filter\fR - CUPS filter directory on macOS.
++\fI/usr/libexec/cups/filter\fR \- CUPS filter directory on macOS.
  .SH EXAMPLES
  Define a filter that converts PostScript documents to CUPS Raster format:
  .nf
