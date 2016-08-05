@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cups man pages 2.0.3-10\n"
 "POT-Creation-Date: 2016-07-03 11:50+0200\n"
-"PO-Revision-Date: 2016-07-17 14:53+0200\n"
+"PO-Revision-Date: 2016-08-05 17:25+0200\n"
 "Last-Translator: Helge Kreutzmann <debian@helgefjell.de>\n"
 "Language-Team: de <debian-l10n-german@lists.debian.org>\n"
 "Language: de\n"
@@ -4743,7 +4743,7 @@ msgstr ""
 "Legt eine Zugriffsliste für die privaten Werte eines Auftrags fest. Die "
 "»Standard«- (default) Zugriffsliste ist »@OWNER @SYSTEM«. »@ACL« passt auf "
 "die Werte requesting-user-name-allowed oder requesting-user-name-denied des "
-"Druckers. »@OWNER« passt auf den Eingentümer des Auftrags. »@SYSTEM« passt "
+"Druckers. »@OWNER« passt auf den Eigentümer des Auftrags. »@SYSTEM« passt "
 "auf die in der Direktive SystemGroup in der Datei B<cups-files.conf>(5) "
 "aufgeführten Gruppen."
 
@@ -4812,7 +4812,7 @@ msgstr ""
 "Legt eine Zugriffsliste für die privaten Werte eines Abonnements fest. Die "
 "»Standard«- (default) Zugriffsliste ist »@OWNER @SYSTEM«. »@ACL« passt auf "
 "die Werte requesting-user-name-allowed oder requesting-user-name-denied des "
-"Druckers. »@OWNER« passt auf den Eingentümer des Auftrags. »@SYSTEM« passt "
+"Druckers. »@OWNER« passt auf den Eigentümer des Auftrags. »@SYSTEM« passt "
 "auf die in der Direktive SystemGroup in der Datei B<cups-files.conf>(5) "
 "aufgeführten Gruppen."
 
@@ -4947,7 +4947,7 @@ msgid ""
 "B<cups-exec> I<sandbox-profile> [ I<-g> I<group-id> ] [ I<-n> I<nice-"
 "value> ] [ I<-u> I<user-id> ] I</path/to/program> I<argv0> I<...> I<argvN>"
 msgstr ""
-"B<cups-exec> I<Spielwiesenprofil> [ I<-g> I<Gruppen-ID> ] [ I<-n> I<nice-"
+"B<cups-exec> I<Sandbox-Profil> [ I<-g> I<Gruppen-ID> ] [ I<-n> I<nice-"
 "Wert> ] [ I<-u> I<Benutzer-ID> ] I</Pfad/zu/Programm> I<argv0> I<…> I<argvN>"
 
 #. type: Plain text
@@ -4981,7 +4981,7 @@ msgid ""
 "On OS X these programs are run in a secure sandbox."
 msgstr ""
 "Das Helferprogramm B<cups-exec> führt Backends, Filter und andere Programme "
-"aus. Unter OS X laufen diese Programme in einer sicheren Spielwiese."
+"aus. Unter OS X laufen diese Programme in einer sicheren Sandbox."
 
 #. type: Plain text
 #: cupsd-helper.man:63
@@ -5217,7 +5217,7 @@ msgstr "200"
 #. type: Plain text
 #: cupsd-logs.man:77
 msgid "Successful operation."
-msgstr "Vorgang erfolgreich."
+msgstr "Vorgang erfolgreich"
 
 #. type: TP
 #: cupsd-logs.man:77
@@ -5228,7 +5228,7 @@ msgstr "201"
 #. type: Plain text
 #: cupsd-logs.man:80
 msgid "File created/modified successfully."
-msgstr "Datei erfolgreich erstellt/verändert."
+msgstr "Datei erfolgreich erstellt/verändert"
 
 #. type: TP
 #: cupsd-logs.man:80
@@ -5334,7 +5334,7 @@ msgstr "426"
 #. type: Plain text
 #: cupsd-logs.man:104
 msgid "Upgrading to TLS-encrypted connection."
-msgstr "Hochstufen auf TLS-verschlüsselte Verbindung."
+msgstr "Hochstufen auf TLS-verschlüsselte Verbindung"
 
 #. type: TP
 #: cupsd-logs.man:104
@@ -5379,7 +5379,7 @@ msgid ""
 "HTTP version number not supported; typically this means that you have a "
 "malicious program trying to access your server."
 msgstr ""
-"HTTP-Versionnummer wird nicht unterstützt. Typischerweise bedeutet dies, "
+"HTTP-Versionsnummer wird nicht unterstützt. Typischerweise bedeutet dies, "
 "dass ein Schadprogramm versucht, auf Ihren Server zuzugreifen."
 
 #. type: Plain text
@@ -6650,6 +6650,10 @@ msgid ""
 "backends, and other child processes of the scheduler.  The default is "
 "\"strict\".  This directive is currently only used/supported on OS X."
 msgstr ""
+"Legt die Sicherheitsstufe für die Sandbox fest, die auf Druckfilter, Backends "
+"und andere Kindprozesse des Auftragsplaners angewandt werden soll. Die "
+"Vorgabe ist »strict«. Diese Direktive wird derzeit nur unter OS X verwandt/"
+"unterstützt."
 
 #. type: TP
 #: cups-files.conf.man.in:176
