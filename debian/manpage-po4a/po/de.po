@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cups man pages 2.0.3-10\n"
 "POT-Creation-Date: 2016-07-03 11:50+0200\n"
-"PO-Revision-Date: 2016-08-05 17:25+0200\n"
+"PO-Revision-Date: 2016-08-09 20:30+0200\n"
 "Last-Translator: Helge Kreutzmann <debian@helgefjell.de>\n"
 "Language-Team: de <debian-l10n-german@lists.debian.org>\n"
 "Language: de\n"
@@ -5585,7 +5585,7 @@ msgid ""
 "The I<message> field contains a free-form textual message.  Messages from "
 "job filters are prefixed with \"[Job NNN]\" where \"NNN\" is the job ID."
 msgstr ""
-"Das Feld I<Nachricht> enthält eine formatfreie Textnachricht. Nachrichten "
+"Das Feld I<Nachricht> enthält eine formlose Textnachricht. Nachrichten "
 "von Auftragsfiltern haben den Präfix »[Job NNN]«, wobei »NNN« die Auftrags-"
 "ID ist."
 
@@ -5624,7 +5624,7 @@ msgid ""
 "      job-originating-host-name job-name media sides>\n"
 msgstr ""
 "    I<Drucker Benutzer Auftrags-ID Datum-Uhrzeit >B<total >I<Anzahl-Abdrucke\n"
-"      Auftrags-Abrechnung Auftrags-erstellender-Rechnername Auftragsname       Medium Seiten>\n"
+"      Auftrags-Abrechnung Auftrags-erstellender-Rechnername Auftragsname Medium Seiten>\n"
 
 #. type: Plain text
 #: cupsd-logs.man:193
@@ -5674,8 +5674,8 @@ msgid ""
 "page.  If you send a job to a printer class, this field will contain the "
 "name of the printer that was assigned the job."
 msgstr ""
-"Das Feld I<Drucker> enthält den Namen des Drucker, der die Seite gedruckt "
-"hat. Falls Sie einen Auftrag an eine Druckerklasse sendeten, wird dieses "
+"Das Feld I<Drucker> enthält den Namen des Druckers, der die Seite gedruckt "
+"hat. Falls Sie einen Auftrag an eine Druckerklasse gesendet haben, wird dieses "
 "Feld den Namen des Druckers enthalten, dem dieser Auftrag zugewiesen wurde."
 
 #. type: Plain text
@@ -5691,7 +5691,7 @@ msgstr ""
 #: cupsd-logs.man:214
 msgid "The I<job-id> field contains the job number of the page being printed."
 msgstr ""
-"Das Feld I<Auftrags-ID> enhält die Auftragsnummer der im Druck befindlichen "
+"Das Feld I<Auftrags-ID> enthält die Auftragsnummer der im Druck befindlichen "
 "Seite."
 
 #. type: Plain text
@@ -5746,7 +5746,7 @@ msgid ""
 "of the client that printed the job."
 msgstr ""
 "Das Feld I<Auftrags-erstellender-Rechnername> enthält den Rechnernamen oder "
-"die IP-Adresse des Clients, den den Auftrag gedruckt hat."
+"die IP-Adresse des Clients, der den Auftrag gedruckt hat."
 
 #. type: Plain text
 #: cupsd-logs.man:228
@@ -5853,7 +5853,7 @@ msgid ""
 "Run B<cupsd> in the foreground; the default is to run in the background as a "
 "\"daemon\"."
 msgstr ""
-"Führe B<cupsd> im Vordergrund aus; standardmäßig wird er im Hintergrund als "
+"Führt B<cupsd> im Vordergrund aus; standardmäßig wird er im Hintergrund als "
 "»Daemon« ausgeführt."
 
 #. type: TP
@@ -5869,7 +5869,7 @@ msgid ""
 "terminal and current directory. This is useful for running B<cupsd> from "
 "B<init>(8)."
 msgstr ""
-"Führe B<cupsd> im Vordergrund aus, aber kopple den Prozess von dem "
+"Führt B<cupsd> im Vordergrund aus, aber kopple den Prozess von dem "
 "steuernden Terminal und dem aktuellen Verzeichnis ab. Dies ist nützlich, um "
 "B<cupsd> von B<init>(8) aus auszuführen."
 
@@ -5920,7 +5920,7 @@ msgstr "B<-t>"
 #. type: Plain text
 #: cupsd.man.in:76
 msgid "Test the configuration file for syntax errors."
-msgstr "Die Konfigurationsdatei auf Syntax-Fehler testen."
+msgstr "Testet die Konfigurationsdatei auf Syntax-Fehler."
 
 #. type: Plain text
 #: cupsd.man.in:85
@@ -6196,7 +6196,7 @@ msgstr ""
 #. type: Plain text
 #: cups-files.conf.man.in:31
 msgid "The following directives are understood by B<cupsd>(8):"
-msgstr "Die nachfolgenden Direktiven werden in von B<cupsd>(8) verstanden:"
+msgstr "Die nachfolgenden Direktiven werden von B<cupsd>(8) verstanden:"
 
 #. type: TP
 #: cups-files.conf.man.in:31
