@@ -1249,7 +1249,7 @@ cupsdContinueJob(cupsd_job_t *job)	/* I - Job */
       else if (stat(command, &backinfo))
 	backroot = 0;
       else
-        backroot = !(backinfo.st_mode & (S_IWGRP | S_IRWXO));
+        backroot = !(backinfo.st_mode & (S_IWGRP | S_IWOTH | S_IXOTH));
 
       argv[0] = job->printer->sanitized_device_uri;
 
@@ -2200,7 +2200,7 @@ cupsdSaveAllJobs(void)
   strftime(temp, sizeof(temp) - 1, "%Y-%m-%d %H:%M", curdate);
 
   cupsFilePuts(fp, "# Job cache file for " CUPS_SVERSION "\n");
-  cupsFilePrintf(fp, "# Written by cupsd on %s\n", temp);
+  cupsFilePrintf(fp, "# Written by cupsd\n", temp);
   cupsFilePrintf(fp, "NextJobId %d\n", NextJobId);
 
  /*

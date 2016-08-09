@@ -19,7 +19,7 @@ include ../Makedefs
 # Object files...
 #
 
-# RBACKENDS are installed mode 0700 so cupsd will run them as root...
+# RBACKENDS are installed mode 0744 so cupsd will run them as root...
 #
 # UBACKENDS and ULBACKENDS are installed mode 0755 so cupsd will run them as
 # an unprivileged user...
@@ -27,6 +27,7 @@ include ../Makedefs
 # See http://www.cups.org/documentation.php/api-filter.html for more info...
 RBACKENDS =	\
 		ipp \
+		ipp14 \
 		lpd \
 		$(DNSSD_BACKEND)
 UBACKENDS =	\
@@ -50,6 +51,7 @@ LIBOBJS	=	\
 		snmp-supplies.o
 OBJS	=	\
 		ipp.o \
+		ipp14.o \
 		lpd.o \
 		dnssd.o \
 		snmp.o \
@@ -124,7 +126,7 @@ install-exec:	$(INSTALLXPC)
 	echo Installing backends in $(SERVERBIN)/backend
 	$(INSTALL_DIR) -m 755 $(SERVERBIN)/backend
 	for file in $(RBACKENDS); do \
-		$(LIBTOOL) $(INSTALL_BIN) -m 700 $$file $(SERVERBIN)/backend; \
+		$(LIBTOOL) $(INSTALL_BIN) -m 744 $$file $(SERVERBIN)/backend; \
 	done
 	for file in $(UBACKENDS); do \
 		$(INSTALL_BIN) $$file $(SERVERBIN)/backend; \
@@ -265,6 +267,17 @@ ipp:	ipp.o ../cups/$(LIBCUPS) libbackend.a
 	$(CC) $(LDFLAGS) -o ipp ipp.o libbackend.a $(LIBS)
 	$(RM) http
 	$(LN) ipp http
+
+
+#
+# ipp14
+#
+
+ipp14:	ipp14.o ../cups/$(LIBCUPS) libbackend.a
+	echo Linking $@...
+	$(CC) $(LDFLAGS) -o ipp14 ipp14.o libbackend.a $(LIBS)
+	#$(RM) http
+	#$(LN) ipp14 http
 
 
 #

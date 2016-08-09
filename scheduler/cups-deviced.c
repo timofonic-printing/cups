@@ -268,7 +268,7 @@ main(int  argc,				/* I - Number of command-line args */
     * all others run as the unprivileged user...
     */
 
-    start_backend(dent->filename, !(dent->fileinfo.st_mode & (S_IWGRP | S_IRWXO)));
+    start_backend(dent->filename, !(dent->fileinfo.st_mode & (S_IWGRP | S_IWOTH | S_IXOTH)));
   }
 
   cupsDirClose(dir);
@@ -562,14 +562,29 @@ get_device(cupsd_backend_t *backend)	/* I - Backend to read from */
 
     if (*ptr == '\"')
     {
-      for (ptr ++, device_id = ptr; *ptr && *ptr != '\"'; ptr ++)
+      for (ptr ++, device_id = ptr; *ptr != '\"'; ptr ++)
       {
 	if (*ptr == '\\' && ptr[1])
 	  _cups_strcpy(ptr, ptr + 1);
+	if (!*ptr)
+	{
+	  fprintf(stderr, "WARNING: [cups-deviced] Possible newline in device ID \"%s\": %s\n",
+		  backend->name, line);
+	  *ptr = ' ';
+	  ptr ++;
+	  *ptr = 0;
+	  if (!cupsFileGets(backend->pipe, ptr, sizeof(line) - (ptr - temp)))
+	  {
+	    cupsFileClose(backend->pipe);
+	    backend->pipe = NULL;
+	    fprintf(stderr, "ERROR: [cups-deviced] Bad line from \"%s\": %s\n",
+		    backend->name, line);
+	    return (-1);
+	  }
+	}
+	if (!*ptr)
+	  goto error;
       }
-
-      if (*ptr != '\"')
-	goto error;
 
       for (*ptr++ = '\0'; isspace(*ptr & 255); *ptr++ = '\0');
 

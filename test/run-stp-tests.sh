@@ -277,7 +277,7 @@ case "$usedebugprintfs" in
 		echo "Enabling debug printfs (level $usedebugprintfs); log files can be found in $BASE/log..."
 		CUPS_DEBUG_LOG="$BASE/log/debug_printfs.%d"; export CUPS_DEBUG_LOG
 		CUPS_DEBUG_LEVEL="$usedebugprintfs"; export CUPS_DEBUG_LEVEL
-		CUPS_DEBUG_FILTER='^(http|_http|ipp|_ipp|cups.*Request|cupsGetResponse|cupsSend|mime).*$'; export CUPS_DEBUG_FILTER
+		CUPS_DEBUG_FILTER='^(http|_http|ipp|_ipp|cups.*Request|cupsGetResponse|cupsSend).*$'; export CUPS_DEBUG_FILTER
 		;;
 
 	*)
@@ -450,14 +450,12 @@ EOF
 }
 
 ln -s $root/test/test.convs $BASE/share/mime
-ln -s $root/test/test.types $BASE/share/mime
 
 if test `uname` = Darwin; then
 	instfilter cgimagetopdf imagetopdf pdf
 	instfilter cgpdftopdf pdftopdf passthru
 	instfilter cgpdftops pdftops ps
 	instfilter cgpdftoraster pdftoraster raster
-	instfilter cgpdftoraster pdftourf raster
 	instfilter cgtexttopdf texttopdf pdf
 	instfilter pstocupsraster pstoraster raster
 else
@@ -467,6 +465,23 @@ else
 	instfilter pdftoraster pdftoraster raster
 	instfilter pstoraster pstoraster raster
 	instfilter texttopdf texttopdf pdf
+
+	# cups-filters types, filters and banners
+	ln -s /usr/share/cups/mime/cupsfilters.types /tmp/cups-$user/share/mime
+	ln -s $root/test/cupsfilters.convs /tmp/cups-$user/share/mime
+
+	instfilter gstoraster gstoraster raster
+	instfilter imagetoraster imagetoraster raster
+	instfilter pstopdf pstopdf pdf
+	instfilter urftopdf urftopdf pdf
+	instfilter bannertopdf bannertopdf pdf
+
+	ln -sf /usr/share/cups/banners/classified /tmp/cups-$user/share/banners/
+	ln -sf /usr/share/cups/banners/confidential /tmp/cups-$user/share/banners/
+	ln -sf /usr/share/cups/banners/secret /tmp/cups-$user/share/banners/
+	ln -sf /usr/share/cups/banners/standard /tmp/cups-$user/share/banners/
+	ln -sf /usr/share/cups/banners/topsecret /tmp/cups-$user/share/banners/
+	ln -sf /usr/share/cups/banners/unclassified /tmp/cups-$user/share/banners/
 
 	if test -d /usr/share/cups/charsets; then
 		ln -s /usr/share/cups/charsets $BASE/share
@@ -488,7 +503,7 @@ fi
 cat >$BASE/cupsd.conf <<EOF
 StrictConformance Yes
 Browsing Off
-Listen localhost:$port
+Listen 127.0.0.1:$port
 Listen $BASE/sock
 PassEnv DYLD_LIBRARY_PATH
 PassEnv LD_LIBRARY_PATH
@@ -527,6 +542,7 @@ FontPath $BASE/share/fonts
 DocumentRoot $root/doc
 RequestRoot $BASE/spool
 TempDir $BASE/spool/temp
+PidFile $BASE/cupsd.pid
 AccessLog $BASE/log/access_log
 ErrorLog $BASE/log/error_log
 PageLog $BASE/log/page_log
@@ -620,7 +636,7 @@ fi
 export SHLIB_PATH
 
 CUPS_DISABLE_APPLE_DEFAULT=yes; export CUPS_DISABLE_APPLE_DEFAULT
-CUPS_SERVER=localhost:$port; export CUPS_SERVER
+CUPS_SERVER=127.0.0.1:$port; export CUPS_SERVER
 CUPS_SERVERROOT=$BASE; export CUPS_SERVERROOT
 CUPS_STATEDIR=$BASE; export CUPS_STATEDIR
 CUPS_DATADIR=$BASE/share; export CUPS_DATADIR
@@ -709,7 +725,7 @@ fi
 IPP_PORT=$port; export IPP_PORT
 
 while true; do
-	running=`../systemv/lpstat -r 2>/dev/null`
+	running=`LC_ALL=C ../systemv/lpstat -r 2>/dev/null`
 	if test "x$running" = "xscheduler is running"; then
 		break
 	fi
@@ -753,10 +769,10 @@ for file in 4*.test ipp-2.1.test; do
 	echo "" >>$strfile
 
 	if test $file = ipp-2.1.test; then
-		uri="ipp://localhost:$port/printers/Test1"
+		uri="ipp://127.0.0.1:$port/printers/Test1"
 		options="-V 2.1 -d NOPRINT=1 -f testfile.ps"
 	else
-		uri="ipp://localhost:$port/printers"
+		uri="ipp://127.0.0.1:$port/printers"
 		options=""
 	fi
 	$VALGRIND ./ipptool -tI $options $uri $file >> $strfile
@@ -786,6 +802,11 @@ echo $date by $user on `hostname`. >>$strfile
 echo "<PRE>" >>$strfile
 
 for file in 5*.sh; do
+	#
+	# Make sure the past jobs are done before going on.
+	#
+	./waitjobs.sh 1800
+
 	echo $ac_n "Performing $file: $ac_c"
 	echo "" >>$strfile
 	echo "\"$file\":" >>$strfile
@@ -821,13 +842,13 @@ kill -HUP $cupsd
 while true; do
 	sleep 10
 
-	running=`../systemv/lpstat -r 2>/dev/null`
+	running=`LC_ALL=C ../systemv/lpstat -r 2>/dev/null`
 	if test "x$running" = "xscheduler is running"; then
 		break
 	fi
 done
 
-description="`../systemv/lpstat -l -p Test1 | grep Description | sed -e '1,$s/^[^:]*: //g'`"
+description="`LC_ALL=C ../systemv/lpstat -l -p Test1 | grep Description | sed -e '1,$s/^[^:]*: //g'`"
 if test "x$description" != "xTest Printer 1"; then
 	echo "Failed, printer-info for Test1 is '$description', expected 'Test Printer 1'." >>$strfile
 	echo "FAIL (got '$description', expected 'Test Printer 1')"
@@ -984,7 +1005,14 @@ else
 fi
 
 # Error log messages
-count=`$GREP '^E ' $BASE/log/error_log | wc -l | awk '{print $1}'`
+count=`$GREP '^E ' $BASE/log/error_log | \
+       $GREP -v '(usb) crashed on signal 11' | \
+       $GREP -v '(dnssd) stopped with status 1' | \
+       $GREP -v 'loadFile failed: temp file: not a PDF file' | \
+       $GREP -v 'Failed to connect to system bus' | \
+       $GREP -v -E 'Unable to open listen socket for address .* Address family not supported by protocol.' | \
+       $GREP -v 'Unable to write uncompressed print data: Broken pipe' | \
+       wc -l | awk '{print $1}'`
 if test $count != 33; then
 	echo "FAIL: $count error messages, expected 33."
 	$GREP '^E ' $BASE/log/error_log
@@ -999,7 +1027,11 @@ else
 fi
 
 # Warning log messages
-count=`$GREP '^W ' $BASE/log/error_log | $GREP -v CreateProfile | wc -l | awk '{print $1}'`
+count=`$GREP '^W ' $BASE/log/error_log | $GREP -v CreateProfile | \
+       $GREP -v 'Unable to initialize USB access via libusb, libusb error' | \
+       $GREP -v 'org.freedesktop.ColorManager' | \
+       $GREP -v -E 'Avahi client failed: -(1|26)' | \
+       wc -l | awk '{print $1}'`
 if test $count != 8; then
 	echo "FAIL: $count warning messages, expected 8."
 	$GREP '^W ' $BASE/log/error_log
