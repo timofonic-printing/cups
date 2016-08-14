@@ -5,7 +5,7 @@ Bug: https://bugs.launchpad.net/ubuntu/+source/cups/+bug/1276713
 Last-Update: 2015-02-10
 --- a/scheduler/main.c
 +++ b/scheduler/main.c
-@@ -1688,6 +1688,13 @@
+@@ -1735,6 +1735,13 @@ upstart_checkin(void)
    if (httpAddrPort(&(lis->address)) == 443)
      lis->encryption = HTTP_ENCRYPT_ALWAYS;
  #  endif /* HAVE_SSL */
