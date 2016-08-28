@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cups man pages 2.0.3-10\n"
 "POT-Creation-Date: 2016-07-03 11:50+0200\n"
-"PO-Revision-Date: 2016-08-28 17:33+0200\n"
+"PO-Revision-Date: 2016-08-28 17:39+0200\n"
 "Last-Translator: Helge Kreutzmann <debian@helgefjell.de>\n"
 "Language-Team: de <debian-l10n-german@lists.debian.org>\n"
 "Language: de\n"
@@ -7088,7 +7088,7 @@ msgstr "3. Juni 2014"
 #: cups-lpd.man.in:18
 msgid "cups-lpd - receive print jobs and report printer status to lpd clients"
 msgstr ""
-"cups-lpd - empfängt Druckaufträge und meldet den Druckerstatus an lpd-Clients""
+"cups-lpd - empfängt Druckaufträge und meldet den Druckerstatus an lpd-Clients"
 
 #. type: Plain text
 #: cups-lpd.man.in:28
@@ -8284,7 +8284,7 @@ msgstr "B<-W sizes>"
 #. type: Plain text
 #: cupstestppd.man:92
 msgid "Report all media size errors as warnings."
-msgstr "Berichtet Mediengrößenfehler als Warnungen."
+msgstr "Berichtet alle Mediengrößenfehler als Warnungen."
 
 #. type: TP
 #: cupstestppd.man:92
