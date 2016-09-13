@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cups man pages 2.0.3-10\n"
 "POT-Creation-Date: 2016-07-03 11:50+0200\n"
-"PO-Revision-Date: 2016-09-07 09:45+0200\n"
+"PO-Revision-Date: 2016-09-13 17:48+0200\n"
 "Last-Translator: Helge Kreutzmann <debian@helgefjell.de>\n"
 "Language-Team: de <debian-l10n-german@lists.debian.org>\n"
 "Language: de\n"
@@ -9690,7 +9690,7 @@ msgstr "ERSETZUNGEN"
 #. type: Plain text
 #: ippfind.man:165
 msgid "The substitutions for \"{foo}\" in I<-e> and I<--exec> are:"
-msgstr "Die Ersetzungen für \"{foo}\" in I<-e> und I<--exec> sind:"
+msgstr "Die Ersetzungen für »{foo}« in I<-e> und I<--exec> sind:"
 
 #. type: TP
 #: ippfind.man:165
@@ -9994,7 +9994,7 @@ msgstr "28. August 2014"
 #. type: Plain text
 #: ../test/ippserver.man:17
 msgid "ippserver - a simple internet printing protocol server"
-msgstr "ippserver - ein einfacher internet-Printing-Protocol-Server"
+msgstr "ippserver - ein einfacher Internet-Printing-Protocol-Server"
 
 #. type: Plain text
 #: ../test/ippserver.man:64
