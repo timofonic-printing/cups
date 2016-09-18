@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cups man pages 2.0.3-10\n"
 "POT-Creation-Date: 2016-07-03 11:50+0200\n"
-"PO-Revision-Date: 2016-09-13 17:48+0200\n"
+"PO-Revision-Date: 2016-09-18 14:03+0200\n"
 "Last-Translator: Helge Kreutzmann <debian@helgefjell.de>\n"
 "Language-Team: de <debian-l10n-german@lists.debian.org>\n"
 "Language: de\n"
@@ -10280,7 +10280,7 @@ msgid ""
 "become the \"IPP_PRINT_QUALITY\" environment variable with a value of \"draft"
 "\"."
 msgstr ""
-"Aufgezählte Werte werden in ihr Schlüsselwort-Äquivalent umgewandelt. "
+"Aufgezählte Werte werden in ihre Schlüsselwort-Äquivalente umgewandelt. "
 "Beispielsweise wird ein Auftrags-Attribut »print-quality« mit dem "
 "aufgezählten Wert 3 die Umgebungsvariablen »IPP_PRINT_QUALITY« mit dem Wert "
 "»draft« werden."
@@ -10501,12 +10501,12 @@ msgstr ""
 #: ipptoolfile.man:76
 #, no-wrap
 msgid "B<FILE-ID \">I<identifier>B<\">"
-msgstr "B<FILE-ID \">I<Identifikator>B<\">"
+msgstr "B<FILE-ID \">I<Bezeichner>B<\">"
 
 #. type: Plain text
 #: ipptoolfile.man:79
 msgid "Specifies an identifier string for the current file."
-msgstr "Legt die Identifikatorzeichenkette für die aktuelle Datei fest."
+msgstr "Legt einen Bezeichner als Zeichenkette für die aktuelle Datei fest."
 
 #. type: TP
 #: ipptoolfile.man:79 ipptoolfile.man:181
@@ -10604,7 +10604,7 @@ msgstr ""
 #: ipptoolfile.man:107 ipptoolfile.man:207
 #, no-wrap
 msgid "B<SKIP-IF-DEFINED >I<variable-name>"
-msgstr "B<SKIP-IF-DEFINED >I<variablenname>"
+msgstr "B<SKIP-IF-DEFINED >I<Variablenname>"
 
 #. type: TP
 #: ipptoolfile.man:109 ipptoolfile.man:209
@@ -11064,12 +11064,12 @@ msgstr ""
 #: ipptoolfile.man:222
 #, no-wrap
 msgid "B<TEST-ID \">I<identifier>\""
-msgstr "B<TEST-ID \">I<Identifikator>\""
+msgstr "B<TEST-ID \">I<Bezeichner>\""
 
 #. type: Plain text
 #: ipptoolfile.man:225
 msgid "Specifies an identifier string for the current test."
-msgstr "Legt eine Identifikatorzeichenkette für den aktuellen Test fest."
+msgstr "Legt einen Bezeichner als Zeichenkette für den aktuellen Test fest."
 
 #. type: Plain text
 #: ipptoolfile.man:228
