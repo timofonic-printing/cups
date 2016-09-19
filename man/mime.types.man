@@ -1,6 +1,4 @@
 .\"
-.\" "$Id: mime.types.man 12854 2015-08-28 14:08:00Z msweet $"
-.\"
 .\" mime.types man page for CUPS.
 .\"
 .\" Copyright 2007-2014 by Apple Inc.
@@ -40,7 +38,7 @@ See the "TYPE MATCHING AND PRIORITY" section for more information.
 .LP
 The rules may be grouped using parenthesis, joined using "+" for a logical AND, joined using "," or whitespace for a logical OR, and negated using "!".
 .SS RULES
-Rules take two forms - a filename extension by itself and functions with test
+Rules take two forms \- a filename extension by itself and functions with test
 values inside parenthesis.
 The following functions are available:
 .TP 5
@@ -90,7 +88,7 @@ extension "doc", normally the type "text/bar" will be chosen since its name is
 alphanumerically smaller than "text/foo".
 However, if "text/foo" also defines a higher priority than "text/bar", "text/foo" will be chosen instead.
 .SH FILES
-\fI/etc/cups\fR - Typical CUPS configuration directory.
+\fI/etc/cups\fR \- Typical CUPS configuration directory.
 .SH EXAMPLES
 Define two MIME media types for raster data, with one being a subset with higher priority:
 .nf
@@ -110,7 +108,4 @@ Define two MIME media types for raster data, with one being a subset with higher
 .BR mime.convs (5),
 CUPS Online Help (http://localhost:631/help)
 .SH COPYRIGHT
-Copyright \[co] 2007-2015 by Apple Inc.
-.\"
-.\" End of "$Id: mime.types.man 12854 2015-08-28 14:08:00Z msweet $".
-.\"
+Copyright \[co] 2007-2016 by Apple Inc.

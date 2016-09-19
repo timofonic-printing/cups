@@ -1,6 +1,4 @@
 /*
- * "$Id: cups-driverd.cxx 12733 2015-06-12 01:21:05Z msweet $"
- *
  * PPD/driver support for CUPS.
  *
  * This program handles listing and installing static PPD files, PPD files
@@ -33,7 +31,7 @@
  * Constants...
  */
 
-#define PPD_SYNC	0x50504438	/* Sync word for ppds.dat (PPD8) */
+#define PPD_SYNC	0x50504439	/* Sync word for ppds.dat (PPD9) */
 #define PPD_MAX_LANG	32		/* Maximum languages */
 #define PPD_MAX_PROD	32		/* Maximum products */
 #define PPD_MAX_VERS	32		/* Maximum versions */
@@ -77,7 +75,7 @@ typedef struct				/**** PPD record ****/
   int		model_number;		/* cupsModelNumber */
   int		type;			/* ppd-type */
   char		filename[512],		/* Filename */
-		name[512],		/* PPD name */
+		name[256],		/* PPD name */
 		languages[PPD_MAX_LANG][6],
 					/* LanguageVersion/cupsLanguages */
 		products[PPD_MAX_PROD][128],
@@ -248,7 +246,6 @@ add_ppd(const char *filename,		/* I - PPD filename */
 	const char *scheme)		/* I - PPD scheme */
 {
   ppd_info_t	*ppd;			/* PPD */
-  char		*recommended;		/* Foomatic driver string */
 
 
  /*
@@ -285,15 +282,6 @@ add_ppd(const char *filename,		/* I - PPD filename */
           sizeof(ppd->record.make_and_model));
   strlcpy(ppd->record.device_id, device_id, sizeof(ppd->record.device_id));
   strlcpy(ppd->record.scheme, scheme, sizeof(ppd->record.scheme));
-
- /*
-  * Strip confusing (and often wrong) "recommended" suffix added by
-  * Foomatic drivers...
-  */
-
-  if ((recommended = strstr(ppd->record.make_and_model,
-                            " (recommended)")) != NULL)
-    *recommended = '\0';
 
  /*
   * Add the PPD to the PPD arrays...
@@ -447,6 +435,12 @@ cat_ppd(const char *name,		/* I - PPD name */
  /*
   * Figure out if this is a static or dynamic PPD file...
   */
+
+  if (strstr(name, "../"))
+  {
+    fputs("ERROR: Invalid PPD name.\n", stderr);
+    return (1);
+  }
 
   strlcpy(scheme, name, sizeof(scheme));
   if ((sptr = strchr(scheme, ':')) != NULL)
@@ -906,7 +900,7 @@ get_file(const char *name,		/* I - Name */
        slash > printerDriver))
   {
    /*
-    * Map ppd-name to OS X standard locations...
+    * Map ppd-name to macOS standard locations...
     */
 
     snprintf(buffer, bufsize, "/%s", name);
@@ -1077,7 +1071,7 @@ list_ppds(int        request_id,	/* I - Request ID */
 
 #ifdef __APPLE__
  /*
-  * Load PPDs from standard OS X locations...
+  * Load PPDs from standard macOS locations...
   */
 
   load_ppds("/Library/Printers",
@@ -1715,7 +1709,7 @@ load_drivers(cups_array_t *include,	/* I - Drivers to include */
   char		*argv[3],		/* Arguments for command */
 		filename[1024],		/* Name of driver */
 		line[2048],		/* Line from driver */
-		name[512],		/* ppd-name */
+		name[256],		/* ppd-name */
 		make[128],		/* ppd-make */
 		make_and_model[128],	/* ppd-make-and-model */
 		device_id[256],		/* ppd-device-id */
@@ -1848,7 +1842,7 @@ load_drivers(cups_array_t *include,	/* I - Drivers to include */
 	psversion[0] = '\0';
 	strlcpy(type_str, "postscript", sizeof(type_str));
 
-        if (sscanf(line, "\"%511[^\"]\"%127s%*[ \t]\"%127[^\"]\""
+        if (sscanf(line, "\"%255[^\"]\"%127s%*[ \t]\"%127[^\"]\""
 	                 "%*[ \t]\"%127[^\"]\"%*[ \t]\"%255[^\"]\""
 			 "%*[ \t]\"%127[^\"]\"%*[ \t]\"%127[^\"]\""
 			 "%*[ \t]\"%127[^\"]\"",
@@ -2379,7 +2373,7 @@ load_ppds(const char *d,		/* I - Actual directory */
   char		filename[1024],		/* Name of PPD or directory */
 		line[256],		/* Line from file */
 		*ptr,			/* Pointer into name */
-		name[128];		/* Name of PPD file */
+		name[256];		/* Name of PPD file */
   ppd_info_t	*ppd,			/* New PPD file */
 		key;			/* Search key */
 
@@ -2922,8 +2916,3 @@ regex_string(const char *s)		/* I - String to compare */
 
   return (NULL);
 }
-
-
-/*
- * End of "$Id: cups-driverd.cxx 12733 2015-06-12 01:21:05Z msweet $".
- */

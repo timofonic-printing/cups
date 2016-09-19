@@ -1,11 +1,9 @@
 #!/bin/sh
 #
-# "$Id: run-stp-tests.sh 12853 2015-08-28 13:38:46Z msweet $"
-#
 # Perform the complete set of IPP compliance tests specified in the
 # CUPS Software Test Plan.
 #
-# Copyright 2007-2015 by Apple Inc.
+# Copyright 2007-2016 by Apple Inc.
 # Copyright 1997-2007 by Easy Software Products, all rights reserved.
 #
 # These coded instructions, statements, and computer programs are the
@@ -488,10 +486,13 @@ fi
 cat >$BASE/cupsd.conf <<EOF
 StrictConformance Yes
 Browsing Off
-Listen localhost:$port
+Listen 127.0.0.1:$port
 Listen $BASE/sock
+PassEnv DYLD_LIBRARY_PATH
+PassEnv LD_LIBRARY_PATH
+PassEnv LD_PRELOAD
 PassEnv LOCALEDIR
-PassEnv DYLD_INSERT_LIBRARIES
+PassEnv SHLIB_PATH
 MaxSubscriptions 3
 MaxLogSize 0
 AccessLogLevel actions
@@ -524,6 +525,7 @@ FontPath $BASE/share/fonts
 DocumentRoot $root/doc
 RequestRoot $BASE/spool
 TempDir $BASE/spool/temp
+PidFile $BASE/cupsd.pid
 AccessLog $BASE/log/access_log
 ErrorLog $BASE/log/error_log
 PageLog $BASE/log/page_log
@@ -617,7 +619,7 @@ fi
 export SHLIB_PATH
 
 CUPS_DISABLE_APPLE_DEFAULT=yes; export CUPS_DISABLE_APPLE_DEFAULT
-CUPS_SERVER=localhost:$port; export CUPS_SERVER
+CUPS_SERVER=127.0.0.1:$port; export CUPS_SERVER
 CUPS_SERVERROOT=$BASE; export CUPS_SERVERROOT
 CUPS_STATEDIR=$BASE; export CUPS_STATEDIR
 CUPS_DATADIR=$BASE/share; export CUPS_DATADIR
@@ -649,7 +651,7 @@ echo "    $VALGRIND ../scheduler/cupsd -c $BASE/cupsd.conf -f >$BASE/log/debug_l
 echo ""
 
 if test `uname` = Darwin -a "x$VALGRIND" = x; then
-	DYLD_INSERT_LIBRARIES=/usr/lib/libgmalloc.dylib MallocStackLogging=1 ../scheduler/cupsd -c $BASE/cupsd.conf -f >$BASE/log/debug_log 2>&1 &
+	DYLD_INSERT_LIBRARIES="/usr/lib/libgmalloc.dylib" MallocStackLogging=1 ../scheduler/cupsd -c $BASE/cupsd.conf -f >$BASE/log/debug_log 2>&1 &
 else
 	$VALGRIND ../scheduler/cupsd -c $BASE/cupsd.conf -f >$BASE/log/debug_log 2>&1 &
 fi
@@ -706,7 +708,7 @@ fi
 IPP_PORT=$port; export IPP_PORT
 
 while true; do
-	running=`../systemv/lpstat -r 2>/dev/null`
+	running=`LC_ALL=C ../systemv/lpstat -r 2>/dev/null`
 	if test "x$running" = "xscheduler is running"; then
 		break
 	fi
@@ -723,9 +725,9 @@ date=`date "+%Y-%m-%d"`
 
 if test -d $root/.svn; then
 	rev=`svn info . | grep Revision: | awk '{print $2}'`
-	strfile=$BASE/cups-str-2.1-r$rev-$user.html
+	strfile=$BASE/cups-str-2.2-r$rev-$user.html
 else
-	strfile=$BASE/cups-str-2.1-$date-$user.html
+	strfile=$BASE/cups-str-2.2-$date-$user.html
 fi
 
 rm -f $strfile
@@ -750,10 +752,10 @@ for file in 4*.test ipp-2.1.test; do
 	echo "" >>$strfile
 
 	if test $file = ipp-2.1.test; then
-		uri="ipp://localhost:$port/printers/Test1"
+		uri="ipp://127.0.0.1:$port/printers/Test1"
 		options="-V 2.1 -d NOPRINT=1 -f testfile.ps"
 	else
-		uri="ipp://localhost:$port/printers"
+		uri="ipp://127.0.0.1:$port/printers"
 		options=""
 	fi
 	$VALGRIND ./ipptool -tI $options $uri $file >> $strfile
@@ -783,6 +785,11 @@ echo $date by $user on `hostname`. >>$strfile
 echo "<PRE>" >>$strfile
 
 for file in 5*.sh; do
+	#
+	# Make sure the past jobs are done before going on.
+	#
+	./waitjobs.sh 1800
+
 	echo $ac_n "Performing $file: $ac_c"
 	echo "" >>$strfile
 	echo "\"$file\":" >>$strfile
@@ -818,13 +825,13 @@ kill -HUP $cupsd
 while true; do
 	sleep 10
 
-	running=`../systemv/lpstat -r 2>/dev/null`
+	running=`LC_ALL=C ../systemv/lpstat -r 2>/dev/null`
 	if test "x$running" = "xscheduler is running"; then
 		break
 	fi
 done
 
-description="`../systemv/lpstat -l -p Test1 | grep Description | sed -e '1,$s/^[^:]*: //g'`"
+description="`LC_ALL=C ../systemv/lpstat -l -p Test1 | grep Description | sed -e '1,$s/^[^:]*: //g'`"
 if test "x$description" != "xTest Printer 1"; then
 	echo "Failed, printer-info for Test1 is '$description', expected 'Test Printer 1'." >>$strfile
 	echo "FAIL (got '$description', expected 'Test Printer 1')"
@@ -981,7 +988,14 @@ else
 fi
 
 # Error log messages
-count=`$GREP '^E ' $BASE/log/error_log | wc -l | awk '{print $1}'`
+count=`$GREP '^E ' $BASE/log/error_log | \
+       $GREP -v '(usb) crashed on signal 11' | \
+       $GREP -v '(dnssd) stopped with status 1' | \
+       $GREP -v 'loadFile failed: temp file: not a PDF file' | \
+       $GREP -v 'Failed to connect to system bus' | \
+       $GREP -v -E 'Unable to open listen socket for address .* Address family not supported by protocol.' | \
+       $GREP -v 'Unable to write uncompressed print data: Broken pipe' | \
+       wc -l | awk '{print $1}'`
 if test $count != 33; then
 	echo "FAIL: $count error messages, expected 33."
 	$GREP '^E ' $BASE/log/error_log
@@ -996,7 +1010,11 @@ else
 fi
 
 # Warning log messages
-count=`$GREP '^W ' $BASE/log/error_log | $GREP -v CreateProfile | wc -l | awk '{print $1}'`
+count=`$GREP '^W ' $BASE/log/error_log | $GREP -v CreateProfile | \
+       $GREP -v 'Unable to initialize USB access via libusb, libusb error' | \
+       $GREP -v 'org.freedesktop.ColorManager' | \
+       $GREP -v -E 'Avahi client failed: -(1|26)' | \
+       wc -l | awk '{print $1}'`
 if test $count != 8; then
 	echo "FAIL: $count warning messages, expected 8."
 	$GREP '^W ' $BASE/log/error_log
@@ -1112,7 +1130,3 @@ if test $fail != 0; then
 
 	exit 1
 fi
-
-#
-# End of "$Id: run-stp-tests.sh 12853 2015-08-28 13:38:46Z msweet $"
-#

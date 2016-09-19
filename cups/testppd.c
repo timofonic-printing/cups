@@ -1,6 +1,4 @@
 /*
- * "$Id: testppd.c 12603 2015-05-06 01:42:51Z msweet $"
- *
  * PPD test program for CUPS.
  *
  * Copyright 2007-2015 by Apple Inc.
@@ -21,6 +19,7 @@
 
 #undef _CUPS_NO_DEPRECATED
 #include "cups-private.h"
+#include "ppd-private.h"
 #include <sys/stat.h>
 #ifdef WIN32
 #  include <io.h>
@@ -503,6 +502,14 @@ main(int  argc,				/* I - Number of command-line arguments */
    /*
     * Test localization...
     */
+
+   /*
+    * Enforce void localization
+    */
+    putenv("LANG=C");
+    putenv("LC_ALL=C");
+    putenv("LC_CTYPE=C");
+    putenv("LC_MESSAGES=C");
 
     fputs("ppdLocalizeIPPReason(text): ", stdout);
     if (ppdLocalizeIPPReason(ppd, "foo", NULL, buffer, sizeof(buffer)) &&
@@ -1167,8 +1174,3 @@ main(int  argc,				/* I - Number of command-line arguments */
 
   return (status);
 }
-
-
-/*
- * End of "$Id: testppd.c 12603 2015-05-06 01:42:51Z msweet $".
- */

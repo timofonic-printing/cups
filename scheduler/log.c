@@ -1,9 +1,7 @@
 /*
- * "$Id: log.c 12928 2015-10-23 21:31:58Z msweet $"
- *
  * Log file routines for the CUPS scheduler.
  *
- * Copyright 2007-2015 by Apple Inc.
+ * Copyright 2007-2016 by Apple Inc.
  * Copyright 1997-2007 by Easy Software Products, all rights reserved.
  *
  * These coded instructions, statements, and computer programs are the
@@ -26,6 +24,7 @@
 #  include <systemd/sd-journal.h>
 #endif /* HAVE_ASL_H */
 #include <syslog.h>
+#include <grp.h>
 
 
 /*
@@ -115,6 +114,7 @@ cupsdCheckLogFile(cups_file_t **lf,	/* IO - Log file */
 		filename[1024],		/* Formatted log filename */
 		*ptr;			/* Pointer into filename */
   const char	*logptr;		/* Pointer into log filename */
+  struct group  *loggrp;		/* Group entry of log filename */
 
 
  /*
@@ -133,6 +133,11 @@ cupsdCheckLogFile(cups_file_t **lf,	/* IO - Log file */
     *lf = LogStderr;
     return (1);
   }
+
+ /*
+  * Use adm group if possible, fall back to Group
+  */
+ loggrp = getgrnam("adm");
 
  /*
   * Format the filename as needed...
@@ -255,7 +260,7 @@ cupsdCheckLogFile(cups_file_t **lf,	/* IO - Log file */
       * Change ownership and permissions of non-device logs...
       */
 
-      fchown(cupsFileNumber(*lf), RunUser, Group);
+      fchown(cupsFileNumber(*lf), RunUser, loggrp ? loggrp->gr_gid : Group);
       fchmod(cupsFileNumber(*lf), LogFilePerm);
     }
   }
@@ -306,7 +311,7 @@ cupsdCheckLogFile(cups_file_t **lf,	/* IO - Log file */
     * Change ownership and permissions of non-device logs...
     */
 
-    fchown(cupsFileNumber(*lf), RunUser, Group);
+    fchown(cupsFileNumber(*lf), RunUser, loggrp ? loggrp->gr_gid : Group);
     fchmod(cupsFileNumber(*lf), LogFilePerm);
   }
 
@@ -584,9 +589,7 @@ cupsdLogJob(cupsd_job_t *job,		/* I - Job */
   if (TestConfigFile || !ErrorLog)
     return (1);
 
-  if ((level > LogLevel ||
-       (level == CUPSD_LOG_INFO && LogLevel < CUPSD_LOG_DEBUG)) &&
-      LogDebugHistory <= 0)
+  if (level > LogLevel && LogDebugHistory <= 0)
     return (1);
 
 #ifdef HAVE_ASL_H
@@ -702,10 +705,7 @@ cupsdLogJob(cupsd_job_t *job,		/* I - Job */
 
   if (status > 0)
   {
-    if (job &&
-        (level > LogLevel ||
-         (level == CUPSD_LOG_INFO && LogLevel < CUPSD_LOG_DEBUG)) &&
-	LogDebugHistory > 0)
+    if (job && level > LogLevel && LogDebugHistory > 0)
     {
      /*
       * Add message to the job history...
@@ -744,8 +744,7 @@ cupsdLogJob(cupsd_job_t *job,		/* I - Job */
 
       return (1);
     }
-    else if (level <= LogLevel &&
-             (level != CUPSD_LOG_INFO || LogLevel >= CUPSD_LOG_DEBUG))
+    else if (level <= LogLevel)
       return (cupsdWriteErrorLog(level, log_line));
     else
       return (1);
@@ -1506,8 +1505,3 @@ format_log_line(const char *message,	/* I - Printf-style format string */
 
   return (1);
 }
-
-
-/*
- * End of "$Id: log.c 12928 2015-10-23 21:31:58Z msweet $".
- */

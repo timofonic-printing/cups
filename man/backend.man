@@ -1,6 +1,4 @@
 .\"
-.\" "$Id: backend.man 12854 2015-08-28 14:08:00Z msweet $"
-.\"
 .\" Backend man page for CUPS.
 .\"
 .\" Copyright 2007-2014 by Apple Inc.
@@ -154,7 +152,7 @@ The print file was not successfully transmitted because it cannot be printed at 
 The print file was not successfully transmitted because one or more attributes are not supported or the job was canceled at the printer. The scheduler will respond to this by canceling the job.
 .TP 5
 .B CUPS_BACKEND_RETRY
-The print file was not successfully transmitted because of a temporary issue. The scheduler will retry the job at a future time - other jobs may print before this one.
+The print file was not successfully transmitted because of a temporary issue. The scheduler will retry the job at a future time \- other jobs may print before this one.
 .TP 5
 .B CUPS_BACKEND_RETRY_CURRENT
 The print file was not successfully transmitted because of a temporary issue. The scheduler will retry the job immediately without allowing intervening jobs.
@@ -176,7 +174,7 @@ CUPS backends are not generally design to be run directly by the user. Aside fro
 .I argv[0]
 and
 .B DEVICE_URI
-environment variable contain the device URI), CUPS backends also expect specific environment variables and file descriptors, and typically run in a user session that (on OS X) has additional restrictions that affect how it runs. Backends can also be installed with restricted permissions (0500 or 0700) that tell the scheduler to run them as the "root" user instead of an unprivileged user (typically "lp") on the system.
+environment variable contain the device URI), CUPS backends also expect specific environment variables and file descriptors, and typically run in a user session that (on macOS) has additional restrictions that affect how it runs. Backends can also be installed with restricted permissions (0500 or 0700) that tell the scheduler to run them as the "root" user instead of an unprivileged user (typically "lp") on the system.
 .LP
 Unless you are a developer and know what you are doing, please do not run backends directly. Instead, use the
 .BR lp (1)
@@ -184,7 +182,7 @@ or
 .BR lpr (1)
 programs to send print jobs or
 .BR lpinfo (8)
-to query for available printers using the backend. The one exception is the SNMP backend - see
+to query for available printers using the backend. The one exception is the SNMP backend \- see
 .BR cups-snmp (8)
 for more information.
 .SH SEE ALSO
@@ -199,7 +197,4 @@ for more information.
 .br
 CUPS Online Help (http://localhost:631/help)
 .SH COPYRIGHT
-Copyright \[co] 2007-2015 by Apple Inc.
-.\"
-.\" End of "$Id: backend.man 12854 2015-08-28 14:08:00Z msweet $".
-.\"
+Copyright \[co] 2007-2016 by Apple Inc.

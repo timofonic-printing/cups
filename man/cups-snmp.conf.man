@@ -1,6 +1,4 @@
 .\"
-.\" "$Id: cups-snmp.conf.man 12854 2015-08-28 14:08:00Z msweet $"
-.\"
 .\" snmp.conf man page for CUPS.
 .\"
 .\" Copyright 2007-2014 by Apple Inc.
@@ -21,7 +19,7 @@ The
 file configures how the standard CUPS network backends (http, https, ipp, ipps, lpd, snmp, and socket) access printer information using SNMPv1 and is normally located in the \fI/etc/cups\fR directory.
 Each line in the file can be a configuration directive, a blank line, or a comment. Comment lines start with the # character.
 .LP
-The Community and DebugLevel directives are used by all backends. The remainder apply only to the SNMP backend -
+The Community and DebugLevel directives are used by all backends. The remainder apply only to the SNMP backend \-
 .BR cups-snmp (8).
 .SH DIRECTIVES
 The following directives are understood by the CUPS network backends:
@@ -63,7 +61,4 @@ The default is 120 seconds (2 minutes).
 .BR cups-snmp (8),
 CUPS Online Help (http://localhost:631/help)
 .SH COPYRIGHT
-Copyright \[co] 2007-2015 by Apple Inc.
-.\"
-.\" End of "$Id: cups-snmp.conf.man 12854 2015-08-28 14:08:00Z msweet $".
-.\"
+Copyright \[co] 2007-2016 by Apple Inc.

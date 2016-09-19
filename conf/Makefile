@@ -1,16 +1,14 @@
 #
-# "$Id: Makefile 12533 2015-02-27 12:30:26Z msweet $"
+# Configuration file makefile for CUPS.
 #
-#   Configuration file makefile for CUPS.
+# Copyright 2007-2015 by Apple Inc.
+# Copyright 1993-2006 by Easy Software Products.
 #
-#   Copyright 2007-2015 by Apple Inc.
-#   Copyright 1993-2006 by Easy Software Products.
-#
-#   These coded instructions, statements, and computer programs are the
-#   property of Apple Inc. and are protected by Federal copyright
-#   law.  Distribution and use rights are outlined in the file "LICENSE.txt"
-#   which should have been included with this file.  If this file is
-#   file is missing or damaged, see the license at "http://www.cups.org/".
+# These coded instructions, statements, and computer programs are the
+# property of Apple Inc. and are protected by Federal copyright
+# law.  Distribution and use rights are outlined in the file "LICENSE.txt"
+# which should have been included with this file.  If this file is
+# file is missing or damaged, see the license at "http://www.cups.org/".
 #
 
 include ../Makedefs
@@ -75,8 +73,12 @@ install-data:
 			$(INSTALL_CONFIG) -g $(CUPS_GROUP) $$file $(SERVERROOT)/$$file.N ; \
 		else \
 			$(INSTALL_CONFIG) -g $(CUPS_GROUP) $$file $(SERVERROOT) ; \
+			grep -v "\$$Id[:\$$]" $(SERVERROOT)/$$file > $(SERVERROOT)/$$file.n ; \
+			mv $(SERVERROOT)/$$file.n $(SERVERROOT)/$$file ; \
 		fi ; \
-		$(INSTALL_CONFIG) -g $(CUPS_GROUP) $$file $(SERVERROOT)/$$file.default; \
+		$(INSTALL_CONFIG) -g $(CUPS_GROUP) $$file $(DATADIR)/$$file.default; \
+		grep -v "\$$Id[:\$$]" $(DATADIR)/$$file.default > $(DATADIR)/$$file.default.n ; \
+		mv $(DATADIR)/$$file.default.n $(DATADIR)/$$file.default ; \
 	done
 	$(INSTALL_DIR) -m 755 $(DATADIR)/mime
 	for file in $(REPLACE); do \
@@ -124,9 +126,10 @@ install-libs:
 #
 
 uninstall:
-	for file in $(KEEP) $(REPLACE) cupsd.conf.default; do \
+	for file in $(KEEP) $(REPLACE); do \
 		$(RM) $(SERVERROOT)/$$file; \
 	done
+	$(RM) $(DATADIR)/cupsd.conf.default
 	-$(RMDIR) $(SERVERROOT)
 	for file in $(REPLACE); do \
 		$(RM) $(DATADIR)/mime/$$file; \
@@ -136,8 +139,3 @@ uninstall:
 		$(RM) $(BUILDROOT)$(PAMDIR)/cups; \
 		$(RMDIR) $(BUILDROOT)$(PAMDIR); \
 	fi
-
-
-#
-# End of "$Id: Makefile 12533 2015-02-27 12:30:26Z msweet $".
-#

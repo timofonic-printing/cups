@@ -1,9 +1,7 @@
 /*
- * "$Id: conf.c 12819 2015-07-31 13:52:00Z msweet $"
- *
  * Configuration routines for the CUPS scheduler.
  *
- * Copyright 2007-2015 by Apple Inc.
+ * Copyright 2007-2016 by Apple Inc.
  * Copyright 1997-2007 by Easy Software Products, all rights reserved.
  *
  * These coded instructions, statements, and computer programs are the
@@ -91,9 +89,9 @@ static const cupsd_var_t	cupsd_vars[] =
 #ifdef HAVE_GSSAPI
   { "GSSServiceName",		&GSSServiceName,	CUPSD_VARTYPE_STRING },
 #endif /* HAVE_GSSAPI */
-#if defined(HAVE_LAUNCHD) || defined(HAVE_SYSTEMD)
+#ifdef HAVE_ONDEMAND
   { "IdleExitTimeout",		&IdleExitTimeout,	CUPSD_VARTYPE_TIME },
-#endif /* HAVE_LAUNCHD || HAVE_SYSTEMD */
+#endif /* HAVE_ONDEMAND */
   { "JobKillDelay",		&JobKillDelay,		CUPSD_VARTYPE_TIME },
   { "JobRetryLimit",		&JobRetryLimit,		CUPSD_VARTYPE_INTEGER },
   { "JobRetryInterval",		&JobRetryInterval,	CUPSD_VARTYPE_TIME },
@@ -162,7 +160,8 @@ static const cupsd_var_t	cupsfiles_vars[] =
 #ifdef HAVE_AUTHORIZATION_H
   { "SystemGroupAuthKey",	&SystemGroupAuthKey,	CUPSD_VARTYPE_STRING },
 #endif /* HAVE_AUTHORIZATION_H */
-  { "TempDir",			&TempDir,		CUPSD_VARTYPE_PATHNAME }
+  { "TempDir",			&TempDir,		CUPSD_VARTYPE_PATHNAME },
+  { "PidFile",			&PidFile,		CUPSD_VARTYPE_STRING }
 };
 
 static int		default_auth_type = CUPSD_AUTH_AUTO;
@@ -627,6 +626,7 @@ cupsdReadConfiguration(void)
   cupsdSetStringf(&ServerHeader, "CUPS/%d.%d IPP/2.1", CUPS_VERSION_MAJOR,
                   CUPS_VERSION_MINOR);
   cupsdSetString(&StateDir, CUPS_STATEDIR);
+  cupsdSetString(&PidFile, "/var/run/cups/cupsd.pid");
 
   if (!strcmp(CUPS_DEFAULT_PRINTCAP, "/etc/printers.conf"))
     PrintcapFormat = PRINTCAP_SOLARIS;
@@ -755,7 +755,7 @@ cupsdReadConfiguration(void)
   KeepAlive                = TRUE;
   KeepAliveTimeout         = DEFAULT_KEEPALIVE;
   ListenBackLog            = SOMAXCONN;
-  LogDebugHistory          = 200;
+  LogDebugHistory          = 99999;
   LogFilePerm              = CUPS_DEFAULT_LOG_FILE_PERM;
   LogLevel                 = CUPSD_LOG_WARN;
   LogTimeFormat            = CUPSD_TIME_STANDARD;
@@ -769,7 +769,7 @@ cupsdReadConfiguration(void)
   RootCertDuration         = 300;
   Sandboxing               = CUPSD_SANDBOXING_STRICT;
   StrictConformance        = FALSE;
-  SyncOnClose              = FALSE;
+  SyncOnClose              = TRUE;
   Timeout                  = DEFAULT_TIMEOUT;
   WebInterface             = CUPS_DEFAULT_WEBIF;
 
@@ -779,13 +779,13 @@ cupsdReadConfiguration(void)
   DefaultShared            = CUPS_DEFAULT_DEFAULT_SHARED;
 
 #if defined(HAVE_DNSSD) || defined(HAVE_AVAHI)
-  cupsdSetString(&DNSSDSubTypes, "_cups,_print");
+  cupsdSetString(&DNSSDSubTypes, "_cups,_print,_universal");
 #endif /* HAVE_DNSSD || HAVE_AVAHI */
 
   cupsdSetString(&LPDConfigFile, CUPS_DEFAULT_LPD_CONFIG_FILE);
   cupsdSetString(&SMBConfigFile, CUPS_DEFAULT_SMB_CONFIG_FILE);
 
-  cupsdSetString(&ErrorPolicy, "stop-printer");
+  cupsdSetString(&ErrorPolicy, "retry-job");
 
   JobHistory          = DEFAULT_HISTORY;
   JobFiles            = DEFAULT_FILES;
@@ -812,9 +812,9 @@ cupsdReadConfiguration(void)
   DefaultLeaseDuration       = 86400;
   MaxLeaseDuration           = 0;
 
-#if defined(HAVE_LAUNCHD) || defined(HAVE_SYSTEMD)
+#ifdef HAVE_ONDEMAND
   IdleExitTimeout = 60;
-#endif /* HAVE_LAUNCHD || HAVE_SYSTEMD */
+#endif /* HAVE_ONDEMAND */
 
  /*
   * Setup environment variables...
@@ -964,7 +964,7 @@ cupsdReadConfiguration(void)
     cupsdAddAlias(ServerAlias, temp);
     cupsdLogMessage(CUPSD_LOG_DEBUG, "Added auto ServerAlias %s", temp);
 
-    if (HostNameLookups || RemotePort)
+    if (HostNameLookups)
     {
       struct hostent	*host;		/* Host entry to get FQDN */
 
@@ -1209,10 +1209,12 @@ cupsdReadConfiguration(void)
 			     Group, 1, 1) < 0 ||
        cupsdCheckPermissions(ServerRoot, "ssl", 0700, RunUser,
 			     Group, 1, 0) < 0 ||
+       /* Never alter permissions of central conffile
        cupsdCheckPermissions(ConfigurationFile, NULL, ConfigFilePerm, RunUser,
 			     Group, 0, 0) < 0 ||
        cupsdCheckPermissions(CupsFilesFile, NULL, ConfigFilePerm, RunUser,
 			     Group, 0, 0) < 0 ||
+       */
        cupsdCheckPermissions(ServerRoot, "classes.conf", 0600, RunUser,
 			     Group, 0, 0) < 0 ||
        cupsdCheckPermissions(ServerRoot, "printers.conf", 0600, RunUser,
@@ -1305,8 +1307,8 @@ cupsdReadConfiguration(void)
       strcmp(ErrorPolicy, "retry-job") &&
       strcmp(ErrorPolicy, "stop-printer"))
   {
-    cupsdLogMessage(CUPSD_LOG_ALERT, "Invalid ErrorPolicy \"%s\", resetting to \"stop-printer\".", ErrorPolicy);
-    cupsdSetString(&ErrorPolicy, "stop-printer");
+    cupsdLogMessage(CUPSD_LOG_ALERT, "Invalid ErrorPolicy \"%s\", resetting to \"retry-job\".", ErrorPolicy);
+    cupsdSetString(&ErrorPolicy, "retry-job");
   }
 
  /*
@@ -3151,9 +3153,9 @@ read_cupsd_conf(cups_file_t *fp)	/* I - File to read from */
 
         if (lis)
 	{
-#if defined(HAVE_LAUNCHD) || defined(HAVE_SYSTEMD)
+#ifdef HAVE_ONDEMAND
 	  if (!lis->on_demand)
-#endif /* HAVE_LAUNCHD || HAVE_SYSTEMD */
+#endif /* HAVE_ONDEMAND */
 	  {
 	    httpAddrString(&lis->address, temp, sizeof(temp));
 	    cupsdLogMessage(CUPSD_LOG_WARN,
@@ -3505,6 +3507,7 @@ read_cupsd_conf(cups_file_t *fp)	/* I - File to read from */
              !_cups_strcasecmp(line, "SystemGroup") ||
              !_cups_strcasecmp(line, "SystemGroupAuthKey") ||
              !_cups_strcasecmp(line, "TempDir") ||
+             !_cups_strcasecmp(line, "PidFile") ||
 	     !_cups_strcasecmp(line, "User"))
     {
       cupsdLogMessage(CUPSD_LOG_INFO,
@@ -4244,8 +4247,3 @@ set_policy_defaults(cupsd_policy_t *pol)/* I - Policy */
     cupsdAddString(&(pol->sub_attrs), "notify-user-data");
   }
 }
-
-
-/*
- * End of "$Id: conf.c 12819 2015-07-31 13:52:00Z msweet $".
- */

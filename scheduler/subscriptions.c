@@ -1,6 +1,4 @@
 /*
- * "$Id: subscriptions.c 13040 2016-01-11 20:29:13Z msweet $"
- *
  * Subscription routines for the CUPS scheduler.
  *
  * Copyright 2007-2014 by Apple Inc.
@@ -1087,7 +1085,7 @@ cupsdSaveAllSubscriptions(void)
   strftime(temp, sizeof(temp) - 1, "%Y-%m-%d %H:%M", curdate);
 
   cupsFilePuts(fp, "# Subscription configuration file for " CUPS_SVERSION "\n");
-  cupsFilePrintf(fp, "# Written by cupsd on %s\n", temp);
+  cupsFilePrintf(fp, "# Written by cupsd\n");
 
   cupsFilePrintf(fp, "NextSubscriptionId %d\n", NextSubscriptionId);
 
@@ -1614,8 +1612,3 @@ cupsd_update_notifier(void)
       break;
   }
 }
-
-
-/*
- * End of "$Id: subscriptions.c 13040 2016-01-11 20:29:13Z msweet $".
- */

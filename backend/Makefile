@@ -1,18 +1,16 @@
 #
-# "$Id: Makefile 11859 2014-05-08 22:42:44Z msweet $"
+# Backend makefile for CUPS.
 #
-#   Backend makefile for CUPS.
+# Copyright 2007-2016 by Apple Inc.
+# Copyright 1997-2007 by Easy Software Products, all rights reserved.
 #
-#   Copyright 2007-2014 by Apple Inc.
-#   Copyright 1997-2007 by Easy Software Products, all rights reserved.
+# These coded instructions, statements, and computer programs are the
+# property of Apple Inc. and are protected by Federal copyright
+# law.  Distribution and use rights are outlined in the file "LICENSE.txt"
+# which should have been included with this file.  If this file is
+# file is missing or damaged, see the license at "http://www.cups.org/".
 #
-#   These coded instructions, statements, and computer programs are the
-#   property of Apple Inc. and are protected by Federal copyright
-#   law.  Distribution and use rights are outlined in the file "LICENSE.txt"
-#   which should have been included with this file.  If this file is
-#   file is missing or damaged, see the license at "http://www.cups.org/".
-#
-#   This file is subject to the Apple OS-Developed Software exception.
+# This file is subject to the Apple OS-Developed Software exception.
 #
 
 include ../Makedefs
@@ -21,7 +19,7 @@ include ../Makedefs
 # Object files...
 #
 
-# RBACKENDS are installed mode 0700 so cupsd will run them as root...
+# RBACKENDS are installed mode 0744 so cupsd will run them as root...
 #
 # UBACKENDS and ULBACKENDS are installed mode 0755 so cupsd will run them as
 # an unprivileged user...
@@ -29,6 +27,7 @@ include ../Makedefs
 # See http://www.cups.org/documentation.php/api-filter.html for more info...
 RBACKENDS =	\
 		ipp \
+		ipp14 \
 		lpd \
 		$(DNSSD_BACKEND)
 UBACKENDS =	\
@@ -52,6 +51,7 @@ LIBOBJS	=	\
 		snmp-supplies.o
 OBJS	=	\
 		ipp.o \
+		ipp14.o \
 		lpd.o \
 		dnssd.o \
 		snmp.o \
@@ -88,7 +88,7 @@ unittests:	$(UNITTESTS)
 #
 
 clean:
-	$(RM) $(OBJS) $(TARGETS) $(UNITTESTS) $(LIBOBJS) http https ipps mdns
+	$(RM) $(OBJS) $(TARGETS) $(UNITTESTS) $(LIBOBJS) http https ipps mdns socket-static
 
 
 #
@@ -126,7 +126,7 @@ install-exec:	$(INSTALLXPC)
 	echo Installing backends in $(SERVERBIN)/backend
 	$(INSTALL_DIR) -m 755 $(SERVERBIN)/backend
 	for file in $(RBACKENDS); do \
-		$(LIBTOOL) $(INSTALL_BIN) -m 700 $$file $(SERVERBIN)/backend; \
+		$(LIBTOOL) $(INSTALL_BIN) -m 744 $$file $(SERVERBIN)/backend; \
 	done
 	for file in $(UBACKENDS); do \
 		$(INSTALL_BIN) $$file $(SERVERBIN)/backend; \
@@ -270,6 +270,17 @@ ipp:	ipp.o ../cups/$(LIBCUPS) libbackend.a
 
 
 #
+# ipp14
+#
+
+ipp14:	ipp14.o ../cups/$(LIBCUPS) libbackend.a
+	echo Linking $@...
+	$(CC) $(LDFLAGS) -o ipp14 ipp14.o libbackend.a $(LIBS)
+	#$(RM) http
+	#$(LN) ipp14 http
+
+
+#
 # lpd
 #
 
@@ -295,6 +306,12 @@ socket:	socket.o ../cups/$(LIBCUPS) libbackend.a
 	echo Linking $@...
 	$(CC) $(LDFLAGS) -o socket socket.o libbackend.a $(LIBS)
 
+socket-static:	socket.o  ../cups/$(LIBCUPSSTATIC) libbackend.a
+	echo Linking $@...
+	$(CC) $(LDFLAGS) -o socket-static socket.o libbackend.a \
+		../cups/$(LIBCUPSSTATIC) $(LIBGSSAPI) $(SSLLIBS) $(DNSSDLIBS) \
+		$(COMMONLIBS) $(LIBZ)
+
 
 #
 # usb
@@ -312,8 +329,3 @@ usb.o:	usb.c usb-darwin.c usb-libusb.c usb-unix.c
 #
 
 include Dependencies
-
-
-#
-# End of "$Id: Makefile 11859 2014-05-08 22:42:44Z msweet $".
-#

@@ -1,6 +1,4 @@
 #
-# "$Id: Makedefs.in 12519 2015-02-17 13:10:19Z msweet $"
-#
 # Common makefile definitions for CUPS.
 #
 # Copyright 2007-2014 by Apple Inc.
@@ -136,7 +134,7 @@ DBUS_NOTIFIER	=	@DBUS_NOTIFIER@
 DBUS_NOTIFIERLIBS =	@DBUS_NOTIFIERLIBS@
 DNSSD_BACKEND	=	@DNSSD_BACKEND@
 DSOFLAGS	=	-L../cups @DSOFLAGS@
-DSOLIBS		=	@DSOLIBS@ $(COMMONLIBS)
+DSOLIBS		=	@DSOLIBS@
 DNSSDLIBS	=	@DNSSDLIBS@
 IPPFIND_BIN	=	@IPPFIND_BIN@
 IPPFIND_MAN	=	@IPPFIND_MAN@
@@ -241,7 +239,6 @@ USBQUIRKS	=	@USBQUIRKS@
 # Rules...
 #
 
-.SILENT:
 .SUFFIXES:	.1 .1.gz .1m .1m.gz .3 .3.gz .5 .5.gz .7 .7.gz .8 .8.gz .a .c .cxx .h .man .o .gz
 
 .c.o:
@@ -261,8 +258,3 @@ USBQUIRKS	=	@USBQUIRKS@
 	echo -n Compressing $<...
 	$(RM) $@
 	gzip -v9 <$< >$@
-
-
-#
-# End of "$Id: Makedefs.in 12519 2015-02-17 13:10:19Z msweet $"
-#

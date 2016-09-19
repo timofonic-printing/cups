@@ -1,6 +1,4 @@
 /*
- * "$Id: testi18n.c 11558 2014-02-06 18:33:34Z msweet $"
- *
  * Internationalization test for CUPS.
  *
  * Copyright 2007-2014 by Apple Inc.
@@ -418,7 +416,7 @@ main(int  argc,				/* I - Argument Count */
       puts("PASS");
   }
 
-#ifndef __linux
+#if !defined(__linux__) && !defined(__GLIBC__)
   fputs("cupsCharsetToUTF8(CUPS_EUC_JP): ", stdout);
 
   strlcpy(legsrc, legdest, sizeof(legsrc));
@@ -607,8 +605,3 @@ print_utf8(const char	     *msg,	/* I - Message String */
 
   putchar('\n');
 }
-
-
-/*
- * End of "$Id: testi18n.c 11558 2014-02-06 18:33:34Z msweet $"
- */

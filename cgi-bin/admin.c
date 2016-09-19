@@ -1,6 +1,4 @@
 /*
- * "$Id: admin.c 12516 2015-02-12 20:18:11Z msweet $"
- *
  * Administration CGI for CUPS.
  *
  * Copyright 2007-2015 by Apple Inc.
@@ -1923,6 +1921,7 @@ do_config_server(http_t *http)		/* I - HTTP connection */
     int		ch;			/* Character from file */
     char	filename[1024];		/* Filename */
     const char	*server_root;		/* Location of config files */
+    const char	*data_dir;		/* Location of data files */
 
 
    /*
@@ -2006,7 +2005,10 @@ do_config_server(http_t *http)		/* I - HTTP connection */
     * well...
     */
 
-    strlcat(filename, ".default", sizeof(filename));
+    if ((data_dir = getenv("CUPS_DATADIR")) == NULL)
+      data_dir = CUPS_DATADIR;
+
+    snprintf(filename, sizeof(filename), "%s/cupsd.conf.default",data_dir);
 
     if (!stat(filename, &info) && info.st_size < (1024 * 1024) &&
         (cupsd = cupsFileOpen(filename, "r")) != NULL)
@@ -4274,8 +4276,3 @@ get_printer_ppd(const char *uri,	/* I - Printer URI */
   else
     return (NULL);
 }
-
-
-/*
- * End of "$Id: admin.c 12516 2015-02-12 20:18:11Z msweet $".
- */

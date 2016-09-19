@@ -1,6 +1,4 @@
 /*
- * "$Id: dirsvc.c 12458 2015-01-30 16:15:53Z msweet $"
- *
  * Directory services routines for the CUPS scheduler.
  *
  * Copyright 2007-2015 by Apple Inc.
@@ -415,6 +413,12 @@ dnssdBuildTxtRecord(
 
     keyvalue[count  ][0] = "pdl";
     keyvalue[count++][1] = p->pdl ? p->pdl : "application/postscript";
+
+    /* iOS 6 does not accept this printer as AirPrint printer if there is
+       no URF txt record or "URF=none", "DM3" is the minimum needed found
+       by try and error */
+    keyvalue[count  ][0] = "URF";
+    keyvalue[count++][1] = "DM3";
 
     if (get_auth_info_required(p, air_str, sizeof(air_str)))
     {
@@ -1820,8 +1824,3 @@ update_smb(int onoff)			/* I - 1 = turn on, 0 = turn off */
   else
     cupsdLogMessage(CUPSD_LOG_INFO, "Unknown SMBConfigFile scheme!");
 }
-
-
-/*
- * End of "$Id: dirsvc.c 12458 2015-01-30 16:15:53Z msweet $".
- */

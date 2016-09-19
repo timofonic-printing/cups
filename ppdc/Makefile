@@ -1,9 +1,7 @@
 #
-# "$Id: Makefile 12615 2015-05-06 20:21:51Z msweet $"
-#
 # Makefile for the CUPS PPD Compiler.
 #
-# Copyright 2007-2015 by Apple Inc.
+# Copyright 2007-2016 by Apple Inc.
 # Copyright 2002-2006 by Easy Software Products.
 #
 # These coded instructions, statements, and computer programs are the
@@ -155,9 +153,11 @@ install-exec:
 #
 
 install-headers:
-	echo Installing header files in $(INCLUDEDIR)/cups...
-	$(INSTALL_DIR) -m 755 $(INCLUDEDIR)/cups
-	$(INSTALL_DATA) ppdc.h $(INCLUDEDIR)/cups
+	if test "x$(privateinclude)" != x; then \
+		echo Installing private header files into $(PRIVATEINCLUDE)...; \
+		$(INSTALL_DIR) -m 755 $(PRIVATEINCLUDE); \
+		$(INSTALL_DATA) ppdc.h $(PRIVATEINCLUDE); \
+	fi
 
 
 #
@@ -205,45 +205,24 @@ uninstall:
 	$(RM) $(LIBDIR)/libcupsppdc.so
 	$(RM) $(LIBDIR)/libcupsppdc.so.1
 	-$(RMDIR) $(LIBDIR)
-	$(RM) $(INCLUDEDIR)/cups/ppdc.h
-	-$(RMDIR) $(INCLUDEDIR)/cups
-
-
-#
-# Automatic API help files...
-#
-
-apihelp:
-	mxmldoc --section "Programming" \
-		--title "PPD Compiler API" \
-		--css ../doc/cups-printable.css \
-		--header api-ppdc.header --intro api-ppdc.shtml \
-		api-ppdc.xml \
-		ppdc.h $(LIBOBJS:.o=.cxx) >../doc/help/api-ppdc.html
-	mxmldoc --tokens help/api-ppdc.html api-ppdc.xml >../doc/help/api-ppdc.tokens
-	$(RM) api-ppdc.xml
-
-framedhelp:
-	mxmldoc --framed api-ppdc \
-		--section "Programming" \
-		--title "PPD Compiler API" \
-		--css ../doc/cups-printable.css \
-		--header api-ppdc.header --intro api-ppdc.shtml \
-		ppdc.h $(LIBOBJS:.o=.cxx)
+	-if test "x$(privateinclude)" != x; then \
+		$(RM) $(PRIVATEINCLUDE)/ppdc.h; \
+		$(RMDIR) $(PRIVATEINCLUDE); \
+	fi
 
 
 #
 # genstrings - generate GNU gettext strings.
 #
 
-genstrings:		genstrings.o libcupsppdc.a ../cups/$(LIBCUPSSTATIC) \
+genstrings:		genstrings.o libcupsppdc.so ../cups/$(LIBCUPSSTATIC) \
 			sample.drv ../data/media.defs
 	echo Linking $@...
 	$(CXX) $(ARCHFLAGS) $(LDFLAGS) -o genstrings genstrings.o \
-		libcupsppdc.a ../cups/$(LIBCUPSSTATIC) $(LIBGSSAPI) $(SSLLIBS) \
+		-lcupsppdc ../cups/$(LIBCUPSSTATIC) $(LIBGSSAPI) $(SSLLIBS) \
 		$(DNSSDLIBS) $(COMMONLIBS) $(LIBZ)
 	echo Generating localization strings...
-	./genstrings >sample.c
+	LD_LIBRARY_PATH=.:../cups/ ./genstrings >sample.c
 
 
 #
@@ -257,12 +236,12 @@ ppdc:			ppdc.o $(LIBCUPSPPDC) ../cups/$(LIBCUPS)
 
 ppdc-static:		ppdc.o libcupsppdc.a ../cups/$(LIBCUPSSTATIC) foo.drv foo-fr.po
 	echo Linking $@...
-	$(CXX) $(ARCHFLAGS) $(LDFLAGS) -o ppdc-static ppdc.o libcupsppdc.a \
+	$(CXX) $(ARCHFLAGS) $(LDFLAGS) -o ppdc-static ppdc.o -lcupsppdc \
 		../cups/$(LIBCUPSSTATIC) $(LIBGSSAPI) $(SSLLIBS) $(DNSSDLIBS) \
 		$(COMMONLIBS) $(LIBZ)
 	echo Testing PPD compiler...
-	./ppdc-static -l en,fr -I ../data foo.drv
-	./ppdc-static -l en,fr -z -I ../data foo.drv
+	LD_LIBRARY_PATH=.:../cups/ ./ppdc-static -l en,fr -I ../data foo.drv
+	LD_LIBRARY_PATH=.:../cups/ ./ppdc-static -l en,fr -z -I ../data foo.drv
 
 
 #
@@ -285,14 +264,14 @@ ppdi:			ppdi.o $(LIBCUPSPPDC) ../cups/$(LIBCUPS)
 
 ppdi-static:		ppdc-static ppdi.o libcupsppdc.a  ../cups/$(LIBCUPSSTATIC)
 	echo Linking $@...
-	$(CXX) $(ARCHFLAGS) $(LDFLAGS) -o ppdi-static ppdi.o libcupsppdc.a \
+	$(CXX) $(ARCHFLAGS) $(LDFLAGS) -o ppdi-static ppdi.o -lcupsppdc \
 		../cups/$(LIBCUPSSTATIC) $(LIBGSSAPI) $(SSLLIBS) $(DNSSDLIBS) \
 		$(COMMONLIBS) $(LIBZ)
 	echo Testing PPD importer...
 	$(RM) -r ppd ppd2 sample-import.drv
-	./ppdc-static -l en -I ../data sample.drv
-	./ppdi-static -I ../data -o sample-import.drv ppd/*
-	./ppdc-static -l en -I ../data -d ppd2 sample-import.drv
+	LD_LIBRARY_PATH=.:../cups/ ./ppdc-static -l en -I ../data sample.drv
+	LD_LIBRARY_PATH=.:../cups/ ./ppdi-static -I ../data -o sample-import.drv ppd/*
+	LD_LIBRARY_PATH=.:../cups/ ./ppdc-static -l en -I ../data -d ppd2 sample-import.drv
 	if diff -r ppd ppd2 >/dev/null; then \
 		echo PPD import OK; \
 	else \
@@ -325,7 +304,7 @@ ppdpo:			ppdpo.o $(LIBCUPSPPDC) ../cups/$(LIBCUPS)
 
 testcatalog:		testcatalog.o libcupsppdc.a ../cups/$(LIBCUPSSTATIC)
 	echo Linking $@...
-	$(CXX) $(LDFLAGS) -o $@ testcatalog.o libcupsppdc.a \
+	$(CXX) $(LDFLAGS) -o $@ testcatalog.o -lcupsppdc \
 		../cups/$(LIBCUPSSTATIC) $(LIBGSSAPI) $(SSLLIBS) $(DNSSDLIBS) \
 		$(COMMONLIBS) $(LIBZ)
 
@@ -347,7 +326,7 @@ libcupsppdc.so.1:	$(LIBOBJS) ../cups/$(LIBCUPS)
 
 libcupsppdc.1.dylib:	$(LIBOBJS) ../cups/$(LIBCUPS)
 	echo Creating export list for $@...
-	nm $(LIBOBJS) | grep "T __" | awk '{print $$3}' | sort >t.exp
+	nm -gm $(LIBOBJS) | grep "__text" | grep -v weak | awk '{print $$NF}' | sort >t.exp
 	echo Linking $@...
 	$(DSOXX) $(ARCHFLAGS) $(DSOFLAGS) -o $@ \
 		-install_name $(libdir)/$@ \
@@ -385,8 +364,3 @@ libcupsppdc.a:	$(LIBOBJS)
 #
 
 include Dependencies
-
-
-#
-# End of "$Id: Makefile 12615 2015-05-06 20:21:51Z msweet $".
-#

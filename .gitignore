@@ -1,10 +1,12 @@
 *.a
+*.bck
 *.cgi
 *.dylib
 *.gz
 *.o
 *.so
 *.so.*
+*.tokens
 .buildrev
 autom4te.cache
 config.h
@@ -142,4 +144,6 @@ test/ippfind-static
 test/ippserver
 test/ipptool
 test/ipptool-static
+xcode/CUPS.xcodeproj/project.xcworkspace/
+xcode/CUPS.xcodeproj/xcuserdata/
 .pc

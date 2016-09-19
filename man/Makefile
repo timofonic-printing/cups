@@ -1,6 +1,4 @@
 #
-# "$Id: Makefile 12814 2015-07-30 15:03:33Z msweet $"
-#
 # Man page makefile for CUPS.
 #
 # Copyright 2007-2015 by Apple Inc.
@@ -68,12 +66,18 @@ MAN8	=	cupsaccept.$(MAN8EXT) \
 		lpmove.$(MAN8EXT) \
 		lpc.$(MAN8EXT)
 
+LANGUAGES=de fr
 
 #
 # Make everything...
 #
 
-all:	$(MAN1) $(MAN5) $(MAN7) $(MAN8) html
+all:	$(MAN1) $(MAN5) $(MAN7) $(MAN8) html translations
+
+translations:
+	# Update the translations and build the translated material
+	po4a --previous ../debian/manpage-po4a/cups.cfg
+	for lang in $(LANGUAGES); do $(MAKE) -C $$lang; done
 
 
 #
@@ -97,6 +101,11 @@ unittests:
 clean:
 	$(RM) mantohtml mantohtml.o
 	$(RM) $(MAN1) $(MAN5) $(MAN7) $(MAN8)
+	for lang in $(LANGUAGES); do $(MAKE) -C $$lang clean; done
+	# Make sure the PO files are updated and remove generated
+	# translations.
+	po4a --previous --rm-translations ../debian/manpage-po4a/cups.cfg
+	$(RM) ../debian/manpage-po4a/po/cups.pot
 
 
 #
@@ -148,6 +157,7 @@ install-data: all
 		$(RM) $(AMANDIR)/man$(MAN8DIR)/$$file.$(MAN8EXT); \
 		$(LN) cupsd-helper.$(MAN8EXT) $(AMANDIR)/man$(MAN8DIR)/$$file.$(MAN8EXT); \
 	done
+	for lang in $(LANGUAGES); do $(MAKE) -C $$lang install; done
 
 
 #
@@ -196,6 +206,7 @@ uninstall:
 	$(RM) $(AMANDIR)/man$(MAN8DIR)/reject.$(MAN8EXT)
 	$(RM) $(AMANDIR)/man$(MAN8DIR)/cupsdisable.$(MAN8EXT)
 	-$(RMDIR) $(AMANDIR)/man$(MAN8DIR)
+	for lang in $(LANGUAGES); do $(MAKE) -C $$lang uninstall; done
 
 
 #
@@ -225,8 +236,3 @@ mantohtml:	mantohtml.o ../cups/$(LIBCUPSSTATIC)
 	$(CC) $(ARCHFLAGS) $(LDFLAGS) -o $@ mantohtml.o \
 		../cups/$(LIBCUPSSTATIC) $(LIBGSSAPI) $(SSLLIBS) \
 		$(DNSSDLIBS) $(COMMONLIBS) $(LIBZ)
-
-
-#
-# End of "$Id: Makefile 12814 2015-07-30 15:03:33Z msweet $".
-#
