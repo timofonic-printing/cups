@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cups man pages 2.0.3-10\n"
 "POT-Creation-Date: 2016-08-05 23:30+0200\n"
-"PO-Revision-Date: 2016-09-21 20:29+0200\n"
+"PO-Revision-Date: 2016-09-21 20:33+0200\n"
 "Last-Translator: Helge Kreutzmann <debian@helgefjell.de>\n"
 "Language-Team: de <debian-l10n-german@lists.debian.org>\n"
 "Language: de\n"
@@ -11025,7 +11025,7 @@ msgstr "B<OPERATION >I<Vorgangscode>"
 #. type: Plain text
 #: ipptoolfile.man:192
 msgid "Specifies the operation to be performed."
-msgstr "Spezifziert den auszuführenden Vorgang."
+msgstr "Legt den auszuführenden Vorgang fest."
 
 #. type: TP
 #: ipptoolfile.man:192
@@ -11060,7 +11060,7 @@ msgid ""
 "Specifies the request-id value to use in the request, either an integer or "
 "the word \"random\" to use a randomly generated value (the default)."
 msgstr ""
-"Legt die in der Anfrage zu verwendene Anfrage-ID, entweder eine Ganzzahl "
+"Legt die in der Anfrage zu verwendende Anfrage-ID, entweder eine Ganzzahl "
 "oder das Wort »random«, um einen zufällig erzeugten Wert zu verwenden "
 "(Vorgabe), fest."
 
@@ -16419,7 +16419,7 @@ msgid ""
 "feed, or line feed alone.  The default is to use the line feed character "
 "alone."
 msgstr ""
-"Legt das zu verwendene Zeilenende fest - Wagenrücklauf, Wagenrücklauf und "
+"Legt das zu verwendende Zeilenende fest - Wagenrücklauf, Wagenrücklauf und "
 "Zeilenumbruch oder nur Zeilenumbruch. Standardmäßig wird nur ein "
 "Zeilenumbruch verwandt."
 
