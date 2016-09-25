@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cups man pages 2.0.3-10\n"
 "POT-Creation-Date: 2016-08-05 23:30+0200\n"
-"PO-Revision-Date: 2016-09-21 20:33+0200\n"
+"PO-Revision-Date: 2016-09-25 20:28+0200\n"
 "Last-Translator: Helge Kreutzmann <debian@helgefjell.de>\n"
 "Language-Team: de <debian-l10n-german@lists.debian.org>\n"
 "Language: de\n"
@@ -12233,7 +12233,7 @@ msgid ""
 "an empty string if no \"job-uri\" attribute has been seen."
 msgstr ""
 "Fügt den letzten in einer Testantwort zurückgelieferten »job-uri«-"
-"Attributwert oder eine leere Zeichenkette, falls keine Attribut »job-uri« "
+"Attributwert oder eine leere Zeichenkette, falls kein Attribut »job-uri« "
 "gesehen wurde, ein."
 
 #. type: TP
@@ -12249,7 +12249,7 @@ msgid ""
 "test response or 0 if no \"notify-subscription-id\" attribute has been seen."
 msgstr ""
 "Fügt den letzten in einer Testantwort zurückgelieferten »notify-subscription-"
-"id«-Attributwert oder 0, falls keine Attribut »notify-subscription-id« "
+"id«-Attributwert oder 0, falls kein Attribut »notify-subscription-id« "
 "gesehen wurde, ein."
 
 #. type: TP
@@ -12410,7 +12410,7 @@ msgstr ""
 #. type: Plain text
 #: ipptool.man:104
 msgid "Shows the version of B<ipptool> being used."
-msgstr "Zeigt die verwandte Version von B<ipptool> an."
+msgstr "Zeigt die verwendete Version von B<ipptool> an."
 
 #. type: Plain text
 #: ipptool.man:109
@@ -12504,7 +12504,7 @@ msgstr ""
 "Legt fest, dass die Ergebnisse der Tests zusätzlich zu dem normalen "
 "Testbericht (B<-t>) in die benannte XML- (Apple plist-)Datei geschrieben "
 "werden sollen. Diese Option ist inkompatibel zu den Optionen B<-i> "
-"(Interval) und B<-n> (Anzahl-Wiederholungen)."
+"(Intervall) und B<-n> (Anzahl-Wiederholungen)."
 
 #. type: TP
 #: ipptool.man:134
@@ -12558,7 +12558,7 @@ msgid ""
 msgstr ""
 "Legt fest, dass die XML- (Apple-Plist-)Ausgabe statt des reinen Textberichts "
 "erwünscht ist. Diese Option ist inkompatibel zu den Optionen B<-i> "
-"(Interval) und B<-n> (Anzahl-Wiederholungen)."
+"(Intervall) und B<-n> (Anzahl-Wiederholungen)."
 
 #. type: Plain text
 #: ipptool.man:150
@@ -12650,7 +12650,7 @@ msgid ""
 "Specifies that all request and response attributes should be output in CUPS "
 "test mode (B<-t>).  This is the default for XML output."
 msgstr ""
-"Legt fest, dass alle Anfrag- und Antwort-Attribute im CUPS-Testmodus (B<-t>) "
+"Legt fest, dass alle Anfrage- und Antwort-Attribute im CUPS-Testmodus (B<-t>) "
 "ausgegeben werden sollen. Dies ist die Vorgabe für XML-Ausgabe."
 
 #. type: Plain text
