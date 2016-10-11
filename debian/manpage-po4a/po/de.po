@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cups man pages 2.0.3-10\n"
 "POT-Creation-Date: 2016-08-05 23:30+0200\n"
-"PO-Revision-Date: 2016-09-27 22:53+0200\n"
+"PO-Revision-Date: 2016-10-11 22:33+0200\n"
 "Last-Translator: Helge Kreutzmann <debian@helgefjell.de>\n"
 "Language-Team: de <debian-l10n-german@lists.debian.org>\n"
 "Language: de\n"
@@ -6446,7 +6446,6 @@ msgstr "Die Vorgabe ist »/var/log/cups/error_log«."
 msgid "B<FatalErrors none>"
 msgstr "B<FatalErrors none>"
 
-# FIXME »-« i.O.?
 #. type: TP
 #: cups-files.conf.man.in:90
 #, no-wrap
@@ -9469,7 +9468,6 @@ msgstr ""
 msgid "B<--ls>"
 msgstr "B<--ls>"
 
-# FIXME: Müsste es nicht B<find -ls> sein?
 #. type: Plain text
 #: ippfind.man:83
 msgid ""
@@ -13719,7 +13717,7 @@ msgid ""
 "the current default set using the B<lpoptions>(1)  command is used, followed "
 "by the default set using the B<lpadmin>(8)  command."
 msgstr ""
-"CUPS stellt viele Möglichkeiten bereit, den Vorgabebeziele zu setzen. Die "
+"CUPS stellt viele Möglichkeiten bereit, das Vorgabeziel zu setzen. Die "
 "Umgebungsvariablen B<LPDEST> und B<PRINTER> werden zuerst herangezogen. Wenn "
 "keine von beiden gesetzt ist, wird der aktuell unter Benutzung des Befehls "
 "B<lpoptions>(1) gesetzte benutzt, gefolgt von der durch den Befehl "
@@ -13948,7 +13946,7 @@ msgstr "Skaliert die Druckdatei auf Seitengröße."
 #: lp.man:170 lpr.man:125
 #, no-wrap
 msgid "B<-o job-hold-until=>I<when>"
-msgstr "B<-o job-hold-until=>I<Wann>"
+msgstr "B<-o job-hold-until=>I<wann>"
 
 #. type: Plain text
 #: lp.man:174 lpr.man:129
@@ -13960,7 +13958,7 @@ msgid ""
 "shift\" to print the job between 12am and 8am local time, or \"weekend\" to "
 "print the job on Saturday or Sunday."
 msgstr ""
-"Hält den Auftrag bis zur angegebenen lokalen Uhrzeit. »Wann« kann "
+"Hält den Auftrag bis zur angegebenen lokalen Uhrzeit. »wann« kann "
 "»indefinite« enthalten, um das Halten bis zur Freigabe durchzuführen, »day-"
 "time«, um den Auftrag zwischen 6:00 Uhr und 18:00 Uhr lokale Zeit zu drucken, "
 "»night«, um den Auftrag zwischen 4:00 Uhr und 12:00 Uhr lokale Zeit zu "
@@ -14080,7 +14078,7 @@ msgid ""
 msgstr ""
 "Legt das Layout der Seiten mit der Option »number-up« fest. Die Zeichenkette "
 "»Layout« kann »btlr«, »btrl«, »lrbt«, »lrtb«, »rlbt«, »rltb«, »tblr« oder "
-"»tbrl« sein. Die ersten zwei Buchtaben bestimmen die Spaltenreihenfolge, "
+"»tbrl« sein. Die ersten zwei Buchstaben bestimmen die Spaltenreihenfolge, "
 "während die zweiten zwei Buchstaben die Zeilenreihenfolge bestimmen. »bt« ist "
 "von unten nach oben, »lr« ist links nach rechts, »rl« ist rechts nach links "
 "und »tb« ist oben nach unten."
@@ -14116,7 +14114,7 @@ msgstr "B<-o orientation-requested=6>"
 #. type: Plain text
 #: lp.man:211 lpr.man:166
 msgid "Prints the job in reverse portrait (rotated 180 degrees)."
-msgstr "Druckt den Druckauftrag im inversen Portraitformat (gedreht um 180 Grad)."
+msgstr "Druckt den Druckauftrag im inversen Hochformat (gedreht um 180 Grad)."
 
 #. type: TP
 #: lp.man:211 lpr.man:166
@@ -14170,7 +14168,7 @@ msgstr "B<-o sides=two-sided-long-edge>"
 #. type: Plain text
 #: lp.man:229 lpr.man:184
 msgid "Prints on both sides of the paper for portrait output."
-msgstr "Druckt auf beiden Seiten des Papiers für Hochkant-Ausgabe."
+msgstr "Druckt auf beiden Seiten des Papiers für Hochformat-Ausgabe."
 
 #. type: TP
 #: lp.man:229 lpr.man:184
@@ -14210,7 +14208,7 @@ msgstr "    lp -n 2 Dateiname\n"
 #: lp.man:245 lpr.man:197
 msgid "Print a double-sided legal document to a printer called \"foo\":"
 msgstr ""
-"Drucke ein doppelseitiges Dokument im Format legal auf dem Drucker mit Namen "
+"Druckt ein doppelseitiges Dokument im Format legal auf dem Drucker mit Namen "
 "»foo«:"
 
 #. type: Plain text
@@ -14221,11 +14219,10 @@ msgstr "    lp -d foo -o media=legal -o sides=two-sided-long-edge Dateiname\n"
 
 #. type: Plain text
 #: lp.man:251 lpr.man:203
-#, fuzzy
-#| msgid "Print a double-sided legal document to a printer called \"foo\":"
 msgid "Print a presentation document 2-up to a printer called \"foo\":"
 msgstr ""
-"Drucke ein Präsentations-Dokument FIXME auf dem Drucker mit Namen »foo«:"
+"Druckt ein Präsentations-Dokument zweifach pro Seite auf dem Drucker mit "
+"Namen »foo«:"
 
 #. type: Plain text
 #: lp.man:254
@@ -17913,14 +17910,14 @@ msgstr ""
 
 # type: Plain text
 #~ msgid "Print an image across 4 pages:"
-#~ msgstr "Drucke ein Bild über 4 Seiten:"
+#~ msgstr "Druckt ein Bild über 4 Seiten:"
 
 # type: Plain text
 #~ msgid ""
 #~ "Print a text file with 12 characters per inch, 8 lines per inch, and a 1 "
 #~ "inch left margin:"
 #~ msgstr ""
-#~ "Drucke eine Textdatei mit 12 Zeichen pro Zoll, 8 Zeilen pro Zoll und "
+#~ "Druckt eine Textdatei mit 12 Zeichen pro Zoll, 8 Zeilen pro Zoll und "
 #~ "einem Rand von einem Zoll:"
 
 # type: Plain text
