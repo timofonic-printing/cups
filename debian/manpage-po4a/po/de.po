@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cups man pages 2.0.3-10\n"
 "POT-Creation-Date: 2016-08-05 23:30+0200\n"
-"PO-Revision-Date: 2016-10-11 22:33+0200\n"
+"PO-Revision-Date: 2016-10-19 19:48+0200\n"
 "Last-Translator: Helge Kreutzmann <debian@helgefjell.de>\n"
 "Language-Team: de <debian-l10n-german@lists.debian.org>\n"
 "Language: de\n"
@@ -14409,7 +14409,7 @@ msgid ""
 "B<lpr>(1)  commands when submitting jobs."
 msgstr ""
 "Optionen, die mit dem Befehl B<lpoptions> gesetzt werden, werden von den "
-"Befehlen I<lp>(1) und I<lpr>(1) bein Einreichen von Druckaufträgen verwandt."
+"Befehlen I<lp>(1) und I<lpr>(1) beim Einreichen von Druckaufträgen verwandt."
 
 #. type: Plain text
 #: lpoptions.man.in:83
@@ -14464,7 +14464,7 @@ msgstr "Verwendet einen alternativen Server."
 #: lpoptions.man.in:102
 msgid "Lists the printer specific options and their current settings."
 msgstr ""
-"Listet die Drucker-spezifischen Optionen und ihre aktuellen Einstellungen "
+"Listet die druckerspezifischen Optionen und ihre aktuellen Einstellungen "
 "auf."
 
 #. type: TP
@@ -14747,7 +14747,7 @@ msgid ""
 msgstr ""
 "Legt fest, dass die Druckdatei mit einem schattierten Kopf mit Datum, "
 "Uhrzeit, Auftragsname und Seitennummer formatiert werden soll. Diese Option "
-"Ist äquivalent zu I<-o prettyprint> und ist nur beim Druck von Textdateien "
+"ist äquivalent zu I<-o prettyprint> und ist nur beim Druck von Textdateien "
 "nützlich."
 
 #. type: Plain text
@@ -15005,7 +15005,7 @@ msgid ""
 "Shows the accepting state of printer queues.  If no printers are specified "
 "then all printers are listed."
 msgstr ""
-"Zeigt den Akzeptierzustand der Druckerwarteschlangen. Falls keine Drucker "
+"Zeigt den Annahmezustand der Druckerwarteschlangen. Falls keine Drucker "
 "angegeben sind, werden alle Drucker aufgeführt."
 
 #. type: TP
