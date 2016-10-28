@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cups man pages 2.0.3-10\n"
 "POT-Creation-Date: 2016-08-05 23:30+0200\n"
-"PO-Revision-Date: 2016-10-19 19:48+0200\n"
+"PO-Revision-Date: 2016-10-28 16:09+0200\n"
 "Last-Translator: Helge Kreutzmann <debian@helgefjell.de>\n"
 "Language-Team: de <debian-l10n-german@lists.debian.org>\n"
 "Language: de\n"
@@ -15169,8 +15169,7 @@ msgstr "mailto.conf"
 #: mailto.conf.man:16
 msgid "mailto.conf - configuration file for cups email notifier"
 msgstr ""
-"mailto.conf - Konfigurationsdatei für Versender von CUPS-E-Mail-"
-"Benachrichtigungen"
+"mailto.conf - Konfigurationsdatei für CUPS-E-Mail-Benachrichtigungen"
 
 #. type: Plain text
 #: mailto.conf.man:18
@@ -15279,7 +15278,7 @@ msgid ""
 msgstr ""
 "Die Datei B<mime.convs> definiert die Filter, die für das Konvertieren von "
 "einem Format in ein anderes verfügbar sind. Der Standardfilter unterstützt "
-"text, PDF, PostScript und viele Bilddateitypen."
+"Text, PDF, PostScript und viele Bilddateitypen."
 
 #. type: Plain text
 #: mime.convs.man:21
@@ -15299,7 +15298,7 @@ msgid ""
 "filter and the filter to run:"
 msgstr ""
 "Jede Zeile in der Datei B<mime.convs> ist ein Kommentar, leer oder eine "
-"Filterzeile. Kommentardateien beginnen mit dem »#«-Zeichen. Filterzeilen "
+"Filterzeile. Kommentarzeilen beginnen mit dem »#«-Zeichen. Filterzeilen "
 "legen den Quell- und Ziel-MIME-Typ zusammen mit den relativen Belastungen, "
 "die mit dem Filter assoziiert sind, und den auszuführenden Filter, fest:"
 
@@ -15351,7 +15350,7 @@ msgstr ""
 #. type: Plain text
 #: mime.convs.man:42 mime.types.man:92
 msgid "I</etc/cups> - Typical CUPS configuration directory."
-msgstr "I</etc/cups> - Typisches CUPS-Konfigurationsverzeichnis"
+msgstr "I</etc/cups> - Typisches CUPS-Konfigurationsverzeichnis."
 
 #. type: Plain text
 #: mime.convs.man:44
@@ -15408,7 +15407,7 @@ msgid ""
 "Additional file types are specified in files with the extension I<.types> in "
 "the CUPS configuration directory."
 msgstr ""
-"Zusätzliche Filtertyp werden in Dateien mit der Endung I<.types> in dem CUPS-"
+"Zusätzliche Filtertypen werden in Dateien mit der Endung I<.types> in dem CUPS-"
 "Konfigurationsverzeichnis festgelegt."
 
 #. type: Plain text
@@ -15471,7 +15470,7 @@ msgid ""
 msgstr ""
 "Die Regeln könnten durch Benutzung von Klammern gruppiert werden, zum "
 "Aneinanderhängen wird »+« für ein logisches UND und »,« oder Leerzeichen für "
-"ein logisches ODER und für Negation »!« benutzt."
+"ein logisches ODER und »!« für Negation benutzt."
 
 #. type: SS
 #: mime.types.man:40
@@ -15514,7 +15513,7 @@ msgid ""
 "True if the I<length> bytes starting at I<offset> are valid printable ASCII "
 "(CR, NL, TAB, BS, 32-126)."
 msgstr ""
-"Wahr, falls die I<Längen> Bytes beginnend an I<Versatz> gültige druckbare "
+"Wahr, falls die I<Länge> Bytes beginnend an I<Versatz> gültige druckbare "
 "ASCII-Zeichen sind (CR, NL, TAB, BS, 32-126)"
 
 #. type: TP
@@ -15529,7 +15528,7 @@ msgid ""
 "True if the I<length> bytes starting at I<offset> are printable 8-bit chars "
 "(CR, NL, TAB, BS, 32-126, 128-254)."
 msgstr ""
-"Wahr, falls die I<Längen> Bytes beginnend an I<Versatz> gültige druckbare 8-"
+"Wahr, falls die I<Länge> Bytes beginnend an I<Versatz> gültige druckbare 8-"
 "Bit-Zeichen sind (CR, NL, TAB, BS, 32-126, 128-254)."
 
 #. type: TP
@@ -15586,7 +15585,7 @@ msgstr "B<char(>I<Versatz>B<,>I<Wert>B<)>"
 #. type: Plain text
 #: mime.types.man:67
 msgid "True if the byte at I<offset> is identical to I<value>."
-msgstr "Wahr, falls Byte bei I<Versatz> identisch zu I<Wert> ist."
+msgstr "Wahr, falls das Byte bei I<Versatz> identisch zu I<Wert> ist."
 
 #. type: TP
 #: mime.types.man:67
@@ -15599,7 +15598,7 @@ msgstr "B<short(>I<Versatz>B<,>I<Wert>B<)>"
 msgid ""
 "True if the 16-bit big-endian integer at I<offset> is identical to I<value>."
 msgstr ""
-"Wahr, falls die 16-bit Big-Endian-Ganzzahl bei I<Versatz> identisch mit "
+"Wahr, falls die 16-bit-Big-Endian-Ganzzahl bei I<Versatz> identisch mit "
 "I<Wert> ist."
 
 #. type: TP
@@ -15613,7 +15612,7 @@ msgstr "B<int(>I<Versatz>B<,>I<Wert>B<)>"
 msgid ""
 "True if the 32-bit big-endian integer at I<offset> is identical to I<value>."
 msgstr ""
-"Wahr, falls die 32-bit Big-Endian-Ganzzahl bei I<Versatz> identisch mit "
+"Wahr, falls die 32-bit-Big-Endian-Ganzzahl bei I<Versatz> identisch mit "
 "I<Wert> ist."
 
 #. type: TP
@@ -15677,7 +15676,7 @@ msgid ""
 msgstr ""
 "Wenn CUPS den MIME-Medientyp einer gegebenen Datei bestimmt, wird jeder MIME-"
 "Typ, der in den I<.types>-Dateien definiert ist, geprüft. Wenn zwei oder "
-"mehr Typen auf eine übergebene Datei passen die, dann hängt der ausgewählte "
+"mehr Typen auf eine übergebene Datei passen, dann hängt der ausgewählte "
 "Typ von Typname und der Priorität ab, wobei Typen höherer Priorität denen "
 "mit niedriger Priorität vorgezogen werden. Wenn die Typen die gleiche "
 "Priorität haben, werden die Typnamen in alphanumerischer Reihenfolge "
@@ -15816,7 +15815,7 @@ msgid ""
 "with the online help for CUPS."
 msgstr ""
 "Der CUPS-PPD-Compiler liest Metadateien, die Beschreibungen von einer oder "
-"mehrere PPD-Dateien, die durch B<ppdc>(1) erstellt werden sollen, enthalten, "
+"mehreren PPD-Dateien, die durch B<ppdc>(1) erstellt werden sollen, enthalten, "
 "ein. Diese Handbuchseite stellt eine Schnellreferenz für die unterstützten "
 "Schlüsselwörter dar und sollte zusammen mit der Online-Hilfe von CUPS "
 "verwandt werden."
