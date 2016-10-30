@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cups man pages 2.0.3-10\n"
 "POT-Creation-Date: 2016-08-05 23:30+0200\n"
-"PO-Revision-Date: 2016-10-28 16:09+0200\n"
+"PO-Revision-Date: 2016-10-30 12:25+0100\n"
 "Last-Translator: Helge Kreutzmann <debian@helgefjell.de>\n"
 "Language-Team: de <debian-l10n-german@lists.debian.org>\n"
 "Language: de\n"
@@ -16176,13 +16176,13 @@ msgstr "B<PCFileName \">I<Dateiname.ppd>B<\">"
 #: ppdcfile.man:132
 #, no-wrap
 msgid "B<Resolution >I<colorspace bits-per-color row-count row-feed row-step name>"
-msgstr "B<Resolution >I<Farbraum Bits-pro-Farbe Zeilenanzahl Zeilenvorschub row-step Name>"
+msgstr "B<Resolution >I<Farbraum Bits-pro-Farbe Zeilenanzahl Zeilenvorschub Zeilenschrittweite Name>"
 
 #. type: TP
 #: ppdcfile.man:134
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "B<Resolution >I<colorspace bits-per-color row-count row-feed row-step >B<\">I<name>B</>I<text>B<\">"
-msgstr "B<Resolution >I<Farbraum Bits-pro-Farbe Zeilenanzahl Zeilenvorschub row-step >B<\">I<Name>B</>I<Text>B<\">"
+msgstr "B<Resolution >I<Farbraum Bits-pro-Farbe Zeilenanzahl Zeilenvorschub Zeilenschrittweite >B<\">I<Name>B</>I<Text>B<\">"
 
 #. type: TP
 #: ppdcfile.man:136
@@ -16260,7 +16260,7 @@ msgid ""
 "I<language(s)> ] [ B<-m> ] [ B<-t> ] [ B<-v> ] [ B<-z> ] [ B<--cr> ] [ B<--"
 "crlf> ] [ B<--lf> ] I<source-file>"
 msgstr ""
-"B<ppdc> [ B<-D >I<Name>[B<=>I<Wert>] ] [ B<-I> I<include-Verzeichnis> ] [ B<-"
+"B<ppdc> [ B<-D >I<Name>[B<=>I<Wert>] ] [ B<-I> I<Include-Verzeichnis> ] [ B<-"
 "c> I<Nachrichtenkatalog> ] [ B<-d> I<Ausgabeverzeichnis> ] [ B<-l> "
 "I<Sprache(n)> ] [ B<-m> ] [ B<-t> ] [ B<-v> ] [ B<-z> ] [ B<--cr> ] [ B<--"
 "crlf> ] [ B<--lf> ] I<Quelldatei>"
@@ -16299,7 +16299,7 @@ msgstr ""
 #: ppdc.man:57 ppdhtml.man:34 ppdi.man:35 ppdpo.man:37
 #, no-wrap
 msgid "B<-I >I<include-directory>"
-msgstr "B<-I >I<include-Verzeichnis>"
+msgstr "B<-I >I<Include-Verzeichnis>"
 
 #. type: Plain text
 #: ppdc.man:61 ppdhtml.man:38 ppdi.man:39 ppdpo.man:41
@@ -16322,7 +16322,7 @@ msgid ""
 "Specifies a single message catalog file in GNU gettext (filename.po) or "
 "Apple strings (filename.strings) format to be used for localization."
 msgstr ""
-"Legt ein einfache Nachrichtenkatalogdatei im GNU-Gettext- (Dateiname.po) "
+"Legt eine einfache Nachrichtenkatalogdatei im GNU-Gettext- (Dateiname.po) "
 "oder Apple-Strings- (Dateiname.strings) Format für die Verwendung in der "
 "Lokalisierung fest."
 
@@ -16492,7 +16492,7 @@ msgid ""
 "[ ...  I<ppd-file> ]"
 msgstr ""
 "B<ppdi> [ B<-I> I<Include-Verzeichnis> ] [ B<-o> I<Quelldatei> ] I<PPD-"
-"Datei> [ ...  I<PPD-Datei> ]"
+"Datei> [ …  I<PPD-Datei> ]"
 
 #. type: Plain text
 #: ppdi.man:33
@@ -16530,7 +16530,7 @@ msgstr ""
 "Legt die zu aktualisierende PPD-Quelldatei fest. Falls die Quelldatei nicht "
 "existiert, wird eine neue Quelldatei erstellt. Andernfalls wird die "
 "bestehende mit der/den neuen PPD-Datei(en) auf der Befehlszeile "
-"zusammengeführt. Falls keine Quelldatei angegeben ist wird der Dateiname "
+"zusammengeführt. Falls keine Quelldatei angegeben ist, wird der Dateiname "
 "I<ppdi.drv> verwandt."
 
 #. type: Plain text
@@ -16591,7 +16591,7 @@ msgid ""
 "written to the standard output.  If the output file already exists, it is "
 "silently overwritten."
 msgstr ""
-"Legt die zu erstellende PPD-Datei fest. Falls nicht angegeben werden die "
+"Legt die zu erstellende PPD-Datei fest. Falls nicht angegeben, werden die "
 "zusammengeführten PPD-Dateien auf der Standardausgabe ausgegeben. Falls die "
 "Ausgabedatei bereits existiert wird sie ohne Meldung überschrieben."
 
@@ -16602,7 +16602,7 @@ msgid ""
 "device.  Merging of different device PPDs will yield unpredictable results."
 msgstr ""
 "B<ppdmerge> prüft nicht, ob die zusammengeführten PPD-Dateien für das "
-"gleiche Gerät sind. Werden PPDs für verschiedene Geräte zusammengeführt ist "
+"gleiche Gerät sind. Werden PPDs für verschiedene Geräte zusammengeführt, ist "
 "das Ergebnis unvorhersehbar."
 
 #. type: Plain text
@@ -16631,7 +16631,7 @@ msgid ""
 "B<ppdpo> [ B<-D >I<name>[B<=>I<value>] ] [ B<-I> I<include-directory> ] [ B<-"
 "o> I<output-file> ] I<source-file>"
 msgstr ""
-"B<ppdpo> [ B<-D >I<Name>[B<=>I<Wert>] ] [ B<-I> I<include-Verzeichnis> ] "
+"B<ppdpo> [ B<-D >I<Name>[B<=>I<Wert>] ] [ B<-I> I<Include-Verzeichnis> ] "
 "[ B<-o> I<Ausgabedatei> ] I<Quelldatei>"
 
 #. type: Plain text
