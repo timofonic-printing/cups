@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cups man pages 2.0.3-10\n"
 "POT-Creation-Date: 2016-12-11 08:58+0100\n"
-"PO-Revision-Date: 2016-10-30 12:25+0100\n"
+"PO-Revision-Date: 2016-12-11 09:18+0100\n"
 "Last-Translator: Helge Kreutzmann <debian@helgefjell.de>\n"
 "Language-Team: de <debian-l10n-german@lists.debian.org>\n"
 "Language: de\n"
@@ -243,15 +243,8 @@ msgstr ""
 "Rückgeleitete Daten vom Gerät sollten an die Filter für die Aufträge mittels "
 "der Funktion I<cupsBackChannelWrite> weitergeleitet werden."
 
-# FIXME: Beim ersten das Argument außerhalb des B<>, beim zweiten innerhalb
 #. type: Plain text
 #: backend.man:76
-#, fuzzy
-#| msgid ""
-#| "Backends are responsible for reading side-channel requests using the "
-#| "B<cupsSideChannelRead>()  function and responding with the "
-#| "B<cupsSideChannelWrite()> function. The B<CUPS_SC_FD> constant defines "
-#| "the file descriptor that should be monitored for incoming requests."
 msgid ""
 "Backends are responsible for reading side-channel requests using the "
 "B<cupsSideChannelRead>()  function and responding with the "
@@ -260,7 +253,7 @@ msgid ""
 msgstr ""
 "Backends sind dafür verantwortlich, mittels der Funktion "
 "B<cupsSideChannelRead>() Seitenkanalanfragen zu lesen und mit der Funktion "
-"B<cupsSideChannelWrite()> zu antworten. Die Konstante B<CUPS_SC_FD> "
+"B<cupsSideChannelWrite>() zu antworten. Die Konstante B<CUPS_SC_FD> "
 "definiert den Dateideskriptor, der für eingehende Anfragen überwacht werden "
 "sollte."
 
@@ -646,19 +639,8 @@ msgstr "I</etc/cups/cups-files.conf>"
 msgid "NOTES"
 msgstr "HINWEISE"
 
-# FIXME Im Orignal: s/design/designed/
 #. type: Plain text
 #: backend.man:178
-#, fuzzy
-#| msgid ""
-#| "CUPS backends are not generally design to be run directly by the user. "
-#| "Aside from the device URI issue ( I<argv[0]> and B<DEVICE_URI> "
-#| "environment variable contain the device URI), CUPS backends also expect "
-#| "specific environment variables and file descriptors, and typically run in "
-#| "a user session that (on macOS) has additional restrictions that affect "
-#| "how it runs. Backends can also be installed with restricted permissions "
-#| "(0500 or 0700) that tell the scheduler to run them as the \"root\" user "
-#| "instead of an unprivileged user (typically \"lp\") on the system."
 msgid ""
 "CUPS backends are not generally designed to be run directly by the user. "
 "Aside from the device URI issue ( I<argv[0]> and B<DEVICE_URI> environment "
@@ -1179,14 +1161,8 @@ msgstr "B<ServerName >I<Hostname-oder-IP-Adresse>[I<:Port>]"
 msgid "B<ServerName >I</domain/socket>"
 msgstr "B<ServerName >I</Domäne/Socket>"
 
-# FIXME: s/it not/is not/
 #. type: Plain text
 #: client.conf.man.in:55
-#, fuzzy
-#| msgid ""
-#| "Specifies the address and optionally the port to use when connecting to "
-#| "the server.  B<Note: This directive it not supported on macOS 10.7 or "
-#| "later.>"
 msgid ""
 "Specifies the address and optionally the port to use when connecting to the "
 "server.  B<Note: This directive is not supported on macOS 10.7 or later.>"
@@ -2877,22 +2853,16 @@ msgstr ""
 msgid "B<E<lt>Limit >I<operation >...B<E<gt> >... B<E<lt>/LimitE<gt>>"
 msgstr "B<E<lt>Limit >I<Vorgang >…B<E<gt> >… B<E<lt>/LimitE<gt>>"
 
-# FIXME: IPP OPERATIONS → IPP OPERATION NAMES ?
 #. #Limit
 #. type: Plain text
 #: cupsd.conf.man.in:236
-#, fuzzy
-#| msgid ""
-#| "Specifies the IPP operations that are being limited inside a Policy "
-#| "section. IPP operation names are listed below in the section \"IPP "
-#| "OPERATIONS\"."
 msgid ""
 "Specifies the IPP operations that are being limited inside a Policy section. "
 "IPP operation names are listed below in the section \"IPP OPERATION NAMES\"."
 msgstr ""
 "Legt die IPP-Vorgänge, die innerhalb eines Richtlinienabschnitts begrenzt "
 "werden, fest. IPP-Vorgangsnamen sind weiter unten im Abschnitt »IPP-"
-"VORGÄNGE« beschrieben."
+"VORGANGSNAMEN« beschrieben."
 
 #. type: TP
 #: cupsd.conf.man.in:236
@@ -2906,22 +2876,16 @@ msgstr "B<E<lt>Limit >I<Methode >…B<E<gt> >… B<E<lt>/LimitE<gt>>"
 msgid "B<E<lt>LimitExcept >I<method >...B<E<gt> >... B<E<lt>/LimitExceptE<gt>>"
 msgstr "B<E<lt>LimitExcept >I<Methode >…B<E<gt> >… B<E<lt>/LimitExceptE<gt>>"
 
-# FIXME: HTTP METHODS does not exist; HTTP METHOD NAMES?
 #. #LimitRequestBody
 #. type: Plain text
 #: cupsd.conf.man.in:243
-#, fuzzy
-#| msgid ""
-#| "Specifies the HTTP methods that are being limited inside a Location "
-#| "section. HTTP method names are listed below in the section \"HTTP METHODS"
-#| "\"."
 msgid ""
 "Specifies the HTTP methods that are being limited inside a Location section. "
 "HTTP method names are listed below in the section \"HTTP METHOD NAMES\"."
 msgstr ""
 "Legt die HTTP-Methoden, die innerhalb eines »Location«-Abschnittes begrenzt "
 "werden, fest. HTTP-Methodennamen sind weiter unten im Abschnitt »HTTP-"
-"METHODEN« aufgeführt."
+"METHODENNAMEN« aufgeführt."
 
 #. type: TP
 #: cupsd.conf.man.in:243
@@ -4427,11 +4391,8 @@ msgstr "Der Pfad für alle Aufträge (hold-job, release-job, usw.)"
 msgid "/jobs/id"
 msgstr "/jobs/id"
 
-# FIXME Original hat Satzpunkt
 #. type: Plain text
 #: cupsd.conf.man.in:693
-#, fuzzy
-#| msgid "The path for the specified job."
 msgid "The path for the specified job"
 msgstr "Der Pfad für den angegebenen Auftrag"
 
@@ -6280,10 +6241,9 @@ msgstr "cups-files.conf"
 
 #. type: TH
 #: cups-files.conf.man.in:13
-#, fuzzy, no-wrap
-#| msgid "2 September 2011"
+#, no-wrap
 msgid "19 September 2016"
-msgstr "2. September 2011"
+msgstr "19. September 2016"
 
 #. type: Plain text
 #: cups-files.conf.man.in:16
@@ -6397,31 +6357,25 @@ msgstr ""
 
 #. type: TP
 #: cups-files.conf.man.in:58
-#, fuzzy, no-wrap
-#| msgid "B<ValidateCerts Yes>"
+#, no-wrap
 msgid "B<CreateSelfSignedCerts yes>"
-msgstr "B<ValidateCerts Yes>"
+msgstr "B<CreateSelfSignedCerts yes>"
 
 #. type: TP
 #: cups-files.conf.man.in:60
-#, fuzzy, no-wrap
-#| msgid "B<ValidateCerts No>"
+#, no-wrap
 msgid "B<CreateSelfSignedCerts no>"
-msgstr "B<ValidateCerts No>"
+msgstr "B<CreateSelfSignedCerts no>"
 
 #. #DataDir
 #. type: Plain text
 #: cups-files.conf.man.in:65
-#, fuzzy
-#| msgid ""
-#| "Specifies whether the scheduler calls B<fsync>(2)  after writing "
-#| "configuration or state files.  The default is \"Yes\"."
 msgid ""
 "Specifies whether the scheduler automatically creates self-signed "
 "certificates for client connections using TLS.  The default is yes."
 msgstr ""
-"Legt fest, ob der Auftragsplaner nach dem Schreiben der Konfigurations- oder "
-"Zustandsdateien B<fsync>(2) aufruft. Die Vorgabe ist »Yes«."
+"Legt fest, ob der Auftragsplaner automatisch selbstsignierte Zertifikate für "
+"die Clientverbindungen mittels TLS erzeugt. Die Vorgabe ist »yes«."
 
 #. type: TP
 #: cups-files.conf.man.in:65
@@ -7443,14 +7397,8 @@ msgstr ""
 "Programm B<inetdconv>(1m) ausführen, um die Änderungen an der Datei I<inetd."
 "conf> zu registrieren."
 
-# FIXME (8) outside brackt for xinetd
 #. type: Plain text
 #: cups-lpd.man.in:111
-#, fuzzy
-#| msgid ""
-#| "CUPS includes configuration files for B<launchd>(8), B<systemd>(8), and "
-#| "B<xinetd(8).> Simply enable the B<cups-lpd> service using the "
-#| "corresponding control program."
 msgid ""
 "CUPS includes configuration files for B<launchd>(8), B<systemd>(8), and "
 "B<xinetd>(8).  Simply enable the B<cups-lpd> service using the corresponding "
