@@ -1,3 +1,9 @@
+cups (2.2.1-46-g10887d272-2) experimental; urgency=medium
+
+  * Merge 2.2.1-4 from unstable.
+
+ -- Didier Raboud <odyx@debian.org>  Tue, 20 Dec 2016 09:16:41 +0100
+
 cups (2.2.1-46-g10887d272-1) experimental; urgency=medium
 
   * New 2.2.1+ upstream snapshot
