@@ -1,7 +1,7 @@
 cups (2.2.1-4) unstable; urgency=medium
 
   [ Didier Raboud ]
-  * Cleanup the cups debconf questions from 'parallel' leftovers    
+  * Cleanup the cups debconf questions from 'parallel' leftovers
     (Closes: #848718)
 
   [ intrigeri ]
