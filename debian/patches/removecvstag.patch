@@ -1,4 +1,4 @@
-From 695c2ab55aa642ba1348ff45ace8d6b52f63ee76 Mon Sep 17 00:00:00 2001
+From 7e0c115a009c0cfd9959b9217a6f5de3eedc2fd2 Mon Sep 17 00:00:00 2001
 From: Kenshi Muto <kmuto@debian.org>
 Date: Tue, 9 Aug 2016 18:11:33 +0200
 Subject: Do not write VCS tags into installed conffiles
