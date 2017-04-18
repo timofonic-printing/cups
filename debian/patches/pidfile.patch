@@ -1,4 +1,4 @@
-From 2e39318c57691170db9170e2a07979ddf436e96a Mon Sep 17 00:00:00 2001
+From f39443b615c25a730fe1ec71c2cb3eda888262a0 Mon Sep 17 00:00:00 2001
 From: Martin Pitt <mpitt@debian.org>
 Date: Tue, 9 Aug 2016 18:11:32 +0200
 Subject: Add support for creating pid files in /run

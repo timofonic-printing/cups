@@ -1,4 +1,4 @@
-From 496c633fcf2c7d974bf3bc702f4ffc0a04f2d3bb Mon Sep 17 00:00:00 2001
+From f746cd19c40113a4b162b7b2a145a56da7643a67 Mon Sep 17 00:00:00 2001
 From: Martin Pitt <martin.pitt@ubuntu.com>
 Date: Tue, 9 Aug 2016 18:11:47 +0200
 Subject: Set default job error policy to "retry-job", since it is less
