@@ -1,14 +1,14 @@
 /*
  * Configuration routines for the CUPS scheduler.
  *
- * Copyright 2007-2016 by Apple Inc.
+ * Copyright 2007-2017 by Apple Inc.
  * Copyright 1997-2007 by Easy Software Products, all rights reserved.
  *
  * These coded instructions, statements, and computer programs are the
  * property of Apple Inc. and are protected by Federal copyright
  * law.  Distribution and use rights are outlined in the file "LICENSE.txt"
  * which should have been included with this file.  If this file is
- * file is missing or damaged, see the license at "http://www.cups.org/".
+ * missing or damaged, see the license at "http://www.cups.org/".
  */
 
 /*
@@ -277,20 +277,11 @@ cupsdCheckPermissions(
 			  "Unable to create directory \"%s\" - %s", filename,
 			  strerror(errno));
         else
-#ifdef HAVE_ASL_H
-        {
-	  asl_object_t	m;		/* Log message */
-
-	  m = asl_new(ASL_TYPE_MSG);
-	  asl_set(m, ASL_KEY_FACILITY, "org.cups.cupsd");
-	  asl_log(NULL, m, ASL_LEVEL_ERR, "Unable to create directory \"%s\" - %s", filename, strerror(errno));
-	  asl_release(m);
-	}
-#elif defined(HAVE_SYSTEMD_SD_JOURNAL_H)
+#ifdef HAVE_SYSTEMD_SD_JOURNAL_H
 	  sd_journal_print(LOG_ERR, "Unable to create directory \"%s\" - %s", filename, strerror(errno));
 #else
 	  syslog(LOG_ERR, "Unable to create directory \"%s\" - %s", filename, strerror(errno));
-#endif /* HAVE_ASL_H */
+#endif /* HAVE_SYSTEMD_SD_JOURNAL_H */
 
         return (-1);
       }
@@ -327,20 +318,11 @@ cupsdCheckPermissions(
     if (create_dir >= 0)
       cupsdLogMessage(CUPSD_LOG_ERROR, "\"%s\" is not a directory.", filename);
     else
-#ifdef HAVE_ASL_H
-    {
-      asl_object_t	m;		/* Log message */
-
-      m = asl_new(ASL_TYPE_MSG);
-      asl_set(m, ASL_KEY_FACILITY, "org.cups.cupsd");
-      asl_log(NULL, m, ASL_LEVEL_ERR, "\"%s\" is not a directory.", filename);
-      asl_release(m);
-    }
-#elif defined(HAVE_SYSTEMD_SD_JOURNAL_H)
+#ifdef HAVE_SYSTEMD_SD_JOURNAL_H
       sd_journal_print(LOG_ERR, "\"%s\" is not a directory.", filename);
 #else
       syslog(LOG_ERR, "\"%s\" is not a directory.", filename);
-#endif /* HAVE_ASL_H */
+#endif /* HAVE_SYSTEMD_SD_JOURNAL_H */
 
     return (-1);
   }
@@ -369,20 +351,11 @@ cupsdCheckPermissions(
 			"Unable to change ownership of \"%s\" - %s", filename,
 			strerror(errno));
       else
-#ifdef HAVE_ASL_H
-      {
-	asl_object_t	m;		/* Log message */
-
-	m = asl_new(ASL_TYPE_MSG);
-	asl_set(m, ASL_KEY_FACILITY, "org.cups.cupsd");
-	asl_log(NULL, m, ASL_LEVEL_ERR, "Unable to change ownership of \"%s\" - %s", filename, strerror(errno));
-	asl_release(m);
-      }
-#elif defined(HAVE_SYSTEMD_SD_JOURNAL_H)
+#ifdef HAVE_SYSTEMD_SD_JOURNAL_H
 	sd_journal_print(LOG_ERR, "Unable to change ownership of \"%s\" - %s", filename, strerror(errno));
 #else
 	syslog(LOG_ERR, "Unable to change ownership of \"%s\" - %s", filename, strerror(errno));
-#endif /* HAVE_ASL_H */
+#endif /* HAVE_SYSTEMD_SD_JOURNAL_H */
 
       return (1);
     }
@@ -401,20 +374,11 @@ cupsdCheckPermissions(
 			"Unable to change permissions of \"%s\" - %s", filename,
 			strerror(errno));
       else
-#ifdef HAVE_ASL_H
-      {
-	asl_object_t	m;		/* Log message */
-
-	m = asl_new(ASL_TYPE_MSG);
-	asl_set(m, ASL_KEY_FACILITY, "org.cups.cupsd");
-	asl_log(NULL, m, ASL_LEVEL_ERR, "Unable to change permissions of \"%s\" - %s", filename, strerror(errno));
-	asl_release(m);
-      }
-#elif defined(HAVE_SYSTEMD_SD_JOURNAL_H)
+#ifdef HAVE_SYSTEMD_SD_JOURNAL_H
 	sd_journal_print(LOG_ERR, "Unable to change permissions of \"%s\" - %s", filename, strerror(errno));
 #else
 	syslog(LOG_ERR, "Unable to change permissions of \"%s\" - %s", filename, strerror(errno));
-#endif /* HAVE_ASL_H */
+#endif /* HAVE_SYSTEMD_SD_JOURNAL_H */
 
       return (1);
     }
@@ -629,7 +593,7 @@ cupsdReadConfiguration(void)
   cupsdSetStringf(&ServerHeader, "CUPS/%d.%d IPP/2.1", CUPS_VERSION_MAJOR,
                   CUPS_VERSION_MINOR);
   cupsdSetString(&StateDir, CUPS_STATEDIR);
-  cupsdSetString(&PidFile, "/var/run/cups/cupsd.pid");
+  cupsdSetString(&PidFile, "/run/cups/cupsd.pid");
 
   if (!strcmp(CUPS_DEFAULT_PRINTCAP, "/etc/printers.conf"))
     PrintcapFormat = PRINTCAP_SOLARIS;
@@ -841,20 +805,11 @@ cupsdReadConfiguration(void)
       if (TestConfigFile)
         printf("\"%s\" contains errors.\n", CupsFilesFile);
       else
-#ifdef HAVE_ASL_H
-      {
-	asl_object_t	m;		/* Log message */
-
-	m = asl_new(ASL_TYPE_MSG);
-	asl_set(m, ASL_KEY_FACILITY, "org.cups.cupsd");
-	asl_log(NULL, m, ASL_LEVEL_ERR, "Unable to read \"%s\" due to errors.", CupsFilesFile);
-	asl_release(m);
-      }
-#elif defined(HAVE_SYSTEMD_SD_JOURNAL_H)
+#ifdef HAVE_SYSTEMD_SD_JOURNAL_H
 	sd_journal_print(LOG_ERR, "Unable to read \"%s\" due to errors.", CupsFilesFile);
 #else
         syslog(LOG_LPR, "Unable to read \"%s\" due to errors.", CupsFilesFile);
-#endif /* HAVE_ASL_H */
+#endif /* HAVE_SYSTEMD_SD_JOURNAL_H */
 
       return (0);
     }
@@ -863,19 +818,11 @@ cupsdReadConfiguration(void)
     cupsdLogMessage(CUPSD_LOG_INFO, "No %s, using defaults.", CupsFilesFile);
   else
   {
-#ifdef HAVE_ASL_H
-    asl_object_t	m;		/* Log message */
-
-    m = asl_new(ASL_TYPE_MSG);
-    asl_set(m, ASL_KEY_FACILITY, "org.cups.cupsd");
-    asl_log(NULL, m, ASL_LEVEL_ERR, "Unable to open \"%s\" - %s", CupsFilesFile, strerror(errno));
-    asl_release(m);
-
-#elif defined(HAVE_SYSTEMD_SD_JOURNAL_H)
+#ifdef HAVE_SYSTEMD_SD_JOURNAL_H
     sd_journal_print(LOG_ERR, "Unable to open \"%s\" - %s", CupsFilesFile, strerror(errno));
 #else
     syslog(LOG_LPR, "Unable to open \"%s\" - %s", CupsFilesFile, strerror(errno));
-#endif /* HAVE_ASL_H */
+#endif /* HAVE_SYSTEMD_SD_JOURNAL_H */
 
     return (0);
   }
@@ -889,18 +836,11 @@ cupsdReadConfiguration(void)
 
   if ((fp = cupsFileOpen(ConfigurationFile, "r")) == NULL)
   {
-#ifdef HAVE_ASL_H
-    asl_object_t	m;		/* Log message */
-
-    m = asl_new(ASL_TYPE_MSG);
-    asl_set(m, ASL_KEY_FACILITY, "org.cups.cupsd");
-    asl_log(NULL, m, ASL_LEVEL_ERR, "Unable to open \"%s\" - %s", ConfigurationFile, strerror(errno));
-    asl_release(m);
-#elif defined(HAVE_SYSTEMD_SD_JOURNAL_H)
+#ifdef HAVE_SYSTEMD_SD_JOURNAL_H
     sd_journal_print(LOG_ERR, "Unable to open \"%s\" - %s", ConfigurationFile, strerror(errno));
 #else
     syslog(LOG_LPR, "Unable to open \"%s\" - %s", ConfigurationFile, strerror(errno));
-#endif /* HAVE_ASL_H */
+#endif /* HAVE_SYSTEMD_SD_JOURNAL_H */
 
     return (0);
   }
@@ -914,20 +854,11 @@ cupsdReadConfiguration(void)
     if (TestConfigFile)
       printf("\"%s\" contains errors.\n", ConfigurationFile);
     else
-#ifdef HAVE_ASL_H
-    {
-      asl_object_t	m;		/* Log message */
-
-      m = asl_new(ASL_TYPE_MSG);
-      asl_set(m, ASL_KEY_FACILITY, "org.cups.cupsd");
-      asl_log(NULL, m, ASL_LEVEL_ERR, "Unable to read \"%s\" due to errors.", ConfigurationFile);
-      asl_release(m);
-    }
-#elif defined(HAVE_SYSTEMD_SD_JOURNAL_H)
+#ifdef HAVE_SYSTEMD_SD_JOURNAL_H
       sd_journal_print(LOG_ERR, "Unable to read \"%s\" due to errors.", ConfigurationFile);
 #else
       syslog(LOG_LPR, "Unable to read \"%s\" due to errors.", ConfigurationFile);
-#endif /* HAVE_ASL_H */
+#endif /* HAVE_SYSTEMD_SD_JOURNAL_H */
 
     return (0);
   }
@@ -1074,19 +1005,6 @@ cupsdReadConfiguration(void)
 #endif /* HAVE_VSYSLOG && !HAVE_ASL_H && !HAVE_SYSTEMD_SD_JOURNAL_H */
 
  /*
-  * Make sure each of the log files exists and gets rotated as necessary...
-  */
-
-  if (strcmp(AccessLog, "syslog"))
-    cupsdCheckLogFile(&AccessFile, AccessLog);
-
-  if (strcmp(ErrorLog, "syslog"))
-    cupsdCheckLogFile(&ErrorFile, ErrorLog);
-
-  if (strcmp(PageLog, "syslog"))
-    cupsdCheckLogFile(&PageFile, PageLog);
-
- /*
   * Log the configuration file that was used...
   */
 
@@ -1183,10 +1101,12 @@ cupsdReadConfiguration(void)
     cupsdSetStringf(&CacheDir, "%s/%s", ServerRoot, CacheDir);
 
 #ifdef HAVE_SSL
-  if (ServerKeychain[0] != '/')
+  if (!_cups_strcasecmp(ServerKeychain, "internal"))
+    cupsdClearString(&ServerKeychain);
+  else if (ServerKeychain[0] != '/')
     cupsdSetStringf(&ServerKeychain, "%s/%s", ServerRoot, ServerKeychain);
 
-  cupsdLogMessage(CUPSD_LOG_DEBUG, "Using keychain \"%s\" for server name \"%s\".", ServerKeychain, ServerName);
+  cupsdLogMessage(CUPSD_LOG_DEBUG, "Using keychain \"%s\" for server name \"%s\".", ServerKeychain ? ServerKeychain : "internal", ServerName);
   if (!CreateSelfSignedCerts)
     cupsdLogMessage(CUPSD_LOG_DEBUG, "Self-signed TLS certificate generation is disabled.");
   cupsSetServerCredentials(ServerKeychain, ServerName, CreateSelfSignedCerts);
@@ -2317,7 +2237,6 @@ parse_aaa(cupsd_location_t *loc,	/* I - Location */
       if (loc->level == CUPSD_AUTH_ANON)
 	loc->level = CUPSD_AUTH_USER;
     }
-#ifdef HAVE_GSSAPI
     else if (!_cups_strcasecmp(value, "negotiate"))
     {
       loc->type = CUPSD_AUTH_NEGOTIATE;
@@ -2325,7 +2244,6 @@ parse_aaa(cupsd_location_t *loc,	/* I - Location */
       if (loc->level == CUPSD_AUTH_ANON)
 	loc->level = CUPSD_AUTH_USER;
     }
-#endif /* HAVE_GSSAPI */
     else
     {
       cupsdLogMessage(CUPSD_LOG_WARN,
@@ -2961,7 +2879,7 @@ parse_variable(
 	else
 	  snprintf(temp, sizeof(temp), "%s/%s", ServerRoot, value);
 
-	if (access(temp, 0))
+	if (access(temp, 0) && _cups_strcasecmp(value, "internal") && _cups_strcasecmp(line, "ServerKeychain"))
 	{
 	  cupsdLogMessage(CUPSD_LOG_ERROR,
 			  "File or directory for \"%s %s\" on line %d of %s "
@@ -3259,10 +3177,8 @@ read_cupsd_conf(cups_file_t *fp)	/* I - File to read from */
 	default_auth_type = CUPSD_AUTH_NONE;
       else if (!_cups_strcasecmp(value, "basic"))
 	default_auth_type = CUPSD_AUTH_BASIC;
-#ifdef HAVE_GSSAPI
       else if (!_cups_strcasecmp(value, "negotiate"))
         default_auth_type = CUPSD_AUTH_NEGOTIATE;
-#endif /* HAVE_GSSAPI */
       else if (!_cups_strcasecmp(value, "auto"))
         default_auth_type = CUPSD_AUTH_AUTO;
       else

@@ -5,7 +5,7 @@
 	<title>Filter and Backend Programming	</title>
 	<meta name="keywords" content="Programming">
 	<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
-	<meta name="creator" content="Mini-XML v2.8">
+	<meta name="creator" content="Mini-XML v2.7">
 <style type="text/css"><!--
 BODY {
   font-family: lucida grande, geneva, helvetica, arial, sans-serif;
@@ -533,7 +533,7 @@ being printed.</p>
 <p>Filters and backends may also receive <code>SIGPIPE</code> when an upstream or downstream filter/backend exits with a non-zero status. Developers should generally ignore <code>SIGPIPE</code> at the beginning of <code>main()</code> with the following function call:</p>
 
 <pre class="example">
-#include &lt;signal.h&gt;>
+#include &lt;signal.h&gt;
 
 ...
 

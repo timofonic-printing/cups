@@ -29,7 +29,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CUPS 2.0\n"
 "Report-Msgid-Bugs-To: http://www.cups.org/str.php\n"
-"POT-Creation-Date: 2016-08-30 16:00-0400\n"
+"POT-Creation-Date: 2017-03-11 10:02-0500\n"
 "PO-Revision-Date: 2016-09-17 18:45+0200\n"
 "Last-Translator: Joachim Schwender <joachim.schwender@web.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -927,7 +927,8 @@ msgid "  -6                      Connect using IPv6."
 msgstr "  -6                      Verbinde unter Verwendung von IPv6."
 
 msgid "  -C                      Send requests using chunking (default)."
-msgstr "  -C                      Sende Anfragen mit Blockbildung (Voreinstellung)."
+msgstr ""
+"  -C                      Sende Anfragen mit Blockbildung (Voreinstellung)."
 
 msgid "  -D                      Remove the input file when finished."
 msgstr "  -D                      Lösche die Eingabe nach Beenden."
@@ -961,7 +962,9 @@ msgid "  -I {filename,filters,none,profiles}"
 msgstr ""
 
 msgid "  -L                      Send requests using content-length."
-msgstr "  -L                      Send Anfragen unter Benutzung der Content-length Headers."
+msgstr ""
+"  -L                      Send Anfragen unter Benutzung der Content-length "
+"Headers."
 
 msgid ""
 "  -P filename.plist       Produce XML plist to a file and test report to "
@@ -1060,7 +1063,9 @@ msgid "  -h server[:port]        Specify server address."
 msgstr "  -h server[:port]        Spezifiziere die Server-Adresse."
 
 msgid "  -i mime/type            Set input MIME type (otherwise auto-typed)."
-msgstr "  -i mime/type            Legt den MIME-typ der Eingabe fest (sonst selbsterkennend)."
+msgstr ""
+"  -i mime/type            Legt den MIME-typ der Eingabe fest (sonst "
+"selbsterkennend)."
 
 msgid ""
 "  -i seconds              Repeat the last file with the given time interval."
@@ -1090,18 +1095,20 @@ msgstr "  -m                      Verwende den ModellNamen als Dateinamen."
 msgid ""
 "  -m mime/type            Set output MIME type (otherwise application/pdf)."
 msgstr ""
-"  -m mime/type            Legt den MIME-typ der Ausgabe fest (sonst application/pdf)."
+"  -m mime/type            Legt den MIME-typ der Ausgabe fest (sonst "
+"application/pdf)."
 
 msgid "  -n copies               Set number of copies."
 msgstr "  -n copies               Lege die Anzahl der Kopien fest."
 
 msgid ""
 "  -n count                Repeat the last file the given number of times."
-msgstr ""
-"  -n Anzahl               Wiederhole die letzte Datei »Anzahl« male."
+msgstr "  -n Anzahl               Wiederhole die letzte Datei »Anzahl« male."
 
 msgid "  -n regex                Match service name to regular expression."
-msgstr "  -n regex                Prüfe den Dienstnamen gegen den regulären Ausdruck »regex«."
+msgstr ""
+"  -n regex                Prüfe den Dienstnamen gegen den regulären Ausdruck "
+"»regex«."
 
 msgid ""
 "  -o filename.drv         Set driver information file (otherwise ppdi.drv)."
@@ -1110,7 +1117,9 @@ msgstr ""
 "drv)."
 
 msgid "  -o filename.ppd[.gz]    Set output file (otherwise stdout)."
-msgstr "  -o Dateiname.ppd[.gz]   Legt den Dateinamen der Ausgabe fest (sonst stdout)."
+msgstr ""
+"  -o Dateiname.ppd[.gz]   Legt den Dateinamen der Ausgabe fest (sonst "
+"stdout)."
 
 msgid "  -o name=value           Set option(s)."
 msgstr "  -o Name=Wert            Legt Optionen fest."
@@ -2576,6 +2585,9 @@ msgstr "Adresse"
 msgid "Administration"
 msgstr "Verwaltung"
 
+msgid "Advanced Photo Paper"
+msgstr ""
+
 msgid "Alternate"
 msgstr ""
 
@@ -2598,6 +2610,12 @@ msgid "Archival Envelope"
 msgstr ""
 
 msgid "Archival Fabric"
+msgstr ""
+
+msgid "Archival Paper"
+msgstr ""
+
+msgid "Archival Photo Paper"
 msgstr ""
 
 #, c-format
@@ -2832,6 +2850,9 @@ msgstr ""
 msgid "Bond Paper"
 msgstr "Papier bündeln"
 
+msgid "Booklet"
+msgstr ""
+
 msgid "Booklet Maker"
 msgstr ""
 
@@ -2840,6 +2861,9 @@ msgid "Boolean expected for waiteof option \"%s\"."
 msgstr "Boolesch erwartet für waitof Option \"%s\"."
 
 msgid "Bottom"
+msgstr ""
+
+msgid "Bottom Tray"
 msgstr ""
 
 msgid "Buffer overflow detected, aborting."
@@ -2879,6 +2903,9 @@ msgid "Cassette"
 msgstr "Kassette"
 
 msgid "Center"
+msgstr ""
+
+msgid "Center Tray"
 msgstr ""
 
 msgid "Change Settings"
@@ -2954,6 +2981,9 @@ msgstr "Kopiere Druckdaten."
 msgid "Cotton Envelope"
 msgstr ""
 
+msgid "Cotton Paper"
+msgstr ""
+
 msgid "Cover"
 msgstr ""
 
@@ -2995,6 +3025,9 @@ msgstr "Dunkelheit"
 
 msgid "Data file sent successfully."
 msgstr "Datendatei erfolgreich gesendet."
+
+msgid "Deep Color"
+msgstr ""
 
 msgid "Delete Class"
 msgstr "Klasse löschen"
@@ -3106,6 +3139,9 @@ msgstr ""
 #. TRANSLATORS: Banner/cover sheet after the print job.
 msgid "Ending Banner"
 msgstr "Banner beenden"
+
+msgid "Engineering Z Fold"
+msgstr ""
 
 msgid "English"
 msgstr "German"
@@ -3330,6 +3366,12 @@ msgstr "Alle 9 Etiketten"
 msgid "Every Label"
 msgstr "Bei jedem Etikett"
 
+msgid "Everyday Glossy Photo Paper"
+msgstr ""
+
+msgid "Everyday Matte Paper"
+msgstr ""
+
 msgid "Executive"
 msgstr ""
 
@@ -3342,10 +3384,19 @@ msgstr "Drucker zu Samba exportieren"
 msgid "Expressions:"
 msgstr "Ausdrücke:"
 
+msgid "Extra Heavyweight Paper"
+msgstr ""
+
 msgid "FAIL"
 msgstr "FEHLER"
 
 msgid "Fabric"
+msgstr ""
+
+msgid "Face Down"
+msgstr ""
+
+msgid "Face Up"
 msgstr ""
 
 msgid "FanFold German"
@@ -3399,9 +3450,6 @@ msgstr ""
 msgid "Finished page %d."
 msgstr "Seite %d fertiggestellt."
 
-msgid "Finishing"
-msgstr "Endverarbeitung"
-
 msgid "Flexo Base"
 msgstr ""
 
@@ -3453,6 +3501,9 @@ msgstr ""
 msgid "Glass Textured"
 msgstr ""
 
+msgid "Glossy Brochure Paper"
+msgstr ""
+
 msgid "Glossy Fabric"
 msgstr ""
 
@@ -3494,6 +3545,9 @@ msgstr "Hängeordner"
 
 msgid "Hash buffer too small."
 msgstr "Hash Puffer zu klein."
+
+msgid "Heavyweight Coated Paper"
+msgstr ""
 
 msgid "Heavyweight Envelope"
 msgstr "Schwerer Umschlag"
@@ -3617,6 +3671,9 @@ msgstr "Tintenstrahl-Umschäge"
 
 msgid "Inkjet Labels"
 msgstr "Tintenstrahl-Etiketten"
+
+msgid "Inkjet Paper"
+msgstr ""
 
 msgid "Installable Options"
 msgstr "Installationsoptionen"
@@ -3798,6 +3855,9 @@ msgstr "Große Adresse"
 msgid "Large Capacity"
 msgstr "Hohe Kapazität"
 
+msgid "Large Capacity Tray"
+msgstr ""
+
 msgid "LaserJet Series PCL 4/5"
 msgstr "LaserJet Serie PCL 4/5"
 
@@ -3805,6 +3865,9 @@ msgid "Left"
 msgstr "Links"
 
 msgid "Left Gate Fold"
+msgstr ""
+
+msgid "Left Tray"
 msgstr ""
 
 msgid "Letter Fold"
@@ -3846,6 +3909,36 @@ msgstr "Lange Kante (Hochformat)"
 msgid "Looking for printer."
 msgstr "Suche nach Drucker."
 
+msgid "Mailbox 1"
+msgstr ""
+
+msgid "Mailbox 10"
+msgstr ""
+
+msgid "Mailbox 2"
+msgstr ""
+
+msgid "Mailbox 3"
+msgstr ""
+
+msgid "Mailbox 4"
+msgstr ""
+
+msgid "Mailbox 5"
+msgstr ""
+
+msgid "Mailbox 6"
+msgstr ""
+
+msgid "Mailbox 7"
+msgstr ""
+
+msgid "Mailbox 8"
+msgstr ""
+
+msgid "Mailbox 9"
+msgstr ""
+
 msgid "Main"
 msgstr ""
 
@@ -3857,6 +3950,12 @@ msgstr ""
 
 msgid "Manual Feed"
 msgstr "Manuelle Papierzufuhr"
+
+msgid "Matte Brochure Paper"
+msgstr ""
+
+msgid "Matte Cover Paper"
+msgstr ""
 
 msgid "Matte Fabric"
 msgstr ""
@@ -3904,6 +4003,9 @@ msgid "Metal Satin"
 msgstr ""
 
 msgid "Metal Semi Gloss"
+msgstr ""
+
+msgid "Mid-Weight Paper"
 msgstr ""
 
 msgid "Middle"
@@ -4007,8 +4109,26 @@ msgstr ""
 msgid "Multi Part Form"
 msgstr ""
 
+msgid "Multi-Hole Punch (Landscape)"
+msgstr ""
+
+msgid "Multi-Hole Punch (Portrait)"
+msgstr ""
+
+msgid "Multi-Hole Punch (Reverse Landscape)"
+msgstr ""
+
+msgid "Multi-Hole Punch (Reverse Portrait)"
+msgstr ""
+
 msgid "Multipurpose"
 msgstr "Mehrzweck"
+
+msgid "Multipurpose Paper"
+msgstr ""
+
+msgid "My Mailbox"
+msgstr ""
 
 msgid "NULL PPD file pointer"
 msgstr "NULL PPD File Pointer"
@@ -4034,8 +4154,8 @@ msgstr "Nein"
 msgid "No Content"
 msgstr "Kein Inhalt"
 
-msgid "No Finishing"
-msgstr "Keine Endverarbeitung"
+msgid "No IPP attributes."
+msgstr ""
 
 msgid "No PPD name"
 msgstr "Kein PPD Name"
@@ -4141,6 +4261,9 @@ msgstr "Nicht fortlaufend (Mark-Sensing)"
 msgid "Non-continuous (Web sensing)"
 msgstr "Nicht fortlaufend (Web-Sensing)"
 
+msgid "None"
+msgstr ""
+
 msgid "Normal"
 msgstr "Normal"
 
@@ -4177,6 +4300,9 @@ msgstr "OK"
 
 msgid "Off (1-Sided)"
 msgstr "Aus (Einseitig)"
+
+msgid "Office Recycled Paper"
+msgstr ""
 
 msgid "Oki"
 msgstr "Oki"
@@ -4320,7 +4446,10 @@ msgstr "Foto-Etiketten"
 msgid "Photo Paper"
 msgstr "Fotopapier"
 
-msgid "Photographic Archival"
+msgid "Photo Paper Plus Glossy II"
+msgstr ""
+
+msgid "Photo Paper Pro Platinum"
 msgstr ""
 
 msgid "Plain Envelope"
@@ -4384,6 +4513,15 @@ msgid "Poster Fold"
 msgstr ""
 
 msgid "Pre Cut Tabs"
+msgstr ""
+
+msgid "Premium Inkjet Paper"
+msgstr ""
+
+msgid "Premium Photo Glossy Paper"
+msgstr ""
+
+msgid "Premium Presentation Matte Paper"
 msgstr ""
 
 msgid "Preparing to print."
@@ -4465,6 +4603,9 @@ msgstr "Drucker kann den Inhalt nicht drucken."
 msgid "Printer cannot print with supplied options."
 msgstr "Drucker kann mit den angegebenen Optionen nicht drucken."
 
+msgid "Printer does not support required IPP attributes or document formats."
+msgstr ""
+
 msgid "Printer:"
 msgstr "Drucker:"
 
@@ -4491,6 +4632,9 @@ msgid "Rank    Owner   Job     File(s)                         Total Size"
 msgstr "Rang    Besitz. Auftrag Datei(en)                       Gesamtgrösse"
 
 msgid "Rear"
+msgstr ""
+
+msgid "Rear Tray"
 msgstr ""
 
 msgid "Reject Jobs"
@@ -4529,6 +4673,9 @@ msgid "Right"
 msgstr "Rechts"
 
 msgid "Right Gate Fold"
+msgstr ""
+
+msgid "Right Tray"
 msgstr ""
 
 msgid "Roll"
@@ -4670,6 +4817,9 @@ msgstr ""
 msgid "Side"
 msgstr ""
 
+msgid "Side Tray"
+msgstr ""
+
 msgid "Single Face"
 msgstr ""
 
@@ -4710,6 +4860,36 @@ msgstr "Spezialpapier"
 msgid "Spooling job, %.0f%% complete."
 msgstr "Auftragszwischenspeicherung %.0f%% abgeschlossen."
 
+msgid "Stacker 1"
+msgstr ""
+
+msgid "Stacker 10"
+msgstr ""
+
+msgid "Stacker 2"
+msgstr ""
+
+msgid "Stacker 3"
+msgstr ""
+
+msgid "Stacker 4"
+msgstr ""
+
+msgid "Stacker 5"
+msgstr ""
+
+msgid "Stacker 6"
+msgstr ""
+
+msgid "Stacker 7"
+msgstr ""
+
+msgid "Stacker 8"
+msgstr ""
+
+msgid "Stacker 9"
+msgstr ""
+
 msgid "Standard"
 msgstr "Standard"
 
@@ -4741,21 +4921,6 @@ msgstr "Beginne Seite %d."
 
 msgid "Statement"
 msgstr "US Statement"
-
-msgid "Stationery"
-msgstr ""
-
-msgid "Stationery Archival"
-msgstr ""
-
-msgid "Stationery Cotton"
-msgstr ""
-
-msgid "Stationery Heavyweight Coated"
-msgstr ""
-
-msgid "Stationery Inkjet Paper"
-msgstr ""
 
 #, c-format
 msgid "Subscription #%d does not exist."
@@ -4996,6 +5161,9 @@ msgstr "Zu viele printer-state-reasons Werte (%d > %d)."
 
 msgid "Top"
 msgstr "Oben"
+
+msgid "Top Tray"
+msgstr ""
 
 msgid "Tractor"
 msgstr ""
@@ -5522,7 +5690,8 @@ msgstr "Nicht unterstützter number-up Wert %d, verwende number-up=1."
 
 #, c-format
 msgid "Unsupported number-up-layout value %s, using number-up-layout=lrtb."
-msgstr "Nicht unterstützter number-up-layout Wert %d, verwende number-up-layout=lrtb."
+msgstr ""
+"Nicht unterstützter number-up-layout Wert %d, verwende number-up-layout=lrtb."
 
 #, c-format
 msgid "Unsupported page-border value %s, using page-border=none."
@@ -6586,11 +6755,17 @@ msgstr "variable-bindings hat unbestimmte Länge"
 #~ msgid "File Folder "
 #~ msgstr "Datei-Verzeichnis "
 
+#~ msgid "Finishing"
+#~ msgstr "Endverarbeitung"
+
 #~ msgid "New Stylus Color Series"
 #~ msgstr "Neue Stylus Color Serie"
 
 #~ msgid "New Stylus Photo Series"
 #~ msgstr "Neue Stylus Photo Serie"
+
+#~ msgid "No Finishing"
+#~ msgstr "Keine Endverarbeitung"
 
 #~ msgid "Postcard Double "
 #~ msgstr "Doppelpostkarte"

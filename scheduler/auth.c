@@ -11,7 +11,7 @@
  * property of Apple Inc. and are protected by Federal copyright
  * law.  Distribution and use rights are outlined in the file "LICENSE.txt"
  * which should have been included with this file.  If this file is
- * file is missing or damaged, see the license at "http://www.cups.org/".
+ * missing or damaged, see the license at "http://www.cups.org/".
  */
 
 /*
@@ -1194,7 +1194,7 @@ cupsdCheckGroup(
 #endif /* __APPLE__ */
 
       for (i = 0; i < ngroups; i ++)
-        if (group->gr_gid == groups[i])
+        if ((int)group->gr_gid == (int)groups[i])
 	  return (1);
     }
 #endif /* HAVE_GETGROUPLIST */

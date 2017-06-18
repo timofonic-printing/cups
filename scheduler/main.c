@@ -1,7 +1,7 @@
 /*
  * Main loop for the CUPS scheduler.
  *
- * Copyright 2007-2016 by Apple Inc.
+ * Copyright 2007-2017 by Apple Inc.
  * Copyright 1997-2007 by Easy Software Products, all rights reserved.
  *
  * These coded instructions, statements, and computer programs are the
@@ -786,18 +786,11 @@ main(int  argc,				/* I - Number of command-line args */
 
         if (!cupsdReadConfiguration())
         {
-#ifdef HAVE_ASL_H
-	  asl_object_t	m;		/* Log message */
-
-	  m = asl_new(ASL_TYPE_MSG);
-	  asl_set(m, ASL_KEY_FACILITY, "org.cups.cupsd");
-	  asl_log(NULL, m, ASL_LEVEL_ERR, "Unable to read configuration file \"%s\" - exiting.", ConfigurationFile);
-	  asl_release(m);
-#elif defined(HAVE_SYSTEMD_SD_JOURNAL_H)
+#ifdef HAVE_SYSTEMD_SD_JOURNAL_H
 	  sd_journal_print(LOG_ERR, "Unable to read configuration file \"%s\" - exiting.", ConfigurationFile);
 #else
           syslog(LOG_LPR, "Unable to read configuration file \'%s\' - exiting.", ConfigurationFile);
-#endif /* HAVE_ASL_H */
+#endif /* HAVE_SYSTEMD_SD_JOURNAL_H */
 
           break;
 	}
@@ -924,7 +917,7 @@ main(int  argc,				/* I - Number of command-line args */
     * Write dirty config/state files...
     */
 
-    if (DirtyCleanTime && current_time >= DirtyCleanTime)
+    if (DirtyCleanTime && current_time >= DirtyCleanTime && cupsArrayCount(Clients) == 0)
       cupsdCleanDirty();
 
 #ifdef __APPLE__

@@ -1,3 +1,93 @@
+cups (2.2.3-2) unstable; urgency=low
+
+  * Migrate 2.2.3 to unstable
+
+ -- Didier Raboud <odyx@debian.org>  Sun, 18 Jun 2017 16:24:03 +0200
+
+cups (2.2.3-1) experimental; urgency=medium
+
+  * New 2.2.3 upstream release
+  * Cherry-pick upstream fix for regression in job file preservation
+
+ -- Didier Raboud <odyx@debian.org>  Tue, 18 Apr 2017 21:24:32 +0200
+
+cups (2.2.2-2) experimental; urgency=medium
+
+  * Use /run instead of /var/run everywhere meaningful
+    (Closes: #858341)
+    * /run/cups:
+      - in debian/rules; pass --with-rundir=/run/cups
+      - update cups.init
+    * /run/cups/cupsd.pid:
+      - update cups.init
+      - update pidfile.patch
+    * /run/cups/printcap:
+      - in debian/rules; update --with-printcap
+      - update cups-daemon postinst
+    * /run/cups/cups.sock:
+      - update cups postinst and postrm for the lpadmin calls
+      - update the autopkgtest for the lpadmin call
+      - update the libcups2 example script
+      - update the upstart script
+    * /run/cups/certs:
+      - update cups.init
+      - update the upstart script
+    Thanks-To: Russell Coker <russell@coker.com.au>
+
+   [ Jamie Strandboge ]
+   * Update debian/local/apparmor-profile (Closes: #858571)
+      - allow cupsd and cups-pdf to communicate via Unix sockets (LP: #1675503)
+      - adjust cups-pdf log location
+      - allow cups-pdf to read /etc/cups/ppd/*.ppd
+      - silence noisy denials for cupsd occasionally trying to send signals to
+        unconfined
+      - allow capability wake_alarm (seen in LP: 1641985)
+
+ -- Didier Raboud <odyx@debian.org>  Thu, 23 Mar 2017 22:32:26 +0100
+
+cups (2.2.2-1) experimental; urgency=medium
+
+  * New 2.2.2 upstream release
+  * Refresh manpage translations
+  * dpkg-source: update extend-diff-ignore to cope with the difference between
+    upstream's VCS and tarball
+
+ -- Didier Raboud <odyx@debian.org>  Wed, 18 Jan 2017 13:48:47 +0100
+
+cups (2.2.1-56-ga2f30a72f-1) experimental; urgency=medium
+
+  * New 2.2.1+ upstream snapshot
+    - Updated systemd config files (Issue #4935)
+
+  [ Didier Raboud ]
+  * Merge 2.2.1-5 from unstable
+
+  [ Till Kamppeter ]
+  * Updated debian/control: CUPS does not support PPD-less printing any
+    more, we do driverless printing instead
+
+ -- Didier Raboud <odyx@debian.org>  Sun, 15 Jan 2017 15:00:04 +0100
+
+cups (2.2.1-46-g10887d272-2) experimental; urgency=medium
+
+  * Merge 2.2.1-4 from unstable.
+
+ -- Didier Raboud <odyx@debian.org>  Tue, 20 Dec 2016 09:16:41 +0100
+
+cups (2.2.1-46-g10887d272-1) experimental; urgency=medium
+
+  * New 2.2.1+ upstream snapshot
+    - Fix assymetric resolutions in IPP Everywhere and Apple Raster
+      (Closes: #848164)
+
+ -- Didier Raboud <odyx@debian.org>  Fri, 16 Dec 2016 14:28:04 +0100
+
+cups (2.2.1-41-g49c592936-1) experimental; urgency=medium
+
+  * New 2.2.1+ upstream snapshot
+
+ -- Didier Raboud <odyx@debian.org>  Fri, 09 Dec 2016 09:57:28 +0100
+
 cups (2.2.1-8) unstable; urgency=medium
 
   [ JP Guillonneau ]

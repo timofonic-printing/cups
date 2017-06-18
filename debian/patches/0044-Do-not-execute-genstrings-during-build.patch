@@ -1,4 +1,4 @@
-From 15d657290eef01f199079d2ca1482af50b50b75a Mon Sep 17 00:00:00 2001
+From 65f96cd0ada85ffdafce01b5f58ea8f790dd7e3c Mon Sep 17 00:00:00 2001
 From: Helmut Grohne <helmut@subdivi.de>
 Date: Thu, 15 Sep 2016 07:59:13 +0200
 Subject: Do not execute genstrings during build
@@ -13,7 +13,7 @@ Bug-Debian: https://bugs.debian.org/837936
  1 file changed, 2 deletions(-)
 
 diff --git a/ppdc/Makefile b/ppdc/Makefile
-index 62d23a0eb..6fec8d77d 100644
+index f55b948a1..c8b747dd6 100644
 --- a/ppdc/Makefile
 +++ b/ppdc/Makefile
 @@ -221,8 +221,6 @@ genstrings:		genstrings.o libcupsppdc.so ../cups/$(LIBCUPSSTATIC) \

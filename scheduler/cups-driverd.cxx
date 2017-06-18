@@ -12,7 +12,7 @@
  * property of Apple Inc. and are protected by Federal copyright
  * law.  Distribution and use rights are outlined in the file "LICENSE.txt"
  * which should have been included with this file.  If this file is
- * file is missing or damaged, see the license at "http://www.cups.org/".
+ * missing or damaged, see the license at "http://www.cups.org/".
  */
 
 /*
@@ -2113,7 +2113,7 @@ load_ppd(const char  *filename,		/* I - Real filename */
 
       if (is_direct && !is_storage)
         type = PPD_TYPE_OBJECT_DIRECT;
-      if (!is_direct && is_storage)
+      else if (!is_direct && is_storage)
         type = PPD_TYPE_OBJECT_STORAGE;
       else
         type = PPD_TYPE_OBJECT_ANY;

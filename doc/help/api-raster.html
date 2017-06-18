@@ -5,7 +5,7 @@
 	<title>Raster API	</title>
 	<meta name="keywords" content="Programming">
 	<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
-	<meta name="creator" content="Mini-XML v2.8">
+	<meta name="creator" content="Mini-XML v2.7">
 <style type="text/css"><!--
 BODY {
   font-family: lucida grande, geneva, helvetica, arial, sans-serif;
@@ -480,7 +480,7 @@ function. For example, to read raster data from the standard input, open
 file descriptor 0:</p>
 
 <pre class="example">
-#include &lt;cups/raster.h&gt;>
+#include &lt;cups/raster.h&gt;
 
 <a href="#cups_raster_t">cups_raster_t</a> *ras = <a href="#cupsRasterOpen">cupsRasterOpen</a>(0, CUPS_RASTER_READ);
 </pre>
@@ -507,7 +507,7 @@ hardware resolution, and so forth used for the page.</p>
 function:</p>
 
 <pre class="example">
-#include &lt;cups/raster.h&gt;>
+#include &lt;cups/raster.h&gt;
 
 <a href="#cups_raster_t">cups_raster_t</a> *ras = <a href="#cupsRasterOpen">cupsRasterOpen</a>(0, CUPS_RASTER_READ);
 <a href="#cups_page_header2_t">cups_page_header2_t</a> header;
@@ -530,7 +530,7 @@ function. A <code>for</code> loop is normally used to read the page one line
 at a time:</p>
 
 <pre class="example">
-#include &lt;cups/raster.h&gt;>
+#include &lt;cups/raster.h&gt;
 
 <a href="#cups_raster_t">cups_raster_t</a> *ras = <a href="#cupsRasterOpen">cupsRasterOpen</a>(0, CUPS_RASTER_READ);
 <a href="#cups_page_header2_t">cups_page_header2_t</a> header;
@@ -875,7 +875,7 @@ unsigned cupsRasterWriteHeader2 (<br>
 <h4 class="returnvalue">Return Value</h4>
 <p class="description">1 on success, 0 on failure</p>
 <h4 class="discussion">Discussion</h4>
-<p class="discussion">The page header can be initialized using <a href="#cupsRasterInterpretPPD"><code>cupsRasterInterpretPPD</code></a>.
+<p class="discussion">The page header can be initialized using <a href="#cupsRasterInitPWGHeader"><code>cupsRasterInitPWGHeader</code></a>.
 
 </p>
 <h3 class="function"><a name="cupsRasterWritePixels">cupsRasterWritePixels</a></h3>
@@ -1438,7 +1438,7 @@ factor not applied) </dd>
 <dt>CUPS_RASTER_WRITE_COMPRESSED <span class="info">&nbsp;CUPS 1.3/macOS 10.5&nbsp;</span></dt>
 <dd class="description">Open stream for compressed writing </dd>
 <dt>CUPS_RASTER_WRITE_PWG <span class="info">&nbsp;CUPS 1.5/macOS 10.7&nbsp;</span></dt>
-<dd class="description">Open stream for compressed writing in PWG mode </dd>
+<dd class="description">Open stream for compressed writing in PWG Raster mode </dd>
 </dl>
 <h3 class="enumeration"><a name="cups_order_e">cups_order_e</a></h3>
 <p class="description">cupsColorOrder attribute values</p>

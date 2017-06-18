@@ -8,7 +8,7 @@ dnl These coded instructions, statements, and computer programs are the
 dnl property of Apple Inc. and are protected by Federal copyright
 dnl law.  Distribution and use rights are outlined in the file "LICENSE.txt"
 dnl which should have been included with this file.  If this file is
-dnl file is missing or damaged, see the license at "http://www.cups.org/".
+dnl missing or damaged, see the license at "http://www.cups.org/".
 dnl
 
 dnl Set the name of the config header file...
@@ -129,7 +129,6 @@ AC_CHECK_HEADER(bstring.h,AC_DEFINE(HAVE_BSTRING_H))
 AC_CHECK_HEADER(sys/ioctl.h,AC_DEFINE(HAVE_SYS_IOCTL_H))
 AC_CHECK_HEADER(sys/param.h,AC_DEFINE(HAVE_SYS_PARAM_H))
 AC_CHECK_HEADER(sys/ucred.h,AC_DEFINE(HAVE_SYS_UCRED_H))
-AC_CHECK_HEADER(asl.h,AC_DEFINE(HAVE_ASL_H))
 
 dnl Checks for iconv.h and iconv_open
 AC_CHECK_HEADER(iconv.h,
