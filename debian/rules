@@ -17,7 +17,7 @@ export DSOFLAGS = $(shell dpkg-buildflags --get LDFLAGS)
 DEB_HOST_ARCH_OS := $(shell dpkg-architecture -qDEB_HOST_ARCH_OS)
 
 %:
-	dh $@ --without autoreconf --no-parallel
+	dh $@ --with autotools_dev --without autoreconf --no-parallel
 
 ifeq ($(DEB_HOST_ARCH_OS),hurd)
 CONFIG_LIBUSB=--disable-libusb
