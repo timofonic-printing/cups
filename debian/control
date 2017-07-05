@@ -291,6 +291,7 @@ Description: Common UNIX Printing System(tm) - Development files CUPS library
 Package: libcupsimage2-dev
 Section: libdevel
 Architecture: any
+Multi-Arch: same
 Depends: ${shlibs:Depends}, ${misc:Depends}, 
  libcupsimage2 (= ${binary:Version}),
  libcups2-dev (= ${binary:Version}), 
