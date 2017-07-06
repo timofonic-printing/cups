@@ -2,9 +2,6 @@
 
 derives_from_ubuntu := $(shell (dpkg-vendor --derives-from Ubuntu && echo "yes") || echo "no")
 
-# work around libpng crash on our test PNGs with 8 bit colormaps (LP #710881)
-export NO_PNG_PKG_MANGLE=1
-
 # Enabling PIE globally doesn't work, but ./configure already enables PIE
 # where necessary.
 export DEB_BUILD_MAINT_OPTIONS = hardening=+all,-pie
