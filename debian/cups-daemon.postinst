@@ -42,16 +42,6 @@ if [ "$1" = configure ]; then
 	 ln -s /etc/ssl/private/ssl-cert-snakeoil.key /etc/cups/ssl/server.key
     fi
 
-    # Clear cache if we upgrade to 1.4.x
-    if dpkg --compare-versions "$2" lt-nl "1.4.1-5"; then
-	rm /var/cache/cups/* 2> /dev/null || :
-    fi
-
-    # Clear PPD cache if we upgrade to 1.5.x
-    if dpkg --compare-versions "$2" lt-nl "1.5.0-3"; then
-	rm /var/cache/cups/ppds.dat 2> /dev/null || :
-    fi
-
     # Manage printcap file and associated symlinks
     if [ -e /etc/cups/cupsd.conf ]; then
 	if [ -e /etc/printcap.cups ]; then
