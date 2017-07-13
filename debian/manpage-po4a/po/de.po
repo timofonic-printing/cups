@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cups man pages 2.0.3-10\n"
 "POT-Creation-Date: 2017-07-12 17:22+0200\n"
-"PO-Revision-Date: 2017-07-12 17:49+0200\n"
+"PO-Revision-Date: 2017-07-13 20:21+0200\n"
 "Last-Translator: Helge Kreutzmann <debian@helgefjell.de>\n"
 "Language-Team: de <debian-l10n-german@lists.debian.org>\n"
 "Language: de\n"
@@ -10938,12 +10938,6 @@ msgstr "B<ATTR collection >I<Attributname >B<{ MEMBER >I<Markierung Mitgliedsnam
 
 #. type: Plain text
 #: ipptoolfile.man:179
-#, fuzzy
-#| msgid ""
-#| "Adds a collection attribute to the test request. Member attributes follow "
-#| "the same syntax as regular attributes and can themselves be nested "
-#| "collections. Multiple collection values can be supplied as needed, "
-#| "separated by commas."
 msgid ""
 "Adds a collection attribute to the test request.  Member attributes follow "
 "the same syntax as regular attributes and can themselves be nested "
@@ -10984,10 +10978,9 @@ msgstr ""
 
 #. type: TP
 #: ipptoolfile.man:186
-#, fuzzy, no-wrap
-#| msgid "B<DELAY >I<seconds>"
+#, no-wrap
 msgid "B<DELAY >I<seconds>[I<,repeat-seconds>]"
-msgstr "B<DELAY >I<Sekunden>"
+msgstr "B<DELAY >I<Sekunden>[I<,Wiederholungssekunden>]"
 
 #. type: Plain text
 #: ipptoolfile.man:190
@@ -10995,6 +10988,9 @@ msgid ""
 "Specifies a delay in seconds before this test will be run.  If two values "
 "are specified, the second value is used as the delay between repeated tests."
 msgstr ""
+"Legt eine Verzögerung in Sekunden fest, bevor dieser Test ausgeführt wird. "
+"Falls zwei Werte festgelegt werden, wird der zweite als Verzögerung zwischen "
+"wiederholten Tests verwandt."
 
 #. type: TP
 #: ipptoolfile.man:190
@@ -11836,18 +11832,13 @@ msgstr "VORGANGSCODES"
 
 #. type: Plain text
 #: ipptoolfile.man:414
-#, fuzzy
-#| msgid ""
-#| "Operation codes correspond to the hexadecimal numbers (0xHHHH) and names "
-#| "from RFC 2911 and other IPP extension specifications. Here is a complete "
-#| "list of names supported by B<ipptool>(8):"
 msgid ""
 "Operation codes correspond to the hexadecimal numbers (0xHHHH) and names "
 "from RFC 8011 and other IPP extension specifications. Here is a complete "
 "list of names supported by B<ipptool>(8):"
 msgstr ""
 "Vorgangscodes entsprechen hexadezimalen Zahlen (0xHHHH) und Namen aus RFC "
-"2911 und anderen IPP-Erweiterungsspezifikationen. Hier ist die komplette "
+"8011 und anderen IPP-Erweiterungsspezifikationen. Hier ist die komplette "
 "Liste der von B<ipptool>(8) unterstützten Namen:"
 
 #. type: Plain text
@@ -11998,18 +11989,13 @@ msgstr "STATUS-CODES"
 
 #. type: Plain text
 #: ipptoolfile.man:487
-#, fuzzy
-#| msgid ""
-#| "Status codes correspond to the hexadecimal numbers (0xHHHH) and names "
-#| "from RFC 2911 and other IPP extension specifications. Here is a complete "
-#| "list of the names supported by B<ipptool>(8):"
 msgid ""
 "Status codes correspond to the hexadecimal numbers (0xHHHH) and names from "
 "RFC 8011 and other IPP extension specifications. Here is a complete list of "
 "the names supported by B<ipptool>(8):"
 msgstr ""
 "Status-Codes entsprechend den hexadezimalen Zahlen (0xHHHH) und Namen aus "
-"RFC 2911 und anderen IPP-Erweiterungsspezifikationen. Hier ist die komplette "
+"RFC 8011 und anderen IPP-Erweiterungsspezifikationen. Hier ist die komplette "
 "Liste der von B<ipptool>(8) unterstützten Namen:"
 
 #. type: Plain text
@@ -12140,15 +12126,11 @@ msgstr "MARKIERUNGEN"
 
 #. type: Plain text
 #: ipptoolfile.man:549
-#, fuzzy
-#| msgid ""
-#| "Value and group tags correspond to the names from RFC 2911 and other IPP "
-#| "extension specifications. Here are the group tags:"
 msgid ""
 "Value and group tags correspond to the names from RFC 8011 and other IPP "
 "extension specifications. Here are the group tags:"
 msgstr ""
-"Werte- und Gruppenmarkierungen entsprechen den Namen aus RFC 2911 und "
+"Werte- und Gruppenmarkierungen entsprechen den Namen aus RFC 8011 und "
 "anderen IPP-Erweiterungsspezifikationen. Hier sind die Gruppenmarkierungen:"
 
 #. type: Plain text
@@ -12434,21 +12416,15 @@ msgstr "Fügt den Anmeldenamen des aktuellen Benutzers ein."
 
 #. type: Plain text
 #: ipptoolfile.man:651
-#, fuzzy
-#| msgid ""
-#| "B<ipptool>(1), CUPS Online Help (http://localhost:631/help), IANA IPP "
-#| "Registry (http://www.iana.org/assignments/ipp-registrations), PWG "
-#| "Internet Printing Protocol Workgroup (http://www.pwg.org/ipp), RFC 2911 "
-#| "(http://tools.ietf.org/html/rfc3911)"
 msgid ""
 "B<ipptool>(1), IANA IPP Registry (http://www.iana.org/assignments/ipp-"
 "registrations), PWG Internet Printing Protocol Workgroup (http://www.pwg.org/"
 "ipp), RFC 8011 (http://tools.ietf.org/html/rfc8011)"
 msgstr ""
-"B<ipptool>(1), CUPS-Online-Hilfe (http://localhost:631/help), IANA IPP "
+"B<ipptool>(1), IANA IPP "
 "Registry (http://www.iana.org/assignments/ipp-registrations), PWG Internet "
-"Printing Protocol Workgroup (http://www.pwg.org/ipp), RFC 2911 (http://tools."
-"ietf.org/html/rfc3911)"
+"Printing Protocol Workgroup (http://www.pwg.org/ipp), RFC 8011 (http://tools."
+"ietf.org/html/rfc8011)"
 
 #. type: TH
 #: ipptool.man:12
@@ -12458,10 +12434,9 @@ msgstr "ipptool"
 
 #. type: TH
 #: ipptool.man:12
-#, fuzzy, no-wrap
-#| msgid "3 June 2014"
+#, no-wrap
 msgid "13 June 2017"
-msgstr "3. Juni 2014"
+msgstr "13. Juni 2017"
 
 #. type: Plain text
 #: ipptool.man:15
@@ -12891,21 +12866,15 @@ msgstr ""
 
 #. type: Plain text
 #: ipptool.man:241
-#, fuzzy
-#| msgid ""
-#| "B<ipptoolfile>(5), CUPS Online Help (http://localhost:631/help), IANA IPP "
-#| "Registry (http://www.iana.org/assignments/ipp-registrations), PWG "
-#| "Internet Printing Protocol Workgroup (http://www.pwg.org/ipp)  RFC 2911 "
-#| "(http://tools.ietf.org/html/rfc2911),"
 msgid ""
 "B<ipptoolfile>(5), IANA IPP Registry (http://www.iana.org/assignments/ipp-"
 "registrations), PWG Internet Printing Protocol Workgroup (http://www.pwg.org/"
 "ipp)  RFC 8011 (http://tools.ietf.org/html/rfc8011),"
 msgstr ""
-"B<ipptoolfile>(5), CUPS-Online-Hilfe (http://localhost:631/help), IANA IPP "
+"B<ipptoolfile>(5), IANA IPP "
 "Registry (http://www.iana.org/assignments/ipp-registrations), PWG Internet "
-"Printing Protocol Workgroup (http://www.pwg.org/ipp)  RFC 2911 (http://tools."
-"ietf.org/html/rfc2911),"
+"Printing Protocol Workgroup (http://www.pwg.org/ipp)  RFC 8011 (http://tools."
+"ietf.org/html/rfc8011),"
 
 #. type: TH
 #: lpadmin.man:13
@@ -15045,10 +15014,9 @@ msgstr "lpstat"
 
 #. type: TH
 #: lpstat.man:13
-#, fuzzy, no-wrap
-#| msgid "26 May 2016"
+#, no-wrap
 msgid "26 May 2017"
-msgstr "26. Mai 2016"
+msgstr "26. Mai 2017"
 
 #. type: Plain text
 #: lpstat.man:16
