@@ -1,5 +1,5 @@
 # Translation of cups man pages to German
-# Copyright (C) Helge Kreutzmann <debian@helgefjell.de>, 2008-2016
+# Copyright (C) Helge Kreutzmann <debian@helgefjell.de>, 2008-2017
 # Chris Leick <c.leick@vollbio.de>, 2009.
 # This file is distributed under the same license as the cups package.
 #
@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cups man pages 2.0.3-10\n"
 "POT-Creation-Date: 2017-07-12 17:22+0200\n"
-"PO-Revision-Date: 2017-07-13 20:21+0200\n"
+"PO-Revision-Date: 2017-07-14 16:37+0200\n"
 "Last-Translator: Helge Kreutzmann <debian@helgefjell.de>\n"
 "Language-Team: de <debian-l10n-german@lists.debian.org>\n"
 "Language: de\n"
@@ -10458,6 +10458,8 @@ msgid ""
 "      # The request to send\n"
 "      OPERATION Print-Job\n"
 msgstr ""
+"      # Die zu sendende Anfrage\n"
+"      OPERATION Print-Job\n"
 
 #. type: Plain text
 #: ipptoolfile.man:37
@@ -10569,15 +10571,7 @@ msgstr ""
 
 #. type: Plain text
 #: ipptoolfile.man:80
-#, fuzzy, no-wrap
-#| msgid ""
-#| "      # The response to expect\n"
-#| "      STATUS successful-ok\n"
-#| "      EXPECT job-id OF-TYPE integer WITH-VALUE $job-id\n"
-#| "      EXPECT job-uri OF-TYPE uri\n"
-#| "      EXPECT job-state OF-TYPE enum WITH-VALUE 3,4,5,6,7,8,9\n"
-#| "      EXPECT job-originating-user-name OF-TYPE name WITH-VALUE \"$user\"\n"
-#| "    }\n"
+#, no-wrap
 msgid ""
 "      # The response to expect\n"
 "      STATUS successful-ok\n"
@@ -10590,9 +10584,8 @@ msgstr ""
 "      STATUS successful-ok\n"
 "      EXPECT job-id OF-TYPE integer WITH-VALUE $job-id\n"
 "      EXPECT job-uri OF-TYPE uri\n"
-"      EXPECT job-state OF-TYPE enum WITH-VALUE 3,4,5,6,7,8,9\n"
+"      EXPECT job-state OF-TYPE enum WITH-VALUE E<gt>5 REPEAT-NO-MATCH\n"
 "      EXPECT job-originating-user-name OF-TYPE name WITH-VALUE \"$user\"\n"
-"    }\n"
 
 #. type: Plain text
 #: ipptoolfile.man:85
@@ -10908,10 +10901,9 @@ msgstr ""
 
 #. type: TP
 #: ipptoolfile.man:166
-#, fuzzy, no-wrap
-#| msgid "B<ATTR >I<tag attribute-name value(s)>"
+#, no-wrap
 msgid "B<ATTR >I<out-of-band-tag attribute-name>"
-msgstr "B<ATTR >I<Markierung Attributname Wert(e)>"
+msgstr "B<ATTR >I<Außerbandmarkierung Attributname>"
 
 #. type: TP
 #: ipptoolfile.man:168
@@ -10919,6 +10911,7 @@ msgstr "B<ATTR >I<Markierung Attributname Wert(e)>"
 msgid "B<ATTR >I<tag attribute-name value(s)>"
 msgstr "B<ATTR >I<Markierung Attributname Wert(e)>"
 
+# FIXME: Broken string
 #.  character.
 #. type: Plain text
 #: ipptoolfile.man:174
@@ -10929,6 +10922,12 @@ msgid ""
 "escape commas using the \" Common attributes and values are listed in the "
 "IANA IPP registry - see references below."
 msgstr ""
+"Fügt ein Attribut zu der Testanfrage hinzu. Außerbandmarkierungen "
+"(admin-define, delete-attribute, no-value, not-settable, unknown, "
+"unsupported) haben keinen Wert. Werte für die anderen Markierungen werden "
+"durch Kommata (»,«) getrennt -- schützen Sie Kommata mittels des "
+"Anführungszeichens (»\"«). Gemeinsame Attribute und Werte sind in der »IANA "
+"IPP registry« aufgeführt, siehe Referenz unten."
 
 #. type: TP
 #: ipptoolfile.man:174
@@ -15025,13 +15024,6 @@ msgstr "lpstat - gibt CUPS-Statusinformationen aus"
 
 #. type: Plain text
 #: lpstat.man:69
-#, fuzzy
-#| msgid ""
-#| "B<lpstat> [ B<-E> ] [ B<-H> ] [ B<-U> I<username> ] [ B<-h "
-#| ">I<hostname>[B<:>I<port>] ] [ B<-l> ] [ B<-W> I<which-jobs> ] [ B<-a> "
-#| "[ I<destination(s)> ] ] [ B<-c> [ I<class(es)> ] ] [ B<-d> ] [ B<-o> "
-#| "[ I<destination(s)> ] ] [ B<-p> [ I<printer(s)> ] ] [ B<-r> ] [ B<-R> ] "
-#| "[ B<-s> ] [ B<-t> ] [ B<-u> [ I<user(s)> ] ] [ B<-v> [ I<printer(s)> ] ]"
 msgid ""
 "B<lpstat> [ B<-E> ] [ B<-H> ] [ B<-U> I<username> ] [ B<-h >I<hostname>[B<:"
 ">I<port>] ] [ B<-l> ] [ B<-W> I<which-jobs> ] [ B<-a> "
@@ -15041,7 +15033,7 @@ msgid ""
 msgstr ""
 "B<lpstat> [ B<-E> ] [ B<-H> ] [ B<-U> I<Benutzername> ] [ B<-h "
 ">I<Rechnername>[B<:>I<Port>] ] [ B<-l> ] [ B<-W> I<welche-Druckaufträge> ] "
-"[ B<-a> [ I<Ziel(e)> ] ] [ B<-c> [ I<Klasse(n)> ] ] [ B<-d> ] [ B<-o> "
+"[ B<-a> [ I<Ziel(e)> ] ] [ B<-c> [ I<Klasse(n)> ] ] [ B<-d> ] [ B<-e> ] [ B<-o> "
 "[ I<Ziel(e)> ] ] [ B<-p> [ I<Drucker> ] ] [ B<-r> ] [ B<-R> ] [ B<-s> ] [ B<-"
 "t> ] [ B<-u> [ I<Benutzer> ] ] [ B<-v> [ I<Drucker> ] ]"
 
@@ -15148,7 +15140,7 @@ msgstr "Zeigt das aktuelle Standardziel."
 #. type: Plain text
 #: lpstat.man:104
 msgid "Shows all available destinations on the local network."
-msgstr ""
+msgstr "Zeigt alle verfügbaren Ziele im lokalen Netz an."
 
 #. type: Plain text
 #: lpstat.man:110
@@ -15256,11 +15248,9 @@ msgstr ""
 
 #. type: Plain text
 #: lpstat.man:142
-#, fuzzy
-#| msgid "The I<-h>, I<-E>, I<-U>, and I<-W> options are unique to CUPS."
 msgid "The I<-h>, I<-e>, I<-E>, I<-U>, and I<-W> options are unique to CUPS."
 msgstr ""
-"Die Optionen I<-h>, I<-E>, I<-U> und I<-W> sind eine Besonderheit von CUPS."
+"Die Optionen I<-h>, I<-e>, I<-E>, I<-U> und I<-W> sind eine Besonderheit von CUPS."
 
 #. type: Plain text
 #: lpstat.man:144
