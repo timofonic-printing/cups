@@ -1,4 +1,4 @@
-From 8dde3d3e1d6782fa2080831f077d5c375ca2bd4e Mon Sep 17 00:00:00 2001
+From bd4cfc0733759d9ffa3e15fc0931dd18d7ac0b12 Mon Sep 17 00:00:00 2001
 From: Till Kamppeter <till.kamppeter@gmail.com>
 Date: Thu, 17 Aug 2017 15:15:52 -0300
 Subject: PPD Generator for driverless printing setup: Workaround for wrong
@@ -21,10 +21,10 @@ Patch-Name: pwg-raster-resolution-fallback.patch
  1 file changed, 12 insertions(+), 2 deletions(-)
 
 diff --git a/cups/ppd-cache.c b/cups/ppd-cache.c
-index 7e40214da..2d64f6ec7 100644
+index 8ce02fc19..fffcd0489 100644
 --- a/cups/ppd-cache.c
 +++ b/cups/ppd-cache.c
-@@ -3962,11 +3962,21 @@ _ppdCreateFromIPP(char   *buffer,	/* I - Filename buffer */
+@@ -3980,11 +3980,21 @@ _ppdCreateFromIPP(char   *buffer,	/* I - Filename buffer */
  
    quality = ippFindAttribute(response, "print-quality-supported", IPP_TAG_ENUM);
  
@@ -47,7 +47,7 @@ index 7e40214da..2d64f6ec7 100644
      cupsFilePrintf(fp, "*DefaultResolution: %s\n", ppdname);
  
      cupsFilePrintf(fp, "*OpenUI *cupsPrintQuality/%s: PickOne\n"
-@@ -4047,7 +4057,7 @@ _ppdCreateFromIPP(char   *buffer,	/* I - Filename buffer */
+@@ -4065,7 +4075,7 @@ _ppdCreateFromIPP(char   *buffer,	/* I - Filename buffer */
      {
        pwg_ppdize_resolution(attr, 0, &xres, &yres, ppdname, sizeof(ppdname));
      }
