@@ -1,0 +1,41 @@
+From 24c853cc0bb620179b12bbc62769cbdcb075b3f3 Mon Sep 17 00:00:00 2001
+From: Till Kamppeter <till.kamppeter@gmail.com>
+Date: Mon, 28 Aug 2017 11:47:21 -0300
+Subject: Fixed Avahi-related crash bugs in the scheduler
+
+Author: Michael R Sweet <michaelrsweet@gmail.com>
+Bug: https://github.com/apple/cups/issues/5085
+Bug: https://github.com/apple/cups/issues/5086
+Bug-Ubuntu: https://launchpad.net/bugs/1442169
+Bug-Ubuntu: https://launchpad.net/bugs/1495276
+Patch-Name: scheduler-fix-avahi-crashes.patch
+---
+ scheduler/dirsvc.c | 13 ++++++++-----
+ 1 file changed, 8 insertions(+), 5 deletions(-)
+
+diff --git a/scheduler/dirsvc.c b/scheduler/dirsvc.c
+index 2612d4d2f..ad48b15aa 100644
+--- a/scheduler/dirsvc.c
++++ b/scheduler/dirsvc.c
+@@ -676,13 +676,16 @@ dnssdDeregisterInstance(
+   DNSServiceRefDeallocate(*srv);
+ 
+ #  else /* HAVE_AVAHI */
+-  if (!from_callback)
+-    avahi_threaded_poll_lock(DNSSDMaster);
++  if (*srv)
++  {
++    if (!from_callback)
++      avahi_threaded_poll_lock(DNSSDMaster);
+ 
+-  avahi_entry_group_free(*srv);
++    avahi_entry_group_free(*srv);
+ 
+-  if (!from_callback)
+-    avahi_threaded_poll_unlock(DNSSDMaster);
++    if (!from_callback)
++      avahi_threaded_poll_unlock(DNSSDMaster);
++  }
+ #  endif /* HAVE_DNSSD */
+ 
+   *srv = NULL;

@@ -39,3 +39,4 @@ debianize_cups-config.patch
 0039-The-cupsGetDests-function-incorrectly-returned-an-em.patch
 manpage-translations.patch
 pwg-raster-resolution-fallback.patch
+scheduler-fix-avahi-crashes.patch
