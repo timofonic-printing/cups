@@ -1,4 +1,4 @@
-From 40d9023ed0d32d366c75177f890c1b2470bcde86 Mon Sep 17 00:00:00 2001
+From b460fc51309b7d9603b320424967bd1134c9ca0f Mon Sep 17 00:00:00 2001
 From: Didier Raboud <odyx@debian.org>
 Date: Mon, 28 Aug 2017 16:06:03 +0200
 Subject: Tests: ignore unknown default SystemGroup

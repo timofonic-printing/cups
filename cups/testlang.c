@@ -19,16 +19,16 @@
 
 #include "cups-private.h"
 #include "ppd-private.h"
-#include <sys/stat.h>
-#ifdef WIN32
-#  include <io.h>
-#else
-#  include <unistd.h>
-#  include <fcntl.h>
-#endif /* WIN32 */
 #ifdef __APPLE__
 #  include <CoreFoundation/CoreFoundation.h>
 #endif /* __APPLE__ */
+
+
+/*
+ * Local functions...
+ */
+
+static int  test_string(cups_lang_t *language, const char *msgid);
 
 
 /*
@@ -44,12 +44,7 @@ main(int  argc,				/* I - Number of command-line arguments */
   cups_lang_t		*language;	/* Message catalog */
   cups_lang_t		*language2;	/* Message catalog */
   struct lconv		*loc;		/* Locale data */
-  const char            *msgid,         /* String identifier */
-                        *msgstr;        /* Localized string */
-  char			buffer[1024],	/* String buffers */
-                        localedir[1024],/* Directory for language locale file */
-                        realfilename[1024],/* Filename for language locale file */
-                        filepath[1024];	/* Filename for language locale file */
+  char			buffer[1024];	/* String buffer */
   double		number;		/* Number */
   static const char * const tests[] =	/* Test strings */
   {
@@ -74,47 +69,6 @@ main(int  argc,				/* I - Number of command-line arguments */
     setenv("SOFTWARE", "CUPS/" CUPS_SVERSION, 1);
   }
 
-  /*
-  * Setup directories for locale stuff...
-  */
-
-  if (access("locale", 0))
-  {
-    mkdir("locale", 0777);
-
-    snprintf(realfilename, sizeof(realfilename), "../locale/cups_%s.po", language->language);
-    snprintf(filepath, sizeof(filepath), "../../../locale/cups_%s.po", language->language);
-    snprintf(localedir, sizeof(localedir), "locale/%s", language->language);
-    snprintf(buffer, sizeof(buffer), "locale/%s/cups_%s.po", language->language, language->language);
-
-    if (strchr(language->language, '_') && access(realfilename, 0))
-    {
-      /*
-      * Country localization not available, look for generic localization...
-      */
-
-      snprintf(realfilename, sizeof(realfilename), "../locale/cups_%.2s.po", language->language);
-      snprintf(filepath, sizeof(filepath), "../../../locale/cups_%.2s.po", language->language);
-      snprintf(localedir, sizeof(localedir), "locale/%.2s", language->language);
-      snprintf(buffer, sizeof(buffer), "locale/%.2s/cups_%.2s.po", language->language, language->language);
-
-      if (access(realfilename, 0))
-      {
-          /*
-          * No generic localization, so use POSIX...
-          */
-          snprintf(filepath, sizeof(filepath), "../../../locale/cups_C.po");
-          snprintf(localedir, sizeof(localedir), "locale/C");
-          snprintf(buffer, sizeof(buffer), "locale/C/cups_C.po");
-        }
-    }
-
-    mkdir(localedir, 0777);
-    symlink(filepath, buffer);
-  }
-
-  putenv("LOCALEDIR=locale");
-
   _cupsSetLocale(argv);
 
   if (language != language2)
@@ -128,25 +82,8 @@ main(int  argc,				/* I - Number of command-line arguments */
   printf("Language = \"%s\"\n", language->language);
   printf("Encoding = \"%s\"\n", _cupsEncodingName(language->encoding));
 
-  msgid  = "No";
-  msgstr = _cupsLangString(language, msgid);
-  if (msgid == msgstr)
-  {
-    printf("%-8s = \"%s\" (FAIL)\n", msgid, msgstr);
-    errors ++;
-  }
-  else
-    printf("%-8s = \"%s\" (PASS)\n", msgid, msgstr);
-
-  msgid  = "Yes";
-  msgstr = _cupsLangString(language, msgid);
-  if (msgid == msgstr)
-  {
-    printf("%-8s = \"%s\" (FAIL)\n", msgid, msgstr);
-    errors ++;
-  }
-  else
-    printf("%-8s = \"%s\" (PASS)\n", msgid, msgstr);
+  errors += test_string(language, "No");
+  errors += test_string(language, "Yes");
 
   if (language != language2)
   {
@@ -310,3 +247,40 @@ main(int  argc,				/* I - Number of command-line arguments */
 
   return (errors > 0);
 }
+
+
+/*
+ * 'test_string()' - Test the localization of a string.
+ */
+
+static int                            /* O - 1 on failure, 0 on success */
+test_string(cups_lang_t *language,    /* I - Language */
+            const char  *msgid)       /* I - Message */
+{
+  const char  *msgstr;                /* Localized string */
+
+
+ /*
+  * Get the localized string and then see if we got what we expected.
+  *
+  * For the POSIX locale, the string pointers should be the same.
+  * For any other locale, the string pointers should be different.
+  */
+
+  msgstr = _cupsLangString(language, msgid);
+  if (strcmp(language->language, "C") && msgid == msgstr)
+  {
+    printf("%-8s = \"%s\" (FAIL - no message catalog loaded)\n", msgid, msgstr);
+    return (1);
+  }
+  else if (!strcmp(language->language, "C") && msgid != msgstr)
+  {
+    printf("%-8s = \"%s\" (FAIL - POSIX locale is localized)\n", msgid, msgstr);
+    return (1);
+  }
+
+  printf("%-8s = \"%s\" (PASS)\n", msgid, msgstr);
+
+  return (0);
+}
+

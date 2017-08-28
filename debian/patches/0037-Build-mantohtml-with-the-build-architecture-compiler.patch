@@ -1,4 +1,4 @@
-From cc8ff88eb9fa49cb646160f4331940f6ee91a544 Mon Sep 17 00:00:00 2001
+From 649a9a5283d44d7cb9145d79a921e891d055035b Mon Sep 17 00:00:00 2001
 From: Helmut Grohne <helmut@subdivi.de>
 Date: Tue, 9 Aug 2016 18:11:49 +0200
 Subject: Build mantohtml with the build architecture compiler
@@ -18,7 +18,7 @@ Bug-Debian: https://bugs.debian.org/837936
  4 files changed, 22 insertions(+), 9 deletions(-)
 
 diff --git a/Makedefs.in b/Makedefs.in
-index 0572744eb..aaf4be8c3 100644
+index 94428658f..2bf41df5d 100644
 --- a/Makedefs.in
 +++ b/Makedefs.in
 @@ -25,6 +25,7 @@ CUPS_VERSION    =       @CUPS_VERSION@
