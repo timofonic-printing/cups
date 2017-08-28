@@ -1,4 +1,4 @@
-From 93bb2a3ab1a2fffe40ab4a1eaa65d6ad05b6f85d Mon Sep 17 00:00:00 2001
+From 17dc4069ee77a99e271138d656c467aaf13034aa Mon Sep 17 00:00:00 2001
 From: Joey Hess <joeyh@debian.org>
 Date: Tue, 9 Aug 2016 18:11:31 +0200
 Subject: Disable time stamps in conffiles, to avoid ever-changing files in

@@ -1,4 +1,4 @@
-From 86ddb575ad87a15cb650be74fa9e15c47b0cf86a Mon Sep 17 00:00:00 2001
+From 60cc05dccef4cc42c62ae1b7cca65ddc40ed5206 Mon Sep 17 00:00:00 2001
 From: Till Kampetter <till.kampetter@gmail.com>
 Date: Tue, 9 Aug 2016 18:11:45 +0200
 Subject: Make log debug history nearly unlimited
