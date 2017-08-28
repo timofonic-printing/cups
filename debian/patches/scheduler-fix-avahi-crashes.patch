@@ -1,9 +1,11 @@
-From 24c853cc0bb620179b12bbc62769cbdcb075b3f3 Mon Sep 17 00:00:00 2001
-From: Till Kamppeter <till.kamppeter@gmail.com>
-Date: Mon, 28 Aug 2017 11:47:21 -0300
-Subject: Fixed Avahi-related crash bugs in the scheduler
+From 7ec7d1eee022e629397bf64938b2948b9537bb46 Mon Sep 17 00:00:00 2001
+From: Michael Sweet <michael.r.sweet@gmail.com>
+Date: Mon, 28 Aug 2017 10:04:29 -0400
+Subject: Fix an Avahi-related crash bug in the scheduler (Issue #5085, Issue
+ #5086)
 
-Author: Michael R Sweet <michaelrsweet@gmail.com>
+Add NULL pointer check to avoid Avahi assertion in production code.
+
 Bug: https://github.com/apple/cups/issues/5085
 Bug: https://github.com/apple/cups/issues/5086
 Bug-Ubuntu: https://launchpad.net/bugs/1442169
