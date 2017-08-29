@@ -1,4 +1,4 @@
-From f1b2d74f660fb5c5cfee33c29a5fa9f62a8ad4b1 Mon Sep 17 00:00:00 2001
+From 1d8a5cc59c1426fc2be69371655dab11ed06158a Mon Sep 17 00:00:00 2001
 From: Till Kamppeter <till.kamppeter@gmail.com>
 Date: Tue, 9 Aug 2016 18:11:04 +0200
 Subject: For PWG Raster, add required IPP attributes

@@ -1,4 +1,4 @@
-From 2e09ddd29446cce22a7c021c1859616e996e2e3a Mon Sep 17 00:00:00 2001
+From f243fa7efb631121c038619dfd53792775073447 Mon Sep 17 00:00:00 2001
 From: Tim Waugh <twaugh@redhat.com>
 Date: Tue, 9 Aug 2016 18:11:46 +0200
 Subject: Set the default for SyncOnClose to Yes

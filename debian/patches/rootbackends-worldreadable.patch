@@ -1,4 +1,4 @@
-From ab6d9dd4a33446cd532386e5e68dc90c3ecb36cb Mon Sep 17 00:00:00 2001
+From ddd0012a428c1eb9c9cda3cf19ad3489a1b7694b Mon Sep 17 00:00:00 2001
 From: Martin Pitt <mpitt@debian.org>
 Date: Tue, 9 Aug 2016 18:11:06 +0200
 Subject: Install root backends world-readable.
