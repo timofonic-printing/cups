@@ -15,7 +15,6 @@ Build-Depends:
  autoconf, 
  automake, 
  libtool,
- autotools-dev,
  pkg-config,
  ghostscript (>= 9.02~),
  libavahi-client-dev,
