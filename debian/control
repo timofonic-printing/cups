@@ -10,7 +10,6 @@ Build-Depends:
  debhelper (>= 10.2.5~),
  dh-apparmor,
  dh-exec,
- dh-systemd,
  dpkg-dev (>= 1.16.1~),
  patch,
  autoconf, 
