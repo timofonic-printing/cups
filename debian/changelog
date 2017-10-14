@@ -1,3 +1,10 @@
+cups (2.2.5-1.1) UNRELEASED; urgency=medium
+
+  [ Helge Kreutzmann ]
+    * Update German man page translations
+
+ -- Helge Kreutzmann <debian@helgefjell.de>  Sat, 14 Oct 2017 21:01:17 +0200
+
 cups (2.2.5-1) unstable; urgency=medium
 
   * New 2.2.5 upstream release
