@@ -1,3 +1,50 @@
+cups (2.2.4-106-g4cf66fef4-1) experimental; urgency=medium
+
+  * New 2.2.4-106-g4cf66fef4 upstream snapshot
+  * Merge 2.2.4-8 changes from unstable
+
+ -- Didier Raboud <odyx@debian.org>  Tue, 10 Oct 2017 13:46:18 +0200
+
+cups (2.2.4-91-g2cb1fda9f-1) experimental; urgency=medium
+
+  * New 2.2.4-91-g2cb1fda9f upstream snapshot
+
+ -- Didier Raboud <odyx@debian.org>  Thu, 14 Sep 2017 09:07:05 +0200
+
+cups (2.2.4-83-gbefbadcef-2) experimental; urgency=medium
+
+  [ intrigeri ]
+  * AppArmor: allow dac_read_search, now needed on top of dac_override
+    (Closes: #872817)
+
+ -- Didier Raboud <odyx@debian.org>  Mon, 04 Sep 2017 09:16:43 +0200
+
+cups (2.2.4-83-gbefbadcef-1) experimental; urgency=medium
+
+  * New 2.2.4-83-gbefbadcef upstream snapshot
+
+  * Let cups-bsd suggest one compatible inet server: inetutils-inetd
+    (Closes: #676472)
+
+ -- Didier Raboud <odyx@debian.org>  Fri, 01 Sep 2017 15:07:00 +0200
+
+cups (2.2.4-72-g9449dd948-1) experimental; urgency=medium
+
+  * New 2.2.4-72-g9449dd948 upstream snapshot
+    - The scheduler now creates a PID file when not running on demand with a
+      modern service launcher (Issue #5080)
+    - The CUPS library did not reuse domain sockets
+      (Issue #5098, Closes: #868316)
+  * Patches rework:
+    - Drop Debian-specific pidfile patch
+
+  * Refresh manpage translations
+  * Stop symlinking the ssl-cert snakeoil certificates, CUPS will generate them
+    on-demand (with a different name)
+  * Drop superfluous autotools-dev B-D
+
+ -- Didier Raboud <odyx@debian.org>  Tue, 29 Aug 2017 08:57:28 +0200
+
 cups (2.2.4-9) unstable; urgency=medium
 
   [ Helmut Grohne ]
