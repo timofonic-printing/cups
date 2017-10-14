@@ -308,7 +308,7 @@ Description: Common UNIX Printing System(tm) - Development files CUPS image libr
  that use the CUPS raster image format.
 
 Package: cups-bsd
-Priority: extra
+Priority: optional
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}, 
  cups-client (= ${binary:Version}),
