@@ -18,6 +18,7 @@ drop_unnecessary_dependencies.patch
 read-embedded-options-from-incoming-postscript-and-add-to-ipp-attrs.patch
 cups-deviced-allow-device-ids-with-newline.patch
 airprint-support.patch
+cups-snmp-oids-device-id-hp-ricoh.patch
 no-conffile-timestamp.patch
 removecvstag.patch
 rename-systemd-units.patch
@@ -33,5 +34,5 @@ cupsd-set-default-for-SyncOnClose-to-Yes.patch
 cups-set-default-error-policy-retry-job.patch
 man-cups-lpd-drop-dangling-references.patch
 debianize_cups-config.patch
-0036-Build-mantohtml-with-the-build-architecture-compiler.patch
+0037-Build-mantohtml-with-the-build-architecture-compiler.patch
 manpage-translations.patch

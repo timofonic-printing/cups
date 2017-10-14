@@ -1,4 +1,4 @@
-From 66b345574a14a087d7e5c43f1dffa8d19a6a4b04 Mon Sep 17 00:00:00 2001
+From e93638f070cd081dd9ede2f5a8a58b6d34b95a09 Mon Sep 17 00:00:00 2001
 From: Martin Pitt <mpitt@debian.org>
 Date: Tue, 9 Aug 2016 18:11:38 +0200
 Subject: Make log files readable to group "adm", if present.
