@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cups man pages 2.0.3-10\n"
 "POT-Creation-Date: 2017-10-14 13:16+0200\n"
-"PO-Revision-Date: 2017-10-14 20:57+0200\n"
+"PO-Revision-Date: 2017-10-15 06:22+0200\n"
 "Last-Translator: Helge Kreutzmann <debian@helgefjell.de>\n"
 "Language-Team: de <debian-l10n-german@lists.debian.org>\n"
 "Language: de\n"
@@ -6973,10 +6973,8 @@ msgstr " B<LPDConfigFile >I<Dateiname>"
 #. #Printcap
 #. type: Plain text
 #: cups-files.conf.man.in:248
-#, fuzzy
-#| msgid "Specifies the SSL certificate authority file to use."
 msgid "Specifies the LPD service configuration file to update."
-msgstr "Gibt die SSL-Zertifizierungsautorität an, die benutzt werden soll."
+msgstr "Gibt die zu aktualisierende LPD-Dienstekonfigurationsdatei an."
 
 #. type: TP
 #: cups-files.conf.man.in:248
@@ -6987,10 +6985,10 @@ msgstr "B<Printcap >I<Dateiname>"
 #. #PrintcapFormat
 #. type: Plain text
 #: cups-files.conf.man.in:252
-#, fuzzy
-#| msgid "Specifies the name of the user for print requests."
 msgid "Specifies a file that is filled with a list of local print queues."
-msgstr "Legt den Benutzernamen für Druckanfragen fest."
+msgstr ""
+"Gibt eine Datei an, die mit einer Liste von lokalen Druckerwarteschlangen "
+"gefüllt werden soll."
 
 #. type: TP
 #: cups-files.conf.man.in:252
@@ -7018,21 +7016,20 @@ msgid ""
 "historical LPD printcap file format.  \"plist\" is the Apple plist file "
 "format.  \"solaris\" is the historical Solaris LPD printcap file format."
 msgstr ""
+"Gibt das für die Printcap-Datei zu verwendende Format an. »bsd« ist das "
+"historische LPD-Printcap-Dateiformat. »plist« ist das Apple-Plist-"
+"Dateiformat. »solaris« ist das historische Solaris-LPD-Printcap-Dateiformat."
 
 #. type: TP
 #: cups-files.conf.man.in:263
-#, fuzzy, no-wrap
-#| msgid "B<ConfigFilePerm >I<mode>"
+#, no-wrap
 msgid "B<SMBConfigFile >I<filename>"
-msgstr "B<ConfigFilePerm >I<Modus>"
+msgstr "B<SMBConfigFile >I<Dateiname>"
 
-# type: Plain text
 #. type: Plain text
 #: cups-files.conf.man.in:266
-#, fuzzy
-#| msgid "Specifies the SSL certificate authority file to use."
 msgid "Specifies the SMB service configuration file to update."
-msgstr "Gibt die SSL-Zertifizierungsautorität an, die benutzt werden soll."
+msgstr "Gibt die zu aktualisierende SMB-Dienstekonfigurationsdatei an."
 
 #. type: Plain text
 #: cups-files.conf.man.in:276
@@ -10985,7 +10982,7 @@ msgid ""
 "on the B<ipptool>(8)  command-line. Support for chunked requests is required "
 "for conformance with all versions of IPP."
 msgstr ""
-"Legt fest, dass die Tests standardmäßig den HTTP/1.1-Header »Transfer-"
+"Legt fest, dass die Tests standardmäßig die HTTP/1.1-Kopfzeile »Transfer-"
 "Encoding: chunked« verwenden. Dies ist die Vorgabe und äquivalent zur Angabe "
 "von I<-c> auf der Befehlszeile von B<ipptool>(8). Die Unterstützung für "
 "blockweise Abfragen wird für die Konformität mit allen Versionen von IPP "
@@ -11005,7 +11002,7 @@ msgid ""
 "line. Support for content length requests is required for conformance with "
 "all versions of IPP."
 msgstr ""
-"Legt fest, dass die Tests standardmäßig den HTTP/1.0-Header »Content-Length« "
+"Legt fest, dass die Tests standardmäßig die HTTP/1.0-Kopfzeile »Content-Length« "
 "verwenden. Dies ist die Vorgabe und äquivalent zur Angabe von I<-l> auf der "
 "Befehlszeile von B<ipptool>(8). Die Unterstützung für Inhaltslängen-Abfragen "
 "wird für die Konformität mit allen Versionen von IPP benötigt."
@@ -11409,7 +11406,7 @@ msgid ""
 "Specifies that this test will use the HTTP/1.1 \"Transfer-Encoding: chunked"
 "\" header."
 msgstr ""
-"Legt fest, dass dieser Test den HTTP/1.1-Header »Transfer-Encoding: chunked« "
+"Legt fest, dass dieser Test die HTTP/1.1-Kopfzeile »Transfer-Encoding: chunked« "
 "verwenden wird."
 
 #. type: Plain text
@@ -11417,7 +11414,7 @@ msgstr ""
 msgid ""
 "Specifies that this test will use the HTTP/1.0 \"Content-Length:\" header."
 msgstr ""
-"Legt fest, dass dieser Test den HTTP/1.0-Header »Content-Length:« verwenden "
+"Legt fest, dass dieser Test die HTTP/1.0-Kopfzeile »Content-Length:« verwenden "
 "wird."
 
 #. type: Plain text
@@ -12593,10 +12590,9 @@ msgstr "ipptool"
 
 #. type: TH
 #: ipptool.man:12
-#, fuzzy, no-wrap
-#| msgid "4 August 2008"
+#, no-wrap
 msgid "4 August 2017"
-msgstr "4. August 2008"
+msgstr "4. August 2017"
 
 #. type: Plain text
 #: ipptool.man:15
@@ -12605,14 +12601,6 @@ msgstr "ipptool - Internet-Printing-Protocol-Abfragen durchführen"
 
 #. type: Plain text
 #: ipptool.man:75
-#, fuzzy
-#| msgid ""
-#| "B<ipptool> [ B<--help> ] [ B<--stop-after-include-error> ] [ B<--"
-#| "version> ] [ B<-4> ] [ B<-6> ] [ B<-C> ] [ B<-E> ] [ B<-I> ] [ B<-L> ] "
-#| "[ B<-P> I<filename.plist> ] [ B<-S> ] [ B<-T> I<seconds> ] [ B<-V> "
-#| "I<version> ] [ B<-X> ] [ B<-c> ] [ B<-d> I<name=value> ] [ B<-f> "
-#| "I<filename> ] [ B<-i> I<seconds> ] [ B<-n> I<repeat-count> ] [ B<-q> ] "
-#| "[ B<-t> ] [ B<-v ]> I<printer-uri> I<testfile> [ ...  I<testfile> ]"
 msgid ""
 "B<ipptool> [ B<--help> ] [ B<--stop-after-include-error> ] [ B<--version> ] "
 "[ B<-4> ] [ B<-6> ] [ B<-C> ] [ B<-E> ] [ B<-I> ] [ B<-L> ] [ B<-P> "
@@ -12624,7 +12612,7 @@ msgstr ""
 "B<ipptool> [ B<--help> ] [ B<--stop-after-include-error> ] [ B<--version> ] "
 "[ B<-4> ] [ B<-6> ] [ B<-C> ] [ B<-E> ] [ B<-I> ] [ B<-L> ] [ B<-P> "
 "I<Dateiname.plist> ] [ B<-S> ] [ B<-T> I<Sekunden> ] [ B<-V> I<Version> ] "
-"[ B<-X> ] [ B<-c> ] [ B<-d> I<Name=Wert> ] [ B<-f> I<Dateiname> ] [ B<-i> "
+"[ B<-X> ] [ B<-c> ] [ B<-d> I<Name=Wert> ] [ B<-f> I<Dateiname> ] [ B<-h> ] [ B<-i> "
 "I<Sekunden> ] [ B<-n> I<Anzahl-Wiederholungen> ] [ B<-q> ] [ B<-t> ] [ B<-"
 "v ]> I<Drucker-URI> I<Testdatei> [ …  I<Testdatei> ]"
 
@@ -12704,7 +12692,7 @@ msgid ""
 "requests with attached files and \"Content-Length:\" for requests without "
 "attached files."
 msgstr ""
-"Legt fest, dass Anfragen mit dem HTTP/1.1-Header »Transfer-Encoding: "
+"Legt fest, dass Anfragen mit der HTTP/1.1-Kopfzeile »Transfer-Encoding: "
 "chunked« gesendet werden sollen, der für Konformität von allen IPP-Versionen "
 "verlangt wird. Standardmäßig wird »Transfer-Encoding: chunked« für Anfragen "
 "mit anhängenden Dateien und »Content-Length:« für Anfragen ohne anhängende "
@@ -12716,7 +12704,7 @@ msgid ""
 "Forces TLS encryption when connecting to the server using the HTTP \"Upgrade"
 "\" header."
 msgstr ""
-"Erzwingt TLS-Verschlüsselung bei Verbindungen zum Server mit dem HTTP-Header "
+"Erzwingt TLS-Verschlüsselung bei Verbindungen zum Server mit der HTTP-Kopfzeile "
 "»Upgrade«."
 
 #. type: TP
@@ -12744,7 +12732,7 @@ msgid ""
 "default is to use \"Transfer-Encoding: chunked\" for requests with attached "
 "files and \"Content-Length:\" for requests without attached files."
 msgstr ""
-"Legt fest, dass Anfragen mit dem HTTP/1.0-Header »Content-Length:« gesendet "
+"Legt fest, dass Anfragen mit der HTTP/1.0-Kopfzeile »Content-Length:« gesendet "
 "werden sollen, der für Konformität von allen IPP-Versionen verlangt wird. "
 "Standardmäßig wird »Transfer-Encoding: chunked« für Anfragen mit anhängenden "
 "Dateien und »Content-Length:« für Anfragen ohne anhängende Dateien verwandt."
@@ -12855,7 +12843,7 @@ msgstr "Definiert den Standardanfragedateinamen für Tests."
 #. type: Plain text
 #: ipptool.man:161
 msgid "Validate HTTP response headers."
-msgstr ""
+msgstr "Validiert HTTP-Antwort-Kopfzeilen."
 
 #. type: TP
 #: ipptool.man:161
@@ -17596,7 +17584,7 @@ msgstr ""
 #~ "Specifies what information is included in the Server header of HTTP "
 #~ "responses."
 #~ msgstr ""
-#~ "Legt fest, welche Informationen im Server-Header von HTTP-Antworten "
+#~ "Legt fest, welche Informationen in den Server-Kopfzeilen von HTTP-Antworten "
 #~ "enthalten sein sollen."
 
 #~ msgid "SSLListen"
