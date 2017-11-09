@@ -1,5 +1,5 @@
-README - CUPS v2.3b1 - 2017-11-01
-=================================
+README - CUPS v2.3b1 - 2017-11-01 Before license change!
+========================================================
 
 Looking for compile instructions?  Read the file `INSTALL.md` instead...
 
