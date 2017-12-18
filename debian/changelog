@@ -1,3 +1,15 @@
+cups (2.2.6-3) unstable; urgency=medium
+
+  [ Helge Kreutzmann ]
+  * Update German man page translations
+
+  [ Didier Raboud ]
+  * Bump S-V to 4.1.2 without changes needed
+  * Remove trailing whitespace in d/control and d/changelog
+  * Drop duplicate priority field for cups-bsd
+
+ -- Didier Raboud <odyx@debian.org>  Mon, 18 Dec 2017 21:52:25 +0100
+
 cups (2.2.6-2) unstable; urgency=medium
 
   * Backport upstream patch from the 2.3 branch:
