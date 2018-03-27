@@ -1,4 +1,4 @@
-From 953a8a40cc368dd9406caeb91251b4c69ca7c019 Mon Sep 17 00:00:00 2001
+From 0281f2ccec886cb2b864f64bb67b37a5f10b3589 Mon Sep 17 00:00:00 2001
 From: Michael R Sweet <michaelrsweet@gmail.com>
 Date: Wed, 1 Nov 2017 15:45:50 -0400
 Subject: =?UTF-8?q?The=20`lp`=20and=20`lpr`=20commands=20now=20provide=20b?=
@@ -11,23 +11,9 @@ Subject: =?UTF-8?q?The=20`lp`=20and=20`lpr`=20commands=20now=20provide=20b?=
 
 Bug-Debian: #870463
 ---
- berkeley/lpr.c |  2 +-
- cups/dest.c    | 38 +++++++++++++++++++++++++++++++++++++-
- 2 files changed, 38 insertions(+), 2 deletions(-)
+ cups/dest.c | 38 +++++++++++++++++++++++++++++++++++++-
+ 1 file changed, 37 insertions(+), 1 deletion(-)
 
-diff --git a/berkeley/lpr.c b/berkeley/lpr.c
-index 09e0bf1e5..0081b795d 100644
---- a/berkeley/lpr.c
-+++ b/berkeley/lpr.c
-@@ -1,7 +1,7 @@
- /*
-  * "lpr" command for CUPS.
-  *
-- * Copyright 2007-2016 by Apple Inc.
-+ * Copyright 2007-2017 by Apple Inc.
-  * Copyright 1997-2007 by Easy Software Products.
-  *
-  * These coded instructions, statements, and computer programs are the
 diff --git a/cups/dest.c b/cups/dest.c
 index 57a8dc95c..e91917ed2 100644
 --- a/cups/dest.c
