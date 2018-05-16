@@ -6,12 +6,12 @@
 # Nicolas François <nicolas.francois@centraliens.net>, 2007.
 # Julien Patriarca <patriarcaj@gmail.com>, 2012, 2013.
 # Didier Raboud <odyx@debian.org>, 2012.
-# Jean-Paul Guillonneau, 2016
+# Jean-Paul Guillonneau, 2016-2018
 msgid ""
 msgstr ""
 "Project-Id-Version: cups-2.0.3-6\n"
 "POT-Creation-Date: 2017-11-02 16:13+0100\n"
-"PO-Revision-Date: 2015-08-27 15:24+0200\n"
+"PO-Revision-Date: 2018-04-25 11:57+0200\n"
 "Last-Translator: Jean-Paul Guillonneau <guillonneau.jeanpaul@free.fr>\n"
 "Language-Team: French <debian-l10n-french@lists.debian.org>\n"
 "Language: fr\n"
@@ -805,9 +805,8 @@ msgstr "COPYRIGHT"
 #: mime.types.man:111 notifier.man:39 ppdcfile.man:160 ppdc.man:101
 #: ppdhtml.man:46 ppdi.man:53 ppdmerge.man:49 ppdpo.man:53 printers.conf.man:31
 #: subscriptions.conf.man:31
-#, fuzzy
 msgid "Copyright \\[co] 2007-2017 by Apple Inc."
-msgstr "Copyright 2007-2017 par Apple Inc."
+msgstr "Copyright \\[co] 2007-2017 by Apple Inc."
 
 # type: TH
 #. type: TH
@@ -1101,10 +1100,10 @@ msgstr "client.conf"
 # type: TH
 #. type: TH
 #: client.conf.man.in:13 cupsd.conf.man.in:13
-#, fuzzy, no-wrap
+#, no-wrap
 #| msgid "19 October 2015"
 msgid "19 October 2017"
-msgstr "19 octobre 2015"
+msgstr "19 octobre 2017"
 
 # type: Plain text
 #. type: Plain text
@@ -1292,10 +1291,10 @@ msgstr ""
 
 #. type: TP
 #: client.conf.man.in:58 cupsd.conf.man.in:442
-#, fuzzy, no-wrap
+#, no-wrap
 #| msgid "B<SSLOptions >[I<AllowDH>] [I<AllowRC4>] [I<AllowSSL3>] [I<DenyTLS1.0>]"
 msgid "B<SSLOptions >[I<AllowDH>] [I<AllowRC4>] [I<AllowSSL3>] [I<DenyCBC>] [I<DenyTLS1.0>]"
-msgstr "B<SSLOptions >[I<AllowDH>] [I<AllowRC4>] [I<AllowSSL3>] [I<DenyTLS1.0>]"
+msgstr "B<SSLOptions >[I<AllowDH>] [I<AllowRC4>] [I<AllowSSL3>] [I<DenyCBC>] [I<DenyTLS1.0>]"
 
 #. type: TP
 #: client.conf.man.in:60 cupsd.conf.man.in:444
@@ -1305,7 +1304,6 @@ msgstr "B<SSLOptions> I<None>"
 
 #. type: Plain text
 #: client.conf.man.in:71
-#, fuzzy
 #| msgid ""
 #| "Sets encryption options (only in /etc/cups/client.conf).  By default, "
 #| "CUPS only supports encryption using TLS v1.0 or higher using known secure "
@@ -1330,16 +1328,19 @@ msgid ""
 "minimum protocol version to TLS v1.1."
 msgstr ""
 "Définir les options de chiffrement (seulement dans I</etc/cups/client."
-"conf>). Par défaut, CUPS prend en charge le chiffrement avec TLS version 1.0 "
-"ou postérieures en utilisant les suites de chiffrement fiables. L’option "
+"conf>). Par défaut, CUPS prend en charge le chiffrement avec TLS "
+"versions 1.0 ou postérieures en utilisant les suites de chiffrement fiables. "
+"La sécurité est diminuée lorsque des options I<Allow> sont utilisées. La "
+"sécurité est améliorée lorsque des options I<Deny> sont utilisées. L’option "
 "I<AllowDH> autorise les suites de chiffrement utilisant la négociation de "
-"clefs stricte Diffie-Hellman. L’option I<AllowRC4> autorise les suites de "
-"chiffrement RC4 128 bits qui sont nécessaires pour quelques clients anciens "
-"qui ne prennent en charge les plus récentes. L’option I<AllowSSL3> autorise "
-"SSL version 3.0 nécessaire pour certains anciens clients qui ne prennent pas "
-"en charge TLS version 1.0. L’option I<DenyTLS1.0> désactive la prise en "
-"charge de TLS version 1.0 – cela oblige la version minimale du protocole à "
-"TLS version 1.1."
+"clefs stricte Diffie-Hellman (non prise en charge sur les systèmes utilisant "
+"GNU TLS). L’option I<AllowRC4> autorise les suites de chiffrement RC4 "
+"128 bits qui sont nécessaires pour quelques clients anciens. L’option "
+"I<AllowSSL3> autorise SSL version 3.0 nécessaire pour certains anciens "
+"clients qui ne prennent pas en charge TLS version 1.0. L’option I<DenyCBC> "
+"désactive toutes les suites de chiffrement CBC. L’option I<DenyTLS1.0> "
+"désactive la prise en charge de TLS version 1.0 – cela oblige la version "
+"minimale du protocole à TLS version 1.1."
 
 #. type: TP
 #: client.conf.man.in:71
@@ -3846,7 +3847,6 @@ msgstr ""
 #. #SSLPort
 #. type: Plain text
 #: cupsd.conf.man.in:456
-#, fuzzy
 #| msgid ""
 #| "Sets encryption options (only in /etc/cups/client.conf).  By default, "
 #| "CUPS only supports encryption using TLS v1.0 or higher using known secure "
@@ -3870,17 +3870,18 @@ msgid ""
 "disables TLS v1.0 support - this sets the minimum protocol version to TLS "
 "v1.1."
 msgstr ""
-"Définir les options de chiffrement (seulement dans I</etc/cups/client."
-"conf>). Par défaut, CUPS prend en charge le chiffrement avec TLS version 1.0 "
-"ou postérieures en utilisant les suites de chiffrement fiables. L’option "
-"I<AllowDH> autorise les suites de chiffrement utilisant la négociation de "
-"clefs stricte Diffie-Hellman. L’option I<AllowRC4> autorise les suites de "
-"chiffrement RC4 128 bits qui sont nécessaires pour quelques clients anciens "
-"qui ne prennent en charge les plus récentes. L’option I<AllowSSL3> autorise "
-"SSL version 3.0 nécessaire pour certains anciens clients qui ne prennent pas "
-"en charge TLS version 1.0. L’option I<DenyTLS1.0> désactive la prise en "
-"charge de TLS version 1.0 – cela oblige la version minimale du protocole à "
-"TLS version 1.1."
+"Définir les options de chiffrement. Par défaut, CUPS prend en charge le "
+"chiffrement avec TLS versions 1.0 ou postérieures en utilisant les suites de "
+"chiffrement fiables. La sécurité est diminuée lorsque des options I<Allow> "
+"sont utilisées. La sécurité est améliorée lorsque des options I<Deny> sont "
+"utilisées. L’option I<AllowDH> autorise les suites de chiffrement utilisant "
+"la négociation de clefs stricte Diffie-Hellman (non prise en charge dans les "
+"systèmes utilisant GNU TLS). L’option I<AllowRC4> autorise les suites de "
+"chiffrement RC4 128 bits qui sont nécessaires pour quelques clients anciens. "
+"L’option I<AllowSSL3> autorise SSL version 3.0 nécessaire pour certains "
+"anciens clients qui ne prennent pas en charge TLS version 1.0. L’option "
+"I<DenyTLS1.0> désactive la prise en charge de TLS version 1.0 – cela oblige "
+"la version minimale du protocole à TLS version 1.1."
 
 # type: TP
 #. type: TP
@@ -5252,15 +5253,14 @@ msgstr ""
 # type: SH
 #. type: SS
 #: cupsd.conf.man.in:813 cups-files.conf.man.in:223
-#, fuzzy, no-wrap
+#, no-wrap
 #| msgid "TEST DIRECTIVES"
 msgid "DEPRECATED DIRECTIVES"
-msgstr "DIRECTIVES DE TEST"
+msgstr "DIRECTIVES OBSOLÈTES"
 
 #. #Classification
 #. type: Plain text
 #: cupsd.conf.man.in:816
-#, fuzzy
 #| msgid ""
 #| "I<This program is deprecated and will be removed in a future release of "
 #| "CUPS.>"
@@ -5268,8 +5268,8 @@ msgid ""
 "The following directives are deprecated and will be removed in a future "
 "release of CUPS:"
 msgstr ""
-"B<Ce programme est obsolète et sera supprimé dans une future version de CUPS."
-">"
+"Les directives suivantes sont obsolètes et seront supprimées dans une future "
+"version de CUPS :"
 
 # NOTE: bannière à traduire ?
 # type: TP
@@ -6765,10 +6765,10 @@ msgstr "cups-files.conf"
 
 #. type: TH
 #: cups-files.conf.man.in:13
-#, fuzzy, no-wrap
+#, no-wrap
 #| msgid "19 September 2016"
 msgid "21 September 2017"
-msgstr "19 septembre 2016"
+msgstr "21 septembre 2017"
 
 # type: Plain text
 #. type: Plain text
@@ -6859,15 +6859,14 @@ msgstr "Par défaut, I</var/log/cups/access_log>."
 # type: TP
 #. type: TP
 #: cups-files.conf.man.in:49
-#, fuzzy, no-wrap
+#, no-wrap
 #| msgid "B<TempDir >I<directory>"
 msgid "B<CacheDir >I<directory>"
-msgstr "B<TempDir> I<répertoire>"
+msgstr "B<CacheDir> I<répertoire>"
 
 #. #ConfigFilePerm
 #. type: Plain text
 #: cups-files.conf.man.in:54
-#, fuzzy
 #| msgid ""
 #| "Specifies the directory containing the backends, CGI programs, filters, "
 #| "helper programs, notifiers, and port monitors.  The default is \"/usr/lib/"
@@ -6877,10 +6876,9 @@ msgid ""
 "default is \"/var/spool/cups/cache\" or \"/var/cache/cups\" depending on the "
 "platform."
 msgstr ""
-"Indiquer le répertoire contenant les programmes de transmission, les "
-"programmes CGI, les filtres, les programmes d’assistance, les programmes de "
-"notification et de surveillance de port. Par défaut, I</usr/lib/cups> ou I</"
-"usr/libexec/cups> en fonction de la plateforme."
+"Indiquer le répertoire à utiliser pour les fichiers temporaires (cache) de "
+"longue durée. Par défaut, I</var/spool/cups/cache> ou I</var/cache/cups> en "
+"fonction de la plateforme."
 
 # type: TP
 #. type: TP
@@ -7371,15 +7369,14 @@ msgstr ""
 # type: TP
 #. type: TP
 #: cups-files.conf.man.in:195
-#, fuzzy, no-wrap
+#, no-wrap
 #| msgid "B<TempDir >I<directory>"
 msgid "B<StateDir >I<directory>"
-msgstr "B<TempDir> I<répertoire>"
+msgstr "B<StateDir> I<répertoire>"
 
 #. #SyncOnClose
 #. type: Plain text
 #: cups-files.conf.man.in:200
-#, fuzzy
 #| msgid ""
 #| "Specifies the directory containing the backends, CGI programs, filters, "
 #| "helper programs, notifiers, and port monitors.  The default is \"/usr/lib/"
@@ -7388,10 +7385,9 @@ msgid ""
 "Specifies the directory to use for PID and local certificate files.  The "
 "default is \"/var/run/cups\" or \"/etc/cups\" depending on the platform."
 msgstr ""
-"Indiquer le répertoire contenant les programmes de transmission, les "
-"programmes CGI, les filtres, les programmes d’assistance, les programmes de "
-"notification et de surveillance de port. Par défaut, I</usr/lib/cups> ou I</"
-"usr/libexec/cups> en fonction de la plateforme."
+"Indiquer le répertoire à utiliser pour les fichiers de PID et certificats "
+"locaux. Par défaut, I</var/run/cups> ou I</etc/cups> en fonction de la "
+"plateforme."
 
 #. type: TP
 #: cups-files.conf.man.in:200
@@ -7445,7 +7441,6 @@ msgstr "B<TempDir> I<répertoire>"
 #. #User
 #. type: Plain text
 #: cups-files.conf.man.in:219
-#, fuzzy
 #| msgid ""
 #| "Specifies the directory where temporary files are stored.  The default is "
 #| "\"/var/spool/cups/tmp\"."
@@ -7453,8 +7448,8 @@ msgid ""
 "Specifies the directory where short-term temporary files are stored.  The "
 "default is \"/var/spool/cups/tmp\"."
 msgstr ""
-"Définir le répertoire où les fichiers temporaires sont stockés. Par défaut, "
-"I<var/spool/cups/tmp>."
+"Définir le répertoire où les fichiers temporaires de court terme sont "
+"stockés. Par défaut, I<var/spool/cups/tmp>."
 
 # type: TP
 #. type: TP
@@ -7476,7 +7471,6 @@ msgstr ""
 #. #FileDevice
 #. type: Plain text
 #: cups-files.conf.man.in:226
-#, fuzzy
 #| msgid ""
 #| "I<This program is deprecated and will be removed in a future release of "
 #| "CUPS.>"
@@ -7484,8 +7478,8 @@ msgid ""
 "The following directives are deprecated and will be removed from a future "
 "version of CUPS:"
 msgstr ""
-"B<Ce programme est obsolète et sera supprimé dans une future version de CUPS."
-">"
+"Les directives suivantes sont obsolètes et seront supprimées dans une future "
+"version de CUPS."
 
 # type: TP
 #. type: TP
@@ -7511,14 +7505,20 @@ msgid ""
 "specified file is overwritten for every print job.  Writing to directories "
 "is not supported."
 msgstr ""
+"Définir que le fichier pseudo-spécial peut être utilisé pour de nouvelles "
+"files d’attente d’imprimante. L’URI I<file:///dev/null> est toujours "
+"autorisé. Les fichiers spéciaux ne peuvent être utilisés avec les files "
+"d’attente « raw » — un fichier PPD est nécessaire. Le fichier indiqué est "
+"réécrit pour chaque travail d’impression. L’écriture dans des répertoires "
+"n’est pas gérée."
 
 # type: TP
 #. type: TP
 #: cups-files.conf.man.in:236
-#, fuzzy, no-wrap
+#, no-wrap
 #| msgid "FontPath directory[:directory:...]"
 msgid "B<FontPath >I<directory[:...:directoryN]>"
-msgstr "B<FontPath> I<répertoire>[:I<répertoire>:...]"
+msgstr "B<FontPath> I<répertoire>[:...:I<répertoireN>]"
 
 #. #LPDConfigFile
 #. type: Plain text
@@ -7528,28 +7528,31 @@ msgid ""
 "On Linux the B<font-config>(1)  mechanism is used instead.  On macOS the "
 "Font Book application manages system-installed fonts."
 msgstr ""
+"Définir une liste de répertoires, séparés par des deux-points, dans lesquels "
+"les fontes peuvent être trouvées. Dans Linux, le mécanisme B<font-config>(1) "
+"est utilisé à la place. Avec macOS, l’application Font Book gère les fontes "
+"installées sur le système."
 
 # type: TP
 #. type: TP
 #: cups-files.conf.man.in:244
-#, fuzzy, no-wrap
+#, no-wrap
 #| msgid "B<ConfigFilePerm >I<mode>"
 msgid " B<LPDConfigFile >I<filename>"
-msgstr "B<ConfigFilePerm> I<mode>"
+msgstr " B<LPDConfigFile >I<nom-fichier>"
 
 # type: Plain text
 #. #Printcap
 #. type: Plain text
 #: cups-files.conf.man.in:248
-#, fuzzy
 #| msgid "Specifies the SSL certificate authority file to use."
 msgid "Specifies the LPD service configuration file to update."
-msgstr "Indique le certificat SSL de l'autorité à utiliser."
+msgstr "Définir le fichier de configuration du service LPD à mettre à jour."
 
 # type: TP
 #. type: TP
 #: cups-files.conf.man.in:248
-#, fuzzy, no-wrap
+#, no-wrap
 #| msgid "Printcap filename"
 msgid "B<Printcap >I<filename>"
 msgstr "B<Printcap> I<nom-fichier>"
@@ -7558,15 +7561,16 @@ msgstr "B<Printcap> I<nom-fichier>"
 #. #PrintcapFormat
 #. type: Plain text
 #: cups-files.conf.man.in:252
-#, fuzzy
 #| msgid "Specifies the name of the user for print requests."
 msgid "Specifies a file that is filled with a list of local print queues."
-msgstr "Indiquer le nom d'utilisateur pour les requêtes d’impression."
+msgstr ""
+"Définir le fichier rempli par une liste de files d’attente d’impression "
+"locales."
 
 # type: TP
 #. type: TP
 #: cups-files.conf.man.in:252
-#, fuzzy, no-wrap
+#, no-wrap
 #| msgid "PrintcapFormat bsd"
 msgid "B<PrintcapFormat bsd>"
 msgstr "B<PrintcapFormat> I<bsd>"
@@ -7574,15 +7578,15 @@ msgstr "B<PrintcapFormat> I<bsd>"
 # type: TP
 #. type: TP
 #: cups-files.conf.man.in:254
-#, fuzzy, no-wrap
+#, no-wrap
 #| msgid "PrintcapFormat solaris"
 msgid "B<PrintcapFormat plist>"
-msgstr "B<PrintcapFormat> I<solaris>"
+msgstr "B<PrintcapFormat> I<plist>"
 
 # type: TP
 #. type: TP
 #: cups-files.conf.man.in:256
-#, fuzzy, no-wrap
+#, no-wrap
 #| msgid "PrintcapFormat solaris"
 msgid "B<PrintcapFormat solaris>"
 msgstr "B<PrintcapFormat> I<solaris>"
@@ -7595,22 +7599,25 @@ msgid ""
 "historical LPD printcap file format.  \"plist\" is the Apple plist file "
 "format.  \"solaris\" is the historical Solaris LPD printcap file format."
 msgstr ""
+"Définir le format à utiliser pour le fichier Printcap. « bsd » est le format "
+"historique de fichier printcap de LPD. « plist » est le format de fichier "
+"plist d’Apple. « solaris » est le format historique de fichier printcap de "
+"LPD de Solaris."
 
 # type: TP
 #. type: TP
 #: cups-files.conf.man.in:263
-#, fuzzy, no-wrap
+#, no-wrap
 #| msgid "B<ConfigFilePerm >I<mode>"
 msgid "B<SMBConfigFile >I<filename>"
-msgstr "B<ConfigFilePerm> I<mode>"
+msgstr "B<SMBConfigFile >I<nom-fichier>"
 
 # type: Plain text
 #. type: Plain text
 #: cups-files.conf.man.in:266
-#, fuzzy
 #| msgid "Specifies the SSL certificate authority file to use."
 msgid "Specifies the SMB service configuration file to update."
-msgstr "Indique le certificat SSL de l'autorité à utiliser."
+msgstr "Définir le fichier de configuration du service SMB à mettre à jour."
 
 # type: Plain text
 #. type: Plain text
@@ -11448,10 +11455,10 @@ msgstr "ipptoolfile"
 # type: TH
 #. type: TH
 #: ipptoolfile.man:12
-#, fuzzy, no-wrap
+#, no-wrap
 #| msgid "25 June 2013"
 msgid "15 June 2017"
-msgstr "25 juin 2013"
+msgstr "15 juin 2017"
 
 #. type: Plain text
 #: ipptoolfile.man:15
@@ -11460,7 +11467,6 @@ msgstr "ipptoolfile - Format de fichier ipptool"
 
 #. type: Plain text
 #: ipptoolfile.man:21
-#, fuzzy
 #| msgid ""
 #| "The B<ipptool>(1)  program accepts free-form plain text files that "
 #| "describe one or more IPP requests. Comments start with the \"#\" "
@@ -11479,7 +11485,7 @@ msgstr ""
 
 #. type: Plain text
 #: ipptoolfile.man:27
-#, fuzzy, no-wrap
+#, no-wrap
 #| msgid ""
 #| "    # This is a comment\n"
 #| "    {\n"
@@ -11494,7 +11500,7 @@ msgstr ""
 "    # Ceci est un commentaire\n"
 "    {\n"
 "      # Le nom du test\n"
-"      NOM « Fichier d’impression PostScript »\n"
+"      NAME « Fichier d’impression PDF »\n"
 
 #. type: Plain text
 #: ipptoolfile.man:30
@@ -11503,10 +11509,12 @@ msgid ""
 "      # The request to send\n"
 "      OPERATION Print-Job\n"
 msgstr ""
+"      # La requête à envoyer\n"
+"      OPERATION Print-Job\n"
 
 #. type: Plain text
 #: ipptoolfile.man:37
-#, fuzzy, no-wrap
+#, no-wrap
 #| msgid ""
 #| "      # The request to send\n"
 #| "      OPERATION Print-Job\n"
@@ -11524,14 +11532,12 @@ msgid ""
 "      ATTR name requesting-user-name $user\n"
 "      ATTR mimeMediaType document-format application/pdf\n"
 msgstr ""
-"      # La requête à envoyer\n"
-"      OPERATION Print-Job\n"
 "      GROUP operation-attributes-tag\n"
 "      ATTR charset attributes-charset utf-8\n"
 "      ATTR language attributes-natural-language en\n"
 "      ATTR uri printer-uri $uri\n"
 "      ATTR name requesting-user-name $user\n"
-"      FILE testfile.ps\n"
+"      ATTR mimeMediaType document-format application/pdf\n"
 
 #. type: Plain text
 #: ipptoolfile.man:52
@@ -11552,16 +11558,30 @@ msgid ""
 "        MEMBER keyword media-type \"stationery\"\n"
 "      }\n"
 msgstr ""
+"      GROUP job-attributes-tag\n"
+"      ATTR collection media-col {\n"
+"        # papier ordinaire US Letter à partir du bac « principal »\n"
+"        MEMBER collection media-size {\n"
+"          MEMBER integer x-dimension 21590\n"
+"          MEMBER integer y-dimension 27940\n"
+"        }\n"
+"        MEMBER integer media-top-margin 423\n"
+"        MEMBER integer media-bottom-margin 423\n"
+"        MEMBER integer media-left-margin 423\n"
+"        MEMBER integer media-right-margin 423\n"
+"        MEMBER keyword media-source \"main\"\n"
+"        MEMBER keyword media-type \"stationery\"\n"
+"      }\n"
 
 #. type: Plain text
 #: ipptoolfile.man:54
 #, no-wrap
 msgid "      FILE testfile.pdf\n"
-msgstr ""
+msgstr "      FILE testfile.pdf\n"
 
 #. type: Plain text
 #: ipptoolfile.man:63
-#, fuzzy, no-wrap
+#, no-wrap
 #| msgid ""
 #| "      # The response to expect\n"
 #| "      STATUS successful-ok\n"
@@ -11588,7 +11608,7 @@ msgstr ""
 "    }\n"
 "    {\n"
 "      # Le nom du test\n"
-"      NAME \"Obtenir les attributs du travail PostScript\"\n"
+"      NAME \"Attente de l’achèvement du travail\"\n"
 
 #. type: Plain text
 #: ipptoolfile.man:66
@@ -11597,10 +11617,12 @@ msgid ""
 "      # The request to send\n"
 "      OPERATION Get-Job-Attributes\n"
 msgstr ""
+"      # La requête à envoyer\n"
+"      OPERATION Get-Job-Attributes\n"
 
 #. type: Plain text
 #: ipptoolfile.man:73
-#, fuzzy, no-wrap
+#, no-wrap
 #| msgid ""
 #| "      # The request to send\n"
 #| "      OPERATION Get-Job-Attributes\n"
@@ -11618,8 +11640,6 @@ msgid ""
 "      ATTR integer job-id $job-id\n"
 "      ATTR name requesting-user-name $user\n"
 msgstr ""
-"      # La requête à envoyer\n"
-"      OPERATION Get-Job-Attributes\n"
 "      GROUP operation-attributes-tag\n"
 "      ATTR charset attributes-charset utf-8\n"
 "      ATTR language attributes-natural-language en\n"
@@ -11629,7 +11649,7 @@ msgstr ""
 
 #. type: Plain text
 #: ipptoolfile.man:80
-#, fuzzy, no-wrap
+#, no-wrap
 #| msgid ""
 #| "      # The response to expect\n"
 #| "      STATUS successful-ok\n"
@@ -11652,7 +11672,6 @@ msgstr ""
 "      EXPECT job-uri OF-TYPE uri\n"
 "      EXPECT job-state OF-TYPE enum WITH-VALUE 3,4,5,6,7,8,9\n"
 "      EXPECT job-originating-user-name OF-TYPE name WITH-VALUE \"$user\"\n"
-"    }\n"
 
 #. type: Plain text
 #: ipptoolfile.man:85
@@ -11663,6 +11682,10 @@ msgid ""
 "      DISPLAY job-state-reasons\n"
 "    }\n"
 msgstr ""
+"      # Afficher l’état du travail en attendant son achèvement...\n"
+"      DISPLAY job-state\n"
+"      DISPLAY job-state-reasons\n"
+"    }\n"
 
 #. type: Plain text
 #: ipptoolfile.man:88
@@ -11970,10 +11993,10 @@ msgstr "Les directives suivantes sont comprises dans un I<test> : "
 # type: TP
 #. type: TP
 #: ipptoolfile.man:166
-#, fuzzy, no-wrap
+#, no-wrap
 #| msgid "B<ATTR >I<tag attribute-name value(s)>"
 msgid "B<ATTR >I<out-of-band-tag attribute-name>"
-msgstr "B<ATTR >I<étiquette nom_attribut valeur(s)>"
+msgstr "B<ATTR >I<étiquette_hors-bande nom_attribut>"
 
 # type: TP
 #. type: TP
@@ -11992,6 +12015,12 @@ msgid ""
 "escape commas using the \" Common attributes and values are listed in the "
 "IANA IPP registry - see references below."
 msgstr ""
+"Ajouter un attribut à la requête de test. Les étiquettes hors-bande (admin-"
+"define, delete-attribute, no-value, not-settable, unknown, unsupported) "
+"n’ont pas de valeur. Les valeurs pour d’autres étiquettes sont séparées par "
+"le caractère virgule (« , ») – protéger les virgules avec \". Les attributs "
+"et valeurs courants sont listés dans le registre IPP d’IANA — consulter les "
+"références ci-dessous."
 
 #. type: TP
 #: ipptoolfile.man:174
@@ -12001,7 +12030,6 @@ msgstr "B<ATTR collection >I<nom_attribut >B<{ MEMBER >I<étiquette nom_membre v
 
 #. type: Plain text
 #: ipptoolfile.man:179
-#, fuzzy
 #| msgid ""
 #| "Adds a collection attribute to the test request. Member attributes follow "
 #| "the same syntax as regular attributes and can themselves be nested "
@@ -12047,10 +12075,10 @@ msgstr ""
 
 #. type: TP
 #: ipptoolfile.man:186
-#, fuzzy, no-wrap
+#, no-wrap
 #| msgid "B<DELAY >I<seconds>"
 msgid "B<DELAY >I<seconds>[I<,repeat-seconds>]"
-msgstr "B<DELAY >I<secondes>"
+msgstr "B<DELAY >I<seconds>[I<,répétition-secondes>]"
 
 #. type: Plain text
 #: ipptoolfile.man:190
@@ -12058,6 +12086,9 @@ msgid ""
 "Specifies a delay in seconds before this test will be run.  If two values "
 "are specified, the second value is used as the delay between repeated tests."
 msgstr ""
+"Définir un délai en seconde avant l’exécution du test. Si deux valeurs sont "
+"indiquées, la seconde est utilisée pour définir l’intervalle entre des tests "
+"répétitifs."
 
 #. type: TP
 #: ipptoolfile.man:190
@@ -12904,7 +12935,6 @@ msgstr "CODES D’OPÉRATION"
 
 #. type: Plain text
 #: ipptoolfile.man:414
-#, fuzzy
 #| msgid ""
 #| "Operation codes correspond to the hexadecimal numbers (0xHHHH) and names "
 #| "from RFC 2911 and other IPP extension specifications. Here is a complete "
@@ -12915,7 +12945,7 @@ msgid ""
 "list of names supported by B<ipptool>(8):"
 msgstr ""
 "Les codes d’opération correspondent aux nombres hexadécimaux (0xHHHH) et "
-"noms de la RFC 2911 et d’autres spécifications d’extensions IPP. Voici une "
+"noms de la RFC 8011 et d’autres spécifications d’extensions IPP. Voici une "
 "liste complète de noms pris en charge par B<ipptool>(8) :"
 
 #. type: Plain text
@@ -13134,7 +13164,6 @@ msgstr "CODES D’ÉTAT"
 
 #. type: Plain text
 #: ipptoolfile.man:487
-#, fuzzy
 #| msgid ""
 #| "Status codes correspond to the hexadecimal numbers (0xHHHH) and names "
 #| "from RFC 2911 and other IPP extension specifications. Here is a complete "
@@ -13145,8 +13174,8 @@ msgid ""
 "the names supported by B<ipptool>(8):"
 msgstr ""
 "Les codes d’état correspondent aux nombres hexadécimaux (0xHHHH) et noms de "
-"la RFC 2911 et d’autres spécifications d’extensions IPP. Voici une liste "
-"complète de noms pris en charge par B<ipptool>(8)  :"
+"la RFC 8011 et d’autres spécifications d’extensions IPP. Voici une liste "
+"complète de noms pris en charge par B<ipptool>(8) :"
 
 #. type: Plain text
 #: ipptoolfile.man:546
@@ -13276,7 +13305,6 @@ msgstr "ÉTIQUETTES"
 
 #. type: Plain text
 #: ipptoolfile.man:549
-#, fuzzy
 #| msgid ""
 #| "Value and group tags correspond to the names from RFC 2911 and other IPP "
 #| "extension specifications. Here are the group tags:"
@@ -13284,7 +13312,7 @@ msgid ""
 "Value and group tags correspond to the names from RFC 8011 and other IPP "
 "extension specifications. Here are the group tags:"
 msgstr ""
-"Les étiquettes de valeur et de groupe correspondent aux noms de la RFC 2911 "
+"Les étiquettes de valeur et de groupe correspondent aux noms de la RFC 8011 "
 "et d’autres spécifications d’extensions IPP. Voici les étiquettes de groupe :"
 
 #. type: Plain text
@@ -13574,7 +13602,6 @@ msgstr "Insérer le nom de connexion de l’utilisateur actuel."
 
 #. type: Plain text
 #: ipptoolfile.man:651
-#, fuzzy
 #| msgid ""
 #| "B<ipptool>(1), CUPS Online Help (http://localhost:631/help), IANA IPP "
 #| "Registry (http://www.iana.org/assignments/ipp-registrations), PWG "
@@ -13585,11 +13612,10 @@ msgid ""
 "registrations), PWG Internet Printing Protocol Workgroup (http://www.pwg.org/"
 "ipp), RFC 8011 (http://tools.ietf.org/html/rfc8011)"
 msgstr ""
-"B<ipptool>(1), aide en ligne de CUPS E<lt>URL:I<http://localhost:631/"
-"help>E<gt>, IANA IPP Registry E<lt>URL:I<http://www.iana.org/assignments/ipp-"
-"registrations>E<gt>, PWG Internet Printing Protocol Workgroup E<lt>URL:"
-"I<http://www.pwg.org/ipp>E<gt>, RFC 2911 E<lt>URL:I<http://tools.ietf.org/"
-"html/rfc3911>E<gt>"
+"B<ipptool>(1), IANA IPP Registry (E<lt>URL:I<http://www.iana.org/assignments/"
+"ipp-registrations>E<gt>), PWG Internet Printing Protocol Workgroup (E<lt>URL:"
+"I<http://www.pwg.org/ipp>E<gt>), RFC 8011 (E<lt>URL:I<http://tools.ietf.org/"
+"html/rfc8011>E<gt>)"
 
 #. type: TH
 #: ipptool.man:12
@@ -13599,10 +13625,10 @@ msgstr "ipptool"
 
 #. type: TH
 #: ipptool.man:12
-#, fuzzy, no-wrap
+#, no-wrap
 #| msgid "4 August 2008"
 msgid "4 August 2017"
-msgstr "4 août 2008"
+msgstr "4 août 2017"
 
 #. type: Plain text
 #: ipptool.man:15
@@ -13611,7 +13637,6 @@ msgstr "ipptool - Réaliser des requêtes d’impression par internet"
 
 #. type: Plain text
 #: ipptool.man:75
-#, fuzzy
 #| msgid ""
 #| "B<ipptool> [ B<--help> ] [ B<--stop-after-include-error> ] [ B<--"
 #| "version> ] [ B<-4> ] [ B<-6> ] [ B<-C> ] [ B<-E> ] [ B<-I> ] [ B<-L> ] "
@@ -13630,9 +13655,9 @@ msgstr ""
 "B<ipptool> [ B<--help> ] [ B<--stop-after-include-error> ] [ B<--version> ] "
 "[ B<-4> ] [ B<-6> ] [ B<-C> ] [ B<-E> ] [ B<-I> ] [ B<-L> ] [ B<-P> "
 "I<fichier.plist> ] [ B<-S> ] [ B<-T> I<secondes> ] [ B<-V> I<version> ] [ B<-"
-"X> ] [ B<-c> ] [ B<-d> I<nom=valeur> ] [ B<-f> I<fichier> ] [ B<-i> "
-"I<secondes> ] [ B<-n> I<nombre_répétitions>] [ B<-q> ] [ B<-t> ] [ B<-v> ] "
-"I<uri_imprimante> I<fichier_test> [ ...  I<fichier_test> ]"
+"X> ] [ B<-c> ] [ B<-d> I<nom=valeur> ] [ B<-f> I<fichier> ] [ B<-h> ] [ B<-"
+"i> I<secondes> ] [ B<-n> I<nombre_répétitions>] [ B<-q> ] [ B<-t> ] [ B<-"
+"v> ] I<uri_imprimante> I<fichier_test> [ ...  I<fichier_test> ]"
 
 #. type: Plain text
 #: ipptool.man:88
@@ -13874,7 +13899,7 @@ msgstr "Indiquer le nom du fichier de requêtes par défaut pour les tests."
 #. type: Plain text
 #: ipptool.man:161
 msgid "Validate HTTP response headers."
-msgstr ""
+msgstr "Valider les en-têtes de réponse HTTP."
 
 # type: TP
 #. type: TP
@@ -14061,7 +14086,6 @@ msgstr ""
 
 #. type: Plain text
 #: ipptool.man:246
-#, fuzzy
 #| msgid ""
 #| "B<ipptoolfile>(5), CUPS Online Help (http://localhost:631/help), IANA IPP "
 #| "Registry (http://www.iana.org/assignments/ipp-registrations), PWG "
@@ -14072,11 +14096,10 @@ msgid ""
 "registrations), PWG Internet Printing Protocol Workgroup (http://www.pwg.org/"
 "ipp)  RFC 8011 (http://tools.ietf.org/html/rfc8011),"
 msgstr ""
-"B<ipptoolfile>(5), aide en ligne de CUPS E<lt>URL:I<http://localhost:631/"
-"help>E<gt>,  IANA IPP Registry E<lt>URL:I<http://www.iana.org/assignments/"
-"ipp-registrations>E<gt>, PWG Internet Printing Protocol Workgroup E<lt>URL:"
-"I<http://www.pwg.org/ipp>E<gt>, RFC 2911 E<lt>URL:I<http://tools.ietf.org/"
-"html/rfc2911>E<gt>"
+"B<ipptoolfile>(5), IANA IPP Registry (E<lt>URL:I<http://www.iana.org/"
+"assignments/ipp-registrations1>E<gt>), PWG Internet Printing Protocol "
+"Workgroup (E<lt>URL:I<http://www.pwg.org/ipp1>E<gt>), RFC 8011 (E<lt>URL:"
+"I<http://tools.ietf.org/html/rfc80111>E<gt>)"
 
 # type: TH
 #. type: TH
@@ -16477,10 +16500,10 @@ msgstr "lpstat"
 # type: TH
 #. type: TH
 #: lpstat.man:13
-#, fuzzy, no-wrap
+#, no-wrap
 #| msgid "26 May 2016"
 msgid "26 May 2017"
-msgstr "26 mai 2016"
+msgstr "26 mai 2017"
 
 # type: Plain text
 #. type: Plain text
@@ -16491,7 +16514,6 @@ msgstr "lpstat - Afficher l'état de CUPS."
 # type: Plain text
 #. type: Plain text
 #: lpstat.man:69
-#, fuzzy
 #| msgid ""
 #| "B<lpstat> [ B<-E> ] [ B<-H> ] [ B<-U> I<username> ] [ B<-h "
 #| ">I<hostname>[B<:>I<port>] ] [ B<-l> ] [ B<-W> I<which-jobs> ] [ B<-a> "
@@ -16507,9 +16529,9 @@ msgid ""
 msgstr ""
 "B<lpstat> [ B<-E> ] [B<-H>] [ B<-U> I<identifiant> ] [ B<-h> I<nom_hôte>[B<:"
 ">I<port>] ] [ B<-l> ] [ B<-W> I<quels_travaux> ] [ B<-a> "
-"[ I<destination(s)> ] ] [ B<-c> [ I<class(es)> ] ] [ B<-d> ] [ B<-o> "
-"[ I<destination(s)> ] ] [ B<-p> [ I<imprimante(s)> ] ] [ B<-r> ] [ B<-R> ] "
-"[ B<-s> ] [ B<-t> ] [ B<-u> [ I<utilisateur(s)> ] ] [ B<-v> "
+"[ I<destination(s)> ] ] [ B<-c> [ I<classe(s)> ] ] [ B<-d> ] [ B<-e> ] [ B<-"
+"o> [ I<destination(s)> ] ] [ B<-p> [ I<imprimante(s)> ] ] [ B<-r> ] [ B<-"
+"R> ] [ B<-s> ] [ B<-t> ] [ B<-u> [ I<utilisateur(s)> ] ] [ B<-v> "
 "[ I<imprimante(s)> ] ]"
 
 # type: Plain text
@@ -16627,7 +16649,7 @@ msgstr "Afficher la destination par défaut."
 #. type: Plain text
 #: lpstat.man:104
 msgid "Shows all available destinations on the local network."
-msgstr ""
+msgstr "Afficher toutes les destinations disponibles sur le réseau local."
 
 # type: Plain text
 #. type: Plain text
@@ -16754,10 +16776,10 @@ msgstr ""
 # type: Plain text
 #. type: Plain text
 #: lpstat.man:142
-#, fuzzy
 #| msgid "The I<-h>, I<-E>, I<-U>, and I<-W> options are unique to CUPS."
 msgid "The I<-h>, I<-e>, I<-E>, I<-U>, and I<-W> options are unique to CUPS."
-msgstr "Les options B<-h>, B<-E>, B<-U> et B<-W> sont spécifiques à CUPS."
+msgstr ""
+"Les options B<-h>, B<-e>, B<-E>, B<-U> et B<-W> sont spécifiques à CUPS."
 
 # type: Plain text
 #. type: Plain text
