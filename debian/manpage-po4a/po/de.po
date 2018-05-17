@@ -1,5 +1,5 @@
 # Translation of cups man pages to German
-# Copyright (C) Helge Kreutzmann <debian@helgefjell.de>, 2008-2017
+# Copyright (C) Helge Kreutzmann <debian@helgefjell.de>, 2008-2018
 # Chris Leick <c.leick@vollbio.de>, 2009.
 # This file is distributed under the same license as the cups package.
 #
@@ -10,9 +10,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: cups man pages 2.0.3-10\n"
+"Project-Id-Version: cups man pages 2.2.7-5\n"
 "POT-Creation-Date: 2017-11-02 16:13+0100\n"
-"PO-Revision-Date: 2018-04-27 22:15+0200\n"
+"PO-Revision-Date: 2018-05-17 19:17+0200\n"
 "Last-Translator: Helge Kreutzmann <debian@helgefjell.de>\n"
 "Language-Team: de <debian-l10n-german@lists.debian.org>\n"
 "Language: de\n"
@@ -13046,10 +13046,9 @@ msgstr "lpadmin"
 
 #. type: TH
 #: lpadmin.man:13
-#, fuzzy, no-wrap
-#| msgid "5 March 2016"
+#, no-wrap
 msgid "29 March 2016"
-msgstr "5. März 2016"
+msgstr "29. März 2016"
 
 #. type: Plain text
 #: lpadmin.man:16
@@ -13180,15 +13179,6 @@ msgstr ""
 
 #. type: Plain text
 #: lpadmin.man:94
-#, fuzzy
-#| msgid ""
-#| "Sets a standard PPD file for the printer from the I<model> directory or "
-#| "using one of the driver interfaces.  Use the I<-m> option with the "
-#| "B<lpinfo>(8)  command to get a list of supported models.  The model \"raw"
-#| "\" clears any existing PPD file and the model \"everywhere\" queries the "
-#| "printer referred to by the specified IPP I<device-uri>.  Note: The \"raw"
-#| "\" model is deprecated and will not be supported in a future version of "
-#| "CUPS."
 msgid ""
 "Sets a standard PPD file for the printer from the I<model> directory or "
 "using one of the driver interfaces.  Use the I<-m> option with the "
@@ -13201,8 +13191,7 @@ msgstr ""
 "m> mit dem Befehl B<lpinfo>(8), um eine Liste der unterstützten Modelle zu "
 "erhalten. Das Modell »raw« bereinigt jede PPD-Datei und das Modell "
 "»everywhere« fragt die von der angegebenen IPP-I<Geräte-URI> referenzierten "
-"Drucker ab. Beachten Sie, dass das Model »raw« veraltet ist und in einer "
-"zukünftigen Version von CUPS nicht mehr unterstützt wird."
+"Drucker ab."
 
 #. type: TP
 #: lpadmin.man:94
