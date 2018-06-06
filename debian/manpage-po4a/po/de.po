@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cups man pages 2.2.7-5\n"
 "POT-Creation-Date: 2018-06-05 22:27+0200\n"
-"PO-Revision-Date: 2018-05-17 19:17+0200\n"
+"PO-Revision-Date: 2018-06-06 19:40+0200\n"
 "Last-Translator: Helge Kreutzmann <debian@helgefjell.de>\n"
 "Language-Team: de <debian-l10n-german@lists.debian.org>\n"
 "Language: de\n"
@@ -2191,10 +2191,9 @@ msgstr "cupsd.conf"
 
 #. type: TH
 #: cupsd.conf.man.in:13
-#, fuzzy, no-wrap
-#| msgid "4 April 2014"
+#, no-wrap
 msgid "24 April 2018"
-msgstr "4. April 2014"
+msgstr "24. April 2018"
 
 #. type: Plain text
 #: cupsd.conf.man.in:16
@@ -2549,10 +2548,9 @@ msgstr ""
 
 #. type: TP
 #: cupsd.conf.man.in:134
-#, fuzzy, no-wrap
-#| msgid "ErrorPolicy retry-current-job"
+#, no-wrap
 msgid "B<ErrorPolicy retry-current-job>"
-msgstr "ErrorPolicy retry-current-job"
+msgstr "B<ErrorPolicy retry-current-job>"
 
 #. type: Plain text
 #: cupsd.conf.man.in:137
@@ -4992,10 +4990,8 @@ msgstr ""
 
 #. type: Plain text
 #: cupsd.conf.man.in:879 lpoptions.man.in:121
-#, fuzzy
-#| msgid "Copyright \\[co] 2007-2017 by Apple Inc."
 msgid "Copyright \\[co] 2007-2018 by Apple Inc."
-msgstr "Copyright \\[co] 2007-2017 by Apple Inc."
+msgstr "Copyright \\[co] 2007-2018 by Apple Inc."
 
 #. type: TH
 #: cupsd-helper.man:13
@@ -6706,6 +6702,9 @@ msgid ""
 "standard CUPS filter and backend environment variables cannot be overridden "
 "using this directive."
 msgstr ""
+"Übergibt die festgelegten Umgebungsvariable(n) an Kindprozesse. Hinweis: die "
+"Standard-CUPS-Filter und -Backend-Umgebungsvariablen können mit dieser "
+"Direktive nicht außer Kraft gesetzt werden."
 
 #. type: TP
 #: cups-files.conf.man.in:166
@@ -6838,6 +6837,10 @@ msgid ""
 "Note: the standard CUPS filter and backend environment variables cannot be "
 "overridden using this directive."
 msgstr ""
+"Setzt die festgelegte Umgebungsvariable, die an Kindprozesse weitergegeben "
+"werden soll. Hinweis: die Standard-CUPS-Filter und -Backend-"
+"Umgebungsvariablen können mit dieser Direktive nicht außer Kraft gesetzt "
+"werden."
 
 #. type: TP
 #: cups-files.conf.man.in:205
@@ -9482,10 +9485,9 @@ msgstr "ippfind"
 
 #. type: TH
 #: ippfind.man:12
-#, fuzzy, no-wrap
-#| msgid "4 February 2015"
+#, no-wrap
 msgid "14 February 2018"
-msgstr "4. Februar 2015"
+msgstr "14. Februar 2018"
 
 #. type: Plain text
 #: ippfind.man:15
@@ -9699,26 +9701,21 @@ msgstr "Wahr, falls der Dienst an diesem Computer lokal ist."
 
 #. type: TP
 #: ippfind.man:86
-#, fuzzy, no-wrap
-#| msgid "B<-U >I<username>"
+#, no-wrap
 msgid "B<-N >I<name>"
-msgstr "B<-U >I<Benutzername>"
+msgstr "B<-N >I<Name>"
 
 #. type: TP
 #: ippfind.man:88
-#, fuzzy, no-wrap
-#| msgid "B<--make-and-model >I<name>"
+#, no-wrap
 msgid "B<--literal-name >I<name>"
-msgstr "B<--make-and-model >I<Name>"
+msgstr "B<--literal-name >I<Name>"
 
 #. type: Plain text
 #: ippfind.man:91
-#, fuzzy
-#| msgid ""
-#| "True if the service instance name matches the given regular expression."
 msgid "True if the service instance name matches the given name."
 msgstr ""
-"Wahr, falls die Instanz des Dienstes auf den angegebenen regulären Ausdruck "
+"Wahr, falls der Name der Instanz des Dienstes auf den angegebenen Namen"
 "passt."
 
 #. type: TP
@@ -10273,10 +10270,8 @@ msgstr "B<ipptool>(1)"
 
 #. type: Plain text
 #: ippfind.man:261
-#, fuzzy
-#| msgid "Copyright \\[co] 2013-2015 by Apple Inc."
 msgid "Copyright \\[co] 2013-2018 by Apple Inc."
-msgstr "Copyright \\[co] 2013-2015 by Apple Inc."
+msgstr "Copyright \\[co] 2013-2018 by Apple Inc."
 
 #. type: TH
 #: ../test/ippserver.man:12
@@ -13231,13 +13226,6 @@ msgstr ""
 
 #. type: Plain text
 #: lpadmin.man:95
-#, fuzzy
-#| msgid ""
-#| "Sets a standard PPD file for the printer from the I<model> directory or "
-#| "using one of the driver interfaces.  Use the I<-m> option with the "
-#| "B<lpinfo>(8)  command to get a list of supported models.  The model \"raw"
-#| "\" clears any existing PPD file and the model \"everywhere\" queries the "
-#| "printer referred to by the specified IPP I<device-uri>."
 msgid ""
 "Sets a standard PPD file for the printer from the I<model> directory or "
 "using one of the driver interfaces.  Use the I<-m> option with the "
@@ -13251,7 +13239,8 @@ msgstr ""
 "m> mit dem Befehl B<lpinfo>(8), um eine Liste der unterstützten Modelle zu "
 "erhalten. Das Modell »raw« bereinigt jede PPD-Datei und das Modell "
 "»everywhere« fragt die von der angegebenen IPP-I<Geräte-URI> referenzierten "
-"Drucker ab."
+"Drucker ab. Hinweis: Das Model »raw« ist veraltet und wird in einer "
+"zukünftigen Version von CUPS nicht mehr unterstützt."
 
 #. type: TP
 #: lpadmin.man:95
@@ -14662,10 +14651,9 @@ msgstr "lpoptions"
 
 #. type: TH
 #: lpoptions.man.in:13
-#, fuzzy, no-wrap
-#| msgid "15 April 2014"
+#, no-wrap
 msgid "10 April 2018"
-msgstr "15. April 2014"
+msgstr "10. April 2018"
 
 #. type: Plain text
 #: lpoptions.man.in:16
@@ -14674,56 +14662,39 @@ msgstr "lpoptions - zeigt oder setzt Druckeroptionen und -voreinstellungen"
 
 #. type: Plain text
 #: lpoptions.man.in:27
-#, fuzzy
-#| msgid ""
-#| "B<lpoptions> [ B<-E> ] [ B<-U> I<username> ] [ B<-h >I<server>[B<:"
-#| ">I<port>] ] B<-d >I<destination>[B</>I<instance>] [ B<-l> ]"
 msgid ""
 "B<lpoptions> [ B<-E> ] [ B<-h >I<server>[B<:>I<port>] ] B<-d "
 ">I<destination>[B</>I<instance>] [ B<-l> ]"
 msgstr ""
-"B<lpoptions> [ B<-E> ] [ B<-U> I<Benutzername> ] [ B<-h >I<Server>[B<:"
-">I<Port>] ] B<-d >I<Ziel>[B</>I</Instanz>] [ B<-l> ]"
+"B<lpoptions> [ B<-E> ] [ B<-h >I<Server>[B<:>I<Port>] ] B<-d "
+">I<Ziel>[B</>I</Instanz>] [ B<-l> ]"
 
 #. type: Plain text
 #: lpoptions.man.in:37
-#, fuzzy
-#| msgid ""
-#| "B<lpoptions> [ B<-E> ] [ B<-U> I<username> ] [ B<-h >I<server>[B<:"
-#| ">I<port>] ] [ B<-p >I<destination>[B</>I<instance>] ] B<-o "
-#| ">I<option>[B<=>I<value>] ..."
 msgid ""
 "B<lpoptions> [ B<-E> ] [ B<-h >I<server>[B<:>I<port>] ] [ B<-p "
 ">I<destination>[B</>I<instance>] ] B<-o >I<option>[B<=>I<value>] ..."
 msgstr ""
-"B<lpoptions> [ B<-E> ] [ B<-U> I<Benutzername> ] [ B<-h >I<Server>[B<:"
-">I<Port>] ] [ B<-p >I<Ziel>[B</>I</Instanz>] ] B<-o >I<Option>[B<=>I<Wert>] …"
+"B<lpoptions> [ B<-E> ] [ B<-h >I<Server>[B<:>I<Port>] ] [ B<-p "
+">I<Ziel>[B</>I</Instanz>] ] B<-o >I<Option>[B<=>I<Wert>] …"
 
 #. type: Plain text
 #: lpoptions.man.in:48
-#, fuzzy
-#| msgid ""
-#| "B<lpoptions> [ B<-E> ] [ B<-U> I<username> ] [ B<-h >I<server>[B<:"
-#| ">I<port>] ] [ B<-p >I<destination>[B</>I<instance>] ] B<-r> I<option>"
 msgid ""
 "B<lpoptions> [ B<-E> ] [ B<-h >I<server>[B<:>I<port>] ] [ B<-p "
 ">I<destination>[B</>I<instance>] ] B<-r> I<option>"
 msgstr ""
-"B<lpoptions> [ B<-E> ] [ B<-U> I<Benutzername> ] [ B<-h >I<Server>[B<:"
-">I<Port>] ] [ B<-p >I<Ziel>[B</>I</Instanz>] ] B<-r> I<Option>"
+"B<lpoptions> [ B<-E> ] [ B<-h >I<Server>[B<:>I<Port>] ] [ B<-p "
+">I<Ziel>[B</>I</Instanz>] ] B<-r> I<Option>"
 
 #. type: Plain text
 #: lpoptions.man.in:56
-#, fuzzy
-#| msgid ""
-#| "B<lpoptions> [ B<-E> ] [ B<-U> I<username> ] [ B<-h >I<server>[B<:"
-#| ">I<port>] ] B<-x >I<destination>[B</>I<instance>]"
 msgid ""
 "B<lpoptions> [ B<-E> ] [ B<-h >I<server>[B<:>I<port>] ] B<-x "
 ">I<destination>[B</>I<instance>]"
 msgstr ""
-"B<lpoptions> [ B<-E> ] [ B<-U> I<Benutzername> ] [ B<-h >I<Server>[B<:"
-">I<Port>] ] B<-x >I<Ziel>[B</>I</Instanz>]"
+"B<lpoptions> [ B<-E> ] [ B<-h >I<Server>[B<:>I<Port>] ] B<-x "
+">I<Ziel>[B</>I</Instanz>]"
 
 #. type: Plain text
 #: lpoptions.man.in:60
