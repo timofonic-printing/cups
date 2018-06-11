@@ -1,4 +1,4 @@
-cups (2.2.8-2) unstable; urgency=medium
+cups (2.2.8-1) unstable; urgency=medium
 
   * New upstream 2.2.8 release
     - The scheduler allowed environment variables to be specified in the
