@@ -190,7 +190,7 @@ Depends: ${shlibs:Depends}, ${misc:Depends},
  cups-common (>= ${source:Version}),
  libcups2 (= ${binary:Version}),
  adduser
-Suggests: cups, xpp, cups-bsd, smbclient
+Suggests: cups, cups-bsd, smbclient
 Replaces: cups (<< 1.7.3-5~)
 Breaks: cups (<< 1.7.3-5~)
 Conflicts: lprng
