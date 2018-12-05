@@ -1,4 +1,4 @@
-From 8fb32a37b3aec835801696e90d4557e1a023ebbe Mon Sep 17 00:00:00 2001
+From 44c5ad66b87ad11cc8d45497034e3ada8f36f09a Mon Sep 17 00:00:00 2001
 From: Michael R Sweet <michael.r.sweet@gmail.com>
 Date: Wed, 5 Dec 2018 13:02:09 -0500
 Subject: Fix -E option (Issue #5440)
