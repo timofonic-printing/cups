@@ -1,4 +1,4 @@
-From 0505363fdcd33828ee57b91d0722fb724fb97995 Mon Sep 17 00:00:00 2001
+From 648604388ab13dc7a2645e435f2c84ca7a73610f Mon Sep 17 00:00:00 2001
 From: Till Kamppeter <till.kamppeter@gmail.com>
 Date: Tue, 9 Aug 2016 18:11:27 +0200
 Subject: Make CUPS reading all option settings in PostScript print
