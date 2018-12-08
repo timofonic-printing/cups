@@ -1,18 +1,15 @@
-From 692052ecb4613762a4b5f09953333ab0c08b5b46 Mon Sep 17 00:00:00 2001
+From ee92595c22b31cabc5a53268803fc8e53db14813 Mon Sep 17 00:00:00 2001
 From: Martin Pitt <mpitt@debian.org>
 Date: Tue, 9 Aug 2016 18:11:06 +0200
-Subject: Install root backends world-readable.
+Subject: Install root backends world-readable
 
 This is needed:
  - to comply with Debian Policy
- - because it is both nonsensical to to not do so
+ - because it is both nonsensical to not do so
  - it also breaks system checkers, bug reporting, etc
 
 Bug: http://www.cups.org/str.php?L2935
 Bug-Debian: http://bugs.debian.org/410171
-Last-Update: 2015-02-10
-
-Patch-Name: rootbackends-worldreadable.patch
 ---
  backend/Makefile         | 4 ++--
  scheduler/cups-deviced.c | 2 +-

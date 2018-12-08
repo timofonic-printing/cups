@@ -1,4 +1,4 @@
-From ac0048f0e0c70efecd4e859a98f719af71e23f6c Mon Sep 17 00:00:00 2001
+From 636736bf6b694603432da1f72f07754d29e1673d Mon Sep 17 00:00:00 2001
 From: Didier Raboud <odyx@debian.org>
 Date: Tue, 9 Aug 2016 18:11:24 +0200
 Subject: Move cupsd.conf.default from SERVERROOT to DATADIR

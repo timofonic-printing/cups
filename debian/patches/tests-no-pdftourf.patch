@@ -1,4 +1,4 @@
-From 6432639a76e58969008a8cf5847e5186a4ef7090 Mon Sep 17 00:00:00 2001
+From 6a354c3169ea6469bb71e51fc6d7d23e62f7fcaa Mon Sep 17 00:00:00 2001
 From: Michael Sweet <michael.r.sweet@gmail.com>
 Date: Tue, 9 Aug 2016 18:11:23 +0200
 Subject: Revert pdftourf filter addition in tests
