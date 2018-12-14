@@ -1,9 +1,9 @@
-cups (2.2.10-2) UNRELEASED; urgency=medium
+cups (2.2.10-2) unstable; urgency=medium
 
   [ Helge Kreutzmann ]
   * Update German man page (2192t)
 
- -- Helge Kreutzmann <debian@helgefjell.de>  Sun, 09 Dec 2018 06:44:31 +0100
+ -- Didier Raboud <odyx@debian.org>  Fri, 14 Dec 2018 11:46:51 +0100
 
 cups (2.2.10-1) unstable; urgency=medium
 
