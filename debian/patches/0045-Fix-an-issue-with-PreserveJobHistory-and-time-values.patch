@@ -1,13 +1,12 @@
-From 344bf5ea26716eb39713aca5fa1ee314fdb589eb Mon Sep 17 00:00:00 2001
+From 917e6f4ff70eed933c80d21eed4c6bfeb2cb68b7 Mon Sep 17 00:00:00 2001
 From: Michael R Sweet <michael.r.sweet@gmail.com>
 Date: Mon, 11 Mar 2019 13:54:46 -0400
 Subject: Fix an issue with `PreserveJobHistory` and time values (Issue #5538)
 
 Closes: #921741
 ---
- scheduler/job.c       | 36 ++++++++++++++++++------------------
- test/run-stp-tests.sh |  2 +-
- 2 files changed, 19 insertions(+), 19 deletions(-)
+ scheduler/job.c | 36 ++++++++++++++++++------------------
+ 1 file changed, 18 insertions(+), 18 deletions(-)
 
 diff --git a/scheduler/job.c b/scheduler/job.c
 index cc9283fb8..d4793cbb1 100644
@@ -113,16 +112,3 @@ index cc9283fb8..d4793cbb1 100644
      else
        job->file_time = INT_MAX;
  
-diff --git a/test/run-stp-tests.sh b/test/run-stp-tests.sh
-index 7fd69652c..f4874958a 100755
---- a/test/run-stp-tests.sh
-+++ b/test/run-stp-tests.sh
-@@ -901,7 +901,7 @@ fi
- 
- # Requests logged
- count=`wc -l $BASE/log/access_log | awk '{print $1}'`
--expected=`expr 35 + 18 + 30 + $pjobs \* 8 + $pprinters \* $pjobs \* 4`
-+expected=`expr 35 + 18 + 30 + $pjobs \* 8 + $pprinters \* $pjobs \* 4 + 2`
- if test $count != $expected; then
- 	echo "FAIL: $count requests logged, expected $expected."
- 	echo "    <p>FAIL: $count requests logged, expected $expected.</p>" >>$strfile
