@@ -14,7 +14,7 @@ before_install:
     - docker exec sid apt update
     - docker exec sid apt upgrade -y
     - docker exec sid apt install --no-install-recommends -y build-essential
-    - docker exec sid apt install --no-install-recommends -y autoconf automake libtool pkg-config ghostscript libavahi-client-dev libavahi-common-dev libavahi-compat-libdnssd-dev libdbus-1-dev libfontconfig1-dev libfreetype6-dev libgnutls28-dev libijs-dev libjpeg-dev libldap2-dev libkrb5-dev libpam0g-dev libpaper-dev libpng-dev libsystemd-dev libtiff-dev libusb-1.0-0-dev poppler-utils sharutils zlib1g-dev
+    - docker exec sid apt install --no-install-recommends -y autoconf automake libtool pkg-config ghostscript libavahi-client-dev libavahi-common-dev libavahi-compat-libdnssd-dev libdbus-1-dev libfontconfig1-dev libfreetype6-dev libgnutls28-dev libijs-dev libjpeg-dev libldap2-dev libkrb5-dev libpam0g-dev libpaper-dev libpng-dev libsystemd-dev libtiff-dev libusb-1.0-0-dev poppler-utils sharutils zlib1g-dev po4a
     - docker exec sid adduser -q builder
 
 env:
