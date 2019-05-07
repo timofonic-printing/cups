@@ -1,0 +1,32 @@
+language: minimal
+addons:
+  apt:
+    packages:
+      - docker-ce
+
+services:
+    - docker
+
+before_install:
+    - docker pull registry.salsa.debian.org/salsa-ci-team/images/base:unstable
+    - docker tag registry.salsa.debian.org/salsa-ci-team/images/base:unstable debian:unstable
+    - docker run --detach --name "sid" --mount type=bind,source=$(pwd),destination=/source --rm -i -t debian:unstable sh
+    - docker exec sid apt update
+    - docker exec sid apt upgrade -y
+    - docker exec sid apt install --no-install-recommends -y build-essential
+    - docker exec sid apt install --no-install-recommends -y autoconf automake libtool pkg-config ghostscript libavahi-client-dev libavahi-common-dev libavahi-compat-libdnssd-dev libdbus-1-dev libfontconfig1-dev libfreetype6-dev libgnutls28-dev libijs-dev libjpeg-dev libldap2-dev libkrb5-dev libpam0g-dev libpaper-dev libpng-dev libsystemd-dev libtiff-dev libusb-1.0-0-dev poppler-utils sharutils zlib1g-dev
+    - docker exec sid adduser -q builder
+
+env:
+    - CUPS_ADDITIONAL_CONFIGURE_ARGS=""
+    - CUPS_ADDITIONAL_CONFIGURE_ARGS="--enable-libpaper --enable-ssl --enable-gnutls --enable-threads --enable-static --enable-debug --enable-dbus --with-dbusdir=/etc/dbus-1 --enable-gssapi --enable-avahi --disable-launchd --with-cups-group=lp --with-system-groups=lpadmin --with-rundir=/run/cups --with-printcap=/run/cups/printcap --with-log-file-perm=0640 --with-local_protocols='dnssd' --with-systemd=/lib/systemd/system --enable-libusb"
+
+script:
+    - docker exec sid su builder -c "cp -R /source /home/builder/source"
+    - docker exec --env=CUPS_CONFIGURE_ARGS="--build=x86_64-linux-gnu --prefix=/usr --includedir=\${prefix}/include --mandir=\${prefix}/share/man --infodir=\${prefix}/share/info --sysconfdir=/etc --localstatedir=/var --libdir=\${prefix}/lib/x86_64-linux-gnu --libexecdir=\${prefix}/lib/x86_64-linux-gnu --with-docdir=/usr/share/cups/doc-root --localedir=/usr/share/cups/locale ${CUPS_ADDITIONAL_CONFIGURE_ARGS}" sid bash -c "cd /home/builder/source; su builder -c \"echo -n 'Build with the following configure arguments '; echo \${CUPS_CONFIGURE_ARGS}; ./configure \${CUPS_CONFIGURE_ARGS}\""
+    - docker exec sid bash -c "cd /home/builder/source; su builder -c make"
+    - docker exec sid bash -c "cd /home/builder/source; LANG=C su builder -c \"make unittests\""
+    - docker exec sid bash -c "cd /home/builder/source; LANG=C su builder -c \"make check\""
+
+after_failure:
+    - docker exec sid bash -c "cat /tmp/cups-builder/cups-str*.html"
